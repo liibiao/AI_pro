@@ -1,0 +1,840 @@
+{
+  "schema": "mjb-workflow-v1",
+  "id": "draft-asset_image_generation-1778298423240",
+  "name": "EP001 资产图生成 Workflow",
+  "taskType": "asset_image_generation",
+  "path": "02-工作流/ep001/draft-asset_image_generation-1778298423240.mjb-workflow.json",
+  "importUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-asset_image_generation-1778298423240.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199",
+  "editUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-asset_image_generation-1778298423240.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=edit",
+  "runUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-asset_image_generation-1778298423240.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=manual",
+  "canvasExecution": {
+    "executor": "infinite_canvas",
+    "adapter": "smart-vision-canvas-workflow-adapter",
+    "executionCarrier": "workflow_json",
+    "directModelExecution": false,
+    "modelInvocation": "never_direct_from_smart_vision",
+    "strategy": {
+      "mode": "operator_controlled",
+      "carrier": "workflow_json",
+      "executor": "infinite_canvas",
+      "workflowMode": "asset_image_generation",
+      "pipelineStage": "asset_images",
+      "pipelineTaskType": "asset_image_generation",
+      "consumes": [
+        "context_pack",
+        "asset_index",
+        "style_bible"
+      ],
+      "produces": [
+        "asset_images",
+        "asset_index_update"
+      ],
+      "directModelExecution": false,
+      "modelInvocation": "never_direct_from_smart_vision",
+      "defaultAction": "open_canvas_for_review",
+      "allowedActions": [
+        "generate_workflow_json",
+        "open_canvas",
+        "edit_workflow",
+        "manual_run_in_canvas",
+        "register_canvas_output"
+      ],
+      "gates": [
+        "workflow_json_generated",
+        "prompts_filled",
+        "reference_images_filled",
+        "output_paths_filled",
+        "operator_or_strategy_approval_before_run"
+      ],
+      "note": "Smart Vision 只生成并调度无限画布 Workflow JSON；模型执行只能由画布工作流按策略承载。"
+    },
+    "workflowMode": "asset_image_generation",
+    "status": "ready_for_canvas",
+    "workflowPath": "02-工作流/ep001/draft-asset_image_generation-1778298423240.mjb-workflow.json",
+    "importUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-asset_image_generation-1778298423240.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199",
+    "editUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-asset_image_generation-1778298423240.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=edit",
+    "runUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-asset_image_generation-1778298423240.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=manual",
+    "bridgeBase": "http://127.0.0.1:5199",
+    "promptCount": 9,
+    "referenceImageCount": 0,
+    "prompts": [
+      {
+        "path": "01-资产图与提示词/提示词/README.md",
+        "sourceKind": "artifact",
+        "score": 66,
+        "exists": true,
+        "excerpt": "提示词索引 本目录保存智能视界资产与镜头生成提示词，要求能追溯到对应资产图、故事板或 Workflow。 建议分类 - `角色/`：角色设定图提示词。 - `道具/`：道具设定图提示词。 - `场景/`：场景母图与固定视角图提示词。 - `故事板/`：导演故事板与关键帧提示词。 - `视频/`：Seedance / 即梦 / 叙事版视频提示词派生稿。 命名建议 使用 `ep001-shot001-用途.md` 或 `asset-角色名-用途.md`，保证与产物、Workflow、审核记录可互相追踪。",
+        "headings": [
+          "提示词索引",
+          "建议分类",
+          "命名建议"
+        ]
+      },
+      {
+        "path": "01-资产图与提示词/README.md",
+        "sourceKind": "artifact",
+        "score": 66,
+        "exists": true,
+        "excerpt": "资产图与提示词索引 本目录是智能视界产物第一优先级入口，集中管理角色、道具、场景、故事板、参考图与配套提示词。 分组 - `角色/`：角色设定图、多视角、表情、服装与随身物。 - `道具/`：关键叙事道具、武器、装备、特殊物件。 - `场景/`：核心空间、场景母图、固定视角图。 - `故事板/`：导演故事板、连续性卡、参考矩阵。 - `提示词/`：资产图、故事板、视频生成可追溯提示词。 - `参考图/`：输入参考图、风格参考、资产参考。 使用原则 资产图与提示词优先于工作流和视频展示；剧本与分镜表只作为可选输出在 UI 中筛选查看。",
+        "headings": [
+          "资产图与提示词索引",
+          "分组",
+          "使用原则"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/ep001-fullref-15s.md",
+        "sourceKind": "artifact",
+        "score": 63,
+        "exists": true,
+        "excerpt": "第1话《废物》— Seedance 长版母稿（修正版） > **项目：** 无限强化·灵纹觉醒 > **用途：** 作为 `Seedance / 即梦 / 叙事版` 的唯一真实源 > **结构说明：** 严格采用 `画面主体【完整：...】 + @Image 起手 + 逐条时间轴 + 六个固定段名` --- 【第 1 段：0s - 5s】 画面主体【完整：建立末世联邦与林家练武场的空间压迫关系，让观众先看到灰暗世界与屏障秩序，再落到灵纹碑石与试炼现场的核心读点。】 @Image@联邦全景 / @林家练武场 / @灵纹碑石——先远后近，屏障穹顶罩住灰暗城市，练武场在画面下半区成型，第一听感是远处低频风压与屏障嗡鸣。 0.0s（24fps / 高空俯瞰 / 固定起幅）：能量屏障穹顶覆盖整座灰暗城市，边缘冷蓝微光缓慢游走，屏障外荒芜废土上异兽剪影缓慢掠过——【音效：远处低频风压 + 极弱异兽嘶吼】。 1.8s（24fps / 高空俯瞰 / 缓慢下压）：镜头沿穹顶边缘下沉，城市轮廓向后退去，练武场从尘雾里显形——【音效：屏障低频嗡鸣持续，风声微增强】。 3.0s（24fps / 全景 / 稳定停住）：烈日下练武场人头攒动，中央黑色巨...",
+        "headings": [
+          "第1话《废物》— Seedance 长版母稿（修正版）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/ep003-fullref-15s.md",
+        "sourceKind": "artifact",
+        "score": 55,
+        "exists": true,
+        "excerpt": "第3话《觉醒》 — Seedance 2.0 全能参考 15 秒分镜提示词 > 项目：无限强化·灵纹觉醒 > 镜头数：4 > 结构：HOOK→PROBLEM→SOLUTION→CTA/钩子收束（适合宣发/预告） --- 参考图清单 | 用途 | 文件路径 | 用于镜头 | |------|---------|---------| | @林天 | 06-generated/images/characters/林天觉醒后-v8-1.png | Shot 1 | | @系统UI面板 | 06-generated/images/props/系统UI面板-v8-1.png | Shot 1 | | @联邦全景 | 06-generated/images/scenes/联邦全景-v8-1.png | Shot 2 | --- 素材职责矩阵（避免抢权漂移） | 控制维度 | 主控制源 | 约束 | |---------|----------|------| | 角色形象/阶段/战损一致性 | @角色-… | 禁止跨阶段换装与战损消失 | | 场景空间/光影基准 | @场景-… | 主光方向一致，保留字幕安全区 | | 剧情支点道具可读性 ...",
+        "headings": [
+          "第3话《觉醒》 — Seedance 2.0 全能参考 15 秒分镜提示词",
+          "参考图清单",
+          "素材职责矩阵（避免抢权漂移）",
+          "片段节拍纪律",
+          "Shot 1 — HOOK",
+          "Shot 2 — PROBLEM→SOLUTION",
+          "Shot 3 — SOLUTION（高光）",
+          "Shot 4 — CTA / 钩子收束"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/即梦/ep001-omni-paste.md",
+        "sourceKind": "artifact",
+        "score": 53,
+        "exists": true,
+        "excerpt": "第1话《废物》— 即梦版长提示词（修正版） > **项目：** 无限强化·灵纹觉醒 > **版本：** 即梦版（长版投喂稿） > **规则：** 每段 10s，分镜逻辑不变，扩展时间轴；最后一段不足 10s 按实际铺满 > **来源：** 基于 `ep001-fullref-15s.md` 同步修正，保留位置关系与六固定段名 --- 【第 1 段：0s - 10s】 画面主体【完整：先建立末世联邦与林家练武场，再把首看点落到灵纹碑石与试炼现场。】 @Image@联邦全景 / @林家练武场 / @灵纹碑石——先远后近，屏障穹顶罩住灰暗城市，练武场落在画面下半区，第一听感是远处低频风压与屏障嗡鸣。 位置关系：屏障穹顶在最上层包住整座城市；练武场在下半区中央；灵纹碑石固定在中轴偏下；废土与异兽剪影只留在屏障外后景，不得前压到练武场前景。 0.0s（24fps / 高空俯瞰 / 固定起幅）：屏障覆盖灰暗城市，边缘冷蓝微光游走，废土异兽剪影缓慢掠过——【音效：低频风压 + 极弱异兽嘶吼】。 1.8s（24fps / 高空俯瞰 / 缓慢下压）：镜头沿穹顶边缘下沉，城市后退，练武场从尘雾里显形——【音效：屏障嗡鸣持续】。 3.0s（24f...",
+        "headings": [
+          "第1话《废物》— 即梦版长提示词（修正版）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/即梦/ep001-omni-paste.short.md",
+        "sourceKind": "artifact",
+        "score": 53,
+        "exists": true,
+        "excerpt": "> **项目：** 无限强化·灵纹觉醒 > **大创意：** 压抑蓄力——废物到天才的反差，最终钩子是\"林天，上来吧\" > **视觉隐喻：** 暗色调底色中偶尔闪现的银色纹路微光（希望种子） > **镜头数：** 8 镜头 Seedance 素材上传顺序 | 序号 | 资源 | 路径 | |---|---|---| --- 即梦版（Omni-Reference） text [0.0-0.3s] 蓄力起手：@林傲天 右臂抬起至胸前，掌心出现紫色电弧（24fps）。机位固定中景。 [0.3-0.5s] 掌碑瞬间：接触点白色闪光（0.1s 过曝后恢复），冲击波纹扩散。机位固定。 [0.5-1.5s] 雷光炸裂（降格 60fps）：紫色闪电放射 6-8 道；右臂弹回 15°；空气热畸变；群众倒退+衣摆猎猎+尘土颗粒。人物边缘清晰，运动模糊仅限背景。 [1.5-2.5s] 碑文点亮（恢复 24fps）：紫色闪电消散，金色大字逐字亮起（间隔 0.3s）。 [2.5-3.5s] 余波回稳：右臂放下握拳；群众恢复站姿；环境光回归暖色调。 [3.5-6.0s] 回头兑现：头部缓慢转向镜头（30°/s），机位极缓推进；嘴角拉开冷笑+下巴上抬 8...",
+        "headings": [
+          "Seedance 素材上传顺序",
+          "即梦版（Omni-Reference）",
+          "Shot 1 — 俯瞰建立（HOOK）",
+          "Shot 2 — 角落相依（PROBLEM）",
+          "Shot 3 — 嘲讽与隐忍（PROBLEM）",
+          "Shot 4 — 闪回·父亲背影（PROBLEM）",
+          "Shot 5 — 闪回·权力更替+婚约（PROBLEM）",
+          "Shot 6 — 林傲天金甲登场（PROBLEM）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/叙事/ep001-seedance2-narrative-paste.md",
+        "sourceKind": "artifact",
+        "score": 53,
+        "exists": true,
+        "excerpt": "第1话《废物》— 叙事版长提示词（修正版） > **项目：** 无限强化·灵纹觉醒 > **版本：** Seedance 叙事版（导演口述） > **规则：** 每段 15s，分镜逻辑不变，扩展时间轴与细节动作；最后一段不足 15s 按实际铺满 > **来源：** 基于 `ep001-fullref-15s.md` 同步修正，保留位置关系与六固定段名 --- 【第 1 段：0s - 15s】 画面主体【完整：先建立末世联邦与林家练武场，再把读点稳稳落到灵纹碑石和试炼现场，让观众先感到压迫，再感到秩序。】 @Image@联邦全景 / @林家练武场 / @灵纹碑石——先给远处灰暗城市和能量屏障，再顺着视线往下落到练武场中央巨碑，第一听感是风压和屏障的低频嗡鸣。 位置关系：屏障穹顶在画面最上层包住整座城市，练武场落在画面下半区中央，灵纹碑石固定在中轴偏下作为唯一空间核心，废土与异兽剪影只留在屏障外后景。 0.0s（24fps / 高空俯瞰 / 固定起幅）：能量屏障覆盖整座灰暗城市，边缘冷蓝微光缓慢游走，屏障外荒芜废土上的异兽剪影缓慢掠过——【音效：远处低频风压 + 极弱异兽嘶吼】。 1.8s（24fps / 高空俯瞰 / 缓慢下压...",
+        "headings": [
+          "第1话《废物》— 叙事版长提示词（修正版）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/叙事/ep001-seedance2-narrative-paste.short.md",
+        "sourceKind": "artifact",
+        "score": 53,
+        "exists": true,
+        "excerpt": "> **项目：** 无限强化·灵纹觉醒 > **大创意：** 压抑蓄力——废物到天才的反差，最终钩子是\"林天，上来吧\" > **视觉隐喻：** 暗色调底色中偶尔闪现的银色纹路微光（希望种子） > **镜头数：** 8 镜头 Seedance 素材上传顺序 | 序号 | 资源 | 路径 | |---|---|---| --- Seedance2叙事版（长句叙事）",
+        "headings": [
+          "Seedance 素材上传顺序",
+          "Seedance2叙事版（长句叙事）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/seedance/ep001-seedance2-paste.md",
+        "sourceKind": "artifact",
+        "score": 53,
+        "exists": true,
+        "excerpt": "第1话《废物》— Seedance 版长提示词（修正版） > **项目：** 无限强化·灵纹觉醒 > **版本：** Seedance 长版母稿直出 > **规则：** 每段 15s，分镜逻辑不变，扩展时间轴与细节动作；最后一段不足 15s 按实际铺满 > **说明：** 已修正为项目规范要求的 `画面主体【完整】 + @Image 起手 + 逐条时间轴 + 六固定段名` --- 【第 1 段：0s - 15s】 画面主体【完整：建立末世联邦与林家练武场的空间压迫关系，让观众先看到灰暗世界与屏障秩序，再落到灵纹碑石与试炼现场的核心读点。】 @Image@联邦全景 / @林家练武场 / @灵纹碑石——先远后近，屏障穹顶罩住灰暗城市，练武场在画面下半区成型，第一听感是远处低频风压与屏障嗡鸣。 0.0s（24fps / 高空俯瞰 / 固定起幅）：能量屏障穹顶覆盖整座灰暗城市，边缘冷蓝微光缓慢游走，屏障外荒芜废土上异兽剪影缓慢掠过——【音效：远处低频风压 + 极弱异兽嘶吼】。 1.8s（24fps / 高空俯瞰 / 缓慢下压）：镜头沿穹顶边缘下沉，城市轮廓向后退去，建筑废墟在尘雾中若隐若现——【音效：屏障低频嗡鸣持续，风声微增强】。...",
+        "headings": [
+          "第1话《废物》— Seedance 版长提示词（修正版）"
+        ]
+      }
+    ],
+    "referenceImages": [],
+    "outputArtifacts": [
+      "01-资产图与提示词/资产图/**/*.png",
+      "01-资产图与提示词/asset-index.md"
+    ],
+    "actions": [
+      {
+        "id": "edit_in_canvas",
+        "label": "编辑工作流",
+        "url": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-asset_image_generation-1778298423240.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=edit"
+      },
+      {
+        "id": "open_in_canvas",
+        "label": "导入画布",
+        "url": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-asset_image_generation-1778298423240.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=manual"
+      }
+    ],
+    "generatedAt": "2026-05-09T03:47:03.247Z"
+  },
+  "contextPack": {
+    "taskType": "asset_image_generation",
+    "title": "asset_image_generation 任务上下文包",
+    "methodologyPackId": "smart-vision-methodology-core-v0.1",
+    "skillPackId": "smart-vision-skill-core-v0.1",
+    "templatePackId": "smart-vision-template-core-v0.1",
+    "aliases": [
+      "asset_image_generation",
+      "character_asset",
+      "scene_asset",
+      "prop_asset",
+      "style_bible",
+      "image_prompt"
+    ],
+    "docs": [
+      "docs/prompt-standards.md",
+      "docs/long-prompt-detail-gate.md",
+      "docs/seedance-prompt-engineering.md",
+      "docs/jimeng-anti-collapse-core.md",
+      "docs/gpt-image-prompt-methodology.md",
+      "docs/hzw-master-style-system.md",
+      "docs/master-methodology-toolkit.md",
+      "docs/character-design-sheet-spec.md",
+      "docs/scene-design-sheet-spec.md",
+      "docs/film-style-bible-standard.md"
+    ],
+    "skills": [
+      "skills/seedance-action-skill.md",
+      "skills/runninghub-image-skill.md",
+      "skills/prompt-experiment-skill.md",
+      "skills/quality-control-skill.md",
+      "skills/art-design-skill.md",
+      "skills/asset-library-skill.md",
+      "skills/asset-versioning-skill.md",
+      "skills/hzw-master-style-skill.md"
+    ],
+    "agents": [],
+    "templates": [
+      "templates/_project-template/03-assets/characters/character-template.md",
+      "templates/_project-template/03-assets/scenes/scene-template.md",
+      "templates/_project-template/03-assets/props/prop-template.md"
+    ],
+    "inputArtifacts": [
+      "01-资产图与提示词/asset-index.md",
+      "04-storyboard/ep001-storyboard.md",
+      "05-prompts/seedance/ep001-shots.md",
+      "08-qa/v8-asset-consistency-qa-report.md",
+      "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json",
+      "02-工作流/ep001/draft-qa-1778211540000.mjb-workflow.json",
+      "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-precheck.md",
+      "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+      "05-可选输出/审核剪辑发布/review/ep001/ep001-rework-chain-test.md",
+      "05-可选输出/审核剪辑发布/release/ep001/ep001-release-v0.mp4",
+      "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "05-可选输出/审核剪辑发布/publish/ep001/ep001-release-v0-approval.md",
+      "05-可选输出/审核剪辑发布/publish/ep001/ep001-final-production-backlog.md",
+      "01-资产图与提示词/提示词/README.md",
+      "01-资产图与提示词/README.md",
+      "02-工作流/ep001/draft-asset_image_generation-1778290049554.mjb-workflow.json",
+      "02-工作流/ep001/draft-edit-1778210764441.mjb-workflow.json",
+      "02-工作流/ep001/draft-video_generation-1778182715841.mjb-workflow.json",
+      "02-工作流/ep001/draft-video_generation-1778242509805.mjb-workflow.json",
+      "02-工作流/ep001/draft-video_generation-1778261367446.mjb-workflow.json",
+      "02-工作流/ep001/ep001-storyboard-image-generation.mjb-workflow.json",
+      "upstream/01-story/chapters/ch01/README.md"
+    ],
+    "workflowHints": [
+      "02-工作流/ep001/draft-asset_image_generation-1778290049554.mjb-workflow.json"
+    ],
+    "selectedCapabilityItems": {
+      "methodologies": [
+        {
+          "id": "prompt-generation",
+          "title": "长版提示词与平台生成",
+          "taskTypes": [
+            "seedance_prompt",
+            "jimeng_prompt",
+            "image_prompt",
+            "video_generation",
+            "storyboard_image_generation"
+          ]
+        },
+        {
+          "id": "asset-style",
+          "title": "资产、美术与子风格",
+          "taskTypes": [
+            "asset_image_generation",
+            "character_asset",
+            "scene_asset",
+            "prop_asset",
+            "style_bible"
+          ]
+        }
+      ],
+      "skills": [
+        {
+          "id": "prompt-generation",
+          "title": "视频与生图提示词",
+          "taskTypes": [
+            "seedance_prompt",
+            "image_prompt",
+            "storyboard_image_generation",
+            "prompt_qa"
+          ]
+        },
+        {
+          "id": "art-assets",
+          "title": "美术资产",
+          "taskTypes": [
+            "asset_image_generation",
+            "character_asset",
+            "scene_asset",
+            "prop_asset"
+          ]
+        }
+      ],
+      "templates": [
+        {
+          "id": "project-assets",
+          "title": "项目资产模板",
+          "taskTypes": [
+            "asset_image_generation",
+            "character_asset",
+            "scene_asset",
+            "prop_asset"
+          ]
+        }
+      ]
+    },
+    "parsedReferences": [
+      {
+        "path": "docs/prompt-standards.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 21520,
+        "parsedAt": "2026-05-09T03:47:03.226Z",
+        "format": "markdown",
+        "headings": [
+          "Prompt Standards — 提示词编写规范",
+          "GPT 生图专项方法论",
+          "适用范围",
+          "核心原则",
+          "强制自检",
+          "核心原则",
+          "错误示例",
+          "正确示例"
+        ],
+        "excerpt": "Prompt Standards — 提示词编写规范 GPT 生图专项方法论 > 统一专项规范：`docs/gpt-image-prompt-methodology.md` 适用范围 - `gpt-image-2` 文生图 - GPT 图生图 / 精修 - 海报 / KV / UI / 信息图 / 商品广告 / 角色设定表 / 漫画页面 / 品牌周边合集 核心原则 GPT 生图提示词必须写成“结构化视觉设计说明书”，而不是关键词堆叠。复杂图优先采用： 工业化模板必须遵守 `Prompt as Code` 三步法：先确定任务类型，再锁定结构约束，最后补充风格材质；可复用模板优先使用 `{argument name=\"...\" default=\"...\"}` 或 `[PRODUCT] / [BRAND] / [ASPECT RATIO]` 变量占位。 强制自检 - 复杂图必须写清分区、位置、数量和阅读层级。 - UI、信息图、电商、..."
+      },
+      {
+        "path": "docs/long-prompt-detail-gate.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 3914,
+        "parsedAt": "2026-05-09T03:47:03.226Z",
+        "format": "markdown",
+        "headings": [
+          "Long Prompt Detail Gate — 长版提示词详细度质检门禁",
+          "1. 适用范围",
+          "2. 固定接口完整性",
+          "3. 长版详细度必写项",
+          "4. 时间轴格式",
+          "5. 镜头动作融合红线",
+          "6. 打回规则",
+          "7. 放行标准"
+        ],
+        "excerpt": "Long Prompt Detail Gate — 长版提示词详细度质检门禁 > 用途：在产出 Seedance / 即梦 / 叙事版长版提示词，以及进入图片、视频生成之前，对提示词完整性和可执行性做硬性检查。不符合即打回重写。 1. 适用范围 - Seedance 长版母稿 - 即梦 / 图生视频长版母稿 - 叙事版视频提示词 - 由长版派生的简版投喂稿 - 进入图片、视频生成前的最终提示词 2. 固定接口完整性 Seedance 长版母稿必须保留以下接口，任何一个缺失都打回： 无对白段必须写明：`本段无对白配音`。 3. 长版详细度必写项 用户给出的这类结构：`画面主体【完整】 + @Image + 0s-15s 时间轴 + 环境联动 / 光线 / 对白配音 / 音效设计 / 画质 / 负面提示词`，即使已经按 1-2 秒颗粒度写满，也只作为本项目的**简版投喂稿标准**。长版母稿必须在此基础上进一步扩写，不能把该篇幅直接当..."
+      },
+      {
+        "path": "docs/seedance-prompt-engineering.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 30329,
+        "parsedAt": "2026-05-09T03:47:03.226Z",
+        "format": "markdown",
+        "headings": [
+          "seedance-prompt-engineering.md — Seedance 2.0 提示词工程",
+          "用途",
+          "核心思想",
+          "一键闭环（推荐）",
+          "时长策略",
+          "5 秒",
+          "10 秒",
+          "15 秒"
+        ],
+        "excerpt": "seedance-prompt-engineering.md — Seedance 2.0 提示词工程 用途 把 Seedance 2.0 的提示词写作、时长策略、视频类型模板、变量系统与上游大模型编排方法沉淀为统一工程规范，支持从\"手写 prompt\"升级到\"模板化生成 prompt\"。 核心思想 - Prompt 不只是描述画面，而是调度素材、镜头、声音与节奏的工程脚本。 - 要先按视频时长和视频类型决定镜头密度，再填入角色、动作、场景、运镜和衔接方式。 - 上游大模型负责编排提示词，下游 Seedance 2.0 负责执行生成。 - 站位/轴线/几何/读点/群戏调度属于\"导演门禁\"层，必须工程化写进每个 Shot（详见：docs/blocking-camera-geometry-methodology.md）。 一键闭环（推荐） 在项目目录下执行一条命令完成：Phase1-3 前置检查（故事/导演/资产）→（可选）资产生产..."
+      },
+      {
+        "path": "docs/jimeng-anti-collapse-core.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 10052,
+        "parsedAt": "2026-05-09T03:47:03.226Z",
+        "format": "markdown",
+        "headings": [
+          "即梦 2.0 防崩核心规范",
+          "1. 总原则：先稳人物，再做动作",
+          "2. 十条防崩核心规则",
+          "2.1 锁脸三件套",
+          "2.2 动作拆成每秒步骤",
+          "2.3 反向提示词固定栏",
+          "2.4 单段时长不超过 3 秒",
+          "2.5 首尾帧对齐"
+        ],
+        "excerpt": "即梦 2.0 防崩核心规范 > 来源：基于用户提供的抖音图文教学内容提炼。 > 适用：即梦 2.0 图生视频、人物短视频、文戏表演、轻动作、口播、分段拼接、首尾帧连续生成。 > 核心定位：本规范不是风格词库，而是“稳定性参数 + 分段动作 + 连续性控制”的防崩执行层，用于降低崩脸、变脸、歪眼、手指穿模、背景闪烁、明暗跳变与片段拼接错位。 --- 1. 总原则：先稳人物，再做动作 即梦人物视频最容易崩坏的根因通常不是“提示词不够华丽”，而是： 1. 参考强度不固定。 2. 种子值随机。 3. 人物描述前后漂移。 4. 单段时间过长导致误差累积。 5. 动作没有按关节和时间拆解。 6. 首尾帧、光线、比例、速度不连续。 防崩优先级： --- 2. 十条防崩核心规则 2.1 锁脸三件套 用于解决：崩脸、变脸、五官漂移、角色不一致。 必须同时满足： 1. 参考强度固定为 `75`。 2. 种子值全程固定，复用底图种子号。 3. 底图人..."
+      },
+      {
+        "path": "docs/gpt-image-prompt-methodology.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 33717,
+        "parsedAt": "2026-05-09T03:47:03.226Z",
+        "format": "markdown",
+        "headings": [
+          "GPT 生图提示词规范与方法论（gpt-image-2）",
+          "1. 总原则：把 GPT 当成视觉设计执行者，而不是风格滤镜",
+          "2. GPT 生图的两种高稳定写法",
+          "2.1 JSON 结构化写法",
+          "2.2 自然语言设计说明写法",
+          "3. 七层提示词结构",
+          "3.1 任务层：先定义“它是什么”",
+          "3.2 主体层：写可识别锚点，不写空泛形容"
+        ],
+        "excerpt": "GPT 生图提示词规范与方法论（gpt-image-2） > 来源：基于用户提供的 `260426GPT整理提示词+预览图.docx` 中 1400+ 段 gpt-image-2 案例提示词、124 张预览图资源清单，`26-04-27整理提示词+预览图.docx`、`26-04-28整理提示词+预览图.docx` 中高频生图案例，以及 `EvoLinkAI/awesome-gpt-image-2-prompts`、`freestylefly/awesome-gpt-image-2` 两个公开 GPT-image-2 提示词仓库的结构化模板体系提炼。 > 适用：GPT 生图、gpt-image-2、图生图精修、海报/KV/UI/设定稿/信息图/商品广告/漫画页面/静态分镜板/动作分解参考表/品牌视觉/写实人像/3D微缩/国风插画/科幻机械/自然风光等静态图像任务。 > 核心定位：GPT 生图不是“关键词堆叠器”，而是“可执行的视..."
+      },
+      {
+        "path": "docs/hzw-master-style-system.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 36774,
+        "parsedAt": "2026-05-09T03:47:03.226Z",
+        "format": "markdown",
+        "headings": [
+          "HZW大师风格系统 — 整剧电影专业质感视觉风格总控",
+          "0. 与母版通用方法论工具集的关系",
+          "1. 核心目标",
+          "1.1 开剧前必须先确定四层风格",
+          "1.2 全链路统一对象",
+          "2. 风格总公式",
+          "3. 开剧前风格确认流程",
+          "3.1 必问问题"
+        ],
+        "excerpt": "HZW大师风格系统 — 整剧电影专业质感视觉风格总控 > 定位：HZW大师风格不是单个 skill、单个滤镜词或单张图风格，而是一整套用于短剧 / 漫剧立项前、创作中、生成后的电影专业质感风格总控系统。它必须先继承 `docs/master-methodology-toolkit.md` 的母版通用方法论工具集，再帮助确定本剧的整体视觉风格、编剧师风格、导演风格、分镜师风格，并向下统一约束最终产出的提示词、资产图片、分镜图、视频和后期质检。后续用户提供的 HZW 学习资料，应先提炼为可执行方法论，再并入本文、相关 skill 与模板，不直接堆叠案例。 --- 0. 与母版通用方法论工具集的关系 HZW大师风格是一套**子风格工具集**，不是孤立体系。它的上游母版是 `docs/master-methodology-toolkit.md`。 母版负责文戏、武打戏、动作戏、分镜、镜头、生图、视频、声音、后期与 QA 的通用专业方法；..."
+      },
+      {
+        "path": "docs/master-methodology-toolkit.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 7466,
+        "parsedAt": "2026-05-09T03:47:03.226Z",
+        "format": "markdown",
+        "headings": [
+          "母版通用方法论工具集 — 短剧 / 漫剧创作总架构",
+          "1. 总体架构",
+          "2. 母版工具集包含内容",
+          "3. 子风格工具集继承规则",
+          "4. 子风格建立标准流程",
+          "5. Agent 作业原则",
+          "6. 当前已登记的子风格工具集",
+          "7. 新增资料吸收规则"
+        ],
+        "excerpt": "母版通用方法论工具集 — 短剧 / 漫剧创作总架构 > 定位：本文件是所有短剧 / 漫剧项目的通用方法论母版。它不是某一种风格，也不决定具体短剧的视觉风格和走向；它只提供文戏、武打戏、动作戏、对白、分镜、镜头、光影、生图、视频、声音、后期与质检的上层基础指导思想和底层专业工具。真正决定整部短剧视觉风格、审美走向、镜头气质、光色材质和最终资产统一性的，是项目选择的子风格工具集（如 HZW大师风格）。后续每新增一套子风格工具集，都必须继承或参考本母版，再形成自己的风格方法论、规范、agent 作业原则、skill 与模板。 --- 1. 总体架构 母版解决“所有剧都应该怎么专业地做”，子风格解决“这一部剧或这一类风格应该长成什么样”。 --- 2. 母版工具集包含内容 | 模块 | 作用 | 代表文档 / Skill | |------|------|------------------| | 编剧与文戏 | 冲突、潜台词、对白节奏..."
+      },
+      {
+        "path": "docs/character-design-sheet-spec.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 19737,
+        "parsedAt": "2026-05-09T03:47:03.226Z",
+        "format": "markdown",
+        "headings": [
+          "角色设定稿（三视图）提示词输出规范",
+          "一、概述",
+          "1.1 定义",
+          "1.2 适用场景",
+          "1.3 输出目标模型",
+          "1.4 硬性背景规则",
+          "1.5 道具独立出图范围规则",
+          "二、版面布局规范"
+        ],
+        "excerpt": "角色设定稿（三视图）提示词输出规范 一、概述 1.1 定义 角色设定稿（Character Design Sheet）是一张包含角色多视角、服装道具、表情变化的综合参考图，用于统一角色视觉标准，供建模、动画、分镜、资产制作等下游环节参考。 1.2 适用场景 - 漫剧角色首次定妆 - 游戏角色概念设计 - 动画/影视角色美术参考 - AI 生图的角色一致性基准图 1.3 输出目标模型 **统一使用 `gpt-image-2`**，最大支持 4096×4096。建议使用 **4096×2304（16:9 宽屏）** 或 **2048×2048（1:1）**。 1.4 硬性背景规则 - **所有角色资产必须使用纯白 / 干净浅色背景**，不加复杂场景、不加氛围背景、不用战斗现场背景 - 只允许极轻微地面接触阴影 - 角色、服装、道具细节必须清晰可拆解 - 版面采用细黑线分栏、多宫格排版，参考专业角色设定稿排版体系 1.5 道具独立出图..."
+      },
+      {
+        "path": "docs/scene-design-sheet-spec.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 10402,
+        "parsedAt": "2026-05-09T03:47:03.226Z",
+        "format": "markdown",
+        "headings": [
+          "scene-design-sheet-spec — 场景设定稿 / 720度全景图 / 12宫格视角图交付规范",
+          "1. 定位",
+          "2. 交付物定义",
+          "3. 720度全景图的项目定义",
+          "4. 剧本提取规则",
+          "4.1 基础字段",
+          "4.2 空间结构字段",
+          "4.3 设施、道具、建筑字段"
+        ],
+        "excerpt": "scene-design-sheet-spec — 场景设定稿 / 720度全景图 / 12宫格视角图交付规范 1. 定位 本规范用于把剧本中的核心大场景转化为可复用的空间资产。场景图不再只是氛围参考图，而是后续人物站位、分镜、镜头调度、视频生成和连续性检查的空间母图。 每个核心大场景必须从剧本中提取完整环境、设施、道具、建筑、群众 / NPC / 怪物 / 动物与主角站位，并使用 `gpt-image-2` 生成两张最终交付物： 1. `720度全景场景母图` 2. `12宫格固定视角图` 2. 交付物定义 | 交付物 | 文件建议 | 生成模型 | 作用 | |---|---|---|---| | 720度全景场景母图 | `03-assets/scenes/场景ID_720-panorama_vN.png` | `gpt-image-2` | 建立完整空间、设施、道具、人物、群众、NPC、怪物、动物和动作路径分布 | | ..."
+      },
+      {
+        "path": "docs/film-style-bible-standard.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 2785,
+        "parsedAt": "2026-05-09T03:47:03.226Z",
+        "format": "markdown",
+        "headings": [
+          "影片风格画质母版标准",
+          "1. 交付定位",
+          "2. 必填结构",
+          "影片风格画质基调母版",
+          "1. 基础信息",
+          "2. 一句话定义",
+          "3. 主风格与副风格",
+          "4. 视觉媒介"
+        ],
+        "excerpt": "影片风格画质母版标准 > 文件位置建议：`projects/<项目名>/03-assets/style/visual-style-bible.md` --- 1. 交付定位 `visual-style-bible.md` 是项目进入资产、分镜、导演故事板图和视频生成前必须锁定的整剧视觉母版。它负责约束： - 角色设定稿； - 场景720全景图； - 场景12宫格视角图； - 道具设定稿； - 分镜表； - D12 / D15 导演故事板图； - Sora2 / Seedance2 适配包； - 生图与视频提示词； - 后期声音与画质包装。 --- 2. 必填结构 --- 3. 门禁 - 没有 `visual-style-bible.md`，不得进入批量角色 / 场景 / 道具资产生产。 - 没有 `visual-style-bible.md`，不得进入 D12 / D15 导演故事板图生成。 - 下游若需要改变主风格，必须回到本..."
+      },
+      {
+        "path": "skills/seedance-action-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 10938,
+        "parsedAt": "2026-05-09T03:47:03.229Z",
+        "format": "markdown",
+        "headings": [
+          "seedance-action-skill — Seedance 动作武打戏设计技能",
+          "技能定位",
+          "适用任务",
+          "七大风格速查",
+          "1. 袁和平",
+          "2. 洪金宝",
+          "3. 成龙",
+          "4. 李连杰"
+        ],
+        "excerpt": "seedance-action-skill — Seedance 动作武打戏设计技能 技能定位 专用于 Seedance 2.0 模型的动作戏设计与分镜拆解，融合港片与商业动作片七大体系：袁和平、洪金宝、成龙、李连杰、甄子丹、林正英、好莱坞动作节奏。 适用任务 - 设计动作链 - 设计动作分镜 - 编写 Seedance 动作提示词 - 控制动作节拍密度与镜头长度 - 为武打戏、追逐戏、法术戏提供专用模板 - 把抽象动作氛围拆成可执行镜头信息 七大风格速查 1. 袁和平 写实、短促、力学清晰、一招制敌。 2. 洪金宝 借力打力、环境互动、灵巧实战。 3. 成龙 幽默武打、险境化解、道具连锁。 4. 李连杰 飘逸写意、节奏留白、古风美感。 5. 甄子丹 高速压制、MMA 连招、不给喘息时间。 6. 林正英 道教仪式、符咒施法、僵尸受击逻辑、法术动作。 7. 好莱坞 极快切、重击反馈、大场面冲击力。 Seedance 动作约束 - ..."
+      },
+      {
+        "path": "skills/runninghub-image-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 8443,
+        "parsedAt": "2026-05-09T03:47:03.229Z",
+        "format": "markdown",
+        "headings": [
+          "RunningHub 图像生成技能 — runninghub-image-skill",
+          "技能定位",
+          "适用场景",
+          "能力清单",
+          "一、工作流模式（Workflow）",
+          "二、标准模型 API 模式",
+          "标准执行流程",
+          "第一步：编写任务卡"
+        ],
+        "excerpt": "RunningHub 图像生成技能 — runninghub-image-skill 技能定位 统一封装 RunningHub 平台的全部图像生成能力，覆盖从任务卡编写、CLI 执行、产出归档到资产索引回填的完整闭环。 --- 适用场景 - 需要生成角色定妆图、封面图、场景氛围图、道具设计图 - 需要对已有图片做编辑修正或高清增强 - 需要使用 MJ-V7 / MJ-Niji7 / MJ-Niji6 做风格探索 - 需要批量执行 RunningHub 图像任务并归档 --- 能力清单 一、工作流模式（Workflow） | 模式 | CLI 参数 | 用途 | 输入 | |------|----------|------|------| | Banana2 三图生成 | `--banana2` | 角色图 / 封面草稿 / 探索图 | 角色图 + 服装图 + 场景图 + 提示词 | | Banana2 单图编辑 | `--ban..."
+      },
+      {
+        "path": "skills/prompt-experiment-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 5810,
+        "parsedAt": "2026-05-09T03:47:03.229Z",
+        "format": "markdown",
+        "headings": [
+          "prompt-experiment-skill — 提示词实验技能",
+          "技能定位",
+          "适用任务",
+          "核心输出",
+          "实验原则",
+          "推荐实验流程",
+          "结果记录建议",
+          "失败信号"
+        ],
+        "excerpt": "prompt-experiment-skill — 提示词实验技能 技能定位 用于系统化测试不同提示词写法、不同模型组合和不同镜头变量，找到更稳定、更可复用的生成方案。 适用任务 - 同镜头多版本提示词测试 - 不同模型效果对比 - 稳定关键词筛选 - 失败关键词排查 - baseline / 强化版 / 回退版实验 - 外部视频参考改写验证 核心输出 - 实验记录表 - 推荐版本 - 失败案例总结 - 模型适配建议 - 回退策略建议 实验原则 - 一次只改变少量变量 - 先拆外部视频中可吸收的方法信息，再列出禁止照搬项 - baseline 先保住主体、关系、受力、节奏、结果镜头 - 强化版每次只增加一层变量 - 记录模型 / 光影 / 动作密度 / 运镜差异 - 一旦漂移，优先回退最近新增强化层 - 明确结果评级 - 优先沉淀可复用结论 - 对失败版、保底版和观察型镜头，补写失败层级、触发器与减负动作 - **镜头动作融合实..."
+      },
+      {
+        "path": "skills/quality-control-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 5951,
+        "parsedAt": "2026-05-09T03:47:03.229Z",
+        "format": "markdown",
+        "headings": [
+          "quality-control-skill — 两步审核技能",
+          "技能定位",
+          "适用任务",
+          "输入要求",
+          "两步审核法",
+          "第一步：业务审核",
+          "故事板生产包与配套生成说明加测项",
+          "专业导演故事板图（D12-Sora2 / D15-Seedance2 加测项）"
+        ],
+        "excerpt": "quality-control-skill — 两步审核技能 技能定位 用于在每个阶段结束后，对项目产出进行业务审核与合规审核，并输出一次性、可执行的修改建议。目标是减少返工，提高阶段放行质量。 适用任务 - 审核剧本 - 审核导演讲戏 - 审核资产设计 - 审核故事板生产包 - 审核 D12-Sora2 / D15-Seedance2 专业导演故事板图、连续性卡、资产引用矩阵、参考图职责矩阵和视频模型适配包 - 审核 `05-prompts/` 配套生成说明是否忠实继承故事板生产包 - 审核平台合规风险 输入要求 1. 当前待审核文件 2. `project.json` 3. `docs/style-guide.md` 4. `docs/prompt-standards.md` 5. `docs/long-prompt-detail-gate.md` 6. 历史 QA 记录（若有） 两步审核法 第一步：业务审核 按阶段打分： ..."
+      },
+      {
+        "path": "skills/art-design-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 6621,
+        "parsedAt": "2026-05-09T03:47:03.229Z",
+        "format": "markdown",
+        "headings": [
+          "art-design-skill — 服化道设计技能",
+          "技能定位",
+          "适用任务",
+          "核心输出",
+          "项目级风格母版硬规则",
+          "人物资产要求",
+          "场景资产要求",
+          "道具资产要求"
+        ],
+        "excerpt": "art-design-skill — 服化道设计技能 技能定位 用于为短剧 / 漫剧项目建立可复用的视觉提示词资产，重点覆盖人物参考图、服装变体、化妆风格、场景参考图和道具视觉描述。 适用任务 - 生成人物面部特写提示词 - 生成人物三视图提示词 - 设计场景宫格图提示词 - 设计换装 / 战损 / 夜景等变体 - 建立 HZW大师风格角色、场景、道具、封面和静态分镜资产模板 核心输出 - `03-assets/style/visual-style-bible.md` - `03-assets/characters/` - `03-assets/scenes/` - `03-assets/props/` 项目级风格母版硬规则 - 任何角色、场景、道具、封面、静态分镜板或导演故事板图资产生成前，必须先读取项目级 `visual-style-bible.md`；若项目尚未建立该文件，必须先按 `docs/film-style-bib..."
+      },
+      {
+        "path": "skills/asset-library-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 708,
+        "parsedAt": "2026-05-09T03:47:03.229Z",
+        "format": "markdown",
+        "headings": [],
+        "excerpt": "--- name: asset-library-skill description: 全局素材资产库治理技能。用于建立和维护人物、场景、道具、封面、宣发图等资产的命名规范、版本状态、复用关系与检索索引，适合跨项目长期沉淀。 triggers: - 当需要整理或归档素材资产时 - 当需要判断素材是否可复用时 - 当多个项目共享人物/场景模板时 capabilities: - 资产分类与命名规范制定 - 版本状态标记 - 复用关系追踪 - 废弃资产归档策略 output_format: - 资产索引表 - 版本状态记录 - 重复资产/缺失资产清单 - Seedance 引用清单（全能参考/首尾帧的参考图清单 + 素材职责矩阵）"
+      },
+      {
+        "path": "skills/asset-versioning-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 1165,
+        "parsedAt": "2026-05-09T03:47:03.229Z",
+        "format": "markdown",
+        "headings": [
+          "asset-versioning-skill — 素材版本管理技能",
+          "技能定位",
+          "适用任务",
+          "建议输出",
+          "管理原则",
+          "推荐命名结构",
+          "失败信号"
+        ],
+        "excerpt": "asset-versioning-skill — 素材版本管理技能 技能定位 用于管理 AI 生成项目中的镜头版本、提示词版本、可用片 / 废片、文件命名和追溯关系，避免生成素材越来越多后失控。 适用任务 - 规范镜头命名 - 记录提示词版本与素材对应关系 - 标记可用片 / 备选片 / 废弃片 - 建立镜头版本表 - 控制重复试错成本 建议输出 - `06-generated/generation-log.md` - `06-generated/rejected-log.md` - `06-generated/shot-version-table.md` - `05-prompts/seedance/ref-stability-report.md`（可选：检查 `ep*-shots.md` / `ep*-fullref-15s.md` 的引用路径是否失效、是否混用冲突版本） 管理原则 - 每个镜头对应唯一镜头号 - 每次生成对..."
+      },
+      {
+        "path": "skills/hzw-master-style-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 11190,
+        "parsedAt": "2026-05-09T03:47:03.229Z",
+        "format": "markdown",
+        "headings": [
+          "hzw-master-style-skill — HZW大师风格统一技能",
+          "技能定位",
+          "适用任务",
+          "强制前置文档",
+          "HZW 风格输出总公式",
+          "开剧前强制确认",
+          "生图执行规则",
+          "场景执行规则"
+        ],
+        "excerpt": "hzw-master-style-skill — HZW大师风格统一技能 技能定位 本 skill 不是孤立生成技能，而是 HZW大师风格整剧总控系统的执行入口。它用于在每部剧开做之前，先确定整剧视觉风格、编剧师风格、导演风格和分镜师风格；再把用户持续提供的 HZW 风格学习资料，提炼成短剧 / 漫剧可复用的视觉方法论、规范与模板，并统一作用到最终提示词、资产图片、分镜图、视频和 QA。 核心规范文档：`docs/hzw-master-style-system.md` --- 适用任务 - 开剧前确定整剧视觉风格、编剧师风格、导演风格、分镜师风格 - 建立整部短剧 / 漫剧的统一视觉风格模板与 `hzw-style-bible.md` - 让剧本、导演讲戏、资产图片、分镜图、视频提示词和最终成片统一参考本剧风格母版 - 生成 HZW大师风格角色定妆、场景氛围、封面、道具、静态分镜板提示词 - 把分镜表改写为 HZW大师风格镜头组..."
+      },
+      {
+        "path": "templates/_project-template/03-assets/characters/character-template.md",
+        "sourceKind": "templates",
+        "exists": true,
+        "extension": ".md",
+        "size": 1813,
+        "parsedAt": "2026-05-09T03:47:03.230Z",
+        "format": "markdown",
+        "headings": [
+          "角色模板 — Character Template",
+          "char-XXX — [角色名称]",
+          "角色基本信息",
+          "参考图八维摘要",
+          "可执行资产标签",
+          "角色提示词骨架",
+          "风险与回退点",
+          "复用记录"
+        ],
+        "excerpt": "角色模板 — Character Template > 复制此文件为每个角色创建独立文档 --- char-XXX — [角色名称] > **角色 ID：** char-XXX > **首次出现：** ep001 > **角色类型：** 主角 / 反派 / 配角 > **当前状态：** 常态 / 战损 / 夜景 / 礼服 / 职业装 角色基本信息 | 字段 | 内容 | |------|------| | 身份职业 | _如：继承人 / 总裁 / 医生 / 学生_ | | 年龄层 | _如：25-30_ | | 原型归类 | _如：冷艳反杀型_ | | 核心关系 | _如：表面被压制，实则掌控节奏_ | | 行为特征 | _如：先观察，再精准出手_ | 参考图八维摘要 | 维度 | 内容 | |------|------| | 主体状态 | _如：站定、克制、准备反压_ | | 表情读点 | _如：轻笑前锁住，轻笑后更冷_ | ..."
+      },
+      {
+        "path": "templates/_project-template/03-assets/scenes/scene-template.md",
+        "sourceKind": "templates",
+        "exists": true,
+        "extension": ".md",
+        "size": 1937,
+        "parsedAt": "2026-05-09T03:47:03.230Z",
+        "format": "markdown",
+        "headings": [
+          "场景模板 — Scene Template",
+          "scene-XXX — [场景名称]",
+          "场景基本信息",
+          "场景宫格图提示词",
+          "[场景名称] — 宫格图提示词",
+          "场景概述",
+          "宫格布局：2行3列（共6格）",
+          "光影氛围参数"
+        ],
+        "excerpt": "场景模板 — Scene Template > 复制此文件为每个场景创建独立文档 --- scene-XXX — [场景名称] > **场景 ID：** scene-XXX > **集数首次出现：** ep001 > **场景类型：** 室内 / 室外 > **时间段：** 日景 / 夜景 / 晨昏 > **场景功能：** （剧情推进 / 情感升温 / 动作高潮） 场景基本信息 | 字段 | 内容 | |------|------| | 地点 | _如：北京市朝阳区废弃工厂_ | | 空间大小 | _如：约200平米仓库，挑高6米_ | | 主要陈设 | _如：铁架、破旧桌椅、昏暗灯光_ | | 气味（氛围参考） | _如：潮湿发霉、金属锈蚀味_ | | 声音环境 | _如：远处车流声、滴漏水声、风声_ | 场景宫格图提示词 场景复用记录 | 集数 | 使用场景 | 备注 | |------|---------|------| ..."
+      },
+      {
+        "path": "templates/_project-template/03-assets/props/prop-template.md",
+        "sourceKind": "templates",
+        "exists": true,
+        "extension": ".md",
+        "size": 1269,
+        "parsedAt": "2026-05-09T03:47:03.230Z",
+        "format": "markdown",
+        "headings": [
+          "道具模板 — Prop Template",
+          "prop-XXX — [道具名称]",
+          "道具基本信息",
+          "参考图结构摘要",
+          "可执行资产标签",
+          "提示词骨架",
+          "风险与回退点"
+        ],
+        "excerpt": "道具模板 — Prop Template > 复制此文件为每个道具创建独立文档 --- prop-XXX — [道具名称] > **道具 ID：** prop-XXX > **首次出现：** ep001 > **道具类型：** 武器 / 饰品 / 文件 / 家具 / 装置 > **状态版本：** 常态 / 战损 / 旧化 / 发光 / 血迹替代版 道具基本信息 | 字段 | 内容 | |------|------| | 功能 | _如：身份象征 / 攻击工具 / 情节线索_ | | 材质 | _如：金属 / 皮革 / 木材 / 玻璃_ | | 尺寸感 | _如：单手可握 / 桌面摆件 / 大型装置_ | | 细节锚点 | _如：雕花、划痕、磨损边缘、标识_ | | 适用场景 | _如：办公室 / 宴会厅 / 打斗空间_ | 参考图结构摘要 - 叙事作用： - 首看点： - 质感锚点： - 光影反应特征： - 与角色 / 场景的绑..."
+      }
+    ],
+    "referenceIssues": [],
+    "dataPackSummary": {
+      "methodologyCount": 2,
+      "skillCount": 2,
+      "templateCount": 1,
+      "referenceCount": 21,
+      "missingReferenceCount": 0,
+      "parsedAt": "2026-05-09T03:47:03.230Z"
+    },
+    "phaseGateItems": [
+      "读取 docs/workflow.md 与 docs/phase-gate-checklist.md 后再进入下一阶段。",
+      "输出必须能追溯到项目状态源、能力包索引与真实产物路径。",
+      "缺少方法论、Skill 或模板匹配时不得静默执行，应在上下文包中暴露空数组。"
+    ],
+    "redlines": [
+      "不得绕过 .smart-vision 状态源直接假设项目进度。",
+      "不得输出无法追溯到 docs / skills / templates / project artifacts 的任务指令。",
+      "不得把能力包索引当作最终生成结果，必须继续进入具体任务执行或 Workflow Builder。"
+    ],
+    "memoryPolicy": "优先读取项目文件化记忆与 .smart-vision 状态源；对影响方法论、模板、门禁、Agent/Skill 协作的结论必须回写项目文件。",
+    "generatedAt": "2026-05-09T03:47:03.240Z"
+  },
+  "canvas": {
+    "nodes": [
+      {
+        "id": "n1",
+        "type": "stylePreset",
+        "x": -460,
+        "y": 0,
+        "w": 380,
+        "values": {
+          "activePreset": "任务：EP001 资产图生成。\n提示词来源：01-资产图与提示词/提示词/README.md；01-资产图与提示词/README.md；upstream/05-prompts/seedance/ep001-fullref-15s.md\n参考图：未发现可预填参考图，按资产 Brief 文生图\n输出目录：01-资产图与提示词\n下游：资产图审核完成后进入故事板图 Workflow。",
+          "selectedTags": [
+            "asset-image",
+            "character",
+            "scene",
+            "prop",
+            "style-lock"
+          ]
+        },
+        "data": null,
+        "status": "waiting",
+        "progress": 0,
+        "error": ""
+      },
+      {
+        "id": "n2",
+        "type": "txt2img",
+        "x": 0,
+        "y": 0,
+        "w": 520,
+        "values": {
+          "_modelIdx": "0",
+          "size": "1:1",
+          "resolution": "1k",
+          "quality": "high",
+          "background": "auto",
+          "outputFormat": "png",
+          "n": "1",
+          "positive": "智能视界资产图生成 Brief：先生成角色、场景、道具资产图，作为后续故事板图和视频工作流的视觉锚点。\n\n资产索引 / 资产任务来源：01-资产图与提示词/提示词/README.md\n\n风格约束来源：docs/hzw-master-style-system.md / 项目风格包\n\n模板约束：templates/_project-template/03-assets/characters/character-template.md；templates/_project-template/03-assets/scenes/scene-template.md；templates/_project-template/03-assets/props/prop-template.md\n\n生成要求：分开生成角色设定图、场景设定图、关键道具图；保持 HZW 子风格、轮廓识别度、材质关键词、色彩锚点和命名规则一致。\n\n输出要求：产物落入 01-资产图与提示词/资产图，并在回写后进入 asset_image_review；故事板阶段必须优先引用这些资产图。",
+          "outputDirectoryHint": "01-资产图与提示词"
+        },
+        "data": null,
+        "status": "waiting",
+        "progress": 0,
+        "error": ""
+      },
+      {
+        "id": "n3",
+        "type": "singleImage",
+        "x": 780,
+        "y": 0,
+        "w": 380,
+        "values": {
+          "images": [],
+          "outputArtifactHint": "01-资产图与提示词/ep001-asset-sheet-01.png"
+        },
+        "data": null,
+        "status": "waiting",
+        "progress": 0,
+        "error": ""
+      }
+    ],
+    "conns": [
+      {
+        "from": "n1",
+        "fromPort": "prompt",
+        "to": "n2",
+        "toPort": "style",
+        "kind": "prompt"
+      },
+      {
+        "from": "n2",
+        "fromPort": "image",
+        "to": "n3",
+        "toPort": "image",
+        "kind": "image"
+      }
+    ],
+    "view": {
+      "x": 0,
+      "y": 0,
+      "k": 0.82
+    },
+    "next": 4,
+    "muted": []
+  },
+  "generatedAt": "2026-05-09T03:47:03.247Z"
+}

@@ -1,0 +1,8 @@
+[     222ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8877/favicon.ico:0
+[ 2657346ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://notevideo.asia/v1/videos/task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE/content:0
+[ 2659089ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://notevideo.asia/v1/videos/task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE/content:0
+[ 2659269ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ https://notevideo.asia/v1/videos/task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE/content:0
+[ 2663686ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8877/smart-vision-workspace/runninghub_outputs/image-studio-v3/video-20260508-111650-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4:0
+[ 2663687ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8877/smart-vision-workspace/runninghub_outputs/image-studio-v3/video-20260508-111650-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4:0
+[ 2663689ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8877/smart-vision-workspace/runninghub_outputs/image-studio-v3/video-20260508-111650-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4:0
+[ 2663691ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8877/smart-vision-workspace/runninghub_outputs/image-studio-v3/video-20260508-111650-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4:0

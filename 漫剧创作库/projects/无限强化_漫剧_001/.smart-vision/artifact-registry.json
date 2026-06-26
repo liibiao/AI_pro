@@ -1,0 +1,61 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "trackedRoots": [
+    "01-story",
+    "03-assets",
+    "04-storyboard",
+    "05-prompts",
+    "06-generated",
+    "08-qa"
+  ],
+  "primaryArtifacts": [
+    "04-storyboard/ep001-storyboard.md",
+    "05-prompts/seedance/ep001-shots.md",
+    "06-generated/asset-index.md",
+    "08-qa/v8-asset-consistency-qa-report.md",
+    "06-generated/videos/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4"
+  ],
+  "updatedAt": "2026-05-08T03:25:55.667Z",
+  "lastWorkflowOutput": {
+    "workflowId": "draft-video_generation-1778182715841",
+    "artifactPath": "06-generated/videos/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+    "reviewId": "artifact-draft-video_generation-1778182715841-06-generated-videos-ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE--review",
+    "updatedAt": "2026-05-08T03:25:55.667Z",
+    "idempotent": false
+  },
+  "pendingReviews": [
+    {
+      "reviewId": "artifact-ep001-storyboard-image-generation-04-storyboard-ep001-storyboard-md-review",
+      "workflowId": "ep001-storyboard-image-generation",
+      "artifactPath": "04-storyboard/ep001-storyboard.md",
+      "type": "storyboard_image_review",
+      "status": "done",
+      "updatedAt": "2026-05-07T19:38:35.837Z"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778182715841-06-generated-videos-ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE--review",
+      "workflowId": "draft-video_generation-1778182715841",
+      "artifactPath": "06-generated/videos/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "type": "video_review",
+      "status": "done",
+      "updatedAt": "2026-05-08T03:26:04.439Z"
+    }
+  ],
+  "reviewHistory": [
+    {
+      "reviewId": "artifact-ep001-storyboard-image-generation-04-storyboard-ep001-storyboard-md-review",
+      "workflowId": "ep001-storyboard-image-generation",
+      "artifactPath": "04-storyboard/ep001-storyboard.md",
+      "status": "done",
+      "updatedAt": "2026-05-07T19:38:35.837Z"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778182715841-06-generated-videos-ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE--review",
+      "workflowId": "draft-video_generation-1778182715841",
+      "artifactPath": "06-generated/videos/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "status": "done",
+      "updatedAt": "2026-05-08T03:26:04.439Z"
+    }
+  ]
+}

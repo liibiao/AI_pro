@@ -1,0 +1,78 @@
+{
+  "id": "sora-video-pro",
+  "configId": "sora-video-pro",
+  "modelKey": "sora-video-pro",
+  "providerKey": "sora-video-pro",
+  "channelKey": "sora-video-pro",
+  "name": "sora-video-pro",
+  "modelNick": "sora-video-pro",
+  "displayName": "Sora Video Pro",
+  "label": "Sora Video Pro",
+  "type": "video",
+  "model": "video-pro",
+  "baseUrl": "https://api.artifex.help/v1",
+  "url": "https://api.artifex.help/v1/videos",
+  "key": "replace-with-sora-video-pro-api-key",
+  "adapter": "sora-video-pro",
+  "endpointPath": "/videos",
+  "statusEndpointPath": "/videos/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "referenceVideo": true,
+    "referenceAudio": true
+  },
+  "capabilities": {
+    "resolutions": ["720p", "1080p"],
+    "durations": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "defaultDuration": 6,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "1:1", "21:9", "3:4", "4:3"],
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 15,
+    "supportsAudio": true,
+    "supportsVideo": true
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "second",
+      "currency": "CNY",
+      "cnyPerSecond": 0.52,
+      "resolutionTiers": [
+        {
+          "resolution": "720p",
+          "cnyPerSecond": 0.52
+        },
+        {
+          "resolution": "1080p",
+          "cnyPerSecond": 0.52
+        }
+      ]
+    }
+  },
+  "modelAssembly": {
+    "type": "template",
+    "template": "video-pro-{resolution}"
+  },
+  "note": "Artifex /v1/videos 高质量生视频渠道；用户选择 720p/1080p 后真实上游模型自动拼接为 video-pro-720p 或 video-pro-1080p。参考图片/视频/音频需公网 HTTPS，prompt 中可用 @Image1 / @Video1 / @Audio1 引用。",
+  "protocol": {
+    "adapter": "sora-video-pro",
+    "endpointPath": "/videos",
+    "statusEndpointPath": "/videos/{taskId}",
+    "method": "async-poll",
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "Sora Video Pro",
+    "badge": "PRO",
+    "badgeColor": "#22c55e"
+  }
+}

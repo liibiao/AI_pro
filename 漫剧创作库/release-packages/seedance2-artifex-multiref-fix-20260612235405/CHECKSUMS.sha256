@@ -1,0 +1,11 @@
+e4875de126ac38bf65b83a1f0298c1565ffad66c627f5af0637eb1f31623d5ee  ./deploy/apply-seedance2-artifex-multiref-fix-20260612235405-on-server.sh
+8785b4ad596ba69913e1517e6063945a8f51bd83f5aae67c464d4f985356ede7  ./smart-vision/canvas/legacy-workbench/workbench-web/canvas-next/generation-service.js
+8f2818cad7409d4c9ae70e74efdd7c368ca68d9500bb252a04f1e390565f8688  ./smart-vision/canvas/legacy-workbench/workbench-web/image-studio-canvas.html
+b1320a831021d6fd4134b45ce98d7752961d66a150123eadf2a2c4db6bf5d20c  ./smart-vision/services/workbench/image_studio_backend.py
+39cc8df533565b4af7de476975f128c6205696eefe692db0e33de6e41e855895  ./tools/image_studio_backend.py
+8785b4ad596ba69913e1517e6063945a8f51bd83f5aae67c464d4f985356ede7  ./tools/workbench-web/canvas-next/generation-service.js
+e7ae3ec3912d2c31832caeb5ae170b12d7223fd2af683b110f611069b4aa764b  ./tools/workbench-web/image-studio-canvas-next.html
+97cfe5941456ccde0767cfed64ab241bd74a335e99dd4cfec6a25a22abc282a1  ./tools/workbench-web/image-studio-canvas.html
+8785b4ad596ba69913e1517e6063945a8f51bd83f5aae67c464d4f985356ede7  ./workbench-web/canvas-next/generation-service.js
+e7ae3ec3912d2c31832caeb5ae170b12d7223fd2af683b110f611069b4aa764b  ./workbench-web/image-studio-canvas-next.html
+97cfe5941456ccde0767cfed64ab241bd74a335e99dd4cfec6a25a22abc282a1  ./workbench-web/image-studio-canvas.html

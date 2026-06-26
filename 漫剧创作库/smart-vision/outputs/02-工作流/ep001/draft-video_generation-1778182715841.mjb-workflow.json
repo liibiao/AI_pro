@@ -1,0 +1,203 @@
+{
+  "schema": "mjb-workflow-v1",
+  "id": "draft-video_generation-1778182715841",
+  "name": "EP001 Seedance 单镜视频生成 Workflow",
+  "taskType": "video_generation",
+  "path": "02-工作流/ep001/draft-video_generation-1778182715841.mjb-workflow.json",
+  "importUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-工作流%2Fep001%2Fdraft-video_generation-1778182715841.mjb-workflow.json",
+  "contextPack": {
+    "taskType": "video_generation",
+    "title": "video_generation 任务上下文包",
+    "methodologyPackId": "smart-vision-methodology-core-v0.1",
+    "skillPackId": "smart-vision-skill-core-v0.1",
+    "templatePackId": "smart-vision-template-core-v0.1",
+    "docs": [
+      "docs/prompt-standards.md",
+      "docs/long-prompt-detail-gate.md",
+      "docs/seedance-prompt-engineering.md",
+      "docs/jimeng-anti-collapse-core.md",
+      "docs/gpt-image-prompt-methodology.md"
+    ],
+    "skills": [],
+    "agents": [],
+    "templates": [],
+    "inputArtifacts": [
+      "04-storyboard/ep001-storyboard.md",
+      "05-prompts/seedance/ep001-shots.md",
+      "01-资产图与提示词/asset-index.md",
+      "08-qa/v8-asset-consistency-qa-report.md",
+      "01-story/chapters/ch01/README.md",
+      "01-story/chapters/ch02/README.md",
+      "01-story/chapters/ch02/source-novel.md",
+      "01-story/chapters/ch03/README.md",
+      "01-story/character-bible.md",
+      "01-story/inspiration.md",
+      "01-story/logline.md",
+      "01-story/scripts/第10话-银门逃亡-剧本正文.md",
+      "01-story/scripts/第11话-坠落荒原-剧本正文.md",
+      "01-story/scripts/第12话-猎影潜行-剧本正文.md",
+      "01-story/scripts/第13话-赌命一搏-剧本正文.md",
+      "01-story/scripts/第14话-灵纹苏醒-剧本正文.md",
+      "01-story/scripts/第15话-一拳碎颅-剧本正文.md",
+      "01-story/scripts/第1话-废物-剧本正文.md",
+      "01-story/scripts/第1话-废物.md",
+      "01-story/scripts/第2话-伪灵纹-剧本正文.md",
+      "01-story/scripts/第2话-伪灵纹.md",
+      "01-story/scripts/第3话-踩在脚下.md",
+      "01-story/scripts/第3话-觉醒-剧本正文.md",
+      "01-story/scripts/第4话-觉醒-剧本正文.md"
+    ],
+    "workflowHints": [],
+    "phaseGateItems": [
+      "读取 docs/workflow.md 与 docs/phase-gate-checklist.md 后再进入下一阶段。",
+      "输出必须能追溯到项目状态源、能力包索引与真实产物路径。",
+      "缺少方法论、Skill 或模板匹配时不得静默执行，应在上下文包中暴露空数组。"
+    ],
+    "redlines": [
+      "不得绕过 .smart-vision 状态源直接假设项目进度。",
+      "不得输出无法追溯到 docs / skills / templates / project artifacts 的任务指令。",
+      "不得把能力包索引当作最终生成结果，必须继续进入具体任务执行或 Workflow Builder。"
+    ],
+    "memoryPolicy": "优先读取项目文件化记忆与 .smart-vision 状态源；对影响方法论、模板、门禁、Agent/Skill 协作的结论必须回写项目文件。",
+    "generatedAt": "2026-05-07T19:38:35.841Z"
+  },
+  "canvas": {
+    "nodes": [
+      {
+        "id": "n1",
+        "type": "stylePreset",
+        "x": -520,
+        "y": 0,
+        "w": 360,
+        "values": {
+          "activePreset": "任务：EP001 单镜视频生成闭环验证。\n上游故事板：04-storyboard/ep001-storyboard.md\nSeedance 长版提示词：05-prompts/seedance/ep001-shots.md\n输出登记目标：03-视频/ep001-shot01.mp4\n门禁：生成后必须回填 outputArtifacts，并进入 video_review 审核。",
+          "selectedTags": []
+        },
+        "data": null,
+        "status": "waiting",
+        "progress": 0,
+        "error": ""
+      },
+      {
+        "id": "n2",
+        "type": "seedanceVideo",
+        "x": 0,
+        "y": 0,
+        "w": 640,
+        "values": {
+          "images": [],
+          "refVideo": null,
+          "refAudio": null,
+          "refMode": "text2video",
+          "resolution": "720p",
+          "_modelIdx": "0",
+          "duration": "5",
+          "quality": "720p",
+          "aspectRatio": "9:16",
+          "generateAudio": true,
+          "positive": "## Shot 1 — 俯瞰建立\n\n【0s-5s】\n【运镜】上帝视角俯瞰锁定全景→缓慢下推揭示练武场（绑定观众从\"远方废墟\"沉浸进入\"活人聚集地\"的心理落点）\n【镜头参数】16mm 广角俯瞰起幅→缓慢切换至 35mm 小广角微倾下推；浅景深锁定屏障边缘\n【几何约束】地平线压至画面 y0.15 处横贯；屏障穹顶弧线作为画面顶部弧形骨架；消失点在画面正中偏下 y0.45\n【画面】[0.0-2.0s] 俯瞰画面中能量屏障穹顶缓慢呼吸式明灭，蓝白冷光沿穹顶边缘游走，屏障外荒芜废土上的异兽剪影缓慢位移。灰暗城市建筑在屏障内呈低饱和灰褐色块，远处尘雾低空飘荡。[2.0-3.0s] 叠化过渡，穹顶视角逐渐下沉拉近，灰暗城市褪为底层背景，练武场轮廓从尘雾中浮现。[3.0-5.0s] 练武场全景完整呈现——烈日硬光从正上方打下，人群中人头攒动微动，中央黑色巨碑矗立不动，碑石表面七色灵纹游走发光，蓝黑碑体与七色点光形成明暗对比中心。\n【配音】本段无对白配音\n【表演】无特定人物表演，群演为呼吸式微动\n【参考】@联邦全景 @林家练武场 @灵纹碑石\n【位置关系】屏障穹顶占画面上部 y0.05-0.35；练武场占据画面下部 y0.35-0.80；灵纹碑石位于练武场正中央 x0.5 y0.55\n【读点保护】首看点=灵纹碑石七色光点，坐标锁定 x0.45-0.55 y0.50-0.60，禁止侵入字幕安全区 y0.82-1.00\n【音效】环境底噪：低频风声持续 + 远处异兽低吼混响（极低音量）；拟音：屏障嗡鸣声（电子合成低频 60Hz）；特效音：灵纹游走时细碎电弧声；状态音：无\n【风格】纪实克制——灰暗基底低饱和冷灰调，屏障边缘冷蓝微光作为唯一色彩点缀；字幕安全区 y0.82-1.00 禁入，负空间留给画面底部\n【转场】叠化（屏障→练武场，2.0s 处启动，持续 1.0s）",
+          "vn2Chips": [],
+          "vn2Draft": "## Shot 1 — 俯瞰建立\n\n【0s-5s】\n【运镜】上帝视角俯瞰锁定全景→缓慢下推揭示练武场（绑定观众从\"远方废墟\"沉浸进入\"活人聚集地\"的心理落点）\n【镜头参数】16mm 广角俯瞰起幅→缓慢切换至 35mm 小广角微倾下推；浅景深锁定屏障边缘\n【几何约束】地平线压至画面 y0.15 处横贯；屏障穹顶弧线作为画面顶部弧形骨架；消失点在画面正中偏下 y0.45\n【画面】[0.0-2.0s] 俯瞰画面中能量屏障穹顶缓慢呼吸式明灭，蓝白冷光沿穹顶边缘游走，屏障外荒芜废土上的异兽剪影缓慢位移。灰暗城市建筑在屏障内呈低饱和灰褐色块，远处尘雾低空飘荡。[2.0-3.0s] 叠化过渡，穹顶视角逐渐下沉拉近，灰暗城市褪为底层背景，练武场轮廓从尘雾中浮现。[3.0-5.0s] 练武场全景完整呈现——烈日硬光从正上方打下，人群中人头攒动微动，中央黑色巨碑矗立不动，碑石表面七色灵纹游走发光，蓝黑碑体与七色点光形成明暗对比中心。\n【配音】本段无对白配音\n【表演】无特定人物表演，群演为呼吸式微动\n【参考】@联邦全景 @林家练武场 @灵纹碑石\n【位置关系】屏障穹顶占画面上部 y0.05-0.35；练武场占据画面下部 y0.35-0.80；灵纹碑石位于练武场正中央 x0.5 y0.55\n【读点保护】首看点=灵纹碑石七色光点，坐标锁定 x0.45-0.55 y0.50-0.60，禁止侵入字幕安全区 y0.82-1.00\n【音效】环境底噪：低频风声持续 + 远处异兽低吼混响（极低音量）；拟音：屏障嗡鸣声（电子合成低频 60Hz）；特效音：灵纹游走时细碎电弧声；状态音：无\n【风格】纪实克制——灰暗基底低饱和冷灰调，屏障边缘冷蓝微光作为唯一色彩点缀；字幕安全区 y0.82-1.00 禁入，负空间留给画面底部\n【转场】叠化（屏障→练武场，2.0s 处启动，持续 1.0s）",
+          "smartFrameMotion": "",
+          "smartFrameMotions": {},
+          "smartFrameMotionSeconds": {},
+          "smartFrameMotionActive": null,
+          "smartFrameMotionOpen": false,
+          "lastOutputArtifactHint": "03-视频/ep001-shot01.mp4"
+        },
+        "data": null,
+        "status": "waiting",
+        "progress": 0,
+        "error": ""
+      },
+      {
+        "id": "n3",
+        "type": "singleVideo",
+        "x": 780,
+        "y": 0,
+        "w": 380,
+        "values": {
+          "videoUrl": "",
+          "videoDataUrl": "",
+          "duration": 0,
+          "name": "ep001-shot01.mp4",
+          "width": 0,
+          "height": 0,
+          "ratio": "9:16",
+          "thumbnails": [],
+          "outputArtifactHint": "03-视频/ep001-shot01.mp4"
+        },
+        "data": null,
+        "status": "waiting",
+        "progress": 0,
+        "error": ""
+      },
+      {
+        "id": "n4",
+        "type": "videoEditor",
+        "x": 1240,
+        "y": 0,
+        "w": 720,
+        "values": {
+          "clips": [],
+          "audioClips": [],
+          "subtitles": [],
+          "canvasRatio": "9:16",
+          "brightness": 0,
+          "contrast": 0,
+          "saturation": 0,
+          "rotation": 0,
+          "mirrorX": false,
+          "mirrorY": false,
+          "videoVolume": 1,
+          "musicVolume": 0.5,
+          "exportResolution": "1080x1920",
+          "exportFps": "30",
+          "selectedClipId": null,
+          "selectedAudioId": null,
+          "selectedSubtitleId": null,
+          "playheadTime": 0,
+          "zoomLevel": 1,
+          "history": [],
+          "historyIndex": -1,
+          "outputArtifactHint": "03-视频/ep001-shot01-review-cut.mp4"
+        },
+        "data": null,
+        "status": "waiting",
+        "progress": 0,
+        "error": ""
+      }
+    ],
+    "conns": [
+      {
+        "from": "n1",
+        "fromPort": "prompt",
+        "to": "n2",
+        "toPort": "style",
+        "kind": "prompt"
+      },
+      {
+        "from": "n2",
+        "fromPort": "video",
+        "to": "n3",
+        "toPort": "video",
+        "kind": "video"
+      },
+      {
+        "from": "n3",
+        "fromPort": "video",
+        "to": "n4",
+        "toPort": "video",
+        "kind": "video"
+      }
+    ],
+    "view": {
+      "x": 0,
+      "y": 0,
+      "k": 0.72
+    },
+    "next": 5,
+    "muted": []
+  },
+  "generatedAt": "2026-05-07T19:38:35.841Z"
+}

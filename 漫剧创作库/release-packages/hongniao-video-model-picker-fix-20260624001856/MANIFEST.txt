@@ -1,0 +1,13 @@
+Package: hongniao-video-model-picker-fix-20260624001856
+Purpose: Ensure Hongniao/Fullblood video models remain selectable in canvas video model pickers even when backend /api/models returns IMAGE-like defaults.
+
+Files:
+workbench-web/canvas-next/generator-adapters.js
+workbench-web/canvas-next/generation-service.js
+workbench-web/image-studio-canvas.html
+tools/workbench-web/canvas-next/generator-adapters.js
+tools/workbench-web/canvas-next/generation-service.js
+tools/workbench-web/image-studio-canvas.html
+smart-vision/canvas/legacy-workbench/workbench-web/canvas-next/generator-adapters.js
+smart-vision/canvas/legacy-workbench/workbench-web/canvas-next/generation-service.js
+smart-vision/canvas/legacy-workbench/workbench-web/image-studio-canvas.html

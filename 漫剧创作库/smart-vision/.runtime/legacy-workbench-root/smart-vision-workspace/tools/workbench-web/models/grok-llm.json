@@ -1,0 +1,27 @@
+{
+  "id": "grok-llm",
+  "name": "grok-llm",
+  "type": "llm",
+  "label": "Grok-4",
+  "model": "grok-4",
+  "baseUrl": "http://127.0.0.1:8000/v1",
+  "url": "http://127.0.0.1:8000/v1",
+  "key": "local-dev-no-auth",
+  "adapter": "grok-chat",
+  "endpointPath": "/chat/completions",
+  "supports": {
+    "chat": true,
+    "vision": true
+  },
+  "note": "Grok2API 大语言模型渠道。生产环境请在后台模型管理中替换为 Grok2API app.api_key。",
+  "protocol": {
+    "adapter": "grok-chat",
+    "endpointPath": "/chat/completions",
+    "method": "sync"
+  },
+  "ui": {
+    "label": "Grok-4",
+    "badge": "LLM",
+    "badgeColor": "#334155"
+  }
+}

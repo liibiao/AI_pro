@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>单个分镜格子编辑详情</title>
+  <style>
+    :root{
+      color-scheme:dark;
+      --bg:#05080d;
+      --panel:#0a111c;
+      --panel2:#0d1724;
+      --line:rgba(148,163,184,.16);
+      --line2:rgba(96,165,250,.34);
+      --text:#eef5ff;
+      --muted:rgba(203,213,225,.66);
+      --weak:rgba(148,163,184,.48);
+      --blue:#3b82f6;
+      --green:#4ade80;
+      --amber:#facc15;
+      --red:#fb7185;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",sans-serif;
+      color:var(--text);
+      letter-spacing:0;
+      background:
+        radial-gradient(circle at 18% 92%,rgba(107,33,168,.15),transparent 34%),
+        radial-gradient(circle at 82% 12%,rgba(37,99,235,.18),transparent 30%),
+        linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px),
+        #05070b;
+      background-size:auto,auto,32px 32px,32px 32px,auto;
+    }
+    .stage{
+      width:1920px;
+      height:1080px;
+      display:grid;
+      place-items:center;
+      padding:34px;
+      background:rgba(0,0,0,.44);
+    }
+    .modal{
+      width:1500px;
+      height:900px;
+      display:grid;
+      grid-template-rows:auto minmax(0,1fr) auto;
+      overflow:hidden;
+      border:1px solid rgba(96,165,250,.28);
+      border-radius:22px;
+      background:linear-gradient(180deg,rgba(9,17,28,.98),rgba(4,9,16,.98));
+      box-shadow:0 40px 120px rgba(0,0,0,.72),inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .header{
+      height:82px;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:18px;
+      align-items:center;
+      padding:0 22px;
+      border-bottom:1px solid var(--line);
+      background:rgba(11,18,29,.90);
+    }
+    .title{min-width:0}
+    .title b{display:block;font-size:22px;line-height:1.1}
+    .title span{display:block;margin-top:7px;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .head-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .pill{
+      height:34px;display:inline-flex;align-items:center;gap:7px;
+      padding:0 12px;border:1px solid var(--line);border-radius:10px;
+      background:rgba(255,255,255,.035);color:rgba(226,232,240,.78);
+      font-size:13px;white-space:nowrap;
+    }
+    .pill.green{border-color:rgba(74,222,128,.24);background:rgba(22,101,52,.20);color:#bbf7d0}
+    .pill.blue{border-color:rgba(96,165,250,.28);background:rgba(37,99,235,.20);color:#dbeafe}
+    .close{
+      width:38px;height:38px;display:grid;place-items:center;border-radius:999px;
+      border:1px solid var(--line);background:rgba(15,23,42,.72);color:#e5e7eb;font-size:20px;
+    }
+    .body{
+      min-height:0;
+      display:grid;
+      grid-template-columns:250px minmax(0,1fr) 430px;
+      gap:14px;
+      padding:16px;
+    }
+    .panel{
+      min-width:0;min-height:0;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(6,13,22,.82);
+      overflow:hidden;
+    }
+    .panel-head{
+      height:48px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:0 14px;border-bottom:1px solid var(--line);
+      background:rgba(12,20,32,.72);
+    }
+    .panel-head b{font-size:14px}.panel-head span{font-size:12px;color:var(--weak)}
+    .context-panel{display:grid;grid-template-rows:auto auto minmax(0,1fr)}
+    .mini-grid-wrap{padding:12px;border-bottom:1px solid var(--line)}
+    .mini-grid{
+      aspect-ratio:16/9;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      grid-template-rows:repeat(2,minmax(0,1fr));
+      gap:2px;
+      overflow:hidden;
+      border-radius:12px;
+      border:1px solid rgba(96,165,250,.24);
+      background:#020712;
+    }
+    .mini-cell{
+      position:relative;background:linear-gradient(135deg,#172554,#0e7490);
+    }
+    .mini-cell:nth-child(1){background:linear-gradient(135deg,#5b2418,#0f172a)}
+    .mini-cell:nth-child(2){background:linear-gradient(135deg,#164e63,#1e293b)}
+    .mini-cell:nth-child(3){background:linear-gradient(135deg,#4c1d95,#0f172a)}
+    .mini-cell:nth-child(4){background:linear-gradient(135deg,#064e3b,#172554)}
+    .mini-cell:nth-child(5){background:linear-gradient(135deg,#7f1d1d,#1e1b4b)}
+    .mini-cell:nth-child(6){background:linear-gradient(135deg,#312e81,#164e63)}
+    .mini-cell span{position:absolute;left:6px;top:5px;font-size:10px;font-weight:900}
+    .mini-cell.active{box-shadow:inset 0 0 0 3px rgba(96,165,250,.96)}
+    .shot-nav{padding:12px;border-bottom:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap}
+    .shot-chip{
+      height:30px;min-width:36px;display:grid;place-items:center;
+      padding:0 9px;border-radius:999px;border:1px solid var(--line);
+      background:rgba(255,255,255,.035);color:rgba(226,232,240,.78);font-size:12px;font-weight:800;
+    }
+    .shot-chip.active{border-color:rgba(96,165,250,.42);background:rgba(37,99,235,.25);color:#dbeafe}
+    .context-list{min-height:0;overflow:auto;padding:12px;display:grid;gap:10px;scrollbar-width:thin;scrollbar-color:rgba(96,165,250,.28) transparent}
+    .context-item{
+      padding:10px;border:1px solid rgba(148,163,184,.12);border-radius:12px;background:rgba(15,23,42,.52);
+    }
+    .context-item b{display:block;font-size:13px}
+    .context-item p{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
+    .preview-panel{
+      display:grid;
+      grid-template-rows:auto minmax(0,1fr) 148px;
+    }
+    .preview-area{
+      min-height:0;
+      padding:16px;
+      display:grid;
+      grid-template-rows:minmax(0,1fr) auto;
+      gap:12px;
+    }
+    .single-preview{
+      min-height:0;
+      display:grid;
+      place-items:center;
+      border:1px dashed rgba(96,165,250,.28);
+      border-radius:18px;
+      background:#020712;
+      overflow:hidden;
+      position:relative;
+    }
+    .frame{
+      width:min(100%,760px);
+      aspect-ratio:16/9;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid rgba(96,165,250,.34);
+      background:
+        radial-gradient(circle at 44% 35%,rgba(255,255,255,.26),transparent 9%),
+        radial-gradient(ellipse at 50% 55%,rgba(226,232,240,.18),transparent 34%),
+        linear-gradient(135deg,#4c1d95,#0f172a 58%,#0e7490);
+      box-shadow:0 22px 64px rgba(0,0,0,.44);
+      position:relative;
+    }
+    .frame:before{
+      content:"";position:absolute;left:12%;right:12%;bottom:16%;height:18%;
+      border-radius:999px;background:rgba(2,6,12,.36);filter:blur(18px);
+    }
+    .frame:after{
+      content:"陆燃枪尖贴近炽魔王喉部，黑角擦出火花";
+      position:absolute;left:14px;right:14px;bottom:14px;
+      padding:8px 10px;border-radius:10px;
+      background:rgba(2,6,12,.56);color:rgba(226,232,240,.82);
+      font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+    .preview-badges{
+      position:absolute;left:28px;top:28px;right:28px;
+      display:flex;justify-content:space-between;gap:10px;pointer-events:none;
+    }
+    .badge{
+      height:30px;display:inline-flex;align-items:center;padding:0 10px;
+      border:1px solid rgba(96,165,250,.28);border-radius:999px;
+      background:rgba(2,6,12,.62);color:#dbeafe;font-size:12px;font-weight:800;
+    }
+    .ref-strip{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:10px;
+    }
+    .ref-action{
+      height:54px;display:flex;align-items:center;justify-content:center;gap:8px;
+      border:1px solid var(--line);border-radius:13px;
+      background:rgba(15,23,42,.72);color:rgba(226,232,240,.80);
+      font-weight:800;font-size:13px;
+    }
+    .ref-action.primary{border-color:rgba(96,165,250,.34);background:rgba(37,99,235,.18);color:#dbeafe}
+    .prompt-panel{
+      padding:12px 16px 16px;
+      border-top:1px solid var(--line);
+      background:rgba(11,18,29,.74);
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 208px;
+      gap:12px;
+    }
+    .current-prompt{
+      min-width:0;display:grid;grid-template-rows:auto minmax(0,1fr);gap:8px;
+    }
+    .current-prompt b{font-size:13px}
+    .prompt-text{
+      min-height:0;overflow:auto;
+      padding:10px 12px;border:1px solid rgba(148,163,184,.14);border-radius:12px;background:rgba(2,6,12,.52);
+      color:rgba(226,232,240,.82);font-size:13px;line-height:1.55;
+      scrollbar-width:thin;scrollbar-color:rgba(96,165,250,.28) transparent;
+    }
+    .prompt-actions{display:grid;grid-template-rows:1fr 1fr;gap:8px}
+    .editor-panel{
+      display:grid;
+      grid-template-rows:auto minmax(0,1fr);
+    }
+    .editor-scroll{
+      min-height:0;overflow:auto;padding:14px;display:grid;gap:12px;
+      scrollbar-width:thin;scrollbar-color:rgba(96,165,250,.28) transparent;
+    }
+    .field{display:grid;gap:7px}
+    .field label{font-size:12px;color:var(--weak)}
+    .input,.textarea{
+      border:1px solid var(--line);border-radius:12px;background:rgba(15,23,42,.72);
+      color:rgba(226,232,240,.86);font-size:13px;
+    }
+    .input{
+      min-height:40px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:0 12px;
+    }
+    .textarea{
+      min-height:126px;max-height:180px;overflow:auto;padding:11px 12px;line-height:1.58;
+      scrollbar-width:thin;scrollbar-color:rgba(96,165,250,.28) transparent;
+    }
+    .clip-list{display:flex;gap:8px;flex-wrap:wrap}
+    .clip{
+      height:38px;max-width:160px;display:grid;grid-template-columns:32px minmax(0,1fr);align-items:center;gap:7px;
+      padding:2px 8px 2px 2px;border:1px solid rgba(96,165,250,.24);border-radius:10px;background:rgba(30,64,175,.20);
+    }
+    .avatar{
+      width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#e5e7eb,#334155);position:relative;overflow:hidden;
+    }
+    .avatar.scene{background:linear-gradient(135deg,#92400e,#0f172a)}
+    .avatar.demon{background:linear-gradient(135deg,#450a0a,#111827)}
+    .avatar:after{content:"";position:absolute;left:10px;top:6px;width:12px;height:20px;border-radius:999px;background:rgba(15,23,42,.38)}
+    .clip b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .upload-box{
+      min-height:118px;display:grid;place-items:center;text-align:center;
+      border:1px dashed rgba(96,165,250,.28);border-radius:14px;background:rgba(37,99,235,.08);
+      color:rgba(191,219,254,.84);font-size:13px;line-height:1.55;
+    }
+    .param-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .notice{
+      padding:11px 12px;border:1px solid rgba(250,204,21,.20);border-radius:12px;
+      background:rgba(113,63,18,.16);color:rgba(254,240,138,.86);font-size:12px;line-height:1.5;
+    }
+    .footer{
+      height:78px;display:grid;grid-template-columns:minmax(0,1fr) auto;
+      gap:12px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);
+      background:rgba(11,18,29,.86);
+    }
+    .statusline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--green)}
+    .btn{
+      height:40px;min-width:82px;padding:0 14px;border:1px solid var(--line);border-radius:12px;
+      background:rgba(15,23,42,.82);color:rgba(226,232,240,.82);font-weight:800;font-size:13px;
+    }
+    .btn.primary{border-color:rgba(37,99,235,.52);background:linear-gradient(180deg,#2f6cef,#1d4ed8);color:#fff}
+    .btn.green{border-color:rgba(34,197,94,.32);background:rgba(22,101,52,.42);color:#bbf7d0}
+    .footer-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <section class="modal">
+      <header class="header">
+        <div class="title">
+          <b>编辑分镜格子 · 镜头 03</b>
+          <span>从“编辑分镜图详情”进入，只编辑当前格子的脚本、参考图、@clip 引用和重生成结果。</span>
+        </div>
+        <div class="head-actions">
+          <span class="pill blue">段落 01</span>
+          <span class="pill green">格子 03 已选中</span>
+          <span class="pill">单格 16:9</span>
+          <span class="pill">可回填宫格</span>
+          <button class="close">×</button>
+        </div>
+      </header>
+
+      <main class="body">
+        <aside class="panel context-panel">
+          <div class="panel-head"><b>所在宫格</b><span>点击切换格子</span></div>
+          <div class="mini-grid-wrap">
+            <div class="mini-grid">
+              <div class="mini-cell"><span>01</span></div>
+              <div class="mini-cell"><span>02</span></div>
+              <div class="mini-cell active"><span>03</span></div>
+              <div class="mini-cell"><span>04</span></div>
+              <div class="mini-cell"><span>05</span></div>
+              <div class="mini-cell"><span>06</span></div>
+            </div>
+          </div>
+          <div class="shot-nav">
+            <span class="shot-chip">01</span>
+            <span class="shot-chip">02</span>
+            <span class="shot-chip active">03</span>
+            <span class="shot-chip">04</span>
+            <span class="shot-chip">05</span>
+            <span class="shot-chip">06</span>
+          </div>
+          <div class="context-list">
+            <div class="context-item">
+              <b>镜头目标</b>
+              <p>陆燃逼近炽魔王，枪尖贴近喉部，黑角擦出火花。</p>
+            </div>
+            <div class="context-item">
+              <b>前后关系</b>
+              <p>承接 02 的侧身闪避，进入 04 的巨刃横扫。</p>
+            </div>
+            <div class="context-item">
+              <b>生成结果</b>
+              <p>重新生成只替换当前格子，不影响其他分镜格。</p>
+            </div>
+          </div>
+        </aside>
+
+        <section class="panel preview-panel">
+          <div class="panel-head">
+            <b>当前格子预览</b>
+            <span>预览图按单格比例自适应，参考图不直接覆盖资产图</span>
+          </div>
+          <div class="preview-area">
+            <div class="single-preview">
+              <div class="preview-badges">
+                <span class="badge">镜头 03</span>
+                <span class="badge">当前资产图</span>
+              </div>
+              <div class="frame"></div>
+            </div>
+            <div class="ref-strip">
+              <button class="ref-action primary">上传参考图</button>
+              <button class="ref-action">从资产库选择</button>
+              <button class="ref-action">替换当前预览图</button>
+            </div>
+          </div>
+          <div class="prompt-panel">
+            <div class="current-prompt">
+              <b>当前格子分镜脚本提示词</b>
+              <div class="prompt-text">陆燃压低身体，从左前方冲入画面，枪尖金光贴近炽魔王喉部。炽魔王侧头闪避，黑角被擦出火花，表情愤怒但没有失控。</div>
+            </div>
+            <div class="prompt-actions">
+              <button class="btn">复制脚本</button>
+              <button class="btn primary">同步到视频提示词</button>
+            </div>
+          </div>
+        </section>
+
+        <aside class="panel editor-panel">
+          <div class="panel-head"><b>生成与引用</b><span>只作用于格子 03</span></div>
+          <div class="editor-scroll">
+            <div class="field">
+              <label>绑定 @clip 引用</label>
+              <div class="clip-list">
+                <div class="clip"><div class="avatar"></div><b>@陆燃</b></div>
+                <div class="clip"><div class="avatar demon"></div><b>@炽魔王</b></div>
+                <div class="clip"><div class="avatar scene"></div><b>@战场场景</b></div>
+              </div>
+            </div>
+            <div class="field">
+              <label>新增参考图</label>
+              <div class="upload-box">拖入本地图片，或从资产库选择。<br>参考图参与重生成，但不会自动替换当前格，除非点击“保存回填”。</div>
+            </div>
+            <div class="field">
+              <label>单格重生成提示词</label>
+              <div class="textarea">严格参考 @陆燃、@炽魔王 和 @战场场景。画面为中近景，陆燃枪尖贴近炽魔王喉部，黑角擦出火花，动作清晰，人物比例稳定，背景保持荒原战场。</div>
+            </div>
+            <div class="field">
+              <label>负面提示词</label>
+              <div class="textarea" style="min-height:82px">低清晰度、文字水印、肢体畸形、角色错位、武器消失、背景漂移、抽象镜头。</div>
+            </div>
+            <div class="param-grid">
+              <div class="field"><label>生成模型</label><div class="input">GPT 2 优化 <span>⌄</span></div></div>
+              <div class="field"><label>分辨率</label><div class="input">2K <span>⌄</span></div></div>
+              <div class="field"><label>参考强度</label><div class="input">0.62 <span>⌄</span></div></div>
+              <div class="field"><label>种子</label><div class="input">沿用段落 <span>⌄</span></div></div>
+            </div>
+            <div class="notice">建议：单击格子只更新这里的内容；双击格子或点击“编辑此格”才打开本页。生成中显示当前格子的 loading，不锁住整张宫格。</div>
+          </div>
+        </aside>
+      </main>
+
+      <footer class="footer">
+        <div class="statusline">
+          <span class="dot"></span>
+          <span>当前只会重生成镜头 03，完成后可回填到整张分镜图，并同步更新 Seedance 视频提示词中的该镜头段落。</span>
+        </div>
+        <div class="footer-actions">
+          <button class="btn">取消</button>
+          <button class="btn">仅保存脚本</button>
+          <button class="btn green">重新生成此格</button>
+          <button class="btn primary">保存回填</button>
+        </div>
+      </footer>
+    </section>
+  </div>
+</body>
+</html>

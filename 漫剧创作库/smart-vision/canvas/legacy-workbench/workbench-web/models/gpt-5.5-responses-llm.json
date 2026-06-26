@@ -1,0 +1,31 @@
+{
+  "id": "gpt-5.5-responses-llm",
+  "name": "gpt-5.5-responses-llm",
+  "type": "llm",
+  "label": "GPT-5.5 Responses",
+  "model": "gpt-5.5",
+  "baseUrl": "http://45.77.211.38:8317/v1",
+  "url": "http://45.77.211.38:8317/v1",
+  "key": "replace-with-cliproxy-api-key",
+  "adapter": "openai-responses",
+  "endpointPath": "/responses",
+  "providerKey": "cliproxy-gpt55-responses",
+  "channelKey": "cliproxy-gpt55-responses",
+  "supports": {
+    "chat": true,
+    "vision": true,
+    "responses": true
+  },
+  "note": "CLIProxyAPI GPT-5.5 Responses API 大语言模型渠道。图文消息会在 bridge 中转换为 Responses API input_text/input_image 结构。",
+  "protocol": {
+    "adapter": "openai-responses",
+    "endpointPath": "/responses",
+    "method": "sync",
+    "messageFormat": "responses"
+  },
+  "ui": {
+    "label": "GPT-5.5 Responses",
+    "badge": "LLM",
+    "badgeColor": "#14b8a6"
+  }
+}

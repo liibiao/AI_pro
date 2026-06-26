@@ -1,0 +1,28 @@
+{
+  "id": "gpt-image-2-pro",
+  "name": "gpt-image-2-pro",
+  "type": "image",
+  "label": "GPT-Image-2-pro",
+  "model": "gpt-image-2",
+  "baseUrl": "http://localhost:8317/v1",
+  "url": "http://localhost:8317/v1",
+  "key": "sk-wX6Kl1fDpoQwGz4Ihzjqy1TWkqd3Du1bpOBYBaBeuFOdh4Kj",
+  "adapter": "openai-edits",
+  "endpointPath": "/images/edits",
+  "uploadMode": "files",
+  "supports": {
+    "txt2img": true,
+    "img2img": true
+  },
+  "note": "GPT-Image-2-pro 生图渠道（/v1/images/edits，参考图走 /v1/files file-xxx）",
+  "protocol": {
+    "adapter": "openai-edits",
+    "endpointPath": "/images/edits",
+    "uploadMode": "files"
+  },
+  "ui": {
+    "label": "GPT-Image-2-pro",
+    "badge": "V1",
+    "badgeColor": "#10b981"
+  }
+}

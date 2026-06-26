@@ -1,0 +1,64 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "canvasUrl": "http://127.0.0.1:8877/image-studio-canvas.html",
+  "workflows": [
+    {
+      "id": "ep001-storyboard-image-generation",
+      "name": "EP001 故事板图生成工作流",
+      "path": "07-workflows/ep001-storyboard-image-generation.mjb-workflow.json",
+      "type": "storyboard_image_generation",
+      "status": "waiting_review",
+      "note": "Phase 1.5 最小闭环样例：读取 EP001 分镜、长版提示词与资产索引，生成故事板图 Workflow。",
+      "outputArtifacts": [
+        "04-storyboard/ep001-storyboard.md"
+      ],
+      "updatedAt": "2026-05-07T19:38:35.780Z",
+      "lastOutputReviewId": "artifact-ep001-storyboard-image-generation-04-storyboard-ep001-storyboard-md-review"
+    },
+    {
+      "id": "draft-video_generation-1778182715841",
+      "name": "EP001 Seedance 单镜视频生成 Workflow",
+      "path": "07-workflows/draft-video_generation-1778182715841.mjb-workflow.json",
+      "type": "video_generation",
+      "status": "waiting_review",
+      "note": "由产物审核通过自动创建；已升级为 Seedance 视频生成→视频预览→剪辑器真实执行链路。",
+      "source": "artifact-review-driven-chain",
+      "sourceWorkflowId": "ep001-storyboard-image-generation",
+      "triggeredByReviewId": "artifact-ep001-storyboard-image-generation-04-storyboard-ep001-storyboard-md-review",
+      "triggerKind": "artifact-review",
+      "sourceArtifactPath": "04-storyboard/ep001-storyboard.md",
+      "chainStage": "storyboard_image_generation->video_generation",
+      "version": 1,
+      "nodeCount": 4,
+      "connCount": 3,
+      "outputArtifacts": [
+        "06-generated/videos/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4"
+      ],
+      "generatedAt": "2026-05-07T19:38:35.841Z",
+      "updatedAt": "2026-05-08T03:25:55.667Z",
+      "lastOutputReviewId": "artifact-draft-video_generation-1778182715841-06-generated-videos-ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE--review"
+    },
+    {
+      "id": "draft-edit-1778210764441",
+      "name": "edit 任务上下文包 Workflow 草案",
+      "path": "07-workflows/draft-edit-1778210764441.mjb-workflow.json",
+      "type": "edit",
+      "status": "todo",
+      "note": "由产物审核通过自动创建；上游 Workflow：draft-video_generation-1778182715841",
+      "source": "artifact-review-driven-chain",
+      "sourceWorkflowId": "draft-video_generation-1778182715841",
+      "triggeredByReviewId": "artifact-draft-video_generation-1778182715841-06-generated-videos-ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE--review",
+      "triggerKind": "artifact-review",
+      "sourceArtifactPath": "06-generated/videos/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "chainStage": "video_generation->edit",
+      "version": 1,
+      "nodeCount": 4,
+      "connCount": 3,
+      "outputArtifacts": [],
+      "generatedAt": "2026-05-08T03:26:04.441Z"
+    }
+  ],
+  "note": "已接入 Smart Vision Workflow Draft Builder，支持草案落盘、登记与一键导入画布。",
+  "updatedAt": "2026-05-08T03:26:04.441Z"
+}

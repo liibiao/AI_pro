@@ -1,0 +1,79 @@
+{
+  "_meta": {
+    "dimension": "负面提示词",
+    "priority": 8,
+    "required": false,
+    "description": "精准剔除瑕疵和不想要的元素，避免画面崩坏",
+    "tip": "按类别精准写入，不要乱堆无效词。可配合 --no 参数或 (关键词:0.5) 使用"
+  },
+  "categories": [
+    {
+      "id": "visual_flaws",
+      "name": "画面瑕疵类",
+      "items": [
+        { "keyword": "模糊", "usage": "排除画面模糊" },
+        { "keyword": "糊帧", "usage": "排除运动模糊帧" },
+        { "keyword": "低分辨率", "usage": "排除画质低" },
+        { "keyword": "低画质", "usage": "排除劣质渲染" },
+        { "keyword": "穿模", "usage": "排除模型穿插" },
+        { "keyword": "肢体畸形", "usage": "排除人体错误" },
+        { "keyword": "比例失调", "usage": "排除人体比例错误" },
+        { "keyword": "边缘虚化", "usage": "排除失焦" },
+        { "keyword": "噪点过多", "usage": "排除画面颗粒" },
+        { "keyword": "色彩溢出", "usage": "排除颜色异常" }
+      ]
+    },
+    {
+      "id": "style_deviation",
+      "name": "风格偏离类",
+      "items": [
+        { "keyword": "廉价游戏风", "usage": "排除低质游戏感" },
+        { "keyword": "Q版卡通", "usage": "排除萌化" },
+        { "keyword": "萌系二次元", "usage": "排除日系萌化" },
+        { "keyword": "油腻质感", "usage": "排除过度光滑" },
+        { "keyword": "手绘简笔画", "usage": "排除草图感" },
+        { "keyword": "3D塑料感", "usage": "排除廉价CG" },
+        { "keyword": "照片写实", "usage": "写实风格时排除照片" },
+        { "keyword": "AI生成痕迹", "usage": "排除AI味" }
+      ]
+    },
+    {
+      "id": "action_composition",
+      "name": "动作/构图问题",
+      "items": [
+        { "keyword": "动作僵硬", "usage": "排除不自然姿态" },
+        { "keyword": "吊威亚悬浮感", "usage": "排除不自然悬空" },
+        { "keyword": "空间关系混乱", "usage": "排除前后错位" },
+        { "keyword": "视角错误", "usage": "排除不合理的观看角度" },
+        { "keyword": "动态模糊过度", "usage": "排除看不清主体" },
+        { "keyword": "重心不稳", "usage": "排除站不稳" },
+        { "keyword": "透视错误", "usage": "排除透视畸变" }
+      ]
+    },
+    {
+      "id": "unwanted_elements",
+      "name": "多余元素类",
+      "items": [
+        { "keyword": "多余人物", "usage": "排除背景路人" },
+        { "keyword": "多余物体", "usage": "排除杂物" },
+        { "keyword": "文字", "usage": "排除画面文字" },
+        { "keyword": "水印", "usage": "排除水印" },
+        { "keyword": "签名", "usage": "排除作者签名" },
+        { "keyword": "边框", "usage": "排除画框" },
+        { "keyword": "杂乱背景", "usage": "排除背景杂乱" },
+        { "keyword": "多余肢体", "usage": "排除多手多脚" }
+      ]
+    },
+    {
+      "id": "preset_negative",
+      "name": "一键负面预设",
+      "items": [
+        { "keyword": "模糊, 动作僵硬, 游戏风, 穿模, 比例失调", "name": "基础排除", "usage": "通用基础负面词", "isCombo": true },
+        { "keyword": "模糊, 动作僵硬, 穿模, 比例失调, 肢体畸形, 低画质, 杂乱背景, 多余人物", "name": "战斗场景", "usage": "动作戏专用负面词", "isCombo": true },
+        { "keyword": "模糊, 空间混乱, 翼缝结构错误, 画面杂乱, 透视错误", "name": "FPV穿越", "usage": "穿越镜头专用", "isCombo": true },
+        { "keyword": "模糊, 动作僵硬, 游戏风, 穿模, 多余动态, 低画质", "name": "蓄力定格", "usage": "静止蓄力帧专用", "isCombo": true },
+        { "keyword": "模糊, Q版卡通, 萌系二次元, 廉价游戏风, 穿模, 比例失调, 多余人物, 水印", "name": "漫剧标准", "usage": "漫剧通用排除", "isCombo": true }
+      ]
+    }
+  ]
+}

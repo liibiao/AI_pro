@@ -1,0 +1,21 @@
+Package: mj-smart-v81-stable-fallback-20260622024928
+Purpose:
+- Make Midjourney smart-mode V8.1 fallback follow the selected version instead of old V7 wording.
+- Use stable V8.1 smart parameters without automatic --hd / --q.
+- Retry Midjourney submit without --hd when upstream returns retryable HTTP 400.
+- Keep the earlier MJ upscale active-page download fix in the deployed canvas file.
+
+Files:
+- workbench-web/image-studio-canvas-next.html
+- tools/workbench-web/image-studio-canvas-next.html
+- tools/workbench_server.py
+- tools/image_studio_backend.py
+- smart-vision/services/workbench/workbench_server.py
+- smart-vision/services/workbench/image_studio_backend.py
+- skills/midjourney-prompt-skill.md
+- deploy/apply-mj-smart-v81-stable-fallback-20260622024928-on-server.sh
+
+Validation:
+- python3 -m py_compile tools/workbench_server.py smart-vision/services/workbench/workbench_server.py tools/image_studio_backend.py smart-vision/services/workbench/image_studio_backend.py
+- V8.1 fallback function check: no --hd / --q, keeps --v 8.1.
+- Midjourney submit retry function check: produces no hd fallback.

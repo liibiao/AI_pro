@@ -1,0 +1,19 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "",
+      "artifact_type": "asset_image",
+      "relative_path": "",
+      "source_episode_id": "",
+      "source_storyboard_id": "",
+      "source_task_id": "",
+      "workflow_id": "",
+      "model_provider": "",
+      "model_name": "",
+      "version": "v001",
+      "review_status": "pending",
+      "created_at": "",
+      "updated_at": ""
+    }
+  ]
+}

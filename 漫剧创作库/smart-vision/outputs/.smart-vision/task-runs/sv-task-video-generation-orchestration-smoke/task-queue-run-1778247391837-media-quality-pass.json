@@ -1,0 +1,52 @@
+{
+  "version": "0.1.0",
+  "runId": "task-queue-run-1778247391837",
+  "taskPlanId": "sv-task-video-generation-orchestration-smoke",
+  "subtaskId": "media-quality-pass",
+  "taskQueueId": "task-queue-orchestration-sv-task-video-generation-orchestration-smoke-media-quality-pass",
+  "taskType": "video_generation",
+  "title": "video_generation / 媒体质量检查",
+  "ownerRole": "Reviewer",
+  "status": "done",
+  "startedAt": "2026-05-08T13:36:31.843Z",
+  "completedAt": "2026-05-08T13:36:31.843Z",
+  "executionMode": "orchestration_report",
+  "progressItemId": "orchestration-sv-task-video-generation-orchestration-smoke-media-quality-pass",
+  "phase": "generation_to_review",
+  "dependencyProgressIds": [
+    "orchestration-sv-task-video-generation-orchestration-smoke-produce-runtime-output"
+  ],
+  "inputChecks": [
+    {
+      "path": "03-视频/**/*.mp4",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    },
+    {
+      "path": "03-视频/**/*.mov",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    },
+    {
+      "path": "05-prompts/**/video-prompt.md",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    }
+  ],
+  "outputChecks": [
+    {
+      "path": "媒体质量审核记录",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    }
+  ],
+  "acceptanceCriteria": [
+    "视频文件路径可读取。",
+    "生成参数、镜头来源和审核结论可追溯。"
+  ],
+  "notes": [
+    "此报告由 Smart Vision 任务队列执行器生成，用于闭环记录编排任务的执行状态。",
+    "涉及外部模型、画布或人工生产的产物仍需由对应 Runtime / 人工环节实际生成并登记。"
+  ],
+  "error": null
+}

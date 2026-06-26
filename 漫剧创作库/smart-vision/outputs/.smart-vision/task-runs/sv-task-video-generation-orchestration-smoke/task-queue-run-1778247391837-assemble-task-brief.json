@@ -1,0 +1,94 @@
+{
+  "version": "0.1.0",
+  "runId": "task-queue-run-1778247391837",
+  "taskPlanId": "sv-task-video-generation-orchestration-smoke",
+  "subtaskId": "assemble-task-brief",
+  "taskQueueId": "task-queue-orchestration-sv-task-video-generation-orchestration-smoke-assemble-task-brief",
+  "taskType": "video_generation",
+  "title": "video_generation / 组装任务执行 Brief",
+  "ownerRole": "Generation Operator",
+  "status": "done",
+  "startedAt": "2026-05-08T13:36:31.840Z",
+  "completedAt": "2026-05-08T13:36:31.840Z",
+  "executionMode": "orchestration_report",
+  "progressItemId": "orchestration-sv-task-video-generation-orchestration-smoke-assemble-task-brief",
+  "phase": "generation_to_review",
+  "dependencyProgressIds": [
+    "orchestration-sv-task-video-generation-orchestration-smoke-load-data-pack"
+  ],
+  "inputChecks": [
+    {
+      "path": "docs/prompt-standards.md",
+      "check": "exists"
+    },
+    {
+      "path": "docs/long-prompt-detail-gate.md",
+      "check": "exists"
+    },
+    {
+      "path": "docs/seedance-prompt-engineering.md",
+      "check": "exists"
+    },
+    {
+      "path": "skills/seedance-action-skill.md",
+      "check": "exists"
+    },
+    {
+      "path": "skills/runninghub-image-skill.md",
+      "check": "exists"
+    },
+    {
+      "path": "templates/_shared/prompt-output/seedance-long-template.md",
+      "check": "exists"
+    },
+    {
+      "path": "templates/_shared/prompt-output/jimeng-template.md",
+      "check": "exists"
+    },
+    {
+      "path": "04-storyboard/ep001-storyboard.md",
+      "check": "missing"
+    },
+    {
+      "path": "05-prompts/seedance/ep001-shots.md",
+      "check": "missing"
+    },
+    {
+      "path": "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "check": "exists"
+    },
+    {
+      "path": "01-资产图与提示词/asset-index.md",
+      "check": "missing"
+    },
+    {
+      "path": "08-qa/v8-asset-consistency-qa-report.md",
+      "check": "missing"
+    },
+    {
+      "path": "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "check": "exists"
+    }
+  ],
+  "outputChecks": [
+    {
+      "path": "任务 Brief",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    },
+    {
+      "path": "输入产物清单",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    }
+  ],
+  "acceptanceCriteria": [
+    "Brief 明确任务边界、输入、输出、红线和门禁。",
+    "Brief 中每条要求可追溯到数据包引用或项目产物。"
+  ],
+  "notes": [
+    "此报告由 Smart Vision 任务队列执行器生成，用于闭环记录编排任务的执行状态。",
+    "涉及外部模型、画布或人工生产的产物仍需由对应 Runtime / 人工环节实际生成并登记。"
+  ],
+  "error": null
+}

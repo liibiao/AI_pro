@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "dimension": "权重强化控制",
+    "priority": 6,
+    "required": false,
+    "description": "可选，精准调整单个元素的权重。核心元素强化，次要背景弱化",
+    "tip": "强化 (关键词:1.2-1.5)，弱化 (关键词:0.5-0.8)，倍数不超过2避免崩坏"
+  },
+  "categories": [
+    {
+      "id": "enhance_examples",
+      "name": "强化示例",
+      "items": [
+        { "keyword": "(拳面银纹聚能特效:1.3)", "usage": "强化核心特效" },
+        { "keyword": "(角色面部:1.2)", "usage": "强化人物面部" },
+        { "keyword": "(能量光效:1.4)", "usage": "强化光效表现" },
+        { "keyword": "(甲壳碎裂细节:1.3)", "usage": "强化破坏细节" },
+        { "keyword": "(高速运动轨迹:1.5)", "usage": "强化速度感" },
+        { "keyword": "(眼神杀意:1.2)", "usage": "强化情绪表达" }
+      ]
+    },
+    {
+      "id": "weaken_examples",
+      "name": "弱化示例",
+      "items": [
+        { "keyword": "(背景云层:0.8)", "usage": "弱化背景干扰" },
+        { "keyword": "(地面碎石:0.6)", "usage": "弱化次要元素" },
+        { "keyword": "(远景建筑:0.5)", "usage": "大幅弱化远景" },
+        { "keyword": "(杂色光斑:0.7)", "usage": "弱化光斑干扰" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "episode": "ep001",
+  "items": [
+    {
+      "id": "creative-source",
+      "title": "创作源 / 风格锁定",
+      "status": "done",
+      "updatedAt": "2026-05-07T19:11:20.382Z"
+    },
+    {
+      "id": "script",
+      "title": "故事 / 剧本",
+      "status": "done"
+    },
+    {
+      "id": "director",
+      "title": "导演讲戏",
+      "status": "done"
+    },
+    {
+      "id": "assets",
+      "title": "资产生产",
+      "status": "waiting_review",
+      "updatedAt": "2026-05-07T19:15:47.945Z"
+    },
+    {
+      "id": "storyboard",
+      "title": "故事板生产包",
+      "status": "done",
+      "updatedAt": "2026-05-07T19:38:35.837Z"
+    },
+    {
+      "id": "prompts",
+      "title": "配套生成说明",
+      "status": "done"
+    },
+    {
+      "id": "generation",
+      "title": "生图 / 生视频",
+      "status": "todo"
+    },
+    {
+      "id": "edit",
+      "title": "剪辑 / 拼接",
+      "status": "todo"
+    },
+    {
+      "id": "qa",
+      "title": "QA / 发布",
+      "status": "todo"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778182715841",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 ep001-storyboard-image-generation 的产物审核通过后自动创建。",
+      "status": "todo",
+      "items": [
+        "07-workflows/draft-video_generation-1778182715841.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778182715841",
+      "sourceWorkflowId": "ep001-storyboard-image-generation",
+      "reviewId": "artifact-ep001-storyboard-image-generation-04-storyboard-ep001-storyboard-md-review",
+      "artifactPath": "04-storyboard/ep001-storyboard.md",
+      "updatedAt": "2026-05-07T19:38:35.837Z"
+    },
+    {
+      "id": "workflow-chain-draft-edit-1778210764441",
+      "title": "下一阶段 Workflow：edit",
+      "description": "由 draft-video_generation-1778182715841 的产物审核通过后自动创建。",
+      "status": "todo",
+      "items": [
+        "07-workflows/draft-edit-1778210764441.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-edit-1778210764441",
+      "sourceWorkflowId": "draft-video_generation-1778182715841",
+      "reviewId": "artifact-draft-video_generation-1778182715841-06-generated-videos-ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE--review",
+      "artifactPath": "06-generated/videos/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "updatedAt": "2026-05-08T03:26:04.439Z"
+    }
+  ]
+}

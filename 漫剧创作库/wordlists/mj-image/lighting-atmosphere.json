@@ -1,0 +1,169 @@
+{
+  "_meta": {
+    "dimension": "光影色彩与环境氛围",
+    "priority": 4,
+    "required": true,
+    "description": "决定画面的光线质感、色彩基调、场景环境，是提升画面高级感的核心维度"
+  },
+  "categories": [
+    {
+      "id": "natural_light",
+      "name": "自然光",
+      "tip": "户外、风景、自然氛围场景首选",
+      "items": [
+        { "keyword": "黄金时段光线（Golden Hour）", "usage": "温暖金色、夕阳、浪漫" },
+        { "keyword": "丁达尔体积光", "usage": "神圣、氛围、纵深" },
+        { "keyword": "丁达尔效应/耶稣光", "usage": "云隙光、教堂光、神圣感" },
+        { "keyword": "日光直射（Direct Sunlight）", "usage": "强烈、明亮、真实感" },
+        { "keyword": "日光（Sunlight）", "usage": "日常户外、自然" },
+        { "keyword": "月光（Moonlight）", "usage": "夜间、清冷、孤寂" },
+        { "keyword": "自然照明（Natural Lighting）", "usage": "柔和自然、无人工光源" },
+        { "keyword": "晨光（Morning Light）", "usage": "清新、温暖、希望" },
+        { "keyword": "暮光/黄昏（Crepuscular Ray）", "usage": "云隙光束、大气感" },
+        { "keyword": "日出/日出光线", "usage": "渐变暖色、新的开始" },
+        { "keyword": "星夜", "usage": "星空、银河、宇宙感" },
+        { "keyword": "极光（Aurora Borealis）", "usage": "绿紫光带、北极、魔幻" },
+        { "keyword": "暴风雨前光线", "usage": "乌云裂隙、戏剧性" }
+      ]
+    },
+    {
+      "id": "artificial_light",
+      "name": "人造光源",
+      "tip": "室内、城市、特定光源环境",
+      "items": [
+        { "keyword": "霓虹灯光", "usage": "赛博朋克、夜景、都市" },
+        { "keyword": "烛光/火光", "usage": "温暖、古代、亲密" },
+        { "keyword": "工作室照明（Studio Lighting）", "usage": "可控、专业、影棚" },
+        { "keyword": "荧光灯（Fluorescent）", "usage": "冷白、办公室、工业" },
+        { "keyword": "聚光灯（Spotlight）", "usage": "聚焦、舞台、强调" },
+        { "keyword": "背光（Backlight）", "usage": "轮廓感、分离主体" },
+        { "keyword": "边缘光/轮廓光（Rim Light）", "usage": "头发光边、立体感" },
+        { "keyword": "冷光（Cold Light）", "usage": "科技、医院、冰冷" },
+        { "keyword": "点光源（Point Light）", "usage": "单点照明、阴影分明" },
+        { "keyword": "面板灯（Panel Light）", "usage": "均匀、大面积、现代" },
+        { "keyword": "区域灯（Area Light）", "usage": "柔和阴影、建筑照明" },
+        { "keyword": "频闪灯（Strobe Light）", "usage": "动感、夜晚、舞台" },
+        { "keyword": "演唱会灯光（Concert Lighting）", "usage": "彩色光束、氛围" },
+        { "keyword": "夜总会灯光（Nightclub Lighting）", "usage": "暗色、频闪、霓虹" }
+      ]
+    },
+    {
+      "id": "dramatic_light",
+      "name": "戏剧性/特殊光效",
+      "tip": "营造特殊氛围、情绪张力的光效",
+      "items": [
+        { "keyword": "逆光剪影", "usage": "轮廓感、神秘、史诗" },
+        { "keyword": "侧光硬光", "usage": "立体感、戏剧性、阴阳脸" },
+        { "keyword": "冷白聚光自发光", "usage": "能量、异能、科技" },
+        { "keyword": "重击瞬间过曝白闪", "usage": "打击感、闪光、冲击" },
+        { "keyword": "底光照射", "usage": "恐怖、诡异、非自然" },
+        { "keyword": "裂隙光", "usage": "命运感、揭示、神秘" },
+        { "keyword": "明暗高对比（Chiaroscuro）", "usage": "卡拉瓦乔式、戏剧性" },
+        { "keyword": "戏剧性灯光（Dramatic Lighting）", "usage": "强烈明暗、情绪化" },
+        { "keyword": "明暗调（Low Key Lighting）", "usage": "暗部为主、少量亮光" },
+        { "keyword": "高调照明（High Key Lighting）", "usage": "明亮均匀、柔和" },
+        { "keyword": "伦勃朗光（Rembrandt Lighting）", "usage": "经典人像、三角光斑" },
+        { "keyword": "蝴蝶光/派拉蒙光", "usage": "鼻下蝴蝶阴影、美颜" },
+        { "keyword": "分割光（Split Lighting）", "usage": "半明半暗、对抗感" },
+        { "keyword": "三点布光（3-Point Lighting）", "usage": "标准影棚布光" },
+        { "keyword": "情绪光（Moody Lighting）", "usage": "低饱和暗调、忧郁" },
+        { "keyword": "体积光（Volumetric Lighting）", "usage": "光束可见、烟雾介质" },
+        { "keyword": "全局照明（Global Illumination）", "usage": "真实光散射反弹" },
+        { "keyword": "镜头光晕（Lens Flare）", "usage": "光源炫光、电影感" },
+        { "keyword": "金色夕阳余晖", "usage": "温暖、离别、希望" },
+        { "keyword": "月光冷蓝调", "usage": "夜间、清冷、孤寂" }
+      ]
+    },
+    {
+      "id": "special_glow",
+      "name": "特效发光",
+      "tip": "科幻、奇幻、魔法、能量场景",
+      "items": [
+        { "keyword": "发光（Glowing）", "usage": "能量、魔法、光源" },
+        { "keyword": "自发光材质（Emissive Material）", "usage": "自身发光表面" },
+        { "keyword": "荧光（Fluorescent）", "usage": "紫外线、荧光色" },
+        { "keyword": "黑光/紫外光（Blacklight/UV）", "usage": "荧光反应、暗处" },
+        { "keyword": "熔岩光芒（Lava Glow）", "usage": "红橙、高温、火山" },
+        { "keyword": "核废料光芒", "usage": "诡异绿光、辐射" },
+        { "keyword": "量子点（Quantum Dot）", "usage": "微观发光、科技" },
+        { "keyword": "激光束效果（Laser Beam）", "usage": "直线能量光束" },
+        { "keyword": "霓虹边缘光效", "usage": "轮廓发光、赛博朋克" },
+        { "keyword": "闪耀效果（Sparkle）", "usage": "星光、魔法粒子" },
+        { "keyword": "火焰光芒", "usage": "红橙黄渐变、燃烧" },
+        { "keyword": "冰霜光芒", "usage": "蓝白色冷光、冰晶" }
+      ]
+    },
+    {
+      "id": "color_tone",
+      "name": "色彩基调",
+      "tip": "整体色调倾向",
+      "items": [
+        { "keyword": "冷灰主调", "usage": "冷峻、肃杀、战斗" },
+        { "keyword": "冷暖强对比", "usage": "视觉冲击、对抗感" },
+        { "keyword": "低饱和高级灰", "usage": "克制、电影感、高级" },
+        { "keyword": "高对比度色调", "usage": "戏剧性、张力" },
+        { "keyword": "暗调氛围", "usage": "压抑、危险、悬疑" },
+        { "keyword": "暗红主调", "usage": "血腥、战斗、危险" },
+        { "keyword": "青橙对比色", "usage": "科幻、赛博朋克经典" },
+        { "keyword": "金黄色调", "usage": "神性、辉煌、能量" },
+        { "keyword": "紫黑色调", "usage": "魔幻、神秘、暗黑" },
+        { "keyword": "蓝绿色调", "usage": "科技、冷峻、未来" },
+        { "keyword": "霓虹色调（Neon Shades）", "usage": "高饱和、发光、都市" },
+        { "keyword": "莫兰迪色（Morandi）", "usage": "灰调柔和、高级感" },
+        { "keyword": "马卡龙色", "usage": "粉嫩、糖果、少女" },
+        { "keyword": "复古色彩（Retro Colors）", "usage": "怀旧、胶片、年代感" },
+        { "keyword": "黑白/单色", "usage": "经典、高对比、情绪化" },
+        { "keyword": "双色调", "usage": "两色渐变、海报风" },
+        { "keyword": "日落渐变", "usage": "橙红紫、温暖浪漫" },
+        { "keyword": "荧光色", "usage": "高饱和、抢眼、赛博" }
+      ]
+    },
+    {
+      "id": "environment_scene",
+      "name": "环境场景",
+      "tip": "典型场景环境",
+      "items": [
+        { "keyword": "高空积雨云纵深场景", "usage": "史诗高空战斗" },
+        { "keyword": "破碎云层漂浮", "usage": "破坏痕迹、纵深" },
+        { "keyword": "暗红光液喷溅", "usage": "伤害视觉化、血液" },
+        { "keyword": "甲壳残片散落", "usage": "战斗余波、细节" },
+        { "keyword": "废墟都市", "usage": "末日、毁灭、孤寂" },
+        { "keyword": "古殿内部", "usage": "庄严、历史、秘密" },
+        { "keyword": "悬崖边缘", "usage": "危险、高度、决断" },
+        { "keyword": "暴雨街头", "usage": "紧张、追逐、电影感" },
+        { "keyword": "森林深处", "usage": "神秘、自然、危险" },
+        { "keyword": "虚空裂缝", "usage": "异世界、维度撕裂" },
+        { "keyword": "雪原苍茫", "usage": "孤寂、生存、极简" },
+        { "keyword": "宫殿大殿", "usage": "权力、仪式、对抗" },
+        { "keyword": "赛博朋克街道", "usage": "霓虹、雨夜、密集" },
+        { "keyword": "魔幻森林", "usage": "发光植物、雾气、奇幻" },
+        { "keyword": "水下世界", "usage": "蓝色调、气泡、静默" },
+        { "keyword": "沙漠荒原", "usage": "辽阔、干燥、生存" },
+        { "keyword": "冰川雪地", "usage": "冷色调、纯净、危险" },
+        { "keyword": "太空/星云", "usage": "宇宙、深空、渺小" },
+        { "keyword": "古代神殿/遗迹", "usage": "历史、神秘、庄严" }
+      ]
+    },
+    {
+      "id": "atmosphere_mood",
+      "name": "氛围情绪",
+      "tip": "画面传递的情绪感受",
+      "items": [
+        { "keyword": "史诗战斗张力", "usage": "高强度对抗场面" },
+        { "keyword": "失控爆发感", "usage": "能量失控、极限" },
+        { "keyword": "肃杀冷峻", "usage": "冷酷、决战前夜" },
+        { "keyword": "静谧蓄力感", "usage": "暴风雨前的平静" },
+        { "keyword": "绝望压迫感", "usage": "绝境、黑暗、窒息" },
+        { "keyword": "希望曙光感", "usage": "转折、救赎、黎明" },
+        { "keyword": "诡异不安", "usage": "悬疑、恐怖、未知" },
+        { "keyword": "温馨治愈", "usage": "日常、宁静、安全" },
+        { "keyword": "壮丽宏大", "usage": "史诗全景、自然力量" },
+        { "keyword": "孤独落寞", "usage": "独处、思念、漂泊" },
+        { "keyword": "神秘莫测", "usage": "未知、悬念、探索" },
+        { "keyword": "紧张压迫", "usage": "倒计时、危机、对抗" },
+        { "keyword": "欢乐活泼", "usage": "明亮、色彩、自由" },
+        { "keyword": "忧郁沉思", "usage": "灰蓝调、安静、内省" }
+      ]
+    }
+  ]
+}

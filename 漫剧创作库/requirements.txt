@@ -1,0 +1,4 @@
+# 漫剧创作库 Python 依赖
+# 工作台参考图上传到对象存储：腾讯云 COS / Cloudflare R2 走 S3 兼容接口；阿里 OSS 走 oss2。
+boto3>=1.34.0
+oss2>=2.18.0

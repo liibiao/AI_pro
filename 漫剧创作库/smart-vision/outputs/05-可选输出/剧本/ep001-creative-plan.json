@@ -1,0 +1,107 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "episodeId": "ep001",
+  "planId": "creative-plan-ep001-1778346403970",
+  "importedFiles": [],
+  "scriptLength": 7,
+  "shotCount": 1,
+  "assetCount": 4,
+  "generatedAt": "2026-05-09T17:06:43.971Z",
+  "storyboard": {
+    "episodeId": "ep001",
+    "clipCount": 1,
+    "totalDurationSeconds": 15,
+    "importedFiles": [],
+    "assets": [
+      {
+        "id": "character-01",
+        "type": "character",
+        "typeLabel": "角色",
+        "name": "主角",
+        "sourceShots": [
+          "shot-01"
+        ],
+        "usage": "角色资产，用于资产图、故事板和视频工作流一致性锚定。",
+        "visualPrompt": "主角，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+        "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+      },
+      {
+        "id": "character-02",
+        "type": "character",
+        "typeLabel": "角色",
+        "name": "重要配角",
+        "sourceShots": [
+          "shot-01"
+        ],
+        "usage": "角色资产，用于资产图、故事板和视频工作流一致性锚定。",
+        "visualPrompt": "重要配角，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+        "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+      },
+      {
+        "id": "scene-01",
+        "type": "scene",
+        "typeLabel": "场景",
+        "name": "核心场景",
+        "sourceShots": [
+          "shot-01"
+        ],
+        "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+        "visualPrompt": "核心场景，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+        "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+      },
+      {
+        "id": "prop-01",
+        "type": "prop",
+        "typeLabel": "道具",
+        "name": "关键道具",
+        "sourceShots": [
+          "shot-01"
+        ],
+        "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+        "visualPrompt": "关键道具，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+        "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+      }
+    ],
+    "shots": [
+      {
+        "shotId": "shot-01",
+        "episodeId": "ep001",
+        "title": "创作连个人跳舞",
+        "segment": "0-15秒",
+        "durationSeconds": 15,
+        "sourceExcerpt": "创作连个人跳舞",
+        "scene": "核心场景",
+        "characters": [
+          "主角",
+          "重要配角"
+        ],
+        "props": [
+          "关键道具"
+        ],
+        "action": "创作连个人跳舞",
+        "camera": "中近景推进，突出角色行动和第一读点。",
+        "audio": "保留对白/旁白节奏，补足环境音和关键动作音效。",
+        "assetIds": [
+          "character-01",
+          "character-02",
+          "scene-01",
+          "prop-01"
+        ],
+        "imagePrompt": "核心场景，主角、重要配角，创作连个人跳舞，HZW 漫剧风格，9:16，清晰分镜构图。",
+        "videoPrompt": "shot-01 0-15秒：基于故事板参考图生成竖屏短剧镜头。画面任务：创作连个人跳舞。镜头：稳定推进。保持角色、场景、道具资产一致。"
+      }
+    ]
+  },
+  "artifactPaths": {
+    "scriptArtifactPath": "04-输入资料/ep001/script-source.md",
+    "scriptIngestArtifactPath": "04-输入资料/ep001/script-ingest.json",
+    "storyboardArtifactPath": "04-storyboard/ep001-storyboard.md",
+    "storyboardJsonArtifactPath": "04-storyboard/ep001-storyboard.json",
+    "assetCardsArtifactPath": "01-资产图与提示词/asset-cards/ep001-asset-cards.md",
+    "assetCardsJsonArtifactPath": "01-资产图与提示词/asset-cards/ep001-asset-cards.json",
+    "assetIndexArtifactPath": "01-资产图与提示词/asset-index.md",
+    "seedancePromptArtifactPath": "05-prompts/seedance/ep001-shots.md",
+    "creativePlanArtifactPath": "05-可选输出/剧本/ep001-creative-plan.json"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "sora-v3-pro",
+  "url": "https://notevideo.asia/v1/videos",
+  "key": "sk-ACcmDSKr7qE57QrQ36kkgfaPWtRqoskCBIR5RL8UavJiFzk0",
+  "model": "sora-v3-pro",
+  "type": "video",
+  "note": "sora-v3-pro 视频生成模型；请在工作台模型配置中填写 API Key",
+  "capabilities": {
+    "resolutions": ["720p"],
+    "durations": [5, 10, 15],
+    "defaultDuration": 15,
+    "defaultResolution": "720p",
+    "maxImages": {
+      "full": 4,
+      "smartMultiFrame": 4,
+      "firstLast": 2
+    },
+    "maxVideos": 3,
+    "maxVideoDurationSeconds": 15,
+    "supportsAudio": false,
+    "supportsVideo": true
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "protocol": {
+    "adapter": "notevideo",
+    "method": "async-poll"
+  },
+  "ui": {
+    "label": "sora-v3-pro",
+    "badge": "FAST",
+    "badgeColor": "#6ee7b7"
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "episodeId": "ep-smoke",
+  "planId": "creative-plan-ep-smoke-1778336289512",
+  "assets": [
+    {
+      "id": "character-01",
+      "type": "character",
+      "typeLabel": "角色",
+      "name": "主角",
+      "sourceShots": [
+        "shot-01",
+        "shot-02"
+      ],
+      "usage": "角色资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "主角，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "character-02",
+      "type": "character",
+      "typeLabel": "角色",
+      "name": "重要配角",
+      "sourceShots": [
+        "shot-01",
+        "shot-02"
+      ],
+      "usage": "角色资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "重要配角，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-01",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "少年林澈在废弃山",
+      "sourceShots": [
+        "shot-01"
+      ],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "少年林澈在废弃山，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-02",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "黑衣追兵闯入山",
+      "sourceShots": [
+        "shot-02"
+      ],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "黑衣追兵闯入山，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-03",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "握住断剑逃入云雾山",
+      "sourceShots": [],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "握住断剑逃入云雾山，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-04",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "否则整座山",
+      "sourceShots": [],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "否则整座山，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-05",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "住断剑逃入云雾山街",
+      "sourceShots": [],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "住断剑逃入云雾山街，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-06",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "少年林澈在废弃山门",
+      "sourceShots": [],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "少年林澈在废弃山门，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "prop-01",
+      "type": "prop",
+      "typeLabel": "道具",
+      "name": "碑亮起后唤醒沉睡剑",
+      "sourceShots": [
+        "shot-01"
+      ],
+      "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "碑亮起后唤醒沉睡剑，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "prop-02",
+      "type": "prop",
+      "typeLabel": "道具",
+      "name": "林澈握住断剑",
+      "sourceShots": [
+        "shot-02"
+      ],
+      "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "林澈握住断剑，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "prop-03",
+      "type": "prop",
+      "typeLabel": "道具",
+      "name": "十五秒内打开青铜令",
+      "sourceShots": [],
+      "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "十五秒内打开青铜令，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "prop-04",
+      "type": "prop",
+      "typeLabel": "道具",
+      "name": "废弃山门发现古老石",
+      "sourceShots": [],
+      "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "废弃山门发现古老石，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "prop-05",
+      "type": "prop",
+      "typeLabel": "道具",
+      "name": "弃山门发现古老石碑",
+      "sourceShots": [],
+      "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "弃山门发现古老石碑，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "prop-06",
+      "type": "prop",
+      "typeLabel": "道具",
+      "name": "石碑",
+      "sourceShots": [],
+      "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "石碑，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    }
+  ]
+}

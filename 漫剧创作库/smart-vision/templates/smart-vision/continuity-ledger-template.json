@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {
+      "episode_id": "",
+      "storyboard_id": "",
+      "carryover_from": "",
+      "carryover_to": "",
+      "character_state": [],
+      "asset_state": [],
+      "location_state": [],
+      "plot_state": [],
+      "camera_continuity": [],
+      "review_notes": []
+    }
+  ]
+}

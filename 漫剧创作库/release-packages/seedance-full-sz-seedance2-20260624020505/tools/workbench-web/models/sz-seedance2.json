@@ -1,0 +1,111 @@
+{
+  "id": "sz-seedance2",
+  "configId": "sz-seedance2",
+  "modelKey": "sz-seedance2",
+  "providerKey": "seedance-full",
+  "channelKey": "seedance-full",
+  "name": "sz-seedance2",
+  "modelNick": "Seedance2.0 满血",
+  "displayName": "Seedance2.0 满血",
+  "label": "Seedance2.0 满血",
+  "type": "video",
+  "model": "sz-seedance2",
+  "baseUrl": "http://103.236.54.113:8081/api/v1",
+  "url": "http://103.236.54.113:8081/api/v1/seedance-full/generate",
+  "key": "",
+  "adapter": "seedance-full",
+  "endpointPath": "/seedance-full/generate",
+  "statusEndpointPath": "/seedance-full/task/{taskId}",
+  "testEndpointPath": "/seedance-full/generate/test",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "referenceImages": true,
+    "referenceVideo": true,
+    "referenceAudio": true
+  },
+  "capabilities": {
+    "resolutions": ["720p", "1080p"],
+    "durations": [10, 11, 12, 13, 14, 15],
+    "defaultDuration": 10,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9", "adaptive"],
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "supportsAudio": true,
+    "supportsVideo": true,
+    "supportsLastFrame": false
+  },
+  "defaults": {
+    "duration": 10,
+    "seconds": 10,
+    "resolution": "720p",
+    "aspectRatio": "16:9",
+    "pricing": {
+      "unit": "second",
+      "billingMode": "per_second",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberDiscountRate": 1,
+      "chargedCreditsPerSecond": 45,
+      "originalCreditsPerSecond": 45,
+      "costCreditsPerSecond": 45,
+      "resolutionTiers": [
+        {
+          "resolution": "720p",
+          "model": "sz-seedance2",
+          "chargedCreditsPerSecond": 45,
+          "originalCreditsPerSecond": 45,
+          "costCreditsPerSecond": 45,
+          "cnyPerSecond": 0.45
+        },
+        {
+          "resolution": "1080p",
+          "model": "sz-seedance2-1080p",
+          "chargedCreditsPerSecond": 60,
+          "originalCreditsPerSecond": 60,
+          "costCreditsPerSecond": 60,
+          "cnyPerSecond": 0.6
+        }
+      ]
+    }
+  },
+  "modelAssembly": {
+    "type": "resolution_suffix",
+    "baseModel": "sz-seedance2",
+    "resolutionModelMap": {
+      "720p": "sz-seedance2",
+      "1080p": "sz-seedance2-1080p"
+    }
+  },
+  "note": "Seedance2.0 满血渠道：POST /seedance-full/generate 提交，GET /seedance-full/task/{taskId} 查询；后台保留一个 sz-seedance2 配置，720p 提交 sz-seedance2，1080p 提交 sz-seedance2-1080p；10-15 秒整数；比例严格按文档。",
+  "protocol": {
+    "adapter": "seedance-full",
+    "method": "async-poll",
+    "endpointPath": "/seedance-full/generate",
+    "endpoint_path": "/seedance-full/generate",
+    "statusEndpointPath": "/seedance-full/task/{taskId}",
+    "status_endpoint_path": "/seedance-full/task/{taskId}",
+    "testEndpointPath": "/seedance-full/generate/test",
+    "test_endpoint_path": "/seedance-full/generate/test",
+    "uploadMode": "object_storage",
+    "upload_mode": "object_storage",
+    "pollIntervalSeconds": 5,
+    "requestSchema": "seedance-full-json",
+    "modelByResolution": {
+      "720p": "sz-seedance2",
+      "1080p": "sz-seedance2-1080p"
+    }
+  },
+  "ui": {
+    "label": "Seedance2.0 满血",
+    "badge": "720/1080",
+    "badgeColor": "#0ea5e9"
+  }
+}

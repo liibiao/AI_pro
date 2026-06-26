@@ -1,0 +1,15 @@
+mj-active-download-smart-400-fix-20260622023740
+
+Changes:
+- Fix Midjourney Action upscale download using the previous 4-grid image by prioritizing the active MJ page URL.
+- Put new MJ Action result entries at the front of node image lists.
+- Add Smart MJ LLM 400 fallback to local smart prompt generation.
+- Use FAST as Smart MJ default speed.
+- Add Midjourney submit 400 compatibility retries: FAST accountFilter, no accountFilter, and q4-to-q2 fallback.
+
+Files:
+- workbench-web/image-studio-canvas-next.html
+- tools/workbench-web/image-studio-canvas-next.html
+- tools/image_studio_backend.py
+- smart-vision/services/workbench/image_studio_backend.py
+- deploy/apply-mj-active-download-smart-400-fix-20260622023740-on-server.sh

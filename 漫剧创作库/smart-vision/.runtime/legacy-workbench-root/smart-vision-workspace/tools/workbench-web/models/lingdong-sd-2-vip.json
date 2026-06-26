@@ -1,0 +1,111 @@
+{
+  "id": "lingdong-sd-2-vip",
+  "configId": "lingdong-sd-2-vip",
+  "modelKey": "lingdong-sd-2-vip",
+  "providerKey": "lingdong-sd-2-vip",
+  "channelKey": "lingdong-sd-2-vip",
+  "name": "sd-2-vip",
+  "modelNick": "火山 SD 2.0 低价（不卡真人）",
+  "displayName": "火山 SD 2.0 低价（不卡真人）",
+  "label": "火山 SD 2.0 低价（不卡真人）",
+  "type": "video",
+  "model": "sd-2-vip",
+  "baseUrl": "https://www.lingdongapi.com/v1",
+  "url": "https://www.lingdongapi.com/v1/videos",
+  "key": "replace-with-lingdong-api-key",
+  "adapter": "lingdong-sd-2-vip",
+  "endpointPath": "/videos",
+  "statusEndpointPath": "/video/generations/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "referenceImages": true,
+    "referenceVideo": true,
+    "referenceAudio": true
+  },
+  "capabilities": {
+    "resolutions": ["720p", "1080p"],
+    "sizes": ["small", "large"],
+    "resolutionSizeMap": {
+      "720p": "small",
+      "1080p": "large"
+    },
+    "defaultResolution": "720p",
+    "defaultSize": "small",
+    "durations": [15],
+    "defaultDuration": 15,
+    "aspectRatios": ["9:16", "16:9", "1:1"],
+    "orientations": ["portrait", "landscape", "square"],
+    "defaultOrientation": "portrait",
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "supportsAudio": true,
+    "supportsVideo": true,
+    "supportsLastFrame": false,
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "maxPromptLength": 4000,
+    "maxImageSizeMb": 30,
+    "maxVideoSizeMb": 50,
+    "maxAudioSizeMb": 15,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 15
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "generation",
+      "billingMode": "per_generation",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberDiscountRate": 1,
+      "memberCreditsPerGeneration": 0,
+      "chargedCreditsPerGeneration": 0,
+      "originalCreditsPerGeneration": 0,
+      "costCreditsPerGeneration": 0,
+      "resolutionTiers": [
+        {
+          "resolution": "720p",
+          "size": "small",
+          "memberCreditsPerGeneration": 0,
+          "chargedCreditsPerGeneration": 0,
+          "originalCreditsPerGeneration": 0,
+          "costCreditsPerGeneration": 0
+        },
+        {
+          "resolution": "1080p",
+          "size": "large",
+          "memberCreditsPerGeneration": 0,
+          "chargedCreditsPerGeneration": 0,
+          "originalCreditsPerGeneration": 0,
+          "costCreditsPerGeneration": 0
+        }
+      ],
+      "note": "火山 SD 2.0 低价渠道支持 720p/1080p 分开按次计费；具体价格请在后台模型管理中分别配置后启用。"
+    },
+    "resolution": "720p",
+    "size": "small",
+    "orientation": "portrait",
+    "duration": 15
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "note": "火山 SD 2.0 低价（不卡真人）视频渠道；前端展示 720p/1080p，提交到上游时分别映射为 small/large。POST /v1/videos 创建任务，GET /v1/video/generations/{task_id} 查询。图片最多 9 张，视频最多 3 段，音频最多 3 个；音频建议搭配图片或视频使用。价格需在后台模型管理中按分辨率分别配置。",
+  "protocol": {
+    "adapter": "lingdong-sd-2-vip",
+    "endpointPath": "/videos",
+    "statusEndpointPath": "/video/generations/{taskId}",
+    "method": "async-poll",
+    "pollIntervalSeconds": 8,
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "火山 SD 2.0 低价",
+    "badge": "低价",
+    "badgeColor": "#f59e0b"
+  }
+}

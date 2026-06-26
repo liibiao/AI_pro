@@ -1,0 +1,71 @@
+{
+  "version": "0.1.0",
+  "runId": "task-queue-run-1778247391837",
+  "taskPlanId": "sv-task-video-generation-orchestration-smoke",
+  "subtaskId": "produce-runtime-output",
+  "taskQueueId": "task-queue-orchestration-sv-task-video-generation-orchestration-smoke-produce-runtime-output",
+  "taskType": "video_generation",
+  "title": "video_generation / 生成运行产物",
+  "ownerRole": "Generation Operator",
+  "status": "done",
+  "startedAt": "2026-05-08T13:36:31.841Z",
+  "completedAt": "2026-05-08T13:36:31.842Z",
+  "executionMode": "orchestration_report",
+  "progressItemId": "orchestration-sv-task-video-generation-orchestration-smoke-produce-runtime-output",
+  "phase": "generation_to_review",
+  "dependencyProgressIds": [
+    "orchestration-sv-task-video-generation-orchestration-smoke-assemble-task-brief"
+  ],
+  "inputChecks": [
+    {
+      "path": "04-storyboard/ep001-storyboard.md",
+      "check": "missing"
+    },
+    {
+      "path": "05-prompts/seedance/ep001-shots.md",
+      "check": "missing"
+    },
+    {
+      "path": "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "check": "exists"
+    },
+    {
+      "path": "01-资产图与提示词/asset-index.md",
+      "check": "missing"
+    },
+    {
+      "path": "08-qa/v8-asset-consistency-qa-report.md",
+      "check": "missing"
+    },
+    {
+      "path": "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "check": "exists"
+    }
+  ],
+  "outputChecks": [
+    {
+      "path": "03-视频/**/*.mp4",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    },
+    {
+      "path": "03-视频/**/*.mov",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    },
+    {
+      "path": "05-prompts/**/video-prompt.md",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    }
+  ],
+  "acceptanceCriteria": [
+    "产物路径符合 smart-vision/outputs 目录约定。",
+    "产物可被 Artifact Registry 或 Workflow Registry 登记。"
+  ],
+  "notes": [
+    "此报告由 Smart Vision 任务队列执行器生成，用于闭环记录编排任务的执行状态。",
+    "涉及外部模型、画布或人工生产的产物仍需由对应 Runtime / 人工环节实际生成并登记。"
+  ],
+  "error": null
+}

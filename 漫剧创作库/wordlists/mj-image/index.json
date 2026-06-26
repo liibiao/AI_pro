@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "source": "用户提供的MJ生图方法论提炼 + 网络资源扩展，适配漫剧创作库工作流",
+    "version": "v4.1",
+    "description": "MJ生图提示词核心维度词库索引，共12个维度，新增一键预设组合",
+    "usage": "生图工具前端按维度加载对应词库，用户点击标签快速插入提示词，也可直接使用预设组合"
+  },
+  "dimensions": [
+    {
+      "id": "preset_recipes",
+      "name": "专业一键预设组合",
+      "priority": 0.5,
+      "required": false,
+      "file": "preset-recipes.json",
+      "description": "按专业绘画/商业出图场景整理好的整句预设，一键获得稳定构图、风格、光影与画质"
+    },
+    {
+      "id": "subject_action",
+      "name": "核心主体与动作",
+      "priority": 1,
+      "required": true,
+      "file": "subject-action.json",
+      "description": "画面的绝对核心，权重最高，必须最前置"
+    },
+    {
+      "id": "character_design_sheet",
+      "name": "角色设定稿模板（三视图）",
+      "priority": 1.5,
+      "required": false,
+      "file": "character-design-sheet.json",
+      "description": "角色三视图/设定稿版面模板与提示词框架"
+    },
+    {
+      "id": "art_style",
+      "name": "艺术风格与调性",
+      "priority": 2,
+      "required": true,
+      "file": "art-style.json",
+      "description": "决定画面整体画风和艺术质感"
+    },
+    {
+      "id": "camera_composition",
+      "name": "镜头构图与视角",
+      "priority": 3,
+      "required": true,
+      "file": "camera-composition.json",
+      "description": "决定观看视角、景别、动态张力"
+    },
+    {
+      "id": "color_palette",
+      "name": "色彩调色",
+      "priority": 4.1,
+      "required": false,
+      "file": "color-palette.json",
+      "description": "精准控制色彩倾向与配色方案"
+    },
+    {
+      "id": "lighting_atmosphere",
+      "name": "光影色彩与环境氛围",
+      "priority": 4.5,
+      "required": true,
+      "file": "lighting-atmosphere.json",
+      "description": "决定光线质感、色彩基调、环境氛围"
+    },
+    {
+      "id": "material_texture",
+      "name": "材质纹理",
+      "priority": 4.7,
+      "required": false,
+      "file": "material-texture.json",
+      "description": "描述物体表面材质与纹理质感"
+    },
+    {
+      "id": "quality_render",
+      "name": "画质细节与渲染",
+      "priority": 5,
+      "required": true,
+      "file": "quality-render.json",
+      "description": "保底画质，固定放在正向词末尾"
+    },
+    {
+      "id": "weight_control",
+      "name": "权重强化控制",
+      "priority": 6,
+      "required": false,
+      "file": "weight-control.json",
+      "description": "可选，精准调整单个元素权重"
+    },
+    {
+      "id": "mj_params",
+      "name": "MJ专属参数",
+      "priority": 7,
+      "required": false,
+      "file": "mj-params.json",
+      "description": "MJ独有底层控制项，固定放末尾"
+    },
+    {
+      "id": "negative_prompts",
+      "name": "负面提示词",
+      "priority": 8,
+      "required": false,
+      "file": "negative-prompts.json",
+      "description": "精准剔除不想要的元素"
+    }
+  ]
+}

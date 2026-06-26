@@ -1,0 +1,31 @@
+{
+  "name": "sora-2",
+  "url": "https://notevideo.asia/v1/videos",
+  "key": "sk-ACcmDSKr7qE57QrQ36kkgfaPWtRqoskCBIR5RL8UavJiFzk0",
+  "model": "sora-2",
+  "type": "video",
+  "note": "sora-2 视频生成模型（notevideo 中转）；支持 720p、4/8/12s、图生视频",
+  "capabilities": {
+    "resolutions": ["720p"],
+    "durations": [4, 8, 12],
+    "defaultDuration": 12,
+    "defaultResolution": "720p",
+    "maxImages": {
+      "full": 4,
+      "smartMultiFrame": 4,
+      "firstLast": 2
+    },
+    "supportsAudio": false,
+    "supportsVideo": false
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "protocol": {
+    "adapter": "notevideo",
+    "method": "async-poll"
+  },
+  "ui": {
+    "label": "sora-2"
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "_meta": {
+    "dimension": "艺术风格与调性",
+    "priority": 2,
+    "required": true,
+    "description": "决定画面的整体画风和艺术质感，避免风格混乱。包含：品类风格、参考对标、质感调性",
+    "tip": "不可同时写入2种以上冲突风格（如国漫写实+日系萌系），会导致画风崩坏"
+  },
+  "categories": [
+    {
+      "id": "genre_realistic",
+      "name": "写实/摄影类",
+      "tip": "追求真实感，电影剧照质感",
+      "items": [
+        { "keyword": "写实摄影风", "usage": "电影剧照、真人质感" },
+        { "keyword": "超写实主义（Hyperrealism）", "usage": "超越照片的真实感" },
+        { "keyword": "照片级真实感（Photorealistic）", "usage": "难以分辨真假的拟真" },
+        { "keyword": "电影感", "usage": "胶片、宽画幅、叙事感" },
+        { "keyword": "胶片质感", "usage": "颗粒、色偏、怀旧" },
+        { "keyword": "35mm胶片摄影", "usage": "经典胶片颗粒感" },
+        { "keyword": "胶片颗粒感", "usage": "复古质感、噪点美学" },
+        { "keyword": "电影摄影（Film Photography）", "usage": "片场拍摄质感" },
+        { "keyword": "拍立得风格", "usage": "即时成像、白边框" },
+        { "keyword": "黑白摄影", "usage": "经典、高对比、情绪化" },
+        { "keyword": "微距摄影", "usage": "极微细节、景深极浅" },
+        { "keyword": "产品摄影", "usage": "商业产品、干净布光" },
+        { "keyword": "美食摄影", "usage": "诱人质感、暖光" },
+        { "keyword": "街头摄影", "usage": "纪实、随性、都市" }
+      ]
+    },
+    {
+      "id": "genre_anime",
+      "name": "动漫/插画类",
+      "tip": "二次元与插画风格",
+      "items": [
+        { "keyword": "日系动漫风格", "usage": "二次元、热血、校园" },
+        { "keyword": "国漫写实风格", "usage": "漫剧首选，角色写实+国风审美" },
+        { "keyword": "漫画风格（Manga）", "usage": "黑白线稿、漫画分格" },
+        { "keyword": "吉卜力风格", "usage": "温暖、自然、手绘感" },
+        { "keyword": "新海诚光影", "usage": "极致光效、云层、天空" },
+        { "keyword": "鸟山明画风", "usage": "经典日漫、热血少年" },
+        { "keyword": "赛璐璐上色（Cel Shading）", "usage": "扁平色块、动画感" },
+        { "keyword": "数字插画（Digital Illustration）", "usage": "现代板绘、色彩丰富" },
+        { "keyword": "手绘厚涂", "usage": "笔触可见、艺术感" },
+        { "keyword": "水彩插画", "usage": "轻透、水渍边缘、柔和" },
+        { "keyword": "铅笔素描", "usage": "线条感、手绘、基础" },
+        { "keyword": "水墨国风", "usage": "古风、写意、东方美学" },
+        { "keyword": "浮世绘", "usage": "和风、传统版画质感" },
+        { "keyword": "油画质感", "usage": "古典、厚涂、艺术感" },
+        { "keyword": "儿童插画", "usage": "天真、明亮、绘本风" },
+        { "keyword": "线条艺术（Line Art）", "usage": "纯线条、无填充" },
+        { "keyword": "矢量艺术（Vector Art）", "usage": "锐利边缘、可缩放" },
+        { "keyword": "剪纸艺术", "usage": "层叠、纸质、民间" },
+        { "keyword": "拼贴画（Collage）", "usage": "混合素材、解构重组" },
+        { "keyword": "像素复古", "usage": "8-bit、游戏怀旧" }
+      ]
+    },
+    {
+      "id": "genre_3d",
+      "name": "3D/CG类",
+      "tip": "三维建模、游戏与动画",
+      "items": [
+        { "keyword": "3D CG渲染", "usage": "游戏资产、精细建模感" },
+        { "keyword": "3D写实渲染", "usage": "超精细3D人物/场景" },
+        { "keyword": "低多边形（Low Poly）", "usage": "几何极简、风格化" },
+        { "keyword": "体素艺术（Voxel Art）", "usage": "像素3D、方块构成" },
+        { "keyword": "等距视图（Isometric）", "usage": "45度视角、建筑展示" },
+        { "keyword": "盲盒玩具风格（Blind Box）", "usage": "Q版3D、手办感" },
+        { "keyword": "皮克斯风格", "usage": "温暖、圆润、可爱" },
+        { "keyword": "梦工厂风格", "usage": "动感、冒险、色彩鲜艳" },
+        { "keyword": "粘土动画（Claymation）", "usage": "可塑性、手作感、纹理" },
+        { "keyword": "折纸风格（Origami）", "usage": "纸张折叠、几何" },
+        { "keyword": "石雕质感（Stone Sculpture）", "usage": "古典雕塑、纪念碑" }
+      ]
+    },
+    {
+      "id": "genre_concept",
+      "name": "概念设计/影视类",
+      "tip": "影视、游戏、科幻概念",
+      "items": [
+        { "keyword": "美式漫威概念设计", "usage": "超级英雄、工业质感" },
+        { "keyword": "暴雪概念设计", "usage": "史诗、厚重、工业设计" },
+        { "keyword": "史诗级电影概念设计", "usage": "宏大、精致、大片感" },
+        { "keyword": "赛博朋克", "usage": "未来、霓虹、高科技低生活" },
+        { "keyword": "蒸汽朋克（Steampunk）", "usage": "齿轮、蒸汽、维多利亚" },
+        { "keyword": "赛博朋克2077风格", "usage": "霓虹、雨天、科技废墟" },
+        { "keyword": "英雄联盟CG风格", "usage": "动感、特效华丽、角色突出" },
+        { "keyword": "原神角色设计", "usage": "二次元精致、元素特效" },
+        { "keyword": " Snyder镜头质感", "usage": "慢动作、高对比、史诗场面" },
+        { "keyword": "维伦纽瓦极简美学", "usage": "巨大尺度、极简构图、沙漠色调" },
+        { "keyword": "好莱坞风格", "usage": "大片质感、工业水准" },
+        { "keyword": "科幻概念设计", "usage": "未来科技、太空" },
+        { "keyword": "暗黑哥特", "usage": "黑暗、神秘、宗教感" },
+        { "keyword": "废土末日风", "usage": "荒芜、生存、后启示录" },
+        { "keyword": "反乌托邦", "usage": "压抑、监控、灰色未来" }
+      ]
+    },
+    {
+      "id": "genre_art_movement",
+      "name": "艺术流派",
+      "tip": "经典艺术运动与风格",
+      "items": [
+        { "keyword": "印象派（Impressionism）", "usage": "光影变化、笔触感" },
+        { "keyword": "文艺复兴（Renaissance）", "usage": "古典技法、透视、宗教" },
+        { "keyword": "巴洛克（Baroque）", "usage": "华丽、戏剧性、金色调" },
+        { "keyword": "波普艺术（Pop Art）", "usage": "鲜艳色块、消费主义" },
+        { "keyword": "超现实主义（Surrealism）", "usage": "梦境、扭曲、达利风" },
+        { "keyword": "野兽派（Fauvism）", "usage": "粗犷笔触、浓烈色彩" },
+        { "keyword": "装饰艺术（Art Deco）", "usage": "几何纹样、金色、1920s" },
+        { "keyword": "极简主义（Minimalism）", "usage": "少即是多、留白" },
+        { "keyword": "当代艺术（Contemporary Art）", "usage": "前卫、实验性" },
+        { "keyword": "水墨画", "usage": "写意、东方传统" },
+        { "keyword": "千禧风（Y2K）", "usage": "金属色、科技感、2000s" },
+        { "keyword": "蒸汽波（Synthwave）", "usage": "霓虹紫、网格、复古未来" },
+        { "keyword": "哥特式（Gothic）", "usage": "尖拱、暗色、宗教建筑" }
+      ]
+    },
+    {
+      "id": "reference_artist",
+      "name": "艺术家参考",
+      "tip": "以具体艺术家风格为对标",
+      "items": [
+        { "keyword": "WLOP笔触质感", "usage": "国风CG、柔光人物" },
+        { "keyword": "莫奈风格（Monet）", "usage": "印象派光影、花园" },
+        { "keyword": "梵高风格（Van Gogh）", "usage": "旋转笔触、厚涂、星空" },
+        { "keyword": "达芬奇风格（Da Vinci）", "usage": "古典写实、明暗渐变" },
+        { "keyword": "安迪·沃霍尔风格（Warhol）", "usage": "波普、重复、丝网印刷" },
+        { "keyword": "毕加索风格（Picasso）", "usage": "立体主义、多视角" },
+        { "keyword": "草间弥生风格（Kusama）", "usage": "波点、无限、红白" },
+        { "keyword": "宫崎骏风格", "usage": "奇幻、飞行、自然" },
+        { "keyword": "新川耀司（Shinkawa）", "usage": "金属齿轮、暗色军事" }
+      ]
+    },
+    {
+      "id": "tone_quality",
+      "name": "质感调性",
+      "tip": "画面情绪氛围",
+      "items": [
+        { "keyword": "硬核战斗质感", "usage": "拳拳到肉、金属碰撞" },
+        { "keyword": "工业硬核", "usage": "金属、机械、结构感" },
+        { "keyword": "氛围感", "usage": "情绪渲染、沉浸式" },
+        { "keyword": "史诗感", "usage": "宏大、磅礴、传说感" },
+        { "keyword": "暗黑压抑", "usage": "低光、压抑、危险" },
+        { "keyword": "清新明亮", "usage": "日系、日常、治愈" },
+        { "keyword": "梦幻/奇幻", "usage": "魔法、发光、超越现实" },
+        { "keyword": "神秘", "usage": "未知、暗影、谜团" },
+        { "keyword": "浪漫", "usage": "柔光、粉色调、诗意" },
+        { "keyword": "宁静", "usage": "平和、自然、冥想" },
+        { "keyword": "恐怖/诡异", "usage": "阴森、不安、惊悚" },
+        { "keyword": "温暖", "usage": "暖光、亲密、安心" },
+        { "keyword": "紧张", "usage": "高对比、阴影、压迫" }
+      ]
+    }
+  ]
+}

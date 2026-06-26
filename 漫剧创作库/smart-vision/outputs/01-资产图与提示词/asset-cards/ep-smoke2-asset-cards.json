@@ -1,0 +1,120 @@
+{
+  "episodeId": "ep-smoke2",
+  "planId": "creative-plan-ep-smoke2-1778336349846",
+  "assets": [
+    {
+      "id": "character-01",
+      "type": "character",
+      "typeLabel": "角色",
+      "name": "云溪在地",
+      "sourceShots": [
+        "shot-01",
+        "shot-02"
+      ],
+      "usage": "角色资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "云溪在地，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "character-02",
+      "type": "character",
+      "typeLabel": "角色",
+      "name": "重要配角",
+      "sourceShots": [
+        "shot-01",
+        "shot-02"
+      ],
+      "usage": "角色资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "重要配角，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-01",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "少女云溪在地下城",
+      "sourceShots": [
+        "shot-01"
+      ],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "少女云溪在地下城，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-02",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "须带着同伴穿过雾街",
+      "sourceShots": [
+        "shot-02"
+      ],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "须带着同伴穿过雾街，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-03",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "少女云溪在地下城门",
+      "sourceShots": [],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "少女云溪在地下城门，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-04",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "她打开石门",
+      "sourceShots": [],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "她打开石门，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "prop-01",
+      "type": "prop",
+      "typeLabel": "道具",
+      "name": "石门时看见沉睡的剑",
+      "sourceShots": [
+        "shot-01"
+      ],
+      "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "石门时看见沉睡的剑，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "prop-02",
+      "type": "prop",
+      "typeLabel": "道具",
+      "name": "找到能修复断剑",
+      "sourceShots": [
+        "shot-02"
+      ],
+      "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "找到能修复断剑，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "prop-03",
+      "type": "prop",
+      "typeLabel": "道具",
+      "name": "下城门前捡到青铜令",
+      "sourceShots": [],
+      "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "下城门前捡到青铜令，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "prop-04",
+      "type": "prop",
+      "typeLabel": "道具",
+      "name": "她打开石",
+      "sourceShots": [],
+      "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "她打开石，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    }
+  ]
+}

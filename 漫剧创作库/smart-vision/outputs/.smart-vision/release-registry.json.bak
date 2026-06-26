@@ -1,0 +1,341 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "releases": [
+    {
+      "id": "release-ep001-1778225846269",
+      "title": "EP001 发布包",
+      "episodeId": "ep001",
+      "status": "published",
+      "artifactPaths": [
+        "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-precheck.md",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-rework-chain-test.md",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-v0.mp4",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-release-v0-approval.md",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-final-production-backlog.md"
+      ],
+      "sourceWorkflowIds": [],
+      "reviewId": "release-release-ep001-1778225846269-review",
+      "manifestPath": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "createdAt": "2026-05-08T07:37:26.269Z",
+      "updatedAt": "2026-05-08T07:38:44.313Z",
+      "history": [
+        {
+          "status": "draft",
+          "at": "2026-05-08T07:37:26.269Z",
+          "note": "创建发布包注册记录"
+        },
+        {
+          "status": "ready_for_review",
+          "at": "2026-05-08T07:38:03.742Z",
+          "note": "发布包状态更新为 ready_for_review"
+        },
+        {
+          "status": "approved",
+          "at": "2026-05-08T07:38:38.474Z",
+          "note": "发布包状态更新为 approved"
+        },
+        {
+          "status": "published",
+          "at": "2026-05-08T07:38:44.313Z",
+          "note": "发布包状态更新为 published"
+        }
+      ],
+      "approvedAt": "2026-05-08T07:38:38.474Z",
+      "publishedAt": "2026-05-08T07:38:44.313Z"
+    },
+    {
+      "id": "release-ep001-auto-draft-qa-1778303373129",
+      "title": "EP001 自动发布草稿",
+      "episodeId": "ep001",
+      "status": "published",
+      "artifactPaths": [
+        "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-precheck.md",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-rework-chain-test.md",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-v0.mp4",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-release-v0-approval.md",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-final-production-backlog.md",
+        "05-可选输出/审核剪辑发布/review/ep001/pipeline-qa-output-smoke.md",
+        "05-可选输出/审核剪辑发布/release/ep001/pipeline-release-manifest-smoke.json"
+      ],
+      "sourceWorkflowIds": [
+        "draft-qa-1778303373129",
+        "draft-release-1778304322583"
+      ],
+      "reviewId": "artifact-draft-release-1778304322583-05--release-ep001-pipeline-release-manifest-smoke-json-review",
+      "manifestPath": "05-可选输出/审核剪辑发布/release/ep001/pipeline-release-manifest-smoke.json",
+      "createdAt": "2026-05-09T05:27:11.401Z",
+      "updatedAt": "2026-05-09T05:29:54.518Z",
+      "history": [
+        {
+          "status": "draft",
+          "at": "2026-05-09T05:27:11.401Z",
+          "note": "创建发布包注册记录"
+        },
+        {
+          "status": "ready_for_review",
+          "at": "2026-05-09T05:29:54.433Z",
+          "note": "Release workflow output attached: 05-可选输出/审核剪辑发布/release/ep001/pipeline-release-manifest-smoke.json"
+        },
+        {
+          "status": "approved",
+          "at": "2026-05-09T05:29:54.501Z",
+          "note": "真实流水线 smoke：release review done 后批准"
+        },
+        {
+          "status": "published",
+          "at": "2026-05-09T05:29:54.518Z",
+          "note": "真实流水线 smoke：强门禁通过后发布"
+        }
+      ],
+      "approvedAt": "2026-05-09T05:29:54.501Z",
+      "publishedAt": "2026-05-09T05:29:54.518Z"
+    },
+    {
+      "id": "release-ep001-auto-draft-qa-1778328720254",
+      "title": "EP001 自动发布草稿",
+      "episodeId": "ep001",
+      "status": "published",
+      "artifactPaths": [
+        "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-precheck.md",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-rework-chain-test.md",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-v0.mp4",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-release-v0-approval.md",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-final-production-backlog.md",
+        "05-可选输出/审核剪辑发布/review/ep001-prod-validate/qa-report.md",
+        "05-可选输出/审核剪辑发布/release/ep001-prod-validate/release-manifest.json"
+      ],
+      "sourceWorkflowIds": [
+        "draft-qa-1778328720254",
+        "draft-release-1778328720344"
+      ],
+      "reviewId": "artifact-draft-release-1778328720344-05--release-ep001-prod-validate-release-manifest-json-review",
+      "manifestPath": "05-可选输出/审核剪辑发布/release/ep001-prod-validate/release-manifest.json",
+      "createdAt": "2026-05-09T12:12:00.361Z",
+      "updatedAt": "2026-05-09T12:13:13.956Z",
+      "history": [
+        {
+          "status": "draft",
+          "at": "2026-05-09T12:12:00.361Z",
+          "note": "创建发布包注册记录"
+        },
+        {
+          "status": "ready_for_review",
+          "at": "2026-05-09T12:12:00.416Z",
+          "note": "Release workflow output attached: 05-可选输出/审核剪辑发布/release/ep001-prod-validate/release-manifest.json"
+        },
+        {
+          "status": "approved",
+          "at": "2026-05-09T12:13:04.659Z",
+          "note": "prod-validate 自动闭环批准"
+        },
+        {
+          "status": "published",
+          "at": "2026-05-09T12:13:13.956Z",
+          "note": "prod-validate 自动闭环发布"
+        }
+      ],
+      "approvedAt": "2026-05-09T12:13:04.659Z",
+      "publishedAt": "2026-05-09T12:13:13.956Z"
+    },
+    {
+      "id": "release-ep-v2-entry-1778928057858-auto-draft-qa-1778928062685",
+      "title": "EP-V2-ENTRY-1778928057858 自动发布草稿",
+      "episodeId": "ep-v2-entry-1778928057858",
+      "status": "ready_for_review",
+      "artifactPaths": [
+        "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928057858/smart-canvas-v2-entry-qa-report.md",
+        "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928057858/smart-canvas-v2-entry-release-manifest.json"
+      ],
+      "sourceWorkflowIds": [
+        "draft-qa-1778928062685",
+        "draft-release-1778928063780"
+      ],
+      "reviewId": "artifact-draft-release-1778928063780-05--release-ep-v2-entry-1778928057858-smart-canvas-v2-entry-release-manifest-jso-review",
+      "manifestPath": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928057858/smart-canvas-v2-entry-release-manifest.json",
+      "createdAt": "2026-05-16T10:41:03.953Z",
+      "updatedAt": "2026-05-16T10:41:04.661Z",
+      "history": [
+        {
+          "status": "draft",
+          "at": "2026-05-16T10:41:03.953Z",
+          "note": "创建发布包注册记录"
+        },
+        {
+          "status": "ready_for_review",
+          "at": "2026-05-16T10:41:04.661Z",
+          "note": "Release workflow output attached: 05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928057858/smart-canvas-v2-entry-release-manifest.json"
+        }
+      ]
+    },
+    {
+      "id": "release-ep-v2-entry-1778928166193-auto-draft-qa-1778928170769",
+      "title": "EP-V2-ENTRY-1778928166193 自动发布草稿",
+      "episodeId": "ep-v2-entry-1778928166193",
+      "status": "ready_for_review",
+      "artifactPaths": [
+        "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928166193/smart-canvas-v2-entry-qa-report.md",
+        "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928166193/smart-canvas-v2-entry-release-manifest.json"
+      ],
+      "sourceWorkflowIds": [
+        "draft-qa-1778928170769",
+        "draft-release-1778928171748"
+      ],
+      "reviewId": "artifact-draft-release-1778928171748-05--release-ep-v2-entry-1778928166193-smart-canvas-v2-entry-release-manifest-jso-review",
+      "manifestPath": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928166193/smart-canvas-v2-entry-release-manifest.json",
+      "createdAt": "2026-05-16T10:42:51.921Z",
+      "updatedAt": "2026-05-16T10:42:52.645Z",
+      "history": [
+        {
+          "status": "draft",
+          "at": "2026-05-16T10:42:51.921Z",
+          "note": "创建发布包注册记录"
+        },
+        {
+          "status": "ready_for_review",
+          "at": "2026-05-16T10:42:52.645Z",
+          "note": "Release workflow output attached: 05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928166193/smart-canvas-v2-entry-release-manifest.json"
+        }
+      ]
+    },
+    {
+      "id": "release-ep-v2-entry-1778930487733-auto-draft-qa-1778930496735",
+      "title": "EP-V2-ENTRY-1778930487733 自动发布草稿",
+      "episodeId": "ep-v2-entry-1778930487733",
+      "status": "ready_for_review",
+      "artifactPaths": [
+        "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778930487733/smart-canvas-v2-entry-qa-report.md",
+        "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778930487733/smart-canvas-v2-entry-release-manifest.json"
+      ],
+      "sourceWorkflowIds": [
+        "draft-qa-1778930496735",
+        "draft-release-1778930498843"
+      ],
+      "reviewId": "artifact-draft-release-1778930498843-05--release-ep-v2-entry-1778930487733-smart-canvas-v2-entry-release-manifest-jso-review",
+      "manifestPath": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778930487733/smart-canvas-v2-entry-release-manifest.json",
+      "createdAt": "2026-05-16T11:21:39.196Z",
+      "updatedAt": "2026-05-16T11:21:40.262Z",
+      "history": [
+        {
+          "status": "draft",
+          "at": "2026-05-16T11:21:39.196Z",
+          "note": "创建发布包注册记录"
+        },
+        {
+          "status": "ready_for_review",
+          "at": "2026-05-16T11:21:40.262Z",
+          "note": "Release workflow output attached: 05-可选输出/审核剪辑发布/release/ep-v2-entry-1778930487733/smart-canvas-v2-entry-release-manifest.json"
+        }
+      ]
+    },
+    {
+      "id": "release-ep-v2-entry-1778932458375-auto-draft-qa-1778932465394",
+      "title": "EP-V2-ENTRY-1778932458375 自动发布草稿",
+      "episodeId": "ep-v2-entry-1778932458375",
+      "status": "draft",
+      "artifactPaths": [
+        "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778932458375/smart-canvas-v2-entry-qa-report.md"
+      ],
+      "sourceWorkflowIds": [
+        "draft-qa-1778932465394",
+        "draft-release-1778932466983"
+      ],
+      "reviewId": "release-release-ep-v2-entry-1778932458375-auto-draft-qa-1778932465394-review",
+      "manifestPath": null,
+      "createdAt": "2026-05-16T11:54:27.284Z",
+      "updatedAt": "2026-05-16T11:54:27.284Z",
+      "history": [
+        {
+          "status": "draft",
+          "at": "2026-05-16T11:54:27.284Z",
+          "note": "创建发布包注册记录"
+        }
+      ]
+    }
+  ],
+  "archiveHistory": [],
+  "note": "Smart Vision 发布包与最终归档注册表。",
+  "updatedAt": "2026-05-16T11:54:27.284Z",
+  "publishHistory": [
+    {
+      "releaseId": "release-ep001-1778225846269",
+      "episodeId": "ep001",
+      "title": "EP001 发布包",
+      "publishedAt": "2026-05-08T07:38:44.313Z",
+      "source": "repair",
+      "manifestPath": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "artifactPaths": [
+        "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-precheck.md",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-rework-chain-test.md",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-v0.mp4",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-release-v0-approval.md",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-final-production-backlog.md"
+      ]
+    },
+    {
+      "releaseId": "release-ep001-auto-draft-qa-1778303373129",
+      "episodeId": "ep001",
+      "title": "EP001 自动发布草稿",
+      "publishedAt": "2026-05-09T05:29:54.518Z",
+      "source": "manual",
+      "manifestPath": "05-可选输出/审核剪辑发布/release/ep001/pipeline-release-manifest-smoke.json",
+      "artifactPaths": [
+        "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-precheck.md",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-rework-chain-test.md",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-v0.mp4",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-release-v0-approval.md",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-final-production-backlog.md",
+        "05-可选输出/审核剪辑发布/review/ep001/pipeline-qa-output-smoke.md",
+        "05-可选输出/审核剪辑发布/release/ep001/pipeline-release-manifest-smoke.json"
+      ]
+    },
+    {
+      "releaseId": "release-ep001-auto-draft-qa-1778328720254",
+      "episodeId": "ep001",
+      "title": "EP001 自动发布草稿",
+      "publishedAt": "2026-05-09T12:13:13.956Z",
+      "source": "manual",
+      "manifestPath": "05-可选输出/审核剪辑发布/release/ep001-prod-validate/release-manifest.json",
+      "artifactPaths": [
+        "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-precheck.md",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-rework-chain-test.md",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-v0.mp4",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-release-v0-approval.md",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-final-production-backlog.md",
+        "05-可选输出/审核剪辑发布/review/ep001-prod-validate/qa-report.md",
+        "05-可选输出/审核剪辑发布/release/ep001-prod-validate/release-manifest.json"
+      ]
+    }
+  ],
+  "restoreHistory": []
+}

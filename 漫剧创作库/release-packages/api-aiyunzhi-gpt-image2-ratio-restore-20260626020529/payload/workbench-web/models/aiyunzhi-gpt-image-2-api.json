@@ -1,0 +1,77 @@
+{
+  "id": "aiyunzhi-gpt-image-2-api",
+  "configId": "aiyunzhi-gpt-image-2-api",
+  "modelKey": "aiyunzhi-gpt-image-2-api",
+  "providerKey": "aiyunzhi",
+  "channelKey": "aiyunzhi-gpt-image-2-api",
+  "name": "gpt-image-2",
+  "displayName": "Aiyunzhi GPT Image 2 API",
+  "label": "Aiyunzhi GPT Image 2 API",
+  "type": "image",
+  "model": "gpt-image-2",
+  "baseUrl": "https://aiyunzhi.top",
+  "url": "https://aiyunzhi.top",
+  "key": "",
+  "adapter": "aiyunzhi-gpt-image-2",
+  "endpointPath": "/v1/images/generations",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2img": true,
+    "img2img": true,
+    "imageToImage": true,
+    "storyboard": true,
+    "panorama": false,
+    "repair": true
+  },
+  "capabilities": {
+    "imageSizes": ["1k", "2k", "4k"],
+    "resolutions": ["1k", "2k", "4k"],
+    "aspectRatios": ["1:1", "3:2", "2:3", "4:3", "3:4", "5:4", "4:5", "16:9", "9:16", "2:1", "1:2", "21:9", "9:21", "3:1", "1:3"],
+    "aspectRatiosByResolution": {
+      "1k": ["1:1", "3:2", "2:3", "4:3", "3:4", "5:4", "4:5", "16:9", "9:16", "2:1", "1:2", "21:9", "9:21", "3:1", "1:3"],
+      "2k": ["1:1", "3:2", "2:3", "4:3", "3:4", "5:4", "4:5", "16:9", "9:16", "2:1", "1:2", "21:9", "9:21", "3:1", "1:3"],
+      "4k": ["1:1", "3:2", "2:3", "4:3", "3:4", "5:4", "4:5", "16:9", "9:16", "2:1", "1:2", "21:9", "9:21", "3:1", "1:3"]
+    },
+    "imageSizeOptionsByResolution": {
+      "1k": ["1:1", "3:2", "2:3", "4:3", "3:4", "5:4", "4:5", "16:9", "9:16", "2:1", "1:2", "21:9", "9:21", "3:1", "1:3"],
+      "2k": ["1:1", "3:2", "2:3", "4:3", "3:4", "5:4", "4:5", "16:9", "9:16", "2:1", "1:2", "21:9", "9:21", "3:1", "1:3"],
+      "4k": ["1:1", "3:2", "2:3", "4:3", "3:4", "5:4", "4:5", "16:9", "9:16", "2:1", "1:2", "21:9", "9:21", "3:1", "1:3"]
+    },
+    "maxImages": 3,
+    "maxReferenceImages": 3,
+    "responseFormats": ["url", "b64_json"]
+  },
+  "defaults": {
+    "imageSize": "1k",
+    "resolution": "1k",
+    "size": "1k",
+    "n": 1,
+    "response_format": "b64_json",
+    "responseType": "server_base64_async_object_storage",
+    "response_type": "server_base64_async_object_storage"
+  },
+  "modelAssembly": { "type": "literal" },
+  "note": "Aiyunzhi GPT Image 2 official images API channel. Text-to-image uses JSON POST /v1/images/generations. Reference-image generation uses multipart/form-data POST /v1/images/edits with image or image[] files. Model is fixed to gpt-image-2; size supports 1k, 2k, 4k.",
+  "protocol": {
+    "adapter": "aiyunzhi-gpt-image-2",
+    "endpointPath": "/v1/images/generations",
+    "generationEndpointPath": "/v1/images/generations",
+    "editEndpointPath": "/v1/images/edits",
+    "method": "sync",
+    "uploadMode": "object_storage",
+    "requestSchema": "aiyunzhi-gpt-image-2",
+    "maxReferenceImages": 3,
+    "responseType": "server_base64_async_object_storage",
+    "response_type": "server_base64_async_object_storage",
+    "responseTypes": {
+      "1k": "object_storage",
+      "2k": "object_storage",
+      "3k": "object_storage",
+      "4k": "object_storage"
+    },
+    "responseTypeMode": "uniform",
+    "asyncTaskMode": "sync",
+    "asyncTaskConfigMode": "uniform"
+  },
+  "ui": { "label": "Aiyunzhi GPT Image 2 API", "badge": "GPT2 API", "badgeColor": "#2563eb" }
+}

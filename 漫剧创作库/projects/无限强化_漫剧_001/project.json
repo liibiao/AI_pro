@@ -1,0 +1,25 @@
+{
+  "name": "无限强化·灵纹觉醒",
+  "type": "mangadrama",
+  "genre": "玄幻 / 废材逆袭 / 系统流 / 热血战斗",
+  "chapters": 50,
+  "target_platform": "快看漫画 / 腾讯动漫 / 抖音漫剧 / 小程序漫剧",
+  "main_model": "Seedance 2.0",
+  "support_models": ["Kling", "Hailuo", "gpt-5.4-new"],
+  "image_models": ["RunningHub MJ-Niji7", "RunningHub MJ-Niji6", "RunningHub Banana2"],
+  "llm_models": [
+    {
+      "id": "gpt-5.4-new",
+      "name": "龙虾灵镜通用",
+      "provider": "openai-compatible",
+      "base_url": "http://104.238.222.107:3006/v1",
+      "api_key_env": "LOBSTER_LINGJING_API_KEY",
+      "purpose": ["选题", "设定", "大纲", "脚本", "提示词草拟"]
+    }
+  ],
+  "main_style": "国漫热血 + 废材逆袭 + 系统升级爽感",
+  "visual_style": "暗色调末世基底 + 灵纹光效 + 日漫动作分镜",
+  "adaptation_source": "原创网文《无限强化》第1章",
+  "status": "adaptation_in_progress",
+  "created": "2026-04-12"
+}

@@ -1,0 +1,40 @@
+{
+  "name": "sora-3.0-pro-2",
+  "modelNick": "sora-3.0-pro-2",
+  "displayName": "sora-3.0-pro-2",
+  "url": "https://hxzdq.aiflow321.cn/v1/video/generations",
+  "baseUrl": "https://hxzdq.aiflow321.cn/v1/video/generations",
+  "key": "sk-TSWKjpNDDP3GKlVhFRIspq8cB6dVYf8XhNwHKM4Z8OQBOsnn",
+  "model": "sora-v3-pro",
+  "type": "video",
+  "note": "sora-3.0-pro-2 独立视频渠道；hxzdq.aiflow321.cn OpenAI-video 接口；支持 9 图、3 视频、3 音频参考",
+  "capabilities": {
+    "resolutions": ["720p"],
+    "durations": [5, 8, 10, 15],
+    "defaultDuration": 15,
+    "defaultResolution": "720p",
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 14.9,
+    "supportsAudio": true,
+    "supportsVideo": true
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "protocol": {
+    "adapter": "notevideo",
+    "method": "async-poll"
+  },
+  "ui": {
+    "label": "sora-3.0-pro-2",
+    "badge": "PRO-2",
+    "badgeColor": "#38bdf8"
+  }
+}

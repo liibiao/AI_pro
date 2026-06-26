@@ -1,0 +1,33 @@
+{
+  "id": "aiyunzhi-gemini-2-5-flash-image",
+  "configId": "aiyunzhi-gemini-2-5-flash-image",
+  "modelKey": "aiyunzhi-gemini-2-5-flash-image",
+  "providerKey": "aiyunzhi",
+  "channelKey": "aiyunzhi-gemini-2-5-flash-image",
+  "name": "gemini-2.5-flash-image",
+  "displayName": "Aiyunzhi Gemini 2.5 Flash Image",
+  "label": "Aiyunzhi Gemini 2.5 Flash Image",
+  "type": "image",
+  "model": "gemini-2.5-flash-image",
+  "baseUrl": "https://aiyunzhi.top",
+  "url": "https://aiyunzhi.top",
+  "key": "",
+  "adapter": "aiyunzhi-gemini-image",
+  "endpointPath": "/v1beta/models/{model}:generateContent",
+  "uploadMode": "object_storage",
+  "supports": { "txt2img": true, "img2img": true },
+  "capabilities": {
+    "imageSizes": ["1K"],
+    "aspectRatios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+    "maxImages": 4
+  },
+  "defaults": { "imageSize": "1K" },
+  "note": "Aiyunzhi Gemini 2.5 Flash Image. Reference images are sent as inlineData, capped at 4.",
+  "protocol": {
+    "adapter": "aiyunzhi-gemini-image",
+    "endpointPath": "/v1beta/models/{model}:generateContent",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "ui": { "label": "Gemini 2.5 Flash", "badge": "Gemini", "badgeColor": "#4285f4" }
+}

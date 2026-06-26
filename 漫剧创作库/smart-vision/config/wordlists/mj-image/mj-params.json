@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "dimension": "MJ专属参数",
+    "priority": 7,
+    "required": false,
+    "description": "MJ独有的底层控制项，直接决定生成规则，固定放在提示词最末尾",
+    "tip": "格式为 --xxx，单条提示词仅可写1个 --ar 比例"
+  },
+  "categories": [
+    {
+      "id": "core_params",
+      "name": "核心参数",
+      "items": [
+        { "keyword": "--ar 16:9", "name": "横屏宽幅", "usage": "漫剧标准比例", "note": "单条仅可写1个" },
+        { "keyword": "--ar 9:16", "name": "竖屏比例", "usage": "手机/短视频" },
+        { "keyword": "--ar 2.35:1", "name": "电影宽幅", "usage": "极致电影感" },
+        { "keyword": "--ar 1:1", "name": "方形比例", "usage": "社交媒体/头像" },
+        { "keyword": "--ar 4:3", "name": "经典比例", "usage": "复古/传统" },
+        { "keyword": "--ar 3:4", "name": "竖向经典", "usage": "海报/封面" }
+      ]
+    },
+    {
+      "id": "model_version",
+      "name": "模型版本",
+      "items": [
+        { "keyword": "--v 6.0", "name": "MJ V6", "usage": "写实/自然语言/动态识别最优", "note": "写实内容首选" },
+        { "keyword": "--niji 6", "name": "Niji 6", "usage": "国漫/二次元必用，动作画风氛围适配拉满", "note": "漫剧首选" },
+        { "keyword": "--v 5.2", "name": "MJ V5.2", "usage": "稳定版，风格化更强" }
+      ]
+    },
+    {
+      "id": "style_chaos",
+      "name": "风格与混乱度",
+      "items": [
+        { "keyword": "--s 100", "name": "标准风格化", "usage": "平衡创意与还原" },
+        { "keyword": "--s 200", "name": "中等风格化", "usage": "适度创意发挥，推荐值" },
+        { "keyword": "--s 300", "name": "高风格化", "usage": "MJ大幅创意发挥" },
+        { "keyword": "--s 50", "name": "低风格化", "usage": "精准还原提示词" },
+        { "keyword": "--s 0", "name": "无风格化", "usage": "完全按提示词走" },
+        { "keyword": "--c 10", "name": "低混乱度", "usage": "稳定出图，推荐值" },
+        { "keyword": "--c 20", "name": "中混乱度", "usage": "适度变化" },
+        { "keyword": "--c 0", "name": "零混乱度", "usage": "最稳定，4张几乎一样" }
+      ]
+    },
+    {
+      "id": "quality_stop",
+      "name": "画质与停止",
+      "items": [
+        { "keyword": "--q 2", "name": "双倍画质", "usage": "细节更丰富，耗时更长" },
+        { "keyword": "--stop 80", "name": "80%停止", "usage": "保留写意感" },
+        { "keyword": "--stop 90", "name": "90%停止", "usage": "轻微写意" }
+      ]
+    }
+  ]
+}

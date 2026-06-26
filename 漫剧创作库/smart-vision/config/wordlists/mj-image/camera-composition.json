@@ -1,0 +1,124 @@
+{
+  "_meta": {
+    "dimension": "镜头构图与视角",
+    "priority": 3,
+    "required": true,
+    "description": "决定观众的观看视角、画面景别、动态张力",
+    "tip": "不可同时写入冲突景别/视角（如远景+特写），会导致空间逻辑混乱"
+  },
+  "categories": [
+    {
+      "id": "shot_size",
+      "name": "景别",
+      "tip": "决定画面包含多少内容",
+      "items": [
+        { "keyword": "微距（Macro Shot）", "usage": "极近细节：瞳孔、指纹、液滴" },
+        { "keyword": "极端特写（Extreme Close-up）", "usage": "眼睛/嘴唇/细节极致" },
+        { "keyword": "特写（Close Up）", "usage": "面部/局部：情绪高潮、细节揭示" },
+        { "keyword": "近景", "usage": "胸部以上：对话、情感" },
+        { "keyword": "中近景（MCU）", "usage": "肩部以上：对话交流" },
+        { "keyword": "中景（Medium Shot）", "usage": "腰部以上：日常、动作展示" },
+        { "keyword": "中远景（MLS）", "usage": "膝盖以上：人+部分环境" },
+        { "keyword": "全身（Full Body Shot）", "usage": "全身展示：角色登场" },
+        { "keyword": "全景（Wide Shot）", "usage": "全身+环境：场景建立" },
+        { "keyword": "远景（Long Shot）", "usage": "人+环境：场景建立" },
+        { "keyword": "极远景（Extreme Wide Shot）", "usage": "宏大场景：史诗开场" },
+        { "keyword": "头部特写（Headshot）", "usage": "证件照/肖像" },
+        { "keyword": "半身像（Bust）", "usage": "胸以上、肖像" },
+        { "keyword": "过肩景（OTS Shot）", "usage": "对话、窥视、空间深度" }
+      ]
+    },
+    {
+      "id": "perspective",
+      "name": "视角",
+      "tip": "机位高度与观看角度",
+      "items": [
+        { "keyword": "FPV第一人称广角镜头", "usage": "强代入感、穿越、沉浸" },
+        { "keyword": "POV第一人称视角", "usage": "主观视角、代入感" },
+        { "keyword": "仰拍（Low Angle Shot）", "usage": "压迫感、力量感、巨人视角" },
+        { "keyword": "低角度仰拍", "usage": "英雄化、威压、崇高" },
+        { "keyword": "俯拍（High Angle Shot）", "usage": "全局视野、渺小感" },
+        { "keyword": "高角度俯拍", "usage": "脆弱、被压制、旁观" },
+        { "keyword": "俯拍/上帝视角（Top-down/Overhead）", "usage": "正上方俯视" },
+        { "keyword": "鸟瞰（Bird's Eye View）", "usage": "高空俯视、全局" },
+        { "keyword": "正面平视（Eye Level）", "usage": "中性、对等、直视观众" },
+        { "keyword": "侧面拍摄（Side View）", "usage": "运动展示、侧面轮廓" },
+        { "keyword": "背面视角（From Behind）", "usage": "背影、跟随、悬念" },
+        { "keyword": "鱼眼广角（Fisheye Lens）", "usage": "畸变张力、极端空间" },
+        { "keyword": "倾斜构图（Dutch Angle）", "usage": "失衡、不安、混乱" },
+        { "keyword": "超广角镜头（Ultra Wide Shot）", "usage": "广袤空间、夸张透视" },
+        { "keyword": "移轴/倾斜偏移（Tilt-Shift）", "usage": "微缩模型感" },
+        { "keyword": "等距视图（Isometric View）", "usage": "45度、建筑、游戏" },
+        { "keyword": "卫星视图（Satellite View）", "usage": "太空俯瞰" },
+        { "keyword": "微观视角（Microscopic View）", "usage": "细胞级、超微" },
+        { "keyword": "全景（Panorama）", "usage": "超宽横向视野" },
+        { "keyword": "360度视角", "usage": "球形全景" }
+      ]
+    },
+    {
+      "id": "camera_language",
+      "name": "镜头语言",
+      "tip": "运镜方式与动态",
+      "items": [
+        { "keyword": "动态跟拍定格", "usage": "运动中凝固瞬间" },
+        { "keyword": "慢门升格静帧", "usage": "时间膨胀、诗意感" },
+        { "keyword": "snap-pan急摇定格", "usage": "速度线、动感模糊" },
+        { "keyword": "纵深推进镜头", "usage": "深入场景、发现主体" },
+        { "keyword": "快速拉远揭示", "usage": "从局部到全局、反转" },
+        { "keyword": "环绕运镜（Orbit Shot）", "usage": "360度展示、仪式感" },
+        { "keyword": "手持晃动（Handheld）", "usage": "紧张、纪实、混乱" },
+        { "keyword": "稳定器跟拍", "usage": "流畅运动、电影感" },
+        { "keyword": "正面硬切定格镜头", "usage": "冲击力、对抗感" },
+        { "keyword": "高空纵深构图", "usage": "坠落感、空间纵深" },
+        { "keyword": "电影级镜头（Cinematic Shot）", "usage": "专业电影质感" },
+        { "keyword": "跟随视角（Follow Camera）", "usage": "跟踪主体运动" },
+        { "keyword": "运动视角（Dynamic）", "usage": "充满动感、活力" },
+        { "keyword": "模拟摄影机（Simulated Camera）", "usage": "拟真摄影机效果" }
+      ]
+    },
+    {
+      "id": "composition",
+      "name": "构图规则",
+      "tip": "画面元素排列方式",
+      "items": [
+        { "keyword": "居中构图", "usage": "仪式感、对称、聚焦" },
+        { "keyword": "三分法构图（Rule of Thirds）", "usage": "平衡、舒适、标准" },
+        { "keyword": "对角线动态构图", "usage": "运动、冲突、张力" },
+        { "keyword": "黄金分割构图", "usage": "美感、经典比例" },
+        { "keyword": "引导线构图", "usage": "透视、纵深感" },
+        { "keyword": "框中框构图（Framing）", "usage": "窥视、困禁、层次" },
+        { "keyword": "负空间留白构图", "usage": "孤独、呼吸感、氛围" },
+        { "keyword": "对称构图", "usage": "秩序、庄重、压迫" },
+        { "keyword": "S形构图", "usage": "流动、蜿蜒、优雅" },
+        { "keyword": "对角线构图（Diagonal）", "usage": "动感、不稳定" },
+        { "keyword": "辐射构图（Radial）", "usage": "聚焦中心、扩散" },
+        { "keyword": "动态对称构图", "usage": "复杂平衡、艺术" },
+        { "keyword": "拼贴构图（Collage）", "usage": "多元素组合" },
+        { "keyword": "对比构图（Contrast）", "usage": "大小/明暗对比" },
+        { "keyword": "非对称构图", "usage": "视觉平衡、有趣" },
+        { "keyword": "重复构图（Repetition）", "usage": "节奏感、规律" },
+        { "keyword": "消失点构图", "usage": "透视集中、深度" },
+        { "keyword": "分割互补构图", "usage": "色彩对比平衡" },
+        { "keyword": "并列构图（Juxtaposition）", "usage": "并置、反差" },
+        { "keyword": "孤立构图（Isolation）", "usage": "突出主体、简洁" }
+      ]
+    },
+    {
+      "id": "lens_effect",
+      "name": "镜头特效",
+      "tip": "摄影镜头产生的视觉特效",
+      "items": [
+        { "keyword": "景深虚化（Bokeh）", "usage": "背景散焦、突出主体" },
+        { "keyword": "浅景深（Shallow DOF）", "usage": "极浅焦平面、梦幻" },
+        { "keyword": "动态模糊（Motion Blur）", "usage": "速度感、运动" },
+        { "keyword": "镜头光晕（Lens Flare）", "usage": "光源炫光、温暖" },
+        { "keyword": "色差（Chromatic Aberration）", "usage": "边缘彩色偏移" },
+        { "keyword": "过曝（Overexposure）", "usage": "明亮、梦幻、天堂感" },
+        { "keyword": "暗角（Vignette）", "usage": "边缘暗化、聚焦中心" },
+        { "keyword": "胶片颗粒（Film Grain）", "usage": "质感、复古" },
+        { "keyword": "速度线（Speed Lines）", "usage": "快速运动、漫画感" },
+        { "keyword": "扫描线（Scanlines）", "usage": "CRT屏幕、复古电子" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "id": "seedance-2-0",
+  "configId": "seedance-2-0",
+  "modelKey": "seedance-2-0",
+  "providerKey": "aiid-seedance",
+  "channelKey": "aiid-seedance-task",
+  "name": "seedance-2-0",
+  "modelNick": "Seedance 2.0",
+  "displayName": "Seedance 2.0 多模态视频",
+  "label": "Seedance 2.0",
+  "type": "video",
+  "model": "doubao-seedance-2-0-260128",
+  "baseUrl": "https://api.aiid.edu.kg/api/v3/contents/generations/tasks",
+  "url": "https://api.aiid.edu.kg/api/v3/contents/generations/tasks",
+  "key": "replace-with-aiid-api-key",
+  "adapter": "seedance-task",
+  "endpointPath": "",
+  "statusEndpointPath": "{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "referenceVideo": true,
+    "referenceAudio": true
+  },
+  "capabilities": {
+    "resolutions": ["720p", "1080p"],
+    "durations": [4, 5, 6, 8, 10],
+    "defaultDuration": 5,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "maxVideos": 1,
+    "maxAudios": 1,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 15,
+    "supportsAudio": true,
+    "supportsVideo": true
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "defaults": {
+    "mode": "reference_material",
+    "size": "1280x720"
+  },
+  "note": "AIID Seedance /api/v3/contents/generations/tasks 多模态视频渠道；按文档提交 model、mode、prompt、content、duration、size，content 支持 text / image_url / video_url / audio_url。",
+  "protocol": {
+    "adapter": "seedance-task",
+    "method": "async-poll",
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "Seedance 2.0",
+    "badge": "SD 2.0",
+    "badgeColor": "#0ea5e9"
+  }
+}

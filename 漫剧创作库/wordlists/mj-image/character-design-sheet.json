@@ -1,0 +1,103 @@
+{
+  "_meta": {
+    "dimension": "角色设定稿模板",
+    "priority": 1.5,
+    "required": false,
+    "description": "角色三视图/设定稿的版面模板与提示词框架，用于生成标准化的角色设计参考图",
+    "tip": "选择一个版面模板后，配合主体动作词库和风格词库使用"
+  },
+  "categories": [
+    {
+      "id": "layout_template",
+      "name": "版面布局模板",
+      "tip": "选择整体排版结构",
+      "items": [
+        { "keyword": "四分区标准设定稿（A多视图 + B服装道具 + C表情库 + D全身立绘）", "usage": "最完整版本，覆盖全部参考需求，细黑线分栏白底排版", "isCombo": true },
+        { "keyword": "精简三区设定稿（A多视图 + C表情库 + D全身立绘）", "usage": "省去道具区，适合服装简单的角色", "isCombo": true },
+        { "keyword": "战斗角色设定稿（A多视图 + B武器装备 + C动作姿态 + D全身立绘）", "usage": "B区替换为武器装备展示", "isCombo": true },
+        { "keyword": "纯高精度多视图（正面+侧面+背面，放大展示）", "usage": "仅多视图，追求极致细节", "isCombo": true },
+        { "keyword": "thin black border lines, clean panel divisions, pure white background, professional editorial layout, left column stacked sections, right full-height hero illustration", "usage": "参考图式细黑线分栏版面框架词", "isCombo": true }
+      ]
+    },
+    {
+      "id": "section_a_three_view",
+      "name": "A区·多视图提示词",
+      "tip": "多视图区域的核心提示词片段（正面+侧面+背面）",
+      "items": [
+        { "keyword": "character design multi-view turnaround, front view / side profile / back view (rear 3/4), full body each view, consistent proportions, aligned head-to-toe, pure white background, flat studio lighting, thin black panel dividers", "usage": "多视图标准提示词，必选", "isCombo": true },
+        { "keyword": "front view: facing camera straight, arms relaxed at sides", "usage": "正面视角补充描述" },
+        { "keyword": "side profile: pure left side, nose-tip/chest-line/heel aligned vertically", "usage": "纯侧面视角补充" },
+        { "keyword": "back view / rear 3/4 view: showing back of head, rear costume details, hair length, any worn or carried items visible from behind", "usage": "背面/背侧视角补充（古装/长发/披风/背负武器角色必选）" },
+        { "keyword": "same character identity across all views, identical hairstyle outfit accessories", "usage": "跨视角一致性约束" },
+        { "keyword": "consistent height alignment, top of head and bottom of feet on same horizontal line across all views", "usage": "身高对齐约束" }
+      ]
+    },
+    {
+      "id": "section_b_costume",
+      "name": "B区·服装道具平铺提示词",
+      "tip": "服装道具平铺区域的提示词片段",
+      "items": [
+        { "keyword": "costume flat lay design sheet, items arranged neatly with spacing, top-down orthographic view, product photography style, even lighting, pure white background, thin black panel dividers", "usage": "道具平铺基础框架", "isCombo": true },
+        { "keyword": "showing: inner dress, outer robe, hair crown ornament, dangling earrings, round fan, embroidered shoes", "usage": "古风角色道具清单示例" },
+        { "keyword": "each item shown at correct proportion to body scale", "usage": "比例约束" },
+        { "keyword": "intricate details visible on each piece, embroidery patterns, gemstones, fabric texture", "usage": "细节强化" },
+        { "keyword": "include one circular zoom-in detail showing fabric pattern / metal ornament / material texture", "usage": "纹样/材质 zoom-in 细节放大" }
+      ]
+    },
+    {
+      "id": "section_c_expression",
+      "name": "C区·表情库提示词",
+      "tip": "表情网格的提示词片段",
+      "items": [
+        { "keyword": "expression sheet grid layout (2×3), bust portrait chest-up shots, same face across all expressions, consistent costume and hairstyle, white background, even lighting", "usage": "表情库基础框架", "isCombo": true },
+        { "keyword": "6 expressions: gentle smile (default) / neutral calm (baseline) / serious cold (combat) / bright laughing (joyful) / melancholic contemplative (inner drama) / angry determined (conflict)", "usage": "6格基础表情组合", "isCombo": true },
+        { "keyword": "9 expressions grid (3×3): add surprised/shocked, shy blushing, wounded weak", "usage": "9格扩展表情组合" },
+        { "keyword": "facial expression changes only in brow-eye-mouth muscles, head angle unchanged", "usage": "表情变化范围约束" }
+      ]
+    },
+    {
+      "id": "section_d_fullbody",
+      "name": "D区·全身立绘提示词",
+      "tip": "右侧大图全身立绘的提示词片段",
+      "items": [
+        { "keyword": "full body character illustration, dynamic elegant standing pose, complete costume with fabric folds layering flow, detailed accessories, [光影氛围]", "usage": "立绘基础框架", "isCombo": true },
+        { "keyword": "pose: hands on hips, slight body turn, confident stance", "usage": "自信站姿" },
+        { "keyword": "pose: one hand touching hair gently, weight shifted, elegant posture", "usage": "优雅站姿（女性/法师）" },
+        { "keyword": "pose: hand resting on weapon hilt, lowered center of gravity", "usage": "战斗站姿" },
+        { "keyword": "pose: half-turned looking back over shoulder, flowing garments caught in breeze", "usage": "神秘回眸站姿" },
+        { "keyword": "natural standing pose, arms at sides, weight centered, neutral relaxed", "usage": "标准站姿（默认）" }
+      ]
+    },
+    {
+      "id": "full_sheet_prompt",
+      "name": "完整设定稿一键提示词",
+      "tip": "整图一次性生成的完整提示词框架（需填充角色信息）",
+      "items": [
+        { "keyword": "character design reference sheet, professional concept art layout, thin black border lines, clean panel divisions, pure white background -- LEFT TOP: multi-view turnaround (front/side/back) full body aligned -- LEFT MIDDLE: costume & props flat lay display with circular zoom-in detail -- LEFT BOTTOM: expression grid 2×3 (neutral/smile/surprised/serious/melancholic/eyes closed) bust portraits -- RIGHT SIDE: full body standing illustration dynamic pose pure white background slight ground shadow -- model: gpt-image-2, game concept art quality, highly detailed, [艺术风格], [画质参数]", "usage": "完整四分区设定稿一键提示词框架", "isCombo": true }
+      ]
+    },
+    {
+      "id": "prop_design_sheet",
+      "name": "道具设定稿模板",
+      "tip": "独立道具多视角设定稿提示词（仅用于独立承担叙事/动作/世界观功能的道具）",
+      "items": [
+        { "keyword": "professional prop design sheet, thin black border lines, clean panel layout, pure white background, multi-view orthographic display -- LEFT TOP: front view / side view / back view / top view, consistent scale -- LEFT MIDDLE: detail callout panels for material, engraving, glowing parts, joints, damage, circular or rectangular zoom-in callouts -- LEFT BOTTOM: usage and scale reference, how the prop is held/worn/activated -- RIGHT SIDE: hero prop render at slight 3/4 angle, pure white background, light ground shadow -- model: gpt-image-2", "usage": "独立道具多视角设定稿一键提示词框架", "isCombo": true }
+      ]
+    },
+    {
+      "id": "quality_constraints",
+      "name": "质量约束红线",
+      "tip": "生成时必须遵守的一致性规则",
+      "items": [
+        { "keyword": "红线：多视图必须为同一角色（发型/服饰/配饰完全一致）", "usage": "多视图一致性" },
+        { "keyword": "红线：三个视角身高对齐（头顶脚底同水平线）", "usage": "比例一致性" },
+        { "keyword": "红线：表情库只变面部肌肉，不改头部角度和身份特征", "usage": "表情一致性" },
+        { "keyword": "红线：服装道具与角色身上穿戴完全匹配，不凭空添加", "usage": "道具真实性" },
+        { "keyword": "红线：所有区域画风/色调/光照统一", "usage": "跨区视觉一致" },
+        { "keyword": "红线：所有角色/道具资产必须纯白/干净浅色背景，不加氛围场景", "usage": "背景纯白硬规则" },
+        { "keyword": "红线：角色/道具设定稿必须使用 gpt-image-2 生成", "usage": "生成模型硬规则" },
+        { "keyword": "红线：角色随身物归入角色设定稿B区，不单独出道具图（除非独立承担剧情/特写/状态变化/跨角色流转）", "usage": "道具独立出图门禁" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "schema_version": "1.0.0",
+  "description": "提示词红线规则 — 从 prompt-standards.md 和 seedance-prompt-engineering.md 提取的强制性约束，用于自动化校验生成的提示词是否违反核心方法论。",
+
+  "rules": {
+    "camera_action_fusion": {
+      "id": "R001",
+      "name": "镜头动作融合",
+      "severity": "error",
+      "description": "帧率切换、运镜、景别变化必须与具体动作时刻绑定，禁止独立列出镜头板块",
+      "check": {
+        "forbid_patterns": [
+          "镜头与构图",
+          "【镜头】",
+          "## 镜头"
+        ],
+        "forbid_context": {
+          "镜头与构图": "禁止独立镜头板块，镜头信息必须嵌入动作描述中",
+          "【镜头】": "禁止独立镜头字段，运镜必须绑定在【运镜】或【画面】中并关联具体动作",
+          "## 镜头": "禁止独立镜头章节标题"
+        },
+        "require_patterns_in_camera_line": {
+          "【运镜】": [
+            "心理动机",
+            "施压",
+            "疏离",
+            "焦虑",
+            "崩塌",
+            "宿命",
+            "聚焦",
+            "沉浸",
+            "英雄",
+            "包围",
+            "压住",
+            "拉近距离",
+            "揭示",
+            "释放"
+          ]
+        },
+        "require_timestamp_action_binding": {
+          "description": "时间戳必须紧跟具体动作，格式为 [时间戳] 角色动作 → 镜头响应",
+          "timestamp_pattern": "\\d+\\.\\d+s",
+          "forbid_bare_camera": [
+            "升格至",
+            "降格回",
+            "镜头跟随",
+            "缓慢推近",
+            "缓慢推进",
+            "极慢推至",
+            "快速推近"
+          ],
+          "require_nearby_action": true
+        }
+      }
+    },
+
+    "six_fixed_sections": {
+      "id": "R002",
+      "name": "六个固定段名",
+      "severity": "error",
+      "description": "长版/简版/即梦版/Seedance版/叙事版都必须保留六个固定段名：环境联动、光线、对白配音、音效设计、画质、负面提示词",
+      "required_sections": [
+        "环境联动",
+        "光线",
+        "对白配音",
+        "音效设计",
+        "画质",
+        "负面提示词"
+      ],
+      "apply_to": ["seedance_master", "seedance2_field", "seedance2_narrative", "omni"]
+    },
+
+    "independent_segment_timing": {
+      "id": "R003",
+      "name": "独立片段计时规则",
+      "severity": "error",
+      "description": "每个片段必须从 0s 开始计时，不能沿用整集总时间轴",
+      "forbid_patterns": [
+        "\\d{2,}s\\s*[-–—]",
+        "【\\d{2,}s-"
+      ],
+      "allow_patterns": [
+        "0s",
+        "【0s-"
+      ],
+      "title_duration_match": {
+        "description": "标题时长必须与正文时间轴一致",
+        "title_pattern": "【(\\d+)s\\s*[-–—]\\s*(\\d+)s】",
+        "max_start": 0
+      }
+    },
+
+    "no_abstract_words": {
+      "id": "R004",
+      "name": "禁止抽象词",
+      "severity": "warning",
+      "description": "提示词不写抽象评价，要写可视化信息",
+      "forbid_standalone": [
+        "高级感",
+        "电影感",
+        "氛围感",
+        "震撼",
+        "好看",
+        "史诗级激烈战斗",
+        "激烈打斗",
+        "极度震撼"
+      ],
+      "allow_if_decomposed": true
+    },
+
+    "fps_must_bind_action": {
+      "id": "R005",
+      "name": "帧率切换绑定动作",
+      "severity": "error",
+      "description": "升格/降格必须说明'为放大什么动作细节'或'为释放什么冲击感'",
+      "fps_patterns": ["120fps", "60fps", "24fps", "升格", "降格"],
+      "require_nearby": {
+        "升格": ["闪避", "躲避", "收腹", "翻滚", "精确", "蓄力", "蓄势", "微操", "细节"],
+        "降格": ["冲击", "释放", "打击", "命中", "爆点", "兑现", "冲击感"]
+      }
+    },
+
+    "drama_camera_also_bind": {
+      "id": "R006",
+      "name": "文戏镜头也需绑定",
+      "severity": "warning",
+      "description": "文戏的镜头推近/景别切换必须与角色的微表情变化、视线移动、身体姿态转变绑定",
+      "trigger_keywords": ["推近", "推进", "推至", "景别", "特写", "近景"],
+      "require_nearby_drama_cues": [
+        "微表情",
+        "视线",
+        "眼神",
+        "呼吸",
+        "姿态",
+        "转变",
+        "嘴唇",
+        "手指",
+        "攥紧",
+        "颤抖",
+        "瞳孔",
+        "表情"
+      ]
+    },
+
+    "narration_audio_split": {
+      "id": "R007",
+      "name": "对白配音与音效分离",
+      "severity": "error",
+      "description": "对白配音只负责人声层，音效设计负责环境音/拟音/特效音/状态音，BGM默认不写进主提示词",
+      "forbid_in_dubbing": [
+        "环境底噪",
+        "风声",
+        "雨声",
+        "脚步声",
+        "碰撞声",
+        "BGM:",
+        "背景音乐"
+      ],
+      "require_explicit": {
+        "no_dialogue": "本段无对白配音"
+      }
+    },
+
+    "fpv_five_anchors": {
+      "id": "R008",
+      "name": "FPV五项锚点",
+      "severity": "warning",
+      "description": "涉及FPV的时间轴描述必须写齐：入口、穿越介质、擦身关系、出口、结果镜头",
+      "trigger": "FPV",
+      "required_anchors": ["入口", "穿越", "擦身", "出口", "结果"]
+    },
+
+    "asset_ref_format": {
+      "id": "R009",
+      "name": "@资产名引用格式",
+      "severity": "error",
+      "description": "已有落盘资产映射时，一律优先写成直观中文的@资产名",
+      "forbid_bare_names": {
+        "in_prompt_body": true,
+        "description": "正文中的角色/场景/道具名应使用@引用标签"
+      },
+      "allowed_prefixes": ["@char-", "@scene-", "@prop-", "@Image", "@Video", "@Audio"]
+    },
+
+    "composition_minimal_increment": {
+      "id": "R010",
+      "name": "构图补强最小增量",
+      "severity": "warning",
+      "description": "构图补强只能补主体锚点/层次锚点/结果帧锚点，不得改动作链、节拍、空间推进、结果钩子",
+      "forbid_in_composition": [
+        "重写",
+        "重构",
+        "重新设计",
+        "全部替换"
+      ],
+      "max_composition_density_per_shot": 3,
+      "description": "每条时间轴最多写3个构图锚点，避免信息抢权"
+    },
+
+    "subtitle_safe_zone": {
+      "id": "R011",
+      "name": "字幕安全区",
+      "severity": "error",
+      "description": "关键读点禁止侵入字幕安全区 y0.82-1.00",
+      "required_in_output": "禁止侵入字幕安全区",
+      "forbid_in_safe_zone": "y0.82"
+    },
+
+    "no_extra_characters": {
+      "id": "R012",
+      "name": "禁止新增角色/道具/UI",
+      "severity": "error",
+      "description": "禁止新增角色、随机道具、多余UI/字幕/水印",
+      "required_keywords": ["禁止额外角色", "禁止随机道具", "禁止多余"],
+      "forbid_keywords": ["新增角色", "添加角色"]
+    },
+
+    "motion_blur_background_only": {
+      "id": "R013",
+      "name": "运动模糊仅限背景",
+      "severity": "warning",
+      "description": "高速动作时背景可模糊，但人物和武器边缘必须清晰",
+      "required_when_combat": "人物/武器边缘必须清",
+      "trigger_keywords": ["打斗", "武戏", "对撞", "高速", "闪避", "冲刺"]
+    },
+
+    "result_frame_readable": {
+      "id": "R014",
+      "name": "结果帧清晰可读",
+      "severity": "error",
+      "description": "爆点镜头必须有命中点/结果镜头清晰可读的帧",
+      "required_when_combat": "结果帧清晰可读",
+      "trigger_keywords": ["命中", "拳", "砰", "冲击", "对撞", "弹飞", "砸"]
+    },
+
+    "long_before_short": {
+      "id": "R015",
+      "name": "长版先行简版派生",
+      "severity": "warning",
+      "description": "长版先行，简版派生。严禁从剧本一句话直接跳到简版投喂稿",
+      "check_order": ["long", "short"],
+      "forbid_skip": true
+    }
+  },
+
+  "gate_order": [
+    "R001", "R002", "R003", "R007", "R009", "R011", "R012",
+    "R005", "R014", "R013",
+    "R004", "R006", "R008", "R010", "R015"
+  ]
+}

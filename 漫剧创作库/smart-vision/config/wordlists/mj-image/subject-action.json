@@ -1,0 +1,88 @@
+{
+  "_meta": {
+    "dimension": "核心主体与动作",
+    "priority": 1,
+    "required": true,
+    "description": "画面的绝对核心，权重最高，必须最前置。包含：主体身份+外观特征、核心动作/互动关系、核心道具/核心视觉元素",
+    "tip": "核心特征可用 (关键词:1.2-1.5) 强化权重，倍数不超过2"
+  },
+  "categories": [
+    {
+      "id": "character_identity",
+      "name": "角色身份",
+      "items": [
+        { "keyword": "银发飒爽女战士", "usage": "高辨识度主角身份" },
+        { "keyword": "黑衣刺客", "usage": "隐匿、危险感角色" },
+        { "keyword": "铠甲将军", "usage": "力量、权威、军事感" },
+        { "keyword": "白发老者", "usage": "智慧、沉稳、导师形象" },
+        { "keyword": "少年修仙者", "usage": "成长、觉醒、潜龙" },
+        { "keyword": "魔族女王", "usage": "反派BOSS、压迫感" },
+        { "keyword": "机甲驾驶员", "usage": "科幻、工业力量" },
+        { "keyword": "精灵弓箭手", "usage": "敏捷、自然、优雅" },
+        { "keyword": "街头少女", "usage": "日常、青春、生活感" },
+        { "keyword": "古装书生", "usage": "文气、儒雅、古风" }
+      ]
+    },
+    {
+      "id": "appearance_features",
+      "name": "外观特征",
+      "items": [
+        { "keyword": "银色长发飘逸", "usage": "视觉锚点、动态美感" },
+        { "keyword": "赤红双瞳", "usage": "异能标记、觉醒象征" },
+        { "keyword": "鳞甲覆盖半身", "usage": "异化、防御感" },
+        { "keyword": "机械义肢", "usage": "赛博、改造人" },
+        { "keyword": "黑色斗篷猎猎", "usage": "神秘、飘逸、戏剧感" },
+        { "keyword": "脸带银纹聚能特效", "usage": "能量充盈、爆发前兆" },
+        { "keyword": "瞳孔收缩至针尖", "usage": "杀意、专注、危险" },
+        { "keyword": "伤口溢出金色光液", "usage": "神性、不死之身" },
+        { "keyword": "衣摆碎裂飘散", "usage": "战斗痕迹、动态张力" },
+        { "keyword": "发丝在风中根根分明", "usage": "高速运动、细节表现" }
+      ]
+    },
+    {
+      "id": "core_actions",
+      "name": "核心动作",
+      "items": [
+        { "keyword": "锁颈翻转砸地", "usage": "爆发力、摔投技" },
+        { "keyword": "银光裹拳重击", "usage": "能量拳击、打击感" },
+        { "keyword": "高空俯冲急降", "usage": "速度感、冲击力" },
+        { "keyword": "旋转飞踢银色拖尾", "usage": "武术、轨迹特效" },
+        { "keyword": "右拳握紧至极限", "usage": "蓄力、爆发前兆" },
+        { "keyword": "骑乘翻转坠落", "usage": "失控感、坠落张力" },
+        { "keyword": "高速穿越翼缝", "usage": "FPV穿越、速度感" },
+        { "keyword": "滞空悬停定格", "usage": "静止张力、蓄力" },
+        { "keyword": "后仰闪避子弹时间", "usage": "时间膨胀、极限反应" },
+        { "keyword": "双刀交叉格挡", "usage": "防御、对抗" },
+        { "keyword": "单膝跪地喘息", "usage": "战后疲惫、真实感" },
+        { "keyword": "仰天咆哮冲击波扩散", "usage": "力量释放、范围效果" },
+        { "keyword": "指尖凝聚光球", "usage": "施法、能量积聚" },
+        { "keyword": "剑尖划过地面火花", "usage": "金属摩擦、速度" }
+      ]
+    },
+    {
+      "id": "interaction_relation",
+      "name": "互动关系",
+      "items": [
+        { "keyword": "与巨型鳞甲飞行巨兽高空战斗", "usage": "人兽对抗、高空场景" },
+        { "keyword": "双人背靠背对抗围攻", "usage": "信任、绝望中的团结" },
+        { "keyword": "师徒对峙拔剑相向", "usage": "背叛、立场冲突" },
+        { "keyword": "伸手拉住坠落之人", "usage": "救赎、信任" },
+        { "keyword": "俯视跪地的败者", "usage": "权力碾压、胜利" },
+        { "keyword": "两人隔雨幕对望", "usage": "距离感、情绪张力" }
+      ]
+    },
+    {
+      "id": "core_props",
+      "name": "核心道具/视觉元素",
+      "items": [
+        { "keyword": "甲壳凹陷碎裂暗红光液环形喷溅", "usage": "打击效果、质感细节" },
+        { "keyword": "冲击波扩散推开云层", "usage": "力量可视化、环境反应" },
+        { "keyword": "空气在拳面扭曲", "usage": "极端力量、物理扭曲" },
+        { "keyword": "剑刃断裂碎片悬浮", "usage": "武器损毁、时间凝固" },
+        { "keyword": "地面龟裂碎石悬浮", "usage": "地面冲击、重力异常" },
+        { "keyword": "羽翼碎裂散落金色光尘", "usage": "陨落、神性消散" },
+        { "keyword": "锁链缠绕手臂拖拽", "usage": "束缚、对抗" }
+      ]
+    }
+  ]
+}

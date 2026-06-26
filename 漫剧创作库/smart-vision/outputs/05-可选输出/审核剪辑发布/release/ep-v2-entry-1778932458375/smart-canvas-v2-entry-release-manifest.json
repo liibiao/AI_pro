@@ -1,0 +1,19 @@
+{
+  "version": "0.1.0",
+  "episodeId": "ep-v2-entry-1778932458375",
+  "source": "smart-canvas-v2-entry-smoke",
+  "artifactPaths": [
+    "03-视频/ep-v2-entry-1778932458375/smart-canvas-v2-entry-video.mp4",
+    "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778932458375/smart-canvas-v2-entry-edit.mp4",
+    "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778932458375/smart-canvas-v2-entry-qa-report.md"
+  ],
+  "workflowIds": {
+    "asset": "draft-asset_image_generation-1778932459111",
+    "storyboard": "draft-storyboard_image_generation-1778932460671",
+    "video": "draft-video_generation-1778932462228",
+    "edit": "draft-edit-1778932463784",
+    "qa": "draft-qa-1778932465394",
+    "release": "draft-release-1778932466983"
+  },
+  "generatedAt": "2026-05-16T11:54:27.855Z"
+}

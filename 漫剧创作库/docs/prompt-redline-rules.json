@@ -1,0 +1,462 @@
+{
+  "schema_version": "1.0.0",
+  "description": "提示词红线规则 — 从 prompt-standards.md 和 seedance-prompt-engineering.md 提取的强制性约束，用于自动化校验生成的提示词是否违反核心方法论。",
+
+  "rules": {
+    "camera_action_fusion": {
+      "id": "R001",
+      "name": "镜头动作融合",
+      "severity": "error",
+      "description": "帧率切换、运镜、景别变化必须与具体动作时刻绑定，禁止独立列出镜头板块",
+      "check": {
+        "forbid_patterns": [
+          "镜头与构图",
+          "【镜头】",
+          "## 镜头"
+        ],
+        "forbid_context": {
+          "镜头与构图": "禁止独立镜头板块，镜头信息必须嵌入动作描述中",
+          "【镜头】": "禁止独立镜头字段，运镜必须绑定在【运镜】或【画面】中并关联具体动作",
+          "## 镜头": "禁止独立镜头章节标题"
+        },
+        "require_patterns_in_camera_line": {
+          "【运镜】": [
+            "心理动机",
+            "施压",
+            "疏离",
+            "焦虑",
+            "崩塌",
+            "宿命",
+            "聚焦",
+            "沉浸",
+            "英雄",
+            "包围",
+            "压住",
+            "拉近距离",
+            "揭示",
+            "释放"
+          ]
+        },
+        "require_timestamp_action_binding": {
+          "description": "时间戳必须紧跟具体动作，格式为 [时间戳] 角色动作 → 镜头响应",
+          "timestamp_pattern": "\\d+\\.\\d+s",
+          "forbid_bare_camera": [
+            "升格至",
+            "降格回",
+            "镜头跟随",
+            "缓慢推近",
+            "缓慢推进",
+            "极慢推至",
+            "快速推近"
+          ],
+          "require_nearby_action": true
+        }
+      }
+    },
+
+    "six_fixed_sections": {
+      "id": "R002",
+      "name": "六个固定段名",
+      "severity": "error",
+      "description": "长版/简版/即梦版/Seedance版/叙事版都必须保留六个固定段名：环境联动、光线、对白配音、音效设计、画质、负面提示词",
+      "required_sections": [
+        "环境联动",
+        "光线",
+        "对白配音",
+        "音效设计",
+        "画质",
+        "负面提示词"
+      ],
+      "apply_to": ["seedance_master", "seedance2_field", "seedance2_narrative", "omni", "seedance25_15s", "seedance25_30s"]
+    },
+
+    "independent_segment_timing": {
+      "id": "R003",
+      "name": "独立片段计时规则",
+      "severity": "error",
+      "description": "每个片段必须从 0s 开始计时，不能沿用整集总时间轴",
+      "forbid_patterns": [
+        "\\d{2,}s\\s*[-–—]",
+        "【\\d{2,}s-"
+      ],
+      "allow_patterns": [
+        "0s",
+        "【0s-"
+      ],
+      "title_duration_match": {
+        "description": "标题时长必须与正文时间轴一致",
+        "title_pattern": "【(\\d+)s\\s*[-–—]\\s*(\\d+)s】",
+        "max_start": 0
+      }
+    },
+
+    "no_abstract_words": {
+      "id": "R004",
+      "name": "禁止抽象词",
+      "severity": "warning",
+      "description": "提示词不写抽象评价，要写可视化信息",
+      "forbid_standalone": [
+        "高级感",
+        "电影感",
+        "氛围感",
+        "震撼",
+        "好看",
+        "史诗级激烈战斗",
+        "激烈打斗",
+        "极度震撼"
+      ],
+      "allow_if_decomposed": true
+    },
+
+    "fps_must_bind_action": {
+      "id": "R005",
+      "name": "帧率切换绑定动作",
+      "severity": "error",
+      "description": "升格/降格必须说明'为放大什么动作细节'或'为释放什么冲击感'",
+      "fps_patterns": ["120fps", "60fps", "24fps", "升格", "降格"],
+      "require_nearby": {
+        "升格": ["闪避", "躲避", "收腹", "翻滚", "精确", "蓄力", "蓄势", "微操", "细节"],
+        "降格": ["冲击", "释放", "打击", "命中", "爆点", "兑现", "冲击感"]
+      }
+    },
+
+    "drama_camera_also_bind": {
+      "id": "R006",
+      "name": "文戏镜头也需绑定",
+      "severity": "warning",
+      "description": "文戏的镜头推近/景别切换必须与角色的微表情变化、视线移动、身体姿态转变绑定",
+      "trigger_keywords": ["推近", "推进", "推至", "景别", "特写", "近景"],
+      "require_nearby_drama_cues": [
+        "微表情",
+        "视线",
+        "眼神",
+        "呼吸",
+        "姿态",
+        "转变",
+        "嘴唇",
+        "手指",
+        "攥紧",
+        "颤抖",
+        "瞳孔",
+        "表情"
+      ]
+    },
+
+    "narration_audio_split": {
+      "id": "R007",
+      "name": "对白配音与音效分离",
+      "severity": "error",
+      "description": "对白配音只负责人声层，音效设计负责环境音/拟音/特效音/状态音，BGM默认不写进主提示词",
+      "forbid_in_dubbing": [
+        "环境底噪",
+        "风声",
+        "雨声",
+        "脚步声",
+        "碰撞声",
+        "BGM:",
+        "背景音乐"
+      ],
+      "require_explicit": {
+        "no_dialogue": "本段无对白配音"
+      }
+    },
+
+    "fpv_five_anchors": {
+      "id": "R008",
+      "name": "FPV五项锚点",
+      "severity": "warning",
+      "description": "涉及FPV的时间轴描述必须写齐：入口、穿越介质、擦身关系、出口、结果镜头",
+      "trigger": "FPV",
+      "required_anchors": ["入口", "穿越", "擦身", "出口", "结果"]
+    },
+
+    "asset_ref_format": {
+      "id": "R009",
+      "name": "@资产名引用格式",
+      "severity": "error",
+      "description": "已有落盘资产映射时，一律优先写成直观中文的@资产名",
+      "forbid_bare_names": {
+        "in_prompt_body": true,
+        "description": "正文中的角色/场景/道具名应使用@引用标签"
+      },
+      "allowed_prefixes": ["@char-", "@scene-", "@prop-", "@Image", "@Video", "@Audio"]
+    },
+
+    "composition_minimal_increment": {
+      "id": "R010",
+      "name": "构图补强最小增量",
+      "severity": "warning",
+      "description": "构图补强只能补主体锚点/层次锚点/结果帧锚点，不得改动作链、节拍、空间推进、结果钩子",
+      "forbid_in_composition": [
+        "重写",
+        "重构",
+        "重新设计",
+        "全部替换"
+      ],
+      "max_composition_density_per_shot": 3,
+      "description": "每条时间轴最多写3个构图锚点，避免信息抢权"
+    },
+
+    "subtitle_safe_zone": {
+      "id": "R011",
+      "name": "字幕安全区",
+      "severity": "error",
+      "description": "关键读点禁止侵入字幕安全区 y0.82-1.00",
+      "required_in_output": "禁止侵入字幕安全区",
+      "forbid_in_safe_zone": "y0.82"
+    },
+
+    "no_extra_characters": {
+      "id": "R012",
+      "name": "禁止新增角色/道具/UI",
+      "severity": "error",
+      "description": "禁止新增角色、随机道具、多余UI/字幕/水印",
+      "required_keywords": ["禁止额外角色", "禁止随机道具", "禁止多余"],
+      "forbid_keywords": ["新增角色", "添加角色"]
+    },
+
+    "motion_blur_background_only": {
+      "id": "R013",
+      "name": "运动模糊仅限背景",
+      "severity": "warning",
+      "description": "高速动作时背景可模糊，但人物和武器边缘必须清晰",
+      "required_when_combat": "人物/武器边缘必须清",
+      "trigger_keywords": ["打斗", "武戏", "对撞", "高速", "闪避", "冲刺"]
+    },
+
+    "result_frame_readable": {
+      "id": "R014",
+      "name": "结果帧清晰可读",
+      "severity": "error",
+      "description": "爆点镜头必须有命中点/结果镜头清晰可读的帧",
+      "required_when_combat": "结果帧清晰可读",
+      "trigger_keywords": ["命中", "拳", "砰", "冲击", "对撞", "弹飞", "砸"]
+    },
+
+    "long_before_short": {
+      "id": "R015",
+      "name": "长版先行简版派生",
+      "severity": "warning",
+      "description": "长版先行，简版派生。严禁从剧本一句话直接跳到简版投喂稿",
+      "check_order": ["long", "short"],
+      "forbid_skip": true
+    },
+
+    "seedance25_six_modules": {
+      "id": "R016",
+      "name": "Seedance 2.5 六大模块",
+      "severity": "error",
+      "description": "seedance2.5-15s/30s 必须包含生成任务、主要主体、场景与环境状态、情绪目标、视觉风格、分段镜头脚本",
+      "apply_to": ["seedance25_15s", "seedance25_30s"],
+      "required_sections": [
+        "生成任务",
+        "主要主体",
+        "场景与环境状态",
+        "情绪目标",
+        "视觉风格",
+        "分段镜头脚本"
+      ],
+      "generation_task_first": true,
+      "duration_limits": {
+        "seedance25_15s": 15,
+        "seedance25_30s": 30
+      }
+    },
+
+    "seedance25_segment_six_step": {
+      "id": "R017",
+      "name": "Seedance 2.5 分段六步法",
+      "severity": "error",
+      "description": "seedance2.5 工作底稿必须说明跟随对象、运动路线、镜头解释空间、主体关系变化、停顿点、收尾信息变化；最终投喂稿应把这些信息融入自然画面句，不强制暴露标签",
+      "apply_to": ["seedance25_15s", "seedance25_30s"],
+      "output_modes": {
+        "workdraft": "required_terms_must_be_explicit",
+        "final_paste": "terms_may_be_implicit_in_natural_language"
+      },
+      "required_terms": [
+        "跟随对象",
+        "运动路线",
+        "镜头解释空间",
+        "关系变化",
+        "停顿点",
+        "收尾信息变化"
+      ],
+      "forbid_empty_late_stage": {
+        "description": "30s 后半段不得只重复氛围词，必须有危险逼近、关系变化、结果爆发、反转或留钩子",
+        "apply_to": ["seedance25_30s"],
+        "required_late_stage_terms": ["危险", "关系", "结果", "爆发", "反转", "钩子", "收束"]
+      }
+    },
+
+    "seedance25_no_template_voice": {
+      "id": "R018",
+      "name": "Seedance 2.5 去模板腔",
+      "severity": "warning",
+      "description": "去模板腔不是删结构；正式流水线稿必须保留母板结构，六步法标签只能用于工作底稿或 QA 附录，平台稿应为导演口述式画面句",
+      "apply_to": ["seedance25_15s", "seedance25_30s"],
+      "forbid_repeated_terms_in_final_paste": [
+        "跟随对象：",
+        "运动路线：",
+        "镜头解释空间：",
+        "关系变化：",
+        "停顿点：",
+        "收尾信息变化：",
+        "六步逻辑核对"
+      ],
+      "allow_in_sections": ["工作底稿", "QA", "自检", "审核"]
+    },
+
+    "seedance25_no_rhythm_clone": {
+      "id": "R019",
+      "name": "Seedance 2.5 动作节奏去同构",
+      "severity": "warning",
+      "description": "动作戏不允许机械复用起势-推进-压制-反击-爆点-收势；结构必须保留，节奏应根据战术目的、空间变化、角色能力和镜头视角重组",
+      "apply_to": ["seedance25_15s", "seedance25_30s"],
+      "forbid_as_fixed_sequence": [
+        "起势",
+        "推进",
+        "压制",
+        "反击",
+        "爆点",
+        "收势"
+      ],
+      "recommended_rhythm_variants": [
+        "冷开场截杀",
+        "连续失重",
+        "误导反杀",
+        "一镜穿越",
+        "骤停瞬杀",
+        "追逃接力",
+        "空间压缩",
+        "爆点前置",
+        "结果余波"
+      ],
+      "require_action_logic": [
+        "战术目的",
+        "空间变化",
+        "主读点转移",
+        "结果帧"
+      ]
+    },
+
+    "seedance25_no_table_in_final_paste": {
+      "id": "R020",
+      "name": "Seedance 2.5 正式投喂稿禁表格",
+      "severity": "error",
+      "description": "Seedance 2.5 正式流水线投喂稿必须能直接复制到平台，分段镜头脚本不得使用 Markdown 表格、六步逻辑核对列或 QA 表格",
+      "apply_to": ["seedance25_15s", "seedance25_30s"],
+      "forbid_patterns_in_final_paste": [
+        "| 时间段 |",
+        "|---|",
+        "六步逻辑核对",
+        "跟随对象：",
+        "运动路线：",
+        "镜头解释空间：",
+        "收尾信息变化："
+      ],
+      "allow_in_sections": ["工作底稿", "QA", "自检", "审核"]
+    },
+
+    "internal_style_token_must_expand": {
+      "id": "R021",
+      "name": "内部风格库名必须展开",
+      "severity": "warning",
+      "description": "正式投喂稿不得把 HZW 等内部风格库名称裸写给生成模型，必须展开为材质、画质、光影、反射、空气介质和清晰度边界",
+      "apply_to": ["seedance25_15s", "seedance25_30s", "image_prompt", "storyboard_prompt"],
+      "forbid_raw_style_tokens_in_final_paste": [
+        "HZW 材质画质风格",
+        "HZW材质画质风格",
+        "HZW 风格",
+        "HZW风格"
+      ],
+      "required_expansion_terms": [
+        "材质",
+        "光影",
+        "反射",
+        "边缘",
+        "清晰",
+        "体积",
+        "颗粒"
+      ]
+    },
+
+    "seedance_long_latest_format": {
+      "id": "R022",
+      "name": "Seedance 长版默认母格式",
+      "severity": "error",
+      "description": "用户说长版提示词/Seedance 长版/长版母稿时，默认必须采用画面主体【完整】+@Image起手+逐条时间轴+六固定段名；不得使用旧式主体/空间/光影/镜头/台词/音效字段块作为正式长版",
+      "apply_to": ["seedance_master", "long_prompt"],
+      "required_sections": [
+        "画面主体【完整",
+        "@Image",
+        "环境联动",
+        "光线",
+        "对白配音",
+        "音效设计",
+        "画质",
+        "负面提示词"
+      ],
+      "required_timeline_pattern": "\\d+\\.\\d+s（[^）]+）",
+      "forbid_old_field_blocks_in_final": [
+        "主体：",
+        "空间：",
+        "光影：",
+        "镜头：",
+        "台词：",
+        "音效："
+      ],
+      "allow_old_field_blocks_in_sections": ["工作底稿", "内部分析", "QA", "审核", "示例对比"]
+    },
+
+    "dynamic_timeline_density": {
+      "id": "R023",
+      "name": "时间点密度由剧情决定",
+      "severity": "warning",
+      "description": "长版和 Seedance 2.5 正式稿不得机械套固定时间点/镜头数量；密度必须由剧情节奏、动作复杂度、空间变化和画面读点决定",
+      "apply_to": ["seedance_master", "long_prompt", "seedance25_15s", "seedance25_30s"],
+      "forbid_fixed_count_language_in_final": [
+        "固定 4 镜头",
+        "固定四镜头",
+        "必须 4 镜头",
+        "必须四镜头",
+        "必须 5 段",
+        "必须五段",
+        "每 2.5 秒",
+        "每2.5秒",
+        "每 3 秒最多",
+        "每3秒最多"
+      ],
+      "density_decision_terms": [
+        "剧情节奏",
+        "动作复杂度",
+        "空间关系",
+        "主读点",
+        "视角变化",
+        "声音变化",
+        "结果帧"
+      ],
+      "high_density_allowed_when": [
+        "激烈打戏",
+        "闪现",
+        "瞬影杀",
+        "块切",
+        "FPV",
+        "多层斗法",
+        "高速追逐"
+      ],
+      "low_density_required_when": [
+        "文戏",
+        "空间建立",
+        "慢压迫",
+        "结果余波",
+        "情绪停顿"
+      ]
+    }
+  },
+
+  "gate_order": [
+    "R001", "R002", "R003", "R007", "R009", "R011", "R012",
+    "R005", "R014", "R013",
+    "R004", "R006", "R008", "R010", "R015", "R016", "R017", "R018", "R019", "R020", "R021", "R022", "R023"
+  ]
+}

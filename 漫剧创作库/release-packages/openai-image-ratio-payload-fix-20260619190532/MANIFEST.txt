@@ -1,0 +1,13 @@
+Package: openai-image-ratio-payload-fix-20260619190532
+Created: 2026-06-19T11:05:49Z
+Purpose: Preserve OpenAI Images API aspect ratio through UI payload, backend request body, and modular generation service.
+
+Files:
+MANIFEST.txt
+smart-vision/canvas/legacy-workbench/workbench-web/canvas-next/generation-service.js
+smart-vision/services/workbench/image_studio_backend.py
+tools/image_studio_backend.py
+tools/workbench-web/canvas-next/generation-service.js
+tools/workbench-web/image-studio-canvas-next.html
+workbench-web/canvas-next/generation-service.js
+workbench-web/image-studio-canvas-next.html

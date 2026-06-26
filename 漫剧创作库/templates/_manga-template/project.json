@@ -1,0 +1,20 @@
+{
+  "name": "漫剧项目模板",
+  "type": "mangadrama",
+  "chapters": 1,
+  "target_platform": "待填写",
+  "main_model": "Seedance 2.0",
+  "support_models": ["Kling", "Hailuo", "gpt-5.4-new"],
+  "llm_models": [
+    {
+      "id": "gpt-5.4-new",
+      "name": "龙虾灵镜通用",
+      "provider": "openai-compatible",
+      "base_url": "http://104.238.222.107:3006/v1",
+      "api_key_env": "LOBSTER_LINGJING_API_KEY",
+      "purpose": ["选题", "设定", "大纲", "脚本", "提示词草拟"]
+    }
+  ],
+  "main_style": "待填写",
+  "status": "draft"
+}

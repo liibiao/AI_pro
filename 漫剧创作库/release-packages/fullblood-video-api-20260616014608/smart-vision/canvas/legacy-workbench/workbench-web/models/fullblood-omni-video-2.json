@@ -1,0 +1,83 @@
+{
+  "id": "fullblood-omni-video-2",
+  "configId": "fullblood-omni-video-2",
+  "modelKey": "fullblood-omni-video-2",
+  "providerKey": "canvas_fullblood-video",
+  "channelKey": "canvas_fullblood-video",
+  "name": "全能视频2.0(满血J)",
+  "modelNick": "全能视频2.0(满血J)",
+  "displayName": "全能视频2.0(满血J)",
+  "label": "全能视频2.0(满血J)",
+  "type": "video",
+  "model": "全能视频2.0(满血J)",
+  "baseUrl": "https://localhost:3000/v1",
+  "url": "https://localhost:3000/v1/videos",
+  "key": "",
+  "adapter": "fullblood-video",
+  "endpointPath": "/videos",
+  "statusEndpointPath": "/videos/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "referenceImages": true
+  },
+  "capabilities": {
+    "resolutions": ["720p"],
+    "durations": [15],
+    "defaultDuration": 15,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16"],
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "supportsAudio": false,
+    "supportsVideo": false,
+    "maxVideoDurationSeconds": 15,
+    "maxImageReferenceDurationSeconds": 15
+  },
+  "defaults": {
+    "duration": "15",
+    "seconds": "15",
+    "resolution": "720p",
+    "aspectRatio": "16:9",
+    "size": "1280x720",
+    "pricing": {
+      "unit": "generation",
+      "billingMode": "per_generation",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberCreditsPerGeneration": 450,
+      "chargedCreditsPerGeneration": 450,
+      "originalCreditsPerGeneration": 450,
+      "costCreditsPerGeneration": 450
+    }
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "note": "POST /v1/videos 创建视频任务，GET /v1/videos/{taskId} 查询状态；固定 15 秒，仅支持 16:9/9:16，按次计费 450 积分。",
+  "protocol": {
+    "adapter": "fullblood-video",
+    "method": "async-poll",
+    "endpointPath": "/videos",
+    "endpoint_path": "/videos",
+    "statusEndpointPath": "/videos/{taskId}",
+    "status_endpoint_path": "/videos/{taskId}",
+    "uploadMode": "object_storage",
+    "upload_mode": "object_storage",
+    "fixedSeconds": 15,
+    "seconds": "15",
+    "sizeByAspectRatio": {
+      "16:9": "1280x720",
+      "9:16": "720x1280"
+    }
+  },
+  "ui": {
+    "label": "全能视频2.0(满血J)",
+    "badge": "15s",
+    "badgeColor": "#16a34a"
+  }
+}

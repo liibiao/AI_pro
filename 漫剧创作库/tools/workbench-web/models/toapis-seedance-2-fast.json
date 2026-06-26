@@ -1,0 +1,70 @@
+{
+  "id": "toapis-seedance-2-fast",
+  "configId": "toapis-seedance-2-fast",
+  "modelKey": "toapis-seedance-2-fast",
+  "providerKey": "toapis",
+  "channelKey": "toapis-seedance2-fast",
+  "name": "seedance-2-fast",
+  "modelNick": "ToAPIs Seedance 2 Fast",
+  "displayName": "ToAPIs Seedance 2 Fast",
+  "label": "ToAPIs Seedance 2 Fast",
+  "type": "video",
+  "model": "seedance-2-fast",
+  "baseUrl": "https://toapis.com/v1/videos/generations",
+  "url": "https://toapis.com/v1/videos/generations",
+  "key": "",
+  "adapter": "toapis-seedance2",
+  "endpointPath": "",
+  "statusEndpointPath": "{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "referenceVideo": true,
+    "referenceAudio": true,
+    "generateAudio": true
+  },
+  "capabilities": {
+    "resolutions": ["480p", "720p"],
+    "durations": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "defaultDuration": 5,
+    "defaultResolution": "720p",
+    "aspectRatios": ["21:9", "16:9", "4:3", "1:1", "3:4", "9:16"],
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 15,
+    "supportsAudio": true,
+    "supportsVideo": true,
+    "supportsGeneratedAudio": true
+  },
+  "defaults": {
+    "mode": "reference_material",
+    "resolution": "720p",
+    "generate_audio": true
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "note": "ToAPIs Seedance 2 Fast 快速版。提交 POST /v1/videos/generations，状态 GET /v1/videos/generations/{task_id}；不支持 1080p。",
+  "protocol": {
+    "adapter": "toapis-seedance2",
+    "method": "async-poll",
+    "statusEndpointPath": "{taskId}",
+    "pollInitialDelaySeconds": 5,
+    "pollIntervalSeconds": 10,
+    "resultTtlHours": 24,
+    "uploadMode": "object_storage",
+    "soundField": "generate_audio"
+  },
+  "ui": {
+    "label": "ToAPIs Seedance 2 Fast",
+    "badge": "FAST",
+    "badgeColor": "#38bdf8"
+  }
+}

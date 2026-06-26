@@ -1,0 +1,33 @@
+{
+  "id": "aiyunzhi-gemini-3-pro-image",
+  "configId": "aiyunzhi-gemini-3-pro-image",
+  "modelKey": "aiyunzhi-gemini-3-pro-image",
+  "providerKey": "aiyunzhi",
+  "channelKey": "aiyunzhi-gemini-3-pro-image",
+  "name": "gemini-3-pro-image-preview",
+  "displayName": "Aiyunzhi Gemini 3 Pro Image",
+  "label": "Aiyunzhi Gemini 3 Pro Image",
+  "type": "image",
+  "model": "gemini-3-pro-image-preview",
+  "baseUrl": "https://aiyunzhi.top",
+  "url": "https://aiyunzhi.top",
+  "key": "",
+  "adapter": "aiyunzhi-gemini-image",
+  "endpointPath": "/v1beta/models/{model}:generateContent",
+  "uploadMode": "object_storage",
+  "supports": { "txt2img": true, "img2img": true },
+  "capabilities": {
+    "imageSizes": ["1K", "2K", "4K"],
+    "aspectRatios": ["1:1", "16:9", "9:16", "4:3", "3:4"],
+    "maxImages": 6
+  },
+  "defaults": { "imageSize": "4K" },
+  "note": "Aiyunzhi Gemini 3 Pro Image Preview, capped at 6 reference images.",
+  "protocol": {
+    "adapter": "aiyunzhi-gemini-image",
+    "endpointPath": "/v1beta/models/{model}:generateContent",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "ui": { "label": "Gemini 3 Pro", "badge": "Gemini Pro", "badgeColor": "#7c3aed" }
+}

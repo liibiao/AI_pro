@@ -1,0 +1,18 @@
+{
+  "name": "荒原血誓",
+  "type": "mangadrama",
+  "chapters": 1,
+  "target_platform": "竖屏漫剧 / AI视频样片",
+  "main_model": "Seedance 2.0",
+  "support_models": ["Sora2", "Kling", "Hailuo", "gpt-image-2"],
+  "main_style": "史诗黑金玄幻战争 / 荒原高反差电影感",
+  "status": "phase-3-storyboard-package-ready",
+  "current_episode": "ep001",
+  "logline": "人族残军在黑风荒原被魔族主力围杀，年轻战将陆沉以凡人血脉硬撼魔君烬罗，在牺牲与温存之后立下血誓，点燃人族最后一面战旗。",
+  "source_prompt": "人族和魔族在荒原中大战, 有牺牲, 有热血, 有温存, 战争场面宏大, 史诗感, 主角和boss战的战斗激烈, 打斗动作丰富",
+  "pipeline_notes": [
+    "按本地 Producer / Writer / Director / Storyboard Artist / Librarian / Studio / Reviewer 精益 Agent 体系生成。",
+    "本轮落地第一话完整样板链路：创作源识别、剧本、导演讲戏、资产卡、分镜、生成适配、QA、发布草案。",
+    "未直接调用外部生图/视频 API；生成文件为视频前生产包与投喂说明。"
+  ]
+}

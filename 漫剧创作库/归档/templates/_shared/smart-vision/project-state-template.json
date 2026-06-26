@@ -1,0 +1,17 @@
+{
+  "project_id": "",
+  "project_name": "",
+  "current_phase": "intake",
+  "active_episode_id": "",
+  "active_storyboard_id": "",
+  "production_mode": "storyboard_semi_auto",
+  "next_action": "",
+  "blocked_by": [],
+  "capability_pack": {
+    "pack_id": "",
+    "version": "",
+    "source_hash": "",
+    "compiled_runtime_hash": ""
+  },
+  "updated_at": ""
+}

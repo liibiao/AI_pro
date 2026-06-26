@@ -1,0 +1,138 @@
+#!/usr/bin/env bash
+set +H
+set -euo pipefail
+
+PKG="canvas-bottom-toolbar-layout-fix-20260606163422"
+ARCHIVE="${1:-/tmp/${PKG}.tar.gz}"
+MIRROR_TARGET="${2:-${MIRROR_TARGET:-/home/ubuntu/漫剧创作库}}"
+WEB_ROOT="${WEB_ROOT:-/var/www/ai-admin}"
+WORKBENCH_DIR="${WORKBENCH_DIR:-$WEB_ROOT/workbench-web}"
+STAMP="$(date +%Y%m%d%H%M%S)"
+WORK_DIR="$(mktemp -d /tmp/${PKG}.XXXXXX)"
+BACKUP_DIR="$MIRROR_TARGET/.deploy-backups/${PKG}-${STAMP}"
+
+log(){ printf '[deploy] %s\n' "$*"; }
+fail(){ printf '[deploy] ERROR: %s\n' "$*" >&2; exit 1; }
+run_sudo(){
+  "$@" && return 0
+  local status=$?
+  if [ "$(id -u)" -eq 0 ] || [ "${DEPLOY_USE_SUDO:-auto}" = "never" ] || [ "${1:-}" = "test" ]; then
+    return "$status"
+  fi
+  if command -v sudo >/dev/null 2>&1; then
+    sudo -n "$@"
+  else
+    return "$status"
+  fi
+}
+backup_file(){
+  local dest="$1"
+  run_sudo test -f "$dest" || return 0
+  local rel="${dest#/}"
+  local backup="$BACKUP_DIR/$rel"
+  run_sudo mkdir -p "$(dirname "$backup")"
+  run_sudo cp -p "$dest" "$backup"
+}
+install_file(){
+  local src="$1" dest="$2" label="$3"
+  [ -f "$src" ] || fail "$label missing in package: $src"
+  run_sudo mkdir -p "$(dirname "$dest")"
+  backup_file "$dest"
+  run_sudo cp -p "$src" "$dest"
+  run_sudo chmod 644 "$dest" 2>/dev/null || true
+  if id www-data >/dev/null 2>&1 && [ "$(printf '%s' "$dest" | cut -c1-8)" = "/var/www" ]; then
+    run_sudo chown www-data:www-data "$dest" 2>/dev/null || true
+  fi
+  log "installed $dest"
+}
+verify_html(){
+  local file="$1"
+  grep -Fq "20260606 v3: unified bottom toolbar spacing and right-side run group." "$file"
+  grep -Fq "const grouped=bar.dataset.toolbarGrouped==='1'" "$file"
+  grep -Fq "rightAfterSpacer||isNodeToolbarRightControl" "$file"
+  grep -Fq ".node-toolbar-right .credit-estimate-icon" "$file"
+  grep -Fq ".node.node-type-seedanceVideo .vn2-bar:not(.prompt-zoomed-item)" "$file"
+  grep -Fq "layoutNodeBottomToolbars(el)" "$file"
+}
+verify_css(){
+  local file="$1"
+  grep -Fq "20260606: final node bottom toolbar layout" "$file"
+  grep -Fq "20260606: every node bottom toolbar follows the width of its prompt/input box" "$file"
+  grep -Fq "node-toolbar-left" "$file"
+  grep -Fq "node-toolbar-right" "$file"
+  grep -Fq -- "--node-toolbar-min-width" "$file"
+}
+verify_html_sudo(){
+  local file="$1"
+  run_sudo grep -Fq "20260606 v3: unified bottom toolbar spacing and right-side run group." "$file"
+  run_sudo grep -Fq "const grouped=bar.dataset.toolbarGrouped==='1'" "$file"
+  run_sudo grep -Fq "rightAfterSpacer||isNodeToolbarRightControl" "$file"
+  run_sudo grep -Fq ".node-toolbar-right .credit-estimate-icon" "$file"
+  run_sudo grep -Fq ".node.node-type-seedanceVideo .vn2-bar:not(.prompt-zoomed-item)" "$file"
+  run_sudo grep -Fq "layoutNodeBottomToolbars(el)" "$file"
+}
+verify_css_sudo(){
+  local file="$1"
+  run_sudo grep -Fq "20260606: final node bottom toolbar layout" "$file"
+  run_sudo grep -Fq "20260606: every node bottom toolbar follows the width of its prompt/input box" "$file"
+  run_sudo grep -Fq "node-toolbar-left" "$file"
+  run_sudo grep -Fq "node-toolbar-right" "$file"
+  run_sudo grep -Fq -- "--node-toolbar-min-width" "$file"
+}
+
+cleanup(){ rm -rf "$WORK_DIR"; }
+trap cleanup EXIT
+
+[ -f "$ARCHIVE" ] || fail "archive not found: $ARCHIVE"
+log "extract $ARCHIVE"
+tar --no-same-owner -xzf "$ARCHIVE" -C "$WORK_DIR"
+SRC="$WORK_DIR/$PKG"
+[ -d "$SRC" ] || fail "package root not found: $SRC"
+
+log "verify package markers"
+verify_html "$SRC/workbench-web/image-studio-canvas-next.html"
+verify_css "$SRC/workbench-web/canvas-next/tapnow-rewrite.css"
+verify_html "$SRC/tools/workbench-web/image-studio-canvas-next.html"
+verify_css "$SRC/tools/workbench-web/canvas-next/tapnow-rewrite.css"
+
+log "backup dir: $BACKUP_DIR"
+run_sudo mkdir -p "$BACKUP_DIR"
+
+installed=0
+if [ -d "$WORKBENCH_DIR" ]; then
+  log "install public workbench: $WORKBENCH_DIR"
+  install_file "$SRC/workbench-web/image-studio-canvas-next.html" "$WORKBENCH_DIR/image-studio-canvas-next.html" "public canvas html"
+  install_file "$SRC/workbench-web/canvas-next/tapnow-rewrite.css" "$WORKBENCH_DIR/canvas-next/tapnow-rewrite.css" "public canvas css"
+  installed=1
+else
+  log "public workbench skipped, not found: $WORKBENCH_DIR"
+fi
+
+if [ -d "$MIRROR_TARGET/tools/workbench-web" ]; then
+  log "install mirror workbench: $MIRROR_TARGET/tools/workbench-web"
+  install_file "$SRC/tools/workbench-web/image-studio-canvas-next.html" "$MIRROR_TARGET/tools/workbench-web/image-studio-canvas-next.html" "mirror canvas html"
+  install_file "$SRC/tools/workbench-web/canvas-next/tapnow-rewrite.css" "$MIRROR_TARGET/tools/workbench-web/canvas-next/tapnow-rewrite.css" "mirror canvas css"
+  installed=1
+else
+  log "mirror workbench skipped, not found: $MIRROR_TARGET/tools/workbench-web"
+fi
+
+[ "$installed" = "1" ] || fail "no workbench target found"
+
+log "verify installed markers"
+if [ -f "$WORKBENCH_DIR/image-studio-canvas-next.html" ]; then
+  verify_html_sudo "$WORKBENCH_DIR/image-studio-canvas-next.html"
+fi
+if [ -f "$WORKBENCH_DIR/canvas-next/tapnow-rewrite.css" ]; then
+  verify_css_sudo "$WORKBENCH_DIR/canvas-next/tapnow-rewrite.css"
+fi
+if [ -f "$MIRROR_TARGET/tools/workbench-web/image-studio-canvas-next.html" ]; then
+  verify_html_sudo "$MIRROR_TARGET/tools/workbench-web/image-studio-canvas-next.html"
+fi
+if [ -f "$MIRROR_TARGET/tools/workbench-web/canvas-next/tapnow-rewrite.css" ]; then
+  verify_css_sudo "$MIRROR_TARGET/tools/workbench-web/canvas-next/tapnow-rewrite.css"
+fi
+
+log "done"
+echo "backup: $BACKUP_DIR"
+echo "Hard-refresh the canvas page after deploy."

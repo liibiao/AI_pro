@@ -1,0 +1,33 @@
+{
+  "id": "aiyunzhi-firefly-gpt-image",
+  "configId": "aiyunzhi-firefly-gpt-image",
+  "modelKey": "aiyunzhi-firefly-gpt-image",
+  "providerKey": "aiyunzhi",
+  "channelKey": "aiyunzhi-firefly-gpt-image",
+  "name": "firefly-gpt-image",
+  "displayName": "Aiyunzhi Firefly GPT Image",
+  "label": "Aiyunzhi Firefly GPT Image",
+  "type": "image",
+  "model": "firefly-gpt-image",
+  "baseUrl": "https://aiyunzhi.top",
+  "url": "https://aiyunzhi.top",
+  "key": "",
+  "adapter": "aiyunzhi-firefly-gpt-image",
+  "endpointPath": "/v1/chat/completions",
+  "uploadMode": "object_storage",
+  "supports": { "txt2img": true, "img2img": true },
+  "capabilities": {
+    "imageSizes": ["1K", "2K", "4K"],
+    "aspectRatios": ["16:9", "1:1", "21:9", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16"],
+    "maxImages": 6
+  },
+  "defaults": { "imageSize": "1K" },
+  "note": "Aiyunzhi Firefly GPT Image. Actual model is firefly-gpt-image-{imageSize}-{aspectRatio}.",
+  "protocol": {
+    "adapter": "aiyunzhi-firefly-gpt-image",
+    "endpointPath": "/v1/chat/completions",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "ui": { "label": "Firefly GPT Image", "badge": "Image", "badgeColor": "#f59e0b" }
+}

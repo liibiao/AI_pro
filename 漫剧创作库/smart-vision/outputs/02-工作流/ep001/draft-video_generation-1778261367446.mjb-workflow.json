@@ -1,0 +1,970 @@
+{
+  "schema": "mjb-workflow-v1",
+  "id": "draft-video_generation-1778261367446",
+  "name": "EP001 Seedance 单镜视频生成 Workflow",
+  "taskType": "video_generation",
+  "path": "02-工作流/ep001/draft-video_generation-1778261367446.mjb-workflow.json",
+  "importUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-video_generation-1778261367446.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199",
+  "editUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-video_generation-1778261367446.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=edit",
+  "runUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-video_generation-1778261367446.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=run&autoRun=1",
+  "canvasExecution": {
+    "executor": "infinite_canvas",
+    "adapter": "smart-vision-canvas-workflow-adapter",
+    "workflowMode": "seedance_video_generation",
+    "status": "ready_for_canvas",
+    "workflowPath": "02-工作流/ep001/draft-video_generation-1778261367446.mjb-workflow.json",
+    "importUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-video_generation-1778261367446.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199",
+    "editUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-video_generation-1778261367446.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=edit",
+    "runUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-video_generation-1778261367446.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=run&autoRun=1",
+    "bridgeBase": "http://127.0.0.1:5199",
+    "promptCount": 10,
+    "referenceImageCount": 8,
+    "prompts": [
+      {
+        "path": "upstream/05-prompts/seedance/ep001-fullref-15s.md",
+        "sourceKind": "artifact",
+        "score": 91,
+        "exists": true,
+        "excerpt": "第1话《废物》— Seedance 长版母稿（修正版） > **项目：** 无限强化·灵纹觉醒 > **用途：** 作为 `Seedance / 即梦 / 叙事版` 的唯一真实源 > **结构说明：** 严格采用 `画面主体【完整：...】 + @Image 起手 + 逐条时间轴 + 六个固定段名` --- 【第 1 段：0s - 5s】 画面主体【完整：建立末世联邦与林家练武场的空间压迫关系，让观众先看到灰暗世界与屏障秩序，再落到灵纹碑石与试炼现场的核心读点。】 @Image@联邦全景 / @林家练武场 / @灵纹碑石——先远后近，屏障穹顶罩住灰暗城市，练武场在画面下半区成型，第一听感是远处低频风压与屏障嗡鸣。 0.0s（24fps / 高空俯瞰 / 固定起幅）：能量屏障穹顶覆盖整座灰暗城市，边缘冷蓝微光缓慢游走，屏障外荒芜废土上异兽剪影缓慢掠过——【音效：远处低频风压 + 极弱异兽嘶吼】。 1.8s（24fps / 高空俯瞰 / 缓慢下压）：镜头沿穹顶边缘下沉，城市轮廓向后退去，练武场从尘雾里显形——【音效：屏障低频嗡鸣持续，风声微增强】。 3.0s（24fps / 全景 / 稳定停住）：烈日下练武场人头攒动，中央黑色巨...",
+        "headings": [
+          "第1话《废物》— Seedance 长版母稿（修正版）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/ep003-fullref-15s.md",
+        "sourceKind": "artifact",
+        "score": 83,
+        "exists": true,
+        "excerpt": "第3话《觉醒》 — Seedance 2.0 全能参考 15 秒分镜提示词 > 项目：无限强化·灵纹觉醒 > 镜头数：4 > 结构：HOOK→PROBLEM→SOLUTION→CTA/钩子收束（适合宣发/预告） --- 参考图清单 | 用途 | 文件路径 | 用于镜头 | |------|---------|---------| | @林天 | 06-generated/images/characters/林天觉醒后-v8-1.png | Shot 1 | | @系统UI面板 | 06-generated/images/props/系统UI面板-v8-1.png | Shot 1 | | @联邦全景 | 06-generated/images/scenes/联邦全景-v8-1.png | Shot 2 | --- 素材职责矩阵（避免抢权漂移） | 控制维度 | 主控制源 | 约束 | |---------|----------|------| | 角色形象/阶段/战损一致性 | @角色-… | 禁止跨阶段换装与战损消失 | | 场景空间/光影基准 | @场景-… | 主光方向一致，保留字幕安全区 | | 剧情支点道具可读性 ...",
+        "headings": [
+          "第3话《觉醒》 — Seedance 2.0 全能参考 15 秒分镜提示词",
+          "参考图清单",
+          "素材职责矩阵（避免抢权漂移）",
+          "片段节拍纪律",
+          "Shot 1 — HOOK",
+          "Shot 2 — PROBLEM→SOLUTION",
+          "Shot 3 — SOLUTION（高光）",
+          "Shot 4 — CTA / 钩子收束"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/即梦/ep001-omni-paste.md",
+        "sourceKind": "artifact",
+        "score": 81,
+        "exists": true,
+        "excerpt": "第1话《废物》— 即梦版长提示词（修正版） > **项目：** 无限强化·灵纹觉醒 > **版本：** 即梦版（长版投喂稿） > **规则：** 每段 10s，分镜逻辑不变，扩展时间轴；最后一段不足 10s 按实际铺满 > **来源：** 基于 `ep001-fullref-15s.md` 同步修正，保留位置关系与六固定段名 --- 【第 1 段：0s - 10s】 画面主体【完整：先建立末世联邦与林家练武场，再把首看点落到灵纹碑石与试炼现场。】 @Image@联邦全景 / @林家练武场 / @灵纹碑石——先远后近，屏障穹顶罩住灰暗城市，练武场落在画面下半区，第一听感是远处低频风压与屏障嗡鸣。 位置关系：屏障穹顶在最上层包住整座城市；练武场在下半区中央；灵纹碑石固定在中轴偏下；废土与异兽剪影只留在屏障外后景，不得前压到练武场前景。 0.0s（24fps / 高空俯瞰 / 固定起幅）：屏障覆盖灰暗城市，边缘冷蓝微光游走，废土异兽剪影缓慢掠过——【音效：低频风压 + 极弱异兽嘶吼】。 1.8s（24fps / 高空俯瞰 / 缓慢下压）：镜头沿穹顶边缘下沉，城市后退，练武场从尘雾里显形——【音效：屏障嗡鸣持续】。 3.0s（24f...",
+        "headings": [
+          "第1话《废物》— 即梦版长提示词（修正版）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/即梦/ep001-omni-paste.short.md",
+        "sourceKind": "artifact",
+        "score": 81,
+        "exists": true,
+        "excerpt": "> **项目：** 无限强化·灵纹觉醒 > **大创意：** 压抑蓄力——废物到天才的反差，最终钩子是\"林天，上来吧\" > **视觉隐喻：** 暗色调底色中偶尔闪现的银色纹路微光（希望种子） > **镜头数：** 8 镜头 Seedance 素材上传顺序 | 序号 | 资源 | 路径 | |---|---|---| --- 即梦版（Omni-Reference） text [0.0-0.3s] 蓄力起手：@林傲天 右臂抬起至胸前，掌心出现紫色电弧（24fps）。机位固定中景。 [0.3-0.5s] 掌碑瞬间：接触点白色闪光（0.1s 过曝后恢复），冲击波纹扩散。机位固定。 [0.5-1.5s] 雷光炸裂（降格 60fps）：紫色闪电放射 6-8 道；右臂弹回 15°；空气热畸变；群众倒退+衣摆猎猎+尘土颗粒。人物边缘清晰，运动模糊仅限背景。 [1.5-2.5s] 碑文点亮（恢复 24fps）：紫色闪电消散，金色大字逐字亮起（间隔 0.3s）。 [2.5-3.5s] 余波回稳：右臂放下握拳；群众恢复站姿；环境光回归暖色调。 [3.5-6.0s] 回头兑现：头部缓慢转向镜头（30°/s），机位极缓推进；嘴角拉开冷笑+下巴上抬 8...",
+        "headings": [
+          "Seedance 素材上传顺序",
+          "即梦版（Omni-Reference）",
+          "Shot 1 — 俯瞰建立（HOOK）",
+          "Shot 2 — 角落相依（PROBLEM）",
+          "Shot 3 — 嘲讽与隐忍（PROBLEM）",
+          "Shot 4 — 闪回·父亲背影（PROBLEM）",
+          "Shot 5 — 闪回·权力更替+婚约（PROBLEM）",
+          "Shot 6 — 林傲天金甲登场（PROBLEM）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/叙事/ep001-seedance2-narrative-paste.md",
+        "sourceKind": "artifact",
+        "score": 81,
+        "exists": true,
+        "excerpt": "第1话《废物》— 叙事版长提示词（修正版） > **项目：** 无限强化·灵纹觉醒 > **版本：** Seedance 叙事版（导演口述） > **规则：** 每段 15s，分镜逻辑不变，扩展时间轴与细节动作；最后一段不足 15s 按实际铺满 > **来源：** 基于 `ep001-fullref-15s.md` 同步修正，保留位置关系与六固定段名 --- 【第 1 段：0s - 15s】 画面主体【完整：先建立末世联邦与林家练武场，再把读点稳稳落到灵纹碑石和试炼现场，让观众先感到压迫，再感到秩序。】 @Image@联邦全景 / @林家练武场 / @灵纹碑石——先给远处灰暗城市和能量屏障，再顺着视线往下落到练武场中央巨碑，第一听感是风压和屏障的低频嗡鸣。 位置关系：屏障穹顶在画面最上层包住整座城市，练武场落在画面下半区中央，灵纹碑石固定在中轴偏下作为唯一空间核心，废土与异兽剪影只留在屏障外后景。 0.0s（24fps / 高空俯瞰 / 固定起幅）：能量屏障覆盖整座灰暗城市，边缘冷蓝微光缓慢游走，屏障外荒芜废土上的异兽剪影缓慢掠过——【音效：远处低频风压 + 极弱异兽嘶吼】。 1.8s（24fps / 高空俯瞰 / 缓慢下压...",
+        "headings": [
+          "第1话《废物》— 叙事版长提示词（修正版）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/叙事/ep001-seedance2-narrative-paste.short.md",
+        "sourceKind": "artifact",
+        "score": 81,
+        "exists": true,
+        "excerpt": "> **项目：** 无限强化·灵纹觉醒 > **大创意：** 压抑蓄力——废物到天才的反差，最终钩子是\"林天，上来吧\" > **视觉隐喻：** 暗色调底色中偶尔闪现的银色纹路微光（希望种子） > **镜头数：** 8 镜头 Seedance 素材上传顺序 | 序号 | 资源 | 路径 | |---|---|---| --- Seedance2叙事版（长句叙事）",
+        "headings": [
+          "Seedance 素材上传顺序",
+          "Seedance2叙事版（长句叙事）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/seedance/ep001-seedance2-paste.md",
+        "sourceKind": "artifact",
+        "score": 81,
+        "exists": true,
+        "excerpt": "第1话《废物》— Seedance 版长提示词（修正版） > **项目：** 无限强化·灵纹觉醒 > **版本：** Seedance 长版母稿直出 > **规则：** 每段 15s，分镜逻辑不变，扩展时间轴与细节动作；最后一段不足 15s 按实际铺满 > **说明：** 已修正为项目规范要求的 `画面主体【完整】 + @Image 起手 + 逐条时间轴 + 六固定段名` --- 【第 1 段：0s - 15s】 画面主体【完整：建立末世联邦与林家练武场的空间压迫关系，让观众先看到灰暗世界与屏障秩序，再落到灵纹碑石与试炼现场的核心读点。】 @Image@联邦全景 / @林家练武场 / @灵纹碑石——先远后近，屏障穹顶罩住灰暗城市，练武场在画面下半区成型，第一听感是远处低频风压与屏障嗡鸣。 0.0s（24fps / 高空俯瞰 / 固定起幅）：能量屏障穹顶覆盖整座灰暗城市，边缘冷蓝微光缓慢游走，屏障外荒芜废土上异兽剪影缓慢掠过——【音效：远处低频风压 + 极弱异兽嘶吼】。 1.8s（24fps / 高空俯瞰 / 缓慢下压）：镜头沿穹顶边缘下沉，城市轮廓向后退去，建筑废墟在尘雾中若隐若现——【音效：屏障低频嗡鸣持续，风声微增强】。...",
+        "headings": [
+          "第1话《废物》— Seedance 版长提示词（修正版）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/seedance/ep001-seedance2-paste.short.md",
+        "sourceKind": "artifact",
+        "score": 81,
+        "exists": true,
+        "excerpt": "> **项目：** 无限强化·灵纹觉醒 > **大创意：** 压抑蓄力——废物到天才的反差，最终钩子是\"林天，上来吧\" > **视觉隐喻：** 暗色调底色中偶尔闪现的银色纹路微光（希望种子） > **镜头数：** 8 镜头 Seedance 素材上传顺序 | 序号 | 资源 | 路径 | |---|---|---| --- Seedance版（灵境长版母稿）",
+        "headings": [
+          "Seedance 素材上传顺序",
+          "Seedance版（灵境长版母稿）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/ep001-shots.md",
+        "sourceKind": "artifact",
+        "score": 81,
+        "exists": true,
+        "excerpt": "ep001-shots.md — 第1话《废物》Seedance 镜头提示词 > **项目：** 无限强化·灵纹觉醒 > **章节：** 第1话《废物》 > **用途：** 从 `04-storyboard/ep001-storyboard.md` 拆为可执行的 Seedance 镜头稿。 --- 参考图清单 | 用途 | 文件路径 | 用于镜头 | |------|---------|---------| | @林天 | 06-generated/images/characters/林天觉醒前-v8-1.png | S1-S8 | | @林婉儿 | 06-generated/images/characters/林婉儿-v8-1.png | S2, S4, S5, S8 | | @林傲天 | 06-generated/images/characters/林傲天-v8-1.png | S5, S6, S7 | | @林啸 | 06-generated/images/characters/林啸-v8-1.png | S5 | | @执事长老 | 06-generated/images/characters/执事长老-v8-1.p...",
+        "headings": [
+          "ep001-shots.md — 第1话《废物》Seedance 镜头提示词",
+          "参考图清单",
+          "Shot 1 — 俯瞰建立",
+          "Shot 2 — 角落相依",
+          "Shot 3 — 嘲讽与隐忍",
+          "Shot 4 — 闪回·父亲背影",
+          "Shot 5 — 闪回·权力更替+婚约",
+          "Shot 6 — 林傲天金甲登场"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/ep001-shots.md",
+        "sourceKind": "artifact",
+        "score": 78,
+        "exists": true,
+        "excerpt": "ep001-shots.md — 第1话《废物》Seedance 镜头提示词 > **项目：** 无限强化·灵纹觉醒 > **章节：** 第1话《废物》 > **用途：** 从 `04-storyboard/ep001-storyboard.md` 拆为可执行的 Seedance 镜头稿。 --- 参考图清单 | 用途 | 文件路径 | 用于镜头 | |------|---------|---------| | @林天 | 06-generated/images/characters/林天觉醒前-v8-1.png | S1-S8 | | @林婉儿 | 06-generated/images/characters/林婉儿-v8-1.png | S2, S4, S5, S8 | | @林傲天 | 06-generated/images/characters/林傲天-v8-1.png | S5, S6, S7 | | @林啸 | 06-generated/images/characters/林啸-v8-1.png | S5 | | @执事长老 | 06-generated/images/characters/执事长老-v8-1.p...",
+        "headings": [
+          "ep001-shots.md — 第1话《废物》Seedance 镜头提示词",
+          "参考图清单",
+          "Shot 1 — 俯瞰建立",
+          "Shot 2 — 角落相依",
+          "Shot 3 — 嘲讽与隐忍",
+          "Shot 4 — 闪回·父亲背影",
+          "Shot 5 — 闪回·权力更替+婚约",
+          "Shot 6 — 林傲天金甲登场"
+        ]
+      }
+    ],
+    "referenceImages": [
+      {
+        "name": "ep001_shot1-4_1.png",
+        "role": "storyboard",
+        "artifactPath": "upstream/06-generated/images/comic-panels/ep001_shot1-4_1.png",
+        "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_1.png",
+        "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_1.png&raw=1",
+        "uploadMode": "object_storage"
+      },
+      {
+        "name": "ep001_shot1-4_2.png",
+        "role": "storyboard",
+        "artifactPath": "upstream/06-generated/images/comic-panels/ep001_shot1-4_2.png",
+        "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_2.png",
+        "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_2.png&raw=1",
+        "uploadMode": "object_storage"
+      },
+      {
+        "name": "ep001_shot1-4_3.png",
+        "role": "storyboard",
+        "artifactPath": "upstream/06-generated/images/comic-panels/ep001_shot1-4_3.png",
+        "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_3.png",
+        "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_3.png&raw=1",
+        "uploadMode": "object_storage"
+      },
+      {
+        "name": "ep001_shot1-4_4.png",
+        "role": "storyboard",
+        "artifactPath": "upstream/06-generated/images/comic-panels/ep001_shot1-4_4.png",
+        "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_4.png",
+        "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_4.png&raw=1",
+        "uploadMode": "object_storage"
+      },
+      {
+        "name": "ep002_shot2-1_1.png",
+        "role": "storyboard",
+        "artifactPath": "upstream/06-generated/images/comic-panels/ep002_shot2-1_1.png",
+        "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep002_shot2-1_1.png",
+        "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep002_shot2-1_1.png&raw=1",
+        "uploadMode": "object_storage"
+      },
+      {
+        "name": "ep002_shot2-2_1.png",
+        "role": "storyboard",
+        "artifactPath": "upstream/06-generated/images/comic-panels/ep002_shot2-2_1.png",
+        "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep002_shot2-2_1.png",
+        "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep002_shot2-2_1.png&raw=1",
+        "uploadMode": "object_storage"
+      },
+      {
+        "name": "ep002_shot2-3_1.png",
+        "role": "storyboard",
+        "artifactPath": "upstream/06-generated/images/comic-panels/ep002_shot2-3_1.png",
+        "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep002_shot2-3_1.png",
+        "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep002_shot2-3_1.png&raw=1",
+        "uploadMode": "object_storage"
+      },
+      {
+        "name": "ep002_shot2-4_1.png",
+        "role": "storyboard",
+        "artifactPath": "upstream/06-generated/images/comic-panels/ep002_shot2-4_1.png",
+        "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep002_shot2-4_1.png",
+        "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep002_shot2-4_1.png&raw=1",
+        "uploadMode": "object_storage"
+      }
+    ],
+    "outputArtifacts": [
+      "03-视频/**/*.mp4",
+      "03-视频/**/*.mov",
+      "05-prompts/**/video-prompt.md"
+    ],
+    "actions": [
+      {
+        "id": "edit_in_canvas",
+        "label": "编辑工作流",
+        "url": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-video_generation-1778261367446.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=edit"
+      },
+      {
+        "id": "run_in_canvas",
+        "label": "执行工作流",
+        "url": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-video_generation-1778261367446.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=run&autoRun=1"
+      }
+    ],
+    "generatedAt": "2026-05-08T17:29:27.454Z"
+  },
+  "contextPack": {
+    "taskType": "video_generation",
+    "title": "video_generation 任务上下文包",
+    "methodologyPackId": "smart-vision-methodology-core-v0.1",
+    "skillPackId": "smart-vision-skill-core-v0.1",
+    "templatePackId": "smart-vision-template-core-v0.1",
+    "aliases": [
+      "video_generation",
+      "seedance_prompt",
+      "jimeng_prompt",
+      "image_prompt",
+      "action_scene"
+    ],
+    "docs": [
+      "docs/prompt-standards.md",
+      "docs/long-prompt-detail-gate.md",
+      "docs/seedance-prompt-engineering.md",
+      "docs/jimeng-anti-collapse-core.md",
+      "docs/gpt-image-prompt-methodology.md",
+      "docs/action-speed-design-standard.md",
+      "docs/action-combat-design-standard.md",
+      "docs/action-case-opposition-force-camera.md",
+      "docs/staging-impact-audiovisual-methodology.md",
+      "docs/sound-design-montage-standard.md"
+    ],
+    "skills": [
+      "skills/seedance-action-skill.md",
+      "skills/runninghub-image-skill.md",
+      "skills/prompt-experiment-skill.md",
+      "skills/quality-control-skill.md"
+    ],
+    "agents": [],
+    "templates": [
+      "templates/_shared/prompt-output/seedance-long-template.md",
+      "templates/_shared/prompt-output/jimeng-template.md",
+      "templates/_shared/prompt-output/narrative-template.md"
+    ],
+    "inputArtifacts": [
+      "04-storyboard/ep001-storyboard.md",
+      "05-prompts/seedance/ep001-shots.md",
+      "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "01-资产图与提示词/asset-index.md",
+      "08-qa/v8-asset-consistency-qa-report.md",
+      "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json",
+      "02-工作流/ep001/draft-qa-1778211540000.mjb-workflow.json",
+      "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-precheck.md",
+      "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+      "05-可选输出/审核剪辑发布/review/ep001/ep001-rework-chain-test.md",
+      "05-可选输出/审核剪辑发布/release/ep001/ep001-release-v0.mp4",
+      "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "05-可选输出/审核剪辑发布/publish/ep001/ep001-release-v0-approval.md",
+      "05-可选输出/审核剪辑发布/publish/ep001/ep001-final-production-backlog.md",
+      "01-资产图与提示词/提示词/README.md",
+      "01-资产图与提示词/README.md",
+      "02-工作流/ep001/draft-edit-1778210764441.mjb-workflow.json",
+      "02-工作流/ep001/draft-video_generation-1778182715841.mjb-workflow.json",
+      "02-工作流/ep001/draft-video_generation-1778242509805.mjb-workflow.json",
+      "02-工作流/ep001/ep001-storyboard-image-generation.mjb-workflow.json",
+      "upstream/01-story/chapters/ch01/README.md",
+      "upstream/01-story/chapters/ch02/README.md",
+      "upstream/01-story/chapters/ch02/source-novel.md"
+    ],
+    "workflowHints": [
+      "02-工作流/ep001/draft-video_generation-1778182715841.mjb-workflow.json"
+    ],
+    "selectedCapabilityItems": {
+      "methodologies": [
+        {
+          "id": "prompt-generation",
+          "title": "长版提示词与平台生成",
+          "taskTypes": [
+            "seedance_prompt",
+            "jimeng_prompt",
+            "image_prompt",
+            "video_generation"
+          ]
+        },
+        {
+          "id": "action-audiovisual",
+          "title": "动作戏与视听调度",
+          "taskTypes": [
+            "action_scene",
+            "combat_prompt",
+            "impact_sound"
+          ]
+        }
+      ],
+      "skills": [
+        {
+          "id": "prompt-generation",
+          "title": "视频与生图提示词",
+          "taskTypes": [
+            "seedance_prompt",
+            "image_prompt",
+            "prompt_qa"
+          ]
+        }
+      ],
+      "templates": [
+        {
+          "id": "prompt-output",
+          "title": "三版本提示词输出模板",
+          "taskTypes": [
+            "seedance_prompt",
+            "jimeng_prompt",
+            "narrative_prompt"
+          ]
+        }
+      ]
+    },
+    "parsedReferences": [
+      {
+        "path": "docs/prompt-standards.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 21520,
+        "parsedAt": "2026-05-08T17:29:27.441Z",
+        "format": "markdown",
+        "headings": [
+          "Prompt Standards — 提示词编写规范",
+          "GPT 生图专项方法论",
+          "适用范围",
+          "核心原则",
+          "强制自检",
+          "核心原则",
+          "错误示例",
+          "正确示例"
+        ],
+        "excerpt": "Prompt Standards — 提示词编写规范 GPT 生图专项方法论 > 统一专项规范：`docs/gpt-image-prompt-methodology.md` 适用范围 - `gpt-image-2` 文生图 - GPT 图生图 / 精修 - 海报 / KV / UI / 信息图 / 商品广告 / 角色设定表 / 漫画页面 / 品牌周边合集 核心原则 GPT 生图提示词必须写成“结构化视觉设计说明书”，而不是关键词堆叠。复杂图优先采用： 工业化模板必须遵守 `Prompt as Code` 三步法：先确定任务类型，再锁定结构约束，最后补充风格材质；可复用模板优先使用 `{argument name=\"...\" default=\"...\"}` 或 `[PRODUCT] / [BRAND] / [ASPECT RATIO]` 变量占位。 强制自检 - 复杂图必须写清分区、位置、数量和阅读层级。 - UI、信息图、电商、..."
+      },
+      {
+        "path": "docs/long-prompt-detail-gate.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 3914,
+        "parsedAt": "2026-05-08T17:29:27.441Z",
+        "format": "markdown",
+        "headings": [
+          "Long Prompt Detail Gate — 长版提示词详细度质检门禁",
+          "1. 适用范围",
+          "2. 固定接口完整性",
+          "3. 长版详细度必写项",
+          "4. 时间轴格式",
+          "5. 镜头动作融合红线",
+          "6. 打回规则",
+          "7. 放行标准"
+        ],
+        "excerpt": "Long Prompt Detail Gate — 长版提示词详细度质检门禁 > 用途：在产出 Seedance / 即梦 / 叙事版长版提示词，以及进入图片、视频生成之前，对提示词完整性和可执行性做硬性检查。不符合即打回重写。 1. 适用范围 - Seedance 长版母稿 - 即梦 / 图生视频长版母稿 - 叙事版视频提示词 - 由长版派生的简版投喂稿 - 进入图片、视频生成前的最终提示词 2. 固定接口完整性 Seedance 长版母稿必须保留以下接口，任何一个缺失都打回： 无对白段必须写明：`本段无对白配音`。 3. 长版详细度必写项 用户给出的这类结构：`画面主体【完整】 + @Image + 0s-15s 时间轴 + 环境联动 / 光线 / 对白配音 / 音效设计 / 画质 / 负面提示词`，即使已经按 1-2 秒颗粒度写满，也只作为本项目的**简版投喂稿标准**。长版母稿必须在此基础上进一步扩写，不能把该篇幅直接当..."
+      },
+      {
+        "path": "docs/seedance-prompt-engineering.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 30329,
+        "parsedAt": "2026-05-08T17:29:27.441Z",
+        "format": "markdown",
+        "headings": [
+          "seedance-prompt-engineering.md — Seedance 2.0 提示词工程",
+          "用途",
+          "核心思想",
+          "一键闭环（推荐）",
+          "时长策略",
+          "5 秒",
+          "10 秒",
+          "15 秒"
+        ],
+        "excerpt": "seedance-prompt-engineering.md — Seedance 2.0 提示词工程 用途 把 Seedance 2.0 的提示词写作、时长策略、视频类型模板、变量系统与上游大模型编排方法沉淀为统一工程规范，支持从\"手写 prompt\"升级到\"模板化生成 prompt\"。 核心思想 - Prompt 不只是描述画面，而是调度素材、镜头、声音与节奏的工程脚本。 - 要先按视频时长和视频类型决定镜头密度，再填入角色、动作、场景、运镜和衔接方式。 - 上游大模型负责编排提示词，下游 Seedance 2.0 负责执行生成。 - 站位/轴线/几何/读点/群戏调度属于\"导演门禁\"层，必须工程化写进每个 Shot（详见：docs/blocking-camera-geometry-methodology.md）。 一键闭环（推荐） 在项目目录下执行一条命令完成：Phase1-3 前置检查（故事/导演/资产）→（可选）资产生产..."
+      },
+      {
+        "path": "docs/jimeng-anti-collapse-core.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 10052,
+        "parsedAt": "2026-05-08T17:29:27.441Z",
+        "format": "markdown",
+        "headings": [
+          "即梦 2.0 防崩核心规范",
+          "1. 总原则：先稳人物，再做动作",
+          "2. 十条防崩核心规则",
+          "2.1 锁脸三件套",
+          "2.2 动作拆成每秒步骤",
+          "2.3 反向提示词固定栏",
+          "2.4 单段时长不超过 3 秒",
+          "2.5 首尾帧对齐"
+        ],
+        "excerpt": "即梦 2.0 防崩核心规范 > 来源：基于用户提供的抖音图文教学内容提炼。 > 适用：即梦 2.0 图生视频、人物短视频、文戏表演、轻动作、口播、分段拼接、首尾帧连续生成。 > 核心定位：本规范不是风格词库，而是“稳定性参数 + 分段动作 + 连续性控制”的防崩执行层，用于降低崩脸、变脸、歪眼、手指穿模、背景闪烁、明暗跳变与片段拼接错位。 --- 1. 总原则：先稳人物，再做动作 即梦人物视频最容易崩坏的根因通常不是“提示词不够华丽”，而是： 1. 参考强度不固定。 2. 种子值随机。 3. 人物描述前后漂移。 4. 单段时间过长导致误差累积。 5. 动作没有按关节和时间拆解。 6. 首尾帧、光线、比例、速度不连续。 防崩优先级： --- 2. 十条防崩核心规则 2.1 锁脸三件套 用于解决：崩脸、变脸、五官漂移、角色不一致。 必须同时满足： 1. 参考强度固定为 `75`。 2. 种子值全程固定，复用底图种子号。 3. 底图人..."
+      },
+      {
+        "path": "docs/gpt-image-prompt-methodology.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 33717,
+        "parsedAt": "2026-05-08T17:29:27.441Z",
+        "format": "markdown",
+        "headings": [
+          "GPT 生图提示词规范与方法论（gpt-image-2）",
+          "1. 总原则：把 GPT 当成视觉设计执行者，而不是风格滤镜",
+          "2. GPT 生图的两种高稳定写法",
+          "2.1 JSON 结构化写法",
+          "2.2 自然语言设计说明写法",
+          "3. 七层提示词结构",
+          "3.1 任务层：先定义“它是什么”",
+          "3.2 主体层：写可识别锚点，不写空泛形容"
+        ],
+        "excerpt": "GPT 生图提示词规范与方法论（gpt-image-2） > 来源：基于用户提供的 `260426GPT整理提示词+预览图.docx` 中 1400+ 段 gpt-image-2 案例提示词、124 张预览图资源清单，`26-04-27整理提示词+预览图.docx`、`26-04-28整理提示词+预览图.docx` 中高频生图案例，以及 `EvoLinkAI/awesome-gpt-image-2-prompts`、`freestylefly/awesome-gpt-image-2` 两个公开 GPT-image-2 提示词仓库的结构化模板体系提炼。 > 适用：GPT 生图、gpt-image-2、图生图精修、海报/KV/UI/设定稿/信息图/商品广告/漫画页面/静态分镜板/动作分解参考表/品牌视觉/写实人像/3D微缩/国风插画/科幻机械/自然风光等静态图像任务。 > 核心定位：GPT 生图不是“关键词堆叠器”，而是“可执行的视..."
+      },
+      {
+        "path": "docs/action-speed-design-standard.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 21640,
+        "parsedAt": "2026-05-08T17:29:27.441Z",
+        "format": "markdown",
+        "headings": [
+          "动作速度表现规范",
+          "1. 规范定位",
+          "1.1 快切（quick cuts）",
+          "1.2 运动模糊（motion blur）",
+          "2. 动作设计上游判断：对抗关系 / 身体受力 / 镜头节奏",
+          "2.1 对抗关系",
+          "2.2 身体受力",
+          "2.3 镜头节奏"
+        ],
+        "excerpt": "动作速度表现规范 > 适用范围：AI 短剧 / 漫剧 / 动作分镜 / Seedance 动作视频设计 > 核心目标：通过“快切（quick cuts）”与“运动模糊（motion blur）”提升动作段落的速度感、冲击感、可读性与爽感密度。 --- 1. 规范定位 在动作设计中，所谓“速度感”并不只是让角色动得更快，而是让观众明确感知到： - 快 - 狠 - 猛 - 压迫 - 连续 - 致命 本规范将“速度表现”拆成两个核心工具： 1.1 快切（quick cuts） - 用于强化主观速度感 - 通过镜头切换频率提升节奏压迫感 - 适合爆发、连击、突袭、追击、近身缠斗 1.2 运动模糊（motion blur） - 用于强化单镜头内的运动速度与惯性 - 通过拖影、拉丝、甩糊、残影提升物理运动感 - 适合挥击、冲刺、闪避、转身、镜头甩动、急停急转 --- 2. 动作设计上游判断：对抗关系 / 身体受力 / 镜头节奏 在决定快切、..."
+      },
+      {
+        "path": "docs/action-combat-design-standard.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 7736,
+        "parsedAt": "2026-05-08T17:29:27.441Z",
+        "format": "markdown",
+        "headings": [
+          "全品类武打动作戏设计规范 (力的闭环融合版)",
+          "1. 核心指导思想：三要素与“力的闭环”",
+          "A. 设计层：动作三要素（决定打戏的意义与重量）",
+          "B. 执行层：力的闭环（决定 AI 的生成下限）",
+          "2. 五大武打品类：细分闭环规范与 Prompt 模板",
+          "2.1 物理系格斗（武侠 / 传统搏击 / 冷兵器）",
+          "2.2 能量系斗法（仙侠 / 玄幻 / 超能力）",
+          "2.3 现代战术格斗（特工 / 枪斗术 / CQC 室内近战）"
+        ],
+        "excerpt": "全品类武打动作戏设计规范 (力的闭环融合版) > 适用范围：AI 短剧 / 漫剧 / 动作分镜 / Seedance 动作视频设计 > 核心目标：结合“对抗关系 / 身体受力 / 镜头节奏”三要素，与“力的闭环”方法论，建立涵盖武侠、仙侠/玄幻、现代格斗、群像战斗等全品类的工业化“武打戏”指导思想与执行标准。 --- 1. 核心指导思想：三要素与“力的闭环” 打斗的本质不是单纯的视觉炫技，而是**“动作即叙事，技能即权力”**。 在具体执行 Prompt 和分镜设计时，必须严格贯彻以下两套核心框架： A. 设计层：动作三要素（决定打戏的意义与重量） 1. **对抗关系（谁压制谁）**：必须先看清谁占上风、谁被逼退、谁在强撑。没有压迫与反扑的前提，一拳只是一拳，毫无“反扑感”。 2. **身体受力（物理代价）**：重心稳不稳、步伐乱不乱、发力是顺还是硬顶。即便是法术对轰，也必须有物理溃败（倒飞砸石、鲜血喷出、重甲碎裂），不能轻飘飘..."
+      },
+      {
+        "path": "docs/action-case-opposition-force-camera.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 19004,
+        "parsedAt": "2026-05-08T17:29:27.441Z",
+        "format": "markdown",
+        "headings": [
+          "对抗关系 / 身体受力 / 镜头节奏：动作设计案例文档",
+          "一、为什么需要这份案例文档",
+          "二、三要素的定义",
+          "1. 对抗关系",
+          "2. 身体受力",
+          "3. 镜头节奏",
+          "三、团队统一口径",
+          "四、案例来源与核心结论"
+        ],
+        "excerpt": "对抗关系 / 身体受力 / 镜头节奏：动作设计案例文档 > 用途：把“对抗关系 / 身体受力 / 镜头节奏”沉淀为团队统一的动作设计方法案例，可用于培训、项目对齐、导演讲戏、分镜拆解与提示词设计。 > 适用：短剧 / 漫剧 / 动作戏 / 情绪动作戏 / 压迫对峙戏 / Seedance 动作表达 > 方法定位：这是“快切 + motion blur”之前的上游判断层。 --- 一、为什么需要这份案例文档 团队在讨论动作速度时，最容易出现两个问题： 1. **只讨论快不快，不讨论为什么这样动** 结果就是动作很多、镜头很多，但没有真正的冲突关系。 2. **只讨论 blur 和快切，不讨论身体重量** 结果就是观众觉得“好像很快”，但不觉得“真的很重、很疼、很危险”。 所以我们需要一个比“快切 / motion blur”更上游的判断法。 这套判断法就是： - **对抗关系**：谁压谁，谁失衡，谁在硬撑，谁在反扑 - **身体受..."
+      },
+      {
+        "path": "docs/staging-impact-audiovisual-methodology.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 6313,
+        "parsedAt": "2026-05-08T17:29:27.441Z",
+        "format": "markdown",
+        "headings": [
+          "视听打击与对峙调度方法论",
+          "一、适用范围",
+          "二、核心原则（五条红线）",
+          "1. 镜头必须服务动作与表演",
+          "2. 站位关系必须可画出来",
+          "3. 速度对比必须成段设计",
+          "4. 视听必须同步爆点",
+          "5. 结果兑现必须可读"
+        ],
+        "excerpt": "视听打击与对峙调度方法论 > 本文档用于把近期在《无限强化·灵纹觉醒》项目中沉淀出的实战经验，升级为全项目可复用的方法论。 > 核心目标：让 **动作、镜头、速度、音效、特效、站位关系** 形成同一条可执行链路，而不是各写各的。 --- 一、适用范围 适用于： - 武戏 - 压迫对峙戏 - 反压文戏 - 内心爆发戏 - 需要强打击感、强压迫感、强体型差的 Seedance / 分镜 / 导演讲戏 / QA 场景 --- 二、核心原则（五条红线） 1. 镜头必须服务动作与表演 - 禁止把帧率、运镜、景别、构图独立列成一个空的“镜头与构图”板块 - 必须写成：**具体动作发生时，镜头如何响应** - 文戏同理：镜头推近必须绑定微表情、视线变化、呼吸变化、姿态变化 2. 站位关系必须可画出来 - 强对抗段落必须交代：谁在谁前方、左前方、右后方、相距多少米、朝向谁 - 至少回答以下问题： 1. 谁压谁 2. 谁面朝谁 3. 谁是否被包围..."
+      },
+      {
+        "path": "docs/sound-design-montage-standard.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 2244,
+        "parsedAt": "2026-05-08T17:29:27.441Z",
+        "format": "markdown",
+        "headings": [
+          "听觉设计与声音蒙太奇规范 (Sound Design & Audio Montage Standard)",
+          "1. 物理空间的拟音颗粒度 (Foley & Room Tone)",
+          "2. 听觉的主观化与蒙太奇 (Subjective Sound)",
+          "3. BGM 的克制与留白 (BGM Restraint)"
+        ],
+        "excerpt": "听觉设计与声音蒙太奇规范 (Sound Design & Audio Montage Standard) > 适用范围：剪辑组装、音效铺设、BGM 调度 > 所属方法论：**《后期视听总规范》- 1.2 听觉空间（Aural Space）** > 核心目标：解决 AI 影视“声音干瘪、全靠 BGM 铺底”的问题，用立体的声音欺骗大脑，建立物理空间和心理空间。 --- 1. 物理空间的拟音颗粒度 (Foley & Room Tone) **痛点**：人物走动没声音，环境像真空。 **执行标准**：声音必须反映材质和空间大小。 - **环境底噪（Room Tone）**：每场戏必须有一层符合空间大小的底噪。山洞必须有微弱的风穿堂声和脚步回音；狭窄的木屋必须有木板受力的吱呀声。 - **材质拟音（Foley）**：剑刃出鞘的清脆蜂鸣、皮衣摩擦的沙沙声、重甲落地的沉闷撞击。这些声音决定了画面“看起来”有多重。 2. 听觉的主观化与蒙太奇..."
+      },
+      {
+        "path": "skills/seedance-action-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 10938,
+        "parsedAt": "2026-05-08T17:29:27.443Z",
+        "format": "markdown",
+        "headings": [
+          "seedance-action-skill — Seedance 动作武打戏设计技能",
+          "技能定位",
+          "适用任务",
+          "七大风格速查",
+          "1. 袁和平",
+          "2. 洪金宝",
+          "3. 成龙",
+          "4. 李连杰"
+        ],
+        "excerpt": "seedance-action-skill — Seedance 动作武打戏设计技能 技能定位 专用于 Seedance 2.0 模型的动作戏设计与分镜拆解，融合港片与商业动作片七大体系：袁和平、洪金宝、成龙、李连杰、甄子丹、林正英、好莱坞动作节奏。 适用任务 - 设计动作链 - 设计动作分镜 - 编写 Seedance 动作提示词 - 控制动作节拍密度与镜头长度 - 为武打戏、追逐戏、法术戏提供专用模板 - 把抽象动作氛围拆成可执行镜头信息 七大风格速查 1. 袁和平 写实、短促、力学清晰、一招制敌。 2. 洪金宝 借力打力、环境互动、灵巧实战。 3. 成龙 幽默武打、险境化解、道具连锁。 4. 李连杰 飘逸写意、节奏留白、古风美感。 5. 甄子丹 高速压制、MMA 连招、不给喘息时间。 6. 林正英 道教仪式、符咒施法、僵尸受击逻辑、法术动作。 7. 好莱坞 极快切、重击反馈、大场面冲击力。 Seedance 动作约束 - ..."
+      },
+      {
+        "path": "skills/runninghub-image-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 8443,
+        "parsedAt": "2026-05-08T17:29:27.443Z",
+        "format": "markdown",
+        "headings": [
+          "RunningHub 图像生成技能 — runninghub-image-skill",
+          "技能定位",
+          "适用场景",
+          "能力清单",
+          "一、工作流模式（Workflow）",
+          "二、标准模型 API 模式",
+          "标准执行流程",
+          "第一步：编写任务卡"
+        ],
+        "excerpt": "RunningHub 图像生成技能 — runninghub-image-skill 技能定位 统一封装 RunningHub 平台的全部图像生成能力，覆盖从任务卡编写、CLI 执行、产出归档到资产索引回填的完整闭环。 --- 适用场景 - 需要生成角色定妆图、封面图、场景氛围图、道具设计图 - 需要对已有图片做编辑修正或高清增强 - 需要使用 MJ-V7 / MJ-Niji7 / MJ-Niji6 做风格探索 - 需要批量执行 RunningHub 图像任务并归档 --- 能力清单 一、工作流模式（Workflow） | 模式 | CLI 参数 | 用途 | 输入 | |------|----------|------|------| | Banana2 三图生成 | `--banana2` | 角色图 / 封面草稿 / 探索图 | 角色图 + 服装图 + 场景图 + 提示词 | | Banana2 单图编辑 | `--ban..."
+      },
+      {
+        "path": "skills/prompt-experiment-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 5810,
+        "parsedAt": "2026-05-08T17:29:27.443Z",
+        "format": "markdown",
+        "headings": [
+          "prompt-experiment-skill — 提示词实验技能",
+          "技能定位",
+          "适用任务",
+          "核心输出",
+          "实验原则",
+          "推荐实验流程",
+          "结果记录建议",
+          "失败信号"
+        ],
+        "excerpt": "prompt-experiment-skill — 提示词实验技能 技能定位 用于系统化测试不同提示词写法、不同模型组合和不同镜头变量，找到更稳定、更可复用的生成方案。 适用任务 - 同镜头多版本提示词测试 - 不同模型效果对比 - 稳定关键词筛选 - 失败关键词排查 - baseline / 强化版 / 回退版实验 - 外部视频参考改写验证 核心输出 - 实验记录表 - 推荐版本 - 失败案例总结 - 模型适配建议 - 回退策略建议 实验原则 - 一次只改变少量变量 - 先拆外部视频中可吸收的方法信息，再列出禁止照搬项 - baseline 先保住主体、关系、受力、节奏、结果镜头 - 强化版每次只增加一层变量 - 记录模型 / 光影 / 动作密度 / 运镜差异 - 一旦漂移，优先回退最近新增强化层 - 明确结果评级 - 优先沉淀可复用结论 - 对失败版、保底版和观察型镜头，补写失败层级、触发器与减负动作 - **镜头动作融合实..."
+      },
+      {
+        "path": "skills/quality-control-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 5951,
+        "parsedAt": "2026-05-08T17:29:27.443Z",
+        "format": "markdown",
+        "headings": [
+          "quality-control-skill — 两步审核技能",
+          "技能定位",
+          "适用任务",
+          "输入要求",
+          "两步审核法",
+          "第一步：业务审核",
+          "故事板生产包与配套生成说明加测项",
+          "专业导演故事板图（D12-Sora2 / D15-Seedance2 加测项）"
+        ],
+        "excerpt": "quality-control-skill — 两步审核技能 技能定位 用于在每个阶段结束后，对项目产出进行业务审核与合规审核，并输出一次性、可执行的修改建议。目标是减少返工，提高阶段放行质量。 适用任务 - 审核剧本 - 审核导演讲戏 - 审核资产设计 - 审核故事板生产包 - 审核 D12-Sora2 / D15-Seedance2 专业导演故事板图、连续性卡、资产引用矩阵、参考图职责矩阵和视频模型适配包 - 审核 `05-prompts/` 配套生成说明是否忠实继承故事板生产包 - 审核平台合规风险 输入要求 1. 当前待审核文件 2. `project.json` 3. `docs/style-guide.md` 4. `docs/prompt-standards.md` 5. `docs/long-prompt-detail-gate.md` 6. 历史 QA 记录（若有） 两步审核法 第一步：业务审核 按阶段打分： ..."
+      },
+      {
+        "path": "templates/_shared/prompt-output/seedance-long-template.md",
+        "sourceKind": "templates",
+        "exists": true,
+        "extension": ".md",
+        "size": 5279,
+        "parsedAt": "2026-05-08T17:29:27.443Z",
+        "format": "markdown",
+        "headings": [
+          "Seedance 长版母稿输出模板",
+          "【文件头】",
+          "========== 元数据 ==========",
+          "========== 角色 @标签定义 ==========",
+          "【分镜单元模板】（每个镜头复制一份）",
+          "【文件尾：六个固定段】",
+          "【填充规则】",
+          "【关联文档】"
+        ],
+        "excerpt": "Seedance 长版母稿输出模板 > **用途**：Seedance 2.0 长版母稿填充参考模板（展示/导出用） > **字段顺序**：主体 → 空间 → 光影 → 镜头 → 台词 → 音效（六字段固定） > **辅以**：六个固定段（环境联动 / 光线 / 对白配音 / 音效设计 / 画质 / 负面提示词） > **源头**：从 Seedance 长版母稿生成，是即梦精简版和叙事性提示词的母稿 > **对应规范**：`docs/seedance-prompt-engineering.md` / `docs/prompt-standards.md` / `docs/dual-format-prompt-methodology.md` --- 【文件头】 --- 【分镜单元模板】（每个镜头复制一份） --- 【文件尾：六个固定段】 --- 【填充规则】 1. **每个镜头时长 ≤ 6s**（Seedance 2.0 单镜上限约..."
+      },
+      {
+        "path": "templates/_shared/prompt-output/jimeng-template.md",
+        "sourceKind": "templates",
+        "exists": true,
+        "extension": ".md",
+        "size": 3962,
+        "parsedAt": "2026-05-08T17:29:27.443Z",
+        "format": "markdown",
+        "headings": [
+          "即梦精简版输出模板",
+          "【转换规则速查】",
+          "【基础模板】（单镜头，适合 5-6s 内）",
+          "【多镜头连续版】（适合 15-60s 场景）",
+          "【快速生成模板】（最短形式）",
+          "【从长版母稿一键转换步骤】",
+          "【风格关键词速查】",
+          "【负面词模板库】"
+        ],
+        "excerpt": "即梦精简版输出模板 > **用途**：即梦平台（JiMeng）直接投喂的精简提示词模板（展示/导出用） > **核心差异**：去 @标签、字段合并、自然语言压缩、保留台词 > **源头**：由 Seedance 长版母稿转换而来，参考 `skills/quality-control-skill.md` 三版本一致性校验 > **对应规范**：`docs/prompt-standards.md` / `docs/dual-format-prompt-methodology.md` --- 【转换规则速查】 | 环节 | Seedance 长版 | 即梦精简版 | |---|---|---| | 标签 | `@人物1（疲惫）` | `疲惫的年轻男子，黑色衬衫，短发` | | 字段 | 主体/空间/光影/镜头/台词/音效 六段分列 | 全部合并为 1-3 段自然语言 | | 运镜 | `镜头：MS中景 · 慢推 Dolly In 0...."
+      },
+      {
+        "path": "templates/_shared/prompt-output/narrative-template.md",
+        "sourceKind": "templates",
+        "exists": true,
+        "extension": ".md",
+        "size": 5495,
+        "parsedAt": "2026-05-08T17:29:27.443Z",
+        "format": "markdown",
+        "headings": [
+          "叙事性提示词输出模板",
+          "【核心原则】",
+          "【基础模板】（单场景/单镜）",
+          "【多镜段合并版】（2-4 个镜头合并为一段叙事）",
+          "合并前提（满足任意 2 条即可合并）",
+          "合并模板",
+          "【分时段精细描述模板】（单镜 ≥ 5s 或情绪复杂）",
+          "【从长版母稿转换步骤】"
+        ],
+        "excerpt": "叙事性提示词输出模板 > **用途**：段落式电影化叙事提示词，适配 Seedance 2.0 / 可灵 / Wan / Luma / Runway > **核心差异**：保留 @标签、段落式融合叙述、分时段描述、多镜段智能合并 > **源头**：由 Seedance 长版母稿叙事化改写而来 > **对应规范**：`docs/seedance-prompt-engineering.md` / `docs/prompt-standards.md` / `docs/dual-format-prompt-methodology.md` --- 【核心原则】 1. **保留 @标签**：`@人物1` / `@道具1` 的引用在叙事中保留 2. **融合叙述**：主体/空间/光影/镜头/音效 融入连贯段落，**严禁出现字段标签** 3. **分时段描述**：用自然时间标记组织叙述节奏 4. **运镜叙事化**：运镜动作与人物动作同句绑定 ..."
+      }
+    ],
+    "referenceIssues": [],
+    "dataPackSummary": {
+      "methodologyCount": 2,
+      "skillCount": 1,
+      "templateCount": 1,
+      "referenceCount": 17,
+      "missingReferenceCount": 0,
+      "parsedAt": "2026-05-08T17:29:27.443Z"
+    },
+    "phaseGateItems": [
+      "读取 docs/workflow.md 与 docs/phase-gate-checklist.md 后再进入下一阶段。",
+      "输出必须能追溯到项目状态源、能力包索引与真实产物路径。",
+      "缺少方法论、Skill 或模板匹配时不得静默执行，应在上下文包中暴露空数组。"
+    ],
+    "redlines": [
+      "不得绕过 .smart-vision 状态源直接假设项目进度。",
+      "不得输出无法追溯到 docs / skills / templates / project artifacts 的任务指令。",
+      "不得把能力包索引当作最终生成结果，必须继续进入具体任务执行或 Workflow Builder。"
+    ],
+    "memoryPolicy": "优先读取项目文件化记忆与 .smart-vision 状态源；对影响方法论、模板、门禁、Agent/Skill 协作的结论必须回写项目文件。",
+    "generatedAt": "2026-05-08T17:29:27.446Z"
+  },
+  "canvas": {
+    "nodes": [
+      {
+        "id": "n1",
+        "type": "stylePreset",
+        "x": -520,
+        "y": 0,
+        "w": 360,
+        "values": {
+          "activePreset": "任务：EP001 单镜视频生成闭环验证。\n上游故事板：04-storyboard/ep001-storyboard.md\nSeedance 长版提示词：upstream/05-prompts/seedance/ep001-shots.md\n参考图：storyboard:upstream/06-generated/images/comic-panels/ep001_shot1-4_1.png；storyboard:upstream/06-generated/images/comic-panels/ep001_shot1-4_2.png；storyboard:upstream/06-generated/images/comic-panels/ep001_shot1-4_3.png；storyboard:upstream/06-generated/images/comic-panels/ep001_shot1-4_4.png；storyboard:upstream/06-generated/images/comic-panels/ep002_shot2-1_1.png；storyboard:upstream/06-generated/images/comic-panels/ep002_shot2-2_1.png\n输出登记目标：03-视频/**/*.mp4（相对于 smart-vision/outputs）\n门禁：生成后必须回填 outputArtifacts，并进入 video_review 审核。",
+          "selectedTags": []
+        },
+        "data": null,
+        "status": "waiting",
+        "progress": 0,
+        "error": ""
+      },
+      {
+        "id": "n2",
+        "type": "seedanceVideo",
+        "x": 0,
+        "y": 0,
+        "w": 640,
+        "values": {
+          "images": [
+            {
+              "name": "ep001_shot1-4_1.png",
+              "artifactPath": "upstream/06-generated/images/comic-panels/ep001_shot1-4_1.png",
+              "role": "storyboard",
+              "url": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_1.png&raw=1",
+              "dataUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_1.png&raw=1",
+              "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_1.png&raw=1",
+              "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_1.png",
+              "remoteUrl": "",
+              "uploaded": false,
+              "uploadMode": "object_storage",
+              "storageProvider": "local_artifact",
+              "saved": {
+                "filename": "ep001_shot1-4_1.png",
+                "path": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_1.png",
+                "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_1.png",
+                "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_1.png&raw=1",
+                "artifactPath": "upstream/06-generated/images/comic-panels/ep001_shot1-4_1.png"
+              }
+            },
+            {
+              "name": "ep001_shot1-4_2.png",
+              "artifactPath": "upstream/06-generated/images/comic-panels/ep001_shot1-4_2.png",
+              "role": "storyboard",
+              "url": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_2.png&raw=1",
+              "dataUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_2.png&raw=1",
+              "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_2.png&raw=1",
+              "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_2.png",
+              "remoteUrl": "",
+              "uploaded": false,
+              "uploadMode": "object_storage",
+              "storageProvider": "local_artifact",
+              "saved": {
+                "filename": "ep001_shot1-4_2.png",
+                "path": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_2.png",
+                "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_2.png",
+                "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_2.png&raw=1",
+                "artifactPath": "upstream/06-generated/images/comic-panels/ep001_shot1-4_2.png"
+              }
+            },
+            {
+              "name": "ep001_shot1-4_3.png",
+              "artifactPath": "upstream/06-generated/images/comic-panels/ep001_shot1-4_3.png",
+              "role": "storyboard",
+              "url": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_3.png&raw=1",
+              "dataUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_3.png&raw=1",
+              "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_3.png&raw=1",
+              "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_3.png",
+              "remoteUrl": "",
+              "uploaded": false,
+              "uploadMode": "object_storage",
+              "storageProvider": "local_artifact",
+              "saved": {
+                "filename": "ep001_shot1-4_3.png",
+                "path": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_3.png",
+                "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_3.png",
+                "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_3.png&raw=1",
+                "artifactPath": "upstream/06-generated/images/comic-panels/ep001_shot1-4_3.png"
+              }
+            },
+            {
+              "name": "ep001_shot1-4_4.png",
+              "artifactPath": "upstream/06-generated/images/comic-panels/ep001_shot1-4_4.png",
+              "role": "storyboard",
+              "url": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_4.png&raw=1",
+              "dataUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_4.png&raw=1",
+              "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_4.png&raw=1",
+              "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_4.png",
+              "remoteUrl": "",
+              "uploaded": false,
+              "uploadMode": "object_storage",
+              "storageProvider": "local_artifact",
+              "saved": {
+                "filename": "ep001_shot1-4_4.png",
+                "path": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_4.png",
+                "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep001_shot1-4_4.png",
+                "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep001_shot1-4_4.png&raw=1",
+                "artifactPath": "upstream/06-generated/images/comic-panels/ep001_shot1-4_4.png"
+              }
+            },
+            {
+              "name": "ep002_shot2-1_1.png",
+              "artifactPath": "upstream/06-generated/images/comic-panels/ep002_shot2-1_1.png",
+              "role": "storyboard",
+              "url": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep002_shot2-1_1.png&raw=1",
+              "dataUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep002_shot2-1_1.png&raw=1",
+              "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep002_shot2-1_1.png&raw=1",
+              "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep002_shot2-1_1.png",
+              "remoteUrl": "",
+              "uploaded": false,
+              "uploadMode": "object_storage",
+              "storageProvider": "local_artifact",
+              "saved": {
+                "filename": "ep002_shot2-1_1.png",
+                "path": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep002_shot2-1_1.png",
+                "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep002_shot2-1_1.png",
+                "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep002_shot2-1_1.png&raw=1",
+                "artifactPath": "upstream/06-generated/images/comic-panels/ep002_shot2-1_1.png"
+              }
+            },
+            {
+              "name": "ep002_shot2-2_1.png",
+              "artifactPath": "upstream/06-generated/images/comic-panels/ep002_shot2-2_1.png",
+              "role": "storyboard",
+              "url": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep002_shot2-2_1.png&raw=1",
+              "dataUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep002_shot2-2_1.png&raw=1",
+              "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep002_shot2-2_1.png&raw=1",
+              "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep002_shot2-2_1.png",
+              "remoteUrl": "",
+              "uploaded": false,
+              "uploadMode": "object_storage",
+              "storageProvider": "local_artifact",
+              "saved": {
+                "filename": "ep002_shot2-2_1.png",
+                "path": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep002_shot2-2_1.png",
+                "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/projects/无限强化_漫剧_001/06-generated/images/comic-panels/ep002_shot2-2_1.png",
+                "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=upstream%2F06-generated%2Fimages%2Fcomic-panels%2Fep002_shot2-2_1.png&raw=1",
+                "artifactPath": "upstream/06-generated/images/comic-panels/ep002_shot2-2_1.png"
+              }
+            }
+          ],
+          "refVideo": null,
+          "refAudio": null,
+          "refMode": "image2video",
+          "resolution": "720p",
+          "_modelIdx": "0",
+          "duration": "5",
+          "quality": "720p",
+          "aspectRatio": "9:16",
+          "generateAudio": true,
+          "positive": "## Shot 1 — 俯瞰建立\n\n【0s-5s】\n【运镜】上帝视角俯瞰锁定全景→缓慢下推揭示练武场（绑定观众从\"远方废墟\"沉浸进入\"活人聚集地\"的心理落点）\n【镜头参数】16mm 广角俯瞰起幅→缓慢切换至 35mm 小广角微倾下推；浅景深锁定屏障边缘\n【几何约束】地平线压至画面 y0.15 处横贯；屏障穹顶弧线作为画面顶部弧形骨架；消失点在画面正中偏下 y0.45\n【画面】[0.0-2.0s] 俯瞰画面中能量屏障穹顶缓慢呼吸式明灭，蓝白冷光沿穹顶边缘游走，屏障外荒芜废土上的异兽剪影缓慢位移。灰暗城市建筑在屏障内呈低饱和灰褐色块，远处尘雾低空飘荡。[2.0-3.0s] 叠化过渡，穹顶视角逐渐下沉拉近，灰暗城市褪为底层背景，练武场轮廓从尘雾中浮现。[3.0-5.0s] 练武场全景完整呈现——烈日硬光从正上方打下，人群中人头攒动微动，中央黑色巨碑矗立不动，碑石表面七色灵纹游走发光，蓝黑碑体与七色点光形成明暗对比中心。\n【配音】本段无对白配音\n【表演】无特定人物表演，群演为呼吸式微动\n【参考】@联邦全景 @林家练武场 @灵纹碑石\n【位置关系】屏障穹顶占画面上部 y0.05-0.35；练武场占据画面下部 y0.35-0.80；灵纹碑石位于练武场正中央 x0.5 y0.55\n【读点保护】首看点=灵纹碑石七色光点，坐标锁定 x0.45-0.55 y0.50-0.60，禁止侵入字幕安全区 y0.82-1.00\n【音效】环境底噪：低频风声持续 + 远处异兽低吼混响（极低音量）；拟音：屏障嗡鸣声（电子合成低频 60Hz）；特效音：灵纹游走时细碎电弧声；状态音：无\n【风格】纪实克制——灰暗基底低饱和冷灰调，屏障边缘冷蓝微光作为唯一色彩点缀；字幕安全区 y0.82-1.00 禁入，负空间留给画面底部\n【转场】叠化（屏障→练武场，2.0s 处启动，持续 1.0s）",
+          "vn2Chips": [],
+          "vn2Draft": "## Shot 1 — 俯瞰建立\n\n【0s-5s】\n【运镜】上帝视角俯瞰锁定全景→缓慢下推揭示练武场（绑定观众从\"远方废墟\"沉浸进入\"活人聚集地\"的心理落点）\n【镜头参数】16mm 广角俯瞰起幅→缓慢切换至 35mm 小广角微倾下推；浅景深锁定屏障边缘\n【几何约束】地平线压至画面 y0.15 处横贯；屏障穹顶弧线作为画面顶部弧形骨架；消失点在画面正中偏下 y0.45\n【画面】[0.0-2.0s] 俯瞰画面中能量屏障穹顶缓慢呼吸式明灭，蓝白冷光沿穹顶边缘游走，屏障外荒芜废土上的异兽剪影缓慢位移。灰暗城市建筑在屏障内呈低饱和灰褐色块，远处尘雾低空飘荡。[2.0-3.0s] 叠化过渡，穹顶视角逐渐下沉拉近，灰暗城市褪为底层背景，练武场轮廓从尘雾中浮现。[3.0-5.0s] 练武场全景完整呈现——烈日硬光从正上方打下，人群中人头攒动微动，中央黑色巨碑矗立不动，碑石表面七色灵纹游走发光，蓝黑碑体与七色点光形成明暗对比中心。\n【配音】本段无对白配音\n【表演】无特定人物表演，群演为呼吸式微动\n【参考】@联邦全景 @林家练武场 @灵纹碑石\n【位置关系】屏障穹顶占画面上部 y0.05-0.35；练武场占据画面下部 y0.35-0.80；灵纹碑石位于练武场正中央 x0.5 y0.55\n【读点保护】首看点=灵纹碑石七色光点，坐标锁定 x0.45-0.55 y0.50-0.60，禁止侵入字幕安全区 y0.82-1.00\n【音效】环境底噪：低频风声持续 + 远处异兽低吼混响（极低音量）；拟音：屏障嗡鸣声（电子合成低频 60Hz）；特效音：灵纹游走时细碎电弧声；状态音：无\n【风格】纪实克制——灰暗基底低饱和冷灰调，屏障边缘冷蓝微光作为唯一色彩点缀；字幕安全区 y0.82-1.00 禁入，负空间留给画面底部\n【转场】叠化（屏障→练武场，2.0s 处启动，持续 1.0s）",
+          "smartFrameMotion": "",
+          "smartFrameMotions": {},
+          "smartFrameMotionSeconds": {},
+          "smartFrameMotionActive": null,
+          "smartFrameMotionOpen": false,
+          "lastOutputArtifactHint": "03-视频/**/*.mp4"
+        },
+        "data": null,
+        "status": "waiting",
+        "progress": 0,
+        "error": ""
+      },
+      {
+        "id": "n3",
+        "type": "singleVideo",
+        "x": 780,
+        "y": 0,
+        "w": 380,
+        "values": {
+          "videoUrl": "",
+          "videoDataUrl": "",
+          "duration": 0,
+          "name": "shot01.mp4",
+          "width": 0,
+          "height": 0,
+          "ratio": "9:16",
+          "thumbnails": [],
+          "outputArtifactHint": "03-视频/**/*.mp4"
+        },
+        "data": null,
+        "status": "waiting",
+        "progress": 0,
+        "error": ""
+      },
+      {
+        "id": "n4",
+        "type": "videoEditor",
+        "x": 1240,
+        "y": 0,
+        "w": 720,
+        "values": {
+          "clips": [],
+          "audioClips": [],
+          "subtitles": [],
+          "canvasRatio": "9:16",
+          "brightness": 0,
+          "contrast": 0,
+          "saturation": 0,
+          "rotation": 0,
+          "mirrorX": false,
+          "mirrorY": false,
+          "videoVolume": 1,
+          "musicVolume": 0.5,
+          "exportResolution": "1080x1920",
+          "exportFps": "30",
+          "selectedClipId": null,
+          "selectedAudioId": null,
+          "selectedSubtitleId": null,
+          "playheadTime": 0,
+          "zoomLevel": 1,
+          "history": [],
+          "historyIndex": -1,
+          "outputArtifactHint": "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4"
+        },
+        "data": null,
+        "status": "waiting",
+        "progress": 0,
+        "error": ""
+      }
+    ],
+    "conns": [
+      {
+        "from": "n1",
+        "fromPort": "prompt",
+        "to": "n2",
+        "toPort": "style",
+        "kind": "prompt"
+      },
+      {
+        "from": "n2",
+        "fromPort": "video",
+        "to": "n3",
+        "toPort": "video",
+        "kind": "video"
+      },
+      {
+        "from": "n3",
+        "fromPort": "video",
+        "to": "n4",
+        "toPort": "video",
+        "kind": "video"
+      }
+    ],
+    "view": {
+      "x": 0,
+      "y": 0,
+      "k": 0.72
+    },
+    "next": 5,
+    "muted": []
+  },
+  "generatedAt": "2026-05-08T17:29:27.454Z"
+}

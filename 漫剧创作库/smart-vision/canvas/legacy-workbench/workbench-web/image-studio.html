@@ -1,0 +1,2091 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>漫剧创作库 · 生图工具</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --bg2: #111827;
+      --panel: rgba(17,24,39,.92);
+      --line: rgba(255,255,255,.08);
+      --line-hover: rgba(255,255,255,.15);
+      --text: #e8edf5;
+      --muted: #8896ab;
+      --accent: #7c8aff;
+      --accent2: #a78bfa;
+      --ok: #34d399;
+      --warn: #fbbf24;
+      --error: #f87171;
+      --input-bg: rgba(9,14,28,.85);
+      --radius: 10px;
+      --radius-sm: 8px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    .hidden { display: none !important; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    button, input, textarea, select { font: inherit; }
+    button {
+      appearance:none; border:1px solid var(--line); border-radius:var(--radius-sm);
+      padding:6px 12px; cursor:pointer; color:var(--text); background:var(--input-bg); transition:.15s;
+    }
+    button:hover { border-color:var(--line-hover); background:rgba(255,255,255,.04); }
+    button.primary { background:linear-gradient(135deg,#6366f1,#7c8aff); border-color:transparent; color:#fff; }
+    button.success { background:linear-gradient(135deg,#059669,#10b981); border-color:transparent; color:#fff; }
+    button.sm { padding:4px 9px; font-size:11px; }
+    button:disabled { opacity:.45; cursor:not-allowed; }
+    input[type="text"], textarea, select {
+      width:100%; border:1px solid var(--line); background:var(--input-bg); color:var(--text);
+      border-radius:var(--radius-sm); padding:8px 10px; outline:none;
+    }
+    textarea:focus, input:focus, select:focus { border-color:var(--accent); box-shadow:0 0 0 2px rgba(124,138,255,.15); }
+
+    .top-bar {
+      display:flex; align-items:center; justify-content:space-between; padding:12px 18px 10px;
+      border-bottom:1px solid var(--line); background:var(--bg2); position:sticky; top:0; z-index:50;
+    }
+    .top-bar-left { display:flex; align-items:center; gap:10px; }
+    .top-bar h1 { font-size:14px; font-weight:700; color:#fff; }
+    .top-bar h1 span { color:var(--accent); }
+    .top-badge { display:inline-flex; align-items:center; gap:4px; padding:2px 8px; border-radius:999px; background:rgba(124,138,255,.15); color:var(--accent); font-size:10px; font-weight:600; }
+    .top-bar-right { display:flex; gap:6px; align-items:center; }
+
+    .main-wrap {
+      max-width:1680px; margin:0 auto; display:grid; grid-template-columns:minmax(360px,470px) minmax(0,1fr);
+      min-height:calc(100vh - 46px);
+    }
+    .left-panel { border-right:1px solid var(--line); overflow-y:auto; max-height:calc(100vh - 46px); }
+    .result-panel { display:flex; flex-direction:column; overflow-y:auto; max-height:calc(100vh - 46px); }
+    .panel-section { padding:14px 16px; border-bottom:1px solid var(--line); }
+    .section-title { font-size:11.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px; }
+
+    .mode-tabs { display:flex; gap:0; margin-bottom:14px; background:var(--input-bg); border-radius:var(--radius-sm); padding:3px; }
+    .mode-tab { flex:1; padding:6px 0; text-align:center; border-radius:6px; border:none; background:transparent; color:var(--muted); font-size:12.5px; font-weight:600; }
+    .mode-tab.active { background:linear-gradient(135deg,#6366f1,#7c8aff); color:#fff; }
+
+    .field-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:8px 10px; }
+    .field { display:grid; gap:4px; }
+    .field.full { grid-column:1/-1; }
+    .field.hidden { display:none; }
+    label { font-size:11px; color:var(--muted); font-weight:600; }
+    .hint, .sub-note { font-size:10.5px; color:#55627a; line-height:1.45; }
+    .toolbar { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+    .dir-picker { display:flex; gap:6px; align-items:center; }
+    .dir-picker input { flex:1; }
+    .dir-badge { display:inline-flex; align-items:center; gap:4px; padding:2px 8px; border-radius:999px; background:rgba(52,211,153,.12); border:1px solid rgba(52,211,153,.25); color:#6ee7b7; font-size:10px; font-weight:600; cursor:pointer; transition:.15s; max-width:220px; overflow:hidden; }
+    .dir-badge:hover { background:rgba(52,211,153,.22); border-color:rgba(52,211,153,.45); }
+    .dir-badge .dir-name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .dir-badge-none { background:rgba(255,255,255,.04); border-color:var(--line); color:var(--muted); }
+
+    .status-line { margin-top:10px; padding:7px 10px; border-radius:var(--radius-sm); font-size:11.5px; border:1px solid var(--line); color:var(--muted); background:rgba(255,255,255,.03); }
+    .status-line.ok { color:#6ee7b7; background:rgba(16,185,129,.08); border-color:rgba(16,185,129,.2); }
+    .status-line.warn { color:#fcd34d; background:rgba(251,191,36,.08); border-color:rgba(251,191,36,.2); }
+    .status-line.error { color:#fca5a5; background:rgba(248,113,113,.08); border-color:rgba(248,113,113,.2); }
+
+    .progress-wrap { margin-top:10px; }
+    .progress-wrap.hidden { display:none; }
+    .progress-bar { width:100%; height:4px; border-radius:999px; background:rgba(255,255,255,.06); overflow:hidden; }
+    .progress-fill { height:100%; width:0; border-radius:999px; background:linear-gradient(90deg,var(--accent),var(--accent2),var(--ok)); transition:width .35s ease; }
+    .progress-text { margin-top:5px; font-size:11px; color:var(--muted); }
+
+    .edit-mode-tabs { display:flex; gap:0; margin-bottom:10px; background:var(--input-bg); border-radius:var(--radius-sm); padding:3px; }
+    .edit-mode-tab { flex:1; padding:5px 0; text-align:center; border-radius:6px; border:none; background:transparent; color:var(--muted); font-size:11.5px; font-weight:600; cursor:pointer; }
+    .edit-mode-tab.active { background:linear-gradient(135deg,#059669,#10b981); color:#fff; }
+
+    .prompt-builder {
+      display:grid; gap:7px; padding:8px; border:1px solid var(--line); border-radius:var(--radius-sm); background:rgba(255,255,255,.02);
+    }
+    .prompt-lane {
+      display:grid; grid-template-columns:70px minmax(0,1fr); gap:6px; align-items:start;
+    }
+    .lane-label {
+      font-size:10.5px; color:var(--muted); font-weight:700; padding-top:4px;
+    }
+    .lane-body {
+      min-height:34px; border:1px dashed var(--line); border-radius:8px; padding:5px 6px; display:flex; flex-wrap:wrap; gap:5px; align-items:flex-start;
+      background:rgba(9,14,28,.55);
+    }
+    .prompt-chip {
+      display:inline-flex; align-items:flex-start; gap:5px; padding:4px 7px; border-radius:8px; background:rgba(124,138,255,.12); border:1px solid rgba(124,138,255,.25); color:#dbe4ff; max-width:100%;
+    }
+    .prompt-chip.custom { background:rgba(16,185,129,.1); border-color:rgba(16,185,129,.25); color:#d1fae5; }
+    .chip-text { font-size:10.5px; line-height:1.35; word-break:break-word; }
+    .chip-remove {
+      width:14px; height:14px; min-width:14px; padding:0; border:none; border-radius:999px; background:rgba(255,255,255,.12); color:#fff; font-size:9px; line-height:14px;
+    }
+    .lane-input {
+      border:none !important; box-shadow:none !important; background:transparent !important; min-width:90px; padding:2px 1px !important; color:var(--text); font-size:10.5px;
+    }
+    .lane-empty { font-size:10px; color:#5f6d84; padding:3px 1px; }
+
+    .prompt-free-input {
+      width:100%; min-height:160px; resize:vertical; border:1px solid var(--line); background:var(--input-bg); color:var(--text);
+      border-radius:var(--radius-sm); padding:10px 12px; outline:none; font-size:12.5px; line-height:1.6;
+    }
+    .prompt-free-input:focus { border-color:var(--accent); box-shadow:0 0 0 2px rgba(124,138,255,.15); }
+    .prompt-free-input::placeholder { color:#4b5563; }
+
+    /* ── img2img 统一混合编辑器（参考 Seedance 2.0 @交互） ── */
+    .i2i-editor {
+      position:relative;
+      display:flex; flex-direction:column; gap:6px;
+      padding:10px 12px; border:1px solid var(--line); border-radius:12px;
+      background:rgba(15,23,42,.7); min-height:72px;
+    }
+    .i2i-input-box {
+      display:flex; flex-wrap:wrap; gap:5px; align-items:center; flex:1; min-height:32px; line-height:1.6;
+    }
+    .i2i-input-box:empty::before {
+      content:'输入提示词，@ 引用图片...'; color:#4b5563; font-size:12px; pointer-events:none;
+    }
+    /* 图片引用 chip */
+    .i2i-img-chip {
+      display:inline-flex; align-items:center; gap:5px; padding:2px 6px 2px 2px; border-radius:8px;
+      background:rgba(30,41,59,.9); border:1px solid rgba(255,255,255,.12); cursor:default; flex-shrink:0; max-width:104px;
+      transition:.15s;
+    }
+    .i2i-img-chip:hover { border-color:rgba(251,146,60,.45); }
+    .i2i-img-chip img {
+      width:28px; height:28px; border-radius:5px; object-fit:cover; display:block; flex-shrink:0;
+    }
+    .i2i-img-chip-name {
+      font-size:11px; color:#e2e8f0; font-weight:600; white-space:nowrap;
+    }
+    /* 文字标签 chip（词库/预设） */
+    .i2i-tag-chip {
+      display:inline-flex; align-items:center; gap:4px; padding:3px 8px 3px 8px; border-radius:16px;
+      font-size:11.5px; line-height:1.35; cursor:default; flex-shrink:0;
+    }
+    .i2i-tag-chip.tag {
+      background:rgba(99,102,241,.18); border:1px solid rgba(99,102,244,.35); color:#a5b4fc;
+    }
+    .i2i-tag-chip.preset {
+      background:rgba(251,191,36,.14); border:1px solid rgba(251,191,36,.35); color:#fde68a;
+    }
+    .i2i-inline-text {
+      display:inline-flex; align-items:flex-start; gap:4px; max-width:100%;
+      font-size:12.5px; line-height:1.6; color:var(--text);
+      padding:0 1px; border-radius:6px; cursor:text; flex:0 1 auto;
+    }
+    .i2i-inline-text:hover {
+      background:rgba(255,255,255,.04);
+    }
+    .i2i-inline-text .i2i-inline-text-value {
+      min-width:0; white-space:pre-wrap; overflow-wrap:anywhere; word-break:break-word; flex:1 1 auto;
+    }
+    .i2i-chip-close {
+      width:15px; height:15px; min-width:15px; padding:0; border:none; border-radius:50%;
+      background:rgba(255,255,255,.1); color:#94a3b8; font-size:10px; line-height:15px;
+      cursor:pointer; display:inline-grid; place-items:center; margin-left:-2px;
+    }
+    .i2i-chip-close:hover { background:rgba(248,113,113,.5); color:#fff; }
+    /* 自由文本输入 */
+    .i2i-text-input {
+      flex:1; min-width:120px; border:none !important; box-shadow:none !important;
+      background:transparent !important; color:var(--text); font-size:12.5px;
+      padding:2px 0 !important; outline:none; line-height:1.6;
+    }
+    .i2i-text-input::placeholder { color:#4b5563; }
+
+    /* @图片选择弹出面板 */
+    .i2i-at-popup {
+      position:absolute; z-index:300; bottom:calc(100% + 6px); left:0;
+      width:260px; max-height:200px; overflow-y:auto; padding:8px;
+      background:#1e293b; border:1px solid rgba(255,255,255,.14); border-radius:12px;
+      box-shadow:0 12px 40px rgba(0,0,0,.55);
+      display:grid; grid-template-columns:repeat(3,1fr); gap:6px;
+    }
+    .i2i-at-popup::after {
+      content:''; position:absolute; left:16px; bottom:-6px;
+      border-left:6px solid transparent; border-right:6px solid transparent; border-top:6px solid #1e293b;
+    }
+    .i2i-at-item {
+      aspect-ratio:1; border-radius:8px; overflow:hidden; cursor:pointer;
+      border:2px solid transparent; transition:.15s; position:relative;
+    }
+    .i2i-at-item:hover { border-color:var(--accent); transform:scale(1.05); z-index:1; }
+    .i2i-at-item.used { opacity:.35; pointer-events:none; }
+    .i2i-at-item img { width:100%; height:100%; object-fit:cover; display:block; }
+    .i2i-at-item-label {
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      background:rgba(0,0,0,.55); font-size:9px; color:#e2e8f0; opacity:0; transition:.15s;
+    }
+    .i2i-at-item:hover .i2i-at-item-label { opacity:1; }
+    .i2i-at-empty {
+      grid-column:1/-1; text-align:center; padding:16px 8px; font-size:11px; color:#6b7280;
+    }
+
+    .img2img-zone { display:flex; flex-direction:column; gap:5px; }
+    .img2img-stack { display:flex; align-items:flex-start; gap:6px; min-height:58px; padding:8px; border:1.5px dashed var(--line); border-radius:var(--radius-sm); background:var(--input-bg); }
+    .img2img-stack:hover { border-color:var(--accent); }
+    .img2img-add-btn {
+      width:50px; height:50px; display:grid; place-items:center; border-radius:var(--radius-sm); border:2px dashed var(--line);
+      color:var(--muted); font-size:22px; flex-shrink:0; user-select:none;
+    }
+    .img2img-add-btn:hover { border-color:var(--accent); color:var(--accent); background:rgba(124,138,255,.06); }
+    .img2img-stack-container { flex:1; display:flex; flex-wrap:nowrap; align-items:flex-start; min-width:0; max-height:74px; overflow-x:auto; overflow-y:hidden; padding:2px 6px 2px 0; }
+    .img2img-stack-container.expanded { max-height:400px; flex-wrap:wrap; overflow-y:auto; overflow-x:hidden; gap:8px; }
+    .stack-thumb {
+      position:relative; width:54px; height:54px; margin-left:-16px; border-radius:8px; overflow:hidden; border:2px solid var(--bg); box-shadow:0 3px 10px rgba(0,0,0,.34); cursor:pointer; flex-shrink:0;
+    }
+    .stack-thumb:first-child{margin-left:0}
+    .stack-thumb:nth-child(1){z-index:10}.stack-thumb:nth-child(2){z-index:9}.stack-thumb:nth-child(3){z-index:8}.stack-thumb:nth-child(4){z-index:7}.stack-thumb:nth-child(n+5){z-index:6}
+    .img2img-stack-container.expanded .stack-thumb{margin-left:0}
+    .stack-thumb:hover { transform:translateY(-3px) scale(1.08); z-index:20 !important; }
+    .stack-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+    .stack-thumb-del{position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;border:none;background:rgba(239,68,68,.85);color:#fff;font-size:10px;line-height:16px;text-align:center;padding:0;cursor:pointer;opacity:0;z-index:3;}
+    .stack-thumb:hover .stack-thumb-del{opacity:1}
+    .stack-order-badge,.stack-count-badge{position:absolute;background:rgba(0,0,0,.72);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:999px;pointer-events:none;z-index:2;}
+    .stack-order-badge{top:3px;left:3px}
+    .stack-count-badge{bottom:3px;right:3px}
+    .img2img-hint{font-size:10.5px;color:#55627a;display:flex;justify-content:space-between;}
+    .hidden-file-input{display:none;}
+
+    .wordlist-header{
+      display:flex;justify-content:space-between;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:var(--radius-sm);border:1px solid var(--line);background:var(--input-bg); cursor:pointer;
+    }
+    .wordlist-header:hover{border-color:var(--line-hover);}
+    .wordlist-toggle{font-size:10px;color:var(--muted);}
+    .wordlist-panel.hidden{display:none}
+    .wordlist-panel{margin-top:6px;border:1px solid var(--line);border-radius:var(--radius-sm);overflow:hidden;background:rgba(9,14,28,.6);}
+    .wordlist-tabs{display:flex;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02);padding:5px 6px; max-height:92px; overflow:auto;}
+    .wl-tab{padding:4px 10px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--muted);font-size:11px;cursor:pointer;font-weight:500;}
+    .wl-tab.active{background:rgba(99,102,241,.15);border-color:rgba(99,102,243,.35);color:#a5b4fc;font-weight:700}
+    .wordlist-content{max-height:320px;overflow-y:auto;padding:10px 12px;}
+    .wl-category{margin-bottom:10px}.wl-category:last-child{margin-bottom:0}
+    .wl-category-title{font-size:11px;font-weight:700;color:#9ca3af;margin-bottom:5px;display:flex;align-items:center;gap:6px;}
+    .wl-category-title::before{content:'';display:inline-block;width:3px;height:11px;border-radius:2px;background:var(--accent);}
+    .wl-items{display:flex;flex-wrap:wrap;gap:4px}
+    .wl-item{padding:4px 8px;border-radius:6px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:#b0bac8;font-size:11px;cursor:pointer;line-height:1.42;white-space:nowrap;transition:all .15s ease;}
+    .wl-item.combo{border-color:rgba(251,191,36,.25);background:rgba(251,191,36,.06);color:#fde68a;}
+    .wl-item.selected{background:linear-gradient(135deg,rgba(99,102,241,.38),rgba(129,140,248,.34));border-color:#95a0ff;color:#ffffff;box-shadow:0 0 0 1px rgba(167,139,250,.24) inset,0 0 0 1px rgba(99,102,241,.22);transform:translateY(-1px);}
+    .wl-tip{font-size:10px;color:#4b5563;margin-top:2px}
+    .preset-card {
+      text-align:left; padding:10px 12px; border:1px solid var(--line); border-radius:8px; background:rgba(255,255,255,.03); color:var(--text); display:grid; gap:4px; width:100%; transition:all .16s ease;
+    }
+    .preset-card.selected{border-color:#95a0ff;background:linear-gradient(135deg,rgba(99,102,241,.24),rgba(167,139,250,.18));box-shadow:0 0 0 1px rgba(167,139,250,.2) inset,0 8px 20px rgba(79,70,229,.14);transform:translateY(-1px);}
+
+    .result-image-area {
+      flex:1; min-height:420px; display:grid; place-items:center; border-radius:var(--radius); border:1.5px dashed var(--line); background:var(--input-bg); overflow:hidden; cursor:pointer;
+    }
+    .result-image-area img { width:100%; height:100%; object-fit:contain; display:block; }
+    .result-empty { color:#3d4a60; font-size:12.5px; }
+    .result-actions { padding:10px 16px; display:flex; gap:6px; flex-wrap:wrap; border-top:1px solid var(--line); background:var(--bg2); position:sticky; bottom:0; z-index:10; }
+
+    .gallery-section { border-top:1px solid var(--line); background:var(--bg2); }
+    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:8px; padding:12px 16px; }
+    .gallery-card{padding:6px;border-radius:var(--radius-sm);background:var(--input-bg);border:1px solid var(--line)}
+    .gallery-card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:5px;background:rgba(255,255,255,.03);cursor:pointer;}
+    .gallery-card strong{font-size:10.5px;color:var(--text);display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .gallery-card span{font-size:9.5px;color:var(--muted)}
+
+    .toast{position:fixed;right:16px;bottom:16px;background:#1e293b;color:#e2e8f0;font-weight:600;font-size:11.5px;padding:8px 14px;border-radius:8px;border:1px solid var(--line);opacity:0;transform:translateY(8px);transition:.2s ease;pointer-events:none;z-index:99999}
+    .toast.show{opacity:1;transform:translateY(0)}
+
+    .lightbox-overlay{position:fixed;inset:0;z-index:100000;background:rgba(0,0,0,.86);backdrop-filter:blur(8px);display:grid;place-items:center;opacity:0;visibility:hidden;transition:all .25s ease}
+    .lightbox-overlay.show{opacity:1;visibility:visible}
+    .lightbox-img-wrap{max-width:92vw;max-height:90vh;border-radius:var(--radius);overflow:hidden;background:#000;display:grid;place-items:center;}
+    .lightbox-img-wrap img{max-width:92vw;max-height:90vh;object-fit:contain;}
+    .lightbox-close{position:absolute;top:16px;right:20px;width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);background:rgba(0,0,0,.4);color:#fff;font-size:18px;display:grid;place-items:center;z-index:1}
+
+    @media(max-width:1200px){ .main-wrap{grid-template-columns:minmax(320px,420px) 1fr;} }
+    @media(max-width:900px){ .main-wrap{grid-template-columns:1fr;} .left-panel,.result-panel{max-height:none;border-right:none;} .prompt-lane{grid-template-columns:1fr;} .lane-label{padding-top:0;} }
+
+    .model-config-btn{padding:2px 8px;border-radius:999px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.28);color:#6ee7b7;font-size:10px;font-weight:600;cursor:pointer;transition:.15s;}
+    .model-config-btn:hover{background:rgba(16,185,129,.22);border-color:rgba(16,185,129,.45);}
+    .modal-overlay{position:fixed;inset:0;z-index:200000;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);display:grid;place-items:center;opacity:0;visibility:hidden;transition:all .2s ease;}
+    .modal-overlay.show{opacity:1;visibility:visible;}
+    .modal-box{width:460px;max-width:94vw;max-height:88vh;overflow-y:auto;background:#111827;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:20px;box-shadow:0 24px 60px rgba(0,0,0,.5);display:grid;gap:12px;}
+    .modal-title{font-size:14px;font-weight:700;color:#fff;display:flex;justify-content:space-between;align-items:center;}
+    .modal-close{width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:transparent;color:#9ca3af;font-size:16px;cursor:pointer;display:grid;place-items:center;padding:0;}
+    .modal-close:hover{background:rgba(255,255,255,.06);color:#fff;}
+    .mc-form{display:grid;gap:10px;}
+    .mc-form label{font-size:11px;color:var(--muted);font-weight:600;}
+    .mc-form input{width:100%;border:1px solid var(--line);background:var(--input-bg);color:var(--text);border-radius:8px;padding:8px 10px;font-size:12px;outline:none;}
+    .mc-form input:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(124,138,255,.15);}
+    .mc-actions{display:flex;gap:6px;justify-content:flex-end;margin-top:4px;}
+    .mc-list{display:grid;gap:6px;max-height:200px;overflow-y:auto;}
+    .mc-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.02);cursor:pointer;transition:.15s;}
+    .mc-item:hover{border-color:var(--line-hover);background:rgba(255,255,255,.04);}
+    .mc-item.active{border-color:rgba(99,102,241,.5);background:rgba(99,102,241,.1);}
+    .mc-item-info{flex:1;min-width:0;}
+    .mc-item-name{font-size:12px;font-weight:600;color:#e2e8f0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .mc-item-url{font-size:10px;color:#6b7280;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .mc-item-del{width:22px;height:22px;border-radius:50%;border:none;background:rgba(248,113,113,.12);color:#f87171;font-size:11px;cursor:pointer;display:grid;place-items:center;padding:0;opacity:0;transition:.15s;}
+    .mc-item:hover .mc-item-del{opacity:1;}
+    .mc-divider{font-size:11px;font-weight:700;color:var(--muted);padding:4px 0 2px;border-top:1px solid var(--line);margin-top:2px;}
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <h1>GPT Image-2 &middot; <span>Studio</span></h1>
+      <span class="top-badge">★ 已就绪</span>
+      <button class="model-config-btn" id="modelConfigBtn">模型配置</button>
+      <button class="model-config-btn" type="button" id="pickDirBtn">设置存图目录</button>
+      <input id="outputDir" type="hidden" value="" />
+      <button class="hidden" type="button" id="defaultDirBtn">默认</button>
+    </div>
+    <div class="top-bar-right">
+      <button class="sm" id="refreshGalleryBtn">刷新图库</button>
+      <button class="sm" id="clearBtn">清空</button>
+    </div>
+  </div>
+
+  <div class="main-wrap">
+    <div class="left-panel panel">
+      <div class="panel-section">
+        <div class="section-title">生成参数</div>
+
+        <div class="mode-tabs" id="modeTabs">
+          <button class="mode-tab active" data-mode="txt2img" type="button">文生图</button>
+          <button class="mode-tab" data-mode="img2img" type="button">图生图</button>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="modelSelect">模型</label>
+            <select id="modelSelect"><option value="">加载中...</option></select>
+            <input id="baseUrl" type="hidden" value="" />
+            <input id="apiKey" type="hidden" value="" />
+            <input id="model" type="hidden" value="" />
+          </div>
+          <div class="field">
+            <label for="size">尺寸</label>
+            <select id="size">
+              <option value="1024x1024">1024 x 1024（1:1）</option>
+              <option value="1024x1536">1024 x 1536（3:4）</option>
+              <option value="1536x1024">1536 x 1024（4:3）</option>
+              <option value="2048x2048">2048 x 2048（2K）</option>
+              <option value="4096x4096">4096 x 4096（4K）</option>
+              <option value="4096x2304">4096 x 2304（16:9）</option>
+              <option value="2304x4096">2304 x 4096（9:16）</option>
+              <option value="auto">auto（自动）</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="quality">质量参数</label>
+            <input id="quality" type="text" placeholder="如 high / hd" />
+          </div>
+          <div class="field">
+            <label for="background">背景参数</label>
+            <input id="background" type="text" placeholder="如 transparent" />
+          </div>
+
+          <div class="field full hidden" id="imageUploadField">
+            <label>选择参考图片</label>
+            <div class="img2img-zone">
+              <div class="img2img-stack" id="img2imgStack">
+                <div class="img2img-add-btn" id="img2imgAddBtn" title="添加图片">+</div>
+                <div class="img2img-stack-container" id="stackContainer"></div>
+                <input type="file" id="imageInput" accept="image/png,image/jpeg,image/webp" multiple class="hidden-file-input"/>
+              </div>
+              <div class="img2img-hint"><span id="uploadCountHint">当前 0 / 10 张</span><span>悬停展开全部</span></div>
+            </div>
+          </div>
+
+          <div class="field full" id="promptEditorField">
+            <label>提示词编辑</label>
+            <div class="edit-mode-tabs" id="editModeTabs">
+              <button class="edit-mode-tab active" data-edit-mode="builder" type="button">组装器</button>
+              <button class="edit-mode-tab" data-edit-mode="free" type="button">自由输入</button>
+            </div>
+            <div class="prompt-builder" id="promptBuilder"></div>
+            <textarea class="prompt-free-input hidden" id="promptFreeInput" placeholder="在此手写提示词。点击下方词库标签可快速插入。&#10;&#10;提示：中文逗号或英文逗号分隔不同描述片段。"></textarea>
+            <div class="hint" id="promptHint">固定顺序：主体动作 → 风格 → 镜头 → 光影 → 画质 → 负面提示词。你可以点击标签加入，也可以在每一栏中间手写自定义提示词。</div>
+
+            <div class="i2i-editor hidden" id="i2iEditor">
+              <div class="i2i-input-box" id="i2iInputBox">
+                <input class="i2i-text-input" id="i2iTextInput" placeholder="输入 @ 引用图片，或直接写提示词..." autocomplete="off" spellcheck="false" />
+              </div>
+              <div class="i2i-at-popup hidden" id="i2iAtPopup"></div>
+              <div class="hint">输入 @ 触发图片选择，点击下方词库/预设可快速插入标签。</div>
+            </div>
+
+            <textarea id="prompt" hidden></textarea>
+          </div>
+
+          <div class="field full">
+            <div class="wordlist-header" id="presetHeader"><span>✨ 一键预设组合 <span class="wordlist-toggle" id="presetToggle">▼</span></span><span style="font-size:10px;color:var(--muted)">点击展开</span></div>
+            <div class="wordlist-panel hidden" id="presetPanel">
+              <div class="wordlist-tabs" id="presetTabs"></div>
+              <div class="wordlist-content" id="presetContent"><div class="sub-note">预设加载中...</div></div>
+            </div>
+          </div>
+
+          <div class="field full">
+            <div class="wordlist-header" id="wordlistHeader"><span>📚 词库速查 <span class="wordlist-toggle" id="wordlistToggle">▼</span></span><span style="font-size:10px;color:var(--muted)">点击展开</span></div>
+            <div class="wordlist-panel hidden" id="wordlistPanel">
+              <div class="wordlist-tabs" id="wordlistTabs"></div>
+              <div class="wordlist-content" id="wordlistContent"><div class="sub-note">词库加载中...</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="toolbar" style="margin-top:14px">
+          <button class="success primary" id="generateBtn" style="padding:8px 28px;font-size:13px;">开始生成</button>
+          <button class="sm" id="fillExampleBtn">示例提示词</button>
+          <button class="sm" id="copyPromptBtn">复制</button>
+        </div>
+
+        <div class="progress-wrap hidden" id="progressWrap">
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="progress-text" id="progressText">准备中...</div>
+        </div>
+
+        <div class="status-line warn" id="statusLine">等待填写参数。</div>
+      </div>
+    </div>
+
+    <div class="result-panel panel">
+      <div class="panel-section" style="flex:1;display:flex;flex-direction:column;min-height:calc(100vh - 170px);">
+        <div class="section-title">结果预览</div>
+        <div class="result-image-area" id="resultImageShell">
+          <span class="result-empty">尚未生成结果</span>
+        </div>
+      </div>
+      <div class="result-actions">
+        <button class="sm primary" id="saveToGalleryBtn">📥 同步到图库</button>
+        <button class="sm" id="copyRemoteUrlBtn">复制远端地址</button>
+        <button class="sm" id="copyResultPromptBtn">复制修订提示词</button>
+      </div>
+    </div>
+  </div>
+
+  <section class="panel gallery-section">
+    <div style="padding:10px 16px 0;display:flex;justify-content:space-between;align-items:center;">
+      <div class="section-title" style="margin:0;">最近生成图库</div>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="sub-note" style="grid-column:1/-1;padding:12px;">图库尚未载入。</div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast">已复制</div>
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <button class="lightbox-close" id="lightboxClose">×</button>
+    <div class="lightbox-img-wrap"><img alt="预览大图" id="lightboxImg"/></div>
+  </div>
+
+  <div class="modal-overlay" id="modelConfigModal">
+    <div class="modal-box">
+      <div class="modal-title">
+        <span>模型配置管理</span>
+        <button class="modal-close" id="mcCloseBtn">×</button>
+      </div>
+      <div class="mc-divider">已保存的模型</div>
+      <div class="mc-list" id="mcList"><div class="sub-note">暂无配置，请在下方添加。</div></div>
+      <div class="mc-divider">添加 / 编辑模型</div>
+      <div class="mc-form">
+        <div><label>API 地址（Base URL）</label><input id="mcUrl" type="text" placeholder="如：https://api.openai.com/v1" /></div>
+        <div><label>API Key</label><input id="mcKey" type="password" placeholder="sk-..." /></div>
+        <div><label>模型名称</label><input id="mcModel" type="text" placeholder="如：gpt-image-1 / dall-e-3" /></div>
+        <div class="mc-actions">
+          <button class="sm" id="mcCancelBtn">取消</button>
+          <button class="sm primary" id="mcSaveBtn">保存配置</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const API_BASE = '/api/workbench/image-studio';
+const DEFAULT_OUTPUT_DIR = 'runninghub_outputs/image-studio-v3';
+const WORDLIST_API = `${API_BASE}/wordlist`;
+const OBJECT_STORAGE_UPLOAD_API = `${API_BASE}/upload-reference`;
+const PRESET_WORDLIST_ID = 'preset-recipes';
+const EMBEDDED_WORDLISTS = {"art-style.json":{"_meta":{"dimension":"艺术风格与调性","priority":2,"required":true,"description":"决定画面的整体画风和艺术质感，避免风格混乱。包含：品类风格、参考对标、质感调性","tip":"不可同时写入2种以上冲突风格（如国漫写实+日系萌系），会导致画风崩坏"},"categories":[{"id":"genre_realistic","name":"写实/摄影类","tip":"追求真实感，电影剧照质感","items":[{"keyword":"写实摄影风","usage":"电影剧照、真人质感"},{"keyword":"超写实主义（Hyperrealism）","usage":"超越照片的真实感"},{"keyword":"照片级真实感（Photorealistic）","usage":"难以分辨真假的拟真"},{"keyword":"电影感","usage":"胶片、宽画幅、叙事感"},{"keyword":"胶片质感","usage":"颗粒、色偏、怀旧"},{"keyword":"35mm胶片摄影","usage":"经典胶片颗粒感"},{"keyword":"胶片颗粒感","usage":"复古质感、噪点美学"},{"keyword":"电影摄影（Film Photography）","usage":"片场拍摄质感"},{"keyword":"拍立得风格","usage":"即时成像、白边框"},{"keyword":"黑白摄影","usage":"经典、高对比、情绪化"},{"keyword":"微距摄影","usage":"极微细节、景深极浅"},{"keyword":"产品摄影","usage":"商业产品、干净布光"},{"keyword":"美食摄影","usage":"诱人质感、暖光"},{"keyword":"街头摄影","usage":"纪实、随性、都市"}]},{"id":"genre_anime","name":"动漫/插画类","tip":"二次元与插画风格","items":[{"keyword":"日系动漫风格","usage":"二次元、热血、校园"},{"keyword":"国漫写实风格","usage":"漫剧首选，角色写实+国风审美"},{"keyword":"漫画风格（Manga）","usage":"黑白线稿、漫画分格"},{"keyword":"吉卜力风格","usage":"温暖、自然、手绘感"},{"keyword":"新海诚光影","usage":"极致光效、云层、天空"},{"keyword":"鸟山明画风","usage":"经典日漫、热血少年"},{"keyword":"赛璐璐上色（Cel Shading）","usage":"扁平色块、动画感"},{"keyword":"数字插画（Digital Illustration）","usage":"现代板绘、色彩丰富"},{"keyword":"手绘厚涂","usage":"笔触可见、艺术感"},{"keyword":"水彩插画","usage":"轻透、水渍边缘、柔和"},{"keyword":"铅笔素描","usage":"线条感、手绘、基础"},{"keyword":"水墨国风","usage":"古风、写意、东方美学"},{"keyword":"浮世绘","usage":"和风、传统版画质感"},{"keyword":"油画质感","usage":"古典、厚涂、艺术感"},{"keyword":"儿童插画","usage":"天真、明亮、绘本风"},{"keyword":"线条艺术（Line Art）","usage":"纯线条、无填充"},{"keyword":"矢量艺术（Vector Art）","usage":"锐利边缘、可缩放"},{"keyword":"剪纸艺术","usage":"层叠、纸质、民间"},{"keyword":"拼贴画（Collage）","usage":"混合素材、解构重组"},{"keyword":"像素复古","usage":"8-bit、游戏怀旧"}]},{"id":"genre_3d","name":"3D/CG类","tip":"三维建模、游戏与动画","items":[{"keyword":"3D CG渲染","usage":"游戏资产、精细建模感"},{"keyword":"3D写实渲染","usage":"超精细3D人物/场景"},{"keyword":"低多边形（Low Poly）","usage":"几何极简、风格化"},{"keyword":"体素艺术（Voxel Art）","usage":"像素3D、方块构成"},{"keyword":"等距视图（Isometric）","usage":"45度视角、建筑展示"},{"keyword":"盲盒玩具风格（Blind Box）","usage":"Q版3D、手办感"},{"keyword":"皮克斯风格","usage":"温暖、圆润、可爱"},{"keyword":"梦工厂风格","usage":"动感、冒险、色彩鲜艳"},{"keyword":"粘土动画（Claymation）","usage":"可塑性、手作感、纹理"},{"keyword":"折纸风格（Origami）","usage":"纸张折叠、几何"},{"keyword":"石雕质感（Stone Sculpture）","usage":"古典雕塑、纪念碑"}]},{"id":"genre_concept","name":"概念设计/影视类","tip":"影视、游戏、科幻概念","items":[{"keyword":"美式漫威概念设计","usage":"超级英雄、工业质感"},{"keyword":"暴雪概念设计","usage":"史诗、厚重、工业设计"},{"keyword":"史诗级电影概念设计","usage":"宏大、精致、大片感"},{"keyword":"赛博朋克","usage":"未来、霓虹、高科技低生活"},{"keyword":"蒸汽朋克（Steampunk）","usage":"齿轮、蒸汽、维多利亚"},{"keyword":"赛博朋克2077风格","usage":"霓虹、雨天、科技废墟"},{"keyword":"英雄联盟CG风格","usage":"动感、特效华丽、角色突出"},{"keyword":"原神角色设计","usage":"二次元精致、元素特效"},{"keyword":" Snyder镜头质感","usage":"慢动作、高对比、史诗场面"},{"keyword":"维伦纽瓦极简美学","usage":"巨大尺度、极简构图、沙漠色调"},{"keyword":"好莱坞风格","usage":"大片质感、工业水准"},{"keyword":"科幻概念设计","usage":"未来科技、太空"},{"keyword":"暗黑哥特","usage":"黑暗、神秘、宗教感"},{"keyword":"废土末日风","usage":"荒芜、生存、后启示录"},{"keyword":"反乌托邦","usage":"压抑、监控、灰色未来"}]},{"id":"genre_art_movement","name":"艺术流派","tip":"经典艺术运动与风格","items":[{"keyword":"印象派（Impressionism）","usage":"光影变化、笔触感"},{"keyword":"文艺复兴（Renaissance）","usage":"古典技法、透视、宗教"},{"keyword":"巴洛克（Baroque）","usage":"华丽、戏剧性、金色调"},{"keyword":"波普艺术（Pop Art）","usage":"鲜艳色块、消费主义"},{"keyword":"超现实主义（Surrealism）","usage":"梦境、扭曲、达利风"},{"keyword":"野兽派（Fauvism）","usage":"粗犷笔触、浓烈色彩"},{"keyword":"装饰艺术（Art Deco）","usage":"几何纹样、金色、1920s"},{"keyword":"极简主义（Minimalism）","usage":"少即是多、留白"},{"keyword":"当代艺术（Contemporary Art）","usage":"前卫、实验性"},{"keyword":"水墨画","usage":"写意、东方传统"},{"keyword":"千禧风（Y2K）","usage":"金属色、科技感、2000s"},{"keyword":"蒸汽波（Synthwave）","usage":"霓虹紫、网格、复古未来"},{"keyword":"哥特式（Gothic）","usage":"尖拱、暗色、宗教建筑"}]},{"id":"reference_artist","name":"艺术家参考","tip":"以具体艺术家风格为对标","items":[{"keyword":"WLOP笔触质感","usage":"国风CG、柔光人物"},{"keyword":"莫奈风格（Monet）","usage":"印象派光影、花园"},{"keyword":"梵高风格（Van Gogh）","usage":"旋转笔触、厚涂、星空"},{"keyword":"达芬奇风格（Da Vinci）","usage":"古典写实、明暗渐变"},{"keyword":"安迪·沃霍尔风格（Warhol）","usage":"波普、重复、丝网印刷"},{"keyword":"毕加索风格（Picasso）","usage":"立体主义、多视角"},{"keyword":"草间弥生风格（Kusama）","usage":"波点、无限、红白"},{"keyword":"宫崎骏风格","usage":"奇幻、飞行、自然"},{"keyword":"新川耀司（Shinkawa）","usage":"金属齿轮、暗色军事"}]},{"id":"tone_quality","name":"质感调性","tip":"画面情绪氛围","items":[{"keyword":"硬核战斗质感","usage":"拳拳到肉、金属碰撞"},{"keyword":"工业硬核","usage":"金属、机械、结构感"},{"keyword":"氛围感","usage":"情绪渲染、沉浸式"},{"keyword":"史诗感","usage":"宏大、磅礴、传说感"},{"keyword":"暗黑压抑","usage":"低光、压抑、危险"},{"keyword":"清新明亮","usage":"日系、日常、治愈"},{"keyword":"梦幻/奇幻","usage":"魔法、发光、超越现实"},{"keyword":"神秘","usage":"未知、暗影、谜团"},{"keyword":"浪漫","usage":"柔光、粉色调、诗意"},{"keyword":"宁静","usage":"平和、自然、冥想"},{"keyword":"恐怖/诡异","usage":"阴森、不安、惊悚"},{"keyword":"温暖","usage":"暖光、亲密、安心"},{"keyword":"紧张","usage":"高对比、阴影、压迫"}]}]},"camera-composition.json":{"_meta":{"dimension":"镜头构图与视角","priority":3,"required":true,"description":"决定观众的观看视角、画面景别、动态张力","tip":"不可同时写入冲突景别/视角（如远景+特写），会导致空间逻辑混乱"},"categories":[{"id":"shot_size","name":"景别","tip":"决定画面包含多少内容","items":[{"keyword":"微距（Macro Shot）","usage":"极近细节：瞳孔、指纹、液滴"},{"keyword":"极端特写（Extreme Close-up）","usage":"眼睛/嘴唇/细节极致"},{"keyword":"特写（Close Up）","usage":"面部/局部：情绪高潮、细节揭示"},{"keyword":"近景","usage":"胸部以上：对话、情感"},{"keyword":"中近景（MCU）","usage":"肩部以上：对话交流"},{"keyword":"中景（Medium Shot）","usage":"腰部以上：日常、动作展示"},{"keyword":"中远景（MLS）","usage":"膝盖以上：人+部分环境"},{"keyword":"全身（Full Body Shot）","usage":"全身展示：角色登场"},{"keyword":"全景（Wide Shot）","usage":"全身+环境：场景建立"},{"keyword":"远景（Long Shot）","usage":"人+环境：场景建立"},{"keyword":"极远景（Extreme Wide Shot）","usage":"宏大场景：史诗开场"},{"keyword":"头部特写（Headshot）","usage":"证件照/肖像"},{"keyword":"半身像（Bust）","usage":"胸以上、肖像"},{"keyword":"过肩景（OTS Shot）","usage":"对话、窥视、空间深度"}]},{"id":"perspective","name":"视角","tip":"机位高度与观看角度","items":[{"keyword":"FPV第一人称广角镜头","usage":"强代入感、穿越、沉浸"},{"keyword":"POV第一人称视角","usage":"主观视角、代入感"},{"keyword":"仰拍（Low Angle Shot）","usage":"压迫感、力量感、巨人视角"},{"keyword":"低角度仰拍","usage":"英雄化、威压、崇高"},{"keyword":"俯拍（High Angle Shot）","usage":"全局视野、渺小感"},{"keyword":"高角度俯拍","usage":"脆弱、被压制、旁观"},{"keyword":"俯拍/上帝视角（Top-down/Overhead）","usage":"正上方俯视"},{"keyword":"鸟瞰（Bird's Eye View）","usage":"高空俯视、全局"},{"keyword":"正面平视（Eye Level）","usage":"中性、对等、直视观众"},{"keyword":"侧面拍摄（Side View）","usage":"运动展示、侧面轮廓"},{"keyword":"背面视角（From Behind）","usage":"背影、跟随、悬念"},{"keyword":"鱼眼广角（Fisheye Lens）","usage":"畸变张力、极端空间"},{"keyword":"倾斜构图（Dutch Angle）","usage":"失衡、不安、混乱"},{"keyword":"超广角镜头（Ultra Wide Shot）","usage":"广袤空间、夸张透视"},{"keyword":"移轴/倾斜偏移（Tilt-Shift）","usage":"微缩模型感"},{"keyword":"等距视图（Isometric View）","usage":"45度、建筑、游戏"},{"keyword":"卫星视图（Satellite View）","usage":"太空俯瞰"},{"keyword":"微观视角（Microscopic View）","usage":"细胞级、超微"},{"keyword":"全景（Panorama）","usage":"超宽横向视野"},{"keyword":"360度视角","usage":"球形全景"}]},{"id":"camera_language","name":"镜头语言","tip":"运镜方式与动态","items":[{"keyword":"动态跟拍定格","usage":"运动中凝固瞬间"},{"keyword":"慢门升格静帧","usage":"时间膨胀、诗意感"},{"keyword":"snap-pan急摇定格","usage":"速度线、动感模糊"},{"keyword":"纵深推进镜头","usage":"深入场景、发现主体"},{"keyword":"快速拉远揭示","usage":"从局部到全局、反转"},{"keyword":"环绕运镜（Orbit Shot）","usage":"360度展示、仪式感"},{"keyword":"手持晃动（Handheld）","usage":"紧张、纪实、混乱"},{"keyword":"稳定器跟拍","usage":"流畅运动、电影感"},{"keyword":"正面硬切定格镜头","usage":"冲击力、对抗感"},{"keyword":"高空纵深构图","usage":"坠落感、空间纵深"},{"keyword":"电影级镜头（Cinematic Shot）","usage":"专业电影质感"},{"keyword":"跟随视角（Follow Camera）","usage":"跟踪主体运动"},{"keyword":"运动视角（Dynamic）","usage":"充满动感、活力"},{"keyword":"模拟摄影机（Simulated Camera）","usage":"拟真摄影机效果"}]},{"id":"composition","name":"构图规则","tip":"画面元素排列方式","items":[{"keyword":"居中构图","usage":"仪式感、对称、聚焦"},{"keyword":"三分法构图（Rule of Thirds）","usage":"平衡、舒适、标准"},{"keyword":"对角线动态构图","usage":"运动、冲突、张力"},{"keyword":"黄金分割构图","usage":"美感、经典比例"},{"keyword":"引导线构图","usage":"透视、纵深感"},{"keyword":"框中框构图（Framing）","usage":"窥视、困禁、层次"},{"keyword":"负空间留白构图","usage":"孤独、呼吸感、氛围"},{"keyword":"对称构图","usage":"秩序、庄重、压迫"},{"keyword":"S形构图","usage":"流动、蜿蜒、优雅"},{"keyword":"对角线构图（Diagonal）","usage":"动感、不稳定"},{"keyword":"辐射构图（Radial）","usage":"聚焦中心、扩散"},{"keyword":"动态对称构图","usage":"复杂平衡、艺术"},{"keyword":"拼贴构图（Collage）","usage":"多元素组合"},{"keyword":"对比构图（Contrast）","usage":"大小/明暗对比"},{"keyword":"非对称构图","usage":"视觉平衡、有趣"},{"keyword":"重复构图（Repetition）","usage":"节奏感、规律"},{"keyword":"消失点构图","usage":"透视集中、深度"},{"keyword":"分割互补构图","usage":"色彩对比平衡"},{"keyword":"并列构图（Juxtaposition）","usage":"并置、反差"},{"keyword":"孤立构图（Isolation）","usage":"突出主体、简洁"}]},{"id":"lens_effect","name":"镜头特效","tip":"摄影镜头产生的视觉特效","items":[{"keyword":"景深虚化（Bokeh）","usage":"背景散焦、突出主体"},{"keyword":"浅景深（Shallow DOF）","usage":"极浅焦平面、梦幻"},{"keyword":"动态模糊（Motion Blur）","usage":"速度感、运动"},{"keyword":"镜头光晕（Lens Flare）","usage":"光源炫光、温暖"},{"keyword":"色差（Chromatic Aberration）","usage":"边缘彩色偏移"},{"keyword":"过曝（Overexposure）","usage":"明亮、梦幻、天堂感"},{"keyword":"暗角（Vignette）","usage":"边缘暗化、聚焦中心"},{"keyword":"胶片颗粒（Film Grain）","usage":"质感、复古"},{"keyword":"速度线（Speed Lines）","usage":"快速运动、漫画感"},{"keyword":"扫描线（Scanlines）","usage":"CRT屏幕、复古电子"}]}]},"character-design-sheet.json":{"_meta":{"dimension":"角色设定稿模板","priority":1.5,"required":false,"description":"角色三视图/设定稿的版面模板与提示词框架，用于生成标准化的角色设计参考图","tip":"选择一个版面模板后，配合主体动作词库和风格词库使用"},"categories":[{"id":"layout_template","name":"版面布局模板","tip":"选择整体排版结构","items":[{"keyword":"四分区标准设定稿（A三视图 + B服装道具 + C表情库 + D全身立绘）","usage":"最完整版本，覆盖全部参考需求","isCombo":true},{"keyword":"精简三区设定稿（A三视图 + C表情库 + D全身立绘）","usage":"省去道具区，适合服装简单的角色","isCombo":true},{"keyword":"战斗角色设定稿（A三视图 + B武器装备 + C动作姿态 + D全身立绘）","usage":"B区替换为武器装备展示","isCombo":true},{"keyword":"纯高精度三视图（正面+背面+侧面，放大展示）","usage":"仅三视图，追求极致细节","isCombo":true}]},{"id":"section_a_three_view","name":"A区·三视图提示词","tip":"三视图区域的核心提示词片段","items":[{"keyword":"character design three-view turnaround, front view / 3/4 view (45°) / side profile, full body each view, consistent proportions, aligned head-to-toe, clean white background, flat studio lighting","usage":"三视图标准提示词，必选","isCombo":true},{"keyword":"front view: facing camera straight, arms relaxed at sides","usage":"正面视角补充描述"},{"keyword":"3/4 view: body turned 45° right, showing chest curve and side contour","usage":"四分之三侧视角补充"},{"keyword":"side profile: pure left side, nose-tip/chest-line/heel aligned vertically","usage":"纯侧面视角补充"},{"keyword":"same character identity across all views, identical hairstyle outfit accessories","usage":"跨视角一致性约束"},{"keyword":"consistent height alignment, top of head and bottom of feet on same horizontal line across all views","usage":"身高对齐约束"}]},{"id":"section_b_costume","name":"B区·服装道具平铺提示词","tip":"服装道具平铺区域的提示词片段","items":[{"keyword":"costume flat lay design sheet, items arranged neatly with spacing, top-down orthographic view, product photography style, even lighting, white background","usage":"道具平铺基础框架","isCombo":true},{"keyword":"showing: inner dress, outer robe, hair crown ornament, dangling earrings, round fan, embroidered shoes","usage":"古风角色道具清单示例"},{"keyword":"each item shown at correct proportion to body scale","usage":"比例约束"},{"keyword":"intricate details visible on each piece, embroidery patterns, gemstones, fabric texture","usage":"细节强化"}]},{"id":"section_c_expression","name":"C区·表情库提示词","tip":"表情网格的提示词片段","items":[{"keyword":"expression sheet grid layout (2×3), bust portrait chest-up shots, same face across all expressions, consistent costume and hairstyle, white background, even lighting","usage":"表情库基础框架","isCombo":true},{"keyword":"6 expressions: gentle smile (default) / neutral calm (baseline) / serious cold (combat) / bright laughing (joyful) / melancholic contemplative (inner drama) / angry determined (conflict)","usage":"6格基础表情组合","isCombo":true},{"keyword":"9 expressions grid (3×3): add surprised/shocked, shy blushing, wounded weak","usage":"9格扩展表情组合"},{"keyword":"facial expression changes only in brow-eye-mouth muscles, head angle unchanged","usage":"表情变化范围约束"}]},{"id":"section_d_fullbody","name":"D区·全身立绘提示词","tip":"右侧大图全身立绘的提示词片段","items":[{"keyword":"full body character illustration, dynamic elegant standing pose, complete costume with fabric folds layering flow, detailed accessories, [光影氛围]","usage":"立绘基础框架","isCombo":true},{"keyword":"pose: hands on hips, slight body turn, confident stance","usage":"自信站姿"},{"keyword":"pose: one hand touching hair gently, weight shifted, elegant posture","usage":"优雅站姿（女性/法师）"},{"keyword":"pose: hand resting on weapon hilt, lowered center of gravity","usage":"战斗站姿"},{"keyword":"pose: half-turned looking back over shoulder, flowing garments caught in breeze","usage":"神秘回眸站姿"},{"keyword":"natural standing pose, arms at sides, weight centered, neutral relaxed","usage":"标准站姿（默认）"}]},{"id":"full_sheet_prompt","name":"完整设定稿一键提示词","tip":"整图一次性生成的完整提示词框架（需填充角色信息）","items":[{"keyword":"character design reference sheet, professional concept art layout -- LEFT TOP: three-view turnaround (front/3:4/side) full body aligned -- LEFT MIDDLE: costume & props flat lay display -- LEFT BOTTOM: expression grid 2×3 (neutral/smile/serious/laughing/sad/angry) bust portraits -- RIGHT SIDE: full body standing illustration dynamic pose -- white/light gray clean background, game concept art quality, highly detailed, [艺术风格], [画质参数]","usage":"完整四分区设定稿一键提示词框架","isCombo":true}]},{"id":"quality_constraints","name":"质量约束红线","tip":"生成时必须遵守的一致性规则","items":[{"keyword":"红线：三视图必须为同一角色（发型/服饰/配饰完全一致）","usage":"三视图一致性"},{"keyword":"红线：三个视角身高对齐（头顶脚底同水平线）","usage":"比例一致性"},{"keyword":"红线：表情库只变面部肌肉，不改头部角度和身份特征","usage":"表情一致性"},{"keyword":"红线：服装道具与角色身上穿戴完全匹配，不凭空添加","usage":"道具真实性"},{"keyword":"红线：所有区域画风/色调/光照统一","usage":"跨区视觉一致"}]}]},"color-palette.json":{"_meta":{"dimension":"色彩调色","priority":4.3,"required":false,"description":"精准控制画面色彩倾向与配色方案，是情绪表达的重要手段","tip":"一般与光影维度搭配使用，色彩+光影=画面氛围"},"categories":[{"id":"warm_tones","name":"暖色系","tip":"红橙黄为主，传达温暖、激情、能量","items":[{"keyword":"中国红（Chinese Red）","usage":"喜庆、热烈、传统"},{"keyword":"爱马仕橙（Hermes Orange）","usage":"高级、时尚、活力"},{"keyword":"枫叶红（Maple Red）","usage":"秋天、温暖、浪漫"},{"keyword":"酒红色（Burgundy）","usage":"深邃、优雅、成熟"},{"keyword":"胡萝卜红（Carrot Red）","usage":"鲜活、自然、食欲"},{"keyword":"珊瑚色（Coral）","usage":"柔和、温暖、年轻"},{"keyword":"亮丽橙（Bright Orange）","usage":"活力、热情、醒目"},{"keyword":"柠檬黄（Lemon Yellow）","usage":"清新、明亮、愉悦"},{"keyword":"金黄色（Golden）","usage":"奢华、辉煌、神性"},{"keyword":"奢华金（Luxurious Gold）","usage":"高档、宫殿、财富"},{"keyword":"蜜黄色（Mustard）","usage":"复古、温暖、秋天"},{"keyword":"暖棕色（Warm Brown）","usage":"咖啡、木质、舒适"},{"keyword":"秋日棕（Autumn Brown）","usage":"落叶、温暖、怀旧"},{"keyword":"玫瑰金（Rose Gold）","usage":"时尚、精致、温柔"}]},{"id":"cool_tones","name":"冷色系","tip":"蓝绿紫为主，传达冷静、科技、神秘","items":[{"keyword":"蒂芙尼蓝（Tiffany Blue）","usage":"清新、优雅、品牌"},{"keyword":"克莱因蓝（Klein Blue）","usage":"纯粹、强烈、艺术"},{"keyword":"天空蓝（Sky Blue）","usage":"纯净、开阔、晴朗"},{"keyword":"雪山蓝（Mountain Blue）","usage":"冷峻、高远、清冽"},{"keyword":"水晶蓝（Crystal Blue）","usage":"透明、纯净、冰感"},{"keyword":"牛仔蓝（Denim Blue）","usage":"休闲、日常、经典"},{"keyword":"商务蓝（Steady Blue）","usage":"专业、可靠、沉稳"},{"keyword":"群青（Cobalt Blue）","usage":"深沉、古典、油画"},{"keyword":"景泰蓝（Cloisonne Blue）","usage":"中国传统、珐琅、精致"},{"keyword":"青色（Cyan）","usage":"科技、清爽、明亮"},{"keyword":"薄荷绿（Mint Green）","usage":"清新、凉爽、年轻"},{"keyword":"苍绿（Forest Green）","usage":"深沉、自然、宁静"},{"keyword":"自然绿（Natural Green）","usage":"生态、生命、和平"},{"keyword":"绿松石（Turquoise）","usage":"异域、宝石、清新"},{"keyword":"茶青（Tea Green）","usage":"淡雅、东方、清新"},{"keyword":"紫罗兰（Violet Purple）","usage":"神秘、优雅、高贵"},{"keyword":"薰衣草色（Lavender）","usage":"浪漫、柔美、花香"}]},{"id":"neutral_tones","name":"中性色系","tip":"黑白灰为主，传达高级、克制、永恒","items":[{"keyword":"极简黑白（Minimalist B&W）","usage":"经典、高级、纯粹"},{"keyword":"石墨黑（Graphite Black）","usage":"深邃、科技、酷"},{"keyword":"象牙白（Ivory White）","usage":"温暖白、高雅、自然"},{"keyword":"时尚灰（Fashionable Gray）","usage":"高级、中性、百搭"},{"keyword":"瓦灰色（Dim Gray）","usage":"低调、沉稳、工业"},{"keyword":"暗色调（Muted Tones）","usage":"低饱和、情绪、高级"},{"keyword":"莫兰迪色（Morandi Color）","usage":"灰调柔和、艺术感"},{"keyword":"银色调（Silver Tones）","usage":"金属感、科技、冷静"},{"keyword":"茶色/棕色（Tan）","usage":"皮革、复古、大地"}]},{"id":"special_palettes","name":"特殊配色方案","tip":"组合配色方案、特殊效果色彩","items":[{"keyword":"红黑配色","usage":"强烈、危险、热血"},{"keyword":"黄黑配色","usage":"警示、工业、冲突"},{"keyword":"经典红黑白配色","usage":"海报、漫画、复古"},{"keyword":"青橙对比色（Teal & Orange）","usage":"好莱坞经典、肤色突出"},{"keyword":"紫黑配色","usage":"暗黑、魔法、神秘"},{"keyword":"金银色调","usage":"奢华、宫殿、皇室"},{"keyword":"日落渐变","usage":"橙红紫、温暖浪漫"},{"keyword":"霓虹色调（Neon Shades）","usage":"赛博朋克、发光、夜"},{"keyword":"镭射糖果纸色","usage":"彩虹反射、童年"},{"keyword":"果冻色（Jelly Color）","usage":"半透明、柔和、甜美"},{"keyword":"荧光色（Fluorescent）","usage":"高亮、电子、未来"},{"keyword":"水果色","usage":"鲜艳、自然、食欲"},{"keyword":"反射透明彩虹色","usage":"虹彩、折射、梦幻"},{"keyword":"水晶折射色","usage":"棱镜、光谱、纯净"},{"keyword":"水墨淡彩","usage":"留白、淡雅、东方"}]},{"id":"color_theory","name":"色彩理论/效果","tip":"色彩控制技术与效果","items":[{"keyword":"高饱和度","usage":"鲜艳、抢眼、活力"},{"keyword":"低饱和度","usage":"克制、高级、柔和"},{"keyword":"互补色对比","usage":"强烈视觉冲击"},{"keyword":"类比色","usage":"和谐、统一、舒适"},{"keyword":"单色调（Monochrome）","usage":"统一色系、层次感"},{"keyword":"色散效果（Chromatic Dispersion）","usage":"棱镜、彩虹分裂"},{"keyword":"渐变色调（Gradient）","usage":"色彩过渡、现代"},{"keyword":"暖色主导","usage":"温馨、热情、亲密"},{"keyword":"冷色主导","usage":"冷静、科技、疏离"},{"keyword":"局部着色（Selective Color）","usage":"黑白主体+彩色元素"}]}]},"index.json":{"_meta":{"source":"用户提供的MJ生图方法论提炼 + 网络资源扩展，适配漫剧创作库工作流","version":"v4.1","description":"MJ生图提示词核心维度词库索引，共12个维度，新增一键预设组合","usage":"生图工具前端按维度加载对应词库，用户点击标签快速插入提示词，也可直接使用预设组合"},"dimensions":[{"id":"preset_recipes","name":"专业一键预设组合","priority":0.5,"required":false,"file":"preset-recipes.json","description":"按专业绘画/商业出图场景整理好的整句预设，一键获得稳定构图、风格、光影与画质"},{"id":"subject_action","name":"核心主体与动作","priority":1,"required":true,"file":"subject-action.json","description":"画面的绝对核心，权重最高，必须最前置"},{"id":"character_design_sheet","name":"角色设定稿模板（三视图）","priority":1.5,"required":false,"file":"character-design-sheet.json","description":"角色三视图/设定稿版面模板与提示词框架"},{"id":"art_style","name":"艺术风格与调性","priority":2,"required":true,"file":"art-style.json","description":"决定画面整体画风和艺术质感"},{"id":"camera_composition","name":"镜头构图与视角","priority":3,"required":true,"file":"camera-composition.json","description":"决定观看视角、景别、动态张力"},{"id":"color_palette","name":"色彩调色","priority":4.1,"required":false,"file":"color-palette.json","description":"精准控制色彩倾向与配色方案"},{"id":"lighting_atmosphere","name":"光影色彩与环境氛围","priority":4.5,"required":true,"file":"lighting-atmosphere.json","description":"决定光线质感、色彩基调、环境氛围"},{"id":"material_texture","name":"材质纹理","priority":4.7,"required":false,"file":"material-texture.json","description":"描述物体表面材质与纹理质感"},{"id":"quality_render","name":"画质细节与渲染","priority":5,"required":true,"file":"quality-render.json","description":"保底画质，固定放在正向词末尾"},{"id":"weight_control","name":"权重强化控制","priority":6,"required":false,"file":"weight-control.json","description":"可选，精准调整单个元素权重"},{"id":"mj_params","name":"MJ专属参数","priority":7,"required":false,"file":"mj-params.json","description":"MJ独有底层控制项，固定放末尾"},{"id":"negative_prompts","name":"负面提示词","priority":8,"required":false,"file":"negative-prompts.json","description":"精准剔除不想要的元素"}]},"lighting-atmosphere.json":{"_meta":{"dimension":"光影色彩与环境氛围","priority":4,"required":true,"description":"决定画面的光线质感、色彩基调、场景环境，是提升画面高级感的核心维度"},"categories":[{"id":"natural_light","name":"自然光","tip":"户外、风景、自然氛围场景首选","items":[{"keyword":"黄金时段光线（Golden Hour）","usage":"温暖金色、夕阳、浪漫"},{"keyword":"丁达尔体积光","usage":"神圣、氛围、纵深"},{"keyword":"丁达尔效应/耶稣光","usage":"云隙光、教堂光、神圣感"},{"keyword":"日光直射（Direct Sunlight）","usage":"强烈、明亮、真实感"},{"keyword":"日光（Sunlight）","usage":"日常户外、自然"},{"keyword":"月光（Moonlight）","usage":"夜间、清冷、孤寂"},{"keyword":"自然照明（Natural Lighting）","usage":"柔和自然、无人工光源"},{"keyword":"晨光（Morning Light）","usage":"清新、温暖、希望"},{"keyword":"暮光/黄昏（Crepuscular Ray）","usage":"云隙光束、大气感"},{"keyword":"日出/日出光线","usage":"渐变暖色、新的开始"},{"keyword":"星夜","usage":"星空、银河、宇宙感"},{"keyword":"极光（Aurora Borealis）","usage":"绿紫光带、北极、魔幻"},{"keyword":"暴风雨前光线","usage":"乌云裂隙、戏剧性"}]},{"id":"artificial_light","name":"人造光源","tip":"室内、城市、特定光源环境","items":[{"keyword":"霓虹灯光","usage":"赛博朋克、夜景、都市"},{"keyword":"烛光/火光","usage":"温暖、古代、亲密"},{"keyword":"工作室照明（Studio Lighting）","usage":"可控、专业、影棚"},{"keyword":"荧光灯（Fluorescent）","usage":"冷白、办公室、工业"},{"keyword":"聚光灯（Spotlight）","usage":"聚焦、舞台、强调"},{"keyword":"背光（Backlight）","usage":"轮廓感、分离主体"},{"keyword":"边缘光/轮廓光（Rim Light）","usage":"头发光边、立体感"},{"keyword":"冷光（Cold Light）","usage":"科技、医院、冰冷"},{"keyword":"点光源（Point Light）","usage":"单点照明、阴影分明"},{"keyword":"面板灯（Panel Light）","usage":"均匀、大面积、现代"},{"keyword":"区域灯（Area Light）","usage":"柔和阴影、建筑照明"},{"keyword":"频闪灯（Strobe Light）","usage":"动感、夜晚、舞台"},{"keyword":"演唱会灯光（Concert Lighting）","usage":"彩色光束、氛围"},{"keyword":"夜总会灯光（Nightclub Lighting）","usage":"暗色、频闪、霓虹"}]},{"id":"dramatic_light","name":"戏剧性/特殊光效","tip":"营造特殊氛围、情绪张力的光效","items":[{"keyword":"逆光剪影","usage":"轮廓感、神秘、史诗"},{"keyword":"侧光硬光","usage":"立体感、戏剧性、阴阳脸"},{"keyword":"冷白聚光自发光","usage":"能量、异能、科技"},{"keyword":"重击瞬间过曝白闪","usage":"打击感、闪光、冲击"},{"keyword":"底光照射","usage":"恐怖、诡异、非自然"},{"keyword":"裂隙光","usage":"命运感、揭示、神秘"},{"keyword":"明暗高对比（Chiaroscuro）","usage":"卡拉瓦乔式、戏剧性"},{"keyword":"戏剧性灯光（Dramatic Lighting）","usage":"强烈明暗、情绪化"},{"keyword":"明暗调（Low Key Lighting）","usage":"暗部为主、少量亮光"},{"keyword":"高调照明（High Key Lighting）","usage":"明亮均匀、柔和"},{"keyword":"伦勃朗光（Rembrandt Lighting）","usage":"经典人像、三角光斑"},{"keyword":"蝴蝶光/派拉蒙光","usage":"鼻下蝴蝶阴影、美颜"},{"keyword":"分割光（Split Lighting）","usage":"半明半暗、对抗感"},{"keyword":"三点布光（3-Point Lighting）","usage":"标准影棚布光"},{"keyword":"情绪光（Moody Lighting）","usage":"低饱和暗调、忧郁"},{"keyword":"体积光（Volumetric Lighting）","usage":"光束可见、烟雾介质"},{"keyword":"全局照明（Global Illumination）","usage":"真实光散射反弹"},{"keyword":"镜头光晕（Lens Flare）","usage":"光源炫光、电影感"},{"keyword":"金色夕阳余晖","usage":"温暖、离别、希望"},{"keyword":"月光冷蓝调","usage":"夜间、清冷、孤寂"}]},{"id":"special_glow","name":"特效发光","tip":"科幻、奇幻、魔法、能量场景","items":[{"keyword":"发光（Glowing）","usage":"能量、魔法、光源"},{"keyword":"自发光材质（Emissive Material）","usage":"自身发光表面"},{"keyword":"荧光（Fluorescent）","usage":"紫外线、荧光色"},{"keyword":"黑光/紫外光（Blacklight/UV）","usage":"荧光反应、暗处"},{"keyword":"熔岩光芒（Lava Glow）","usage":"红橙、高温、火山"},{"keyword":"核废料光芒","usage":"诡异绿光、辐射"},{"keyword":"量子点（Quantum Dot）","usage":"微观发光、科技"},{"keyword":"激光束效果（Laser Beam）","usage":"直线能量光束"},{"keyword":"霓虹边缘光效","usage":"轮廓发光、赛博朋克"},{"keyword":"闪耀效果（Sparkle）","usage":"星光、魔法粒子"},{"keyword":"火焰光芒","usage":"红橙黄渐变、燃烧"},{"keyword":"冰霜光芒","usage":"蓝白色冷光、冰晶"}]},{"id":"color_tone","name":"色彩基调","tip":"整体色调倾向","items":[{"keyword":"冷灰主调","usage":"冷峻、肃杀、战斗"},{"keyword":"冷暖强对比","usage":"视觉冲击、对抗感"},{"keyword":"低饱和高级灰","usage":"克制、电影感、高级"},{"keyword":"高对比度色调","usage":"戏剧性、张力"},{"keyword":"暗调氛围","usage":"压抑、危险、悬疑"},{"keyword":"暗红主调","usage":"血腥、战斗、危险"},{"keyword":"青橙对比色","usage":"科幻、赛博朋克经典"},{"keyword":"金黄色调","usage":"神性、辉煌、能量"},{"keyword":"紫黑色调","usage":"魔幻、神秘、暗黑"},{"keyword":"蓝绿色调","usage":"科技、冷峻、未来"},{"keyword":"霓虹色调（Neon Shades）","usage":"高饱和、发光、都市"},{"keyword":"莫兰迪色（Morandi）","usage":"灰调柔和、高级感"},{"keyword":"马卡龙色","usage":"粉嫩、糖果、少女"},{"keyword":"复古色彩（Retro Colors）","usage":"怀旧、胶片、年代感"},{"keyword":"黑白/单色","usage":"经典、高对比、情绪化"},{"keyword":"双色调","usage":"两色渐变、海报风"},{"keyword":"日落渐变","usage":"橙红紫、温暖浪漫"},{"keyword":"荧光色","usage":"高饱和、抢眼、赛博"}]},{"id":"environment_scene","name":"环境场景","tip":"典型场景环境","items":[{"keyword":"高空积雨云纵深场景","usage":"史诗高空战斗"},{"keyword":"破碎云层漂浮","usage":"破坏痕迹、纵深"},{"keyword":"暗红光液喷溅","usage":"伤害视觉化、血液"},{"keyword":"甲壳残片散落","usage":"战斗余波、细节"},{"keyword":"废墟都市","usage":"末日、毁灭、孤寂"},{"keyword":"古殿内部","usage":"庄严、历史、秘密"},{"keyword":"悬崖边缘","usage":"危险、高度、决断"},{"keyword":"暴雨街头","usage":"紧张、追逐、电影感"},{"keyword":"森林深处","usage":"神秘、自然、危险"},{"keyword":"虚空裂缝","usage":"异世界、维度撕裂"},{"keyword":"雪原苍茫","usage":"孤寂、生存、极简"},{"keyword":"宫殿大殿","usage":"权力、仪式、对抗"},{"keyword":"赛博朋克街道","usage":"霓虹、雨夜、密集"},{"keyword":"魔幻森林","usage":"发光植物、雾气、奇幻"},{"keyword":"水下世界","usage":"蓝色调、气泡、静默"},{"keyword":"沙漠荒原","usage":"辽阔、干燥、生存"},{"keyword":"冰川雪地","usage":"冷色调、纯净、危险"},{"keyword":"太空/星云","usage":"宇宙、深空、渺小"},{"keyword":"古代神殿/遗迹","usage":"历史、神秘、庄严"}]},{"id":"atmosphere_mood","name":"氛围情绪","tip":"画面传递的情绪感受","items":[{"keyword":"史诗战斗张力","usage":"高强度对抗场面"},{"keyword":"失控爆发感","usage":"能量失控、极限"},{"keyword":"肃杀冷峻","usage":"冷酷、决战前夜"},{"keyword":"静谧蓄力感","usage":"暴风雨前的平静"},{"keyword":"绝望压迫感","usage":"绝境、黑暗、窒息"},{"keyword":"希望曙光感","usage":"转折、救赎、黎明"},{"keyword":"诡异不安","usage":"悬疑、恐怖、未知"},{"keyword":"温馨治愈","usage":"日常、宁静、安全"},{"keyword":"壮丽宏大","usage":"史诗全景、自然力量"},{"keyword":"孤独落寞","usage":"独处、思念、漂泊"},{"keyword":"神秘莫测","usage":"未知、悬念、探索"},{"keyword":"紧张压迫","usage":"倒计时、危机、对抗"},{"keyword":"欢乐活泼","usage":"明亮、色彩、自由"},{"keyword":"忧郁沉思","usage":"灰蓝调、安静、内省"}]}]},"material-texture.json":{"_meta":{"dimension":"材质纹理","priority":4.5,"required":false,"description":"描述物体表面的材质与纹理质感，增强画面真实感与触觉体验","tip":"可与光影搭配使用，材质+光影=真实质感的关键"},"categories":[{"id":"metal","name":"金属类","tip":"钢铁、合金、贵金属","items":[{"keyword":"拉丝金属（Brushed Metal）","usage":"方向性纹理、工业感"},{"keyword":"抛光金属（Polished Metal）","usage":"镜面反射、光滑"},{"keyword":"做旧金属（Aged Metal）","usage":"锈蚀、磨损、历史感"},{"keyword":"铬合金（Chrome）","usage":"高反光、科幻、汽车"},{"keyword":"古铜质感（Antique Brass）","usage":"复古、暗金、温暖"},{"keyword":"液态金属（Liquid Metal）","usage":"流动、未来、终结者"},{"keyword":"钛金属质感（Titanium）","usage":"轻量、高级灰"},{"keyword":"氧化铜绿（Patina）","usage":"铜锈、年代感"}]},{"id":"stone_mineral","name":"石质/矿物","tip":"岩石、大理石、宝石","items":[{"keyword":"大理石纹理（Marble Texture）","usage":"纹路、高贵、建筑"},{"keyword":"混凝土质感（Concrete）","usage":"粗粝、工业、灰调"},{"keyword":"火山岩（Volcanic Stone）","usage":"多孔、黑灰、原始"},{"keyword":"板岩质感（Slate）","usage":"层理、深色、简约"},{"keyword":"水晶质感（Crystal）","usage":"透明、折射、棱角"},{"keyword":"宝石光泽（Gemstone）","usage":"多面切割、闪光"},{"keyword":"玉石质感（Jade）","usage":"温润、半透明、东方"},{"keyword":"砂岩纹理（Sandstone）","usage":"颗粒感、暖色、自然"}]},{"id":"fabric_leather","name":"织物/皮革","tip":"布料、丝绸、皮革质感","items":[{"keyword":"丝绸质感（Silk）","usage":"光滑、光泽、飘逸"},{"keyword":"纱绸质感（Chiffon）","usage":"轻薄、透明、梦幻"},{"keyword":"天鹅绒（Velvet）","usage":"柔软、深色、奢华"},{"keyword":"亚麻质感（Linen）","usage":"自然纹理、棉麻"},{"keyword":"牛仔布（Denim）","usage":"粗纹理、蓝色、日常"},{"keyword":"皮革质感（Leather）","usage":"皮质、韧性、高端"},{"keyword":"鳄鱼皮纹（Pebbled Leather）","usage":"凹凸纹理、奢侈"},{"keyword":"毛绒质感（Furry/Fur）","usage":"柔软、温暖、动物"},{"keyword":"针织质感（Knitted）","usage":"毛衣纹路、温暖"},{"keyword":"棉质（Cotton）","usage":"自然、柔软、日常"}]},{"id":"wood_paper","name":"木质/纸张","tip":"木纹、纸张、自然纹理","items":[{"keyword":"家具木纹（Wood Grain）","usage":"温暖、自然、生活"},{"keyword":"抛光栗木（Polished Chestnut）","usage":"深棕、光滑、高端"},{"keyword":"橡木纹理（Oak Plank）","usage":"浅色、清晰纹路"},{"keyword":"胡桃木色（Walnut Stain）","usage":"深色木纹、经典"},{"keyword":"水彩纸纹理（Watercolor Paper）","usage":"粗纹、水渍边缘"},{"keyword":"羊皮纸（Parchment）","usage":"复古、泛黄、手稿"},{"keyword":"牛皮纸（Kraft Paper）","usage":"粗糙、棕色、手工"},{"keyword":"纸板质感（Cardboard）","usage":"朴素质感、包装"}]},{"id":"glass_transparent","name":"玻璃/透明","tip":"透明、折射、发光材质","items":[{"keyword":"玻璃质感（Glass）","usage":"透明、折射、光滑"},{"keyword":"磨砂玻璃（Frosted Glass）","usage":"半透明、模糊、隐私"},{"keyword":"虹彩玻璃（Iridescent Glass）","usage":"变色、折射、梦幻"},{"keyword":"全息质感（Holographic）","usage":"彩虹色、未来感"},{"keyword":"冰质感（Ice Texture）","usage":"冰冷、透明、裂纹"},{"keyword":"树脂质感（Resin）","usage":"半透明、琥珀、琥珀色"}]},{"id":"special_material","name":"特殊材质","tip":"非常规材质、特效","items":[{"keyword":"陶瓷质感（Ceramic）","usage":"光滑、釉面、精致"},{"keyword":"粘土质感（Clay）","usage":"手工、可塑、哑光"},{"keyword":"塑料质感（Plastic）","usage":"光滑、工业、廉价"},{"keyword":"橡胶质感（Rubber）","usage":"弹性、哑光、防水"},{"keyword":"液态质感（Liquid）","usage":"流动、透明、有机"},{"keyword":"火焰质感（Fire Texture）","usage":"火焰表面、能量"},{"keyword":"沙质感（Sand Texture）","usage":"颗粒、干燥、沙漠"},{"keyword":"水波纹（Water Ripple）","usage":"涟漪、水面、倒影"},{"keyword":"珠光质感（Pearlescent）","usage":"柔和光泽、高级"},{"keyword":"哑光质感（Matte）","usage":"无光泽、柔和、高级"},{"keyword":"砖石质感（Brick Texture）","usage":"粗糙、建筑、纹理"},{"keyword":"油漆质感（Paint Texture）","usage":"涂层、光滑或剥落"},{"keyword":"刺绣质感（Embroidery）","usage":"线绣图案、精致"},{"keyword":"折纸质感（Origami）","usage":"折叠线条、纸张"}]}]},"mj-params.json":{"_meta":{"dimension":"MJ专属参数","priority":7,"required":false,"description":"MJ独有的底层控制项，直接决定生成规则，固定放在提示词最末尾","tip":"格式为 --xxx，单条提示词仅可写1个 --ar 比例"},"categories":[{"id":"core_params","name":"核心参数","items":[{"keyword":"--ar 16:9","name":"横屏宽幅","usage":"漫剧标准比例","note":"单条仅可写1个"},{"keyword":"--ar 9:16","name":"竖屏比例","usage":"手机/短视频"},{"keyword":"--ar 2.35:1","name":"电影宽幅","usage":"极致电影感"},{"keyword":"--ar 1:1","name":"方形比例","usage":"社交媒体/头像"},{"keyword":"--ar 4:3","name":"经典比例","usage":"复古/传统"},{"keyword":"--ar 3:4","name":"竖向经典","usage":"海报/封面"}]},{"id":"model_version","name":"模型版本","items":[{"keyword":"--v 6.0","name":"MJ V6","usage":"写实/自然语言/动态识别最优","note":"写实内容首选"},{"keyword":"--niji 6","name":"Niji 6","usage":"国漫/二次元必用，动作画风氛围适配拉满","note":"漫剧首选"},{"keyword":"--v 5.2","name":"MJ V5.2","usage":"稳定版，风格化更强"}]},{"id":"style_chaos","name":"风格与混乱度","items":[{"keyword":"--s 100","name":"标准风格化","usage":"平衡创意与还原"},{"keyword":"--s 200","name":"中等风格化","usage":"适度创意发挥，推荐值"},{"keyword":"--s 300","name":"高风格化","usage":"MJ大幅创意发挥"},{"keyword":"--s 50","name":"低风格化","usage":"精准还原提示词"},{"keyword":"--s 0","name":"无风格化","usage":"完全按提示词走"},{"keyword":"--c 10","name":"低混乱度","usage":"稳定出图，推荐值"},{"keyword":"--c 20","name":"中混乱度","usage":"适度变化"},{"keyword":"--c 0","name":"零混乱度","usage":"最稳定，4张几乎一样"}]},{"id":"quality_stop","name":"画质与停止","items":[{"keyword":"--q 2","name":"双倍画质","usage":"细节更丰富，耗时更长"},{"keyword":"--stop 80","name":"80%停止","usage":"保留写意感"},{"keyword":"--stop 90","name":"90%停止","usage":"轻微写意"}]}]},"negative-prompts.json":{"_meta":{"dimension":"负面提示词","priority":8,"required":false,"description":"精准剔除瑕疵和不想要的元素，避免画面崩坏","tip":"按类别精准写入，不要乱堆无效词。可配合 --no 参数或 (关键词:0.5) 使用"},"categories":[{"id":"visual_flaws","name":"画面瑕疵类","items":[{"keyword":"模糊","usage":"排除画面模糊"},{"keyword":"糊帧","usage":"排除运动模糊帧"},{"keyword":"低分辨率","usage":"排除画质低"},{"keyword":"低画质","usage":"排除劣质渲染"},{"keyword":"穿模","usage":"排除模型穿插"},{"keyword":"肢体畸形","usage":"排除人体错误"},{"keyword":"比例失调","usage":"排除人体比例错误"},{"keyword":"边缘虚化","usage":"排除失焦"},{"keyword":"噪点过多","usage":"排除画面颗粒"},{"keyword":"色彩溢出","usage":"排除颜色异常"}]},{"id":"style_deviation","name":"风格偏离类","items":[{"keyword":"廉价游戏风","usage":"排除低质游戏感"},{"keyword":"Q版卡通","usage":"排除萌化"},{"keyword":"萌系二次元","usage":"排除日系萌化"},{"keyword":"油腻质感","usage":"排除过度光滑"},{"keyword":"手绘简笔画","usage":"排除草图感"},{"keyword":"3D塑料感","usage":"排除廉价CG"},{"keyword":"照片写实","usage":"写实风格时排除照片"},{"keyword":"AI生成痕迹","usage":"排除AI味"}]},{"id":"action_composition","name":"动作/构图问题","items":[{"keyword":"动作僵硬","usage":"排除不自然姿态"},{"keyword":"吊威亚悬浮感","usage":"排除不自然悬空"},{"keyword":"空间关系混乱","usage":"排除前后错位"},{"keyword":"视角错误","usage":"排除不合理的观看角度"},{"keyword":"动态模糊过度","usage":"排除看不清主体"},{"keyword":"重心不稳","usage":"排除站不稳"},{"keyword":"透视错误","usage":"排除透视畸变"}]},{"id":"unwanted_elements","name":"多余元素类","items":[{"keyword":"多余人物","usage":"排除背景路人"},{"keyword":"多余物体","usage":"排除杂物"},{"keyword":"文字","usage":"排除画面文字"},{"keyword":"水印","usage":"排除水印"},{"keyword":"签名","usage":"排除作者签名"},{"keyword":"边框","usage":"排除画框"},{"keyword":"杂乱背景","usage":"排除背景杂乱"},{"keyword":"多余肢体","usage":"排除多手多脚"}]},{"id":"preset_negative","name":"一键负面预设","items":[{"keyword":"模糊, 动作僵硬, 游戏风, 穿模, 比例失调","name":"基础排除","usage":"通用基础负面词","isCombo":true},{"keyword":"模糊, 动作僵硬, 穿模, 比例失调, 肢体畸形, 低画质, 杂乱背景, 多余人物","name":"战斗场景","usage":"动作戏专用负面词","isCombo":true},{"keyword":"模糊, 空间混乱, 翼缝结构错误, 画面杂乱, 透视错误","name":"FPV穿越","usage":"穿越镜头专用","isCombo":true},{"keyword":"模糊, 动作僵硬, 游戏风, 穿模, 多余动态, 低画质","name":"蓄力定格","usage":"静止蓄力帧专用","isCombo":true},{"keyword":"模糊, Q版卡通, 萌系二次元, 廉价游戏风, 穿模, 比例失调, 多余人物, 水印","name":"漫剧标准","usage":"漫剧通用排除","isCombo":true}]}]},"preset-recipes.json":{"_meta":{"dimension":"专业一键预设组合","priority":0.5,"required":false,"description":"从专业绘画导演、概念设计和商业插画视角整理的整句预设。适合先选一套基底，再补主体与剧情信息。","tip":"推荐顺序：先点预设组合，再补主体身份/动作/道具；若结果过满，先删掉材质与特效词。"},"categories":[{"id":"character_keyart","name":"角色主视觉","tip":"适合角色海报、人物定妆、封面主图","items":[{"keyword":"国漫写实风格，角色主视觉海报，半身像，正面平视，居中构图，边缘光/轮廓光，低饱和高级灰，丝绸与金属混合材质，4K超清，极致细节，电影级","usage":"漫剧角色主海报，稳定出高级感","isCombo":true},{"keyword":"日系高完成度角色立绘，半身像，清晰轮廓，大面积干净背景，赛璐璐上色，柔和高调照明，马卡龙低对比配色，皮肤与发丝细节清晰，4K超清，高质量","usage":"角色卡、立绘封面","isCombo":true},{"keyword":"超写实肖像摄影，近景，85mm人像镜头质感，浅景深，伦勃朗光，皮肤毛孔可见，眼神聚焦，低饱和电影调色，照片级细节，获奖照片级","usage":"真人感肖像、角色写实封面","isCombo":true},{"keyword":"暗黑奇幻角色海报，近景到中近景，仰拍，逆光剪影加紫黑轮廓光，暗红与紫黑配色，做旧金属与皮革质感，史诗感，8K超高清，超精细纹理","usage":"反派或Boss海报","isCombo":true}]},{"id":"battle_action","name":"动作爆点","tip":"适合战斗、爆发、技能释放与短视频封面","items":[{"keyword":"国漫写实风格，战斗爆点瞬间，全身，低角度仰拍，对角线动态构图，动态跟拍定格，重击瞬间过曝白闪，冷暖强对比，碎石与冲击波飞散，Unreal Engine 5渲染，4K超清，极致细节","usage":"拳脚爆点、技能瞬间","isCombo":true},{"keyword":"史诗级电影概念设计，高空战斗，极远景，鸟瞰加纵深推进镜头，体积光穿透云层，冷灰主调混金色高光，空气扭曲与能量拖尾，8K超高清，HDR高动态范围，电影宽幅 2.35:1","usage":"大场面空战与终局决战","isCombo":true},{"keyword":"赛博朋克动作场景，雨夜街头追击，中远景，跟随视角，霓虹灯光与青橙对比色，动态模糊控制在主体外沿，湿地反射，金属与玻璃质感，光线追踪，高锐度，16:9宽屏画幅","usage":"都市追逐、赛博战斗","isCombo":true},{"keyword":"武侠定格瞬间，侧面拍摄，全身，剑刃寒光，水墨国风与电影感结合，月光冷蓝调，雾气与体积光，负空间留白构图，丝绸衣摆与发丝飞扬，4K超清，精致细节","usage":"武侠招式展示","isCombo":true}]},{"id":"emotional_dialogue","name":"情绪文戏","tip":"适合人物对话、关系戏、氛围静帧","items":[{"keyword":"电影感文戏对话，双人过肩景，近景，正面平视，三分法构图，柔和侧光，低饱和灰蓝色调，浅景深，人物表情细节清晰，安静压抑氛围，4K超清，高质量","usage":"情绪对话与关系冲突","isCombo":true},{"keyword":"温暖治愈日常插画，中景，窗边自然光，日系清新明亮风格，薄荷绿与奶油白配色，柔焦边缘光，棉麻与木质纹理，空气感，4K超清，细节干净","usage":"日常陪伴、温柔桥段","isCombo":true},{"keyword":"孤独沉思氛围海报，背面视角，中远景，负空间留白构图，月光与雾气，低饱和蓝灰色调，风吹衣摆，环境占比大于人物，电影级，HDR高动态范围","usage":"孤独、漂泊、等待","isCombo":true},{"keyword":"古风虐恋氛围，双人隔雨幕对望，近景，烛光与冷雨混合，水墨淡彩结合写实人物，低对比柔光，丝绸湿润质感，情绪光，4K超清，精致细节","usage":"古风感情戏","isCombo":true}]},{"id":"environment_concept","name":"场景概念","tip":"适合世界观建立、场景氛围和美术前期探索","items":[{"keyword":"史诗级电影概念设计，废墟都市全景，极远景，鸟瞰视角，消失点构图，体积光穿透烟尘，冷灰主调夹杂危险橙光，混凝土与金属残骸质感，8K超高清，电影宽幅 2.35:1","usage":"末世/废墟概念图","isCombo":true},{"keyword":"东方奇幻神殿场景，宏大空间，全景，居中对称构图，丁达尔体积光，金色与青绿色配色，大理石与玉石质感，庄严神圣，8K超高清，极致细节","usage":"古代神殿、秘境场景","isCombo":true},{"keyword":"魔幻森林概念图，广角全景，引导线构图，晨雾与体积光，冷绿与暖金渐变，发光植物与水晶质感，梦幻/奇幻氛围，4K超清，细节丰富","usage":"森林秘境、精灵栖居地","isCombo":true},{"keyword":"太空科幻场景设计，超广角镜头，巨大飞船与星云同框，蓝绿色调，边缘光与自发光材质，高对比宇宙黑背景，反射金属与全息玻璃质感，8K超高清，HDR高动态范围","usage":"科幻大场景建立","isCombo":true}]},{"id":"commercial_illustration","name":"商业插画与产品图","tip":"适合封面、电商KV、社媒宣传图","items":[{"keyword":"商业插画主KV，主体明确，干净背景，居中构图，工作室照明，高饱和但控制纯度，材质反差鲜明，边缘清晰，杂志封面级，4K超清，专业级","usage":"宣传KV、活动头图","isCombo":true},{"keyword":"高级产品摄影，产品主角特写，微距摄影，三点布光，黑灰背景，玻璃与金属反射控制精准，景深虚化，超清晰，获奖广告照片质感","usage":"电商主图与详情页头图","isCombo":true},{"keyword":"潮流海报设计，强图形构成，红黑白配色，大面积留白与粗标题感画面，海报式对比构图，硬边光影，胶片颗粒轻微点缀，4K超清，印刷级质感","usage":"潮流品牌海报","isCombo":true},{"keyword":"甜品美食广告图，近景特写，暖色柔光，奶油与果冻质感，浅景深，清新亮色，干净背景，诱人高光，4K超清，高细节","usage":"美食商品图","isCombo":true}]},{"id":"tech_launch_poster","name":"科技发布海报 / 社媒官宣","tip":"适合 GPT Image 2 这种品牌发布、产品上线预热、信息型海报与长图封面","items":[{"keyword":"顶级科技品牌发布海报，深色背景，蓝紫渐变能量光束，大面积负空间，超大号无衬线英文标题，中英混排信息文案，品牌级极简排版，发光边缘，高级玻璃辉光，冷白文字，海报主视觉干净聚焦，社交媒体官宣封面，4K超清，印刷级质感","usage":"最接近 OpenAI 风格的科技官宣封面","isCombo":true},{"keyword":"未来科技产品上线海报，黑蓝渐变背景，右下到左上的霓虹能量拖尾，巨大主标题占画面中心，副标题与时间信息卡片化排列，极简企业品牌视觉，冷色自发光，超清锐利文字边缘，现代 UI 海报感，专业广告图，4K超清，高级质感","usage":"适合新品发布、上线公告、版本发布图","isCombo":true},{"keyword":"高端 AI 产品宣传图，纯黑背景，蓝白光锥穿透画面，简洁留白，中心偏左超大标题，辅助说明文字清晰分组，品牌海报级版式，科技企业视觉语言，细腻辉光与渐变噪点，现代感，信息层级清楚，杂志封面级，4K超清","usage":"适合 AI 产品、模型升级、功能发布","isCombo":true},{"keyword":"社交媒体平台官宣长图封面，深色卡片界面截图风，顶部账号发布信息区，正文中文排版清晰，大图海报嵌入卡片中，下方互动数据区域简洁规整，科技平台 UI 风格，品牌蓝紫渐变，真实社媒截图质感，信息长图，4K超清，高完成度","usage":"适合微博/X/社媒公告截图式宣传图","isCombo":true},{"keyword":"科技大会主视觉 KV，黑色舞台感背景，蓝紫聚光与体积辉光，超大字号标题，日期与时间信息做成圆角描边胶囊标签，国际化设计语言，极简高端，品牌活动视觉系统，视觉中心明确，印刷级细节，8K超高清","usage":"适合发布会、峰会、直播预约海报","isCombo":true},{"keyword":"信息型长图海报，深夜科技蓝底色，模块化信息排版，标题、副标题、时间、亮点卖点分层清楚，细线分割与圆角卡片系统，现代 SaaS 品牌设计风，冷静克制，高级渐变与微发光细节，适合公众号头图与信息长图，4K超清","usage":"适合产品更新说明、版本亮点长图","isCombo":true}]}]},"quality-render.json":{"_meta":{"dimension":"画质细节与渲染","priority":5,"required":true,"description":"保底画质，固定放在正向词的最后部分","tip":"建议直接选择一个预设组合快速填入"},"categories":[{"id":"resolution","name":"分辨率","tip":"基础清晰度保障","items":[{"keyword":"HD高清","usage":"基础高清"},{"keyword":"4K超清","usage":"标准高清出图"},{"keyword":"8K超高清","usage":"极致清晰"},{"keyword":"16K分辨率","usage":"超高精度"},{"keyword":"超高清分辨率（UHD）","usage":"通用画质保底"},{"keyword":"高分辨率（High Resolution）","usage":"通用保底"}]},{"id":"render_engine","name":"渲染引擎","tip":"不同引擎有不同光影/材质特色","items":[{"keyword":"Unreal Engine 5渲染","usage":"最主流游戏级渲染"},{"keyword":"Unreal Engine渲染","usage":"通用UE渲染"},{"keyword":"Octane渲染","usage":"光影细腻、物理准确"},{"keyword":"V-Ray渲染","usage":"建筑/产品级精度"},{"keyword":"Corona渲染","usage":"室内场景、柔和光"},{"keyword":"Redshift渲染","usage":"GPU加速、速度与质量平衡"},{"keyword":"Mental Ray渲染","usage":"电影工业标准"},{"keyword":"Blender渲染","usage":"开源3D、全能"},{"keyword":"FStorm渲染","usage":"写实人像、快速"},{"keyword":"光线追踪（Ray Tracing）","usage":"真实反射、折射"},{"keyword":"PBR物理材质","usage":"真实材质质感"},{"keyword":"全局光照（Global Illumination）","usage":"真实光散射"},{"keyword":"环境光遮蔽（Ambient Occlusion）","usage":"角落阴影、层次感"},{"keyword":"体积渲染（Volume Rendering）","usage":"烟雾、云、体积光"},{"keyword":"HDR高动态范围","usage":"明暗细节丰富"},{"keyword":"建筑渲染（ArchViz）","usage":"建筑可视化"}]},{"id":"detail_precision","name":"细节精度","tip":"强化画面精细程度","items":[{"keyword":"极致细节（Ultra Detailed）","usage":"通用细节强化"},{"keyword":"高细节（Highly Detailed）","usage":"通用细节提升"},{"keyword":"超精细纹理","usage":"材质细节"},{"keyword":"锐化边缘","usage":"轮廓清晰"},{"keyword":"无糊帧","usage":"排除动态模糊"},{"keyword":"高锐度","usage":"整体清晰"},{"keyword":"超清晰（Super Clarity）","usage":"极致清晰"},{"keyword":"超高品质（Hyper Quality）","usage":"顶级品质"},{"keyword":"毛发细节清晰","usage":"角色发丝、动物毛发"},{"keyword":"皮肤毛孔可见","usage":"超写实人像"},{"keyword":"微距级细节","usage":"极度精细"},{"keyword":"精致细节（Intricate Details）","usage":"复杂纹样、装饰"},{"keyword":"清晰对焦（Sharp Focus）","usage":"主体清晰锐利"},{"keyword":"照片级细节","usage":"达到照片精细度"}]},{"id":"aspect_ratio","name":"画幅格式","tip":"控制画面比例","items":[{"keyword":"16:9宽屏画幅","usage":"横屏电影/漫剧标准"},{"keyword":"电影宽幅 2.35:1","usage":"极致电影感"},{"keyword":"9:16竖屏画幅","usage":"手机竖屏/短视频"},{"keyword":"1:1方形画幅","usage":"社交媒体/海报"},{"keyword":"4:3经典画幅","usage":"复古、传统感"},{"keyword":"21:9超宽画幅","usage":"超宽屏电影"}]},{"id":"quality_descriptors","name":"品质描述词","tip":"提升整体品质的通用修饰词","items":[{"keyword":"大师之作（Masterpiece）","usage":"顶级品质标签"},{"keyword":"杰作（Best Quality）","usage":"最高品质"},{"keyword":"高质量（High Quality）","usage":"通用品质"},{"keyword":"惊人画质（Amazing Quality）","usage":"令人印象深刻"},{"keyword":"超写实（Hyperrealistic）","usage":"超越真实"},{"keyword":"电影级（Cinematic）","usage":"影视质感"},{"keyword":"专业级（Professional）","usage":"工业标准"},{"keyword":"杂志封面级","usage":"印刷品质"},{"keyword":"获奖照片级","usage":"摄影比赛品质"}]},{"id":"preset_combo","name":"一键预设组合","tip":"推荐直接选用预设，覆盖多个维度","items":[{"keyword":"4K超清，8K分辨率，Unreal Engine 5渲染，光线追踪，PBR材质，极致细节，超精细纹理，HDR高动态范围，16:9宽屏画幅","usage":"标准电影级预设，覆盖全部画质维度","isCombo":true},{"keyword":"4K超清，Octane渲染，光线追踪，极致细节，高锐度，HDR高动态范围，16:9宽屏画幅","usage":"精致质感预设，侧重光影渲染","isCombo":true},{"keyword":"8K超高清，Unreal Engine 5渲染，PBR材质，超精细纹理，毛发细节清晰，皮肤毛孔可见，16:9宽屏画幅","usage":"超写实人物预设，侧重角色细节","isCombo":true},{"keyword":"4K超清，全局光照，HDR高动态范围，极致细节，16:9宽屏画幅","usage":"轻量预设，出图更快","isCombo":true},{"keyword":"8K超高清，V-Ray渲染，光线追踪，PBR材质，清晰对焦，环境光遮蔽，HDR，2.35:1电影宽幅","usage":"建筑/场景渲染预设","isCombo":true},{"keyword":"4K超清，Corona渲染，全局光照，柔和光效，室内场景，高细节，16:9宽屏画幅","usage":"室内/角色肖像预设","isCombo":true}]}]},"subject-action.json":{"_meta":{"dimension":"核心主体与动作","priority":1,"required":true,"description":"画面的绝对核心，权重最高，必须最前置。包含：主体身份+外观特征、核心动作/互动关系、核心道具/核心视觉元素","tip":"核心特征可用 (关键词:1.2-1.5) 强化权重，倍数不超过2"},"categories":[{"id":"character_identity","name":"角色身份","items":[{"keyword":"银发飒爽女战士","usage":"高辨识度主角身份"},{"keyword":"黑衣刺客","usage":"隐匿、危险感角色"},{"keyword":"铠甲将军","usage":"力量、权威、军事感"},{"keyword":"白发老者","usage":"智慧、沉稳、导师形象"},{"keyword":"少年修仙者","usage":"成长、觉醒、潜龙"},{"keyword":"魔族女王","usage":"反派BOSS、压迫感"},{"keyword":"机甲驾驶员","usage":"科幻、工业力量"},{"keyword":"精灵弓箭手","usage":"敏捷、自然、优雅"},{"keyword":"街头少女","usage":"日常、青春、生活感"},{"keyword":"古装书生","usage":"文气、儒雅、古风"}]},{"id":"appearance_features","name":"外观特征","items":[{"keyword":"银色长发飘逸","usage":"视觉锚点、动态美感"},{"keyword":"赤红双瞳","usage":"异能标记、觉醒象征"},{"keyword":"鳞甲覆盖半身","usage":"异化、防御感"},{"keyword":"机械义肢","usage":"赛博、改造人"},{"keyword":"黑色斗篷猎猎","usage":"神秘、飘逸、戏剧感"},{"keyword":"脸带银纹聚能特效","usage":"能量充盈、爆发前兆"},{"keyword":"瞳孔收缩至针尖","usage":"杀意、专注、危险"},{"keyword":"伤口溢出金色光液","usage":"神性、不死之身"},{"keyword":"衣摆碎裂飘散","usage":"战斗痕迹、动态张力"},{"keyword":"发丝在风中根根分明","usage":"高速运动、细节表现"}]},{"id":"core_actions","name":"核心动作","items":[{"keyword":"锁颈翻转砸地","usage":"爆发力、摔投技"},{"keyword":"银光裹拳重击","usage":"能量拳击、打击感"},{"keyword":"高空俯冲急降","usage":"速度感、冲击力"},{"keyword":"旋转飞踢银色拖尾","usage":"武术、轨迹特效"},{"keyword":"右拳握紧至极限","usage":"蓄力、爆发前兆"},{"keyword":"骑乘翻转坠落","usage":"失控感、坠落张力"},{"keyword":"高速穿越翼缝","usage":"FPV穿越、速度感"},{"keyword":"滞空悬停定格","usage":"静止张力、蓄力"},{"keyword":"后仰闪避子弹时间","usage":"时间膨胀、极限反应"},{"keyword":"双刀交叉格挡","usage":"防御、对抗"},{"keyword":"单膝跪地喘息","usage":"战后疲惫、真实感"},{"keyword":"仰天咆哮冲击波扩散","usage":"力量释放、范围效果"},{"keyword":"指尖凝聚光球","usage":"施法、能量积聚"},{"keyword":"剑尖划过地面火花","usage":"金属摩擦、速度"}]},{"id":"interaction_relation","name":"互动关系","items":[{"keyword":"与巨型鳞甲飞行巨兽高空战斗","usage":"人兽对抗、高空场景"},{"keyword":"双人背靠背对抗围攻","usage":"信任、绝望中的团结"},{"keyword":"师徒对峙拔剑相向","usage":"背叛、立场冲突"},{"keyword":"伸手拉住坠落之人","usage":"救赎、信任"},{"keyword":"俯视跪地的败者","usage":"权力碾压、胜利"},{"keyword":"两人隔雨幕对望","usage":"距离感、情绪张力"}]},{"id":"core_props","name":"核心道具/视觉元素","items":[{"keyword":"甲壳凹陷碎裂暗红光液环形喷溅","usage":"打击效果、质感细节"},{"keyword":"冲击波扩散推开云层","usage":"力量可视化、环境反应"},{"keyword":"空气在拳面扭曲","usage":"极端力量、物理扭曲"},{"keyword":"剑刃断裂碎片悬浮","usage":"武器损毁、时间凝固"},{"keyword":"地面龟裂碎石悬浮","usage":"地面冲击、重力异常"},{"keyword":"羽翼碎裂散落金色光尘","usage":"陨落、神性消散"},{"keyword":"锁链缠绕手臂拖拽","usage":"束缚、对抗"}]}]},"weight-control.json":{"_meta":{"dimension":"权重强化控制","priority":6,"required":false,"description":"可选，精准调整单个元素的权重。核心元素强化，次要背景弱化","tip":"强化 (关键词:1.2-1.5)，弱化 (关键词:0.5-0.8)，倍数不超过2避免崩坏"},"categories":[{"id":"enhance_examples","name":"强化示例","items":[{"keyword":"(拳面银纹聚能特效:1.3)","usage":"强化核心特效"},{"keyword":"(角色面部:1.2)","usage":"强化人物面部"},{"keyword":"(能量光效:1.4)","usage":"强化光效表现"},{"keyword":"(甲壳碎裂细节:1.3)","usage":"强化破坏细节"},{"keyword":"(高速运动轨迹:1.5)","usage":"强化速度感"},{"keyword":"(眼神杀意:1.2)","usage":"强化情绪表达"}]},{"id":"weaken_examples","name":"弱化示例","items":[{"keyword":"(背景云层:0.8)","usage":"弱化背景干扰"},{"keyword":"(地面碎石:0.6)","usage":"弱化次要元素"},{"keyword":"(远景建筑:0.5)","usage":"大幅弱化远景"},{"keyword":"(杂色光斑:0.7)","usage":"弱化光斑干扰"}]}]}};
+const IS_STANDALONE_MODE = window.location.protocol === 'file:';
+const MAX_UPLOAD = 10;
+const LANE_CONFIG = [
+  { id: 'subject_action', label: '主体动作', aliases: ['subject_action', 'character_design_sheet'] },
+  { id: 'art_style', label: '风格', aliases: ['art_style', 'preset_style'] },
+  { id: 'camera_composition', label: '镜头', aliases: ['camera_composition'] },
+  { id: 'lighting_atmosphere', label: '光影', aliases: ['lighting_atmosphere', 'color_palette', 'material_texture'] },
+  { id: 'quality_render', label: '画质', aliases: ['quality_render', 'weight_control', 'mj_params'] },
+  { id: 'negative_prompts', label: '负面提示词', aliases: ['negative_prompts'] },
+];
+
+const state = {
+  mode: 'txt2img',
+  editMode: 'builder',  // 'builder' | 'free'
+  uploadImages: [],
+  latestResult: null,
+  gallery: [],
+  models: [],
+  defaults: {},
+  wordlistIndex: [],
+  presetData: null,
+  currentDimension: '',
+  currentPresetCategory: '',
+  promptLanes: {
+    subject_action: [],
+    art_style: [],
+    camera_composition: [],
+    lighting_atmosphere: [],
+    quality_render: [],
+    negative_prompts: [],
+  },
+  laneInputs: {
+    subject_action: '',
+    art_style: '',
+    camera_composition: '',
+    lighting_atmosphere: '',
+    quality_render: '',
+    negative_prompts: '',
+  },
+  selectedWordlistKeys: new Set(),
+  selectedPresetKeys: new Set(),
+  // img2img 混合编辑器状态
+  i2iChips: [],       // [{type:'image', imgIdx, name, dataUrl} | {type:'tag', text, source, kind} | {type:'preset', text, categoryId}]
+  i2iFreeText: '',
+  i2iPopupOpen: false,
+  i2iEditingTextIndex: -1,
+};
+
+const $ = (id) => document.getElementById(id);
+const toast = $('toast');
+const statusLine = $('statusLine');
+const resultImageShell = $('resultImageShell');
+const galleryGrid = $('galleryGrid');
+const imageUploadField = $('imageUploadField');
+const stackContainer = $('stackContainer');
+const lightboxOverlay = $('lightboxOverlay');
+const lightboxImg = $('lightboxImg');
+
+function showToast(text){ toast.textContent = text; toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'), 1200); }
+async function copyText(text, message='已复制'){
+  if(!text){ showToast('没有可复制内容'); return; }
+  try { await navigator.clipboard.writeText(text); }
+  catch(_){ const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); }
+  showToast(message);
+}
+function escapeHtml(text){ return String(text||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function withNoCache(url){ if(!url) return ''; return url + (url.includes('?') ? '&' : '?') + '_t=' + Date.now(); }
+function setStatus(text, level='warn'){ statusLine.className = `status-line ${level}`; statusLine.textContent = text || '等待'; }
+
+function getOutputDirPath(raw){
+  const value = String(raw || '').trim();
+  if(!value) return DEFAULT_OUTPUT_DIR;
+  if(value.startsWith('/') || value.includes('/')) return value;
+  return 'runninghub_outputs/' + value;
+}
+
+function getDirDisplayName(dir){
+  const value = String(dir || '').trim();
+  if(!value) return '设置存图目录';
+  const normalized = value.replace(/\\/g, '/').replace(/\/+$/, '');
+  const name = normalized.split('/').filter(Boolean).pop();
+  return name || normalized;
+}
+
+function updateDirButton(label=''){
+  const btn = $('pickDirBtn');
+  if(!btn) return;
+  const text = String(label || '').trim() || '设置存图目录';
+  btn.textContent = text;
+  btn.title = text === '设置存图目录' ? '设置存图目录' : `当前目录：${text}`;
+}
+
+function updateDirBadge(){
+  updateDirButton(state.outputDirLabel || getDirDisplayName(state.outputDirPath));
+}
+
+function makeWordlistSelectionKey(dimId, text){ return `${dimId}::${text}`; }
+function makePresetSelectionKey(categoryId, text){ return `${categoryId}::${text}`; }
+
+function syncSelectedWordlistUI(){
+  document.querySelectorAll('.wl-item[data-selection-key]').forEach(el => {
+    el.classList.toggle('selected', state.selectedWordlistKeys.has(el.dataset.selectionKey));
+  });
+}
+
+function syncSelectedPresetUI(){
+  document.querySelectorAll('.preset-card[data-selection-key]').forEach(el => {
+    el.classList.toggle('selected', state.selectedPresetKeys.has(el.dataset.selectionKey));
+  });
+}
+
+function syncSelectionUI(){
+  syncSelectedWordlistUI();
+  syncSelectedPresetUI();
+}
+
+function normalizeDimToLaneId(dimId){
+  for(const lane of LANE_CONFIG){ if(lane.aliases.includes(dimId)) return lane.id; }
+  return 'subject_action';
+}
+
+function syncPromptTextarea(){
+  const parts = [];
+  for(const lane of LANE_CONFIG){
+    for(const item of state.promptLanes[lane.id]){ parts.push(item.text); }
+    const custom = (state.laneInputs[lane.id] || '').trim();
+    if(custom) parts.push(custom);
+  }
+  $('prompt').value = parts.join('，');
+}
+
+function renderPromptBuilder(){
+  const builder = $('promptBuilder');
+  builder.innerHTML = LANE_CONFIG.map(lane => {
+    const chips = state.promptLanes[lane.id].map((item, idx) => `
+      <span class="prompt-chip${item.kind==='custom'?' custom':''}">
+        <span class="chip-text">${escapeHtml(item.text)}</span>
+        <button type="button" class="chip-remove" data-lane-remove="${lane.id}" data-chip-idx="${idx}">×</button>
+      </span>
+    `).join('');
+    return `
+      <div class="prompt-lane">
+        <div class="lane-label">${lane.label}</div>
+        <div class="lane-body" data-lane-body="${lane.id}">
+          ${chips || '<span class="lane-empty">点击下方词库标签添加</span>'}
+          <input class="lane-input" data-lane-input="${lane.id}" type="text" placeholder="在这里补充自定义提示词" value="${escapeHtml(state.laneInputs[lane.id] || '')}" />
+        </div>
+      </div>
+    `;
+  }).join('');
+  syncPromptTextarea();
+}
+
+function addPromptChip(dimId, text, kind='tag', meta={}){
+  const laneId = normalizeDimToLaneId(dimId);
+  const lane = state.promptLanes[laneId];
+  const exists = lane.some(item => item.text === text && item.kind === kind && item.source === dimId);
+  if(exists) return false;
+  lane.push({ text, kind, source: dimId, meta });
+  if(kind === 'tag') state.selectedWordlistKeys.add(makeWordlistSelectionKey(dimId, text));
+  if(kind === 'preset' && meta.categoryId) state.selectedPresetKeys.add(makePresetSelectionKey(meta.categoryId, text));
+  renderPromptBuilder();
+  syncSelectionUI();
+  return true;
+}
+
+function removePromptChip(laneId, idx){
+  const removed = state.promptLanes[laneId].splice(idx, 1)[0];
+  if(removed?.kind === 'tag') state.selectedWordlistKeys.delete(makeWordlistSelectionKey(removed.source, removed.text));
+  if(removed?.kind === 'preset' && removed.meta?.categoryId) state.selectedPresetKeys.delete(makePresetSelectionKey(removed.meta.categoryId, removed.text));
+  renderPromptBuilder();
+  syncSelectionUI();
+}
+
+function clearAllPromptLanes(){
+  Object.keys(state.promptLanes).forEach(key => state.promptLanes[key] = []);
+  Object.keys(state.laneInputs).forEach(key => state.laneInputs[key] = '');
+  state.selectedWordlistKeys.clear();
+  state.selectedPresetKeys.clear();
+  renderPromptBuilder();
+  syncSelectionUI();
+}
+
+function toggleWordlistChip(dimId, text){
+  if(state.mode === 'img2img'){
+    toggleI2iWordlistChip(dimId, text);
+    return;
+  }
+  if(state.editMode === 'free'){
+    const ta = $('promptFreeInput');
+    const current = (ta.value || '').trim();
+    ta.value = current ? current + '，' + text : text;
+    ta.focus();
+    ta.setSelectionRange(ta.value.length, ta.value.length);
+    showToast('已插入：' + text);
+    return;
+  }
+  const laneId = normalizeDimToLaneId(dimId);
+  const idx = state.promptLanes[laneId].findIndex(item => item.kind === 'tag' && item.source === dimId && item.text === text);
+  if(idx >= 0){
+    removePromptChip(laneId, idx);
+    showToast('已取消标签');
+    return;
+  }
+  if(addPromptChip(dimId, text, 'tag')) showToast('已加入提示词');
+}
+
+function togglePresetChip(categoryId, text){
+  if(state.mode === 'img2img'){
+    toggleI2iPresetChip(categoryId, text);
+    return;
+  }
+  if(state.editMode === 'free'){
+    const ta = $('promptFreeInput');
+    const current = (ta.value || '').trim();
+    ta.value = current ? current + '，' + text : text;
+    ta.focus();
+    ta.setSelectionRange(ta.value.length, ta.value.length);
+    showToast('已插入预设：' + text);
+    return;
+  }
+  const laneId = 'subject_action';
+  const idx = state.promptLanes[laneId].findIndex(item => item.kind === 'preset' && item.meta?.categoryId === categoryId && item.text === text);
+  if(idx >= 0){
+    removePromptChip(laneId, idx);
+    showToast('已取消预设');
+    return;
+  }
+  if(addPromptChip('subject_action', text, 'preset', { categoryId })) showToast('已加入预设');
+}
+
+function openLightbox(src){
+  if(!src) return;
+  lightboxImg.src = src.startsWith('data:') ? src : withNoCache(src);
+  lightboxOverlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  lightboxOverlay.classList.remove('show');
+  document.body.style.overflow = '';
+  setTimeout(()=>{ lightboxImg.removeAttribute('src'); }, 250);
+}
+function openLightboxFromResult(){ const url = state.latestResult?.saved?.url; if(url) openLightbox(url); }
+
+function setMode(mode){
+  state.mode = mode;
+  imageUploadField.classList.toggle('hidden', mode !== 'img2img');
+  // txt2img 编辑器（editModeTabs + builder/freeInput + hint）
+  $('editModeTabs').classList.toggle('hidden', mode === 'img2img');
+  $('promptBuilder').classList.toggle('hidden', mode === 'img2img' || state.editMode !== 'builder');
+  $('promptFreeInput').classList.toggle('hidden', mode === 'img2img' || state.editMode !== 'free');
+  $('promptHint').classList.toggle('hidden', mode === 'img2img');
+  // img2img 编辑器
+  $('i2iEditor').classList.toggle('hidden', mode !== 'img2img');
+  document.querySelectorAll('.mode-tab').forEach(tab => tab.classList.toggle('active', tab.dataset.mode===mode));
+}
+
+function setEditMode(mode){
+  if(state.mode === 'img2img') return; // img2img 模式下忽略
+  state.editMode = mode;
+  const builder = $('promptBuilder');
+  const freeInput = $('promptFreeInput');
+  const hint = $('promptHint');
+  if(mode === 'builder'){
+    builder.classList.remove('hidden');
+    freeInput.classList.add('hidden');
+    hint.textContent = '固定顺序：主体动作 → 风格 → 镜头 → 光影 → 画质 → 负面提示词。你可以点击标签加入，也可以在每一栏中间手写自定义提示词。';
+    syncPromptTextarea();
+  } else {
+    builder.classList.add('hidden');
+    freeInput.classList.remove('hidden');
+    hint.textContent = '自由手写提示词。点击下方词库标签可快速插入到光标位置。';
+    syncPromptTextarea();
+    freeInput.value = $('prompt').value;
+    freeInput.focus();
+  }
+  document.querySelectorAll('.edit-mode-tab').forEach(tab => tab.classList.toggle('active', tab.dataset.editMode===mode));
+}
+
+/* ── img2img 自定义混合编辑器（稳定版） ── */
+
+function getImageRefLabel(imgIdx){
+  const safeIndex = Number.isFinite(imgIdx) ? imgIdx : 0;
+  return `图${safeIndex + 1}`;
+}
+
+function remapI2iImageChipIndexes(indexMap){
+  state.i2iChips = state.i2iChips
+    .filter(chip => chip.type !== 'image' || indexMap.has(chip.imgIdx))
+    .map(chip => chip.type === 'image' ? { ...chip, imgIdx: indexMap.get(chip.imgIdx) } : chip);
+}
+
+function reorderUploadImages(fromIndex, toIndex){
+  if(fromIndex === toIndex || fromIndex < 0 || toIndex < 0) return;
+  const oldImages = [...state.uploadImages];
+  const moved = oldImages[fromIndex];
+  if(!moved) return;
+  oldImages.splice(fromIndex, 1);
+  oldImages.splice(toIndex, 0, moved);
+  const indexMap = new Map();
+  oldImages.forEach((img, newIdx) => {
+    const oldIdx = state.uploadImages.indexOf(img);
+    indexMap.set(oldIdx, newIdx);
+  });
+  state.uploadImages = oldImages;
+  remapI2iImageChipIndexes(indexMap);
+  renderStackThumbs();
+  renderI2iEditor();
+  if(state.i2iPopupOpen) showI2iAtPopup();
+}
+
+function buildI2iChipHtml(chip, idx){
+  if(chip.type === 'image'){
+    return `<span class="i2i-img-chip" data-i2i-idx="${idx}" title="${escapeHtml(chip.name)}">
+      <img src="${chip.dataUrl}" alt="${escapeHtml(chip.name)}" />
+      <span class="i2i-img-chip-name">@${getImageRefLabel(chip.imgIdx)}</span>
+      <button type="button" class="i2i-chip-close" data-i2i-del="${idx}">×</button>
+    </span>`;
+  }
+  if(chip.type === 'text'){
+    const editingClass = idx === state.i2iEditingTextIndex ? ' editing' : '';
+    return `<span class="i2i-inline-text${editingClass}" data-i2i-idx="${idx}" title="点击后可继续编辑这段文字">
+      <span class="i2i-inline-text-value">${escapeHtml(chip.text)}</span>
+      <button type="button" class="i2i-chip-close" data-i2i-del="${idx}">×</button>
+    </span>`;
+  }
+  const cls = chip.type === 'preset' ? 'i2i-tag-chip preset' : 'i2i-tag-chip tag';
+  return `<span class="${cls}" data-i2i-idx="${idx}">
+    ${escapeHtml(chip.text)}
+    <button type="button" class="i2i-chip-close" data-i2i-del="${idx}">×</button>
+  </span>`;
+}
+
+function renderI2iEditor(nextInputValue){
+  const box = $('i2iInputBox');
+  const input = $('i2iTextInput');
+  const currentValue = nextInputValue ?? (input ? input.value : '');
+  const chipsHtml = state.i2iChips.map((chip, idx) => buildI2iChipHtml(chip, idx)).join('');
+  box.innerHTML = `${chipsHtml}<input class="i2i-text-input" id="i2iTextInput" placeholder="输入 @ 引用图片，或直接写提示词..." autocomplete="off" spellcheck="false" value="${escapeHtml(currentValue)}" />`;
+  syncI2iPromptTextarea();
+}
+
+function addI2iChip(chip, options={}){
+  const { nextInputValue = '' } = options;
+  state.i2iChips.push(chip);
+  renderI2iEditor(nextInputValue);
+}
+
+function commitI2iInputAsTextChip(){
+  const input = $('i2iTextInput');
+  const raw = input ? input.value : '';
+  const text = raw.trim();
+  if(!text) return false;
+  const lastChip = state.i2iChips[state.i2iChips.length - 1];
+  if(lastChip?.type === 'text'){
+    lastChip.text = `${lastChip.text}，${text}`;
+  } else {
+    state.i2iChips.push({ type: 'text', text });
+  }
+  state.i2iEditingTextIndex = -1;
+  renderI2iEditor('');
+  return true;
+}
+
+function removeI2iChip(idx){
+  const removed = state.i2iChips.splice(idx, 1)[0];
+  if(removed?.type === 'tag') state.selectedWordlistKeys.delete(makeWordlistSelectionKey(removed.source, removed.text));
+  if(removed?.type === 'preset' && removed.categoryId) state.selectedPresetKeys.delete(makePresetSelectionKey(removed.categoryId, removed.text));
+  state.i2iEditingTextIndex = -1;
+  renderI2iEditor();
+  syncSelectionUI();
+}
+
+function addImageRef(imgIdx){
+  const img = state.uploadImages[imgIdx];
+  if(!img) return;
+  const input = $('i2iTextInput');
+  const rawValue = input ? input.value : '';
+  const caretStart = input ? input.selectionStart ?? rawValue.length : rawValue.length;
+  const caretEnd = input ? input.selectionEnd ?? caretStart : caretStart;
+
+  let insertAt = rawValue.lastIndexOf('@', caretStart);
+  if(insertAt < 0) insertAt = caretStart;
+
+  const beforeRaw = rawValue.slice(0, insertAt);
+  const afterRaw = rawValue.slice(caretEnd);
+  const beforeText = beforeRaw.trim();
+  const nextInputValue = afterRaw.replace(/^\s+/, '');
+
+  if(beforeText){
+    const lastChip = state.i2iChips[state.i2iChips.length - 1];
+    if(lastChip?.type === 'text') lastChip.text = `${lastChip.text}，${beforeText}`;
+    else state.i2iChips.push({ type: 'text', text: beforeText });
+  }
+
+  addI2iChip({ type: 'image', imgIdx, name: img.name, dataUrl: img.dataUrl }, { nextInputValue });
+  const nextInput = $('i2iTextInput');
+  if(nextInput){
+    nextInput.focus();
+    nextInput.setSelectionRange(0, 0);
+  }
+  syncI2iPromptTextarea();
+  showToast('已引用：' + img.name);
+}
+
+function toggleI2iWordlistChip(dimId, text){
+  const idx = state.i2iChips.findIndex(c => c.type === 'tag' && c.source === dimId && c.text === text);
+  if(idx >= 0){ removeI2iChip(idx); showToast('已取消标签'); return; }
+  commitI2iInputAsTextChip();
+  state.selectedWordlistKeys.add(makeWordlistSelectionKey(dimId, text));
+  addI2iChip({ type: 'tag', text, source: dimId });
+  syncSelectionUI();
+  showToast('已加入提示词');
+}
+
+function toggleI2iPresetChip(categoryId, text){
+  const idx = state.i2iChips.findIndex(c => c.type === 'preset' && c.categoryId === categoryId && c.text === text);
+  if(idx >= 0){ removeI2iChip(idx); showToast('已取消预设'); return; }
+  commitI2iInputAsTextChip();
+  state.selectedPresetKeys.add(makePresetSelectionKey(categoryId, text));
+  addI2iChip({ type: 'preset', text, categoryId });
+  syncSelectionUI();
+  showToast('已加入预设');
+}
+
+function removeLastI2iToken(){
+  const lastIdx = state.i2iChips.length - 1;
+  if(lastIdx < 0) return false;
+  removeI2iChip(lastIdx);
+  return true;
+}
+
+function editI2iTextChip(idx){
+  const chip = state.i2iChips[idx];
+  if(!chip || chip.type !== 'text') return false;
+  state.i2iEditingTextIndex = idx;
+  state.i2iChips.splice(idx, 1);
+  renderI2iEditor(chip.text || '');
+  const input = $('i2iTextInput');
+  if(input){
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length);
+  }
+  syncI2iPromptTextarea();
+  showToast('已回到输入框，可继续修改');
+  return true;
+}
+
+window.editI2iToken = function(idx){
+  const chip = state.i2iChips[idx];
+  if(!chip || chip.type === 'image') return false;
+  if(chip.type === 'tag'){
+    state.selectedWordlistKeys.delete(makeWordlistSelectionKey(chip.source, chip.text));
+  }
+  if(chip.type === 'preset' && chip.categoryId){
+    state.selectedPresetKeys.delete(makePresetSelectionKey(chip.categoryId, chip.text));
+  }
+  state.i2iChips.splice(idx, 1);
+  renderI2iEditor(chip.text || '');
+  syncSelectionUI();
+  const input = $('i2iTextInput');
+  if(input){
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length);
+  }
+  showToast('已载入输入框，可直接修改');
+  return true;
+}
+
+function shouldJoinI2iWithoutComma(prevPart, nextPart){
+  if(!prevPart || !nextPart) return true;
+  if(prevPart.type === 'image' || nextPart.type === 'image') return true;
+  const prevText = String(prevPart.text || '');
+  const nextText = String(nextPart.text || '');
+  if(/[，,、；;：:\(（\[【\s]$/.test(prevText)) return true;
+  if(/^[，,、；;：:）)】\]\.。!！?？\s]/.test(nextText)) return true;
+  return false;
+}
+
+function buildI2iPromptText(options={}){
+  const { withAt = true } = options;
+  const parts = [];
+  for(const chip of state.i2iChips){
+    if(chip.type === 'image'){
+      const ref = getImageRefLabel(chip.imgIdx);
+      parts.push({ type: 'image', text: withAt ? '@' + ref : ref });
+    } else {
+      parts.push({ type: chip.type || 'text', text: chip.text });
+    }
+  }
+  const freeText = ($('i2iTextInput')?.value || '').trim();
+  if(freeText) parts.push({ type: 'text', text: freeText });
+
+  let result = '';
+  parts.forEach((part, idx) => {
+    const text = String(part.text || '').trim();
+    if(!text) return;
+    const prevPart = idx > 0 ? parts[idx - 1] : null;
+    if(result && !shouldJoinI2iWithoutComma(prevPart, part)){
+      result += '，';
+    }
+    result += text;
+  });
+  return result;
+}
+
+
+function syncI2iPromptTextarea(){
+  $('prompt').value = buildI2iPromptText({ withAt: false });
+}
+
+function showI2iAtPopup(){
+  const pop = $('i2iAtPopup');
+  if(!state.uploadImages.length){
+    pop.innerHTML = '<div class="i2i-at-empty">请先上传参考图片</div>';
+    pop.classList.remove('hidden');
+    state.i2iPopupOpen = true;
+    return;
+  }
+  pop.innerHTML = state.uploadImages.map((img, i) => {
+    return `<div class="i2i-at-item" data-i2i-at-idx="${i}" title="${escapeHtml(img.name)}">
+      <img src="${img.dataUrl}" alt="${escapeHtml(img.name)}" />
+      <div class="i2i-at-item-label">@${getImageRefLabel(i)}</div>
+    </div>`;
+  }).join('');
+  pop.classList.remove('hidden');
+  state.i2iPopupOpen = true;
+}
+
+function hideI2iAtPopup(){
+  $('i2iAtPopup').classList.add('hidden');
+  state.i2iPopupOpen = false;
+}
+
+function clearI2iEditor(){
+  state.i2iChips = [];
+  state.i2iEditingTextIndex = -1;
+  renderI2iEditor();
+  const input = $('i2iTextInput');
+  if(input) input.value = '';
+  syncI2iPromptTextarea();
+}
+
+function buildPayload(){
+  if(state.mode === 'img2img'){
+    syncI2iPromptTextarea();
+  } else if(state.editMode === 'free'){
+    $('prompt').value = ($('promptFreeInput').value || '').trim();
+  } else {
+    syncPromptTextarea();
+  }
+  const protocol = state.currentProtocol || {};
+  const payload = {
+    action: state.mode,
+    baseUrl: $('baseUrl').value.trim(),
+    apiKey: $('apiKey').value.trim(),
+    model: $('model').value.trim(),
+    size: $('size').value,
+    quality: $('quality').value.trim(),
+    background: $('background').value.trim(),
+    prompt: $('prompt').value.trim(),
+    outputDir: $('outputDir').value.trim() || DEFAULT_OUTPUT_DIR,
+    outputFormat: 'png',
+    protocol
+  };
+  const protocolDefaults = protocol?.defaults || {};
+  Object.entries(protocolDefaults).forEach(([key, value]) => {
+    if(payload[key] == null || payload[key] === '') payload[key] = value;
+  });
+  if(state.mode === 'img2img') payload.images = state.uploadImages;
+  return payload;
+}
+
+
+function buildDirectApiHeaders(apiKey){
+  return {
+    'Authorization': `Bearer ${apiKey}`,
+    'Content-Type': 'application/json'
+  };
+}
+
+function buildDirectMultipartHeaders(apiKey){
+  return {
+    'Authorization': `Bearer ${apiKey}`
+  };
+}
+
+function extractDirectImageItem(responsePayload){
+  const data = responsePayload?.data;
+  if(Array.isArray(data) && data.length && typeof data[0] === 'object') return data[0];
+  const errorText = String(responsePayload?.error || responsePayload?.message || responsePayload?.msg || '').trim();
+  const errorCode = String(responsePayload?.code || '').trim();
+  if(errorText){
+    throw new Error(errorCode ? `上游接口返回错误（code=${errorCode}）：${errorText}` : `上游接口返回错误：${errorText}`);
+  }
+  throw new Error(`接口返回中未找到图片数据: ${JSON.stringify(responsePayload).slice(0, 300)}`);
+}
+
+function dataUrlToBlob(dataUrl){
+  const match = String(dataUrl || '').match(/^data:([^;,]+)?(;base64)?,(.*)$/);
+  if(!match) throw new Error('参考图数据格式无效');
+  const mimeType = match[1] || 'image/png';
+  const encoded = match[3] || '';
+  const binary = match[2] ? atob(encoded) : decodeURIComponent(encoded);
+  const bytes = new Uint8Array(binary.length);
+  for(let i = 0; i < binary.length; i += 1) bytes[i] = binary.charCodeAt(i);
+  return new Blob([bytes], { type: mimeType });
+}
+
+async function uploadReferenceImageToObjectStorage(img){
+  if(img?.remoteUrl && /^https?:\/\//i.test(String(img.remoteUrl))) return img;
+  const blob = img?.file || dataUrlToBlob(img?.dataUrl || '');
+  const fileName = img?.name || `reference-${Date.now()}.png`;
+  const form = new FormData();
+  form.append('file', blob, fileName);
+  form.append('purpose', 'vision');
+  form.append('mode', 'object_storage');
+  const resp = await fetch(OBJECT_STORAGE_UPLOAD_API, { method: 'POST', body: form });
+  const data = await resp.json().catch(() => ({}));
+  if(!resp.ok || !data.ok) throw new Error(data?.error || data?.message || data?.msg || `COS 上传失败 HTTP ${resp.status}`);
+  const remoteUrl = String(data.remoteUrl || data.url || '').trim();
+  if(!/^https?:\/\//i.test(remoteUrl)) throw new Error('COS 上传未返回公网 URL');
+  return {
+    ...img,
+    remoteUrl,
+    url: remoteUrl,
+    uploadRef: remoteUrl,
+    providerRef: remoteUrl,
+    fileId: remoteUrl,
+    objectStorage: data
+  };
+}
+
+function shouldUseObjectStorageReferences(protocol){
+  const adapter = String(protocol?.adapter || '').trim();
+  return adapter === 'gpt-image-v2' || adapter === 'gemini-image';
+}
+
+async function ensureObjectStorageReferences(payload){
+  if(payload.action !== 'img2img' || !shouldUseObjectStorageReferences(payload.protocol || {})) return payload;
+  const images = Array.isArray(payload.images) ? payload.images : (Array.isArray(payload.image) ? payload.image : []);
+  if(!images.length) return payload;
+  setStatus('正在将参考图上传到腾讯云 COS...', 'warn');
+  const uploadedImages = [];
+  for(const img of images){
+    uploadedImages.push(typeof img === 'string' ? img : await uploadReferenceImageToObjectStorage(img));
+  }
+  state.uploadImages = uploadedImages;
+  renderStackThumbs();
+  if(state.i2iPopupOpen) showI2iAtPopup();
+  return { ...payload, images: uploadedImages, image: uploadedImages };
+}
+
+function makeUploadFileName(name, fallback='reference.png'){
+  const source = String(name || '').trim() || fallback;
+  const safe = source.replace(/[\\/:*?"<>|]+/g, '_');
+  return /\.(png|jpg|jpeg|webp)$/i.test(safe) ? safe : `${safe}.png`;
+}
+
+function base64ToBlob(base64, mimeType='image/png'){
+  const byteChars = atob(base64);
+  const byteNumbers = new Array(byteChars.length);
+  for(let i = 0; i < byteChars.length; i += 1) byteNumbers[i] = byteChars.charCodeAt(i);
+  return new Blob([new Uint8Array(byteNumbers)], { type: mimeType });
+}
+
+async function buildStandaloneResult(responsePayload){
+  const item = extractDirectImageItem(responsePayload);
+  const remoteUrl = String(item.url || item.image_url || '').trim();
+  const b64 = String(item.b64_json || item.b64 || '').trim();
+  const revisedPrompt = String(item.revised_prompt || responsePayload?.revised_prompt || '').trim();
+  if(remoteUrl){
+    return {
+      saved: {
+        url: remoteUrl,
+        remoteUrl,
+        revisedPrompt,
+        filename: `image-studio-v3-${Date.now()}.png`,
+        path: ''
+      }
+    };
+  }
+  if(b64){
+    const blob = base64ToBlob(b64, 'image/png');
+    const objectUrl = URL.createObjectURL(blob);
+    return {
+      saved: {
+        url: objectUrl,
+        remoteUrl: '',
+        revisedPrompt,
+        filename: `image-studio-v3-${Date.now()}.png`,
+        path: '',
+        blobObjectUrl: objectUrl,
+        blob
+      }
+    };
+  }
+  throw new Error('接口已返回响应，但未包含 url 或 b64_json');
+}
+
+function resolveLocalImageProxyEndpoint(protocol){
+  const adapter = String(protocol?.adapter || '').trim() || 'openai-edits';
+  const endpointPath = String(protocol?.endpointPath || protocol?.endpoint_path || protocol?.endpoint || '').trim();
+  if(endpointPath && /\/images\/generations(?:\/|$)/i.test(endpointPath)) return '/v1/images/generations';
+  if(endpointPath && /\/images\/edits(?:\/|$)/i.test(endpointPath)) return '/v1/images/edits';
+  if(adapter === 'openai-generations' || adapter === 'gpt-image-v2' || adapter === 'gemini-image') return '/v1/images/generations';
+  return '/v1/images/edits';
+}
+
+async function generateImageStandalone(payload){
+  const protocol = payload.protocol || {};
+  const adapter = String(protocol?.adapter || '').trim() || 'openai-edits';
+  const isGenerations = (adapter === 'openai-generations' || adapter === 'gpt-image-v2');
+  const isGemini = (adapter === 'gemini-image');
+  const endpoint = resolveLocalImageProxyEndpoint(protocol);
+  const requestPayload = {
+    baseUrl: payload.baseUrl,
+    apiKey: payload.apiKey,
+    model: payload.model,
+    prompt: payload.prompt,
+    size: payload.size,
+    response_format: 'url',
+    outputDir: payload.outputDir || DEFAULT_OUTPUT_DIR,
+    protocol
+  };
+  ['quality', 'style', 'outputFormat', 'aspect_ratio', 'aspectRatio', 'resolution', 'imageSize', 'reasoning_effort', 'reasoningEffort', 'requestedRatio', 'requestedResolution', 'requestedPixelSize'].forEach(key => {
+    if(payload[key] != null && payload[key] !== '') requestPayload[key] = payload[key];
+  });
+  if(payload.n != null) requestPayload.n = payload.n;
+  if(!isGenerations && !isGemini) {
+    requestPayload.background = payload.background || 'auto';
+    if(payload.mask) requestPayload.mask = payload.mask;
+  }
+  const isProviderImageRef = value => {
+    const ref = String(value || '').trim();
+    if(!ref || /^data:/i.test(ref) || /^blob:/i.test(ref)) return false;
+    return /^file-[\w-]+$/i.test(ref) || /^https?:\/\//i.test(ref);
+  };
+  const sourceImages = Array.isArray(payload.image) ? payload.image : (Array.isArray(payload.images) ? payload.images : []);
+  const imageRefs = sourceImages.map(img => typeof img === 'string' ? img : (img?.uploadRef || img?.providerRef || img?.fileId || img?.id || img?.file_id || img?.remoteUrl || img?.image || '')).filter(isProviderImageRef);
+  if(payload.action === 'img2img'){
+    if(!imageRefs.length) throw new Error('图生图参考图必须先上传为 file-xxx 或公网 URL，不能使用本地 base64 预览图');
+    if((adapter === 'gpt-image-v2' || adapter === 'gemini-image') && imageRefs.some(ref => !/^https?:\/\//i.test(String(ref)))){
+      throw new Error('GPT-Image-v2 和 Gemini-Image 的参考图必须使用腾讯云 COS 公网 URL');
+    }
+    requestPayload.image = imageRefs;
+  }
+
+  const resp = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(requestPayload)
+  });
+  const data = await resp.json();
+  if(!resp.ok) throw new Error(data?.error || data?.message || data?.msg || `HTTP ${resp.status}`);
+  return {
+    ok: true,
+    action: payload.action,
+    result: await buildStandaloneResult(data)
+  };
+}
+
+function resolvePreviewUrl(saved){
+  if(!saved) return '';
+  if(saved.remoteUrl) return saved.remoteUrl;
+  if(saved.url) return saved.url;
+  if(saved.path) return `${API_BASE}/file?path=${encodeURIComponent(saved.path)}`;
+  return '';
+}
+function isRemoteHttpUrl(url){ return /^https?:\/\//i.test(String(url||'').trim()); }
+function proxyImageUrl(url){ return `${API_BASE}/proxy-image?remoteUrl=${encodeURIComponent(url)}`; }
+function renderRemotePreviewFallback(url, message='图片在线预览加载失败'){
+  const safeUrl = escapeHtml(url || '');
+  return `<div class="result-empty" style="display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;padding:14px;text-align:center;">
+    <span>${escapeHtml(message)}</span>
+    <span style="font-size:12px;color:#8b93a7;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">远程链接已保留：${safeUrl}</span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+      <button class="sm" type="button" data-open-preview-url="${safeUrl}">在线预览</button>
+      <button class="sm" type="button" data-copy-preview-url="${safeUrl}">复制链接</button>
+    </div>
+  </div>`;
+}
+function bindPreviewFallbackActions(url){
+  resultImageShell.querySelectorAll('[data-open-preview-url]').forEach(btn => btn.addEventListener('click', e => { e.stopPropagation(); window.open(url, '_blank'); }));
+  resultImageShell.querySelectorAll('[data-copy-preview-url]').forEach(btn => btn.addEventListener('click', e => { e.stopPropagation(); copyText(url, '远程图片链接已复制'); }));
+}
+
+function renderResult(payload){
+  const result = payload?.result || null;
+  state.latestResult = result;
+  const saved = result?.saved || null;
+  const previewUrl = resolvePreviewUrl(saved);
+  if(previewUrl){
+    const isRemote = isRemoteHttpUrl(previewUrl);
+    const src = isRemote ? proxyImageUrl(previewUrl) : previewUrl;
+    resultImageShell.innerHTML = `<img src="${withNoCache(src)}" alt="生成结果" />${isRemote ? `<div class="sub-note" style="padding:8px 0 0;text-align:center;">远程图片：若本地下载失败，已保留在线预览与复制链接。</div><div style="display:flex;gap:8px;justify-content:center;margin-top:6px;"><button class="sm" type="button" data-open-preview-url="${escapeHtml(previewUrl)}">在线预览</button><button class="sm" type="button" data-copy-preview-url="${escapeHtml(previewUrl)}">复制链接</button></div>` : ''}`;
+    const img = resultImageShell.querySelector('img');
+    if(img && isRemote){
+      img.onerror = () => {
+        resultImageShell.innerHTML = renderRemotePreviewFallback(previewUrl, saved?.downloadError ? `本地下载失败：${saved.downloadError}` : '图片代理预览失败，但远程链接已保留');
+        bindPreviewFallbackActions(previewUrl);
+      };
+      bindPreviewFallbackActions(previewUrl);
+    }
+    resultImageShell.style.cursor = 'pointer';
+    resultImageShell.style.borderStyle = 'solid';
+  } else {
+    resultImageShell.innerHTML = '<span class="result-empty">尚未生成结果</span>';
+    resultImageShell.style.cursor = 'default';
+    resultImageShell.style.borderStyle = 'dashed';
+  }
+}
+
+function renderGallery(items){
+  state.gallery = items || [];
+  const validItems = state.gallery.map(item => {
+    if(item.url) return item;
+    if(item.path){
+      return { ...item, url: `/api/workbench/image-studio/file?path=${encodeURIComponent(item.path)}` };
+    }
+    return null;
+  }).filter(Boolean);
+  if(!validItems.length){ galleryGrid.innerHTML = '<div class="sub-note" style="grid-column:1/-1;padding:12px;">暂无图片。</div>'; return; }
+  galleryGrid.innerHTML = validItems.map(item => `
+    <div class="gallery-card">
+      <img src="${withNoCache(item.url)}" alt="${escapeHtml(item.name)}" data-lb-url="${item.url}" />
+      <strong>${escapeHtml(item.name)}</strong>
+      <span>${escapeHtml(item.updatedAt || '')}</span>
+      <div style="margin-top:4px;display:flex;gap:4px;">
+        <button class="sm" type="button" data-open-url="${item.url}">打开</button>
+        <button class="sm" type="button" data-copy-url="${item.url}">复制</button>
+      </div>
+    </div>
+  `).join('');
+  galleryGrid.querySelectorAll('img[data-lb-url]').forEach(img => img.addEventListener('click', (e)=>{ e.stopPropagation(); openLightbox(img.dataset.lbUrl); }));
+}
+
+async function refreshGallery(){
+  if(IS_STANDALONE_MODE){
+    galleryGrid.innerHTML = '<div class="sub-note" style="grid-column:1/-1;padding:12px;">独立版不依赖后端图库；生成后可直接预览并手动下载。</div>';
+    return;
+  }
+  try{
+    const outputDir = state.outputDirPath || DEFAULT_OUTPUT_DIR;
+    const resp = await fetch(`${API_BASE}/gallery?excludeSource=true&outputDir=${encodeURIComponent(outputDir)}`, { cache:'no-store' });
+    const data = await resp.json();
+    if(!resp.ok || !data.ok) throw new Error(data.error || `HTTP ${resp.status}`);
+    renderGallery(data.items || []);
+  }catch(err){ galleryGrid.innerHTML = `<div class="sub-note" style="grid-column:1/-1;padding:12px;">加载失败：${escapeHtml(err.message)}</div>`; }
+}
+
+async function saveToGallery(){
+  const saved = state.latestResult?.saved;
+  if(!saved?.path && !saved?.remoteUrl){ showToast('请先生成图片'); return; }
+  const outputDir = state.outputDirPath || DEFAULT_OUTPUT_DIR;
+  // 如果图片已在当前图库目录中，提示无需同步
+  if(saved.path && saved.path.includes(outputDir.replace(/^\//, ''))){
+    showToast('图片已在当前图库中');
+    return;
+  }
+  try{
+    const resp = await fetch(`${API_BASE}/save-to-dir`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        sourcePath: saved.path || null,
+        remoteUrl: saved.remoteUrl || saved.url || null,
+        outputDir: outputDir,
+      }),
+    });
+    const data = await resp.json();
+    if(!resp.ok || !data.ok) throw new Error(data.error || '同步失败');
+    const tip = data.saved?.downloadError ? '已保存远程链接：' : '已同步到图库：';
+    showToast(tip + (data.saved?.filename || outputDir));
+    refreshGallery();
+  }catch(err){ showToast('同步失败：' + err.message); }
+}
+
+async function loadDefaults(){
+  if(IS_STANDALONE_MODE){
+    $('size').value = '1024x1024';
+    const savedDir = localStorage.getItem(DIR_STORAGE_KEY);
+    state.outputDirPath = getOutputDirPath(savedDir);
+    state.outputDirLabel = getDirDisplayName(state.outputDirPath);
+    $('outputDir').value = state.outputDirPath;
+    updateDirBadge();
+    setStatus('独立版已载入：词库/预设为内置数据；生成前请先在"模型配置"中填写接口。', 'warn');
+    return;
+  }
+  try{
+    const response = await fetch(`${API_BASE}/defaults`, { cache:'no-store' });
+    const data = await response.json();
+    if(!response.ok || !data.ok) throw new Error(data.error || `HTTP ${response.status}`);
+    const defaults = data.defaults || {};
+    state.defaults = defaults;
+    $('baseUrl').value = defaults.baseUrl || '';
+    $('model').value = defaults.model || '';
+    $('size').value = defaults.size || '1024x1024';
+    $('apiKey').value = defaults.apiKey || '';
+    // 从 localStorage 恢复用户选择的目录
+    const savedDir = localStorage.getItem(DIR_STORAGE_KEY);
+    state.outputDirPath = getOutputDirPath(savedDir);
+    state.outputDirLabel = getDirDisplayName(state.outputDirPath);
+    $('outputDir').value = state.outputDirPath;
+    updateDirBadge();
+    setStatus(defaults.hasApiKey ? '已自动载入配置和 API Key。' : '已载入配置；未检测到 API Key。', defaults.hasApiKey ? 'ok' : 'warn');
+  }catch(err){ setStatus('配置加载失败：' + err.message, 'error'); }
+}
+
+const MC_STORAGE_KEY = 'image_studio_models_v3';
+const MC_ACTIVE_KEY = 'image_studio_active_model_v3';
+const DIR_STORAGE_KEY = 'image_studio_output_dir_v3';
+
+function loadLocalModels(){
+  try { return dedupeModels(JSON.parse(localStorage.getItem(MC_STORAGE_KEY) || '[]')); }
+  catch(_){ return []; }
+}
+function saveLocalModels(models){
+  localStorage.setItem(MC_STORAGE_KEY, JSON.stringify(dedupeModels(models)));
+}
+function getActiveModelIndex(){
+  const idx = parseInt(localStorage.getItem(MC_ACTIVE_KEY), 10);
+  return isNaN(idx) ? 0 : idx;
+}
+function setActiveModelIndex(idx){
+  localStorage.setItem(MC_ACTIVE_KEY, String(idx));
+}
+function normalizeModelUrl(url){ return String(url || '').trim().replace(/\/+$/, ''); }
+function normalizeModelKeyPart(value){ return String(value || '').trim().toLowerCase().replace(/[\s_\-+.]+/g, ''); }
+function modelRealName(model){ return String(model?.model || model?.name || '').trim(); }
+function modelAliasName(model){
+  const alias = String(model?.name || model?.alias || model?.nick || model?.nickname || model?.displayName || model?.ui?.label || '').trim();
+  return alias || String(model?.model || '').trim();
+}
+function modelIdentity(model){
+  const registered = String(model?.identityKey || model?._identityKey || '').trim();
+  if(registered) return registered;
+  return `${normalizeModelKeyPart(modelRealName(model))}::${normalizeModelKeyPart(modelAliasName(model))}`;
+}
+function dedupeModels(models){
+  const result = [];
+  const seen = new Set();
+  for(const raw of Array.isArray(models) ? models : []){
+    const realName = modelRealName(raw);
+    const alias = modelAliasName(raw);
+    const url = normalizeModelUrl(raw?.url);
+    if(!realName && !url) continue;
+    const item = { ...raw, id:String(raw?.id||'').trim()||modelIdentity({...raw,model:realName,name:alias}), name: alias || realName, model: realName || alias, url, key: String(raw?.key || raw?.apiKey || '').trim(), _identityKey:modelIdentity({...raw,model:realName,name:alias}) };
+    const key = modelIdentity(item);
+    if(seen.has(key)) continue;
+    seen.add(key);
+    result.push(item);
+  }
+  return result;
+}
+function mergeModels(localModels, serverModels){ return dedupeModels([...(localModels || []), ...(serverModels || [])]); }
+
+function renderMcList(){
+  const list = $('mcList');
+  const localModels = loadLocalModels();
+  if(!localModels.length){ list.innerHTML = '<div class="sub-note">暂无配置，请在下方添加。</div>'; return; }
+  const activeIdx = getActiveModelIndex();
+  list.innerHTML = localModels.map((m, i)=>`
+    <div class="mc-item${i===activeIdx?' active':''}" data-mc-idx="${i}">
+      <div class="mc-item-info">
+        <div class="mc-item-name">${escapeHtml(m.name)}</div>
+        <div class="mc-item-url">${escapeHtml(m.url || '')}</div>
+      </div>
+      <button class="mc-item-del" data-mc-del="${i}" title="删除">×</button>
+    </div>
+  `).join('');
+}
+
+function openModelConfig(){
+  $('modelConfigModal').classList.add('show');
+  renderMcList();
+}
+function closeModelConfig(){
+  $('modelConfigModal').classList.remove('show');
+  $('mcUrl').value=''; $('mcKey').value=''; $('mcModel').value='';
+}
+
+function applyModel(index){
+  const m = state.models[index];
+  if(!m) return;
+  $('model').value = m.model || m.name || '';
+  if(m.url) $('baseUrl').value = m.url;
+  if(m.key){ $('apiKey').value = m.key; setStatus('已载入配置与 API Key。', 'ok'); }
+  else { setStatus('模型已选择，但该模型未配置 API Key。', 'warn'); }
+  state.currentProtocol = m.protocol || {};
+}
+
+async function loadModels(){
+  const select = $('modelSelect');
+  select.innerHTML = '<option value="">加载中...</option>';
+  let models = [];
+  try{
+    const response = await fetch(`${API_BASE}/models`, { cache:'no-store' });
+    const data = await response.json();
+    if(response.ok && data.ok) models = data.models || [];
+  }catch(_){}
+  const localModels = loadLocalModels();
+  models = mergeModels(localModels, models);
+  state.models = models;
+  if(!models.length){ select.innerHTML = '<option value="">无可用模型，请点击「模型配置」添加</option>'; return; }
+  select.innerHTML = models.map((m, i)=>`<option value="${i}">${escapeHtml(m.note ? m.name + ' (' + m.note + ')' : m.name)}</option>`).join('');
+  const activeIdx = getActiveModelIndex();
+  select.value = String(Math.min(activeIdx, models.length - 1));
+  applyModel(Math.min(activeIdx, models.length - 1));
+}
+
+function saveModelConfig(){
+  const url = $('mcUrl').value.trim();
+  const key = $('mcKey').value.trim();
+  const model = $('mcModel').value.trim();
+  if(!url){ showToast('请填写 API 地址'); return; }
+  if(!model){ showToast('请填写模型名称'); return; }
+  const localModels = loadLocalModels();
+  const entry = { name: model, model, url: normalizeModelUrl(url), key };
+  const existingIdx = localModels.findIndex(item => modelIdentity(item) === modelIdentity(entry));
+  if(existingIdx >= 0) localModels[existingIdx] = { ...localModels[existingIdx], ...entry };
+  else localModels.push(entry);
+  saveLocalModels(localModels);
+  setActiveModelIndex(Math.max(0, existingIdx >= 0 ? existingIdx : localModels.length - 1));
+  renderMcList();
+  $('mcUrl').value=''; $('mcKey').value=''; $('mcModel').value='';
+  showToast('配置已保存');
+  loadModels();
+}
+
+function deleteLocalModel(idx){
+  const localModels = loadLocalModels();
+  localModels.splice(idx, 1);
+  saveLocalModels(localModels);
+  if(getActiveModelIndex() >= localModels.length) setActiveModelIndex(Math.max(0, localModels.length - 1));
+  renderMcList();
+  loadModels();
+  showToast('已删除');
+}
+
+let progressTimer = null;
+function showProgress(){
+  const wrap = $('progressWrap'), fill = $('progressFill'), text = $('progressText');
+  wrap.classList.remove('hidden'); fill.style.width = '10%'; text.textContent = '生成中...';
+  progressTimer = setInterval(()=>{
+    const current = parseInt(fill.style.width || '10', 10);
+    if(current < 90) fill.style.width = `${current + 8}%`;
+  }, 700);
+}
+function finishProgress(ok){
+  clearInterval(progressTimer); progressTimer = null;
+  const fill = $('progressFill'), text = $('progressText');
+  if(ok){ fill.style.width = '100%'; text.textContent = '完成'; setTimeout(()=>$('progressWrap').classList.add('hidden'), 900); }
+  else { text.textContent = '失败'; setTimeout(()=>$('progressWrap').classList.add('hidden'), 1200); }
+}
+
+async function generateImage(){
+  let payload = buildPayload();
+  if(!payload.baseUrl){ setStatus('请先选择模型（URL 未加载）。', 'error'); return; }
+  if(!payload.apiKey){ setStatus('请先选择模型（Key 未加载）。', 'error'); return; }
+  if(!payload.model){ setStatus('请先选择模型。', 'error'); return; }
+  if(!payload.prompt){ setStatus('请填写提示词。', 'error'); return; }
+  if(state.mode === 'img2img' && !state.uploadImages.length){ setStatus('请至少上传一张参考图。', 'error'); return; }
+  $('generateBtn').disabled = true;
+  showProgress();
+  try{
+    payload = await ensureObjectStorageReferences(payload);
+    const data = IS_STANDALONE_MODE
+      ? await generateImageStandalone(payload)
+      : await (async()=>{
+          const resp = await fetch(`${API_BASE}/generate`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+          const data = await resp.json();
+          if(!resp.ok || !data.ok) throw new Error(data.error || `HTTP ${resp.status}`);
+          return data;
+        })();
+    renderResult(data);
+    refreshGallery();
+    setStatus(IS_STANDALONE_MODE ? '独立版生成完成，可直接下载结果。' : '生成完成', 'ok');
+    finishProgress(true);
+  }catch(err){
+    setStatus('生成失败：' + err.message, 'error');
+    finishProgress(false);
+  } finally { $('generateBtn').disabled = false; }
+}
+
+function togglePanel(panelId, toggleId){
+  const panel = $(panelId), toggle = $(toggleId);
+  const hidden = panel.classList.toggle('hidden');
+  toggle.textContent = hidden ? '▼' : '▲';
+}
+
+function renderWordlistTabs(dimensions){
+  const tabs = $('wordlistTabs');
+  tabs.innerHTML = dimensions.map((d, i)=>`<button class="wl-tab${i===0?' active':''}" data-dim="${d.id}" data-file="${d.file}" type="button">${escapeHtml(String(d.priority))}. ${escapeHtml(d.name)}</button>`).join('');
+}
+
+function renderWordlistContent(data, dimId){
+  const c = $('wordlistContent');
+  const cats = data.categories || [];
+  if(!cats.length){ c.innerHTML = '<div class="sub-note">该维度暂无词条。</div>'; return; }
+  c.innerHTML = cats.map(cat => {
+    const items = (cat.items || []).map(it => {
+      const cls = it.isCombo ? 'wl-item combo' : 'wl-item';
+      const title = it.usage ? ` title="${escapeHtml(it.usage)}"` : '';
+      const selectionKey = makeWordlistSelectionKey(dimId, it.keyword);
+      const selectedClass = state.selectedWordlistKeys.has(selectionKey) ? ' selected' : '';
+      return `<span class="${cls}${selectedClass}"${title} data-keyword="${escapeHtml(it.keyword)}" data-source-dim="${escapeHtml(dimId)}" data-selection-key="${escapeHtml(selectionKey)}">${escapeHtml(it.keyword)}</span>`;
+    }).join('');
+    const tipHtml = cat.tip ? `<div class="wl-tip">${escapeHtml(cat.tip)}</div>` : '';
+    return `<div class="wl-category"><div class="wl-category-title">${escapeHtml(cat.name)}</div><div class="wl-items">${items}</div>${tipHtml}</div>`;
+  }).join('');
+}
+
+function getEmbeddedWordlist(wordlistId){
+  const safe = String(wordlistId || '').trim().replace(/\.json$/i, '') + '.json';
+  return EMBEDDED_WORDLISTS[safe] || null;
+}
+
+async function fetchWordlistResource(wordlistId=''){
+  const embedded = getEmbeddedWordlist(wordlistId || 'index');
+  if(IS_STANDALONE_MODE && embedded){
+    return embedded;
+  }
+  const url = wordlistId ? `${WORDLIST_API}?id=${encodeURIComponent(wordlistId)}` : WORDLIST_API;
+  try{
+    const resp = await fetch(url, { cache:'no-store' });
+    const data = await resp.json();
+    if(!resp.ok || !data.ok) throw new Error(data.error || '加载失败');
+    return data;
+  }catch(err){
+    if(embedded) return embedded;
+    throw err;
+  }
+}
+
+async function loadDimension(file, dimId){
+  if(state.currentDimension === dimId) return;
+  state.currentDimension = dimId;
+  $('wordlistContent').innerHTML = '<div class="sub-note">加载中...</div>';
+  try{
+    const data = await fetchWordlistResource(file);
+    renderWordlistContent(data, dimId);
+  }catch(err){ $('wordlistContent').innerHTML = `<div class="sub-note">加载失败：${escapeHtml(err.message)}</div>`; }
+}
+
+async function loadWordlistIndex(){
+  try{
+    const data = await fetchWordlistResource('');
+    const dims = (data.dimensions || []).filter(dim => dim.file !== `${PRESET_WORDLIST_ID}.json` && dim.id !== 'preset_recipes');
+    state.wordlistIndex = dims;
+    if(!dims.length){ $('wordlistContent').innerHTML = '<div class="sub-note">词库为空</div>'; return; }
+    renderWordlistTabs(dims);
+    await loadDimension(dims[0].file, dims[0].id);
+  }catch(err){ $('wordlistContent').innerHTML = '<div class="sub-note">词库加载失败</div>'; setStatus('词库加载失败：' + err.message, 'error'); }
+}
+
+function renderPresetTabs(categories){
+  const tabs = $('presetTabs');
+  tabs.innerHTML = categories.map((cat, i)=>`<button class="wl-tab${i===0?' active':''}" data-preset-cat="${cat.id}" type="button">${escapeHtml(cat.name)}</button>`).join('');
+}
+
+function renderPresetContent(categoryId){
+  const content = $('presetContent');
+  if(!state.presetData?.categories?.length){ content.innerHTML = '<div class="sub-note">暂无预设。</div>'; return; }
+  const category = state.presetData.categories.find(cat => cat.id===categoryId) || state.presetData.categories[0];
+  state.currentPresetCategory = category.id;
+  content.innerHTML = `
+    <div class="wl-category">
+      <div class="wl-category-title">${escapeHtml(category.name)}</div>
+      ${category.tip ? `<div class="wl-tip" style="margin-bottom:8px;">${escapeHtml(category.tip)}</div>` : ''}
+      <div class="wl-items" style="display:grid;grid-template-columns:1fr;gap:8px;">
+        ${(category.items || []).map((item, idx)=>{
+          const selectionKey = makePresetSelectionKey(category.id, item.keyword);
+          const selectedClass = state.selectedPresetKeys.has(selectionKey) ? ' selected' : '';
+          return `
+          <button type="button" class="preset-card${selectedClass}" data-preset-idx="${idx}" data-selection-key="${escapeHtml(selectionKey)}" aria-pressed="${selectedClass ? 'true' : 'false'}">
+            <strong style="font-size:11px;color:#c7d2fe;">${escapeHtml(item.usage || '一键预设')}</strong>
+            <span style="font-size:11px;line-height:1.55;color:var(--text);white-space:normal;">${escapeHtml(item.keyword)}</span>
+          </button>`;
+        }).join('')}
+      </div>
+    </div>`;
+  syncSelectedPresetUI();
+}
+
+
+async function loadPresetRecipes(){
+  try{
+    const data = await fetchWordlistResource(PRESET_WORDLIST_ID);
+    state.presetData = data;
+    const cats = data.categories || [];
+    if(!cats.length){ $('presetContent').innerHTML = '<div class="sub-note">暂无预设。</div>'; return; }
+    renderPresetTabs(cats);
+    renderPresetContent(cats[0].id);
+  }catch(err){ $('presetContent').innerHTML = `<div class="sub-note">预设加载失败：${escapeHtml(err.message)}</div>`; }
+}
+
+function renderStackThumbs(){
+  $('uploadCountHint').textContent = `当前 ${state.uploadImages.length} / ${MAX_UPLOAD} 张`;
+  const container = stackContainer;
+  if(!state.uploadImages.length){ container.innerHTML=''; container.classList.remove('expanded'); return; }
+  const showCountBadge = state.uploadImages.length > 1;
+  container.innerHTML = state.uploadImages.map((img, i)=>`
+    <div class="stack-thumb" data-idx="${i}" title="${escapeHtml(img.name)}" draggable="true">
+      <img src="${img.dataUrl}" alt="${escapeHtml(img.name)}" />
+      <span class="stack-order-badge">${i+1}</span>
+      <button class="stack-thumb-del" type="button" data-del-idx="${i}" title="删除">×</button>
+      ${showCountBadge && i===0 ? `<span class="stack-count-badge">${state.uploadImages.length}</span>` : ''}
+    </div>
+  `).join('');
+  container.querySelectorAll('.stack-thumb img').forEach(img => img.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    const idx = parseInt(img.closest('.stack-thumb').dataset.idx, 10);
+    if(idx >= 0 && state.uploadImages[idx]) openLightbox(state.uploadImages[idx].dataUrl);
+  }));
+}
+
+function removeUploadImage(index){
+  state.uploadImages.splice(index, 1);
+  const indexMap = new Map();
+  state.uploadImages.forEach((_, newIdx) => {
+    const oldIdx = newIdx >= index ? newIdx + 1 : newIdx;
+    indexMap.set(oldIdx, newIdx);
+  });
+  remapI2iImageChipIndexes(indexMap);
+  renderStackThumbs();
+  renderI2iEditor();
+  if(state.i2iPopupOpen) showI2iAtPopup();
+  showToast('已移除');
+}
+function handleImageFiles(fileList){
+  if(!fileList || !fileList.length) return;
+  const remain = MAX_UPLOAD - state.uploadImages.length;
+  if(remain <= 0){ showToast(`最多${MAX_UPLOAD}张`); return; }
+  const files = Array.from(fileList).slice(0, remain);
+  let loaded = 0;
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      state.uploadImages.push({ name:file.name, dataUrl:String(reader.result || ''), file });
+      loaded += 1;
+      if(loaded === files.length){
+        renderStackThumbs();
+        if(state.i2iPopupOpen) showI2iAtPopup();
+        showToast(`已添加${loaded}张`);
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function pickOutputDirectory(){
+  const btn = $('pickDirBtn');
+  const prevText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '选择中...';
+  try{
+    // 优先尝试后端 API
+    const resp = await fetch(`${API_BASE}/pick-directory`, { cache:'no-store' });
+    const ct = (resp.headers.get('content-type') || '').toLowerCase();
+    if(!ct.includes('json')){
+      throw new Error('BACKEND_UNAVAILABLE');
+    }
+    const data = await resp.json();
+    if(!resp.ok || !data.ok) throw new Error(data.error || '选择目录失败');
+    const selectedPath = String(data.directory || '').trim() || DEFAULT_OUTPUT_DIR;
+    state.outputDirPath = selectedPath;
+    state.outputDirLabel = getDirDisplayName(selectedPath);
+    $('outputDir').value = state.outputDirPath;
+    localStorage.setItem(DIR_STORAGE_KEY, state.outputDirPath);
+    updateDirButton(state.outputDirLabel);
+    showToast('已选择目录：' + state.outputDirLabel);
+  }catch(err){
+    if(err?.message === 'BACKEND_UNAVAILABLE' || (err?.message || '').includes('JSON') || (err?.message || '').includes('Failed to fetch')){
+      // 后端不可用，回退到浏览器本地目录选择
+      try {
+        if('showDirectoryPicker' in window){
+          const h = await window.showDirectoryPicker({ mode: 'readwrite' });
+          const dirName = h.name || '设置存图目录';
+          state.outputDirPath = getOutputDirPath(dirName);
+          state.outputDirLabel = dirName;
+          $('outputDir').value = state.outputDirPath;
+          localStorage.setItem(DIR_STORAGE_KEY, dirName);
+          updateDirButton(state.outputDirLabel);
+          showToast('已选择目录（本地模式）：' + state.outputDirLabel);
+          setStatus('已选择本地目录（保存功能需通过「存入图库」按钮下载）', 'warn');
+          return;
+        }
+        // webkitdirectory 回退
+        const inp = document.createElement('input');
+        inp.type = 'file'; inp.webkitdirectory = true; inp.style.display = 'none';
+        document.body.appendChild(inp);
+        inp.addEventListener('change', () => {
+          if(inp.files.length){
+            const dirName = inp.files[0].webkitRelativePath.split('/')[0] || '设置存图目录';
+            state.outputDirPath = getOutputDirPath(dirName);
+            state.outputDirLabel = dirName;
+            $('outputDir').value = state.outputDirPath;
+            localStorage.setItem(DIR_STORAGE_KEY, dirName);
+            updateDirButton(state.outputDirLabel);
+            showToast('已选择目录（只读模式）：' + dirName);
+            setStatus('已选择本地目录（只读模式，保存功能需通过「存入图库」按钮下载）', 'warn');
+          }
+          document.body.removeChild(inp);
+        });
+        inp.click();
+        return;
+      }catch(e2){
+        const msg = e2?.message || '浏览器不支持目录选择';
+        setStatus('目录选择失败：' + msg, 'error');
+        showToast(msg);
+        updateDirButton(state.outputDirLabel || prevText);
+        return;
+      }
+    }
+    const msg = err?.message || '选择目录失败';
+    setStatus('目录选择失败：' + msg, 'error');
+    showToast(msg);
+    updateDirButton(state.outputDirLabel || prevText);
+  } finally {
+    btn.disabled = false;
+    if(btn.textContent === '选择中...') updateDirButton(state.outputDirLabel || prevText);
+  }
+}
+
+
+$('lightboxClose').addEventListener('click', closeLightbox);
+lightboxOverlay.addEventListener('click', (e)=>{ if(e.target===lightboxOverlay || e.target.closest('#lightboxClose')) closeLightbox(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeLightbox(); closeModelConfig(); } });
+$('resultImageShell').addEventListener('click', e => {
+  if(e.target.closest('[data-open-preview-url]') || e.target.closest('[data-copy-preview-url]')) return;
+  openLightboxFromResult();
+});
+
+$('modelConfigBtn').addEventListener('click', openModelConfig);
+$('mcCloseBtn').addEventListener('click', closeModelConfig);
+$('mcCancelBtn').addEventListener('click', closeModelConfig);
+$('mcSaveBtn').addEventListener('click', saveModelConfig);
+$('mcList').addEventListener('click', e=>{
+  const del = e.target.closest('[data-mc-del]');
+  if(del){ e.stopPropagation(); deleteLocalModel(parseInt(del.dataset.mcDel, 10)); return; }
+  const item = e.target.closest('[data-mc-idx]');
+  if(item){
+    const idx = parseInt(item.dataset.mcIdx, 10);
+    setActiveModelIndex(idx);
+    $('modelSelect').value = String(idx);
+    applyModel(idx);
+    renderMcList();
+    showToast('已切换模型');
+  }
+});
+
+$('modeTabs').addEventListener('click', e=>{ const t=e.target.closest('.mode-tab'); if(t) setMode(t.dataset.mode || 'txt2img'); });
+$('editModeTabs').addEventListener('click', e=>{ const t=e.target.closest('.edit-mode-tab'); if(t) setEditMode(t.dataset.editMode || 'builder'); });
+$('modelSelect').addEventListener('change', e=>{ const idx = parseInt(e.target.value, 10); if(!isNaN(idx)) applyModel(idx); });
+
+$('wordlistHeader').addEventListener('click', ()=>togglePanel('wordlistPanel', 'wordlistToggle'));
+$('presetHeader').addEventListener('click', ()=>togglePanel('presetPanel', 'presetToggle'));
+
+$('wordlistTabs').addEventListener('click', e=>{
+  const tab = e.target.closest('.wl-tab');
+  if(!tab) return;
+  $('wordlistTabs').querySelectorAll('.wl-tab').forEach(btn=>btn.classList.remove('active'));
+  tab.classList.add('active');
+  loadDimension(tab.dataset.file, tab.dataset.dim);
+});
+$('wordlistContent').addEventListener('click', e=>{
+  const item = e.target.closest('.wl-item');
+  if(!item) return;
+  toggleWordlistChip(item.dataset.sourceDim || state.currentDimension, item.dataset.keyword);
+});
+
+$('presetTabs').addEventListener('click', e=>{
+  const tab = e.target.closest('[data-preset-cat]');
+  if(!tab || !state.presetData?.categories?.length) return;
+  $('presetTabs').querySelectorAll('.wl-tab').forEach(btn=>btn.classList.remove('active'));
+  tab.classList.add('active');
+  renderPresetContent(tab.dataset.presetCat);
+  syncSelectedPresetUI();
+});
+$('presetContent').addEventListener('click', e=>{
+  const card = e.target.closest('[data-preset-idx]');
+  if(!card || !state.presetData?.categories?.length) return;
+  const category = state.presetData.categories.find(cat => cat.id===state.currentPresetCategory) || state.presetData.categories[0];
+  const item = category?.items?.[parseInt(card.dataset.presetIdx, 10)];
+  if(item?.keyword) togglePresetChip(category.id, item.keyword);
+});
+
+$('promptBuilder').addEventListener('input', e=>{
+  const input = e.target.closest('[data-lane-input]');
+  if(!input) return;
+  state.laneInputs[input.dataset.laneInput] = input.value;
+  syncPromptTextarea();
+});
+$('promptBuilder').addEventListener('click', e=>{
+  const btn = e.target.closest('[data-lane-remove]');
+  if(!btn) return;
+  removePromptChip(btn.dataset.laneRemove, parseInt(btn.dataset.chipIdx, 10));
+});
+
+$('img2imgStack').addEventListener('mouseenter', ()=>{ if(state.uploadImages.length>1) stackContainer.classList.add('expanded'); });
+$('img2imgStack').addEventListener('mouseleave', ()=>stackContainer.classList.remove('expanded'));
+$('img2imgAddBtn').addEventListener('click', ()=>$('imageInput').click());
+$('imageInput').addEventListener('change', e=>{ handleImageFiles(e.target.files); e.target.value=''; });
+stackContainer.addEventListener('click', e=>{ const btn=e.target.closest('[data-del-idx]'); if(btn) removeUploadImage(parseInt(btn.dataset.delIdx, 10)); });
+stackContainer.addEventListener('dragstart', e=>{
+  const thumb = e.target.closest('.stack-thumb');
+  if(!thumb) return;
+  thumb.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', thumb.dataset.idx || '');
+});
+stackContainer.addEventListener('dragover', e=>{
+  const thumb = e.target.closest('.stack-thumb');
+  if(!thumb) return;
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  stackContainer.querySelectorAll('.stack-thumb.drag-over').forEach(el => el.classList.remove('drag-over'));
+  thumb.classList.add('drag-over');
+});
+stackContainer.addEventListener('drop', e=>{
+  const thumb = e.target.closest('.stack-thumb');
+  if(!thumb) return;
+  e.preventDefault();
+  const fromIndex = parseInt(e.dataTransfer.getData('text/plain'), 10);
+  const toIndex = parseInt(thumb.dataset.idx, 10);
+  stackContainer.querySelectorAll('.stack-thumb.drag-over').forEach(el => el.classList.remove('drag-over'));
+  if(Number.isNaN(fromIndex) || Number.isNaN(toIndex)) return;
+  reorderUploadImages(fromIndex, toIndex);
+  showToast(`已调整到图${toIndex + 1}`);
+});
+stackContainer.addEventListener('dragend', ()=>{
+  stackContainer.querySelectorAll('.stack-thumb.dragging, .stack-thumb.drag-over').forEach(el => el.classList.remove('dragging', 'drag-over'));
+});
+
+// img2img 混合编辑器事件
+$('i2iInputBox').addEventListener('click', e=>{
+  const btn = e.target.closest('[data-i2i-del]');
+  if(btn){
+    removeI2iChip(parseInt(btn.dataset.i2iDel, 10));
+    return;
+  }
+  const chip = e.target.closest('[data-i2i-idx]');
+  if(chip){
+    const idx = parseInt(chip.dataset.i2iIdx, 10);
+    if(!Number.isNaN(idx) && state.i2iChips[idx]?.type === 'text'){
+      editI2iTextChip(idx);
+      return;
+    }
+  }
+  $('i2iTextInput')?.focus();
+});
+$('i2iInputBox').addEventListener('dblclick', e=>{
+  const chip = e.target.closest('[data-i2i-idx]');
+  if(!chip) return;
+  const idx = parseInt(chip.dataset.i2iIdx, 10);
+  if(Number.isNaN(idx)) return;
+  window.editI2iToken?.(idx);
+});
+$('i2iInputBox').addEventListener('input', e=>{
+  const input = e.target.closest('#i2iTextInput');
+  if(!input) return;
+  const value = input.value || '';
+  if(/(^|\s)@\s*$/.test(value) || /@\s*$/.test(value)) {
+    showI2iAtPopup();
+  } else if(state.i2iPopupOpen){
+    hideI2iAtPopup();
+  }
+  syncI2iPromptTextarea();
+});
+$('i2iInputBox').addEventListener('keydown', e=>{
+  const input = e.target.closest('#i2iTextInput');
+  if(!input) return;
+  if(e.key === '@'){
+    setTimeout(()=>showI2iAtPopup(), 0);
+    return;
+  }
+  if((e.key === 'Backspace' || e.key === 'Delete') && !input.value && !state.i2iPopupOpen){
+    e.preventDefault();
+    if(removeLastI2iToken()) $('i2iTextInput')?.focus();
+    return;
+  }
+  if(e.key === 'Escape' && state.i2iPopupOpen){
+    hideI2iAtPopup();
+  }
+});
+$('i2iAtPopup').addEventListener('click', e=>{
+  const item = e.target.closest('[data-i2i-at-idx]');
+  if(!item) return;
+  addImageRef(parseInt(item.dataset.i2iAtIdx, 10));
+  hideI2iAtPopup();
+  $('i2iTextInput')?.focus();
+});
+document.addEventListener('click', e=>{
+  if(state.i2iPopupOpen && !e.target.closest('#i2iEditor')){
+    hideI2iAtPopup();
+  }
+});
+
+$('generateBtn').addEventListener('click', generateImage);
+$('fillExampleBtn').addEventListener('click', ()=>{
+  if(state.mode === 'img2img'){
+    clearI2iEditor();
+    $('i2iTextInput').value = '拿着 在 吃饭，写实摄影风';
+    syncI2iPromptTextarea();
+    showToast('已填入图生图示例');
+    return;
+  }
+  if(state.editMode === 'free'){
+    $('promptFreeInput').value = '一只橘猫趴在木桌上吃鱼，写实摄影风，近景特写，暖色灯光，毛发细节清晰，真实质感，高细节，浅景深，电影级光影';
+    $('promptFreeInput').focus();
+    showToast('已填入示例');
+    return;
+  }
+  clearAllPromptLanes();
+  state.laneInputs.subject_action = '一只橘猫趴在木桌上吃鱼';
+  addPromptChip('art_style', '写实摄影风');
+  addPromptChip('camera_composition', '近景特写');
+  addPromptChip('lighting_atmosphere', '暖色灯光');
+  addPromptChip('quality_render', '毛发细节清晰');
+  addPromptChip('quality_render', '真实质感');
+  addPromptChip('quality_render', '高细节');
+  addPromptChip('quality_render', '浅景深');
+  addPromptChip('quality_render', '电影级光影');
+  showToast('已填入示例');
+});
+$('copyPromptBtn').addEventListener('click', ()=>{
+  let text;
+  if(state.mode === 'img2img'){
+    syncI2iPromptTextarea();
+    text = $('prompt').value;
+  } else if(state.editMode === 'free'){
+    text = ($('promptFreeInput').value || '').trim();
+  } else {
+    text = $('prompt').value;
+  }
+  copyText(text, '已复制');
+});
+$('copyResultPromptBtn').addEventListener('click', ()=>copyText(state.latestResult?.saved?.revisedPrompt || '', '已复制修订提示词'));
+$('copyRemoteUrlBtn').addEventListener('click', ()=>copyText(state.latestResult?.saved?.remoteUrl || state.latestResult?.saved?.url || '', '已复制远端地址'));
+$('clearBtn').addEventListener('click', ()=>{
+  clearAllPromptLanes();
+  $('promptFreeInput').value = '';
+  clearI2iEditor();
+  $('quality').value=''; $('background').value='';
+  state.uploadImages=[]; renderStackThumbs();
+  state.latestResult=null;
+  resultImageShell.innerHTML='<span class="result-empty">尚未生成结果</span>';
+  resultImageShell.style.cursor='default'; resultImageShell.style.borderStyle='dashed';
+  setStatus('已清空。', 'warn');
+});
+$('refreshGalleryBtn').addEventListener('click', refreshGallery);
+$('saveToGalleryBtn').addEventListener('click', saveToGallery);
+$('pickDirBtn').addEventListener('click', pickOutputDirectory);
+$('defaultDirBtn').addEventListener('click', ()=>{
+  state.outputDirPath = DEFAULT_OUTPUT_DIR;
+  state.outputDirLabel = getDirDisplayName(DEFAULT_OUTPUT_DIR);
+  $('outputDir').value = state.outputDirPath;
+  localStorage.removeItem(DIR_STORAGE_KEY);
+  updateDirBadge();
+  showToast('已恢复默认');
+});
+
+galleryGrid.addEventListener('click', e=>{
+  const openBtn = e.target.closest('[data-open-url]');
+  if(openBtn){ window.open(withNoCache(openBtn.dataset.openUrl), '_blank'); return; }
+  const copyBtn = e.target.closest('[data-copy-url]');
+  if(copyBtn) copyText(copyBtn.dataset.copyUrl, '已复制路径');
+});
+
+async function bootstrap(){
+  renderPromptBuilder();
+  renderI2iEditor();
+  setMode('txt2img');
+  setEditMode('builder');
+  await loadDefaults();
+  await loadModels();
+  await loadPresetRecipes();
+  await loadWordlistIndex();
+  await refreshGallery();
+}
+bootstrap();
+</script>
+</body>
+</html>

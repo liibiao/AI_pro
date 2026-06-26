@@ -1,0 +1,84 @@
+{
+  "id": "aistartlab-video-test",
+  "configId": "aistartlab-video-test",
+  "modelKey": "aistartlab-video-test",
+  "providerKey": "aistartlab-video",
+  "channelKey": "aistartlab-video",
+  "name": "test-video",
+  "modelNick": "AIStartLab 视频测试线路",
+  "displayName": "AIStartLab 视频测试线路",
+  "label": "AIStartLab 视频测试线路",
+  "type": "video",
+  "model": "test-video",
+  "baseUrl": "https://api.video.aistarslab.com/openapi",
+  "url": "https://api.video.aistarslab.com/openapi",
+  "key": "",
+  "adapter": "aistartlab-video",
+  "endpointPath": "/video/task/v2",
+  "statusEndpointPath": "/video/task/status",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "referenceVideo": true,
+    "referenceAudio": true
+  },
+  "capabilities": {
+    "resolutions": ["720p"],
+    "durations": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "defaultDuration": 5,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "1:1", "21:9", "3:4", "4:3"],
+    "secondsMin": 4,
+    "secondsMax": 15,
+    "supportedModeTypes": ["text2video", "image2video", "frames2video"],
+    "frames2VideoSupportsAudio": false,
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "supportsAudio": true,
+    "supportsVideo": true
+  },
+  "defaults": {
+    "channel": "test",
+    "modeType": "text2video",
+    "duration": "5",
+    "seconds": "5",
+    "resolution": "720p",
+    "aspectRatio": "16:9",
+    "size": "16:9",
+    "pricing": {
+      "unit": "generation",
+      "billingMode": "free",
+      "currency": "credits",
+      "memberCreditsPerGeneration": 0,
+      "chargedCreditsPerGeneration": 0,
+      "originalCreditsPerGeneration": 0,
+      "costCreditsPerGeneration": 0
+    }
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "note": "AIStartLab OpenAPI 视频生成测试线路。POST /video/task/v2 创建任务，GET /video/task/status?taskId=... 查询状态；test/test-video 不扣上游积分，用于鉴权、创建、轮询和结果解析闭环。",
+  "protocol": {
+    "adapter": "aistartlab-video",
+    "method": "async-poll",
+    "endpointPath": "/video/task/v2",
+    "statusEndpointPath": "/video/task/status",
+    "channel": "test",
+    "model": "test-video",
+    "uploadMode": "object_storage",
+    "pollInitialDelaySeconds": 3,
+    "pollIntervalSeconds": 5
+  },
+  "ui": {
+    "label": "AIStartLab 视频测试",
+    "badge": "TEST",
+    "badgeColor": "#0f766e"
+  }
+}

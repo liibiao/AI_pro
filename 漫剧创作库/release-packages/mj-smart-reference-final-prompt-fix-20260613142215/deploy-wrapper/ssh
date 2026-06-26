@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+exec /usr/bin/ssh \
+  -o PreferredAuthentications=password \
+  -o PubkeyAuthentication=no \
+  "$@"

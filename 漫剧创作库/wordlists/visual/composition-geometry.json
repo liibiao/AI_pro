@@ -1,0 +1,189 @@
+{
+  "_meta": {
+    "source": "漫剧创作库/docs/blocking-camera-geometry-methodology.md",
+    "version": "soullens-v2",
+    "description": "构图/几何约束/站位队形/群戏调度词库",
+    "usage": "9:16 归一化坐标系、三层空间、轴线规则、队形模板、群戏分组"
+  },
+  "coordinate_system": {
+    "description": "9:16 归一化屏幕坐标（强制）",
+    "rules": {
+      "range": "x,y ∈ [0,1]（x：左→右，y：上→下）",
+      "focal_point_default": "首看点默认锚定在 中心偏上 1/3（建议 x0.50±0.05, y0.33±0.05）",
+      "subtitle_safe_zone": "y0.82-1.00 禁入（关键读点/人物脸/手/命中点/道具字样禁止侵入）"
+    }
+  },
+  "depth_layers": {
+    "description": "三层空间（强制）",
+    "layers": [
+      {
+        "id": "foreground",
+        "name": "前景",
+        "function": "遮挡/压迫/材质/空间深度",
+        "allowance": "允许轻微虚化，但不能遮主读点"
+      },
+      {
+        "id": "midground",
+        "name": "中景",
+        "function": "角色关系与动作主舞台",
+        "note": "多数对话/对峙/交互发生在中景"
+      },
+      {
+        "id": "background",
+        "name": "后景",
+        "function": "空间信息与群众压力",
+        "note": "群戏必须'分组+循环'，不能随机走位穿插"
+      }
+    ]
+  },
+  "axis_rules": {
+    "description": "轴线与屏幕方向（导演门禁）",
+    "rules180": {
+      "definition": "以'核心对抗二人连线'为 180°轴线（或以'主体→首看点'为轴线）",
+      "ban": "同一段落内不得跨过轴线切机位导致左右互换",
+      "reverseShot": "允许反打：必须先给一次建立镜头或显式写明'反打建立→再切'"
+    },
+    "screenDirection": {
+      "rule": "每个段落先写'屏幕方向锁定'：谁在画左/画右/画中，跨镜头不互换",
+      "facing": "角色朝向要与屏幕方向一致：画右的人通常面朝画左"
+    }
+  },
+  "geometry_constraints": {
+    "description": "画面几何门禁",
+    "constraints": [
+      {
+        "id": "roll",
+        "name": "画面水平/倾斜",
+        "default": "roll=0±1°",
+        "extreme": "≤3°，但必须写'理由与下一镜回正'",
+        "trigger": "默认启用；强烈心理失衡才允许放宽"
+      },
+      {
+        "id": "horizon_y",
+        "name": "地平线",
+        "default": "y0.42±0.03",
+        "fallback": "没有地平线就用建筑水平线/柱线替代"
+      },
+      {
+        "id": "eyeline_y",
+        "name": "眼线",
+        "default": "y0.48±0.05",
+        "closeUp": "特写可放宽到 ±0.06",
+        "trigger": "对话/对峙/人物表演镜头必须开启"
+      },
+      {
+        "id": "vanishing_point",
+        "name": "消失点",
+        "rule": "同一空间的透视消失点不乱漂移"
+      }
+    ]
+  },
+  "formation_templates": {
+    "description": "站位队形模板（建议直接复用）",
+    "templates": [
+      {
+        "id": "confrontation",
+        "name": "对峙模板",
+        "description": "A(画左) ↔ B(画右)，距离 2-4m，视线互锁，禁止跳轴"
+      },
+      {
+        "id": "domination",
+        "name": "上位压制模板",
+        "description": "上位者(画左前景/高位) ↔ 下位者(画右后景/低位)，高度差明确但左右不换"
+      },
+      {
+        "id": "front_back",
+        "name": "一前一后模板",
+        "description": "压迫者前景遮挡边缘可接受但不遮脸，被压者后景眼神清晰"
+      },
+      {
+        "id": "triangle",
+        "name": "三角站位模板",
+        "description": "三人形成稳定三角形（左右+后景），三点关系不互换"
+      },
+      {
+        "id": "encirclement",
+        "name": "环形围压模板（群戏）",
+        "description": "核心二人固定左右；群众分组锁定在左/右/后，形成压迫圈"
+      }
+    ]
+  },
+  "crowd_choreography": {
+    "description": "群戏调度——三组分区锁定（强制）",
+    "group_zones": [
+      {
+        "group": "左侧起哄组",
+        "coordinates": "x0.05-0.30, y0.45-0.75",
+        "depth": "中景"
+      },
+      {
+        "group": "右侧窃笑组",
+        "coordinates": "x0.70-0.95, y0.45-0.75",
+        "depth": "中景"
+      },
+      {
+        "group": "后景围压组",
+        "coordinates": "x0.30-0.70, y0.15-0.45",
+        "depth": "后景"
+      }
+    ],
+    "no_go_zones": [
+      {
+        "zone": "主角活动区",
+        "coordinates": "x0.40-0.60, y0.55-0.95",
+        "rule": "群众禁入"
+      },
+      {
+        "zone": "字幕安全区",
+        "coordinates": "y0.82-1.00",
+        "rule": "任何群众/道具/特效禁入"
+      }
+    ],
+    "action_rules": {
+      "fixedCount": "每组固定人数（例如左3/右2/后5），镜头切换不变",
+      "actionCycle": "动作循环固定（A→B→A），如：指指点点+起哄→立刻收声",
+      "beatFrequency": "每 2 秒最多 1 次集体动作，其余仅微呼吸/头部微动",
+      "movementLimit": "位移上限 ≤ 画面宽度的 3%/秒",
+      "continuity": "镜头切换连续性：群演保持上一镜结束姿态，禁止瞬间换站位/换人数"
+    },
+    "sound_pan": {
+      "description": "群声的声像方位",
+      "rules": [
+        "左侧起哄声像偏左、右侧窃笑偏右、后景压迫偏后",
+        "群声永远让位主台词与命中点，不可盖过关键句"
+      ]
+    }
+  },
+  "focus_protection": {
+    "description": "读点保护规则",
+    "rules": [
+      {
+        "type": "first_read_point",
+        "name": "首看点",
+        "rule": "每镜头必须写'首看点是什么'，并给出坐标锚定"
+      },
+      {
+        "type": "text_readable",
+        "name": "文字读点",
+        "rule": "至少 1 秒稳定可读（不抖、不糊、不被闪光遮挡）"
+      },
+      {
+        "type": "eye_catchlight",
+        "name": "眼神读点",
+        "rule": "必须有 catchlight；眨眼减少；视线落点稳定"
+      },
+      {
+        "type": "hit_readable",
+        "name": "命中读点",
+        "rule": "结果帧必须清晰（裂血/回弹/碎裂），不能一团噪声"
+      }
+    ],
+    "occlusion_ban": {
+      "description": "遮挡与模糊门禁",
+      "rules": [
+        "任何特效光/烟尘/运动模糊不得遮挡首看点",
+        "背景可做速度感，但人物与武器边缘必须清晰"
+      ]
+    }
+  }
+}

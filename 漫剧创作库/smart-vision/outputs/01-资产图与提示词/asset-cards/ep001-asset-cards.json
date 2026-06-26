@@ -1,0 +1,54 @@
+{
+  "episodeId": "ep001",
+  "planId": "creative-plan-ep001-1778346403970",
+  "assets": [
+    {
+      "id": "character-01",
+      "type": "character",
+      "typeLabel": "角色",
+      "name": "主角",
+      "sourceShots": [
+        "shot-01"
+      ],
+      "usage": "角色资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "主角，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "character-02",
+      "type": "character",
+      "typeLabel": "角色",
+      "name": "重要配角",
+      "sourceShots": [
+        "shot-01"
+      ],
+      "usage": "角色资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "重要配角，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-01",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "核心场景",
+      "sourceShots": [
+        "shot-01"
+      ],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "核心场景，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "prop-01",
+      "type": "prop",
+      "typeLabel": "道具",
+      "name": "关键道具",
+      "sourceShots": [
+        "shot-01"
+      ],
+      "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "关键道具，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    }
+  ]
+}

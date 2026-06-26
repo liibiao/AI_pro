@@ -1,0 +1,143 @@
+{
+  "schema": "mjb-workflow-v1",
+  "id": "draft-qa-1778211540000",
+  "name": "EP001 QA / 发布前置 Workflow 草案",
+  "taskType": "qa",
+  "path": "02-工作流/ep001/draft-qa-1778211540000.mjb-workflow.json",
+  "importUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-工作流%2Fep001%2Fdraft-qa-1778211540000.mjb-workflow.json",
+  "contextPack": {
+    "taskType": "qa",
+    "title": "QA / 发布前置任务上下文包",
+    "methodologyPackId": "smart-vision-methodology-core-v0.1",
+    "skillPackId": "smart-vision-skill-core-v0.1",
+    "templatePackId": "smart-vision-template-core-v0.1",
+    "docs": [
+      "docs/workflow.md",
+      "docs/phase-gate-checklist.md"
+    ],
+    "skills": [
+      "skills/quality-control-skill.md"
+    ],
+    "agents": [
+      "agents/reviewer/agent.md"
+    ],
+    "templates": [],
+    "inputArtifacts": [
+      "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json",
+      "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-precheck.md",
+      "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "04-storyboard/ep001-storyboard.md",
+      "05-prompts/seedance/ep001-shots.md"
+    ],
+    "workflowHints": [
+      "审核剪辑版是否可进入发布包。",
+      "检查打回返工链路是否能生成 rework 任务。",
+      "QA 通过后再登记最终发布产物。"
+    ],
+    "phaseGateItems": [
+      "成片路径必须可追溯。",
+      "审核结论必须写入 review-ledger 与 artifact-registry。",
+      "发布前必须确认声音、字幕、转场、画幅与时长。"
+    ],
+    "redlines": [
+      "不得跳过剪辑审核直接发布。",
+      "不得覆盖原始剪辑产物。",
+      "不得删除失败/打回历史。"
+    ],
+    "memoryPolicy": "优先读取 .smart-vision 状态源与剪辑清单；QA 结论必须回写状态账本。",
+    "generatedAt": "2026-05-08T13:59:00+08:00"
+  },
+  "canvas": {
+    "nodes": [
+      {
+        "id": "n1",
+        "type": "contextPack",
+        "title": "QA 上下文包",
+        "x": 80,
+        "y": 120,
+        "w": 320,
+        "h": 180,
+        "data": {
+          "taskType": "qa"
+        }
+      },
+      {
+        "id": "n2",
+        "type": "artifactInput",
+        "title": "剪辑产物输入",
+        "x": 460,
+        "y": 120,
+        "w": 320,
+        "h": 180,
+        "data": {
+          "artifacts": [
+            "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+            "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json"
+          ]
+        }
+      },
+      {
+        "id": "n3",
+        "type": "phaseGate",
+        "title": "QA 发布前置检查",
+        "x": 840,
+        "y": 120,
+        "w": 320,
+        "h": 180,
+        "data": {
+          "checklist": [
+            "播放与路径",
+            "画幅与时长",
+            "声音字幕转场",
+            "打回返工",
+            "发布包准备"
+          ]
+        }
+      },
+      {
+        "id": "n4",
+        "type": "reviewOutput",
+        "title": "QA 结论输出",
+        "x": 1220,
+        "y": 120,
+        "w": 320,
+        "h": 180,
+        "data": {
+          "outputArtifactHint": "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-precheck.md"
+        }
+      }
+    ],
+    "conns": [
+      {
+        "from": "n1",
+        "fromPort": "context",
+        "to": "n3",
+        "toPort": "context",
+        "kind": "json"
+      },
+      {
+        "from": "n2",
+        "fromPort": "artifacts",
+        "to": "n3",
+        "toPort": "inputs",
+        "kind": "json"
+      },
+      {
+        "from": "n3",
+        "fromPort": "review",
+        "to": "n4",
+        "toPort": "report",
+        "kind": "json"
+      }
+    ],
+    "view": {
+      "x": 0,
+      "y": 0,
+      "k": 0.82
+    },
+    "next": 5,
+    "muted": []
+  },
+  "generatedAt": "2026-05-08T13:59:00+08:00"
+}

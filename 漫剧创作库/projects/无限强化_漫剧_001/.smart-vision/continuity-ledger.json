@@ -1,0 +1,29 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "episode": "ep001",
+  "anchors": [
+    {
+      "id": "ep001-character-continuity",
+      "title": "EP001 角色连续性锚点",
+      "status": "in_progress",
+      "sources": [
+        "03-assets/asset-index.md",
+        "06-generated/asset-index.md",
+        "08-qa/v8-asset-consistency-qa-report.md"
+      ],
+      "note": "优先修复 V8 资产名义与 V7/V4 物理文件版本一致性，后续用于故事板图与视频生成引用。"
+    },
+    {
+      "id": "ep001-shot-prompt-continuity",
+      "title": "EP001 分镜与长版提示词连续性锚点",
+      "status": "waiting_review",
+      "sources": [
+        "04-storyboard/ep001-storyboard.md",
+        "05-prompts/seedance/ep001-shots.md",
+        "05-prompts/seedance/ep001-fullref-15s.md"
+      ],
+      "note": "以第1话分镜、Seedance 长版母稿和完整参考版作为故事板图 Workflow 的输入依据。"
+    }
+  ]
+}

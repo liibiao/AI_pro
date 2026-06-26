@@ -1,0 +1,51 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "packId": "smart-vision-skill-core-v0.1",
+  "title": "智能视界 Phase 2 Skill 核心包",
+  "updatedAt": "2026-05-07T15:25:00+08:00",
+  "skills": [
+    {
+      "id": "storyboard-core",
+      "title": "分镜总装",
+      "taskTypes": ["storyboard", "director_storyboard"],
+      "files": [
+        "skills/storyboard-methodology-skill.md",
+        "skills/storyboard-artist-skill.md",
+        "skills/storyboard-generator-skill.md"
+      ]
+    },
+    {
+      "id": "shot-camera",
+      "title": "单镜与运镜专项",
+      "taskTypes": ["shot_design", "camera_direction"],
+      "files": [
+        "skills/shot-design-skill.md",
+        "skills/director-skill.md"
+      ]
+    },
+    {
+      "id": "prompt-generation",
+      "title": "视频与生图提示词",
+      "taskTypes": ["seedance_prompt", "image_prompt", "prompt_qa"],
+      "files": [
+        "skills/seedance-action-skill.md",
+        "skills/runninghub-image-skill.md",
+        "skills/prompt-experiment-skill.md",
+        "skills/quality-control-skill.md"
+      ]
+    },
+    {
+      "id": "art-assets",
+      "title": "美术资产",
+      "taskTypes": ["character_asset", "scene_asset", "prop_asset"],
+      "files": [
+        "skills/art-design-skill.md",
+        "skills/asset-library-skill.md",
+        "skills/asset-versioning-skill.md",
+        "skills/hzw-master-style-skill.md"
+      ]
+    }
+  ],
+  "note": "Phase 2 雏形：先登记可复用核心 Skill，后续由任务类型自动选择。"
+}

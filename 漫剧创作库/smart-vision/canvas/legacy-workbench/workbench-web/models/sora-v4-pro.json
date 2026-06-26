@@ -1,0 +1,45 @@
+{
+  "id": "sora-v4-pro",
+  "name": "sora-v4-pro",
+  "modelNick": "sora-v4-pro",
+  "displayName": "sora-v4-pro",
+  "url": "https://hxzdq.aiflow321.cn/v1/videos",
+  "baseUrl": "https://hxzdq.aiflow321.cn/v1",
+  "key": "sk-TSWKjpNDDP3GKlVhFRIspq8cB6dVYf8XhNwHKM4Z8OQBOsnn",
+  "model": "sora-v3-pro",
+  "type": "video",
+  "note": "Sora V3 Pro 文档渠道；画布展示 modelNick=sora-v4-pro，真实上游 model=sora-v3-pro；统一走 /v1/videos。",
+  "capabilities": {
+    "resolutions": ["480p", "720p"],
+    "durations": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "defaultDuration": 15,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
+    "maxImages": {
+      "full": 4,
+      "smartMultiFrame": 4,
+      "firstLast": 2
+    },
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 14.9,
+    "supportsAudio": true,
+    "supportsVideo": true
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "protocol": {
+    "adapter": "notevideo",
+    "method": "async-poll",
+    "endpointPath": "/videos",
+    "statusEndpointPath": "/videos/{taskId}",
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "sora-v4-pro",
+    "badge": "V4-PRO",
+    "badgeColor": "#38bdf8"
+  }
+}

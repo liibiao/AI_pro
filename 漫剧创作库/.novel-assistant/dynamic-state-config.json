@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "autoSyncTypes": {
+    "characterStatus": true,
+    "characterPower": true,
+    "relationships": true,
+    "worldSettings": true,
+    "foreshadows": true
+  },
+  "conflictResolution": "auto",
+  "keepHistory": true,
+  "historyRetentionDays": 90,
+  "showNotifications": true
+}

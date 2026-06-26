@@ -1,0 +1,86 @@
+{
+  "_meta": {
+    "source": "漫剧创作库/docs/atmosphere-interaction-standard.md",
+    "version": "soullens-v2",
+    "description": "环境介质与物理互动词库：打破 AI 生成的人物'抠图感'和'绿幕感'",
+    "usage": "Seedance/MJ 提示词中环境介质与人物物理交互的权威参考"
+  },
+  "media_types": [
+    {
+      "id": "wind",
+      "name": "风",
+      "nameEn": "Wind",
+      "wrongExample": "狂风中，角色的头发一丝不乱，衣服像铁板一样",
+      "correctInteraction": "风不仅要吹动，还要改变人物的姿态",
+      "prompts": [
+        "hair whipping across the face, clothes billowing violently in the wind, leaning forward against the gale, squinting eyes",
+        "fabric caught in strong gusts, robes streaming behind, dust and leaves swirling in the air",
+        "character bracing against the wind, one hand shielding face, clothes snapping and rippling"
+      ],
+      "visualCheck": [
+        "衣服的褶皱必须有拉扯感",
+        "必须有飞舞的碎叶或沙尘"
+      ]
+    },
+    {
+      "id": "rain",
+      "name": "雨",
+      "nameEn": "Rain / Water",
+      "wrongExample": "背景在下雨，人物身上干爽，没有水渍",
+      "correctInteraction": "雨水必须附着在材质上，并影响光线反射",
+      "prompts": [
+        "heavy downpour, wet hair plastered to the forehead, rain droplets splashing off armor/shoulders, soaked clothes clinging to the skin, reflections on wet pavement",
+        "rain-soaked fabric with visible water stains, droplets running down the face, puddles reflecting surroundings",
+        "torrential rain, character's hair and clothes completely drenched, water streaming off the body, visible breath condensation"
+      ],
+      "visualCheck": [
+        "皮肤和皮革上必须有高光反射（湿润感）",
+        "雨滴砸在肩膀上必须碎裂"
+      ]
+    },
+    {
+      "id": "fog_smoke_dust",
+      "name": "雾/烟/尘",
+      "nameEn": "Fog / Smoke / Dust",
+      "wrongExample": "清晰通透的废墟，背景一览无余",
+      "correctInteraction": "用烟尘遮挡远景，降低对比度，增加纵深感",
+      "prompts": [
+        "thick morning mist obscuring the background, floating dust particles illuminated by light, lingering gun smoke, hazy atmosphere",
+        "volumetric fog with visible dust motes, depth fading into white/gray, atmospheric haze reducing contrast in the distance",
+        "smoke drifting across the scene, particles catching the light, air perspective making distant objects fade"
+      ],
+      "visualCheck": [
+        "距离镜头越远的物体，对比度越低、颜色越灰（空气透视）"
+      ]
+    },
+    {
+      "id": "snow_cold",
+      "name": "雪/寒冷",
+      "nameEn": "Snow / Freezing",
+      "wrongExample": "背景有雪，人物毫无寒冷特征",
+      "correctInteraction": "寒冷是生理反应，必须体现在微表情和附着物上",
+      "prompts": [
+        "visible freezing breath, unmelted snowflakes resting on eyelashes and shoulders, red nose and flushed cheeks, huddled posture",
+        "frost on eyelashes, cold-reddened cheeks and nose, visible breath condensation, snow accumulating on hair and shoulders",
+        "character shivering slightly, hunched posture against cold, snow dusting their dark hair, fingers slightly blue-tinted"
+      ],
+      "visualCheck": [
+        "呼出的白气必须清晰",
+        "鼻尖和指关节微红"
+      ]
+    }
+  ],
+  "interaction_quality_test": {
+    "description": "绿幕测试：如果把背景换成纯黑，人物的状态是否依然成立",
+    "failConditions": [
+      "人物状态与背景毫无互动",
+      "无环境介质附着痕迹",
+      "光线方向与场景光源不一致"
+    ],
+    "passConditions": [
+      "人物身上有介质反应（湿润、附着物、风吹姿态）",
+      "光线与环境匹配（潮湿地面反光、雾气散射）",
+      "微表情符合环境（眯眼、缩颈、颤抖）"
+    ]
+  }
+}

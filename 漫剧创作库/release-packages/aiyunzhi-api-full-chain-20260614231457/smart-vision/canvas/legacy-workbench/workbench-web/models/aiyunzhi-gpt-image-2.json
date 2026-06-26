@@ -1,0 +1,33 @@
+{
+  "id": "aiyunzhi-gpt-image-2",
+  "configId": "aiyunzhi-gpt-image-2",
+  "modelKey": "aiyunzhi-gpt-image-2",
+  "providerKey": "aiyunzhi",
+  "channelKey": "aiyunzhi-gpt-image-2",
+  "name": "gpt-image-2",
+  "displayName": "Aiyunzhi GPT Image 2",
+  "label": "Aiyunzhi GPT Image 2",
+  "type": "image",
+  "model": "gpt-image-2",
+  "baseUrl": "https://aiyunzhi.top",
+  "url": "https://aiyunzhi.top",
+  "key": "",
+  "adapter": "aiyunzhi-gpt-image-2",
+  "endpointPath": "/v1/images/generations",
+  "uploadMode": "object_storage",
+  "supports": { "txt2img": true, "img2img": true },
+  "capabilities": {
+    "imageSizes": ["1K", "2K", "4K"],
+    "maxImages": 3
+  },
+  "defaults": { "imageSize": "1K" },
+  "note": "Aiyunzhi GPT Image 2. No references uses /v1/images/generations; references use multipart /v1/images/edits.",
+  "protocol": {
+    "adapter": "aiyunzhi-gpt-image-2",
+    "endpointPath": "/v1/images/generations",
+    "editEndpointPath": "/v1/images/edits",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "ui": { "label": "GPT Image 2", "badge": "Image", "badgeColor": "#10b981" }
+}

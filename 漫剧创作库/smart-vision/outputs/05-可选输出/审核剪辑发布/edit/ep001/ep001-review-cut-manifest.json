@@ -1,0 +1,18 @@
+{
+  "schema": "smart-vision-edit-manifest-v1",
+  "projectId": "infinite-awakening-001",
+  "episode": "ep001",
+  "workflowId": "draft-edit-1778210764441",
+  "title": "EP001 审核剪辑版",
+  "status": "waiting_review",
+  "sourceClips": [
+    "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4"
+  ],
+  "outputArtifact": "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+  "editNotes": [
+    "Phase F 最小闭环：单视频片段作为审核剪辑版回填。",
+    "待后续接入多镜头拼接、声音空间、转场与最终发布包。"
+  ],
+  "qaEntry": "episode_edit_review",
+  "updatedAt": "2026-05-08T13:56:00+08:00"
+}

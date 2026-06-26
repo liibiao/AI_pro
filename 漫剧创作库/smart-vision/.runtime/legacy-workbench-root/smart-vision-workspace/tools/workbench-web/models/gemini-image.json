@@ -1,0 +1,32 @@
+{
+  "id": "gemini-image",
+  "name": "gemini-image",
+  "type": "image",
+  "label": "Gemini-Image",
+  "model": "gemini-3-pro-image-preview",
+  "baseUrl": "https://notevideo.asia",
+  "url": "https://notevideo.asia",
+  "key": "sk-ACcmDSKr7qE57QrQ36kkgfaPWtRqoskCBIR5RL8UavJiFzk0",
+  "adapter": "gemini-image",
+  "endpointPath": "/v1beta/models/{model}:generateContent",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2img": true,
+    "img2img": true
+  },
+  "note": "Gemini 生图（generateContent，参考图走对象存储公网 URL）",
+  "protocol": {
+    "adapter": "gemini-image",
+    "endpointPath": "/v1beta/models/{model}:generateContent",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "defaults": {
+    "imageSize": "2K"
+  },
+  "ui": {
+    "label": "Gemini-Image",
+    "badge": "Gemini",
+    "badgeColor": "#4285f4"
+  }
+}

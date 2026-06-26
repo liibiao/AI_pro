@@ -1,0 +1,1789 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "reviews": [
+    {
+      "id": "ep001-storyboard-review",
+      "target": "04-storyboard/ep001-storyboard.md",
+      "status": "waiting_review",
+      "type": "storyboard_package_review",
+      "updatedAt": "2026-05-07T05:28:37.364Z"
+    },
+    {
+      "id": "v8-asset-consistency-review",
+      "target": "08-qa/v8-asset-consistency-qa-report.md",
+      "status": "in_progress",
+      "type": "asset_consistency_review"
+    },
+    {
+      "id": "artifact-ep001-storyboard-image-generation-04-storyboard-ep001-storyboard-md-review",
+      "target": "04-storyboard/ep001-storyboard.md",
+      "status": "done",
+      "type": "storyboard_image_review",
+      "workflowId": "ep001-storyboard-image-generation",
+      "artifactPath": "04-storyboard/ep001-storyboard.md",
+      "updatedAt": "2026-05-07T19:38:35.837Z"
+    },
+    {
+      "id": "artifact-draft-video_generation-1778182715841-03-视频-ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE--review",
+      "target": "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "status": "done",
+      "type": "video_review",
+      "workflowId": "draft-video_generation-1778182715841",
+      "artifactPath": "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "updatedAt": "2026-05-08T03:26:04.439Z"
+    },
+    {
+      "id": "artifact-draft-edit-1778210764441-ep001-review-cut-review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "status": "done",
+      "type": "episode_edit_review",
+      "workflowId": "draft-edit-1778210764441",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "updatedAt": "2026-05-08T13:59:00+08:00"
+    },
+    {
+      "id": "artifact-draft-qa-1778211540000-ep001-qa-final-report-review",
+      "target": "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+      "status": "done",
+      "type": "qa_review",
+      "workflowId": "draft-qa-1778211540000",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+      "updatedAt": "2026-05-08T08:14:17.940Z"
+    },
+    {
+      "id": "artifact-draft-qa-1778211540000-ep001-release-package-review",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "status": "done",
+      "type": "release_package_review",
+      "workflowId": "draft-qa-1778211540000",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "updatedAt": "2026-05-08T14:22:00+08:00"
+    },
+    {
+      "id": "release-release-ep001-1778225846269-review",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "status": "done",
+      "type": "release_package_review",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "updatedAt": "2026-05-08T07:38:33.868Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778298423240-01--idempotency-smoke-png-review",
+      "target": "01-资产图与提示词/画布回写/idempotency-smoke.png",
+      "status": "waiting_review",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/idempotency-smoke.png",
+      "updatedAt": "2026-05-09T03:47:57.206Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778298423240-01--retry-smoke-png-review",
+      "target": "01-资产图与提示词/画布回写/retry-smoke.png",
+      "status": "waiting_review",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/retry-smoke.png",
+      "updatedAt": "2026-05-09T03:58:45.746Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778290049554-01--ep001-pipeline-asset-output-smoke-png-review",
+      "target": "01-资产图与提示词/资产图/ep001/pipeline-asset-output-smoke.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778290049554",
+      "artifactPath": "01-资产图与提示词/资产图/ep001/pipeline-asset-output-smoke.png",
+      "updatedAt": "2026-05-09T05:31:51.568Z"
+    },
+    {
+      "id": "artifact-draft-storyboard_image_generation-1778301596146-01--storyboard-ep001-pipeline-storyboard-output-smoke-png-review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep001/pipeline-storyboard-output-smoke.png",
+      "status": "done",
+      "type": "storyboard_image_review",
+      "workflowId": "draft-storyboard_image_generation-1778301596146",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep001/pipeline-storyboard-output-smoke.png",
+      "updatedAt": "2026-05-09T05:31:51.617Z"
+    },
+    {
+      "id": "artifact-draft-video_generation-1778302161828-03--ep001-pipeline-video-output-smoke-mp4-review",
+      "target": "03-视频/ep001/pipeline-video-output-smoke.mp4",
+      "status": "done",
+      "type": "video_review",
+      "workflowId": "draft-video_generation-1778302161828",
+      "artifactPath": "03-视频/ep001/pipeline-video-output-smoke.mp4",
+      "updatedAt": "2026-05-09T05:31:51.632Z"
+    },
+    {
+      "id": "artifact-draft-edit-1778302819995-05--edit-ep001-pipeline-edit-output-smoke-mp4-review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep001/pipeline-edit-output-smoke.mp4",
+      "status": "done",
+      "type": "episode_review",
+      "workflowId": "draft-edit-1778302819995",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep001/pipeline-edit-output-smoke.mp4",
+      "updatedAt": "2026-05-09T05:31:51.647Z"
+    },
+    {
+      "id": "artifact-draft-qa-1778303373129-05--review-ep001-pipeline-qa-output-smoke-md-review",
+      "target": "05-可选输出/审核剪辑发布/review/ep001/pipeline-qa-output-smoke.md",
+      "status": "done",
+      "type": "qa_review",
+      "workflowId": "draft-qa-1778303373129",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep001/pipeline-qa-output-smoke.md",
+      "updatedAt": "2026-05-09T05:31:51.660Z"
+    },
+    {
+      "id": "release-release-ep001-auto-draft-qa-1778303373129-review",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "status": "waiting_review",
+      "type": "release_package_review",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "updatedAt": "2026-05-09T05:27:11.401Z"
+    },
+    {
+      "id": "artifact-draft-release-1778304322583-05--release-ep001-pipeline-release-manifest-smoke-json-review",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/pipeline-release-manifest-smoke.json",
+      "status": "done",
+      "type": "release_package_review",
+      "workflowId": "draft-release-1778304322583",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001/pipeline-release-manifest-smoke.json",
+      "updatedAt": "2026-05-09T05:31:51.675Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778290049554-01--ui-canvas-retry-smoke-png-review",
+      "target": "01-资产图与提示词/画布回写/ui-canvas-retry-smoke.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778290049554",
+      "artifactPath": "01-资产图与提示词/画布回写/ui-canvas-retry-smoke.png",
+      "updatedAt": "2026-05-09T05:51:44.900Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778317814848-png-review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778317814848.png",
+      "status": "waiting_review",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778317814848.png",
+      "updatedAt": "2026-05-09T09:10:15.206Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778319054273-png-review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778319054273.png",
+      "status": "waiting_review",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778319054273.png",
+      "updatedAt": "2026-05-09T09:30:54.624Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778323203499-png-review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778323203499.png",
+      "status": "waiting_review",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778323203499.png",
+      "updatedAt": "2026-05-09T10:40:03.852Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778324595942-png-review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778324595942.png",
+      "status": "waiting_review",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778324595942.png",
+      "updatedAt": "2026-05-09T11:03:16.368Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778328535773-png-review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778328535773.png",
+      "status": "waiting_review",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778328535773.png",
+      "updatedAt": "2026-05-09T12:08:55.896Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778326076407-01--ep001-prod-validate-asset-run-output-png-review",
+      "target": "01-资产图与提示词/资产图/ep001-prod-validate/asset-run-output.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778326076407",
+      "artifactPath": "01-资产图与提示词/资产图/ep001-prod-validate/asset-run-output.png",
+      "updatedAt": "2026-05-09T12:11:59.877Z"
+    },
+    {
+      "id": "artifact-draft-storyboard_image_generation-1778328719888-01--storyboard-ep001-prod-validate-storyboard-run-output-png-review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep001-prod-validate/storyboard-run-output.png",
+      "status": "done",
+      "type": "storyboard_image_review",
+      "workflowId": "draft-storyboard_image_generation-1778328719888",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep001-prod-validate/storyboard-run-output.png",
+      "updatedAt": "2026-05-09T12:11:59.969Z"
+    },
+    {
+      "id": "artifact-draft-video_generation-1778328719978-03--ep001-prod-validate-video-run-output-mp4-review",
+      "target": "03-视频/ep001-prod-validate/video-run-output.mp4",
+      "status": "done",
+      "type": "video_review",
+      "workflowId": "draft-video_generation-1778328719978",
+      "artifactPath": "03-视频/ep001-prod-validate/video-run-output.mp4",
+      "updatedAt": "2026-05-09T12:12:00.113Z"
+    },
+    {
+      "id": "artifact-draft-edit-1778328720121-05--edit-ep001-prod-validate-edit-run-output-mp4-review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep001-prod-validate/edit-run-output.mp4",
+      "status": "done",
+      "type": "episode_review",
+      "workflowId": "draft-edit-1778328720121",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep001-prod-validate/edit-run-output.mp4",
+      "updatedAt": "2026-05-09T12:12:00.248Z"
+    },
+    {
+      "id": "artifact-draft-qa-1778328720254-05--review-ep001-prod-validate-qa-report-md-review",
+      "target": "05-可选输出/审核剪辑发布/review/ep001-prod-validate/qa-report.md",
+      "status": "done",
+      "type": "qa_review",
+      "workflowId": "draft-qa-1778328720254",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep001-prod-validate/qa-report.md",
+      "updatedAt": "2026-05-09T12:12:00.338Z"
+    },
+    {
+      "id": "release-release-ep001-auto-draft-qa-1778328720254-review",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "status": "waiting_review",
+      "type": "release_package_review",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "updatedAt": "2026-05-09T12:12:00.361Z"
+    },
+    {
+      "id": "artifact-draft-release-1778328720344-05--release-ep001-prod-validate-release-manifest-json-review",
+      "target": "05-可选输出/审核剪辑发布/release/ep001-prod-validate/release-manifest.json",
+      "status": "done",
+      "type": "release_package_review",
+      "workflowId": "draft-release-1778328720344",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001-prod-validate/release-manifest.json",
+      "updatedAt": "2026-05-09T12:12:00.441Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778329600267-png-review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778329600267.png",
+      "status": "waiting_review",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778329600267.png",
+      "updatedAt": "2026-05-09T12:26:40.439Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778331230127-png-review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778331230127.png",
+      "status": "waiting_review",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778331230127.png",
+      "updatedAt": "2026-05-09T12:53:50.537Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778917005559-01--ep-v2-entry-1778917004765-smart-canvas-v2-entry-asset-png-review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778917004765/smart-canvas-v2-entry-asset.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778917005559",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778917004765/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T07:36:45.846Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778917499613-01--ep-v2-entry-1778917498851-smart-canvas-v2-entry-asset-png-review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778917498851/smart-canvas-v2-entry-asset.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778917499613",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778917498851/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T07:44:59.965Z"
+    },
+    {
+      "id": "artifact-draft-storyboard_image_generation-1778917500016-01--storyboard-ep-v2-entry-1778917498851-smart-canvas-v2-entry-storyboard-png-review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778917498851/smart-canvas-v2-entry-storyboard.png",
+      "status": "done",
+      "type": "storyboard_image_review",
+      "workflowId": "draft-storyboard_image_generation-1778917500016",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778917498851/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T07:45:00.345Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778918115117-01--ep-v2-entry-1778918114394-smart-canvas-v2-entry-asset-png-review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778918114394/smart-canvas-v2-entry-asset.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778918115117",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778918114394/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T07:55:15.474Z"
+    },
+    {
+      "id": "artifact-draft-storyboard_image_generation-1778918115565-01--storyboard-ep-v2-entry-1778918114394-smart-canvas-v2-entry-storyboard-png-review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918114394/smart-canvas-v2-entry-storyboard.png",
+      "status": "done",
+      "type": "storyboard_image_review",
+      "workflowId": "draft-storyboard_image_generation-1778918115565",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918114394/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T07:55:15.898Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778918636869-01--ep-v2-entry-1778918636130-smart-canvas-v2-entry-asset-png-review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778918636130/smart-canvas-v2-entry-asset.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778918636869",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778918636130/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:03:57.353Z"
+    },
+    {
+      "id": "artifact-draft-storyboard_image_generation-1778918637443-01--storyboard-ep-v2-entry-1778918636130-smart-canvas-v2-entry-storyboard-png-review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918636130/smart-canvas-v2-entry-storyboard.png",
+      "status": "done",
+      "type": "storyboard_image_review",
+      "workflowId": "draft-storyboard_image_generation-1778918637443",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918636130/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T08:03:57.898Z"
+    },
+    {
+      "id": "artifact-draft-video_generation-1778918637989-03--ep-v2-entry-1778918636130-smart-canvas-v2-entry-video-mp4-review",
+      "target": "03-视频/ep-v2-entry-1778918636130/smart-canvas-v2-entry-video.mp4",
+      "status": "done",
+      "type": "video_review",
+      "workflowId": "draft-video_generation-1778918637989",
+      "artifactPath": "03-视频/ep-v2-entry-1778918636130/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T08:03:58.483Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778918721977-01--ep-v2-entry-1778918721232-smart-canvas-v2-entry-asset-png-review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778918721232/smart-canvas-v2-entry-asset.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778918721977",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778918721232/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:05:22.515Z"
+    },
+    {
+      "id": "artifact-draft-storyboard_image_generation-1778918722606-01--storyboard-ep-v2-entry-1778918721232-smart-canvas-v2-entry-storyboard-png-review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918721232/smart-canvas-v2-entry-storyboard.png",
+      "status": "done",
+      "type": "storyboard_image_review",
+      "workflowId": "draft-storyboard_image_generation-1778918722606",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918721232/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T08:05:23.135Z"
+    },
+    {
+      "id": "artifact-draft-video_generation-1778918723241-03--ep-v2-entry-1778918721232-smart-canvas-v2-entry-video-mp4-review",
+      "target": "03-视频/ep-v2-entry-1778918721232/smart-canvas-v2-entry-video.mp4",
+      "status": "done",
+      "type": "video_review",
+      "workflowId": "draft-video_generation-1778918723241",
+      "artifactPath": "03-视频/ep-v2-entry-1778918721232/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T08:05:23.895Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778919112515-01--ep-v2-entry-1778919111387-smart-canvas-v2-entry-asset-png-review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778919111387/smart-canvas-v2-entry-asset.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778919112515",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778919111387/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:11:53.655Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778919138560-01--ep-v2-entry-1778919137839-smart-canvas-v2-entry-asset-png-review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778919137839/smart-canvas-v2-entry-asset.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778919138560",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778919137839/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:12:19.330Z"
+    },
+    {
+      "id": "artifact-draft-storyboard_image_generation-1778919139432-01--storyboard-ep-v2-entry-1778919137839-smart-canvas-v2-entry-storyboard-png-review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778919137839/smart-canvas-v2-entry-storyboard.png",
+      "status": "done",
+      "type": "storyboard_image_review",
+      "workflowId": "draft-storyboard_image_generation-1778919139432",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778919137839/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T08:12:20.181Z"
+    },
+    {
+      "id": "artifact-draft-video_generation-1778919140286-03--ep-v2-entry-1778919137839-smart-canvas-v2-entry-video-mp4-review",
+      "target": "03-视频/ep-v2-entry-1778919137839/smart-canvas-v2-entry-video.mp4",
+      "status": "done",
+      "type": "video_review",
+      "workflowId": "draft-video_generation-1778919140286",
+      "artifactPath": "03-视频/ep-v2-entry-1778919137839/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T08:12:21.089Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778928058633-01--ep-v2-entry-1778928057858-smart-canvas-v2-entry-asset-png-review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778928057858/smart-canvas-v2-entry-asset.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778928058633",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778928057858/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T10:40:59.526Z"
+    },
+    {
+      "id": "artifact-draft-storyboard_image_generation-1778928059630-01--storyboard-ep-v2-entry-1778928057858-smart-canvas-v2-entry-storyboard-png-review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778928057858/smart-canvas-v2-entry-storyboard.png",
+      "status": "done",
+      "type": "storyboard_image_review",
+      "workflowId": "draft-storyboard_image_generation-1778928059630",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778928057858/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T10:41:00.487Z"
+    },
+    {
+      "id": "artifact-draft-video_generation-1778928060590-03--ep-v2-entry-1778928057858-smart-canvas-v2-entry-video-mp4-review",
+      "target": "03-视频/ep-v2-entry-1778928057858/smart-canvas-v2-entry-video.mp4",
+      "status": "done",
+      "type": "video_review",
+      "workflowId": "draft-video_generation-1778928060590",
+      "artifactPath": "03-视频/ep-v2-entry-1778928057858/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T10:41:01.501Z"
+    },
+    {
+      "id": "artifact-draft-edit-1778928061604-05--edit-ep-v2-entry-1778928057858-smart-canvas-v2-entry-edit-mp4-review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778928057858/smart-canvas-v2-entry-edit.mp4",
+      "status": "done",
+      "type": "episode_review",
+      "workflowId": "draft-edit-1778928061604",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778928057858/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T10:41:02.579Z"
+    },
+    {
+      "id": "artifact-draft-qa-1778928062685-05--review-ep-v2-entry-1778928057858-smart-canvas-v2-entry-qa-report-md-review",
+      "target": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928057858/smart-canvas-v2-entry-qa-report.md",
+      "status": "done",
+      "type": "qa_review",
+      "workflowId": "draft-qa-1778928062685",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928057858/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T10:41:03.673Z"
+    },
+    {
+      "id": "release-release-ep-v2-entry-1778928057858-auto-draft-qa-1778928062685-review",
+      "target": "release-ep-v2-entry-1778928057858-auto-draft-qa-1778928062685",
+      "status": "waiting_review",
+      "type": "release_package_review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928057858/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T10:41:03.953Z"
+    },
+    {
+      "id": "artifact-draft-release-1778928063780-05--release-ep-v2-entry-1778928057858-smart-canvas-v2-entry-release-manifest-jso-review",
+      "target": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928057858/smart-canvas-v2-entry-release-manifest.json",
+      "status": "done",
+      "type": "release_package_review",
+      "workflowId": "draft-release-1778928063780",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928057858/smart-canvas-v2-entry-release-manifest.json",
+      "updatedAt": "2026-05-16T10:41:04.833Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778928166897-01--ep-v2-entry-1778928166193-smart-canvas-v2-entry-asset-png-review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778928166193/smart-canvas-v2-entry-asset.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778928166897",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778928166193/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T10:42:47.730Z"
+    },
+    {
+      "id": "artifact-draft-storyboard_image_generation-1778928167821-01--storyboard-ep-v2-entry-1778928166193-smart-canvas-v2-entry-storyboard-png-review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778928166193/smart-canvas-v2-entry-storyboard.png",
+      "status": "done",
+      "type": "storyboard_image_review",
+      "workflowId": "draft-storyboard_image_generation-1778928167821",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778928166193/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T10:42:48.677Z"
+    },
+    {
+      "id": "artifact-draft-video_generation-1778928168771-03--ep-v2-entry-1778928166193-smart-canvas-v2-entry-video-mp4-review",
+      "target": "03-视频/ep-v2-entry-1778928166193/smart-canvas-v2-entry-video.mp4",
+      "status": "done",
+      "type": "video_review",
+      "workflowId": "draft-video_generation-1778928168771",
+      "artifactPath": "03-视频/ep-v2-entry-1778928166193/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T10:42:49.677Z"
+    },
+    {
+      "id": "artifact-draft-edit-1778928169769-05--edit-ep-v2-entry-1778928166193-smart-canvas-v2-entry-edit-mp4-review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778928166193/smart-canvas-v2-entry-edit.mp4",
+      "status": "done",
+      "type": "episode_review",
+      "workflowId": "draft-edit-1778928169769",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778928166193/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T10:42:50.679Z"
+    },
+    {
+      "id": "artifact-draft-qa-1778928170769-05--review-ep-v2-entry-1778928166193-smart-canvas-v2-entry-qa-report-md-review",
+      "target": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928166193/smart-canvas-v2-entry-qa-report.md",
+      "status": "done",
+      "type": "qa_review",
+      "workflowId": "draft-qa-1778928170769",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928166193/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T10:42:51.651Z"
+    },
+    {
+      "id": "release-release-ep-v2-entry-1778928166193-auto-draft-qa-1778928170769-review",
+      "target": "release-ep-v2-entry-1778928166193-auto-draft-qa-1778928170769",
+      "status": "waiting_review",
+      "type": "release_package_review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928166193/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T10:42:51.921Z"
+    },
+    {
+      "id": "artifact-draft-release-1778928171748-05--release-ep-v2-entry-1778928166193-smart-canvas-v2-entry-release-manifest-jso-review",
+      "target": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928166193/smart-canvas-v2-entry-release-manifest.json",
+      "status": "done",
+      "type": "release_package_review",
+      "workflowId": "draft-release-1778928171748",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928166193/smart-canvas-v2-entry-release-manifest.json",
+      "updatedAt": "2026-05-16T10:42:52.828Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778930489002-01--ep-v2-entry-1778930487733-smart-canvas-v2-entry-asset-png-review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778930487733/smart-canvas-v2-entry-asset.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778930489002",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778930487733/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T11:21:31.198Z"
+    },
+    {
+      "id": "artifact-draft-storyboard_image_generation-1778930491360-01--storyboard-ep-v2-entry-1778930487733-smart-canvas-v2-entry-storyboard-png-review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778930487733/smart-canvas-v2-entry-storyboard.png",
+      "status": "done",
+      "type": "storyboard_image_review",
+      "workflowId": "draft-storyboard_image_generation-1778930491360",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778930487733/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T11:21:32.924Z"
+    },
+    {
+      "id": "artifact-draft-video_generation-1778930493073-03--ep-v2-entry-1778930487733-smart-canvas-v2-entry-video-mp4-review",
+      "target": "03-视频/ep-v2-entry-1778930487733/smart-canvas-v2-entry-video.mp4",
+      "status": "done",
+      "type": "video_review",
+      "workflowId": "draft-video_generation-1778930493073",
+      "artifactPath": "03-视频/ep-v2-entry-1778930487733/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T11:21:34.741Z"
+    },
+    {
+      "id": "artifact-draft-edit-1778930494882-05--edit-ep-v2-entry-1778930487733-smart-canvas-v2-entry-edit-mp4-review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778930487733/smart-canvas-v2-entry-edit.mp4",
+      "status": "done",
+      "type": "episode_review",
+      "workflowId": "draft-edit-1778930494882",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778930487733/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T11:21:36.586Z"
+    },
+    {
+      "id": "artifact-draft-qa-1778930496735-05--review-ep-v2-entry-1778930487733-smart-canvas-v2-entry-qa-report-md-review",
+      "target": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778930487733/smart-canvas-v2-entry-qa-report.md",
+      "status": "done",
+      "type": "qa_review",
+      "workflowId": "draft-qa-1778930496735",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778930487733/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T11:21:38.697Z"
+    },
+    {
+      "id": "release-release-ep-v2-entry-1778930487733-auto-draft-qa-1778930496735-review",
+      "target": "release-ep-v2-entry-1778930487733-auto-draft-qa-1778930496735",
+      "status": "waiting_review",
+      "type": "release_package_review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778930487733/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T11:21:39.196Z"
+    },
+    {
+      "id": "artifact-draft-release-1778930498843-05--release-ep-v2-entry-1778930487733-smart-canvas-v2-entry-release-manifest-jso-review",
+      "target": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778930487733/smart-canvas-v2-entry-release-manifest.json",
+      "status": "done",
+      "type": "release_package_review",
+      "workflowId": "draft-release-1778930498843",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778930487733/smart-canvas-v2-entry-release-manifest.json",
+      "updatedAt": "2026-05-16T11:21:40.547Z"
+    },
+    {
+      "id": "artifact-draft-asset_image_generation-1778932459111-01--ep-v2-entry-1778932458375-smart-canvas-v2-entry-asset-png-review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778932458375/smart-canvas-v2-entry-asset.png",
+      "status": "done",
+      "type": "asset_image_review",
+      "workflowId": "draft-asset_image_generation-1778932459111",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778932458375/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T11:54:20.561Z"
+    },
+    {
+      "id": "artifact-draft-storyboard_image_generation-1778932460671-01--storyboard-ep-v2-entry-1778932458375-smart-canvas-v2-entry-storyboard-png-review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778932458375/smart-canvas-v2-entry-storyboard.png",
+      "status": "done",
+      "type": "storyboard_image_review",
+      "workflowId": "draft-storyboard_image_generation-1778932460671",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778932458375/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T11:54:22.122Z"
+    },
+    {
+      "id": "artifact-draft-video_generation-1778932462228-03--ep-v2-entry-1778932458375-smart-canvas-v2-entry-video-mp4-review",
+      "target": "03-视频/ep-v2-entry-1778932458375/smart-canvas-v2-entry-video.mp4",
+      "status": "done",
+      "type": "video_review",
+      "workflowId": "draft-video_generation-1778932462228",
+      "artifactPath": "03-视频/ep-v2-entry-1778932458375/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T11:54:23.677Z"
+    },
+    {
+      "id": "artifact-draft-edit-1778932463784-05--edit-ep-v2-entry-1778932458375-smart-canvas-v2-entry-edit-mp4-review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778932458375/smart-canvas-v2-entry-edit.mp4",
+      "status": "done",
+      "type": "episode_review",
+      "workflowId": "draft-edit-1778932463784",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778932458375/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T11:54:25.288Z"
+    },
+    {
+      "id": "artifact-draft-qa-1778932465394-05--review-ep-v2-entry-1778932458375-smart-canvas-v2-entry-qa-report-md-review",
+      "target": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778932458375/smart-canvas-v2-entry-qa-report.md",
+      "status": "done",
+      "type": "qa_review",
+      "workflowId": "draft-qa-1778932465394",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778932458375/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T11:54:26.878Z"
+    },
+    {
+      "id": "release-release-ep-v2-entry-1778932458375-auto-draft-qa-1778932465394-review",
+      "target": "release-ep-v2-entry-1778932458375-auto-draft-qa-1778932465394",
+      "status": "waiting_review",
+      "type": "release_package_review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778932458375/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T11:54:27.284Z"
+    },
+    {
+      "id": "artifact-draft-release-1778932466983-05--release-ep-v2-entry-1778932458375-smart-canvas-v2-entry-release-manifest-jso-review",
+      "target": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778932458375/smart-canvas-v2-entry-release-manifest.json",
+      "status": "waiting_review",
+      "type": "release_package_review",
+      "workflowId": "draft-release-1778932466983",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778932458375/smart-canvas-v2-entry-release-manifest.json",
+      "updatedAt": "2026-05-16T11:54:28.433Z"
+    }
+  ],
+  "history": [
+    {
+      "reviewId": "artifact-ep001-storyboard-image-generation-04-storyboard-ep001-storyboard-md-review",
+      "status": "waiting_review",
+      "target": "04-storyboard/ep001-storyboard.md",
+      "workflowId": "ep001-storyboard-image-generation",
+      "artifactPath": "04-storyboard/ep001-storyboard.md",
+      "updatedAt": "2026-05-07T19:38:35.780Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-ep001-storyboard-image-generation-04-storyboard-ep001-storyboard-md-review",
+      "status": "done",
+      "target": "04-storyboard/ep001-storyboard.md",
+      "updatedAt": "2026-05-07T19:38:35.837Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778182715841-03-视频-ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE--review",
+      "status": "waiting_review",
+      "target": "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "workflowId": "draft-video_generation-1778182715841",
+      "artifactPath": "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "updatedAt": "2026-05-08T03:25:55.667Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778182715841-03-视频-ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE--review",
+      "status": "done",
+      "target": "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "updatedAt": "2026-05-08T03:26:04.439Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778210764441-ep001-review-cut-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "workflowId": "draft-edit-1778210764441",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "updatedAt": "2026-05-08T13:56:00+08:00",
+      "result": "workflow_output_submitted_for_episode_edit_review"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778210764441-ep001-review-cut-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "workflowId": "draft-edit-1778210764441",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "updatedAt": "2026-05-08T13:59:00+08:00",
+      "result": "approved_and_created_qa_workflow"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778211540000-ep001-qa-final-report-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+      "workflowId": "draft-qa-1778211540000",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+      "updatedAt": "2026-05-08T14:11:00+08:00",
+      "result": "qa_output_submitted_for_review"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778211540000-ep001-release-package-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "workflowId": "draft-qa-1778211540000",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "updatedAt": "2026-05-08T14:11:00+08:00",
+      "result": "qa_output_submitted_for_review"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778211540000-ep001-qa-final-report-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+      "workflowId": "draft-qa-1778211540000",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+      "updatedAt": "2026-05-08T14:22:00+08:00",
+      "result": "approved_for_minimum_closed_loop_archive"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778211540000-ep001-release-package-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "workflowId": "draft-qa-1778211540000",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "updatedAt": "2026-05-08T14:22:00+08:00",
+      "result": "approved_for_minimum_closed_loop_archive"
+    },
+    {
+      "reviewId": "release-release-ep001-1778225846269-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "updatedAt": "2026-05-08T07:37:26.269Z",
+      "result": "release_package_submitted_for_review"
+    },
+    {
+      "reviewId": "release-release-ep001-1778225846269-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "updatedAt": "2026-05-08T07:38:33.868Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778211540000-ep001-qa-final-report-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+      "updatedAt": "2026-05-08T08:14:17.940Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778298423240-01--idempotency-smoke-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/画布回写/idempotency-smoke.png",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/idempotency-smoke.png",
+      "updatedAt": "2026-05-09T03:47:57.206Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778298423240-01--retry-smoke-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/画布回写/retry-smoke.png",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/retry-smoke.png",
+      "updatedAt": "2026-05-09T03:58:45.746Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778290049554-01--ep001-pipeline-asset-output-smoke-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep001/pipeline-asset-output-smoke.png",
+      "workflowId": "draft-asset_image_generation-1778290049554",
+      "artifactPath": "01-资产图与提示词/资产图/ep001/pipeline-asset-output-smoke.png",
+      "updatedAt": "2026-05-09T04:39:47.735Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778290049554-01--ep001-pipeline-asset-output-smoke-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep001/pipeline-asset-output-smoke.png",
+      "updatedAt": "2026-05-09T04:39:56.135Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778301596146-01--storyboard-ep001-pipeline-storyboard-output-smoke-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep001/pipeline-storyboard-output-smoke.png",
+      "workflowId": "draft-storyboard_image_generation-1778301596146",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep001/pipeline-storyboard-output-smoke.png",
+      "updatedAt": "2026-05-09T04:49:14.771Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778301596146-01--storyboard-ep001-pipeline-storyboard-output-smoke-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/故事板/storyboard/ep001/pipeline-storyboard-output-smoke.png",
+      "updatedAt": "2026-05-09T04:49:21.818Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778302161828-03--ep001-pipeline-video-output-smoke-mp4-review",
+      "status": "waiting_review",
+      "target": "03-视频/ep001/pipeline-video-output-smoke.mp4",
+      "workflowId": "draft-video_generation-1778302161828",
+      "artifactPath": "03-视频/ep001/pipeline-video-output-smoke.mp4",
+      "updatedAt": "2026-05-09T05:00:12.134Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778302161828-03--ep001-pipeline-video-output-smoke-mp4-review",
+      "status": "done",
+      "target": "03-视频/ep001/pipeline-video-output-smoke.mp4",
+      "updatedAt": "2026-05-09T05:00:19.985Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778302819995-05--edit-ep001-pipeline-edit-output-smoke-mp4-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep001/pipeline-edit-output-smoke.mp4",
+      "workflowId": "draft-edit-1778302819995",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep001/pipeline-edit-output-smoke.mp4",
+      "updatedAt": "2026-05-09T05:09:21.469Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778302819995-05--edit-ep001-pipeline-edit-output-smoke-mp4-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/edit/ep001/pipeline-edit-output-smoke.mp4",
+      "updatedAt": "2026-05-09T05:09:33.120Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778303373129-05--review-ep001-pipeline-qa-output-smoke-md-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/review/ep001/pipeline-qa-output-smoke.md",
+      "workflowId": "draft-qa-1778303373129",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep001/pipeline-qa-output-smoke.md",
+      "updatedAt": "2026-05-09T05:24:56.316Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778303373129-05--review-ep001-pipeline-qa-output-smoke-md-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/review/ep001/pipeline-qa-output-smoke.md",
+      "updatedAt": "2026-05-09T05:25:22.573Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778303373129-05--review-ep001-pipeline-qa-output-smoke-md-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/review/ep001/pipeline-qa-output-smoke.md",
+      "updatedAt": "2026-05-09T05:25:41.091Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778303373129-05--review-ep001-pipeline-qa-output-smoke-md-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/review/ep001/pipeline-qa-output-smoke.md",
+      "updatedAt": "2026-05-09T05:27:11.395Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "release-release-ep001-auto-draft-qa-1778303373129-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "updatedAt": "2026-05-09T05:27:11.401Z",
+      "result": "release_package_submitted_for_review"
+    },
+    {
+      "reviewId": "artifact-draft-release-1778304322583-05--release-ep001-pipeline-release-manifest-smoke-json-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/pipeline-release-manifest-smoke.json",
+      "workflowId": "draft-release-1778304322583",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001/pipeline-release-manifest-smoke.json",
+      "updatedAt": "2026-05-09T05:29:54.434Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-release-1778304322583-05--release-ep001-pipeline-release-manifest-smoke-json-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/pipeline-release-manifest-smoke.json",
+      "updatedAt": "2026-05-09T05:29:54.481Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778290049554-01--ep001-pipeline-asset-output-smoke-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep001/pipeline-asset-output-smoke.png",
+      "updatedAt": "2026-05-09T05:31:51.568Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778301596146-01--storyboard-ep001-pipeline-storyboard-output-smoke-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/故事板/storyboard/ep001/pipeline-storyboard-output-smoke.png",
+      "updatedAt": "2026-05-09T05:31:51.617Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778302161828-03--ep001-pipeline-video-output-smoke-mp4-review",
+      "status": "done",
+      "target": "03-视频/ep001/pipeline-video-output-smoke.mp4",
+      "updatedAt": "2026-05-09T05:31:51.632Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778302819995-05--edit-ep001-pipeline-edit-output-smoke-mp4-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/edit/ep001/pipeline-edit-output-smoke.mp4",
+      "updatedAt": "2026-05-09T05:31:51.647Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778303373129-05--review-ep001-pipeline-qa-output-smoke-md-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/review/ep001/pipeline-qa-output-smoke.md",
+      "updatedAt": "2026-05-09T05:31:51.660Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-release-1778304322583-05--release-ep001-pipeline-release-manifest-smoke-json-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/pipeline-release-manifest-smoke.json",
+      "updatedAt": "2026-05-09T05:31:51.675Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778290049554-01--ui-canvas-retry-smoke-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/画布回写/ui-canvas-retry-smoke.png",
+      "workflowId": "draft-asset_image_generation-1778290049554",
+      "artifactPath": "01-资产图与提示词/画布回写/ui-canvas-retry-smoke.png",
+      "updatedAt": "2026-05-09T05:51:33.161Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778290049554-01--ui-canvas-retry-smoke-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/画布回写/ui-canvas-retry-smoke.png",
+      "updatedAt": "2026-05-09T05:51:44.900Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778317814848-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778317814848.png",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778317814848.png",
+      "updatedAt": "2026-05-09T09:10:15.206Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778319054273-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778319054273.png",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778319054273.png",
+      "updatedAt": "2026-05-09T09:30:54.624Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778323203499-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778323203499.png",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778323203499.png",
+      "updatedAt": "2026-05-09T10:40:03.852Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778324595942-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778324595942.png",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778324595942.png",
+      "updatedAt": "2026-05-09T11:03:16.368Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778328535773-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778328535773.png",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778328535773.png",
+      "updatedAt": "2026-05-09T12:08:55.896Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778326076407-01--ep001-prod-validate-asset-run-output-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep001-prod-validate/asset-run-output.png",
+      "workflowId": "draft-asset_image_generation-1778326076407",
+      "artifactPath": "01-资产图与提示词/资产图/ep001-prod-validate/asset-run-output.png",
+      "updatedAt": "2026-05-09T12:11:59.849Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778326076407-01--ep001-prod-validate-asset-run-output-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep001-prod-validate/asset-run-output.png",
+      "updatedAt": "2026-05-09T12:11:59.877Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778328719888-01--storyboard-ep001-prod-validate-storyboard-run-output-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep001-prod-validate/storyboard-run-output.png",
+      "workflowId": "draft-storyboard_image_generation-1778328719888",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep001-prod-validate/storyboard-run-output.png",
+      "updatedAt": "2026-05-09T12:11:59.949Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778328719888-01--storyboard-ep001-prod-validate-storyboard-run-output-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/故事板/storyboard/ep001-prod-validate/storyboard-run-output.png",
+      "updatedAt": "2026-05-09T12:11:59.969Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778328719978-03--ep001-prod-validate-video-run-output-mp4-review",
+      "status": "waiting_review",
+      "target": "03-视频/ep001-prod-validate/video-run-output.mp4",
+      "workflowId": "draft-video_generation-1778328719978",
+      "artifactPath": "03-视频/ep001-prod-validate/video-run-output.mp4",
+      "updatedAt": "2026-05-09T12:12:00.086Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778328719978-03--ep001-prod-validate-video-run-output-mp4-review",
+      "status": "done",
+      "target": "03-视频/ep001-prod-validate/video-run-output.mp4",
+      "updatedAt": "2026-05-09T12:12:00.113Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778328720121-05--edit-ep001-prod-validate-edit-run-output-mp4-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep001-prod-validate/edit-run-output.mp4",
+      "workflowId": "draft-edit-1778328720121",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep001-prod-validate/edit-run-output.mp4",
+      "updatedAt": "2026-05-09T12:12:00.222Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778328720121-05--edit-ep001-prod-validate-edit-run-output-mp4-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/edit/ep001-prod-validate/edit-run-output.mp4",
+      "updatedAt": "2026-05-09T12:12:00.248Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778328720254-05--review-ep001-prod-validate-qa-report-md-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/review/ep001-prod-validate/qa-report.md",
+      "workflowId": "draft-qa-1778328720254",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep001-prod-validate/qa-report.md",
+      "updatedAt": "2026-05-09T12:12:00.315Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778328720254-05--review-ep001-prod-validate-qa-report-md-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/review/ep001-prod-validate/qa-report.md",
+      "updatedAt": "2026-05-09T12:12:00.338Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "release-release-ep001-auto-draft-qa-1778328720254-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "updatedAt": "2026-05-09T12:12:00.361Z",
+      "result": "release_package_submitted_for_review"
+    },
+    {
+      "reviewId": "artifact-draft-release-1778328720344-05--release-ep001-prod-validate-release-manifest-json-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/release/ep001-prod-validate/release-manifest.json",
+      "workflowId": "draft-release-1778328720344",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep001-prod-validate/release-manifest.json",
+      "updatedAt": "2026-05-09T12:12:00.416Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-release-1778328720344-05--release-ep001-prod-validate-release-manifest-json-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/release/ep001-prod-validate/release-manifest.json",
+      "updatedAt": "2026-05-09T12:12:00.441Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778329600267-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778329600267.png",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778329600267.png",
+      "updatedAt": "2026-05-09T12:26:40.439Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778298423240-01--canvas-output-register-smoke-1778331230127-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778331230127.png",
+      "workflowId": "draft-asset_image_generation-1778298423240",
+      "artifactPath": "01-资产图与提示词/画布回写/canvas-output-register-smoke-1778331230127.png",
+      "updatedAt": "2026-05-09T12:53:50.537Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778917005559-01--ep-v2-entry-1778917004765-smart-canvas-v2-entry-asset-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778917004765/smart-canvas-v2-entry-asset.png",
+      "workflowId": "draft-asset_image_generation-1778917005559",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778917004765/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T07:36:45.791Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778917005559-01--ep-v2-entry-1778917004765-smart-canvas-v2-entry-asset-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778917004765/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T07:36:45.846Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778917499613-01--ep-v2-entry-1778917498851-smart-canvas-v2-entry-asset-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778917498851/smart-canvas-v2-entry-asset.png",
+      "workflowId": "draft-asset_image_generation-1778917499613",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778917498851/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T07:44:59.899Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778917499613-01--ep-v2-entry-1778917498851-smart-canvas-v2-entry-asset-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778917498851/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T07:44:59.965Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778917500016-01--storyboard-ep-v2-entry-1778917498851-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778917498851/smart-canvas-v2-entry-storyboard.png",
+      "workflowId": "draft-storyboard_image_generation-1778917500016",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778917498851/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T07:45:00.283Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778917500016-01--storyboard-ep-v2-entry-1778917498851-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778917498851/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T07:45:00.345Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778918115117-01--ep-v2-entry-1778918114394-smart-canvas-v2-entry-asset-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778918114394/smart-canvas-v2-entry-asset.png",
+      "workflowId": "draft-asset_image_generation-1778918115117",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778918114394/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T07:55:15.403Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778918115117-01--ep-v2-entry-1778918114394-smart-canvas-v2-entry-asset-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778918114394/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T07:55:15.474Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778918115565-01--storyboard-ep-v2-entry-1778918114394-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918114394/smart-canvas-v2-entry-storyboard.png",
+      "workflowId": "draft-storyboard_image_generation-1778918115565",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918114394/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T07:55:15.830Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778918115565-01--storyboard-ep-v2-entry-1778918114394-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918114394/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T07:55:15.898Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778918636869-01--ep-v2-entry-1778918636130-smart-canvas-v2-entry-asset-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778918636130/smart-canvas-v2-entry-asset.png",
+      "workflowId": "draft-asset_image_generation-1778918636869",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778918636130/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:03:57.254Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778918636869-01--ep-v2-entry-1778918636130-smart-canvas-v2-entry-asset-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778918636130/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:03:57.353Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778918637443-01--storyboard-ep-v2-entry-1778918636130-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918636130/smart-canvas-v2-entry-storyboard.png",
+      "workflowId": "draft-storyboard_image_generation-1778918637443",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918636130/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T08:03:57.801Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778918637443-01--storyboard-ep-v2-entry-1778918636130-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918636130/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T08:03:57.898Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778918637989-03--ep-v2-entry-1778918636130-smart-canvas-v2-entry-video-mp4-review",
+      "status": "waiting_review",
+      "target": "03-视频/ep-v2-entry-1778918636130/smart-canvas-v2-entry-video.mp4",
+      "workflowId": "draft-video_generation-1778918637989",
+      "artifactPath": "03-视频/ep-v2-entry-1778918636130/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T08:03:58.389Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778918637989-03--ep-v2-entry-1778918636130-smart-canvas-v2-entry-video-mp4-review",
+      "status": "done",
+      "target": "03-视频/ep-v2-entry-1778918636130/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T08:03:58.483Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778918721977-01--ep-v2-entry-1778918721232-smart-canvas-v2-entry-asset-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778918721232/smart-canvas-v2-entry-asset.png",
+      "workflowId": "draft-asset_image_generation-1778918721977",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778918721232/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:05:22.400Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778918721977-01--ep-v2-entry-1778918721232-smart-canvas-v2-entry-asset-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778918721232/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:05:22.515Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778918722606-01--storyboard-ep-v2-entry-1778918721232-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918721232/smart-canvas-v2-entry-storyboard.png",
+      "workflowId": "draft-storyboard_image_generation-1778918722606",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918721232/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T08:05:23.025Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778918722606-01--storyboard-ep-v2-entry-1778918721232-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918721232/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T08:05:23.135Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778918723241-03--ep-v2-entry-1778918721232-smart-canvas-v2-entry-video-mp4-review",
+      "status": "waiting_review",
+      "target": "03-视频/ep-v2-entry-1778918721232/smart-canvas-v2-entry-video.mp4",
+      "workflowId": "draft-video_generation-1778918723241",
+      "artifactPath": "03-视频/ep-v2-entry-1778918721232/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T08:05:23.782Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778918723241-03--ep-v2-entry-1778918721232-smart-canvas-v2-entry-video-mp4-review",
+      "status": "done",
+      "target": "03-视频/ep-v2-entry-1778918721232/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T08:05:23.895Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778919112515-01--ep-v2-entry-1778919111387-smart-canvas-v2-entry-asset-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778919111387/smart-canvas-v2-entry-asset.png",
+      "workflowId": "draft-asset_image_generation-1778919112515",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778919111387/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:11:53.415Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778919112515-01--ep-v2-entry-1778919111387-smart-canvas-v2-entry-asset-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778919111387/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:11:53.655Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778919138560-01--ep-v2-entry-1778919137839-smart-canvas-v2-entry-asset-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778919137839/smart-canvas-v2-entry-asset.png",
+      "workflowId": "draft-asset_image_generation-1778919138560",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778919137839/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:12:19.168Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778919138560-01--ep-v2-entry-1778919137839-smart-canvas-v2-entry-asset-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778919137839/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:12:19.330Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778919139432-01--storyboard-ep-v2-entry-1778919137839-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778919137839/smart-canvas-v2-entry-storyboard.png",
+      "workflowId": "draft-storyboard_image_generation-1778919139432",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778919137839/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T08:12:20.007Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778919139432-01--storyboard-ep-v2-entry-1778919137839-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778919137839/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T08:12:20.181Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778919140286-03--ep-v2-entry-1778919137839-smart-canvas-v2-entry-video-mp4-review",
+      "status": "waiting_review",
+      "target": "03-视频/ep-v2-entry-1778919137839/smart-canvas-v2-entry-video.mp4",
+      "workflowId": "draft-video_generation-1778919140286",
+      "artifactPath": "03-视频/ep-v2-entry-1778919137839/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T08:12:20.935Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778919140286-03--ep-v2-entry-1778919137839-smart-canvas-v2-entry-video-mp4-review",
+      "status": "done",
+      "target": "03-视频/ep-v2-entry-1778919137839/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T08:12:21.089Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778928058633-01--ep-v2-entry-1778928057858-smart-canvas-v2-entry-asset-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778928057858/smart-canvas-v2-entry-asset.png",
+      "workflowId": "draft-asset_image_generation-1778928058633",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778928057858/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T10:40:59.351Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778928058633-01--ep-v2-entry-1778928057858-smart-canvas-v2-entry-asset-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778928057858/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T10:40:59.526Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778928059630-01--storyboard-ep-v2-entry-1778928057858-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778928057858/smart-canvas-v2-entry-storyboard.png",
+      "workflowId": "draft-storyboard_image_generation-1778928059630",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778928057858/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T10:41:00.313Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778928059630-01--storyboard-ep-v2-entry-1778928057858-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778928057858/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T10:41:00.487Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778928060590-03--ep-v2-entry-1778928057858-smart-canvas-v2-entry-video-mp4-review",
+      "status": "waiting_review",
+      "target": "03-视频/ep-v2-entry-1778928057858/smart-canvas-v2-entry-video.mp4",
+      "workflowId": "draft-video_generation-1778928060590",
+      "artifactPath": "03-视频/ep-v2-entry-1778928057858/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T10:41:01.328Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778928060590-03--ep-v2-entry-1778928057858-smart-canvas-v2-entry-video-mp4-review",
+      "status": "done",
+      "target": "03-视频/ep-v2-entry-1778928057858/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T10:41:01.501Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778928061604-05--edit-ep-v2-entry-1778928057858-smart-canvas-v2-entry-edit-mp4-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778928057858/smart-canvas-v2-entry-edit.mp4",
+      "workflowId": "draft-edit-1778928061604",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778928057858/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T10:41:02.389Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778928061604-05--edit-ep-v2-entry-1778928057858-smart-canvas-v2-entry-edit-mp4-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778928057858/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T10:41:02.579Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778928062685-05--review-ep-v2-entry-1778928057858-smart-canvas-v2-entry-qa-report-md-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928057858/smart-canvas-v2-entry-qa-report.md",
+      "workflowId": "draft-qa-1778928062685",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928057858/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T10:41:03.428Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778928062685-05--review-ep-v2-entry-1778928057858-smart-canvas-v2-entry-qa-report-md-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928057858/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T10:41:03.673Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "release-release-ep-v2-entry-1778928057858-auto-draft-qa-1778928062685-review",
+      "status": "waiting_review",
+      "target": "release-ep-v2-entry-1778928057858-auto-draft-qa-1778928062685",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928057858/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T10:41:03.953Z",
+      "result": "release_package_submitted_for_review"
+    },
+    {
+      "reviewId": "artifact-draft-release-1778928063780-05--release-ep-v2-entry-1778928057858-smart-canvas-v2-entry-release-manifest-jso-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928057858/smart-canvas-v2-entry-release-manifest.json",
+      "workflowId": "draft-release-1778928063780",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928057858/smart-canvas-v2-entry-release-manifest.json",
+      "updatedAt": "2026-05-16T10:41:04.662Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-release-1778928063780-05--release-ep-v2-entry-1778928057858-smart-canvas-v2-entry-release-manifest-jso-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928057858/smart-canvas-v2-entry-release-manifest.json",
+      "updatedAt": "2026-05-16T10:41:04.833Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778928166897-01--ep-v2-entry-1778928166193-smart-canvas-v2-entry-asset-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778928166193/smart-canvas-v2-entry-asset.png",
+      "workflowId": "draft-asset_image_generation-1778928166897",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778928166193/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T10:42:47.568Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778928166897-01--ep-v2-entry-1778928166193-smart-canvas-v2-entry-asset-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778928166193/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T10:42:47.730Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778928167821-01--storyboard-ep-v2-entry-1778928166193-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778928166193/smart-canvas-v2-entry-storyboard.png",
+      "workflowId": "draft-storyboard_image_generation-1778928167821",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778928166193/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T10:42:48.496Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778928167821-01--storyboard-ep-v2-entry-1778928166193-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778928166193/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T10:42:48.677Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778928168771-03--ep-v2-entry-1778928166193-smart-canvas-v2-entry-video-mp4-review",
+      "status": "waiting_review",
+      "target": "03-视频/ep-v2-entry-1778928166193/smart-canvas-v2-entry-video.mp4",
+      "workflowId": "draft-video_generation-1778928168771",
+      "artifactPath": "03-视频/ep-v2-entry-1778928166193/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T10:42:49.505Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778928168771-03--ep-v2-entry-1778928166193-smart-canvas-v2-entry-video-mp4-review",
+      "status": "done",
+      "target": "03-视频/ep-v2-entry-1778928166193/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T10:42:49.677Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778928169769-05--edit-ep-v2-entry-1778928166193-smart-canvas-v2-entry-edit-mp4-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778928166193/smart-canvas-v2-entry-edit.mp4",
+      "workflowId": "draft-edit-1778928169769",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778928166193/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T10:42:50.485Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778928169769-05--edit-ep-v2-entry-1778928166193-smart-canvas-v2-entry-edit-mp4-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778928166193/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T10:42:50.679Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778928170769-05--review-ep-v2-entry-1778928166193-smart-canvas-v2-entry-qa-report-md-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928166193/smart-canvas-v2-entry-qa-report.md",
+      "workflowId": "draft-qa-1778928170769",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928166193/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T10:42:51.469Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778928170769-05--review-ep-v2-entry-1778928166193-smart-canvas-v2-entry-qa-report-md-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928166193/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T10:42:51.651Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "release-release-ep-v2-entry-1778928166193-auto-draft-qa-1778928170769-review",
+      "status": "waiting_review",
+      "target": "release-ep-v2-entry-1778928166193-auto-draft-qa-1778928170769",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928166193/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T10:42:51.921Z",
+      "result": "release_package_submitted_for_review"
+    },
+    {
+      "reviewId": "artifact-draft-release-1778928171748-05--release-ep-v2-entry-1778928166193-smart-canvas-v2-entry-release-manifest-jso-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928166193/smart-canvas-v2-entry-release-manifest.json",
+      "workflowId": "draft-release-1778928171748",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928166193/smart-canvas-v2-entry-release-manifest.json",
+      "updatedAt": "2026-05-16T10:42:52.646Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-release-1778928171748-05--release-ep-v2-entry-1778928166193-smart-canvas-v2-entry-release-manifest-jso-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778928166193/smart-canvas-v2-entry-release-manifest.json",
+      "updatedAt": "2026-05-16T10:42:52.828Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778930489002-01--ep-v2-entry-1778930487733-smart-canvas-v2-entry-asset-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778930487733/smart-canvas-v2-entry-asset.png",
+      "workflowId": "draft-asset_image_generation-1778930489002",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778930487733/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T11:21:30.867Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778930489002-01--ep-v2-entry-1778930487733-smart-canvas-v2-entry-asset-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778930487733/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T11:21:31.198Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778930491360-01--storyboard-ep-v2-entry-1778930487733-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778930487733/smart-canvas-v2-entry-storyboard.png",
+      "workflowId": "draft-storyboard_image_generation-1778930491360",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778930487733/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T11:21:32.595Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778930491360-01--storyboard-ep-v2-entry-1778930487733-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778930487733/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T11:21:32.924Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778930493073-03--ep-v2-entry-1778930487733-smart-canvas-v2-entry-video-mp4-review",
+      "status": "waiting_review",
+      "target": "03-视频/ep-v2-entry-1778930487733/smart-canvas-v2-entry-video.mp4",
+      "workflowId": "draft-video_generation-1778930493073",
+      "artifactPath": "03-视频/ep-v2-entry-1778930487733/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T11:21:34.415Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778930493073-03--ep-v2-entry-1778930487733-smart-canvas-v2-entry-video-mp4-review",
+      "status": "done",
+      "target": "03-视频/ep-v2-entry-1778930487733/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T11:21:34.741Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778930494882-05--edit-ep-v2-entry-1778930487733-smart-canvas-v2-entry-edit-mp4-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778930487733/smart-canvas-v2-entry-edit.mp4",
+      "workflowId": "draft-edit-1778930494882",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778930487733/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T11:21:36.252Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778930494882-05--edit-ep-v2-entry-1778930487733-smart-canvas-v2-entry-edit-mp4-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778930487733/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T11:21:36.586Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778930496735-05--review-ep-v2-entry-1778930487733-smart-canvas-v2-entry-qa-report-md-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778930487733/smart-canvas-v2-entry-qa-report.md",
+      "workflowId": "draft-qa-1778930496735",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778930487733/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T11:21:38.315Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778930496735-05--review-ep-v2-entry-1778930487733-smart-canvas-v2-entry-qa-report-md-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778930487733/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T11:21:38.697Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "release-release-ep-v2-entry-1778930487733-auto-draft-qa-1778930496735-review",
+      "status": "waiting_review",
+      "target": "release-ep-v2-entry-1778930487733-auto-draft-qa-1778930496735",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778930487733/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T11:21:39.196Z",
+      "result": "release_package_submitted_for_review"
+    },
+    {
+      "reviewId": "artifact-draft-release-1778930498843-05--release-ep-v2-entry-1778930487733-smart-canvas-v2-entry-release-manifest-jso-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778930487733/smart-canvas-v2-entry-release-manifest.json",
+      "workflowId": "draft-release-1778930498843",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778930487733/smart-canvas-v2-entry-release-manifest.json",
+      "updatedAt": "2026-05-16T11:21:40.263Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-release-1778930498843-05--release-ep-v2-entry-1778930487733-smart-canvas-v2-entry-release-manifest-jso-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778930487733/smart-canvas-v2-entry-release-manifest.json",
+      "updatedAt": "2026-05-16T11:21:40.547Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778932459111-01--ep-v2-entry-1778932458375-smart-canvas-v2-entry-asset-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778932458375/smart-canvas-v2-entry-asset.png",
+      "workflowId": "draft-asset_image_generation-1778932459111",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778932458375/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T11:54:20.276Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-asset_image_generation-1778932459111-01--ep-v2-entry-1778932458375-smart-canvas-v2-entry-asset-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/资产图/ep-v2-entry-1778932458375/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T11:54:20.561Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778932460671-01--storyboard-ep-v2-entry-1778932458375-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "waiting_review",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778932458375/smart-canvas-v2-entry-storyboard.png",
+      "workflowId": "draft-storyboard_image_generation-1778932460671",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778932458375/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T11:54:21.827Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-storyboard_image_generation-1778932460671-01--storyboard-ep-v2-entry-1778932458375-smart-canvas-v2-entry-storyboard-png-review",
+      "status": "done",
+      "target": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778932458375/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T11:54:22.122Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778932462228-03--ep-v2-entry-1778932458375-smart-canvas-v2-entry-video-mp4-review",
+      "status": "waiting_review",
+      "target": "03-视频/ep-v2-entry-1778932458375/smart-canvas-v2-entry-video.mp4",
+      "workflowId": "draft-video_generation-1778932462228",
+      "artifactPath": "03-视频/ep-v2-entry-1778932458375/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T11:54:23.380Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-video_generation-1778932462228-03--ep-v2-entry-1778932458375-smart-canvas-v2-entry-video-mp4-review",
+      "status": "done",
+      "target": "03-视频/ep-v2-entry-1778932458375/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T11:54:23.677Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778932463784-05--edit-ep-v2-entry-1778932458375-smart-canvas-v2-entry-edit-mp4-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778932458375/smart-canvas-v2-entry-edit.mp4",
+      "workflowId": "draft-edit-1778932463784",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778932458375/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T11:54:24.948Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-edit-1778932463784-05--edit-ep-v2-entry-1778932458375-smart-canvas-v2-entry-edit-mp4-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778932458375/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T11:54:25.288Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778932465394-05--review-ep-v2-entry-1778932458375-smart-canvas-v2-entry-qa-report-md-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778932458375/smart-canvas-v2-entry-qa-report.md",
+      "workflowId": "draft-qa-1778932465394",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778932458375/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T11:54:26.557Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    },
+    {
+      "reviewId": "artifact-draft-qa-1778932465394-05--review-ep-v2-entry-1778932458375-smart-canvas-v2-entry-qa-report-md-review",
+      "status": "done",
+      "target": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778932458375/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T11:54:26.878Z",
+      "result": "approved"
+    },
+    {
+      "reviewId": "release-release-ep-v2-entry-1778932458375-auto-draft-qa-1778932465394-review",
+      "status": "waiting_review",
+      "target": "release-ep-v2-entry-1778932458375-auto-draft-qa-1778932465394",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778932458375/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T11:54:27.284Z",
+      "result": "release_package_submitted_for_review"
+    },
+    {
+      "reviewId": "artifact-draft-release-1778932466983-05--release-ep-v2-entry-1778932458375-smart-canvas-v2-entry-release-manifest-jso-review",
+      "status": "waiting_review",
+      "target": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778932458375/smart-canvas-v2-entry-release-manifest.json",
+      "workflowId": "draft-release-1778932466983",
+      "artifactPath": "05-可选输出/审核剪辑发布/release/ep-v2-entry-1778932458375/smart-canvas-v2-entry-release-manifest.json",
+      "updatedAt": "2026-05-16T11:54:28.433Z",
+      "result": "workflow_output_submitted_for_artifact_review"
+    }
+  ]
+}

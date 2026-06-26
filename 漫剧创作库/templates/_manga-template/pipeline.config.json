@@ -1,0 +1,50 @@
+{
+  "version": "2.0.0",
+  "pipeline_end": {
+    "enabled_nodes": ["assets", "prompts"],
+    "disabled_nodes": ["video_generation", "edit", "review"]
+  },
+  "precheck": {
+    "required_items": [
+      { "path": "project.json", "type": "file" },
+      { "path": "03-assets/asset-index.md", "type": "file" },
+      { "path": "03-assets/characters", "type": "dir", "glob": "*.md", "min_files": 1 },
+      { "path": "03-assets/scenes", "type": "dir", "glob": "*.md", "min_files": 1 },
+      { "path": "03-assets/props", "type": "dir", "glob": "*.md", "min_files": 1 }
+    ],
+    "ep_script_name_contains": "第{ep}话"
+  },
+  "outputs": {
+    "comment": "仅落盘 5 类文件，其余按需内存注入",
+    "persist": [
+      { "id": "script", "pattern": "01-story/scripts/*-剧本正文.md", "desc": "剧本正文" },
+      { "id": "asset_char", "pattern": "03-assets/characters/*.md", "desc": "角色设计卡" },
+      { "id": "asset_scene", "pattern": "03-assets/scenes/*.md", "desc": "场景设计卡" },
+      { "id": "asset_prop", "pattern": "03-assets/props/*.md", "desc": "道具设计卡" },
+      { "id": "storyboard", "pattern": "04-storyboard/ep*-storyboard.md", "desc": "分镜脚本" },
+      { "id": "shots", "pattern": "05-prompts/seedance/ep*-shots.md", "desc": "逐镜头提示词" },
+      { "id": "paste_jimeng", "pattern": "05-prompts/seedance/第*集/即梦/ep*-omni-paste*.md", "desc": "即梦版提示词" },
+      { "id": "paste_seedance", "pattern": "05-prompts/seedance/第*集/seedance/ep*-seedance2-paste*.md", "desc": "Seedance2字段版" },
+      { "id": "paste_narrative", "pattern": "05-prompts/seedance/第*集/叙事/ep*-seedance2-narrative-paste*.md", "desc": "Seedance2叙事版" },
+      { "id": "paste_seedance25_15s", "pattern": "05-prompts/seedance/第*集/seedance2.5/ep*-seedance2.5-15s-paste*.md", "desc": "Seedance2.5 15s版" },
+      { "id": "paste_seedance25_30s", "pattern": "05-prompts/seedance/第*集/seedance2.5/ep*-seedance2.5-30s-paste*.md", "desc": "Seedance2.5 30s版" }
+    ],
+    "in_memory_only": [
+      "inspiration.md",
+      "logline.md",
+      "character-bible.md",
+      "02-director/README.md",
+      "05-prompts/seedance/ep*-fullref-15s.md",
+      "05-prompts/seedance/ep*-execution-plan.md",
+      "05-prompts/seedance/ep*-fullref-15s.md"
+    ]
+  },
+  "assets": {
+    "enabled": true,
+    "types": ["characters", "scenes", "props"]
+  },
+  "prompts": {
+    "enabled": true,
+    "style_default": "纪实克制"
+  }
+}

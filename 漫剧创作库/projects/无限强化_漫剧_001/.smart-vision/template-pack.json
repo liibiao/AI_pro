@@ -1,0 +1,40 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "packId": "smart-vision-template-core-v0.1",
+  "title": "智能视界 Phase 2 Template 核心包",
+  "updatedAt": "2026-05-07T15:25:00+08:00",
+  "templates": [
+    {
+      "id": "prompt-output",
+      "title": "三版本提示词输出模板",
+      "taskTypes": ["seedance_prompt", "jimeng_prompt", "narrative_prompt"],
+      "files": [
+        "templates/_shared/prompt-output/seedance-long-template.md",
+        "templates/_shared/prompt-output/jimeng-template.md",
+        "templates/_shared/prompt-output/narrative-template.md"
+      ]
+    },
+    {
+      "id": "director-storyboard",
+      "title": "导演故事板交付模板",
+      "taskTypes": ["director_storyboard", "storyboard_image"],
+      "files": [
+        "templates/_shared/director-storyboard/director-storyboard-input-pack-template.md",
+        "templates/_shared/director-storyboard/director-storyboard-delivery-index-template.md",
+        "templates/_shared/director-storyboard/director-storyboard-qc-template.md"
+      ]
+    },
+    {
+      "id": "project-assets",
+      "title": "项目资产模板",
+      "taskTypes": ["character_asset", "scene_asset", "prop_asset"],
+      "files": [
+        "templates/_project-template/03-assets/characters/character-template.md",
+        "templates/_project-template/03-assets/scenes/scene-template.md",
+        "templates/_project-template/03-assets/props/prop-template.md"
+      ]
+    }
+  ],
+  "note": "Phase 2 雏形：先登记核心模板入口，后续接入 Workflow Builder 自动派生。"
+}

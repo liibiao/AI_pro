@@ -1,0 +1,111 @@
+{
+  "_meta": {
+    "dimension": "色彩调色",
+    "priority": 4.3,
+    "required": false,
+    "description": "精准控制画面色彩倾向与配色方案，是情绪表达的重要手段",
+    "tip": "一般与光影维度搭配使用，色彩+光影=画面氛围"
+  },
+  "categories": [
+    {
+      "id": "warm_tones",
+      "name": "暖色系",
+      "tip": "红橙黄为主，传达温暖、激情、能量",
+      "items": [
+        { "keyword": "中国红（Chinese Red）", "usage": "喜庆、热烈、传统" },
+        { "keyword": "爱马仕橙（Hermes Orange）", "usage": "高级、时尚、活力" },
+        { "keyword": "枫叶红（Maple Red）", "usage": "秋天、温暖、浪漫" },
+        { "keyword": "酒红色（Burgundy）", "usage": "深邃、优雅、成熟" },
+        { "keyword": "胡萝卜红（Carrot Red）", "usage": "鲜活、自然、食欲" },
+        { "keyword": "珊瑚色（Coral）", "usage": "柔和、温暖、年轻" },
+        { "keyword": "亮丽橙（Bright Orange）", "usage": "活力、热情、醒目" },
+        { "keyword": "柠檬黄（Lemon Yellow）", "usage": "清新、明亮、愉悦" },
+        { "keyword": "金黄色（Golden）", "usage": "奢华、辉煌、神性" },
+        { "keyword": "奢华金（Luxurious Gold）", "usage": "高档、宫殿、财富" },
+        { "keyword": "蜜黄色（Mustard）", "usage": "复古、温暖、秋天" },
+        { "keyword": "暖棕色（Warm Brown）", "usage": "咖啡、木质、舒适" },
+        { "keyword": "秋日棕（Autumn Brown）", "usage": "落叶、温暖、怀旧" },
+        { "keyword": "玫瑰金（Rose Gold）", "usage": "时尚、精致、温柔" }
+      ]
+    },
+    {
+      "id": "cool_tones",
+      "name": "冷色系",
+      "tip": "蓝绿紫为主，传达冷静、科技、神秘",
+      "items": [
+        { "keyword": "蒂芙尼蓝（Tiffany Blue）", "usage": "清新、优雅、品牌" },
+        { "keyword": "克莱因蓝（Klein Blue）", "usage": "纯粹、强烈、艺术" },
+        { "keyword": "天空蓝（Sky Blue）", "usage": "纯净、开阔、晴朗" },
+        { "keyword": "雪山蓝（Mountain Blue）", "usage": "冷峻、高远、清冽" },
+        { "keyword": "水晶蓝（Crystal Blue）", "usage": "透明、纯净、冰感" },
+        { "keyword": "牛仔蓝（Denim Blue）", "usage": "休闲、日常、经典" },
+        { "keyword": "商务蓝（Steady Blue）", "usage": "专业、可靠、沉稳" },
+        { "keyword": "群青（Cobalt Blue）", "usage": "深沉、古典、油画" },
+        { "keyword": "景泰蓝（Cloisonne Blue）", "usage": "中国传统、珐琅、精致" },
+        { "keyword": "青色（Cyan）", "usage": "科技、清爽、明亮" },
+        { "keyword": "薄荷绿（Mint Green）", "usage": "清新、凉爽、年轻" },
+        { "keyword": "苍绿（Forest Green）", "usage": "深沉、自然、宁静" },
+        { "keyword": "自然绿（Natural Green）", "usage": "生态、生命、和平" },
+        { "keyword": "绿松石（Turquoise）", "usage": "异域、宝石、清新" },
+        { "keyword": "茶青（Tea Green）", "usage": "淡雅、东方、清新" },
+        { "keyword": "紫罗兰（Violet Purple）", "usage": "神秘、优雅、高贵" },
+        { "keyword": "薰衣草色（Lavender）", "usage": "浪漫、柔美、花香" }
+      ]
+    },
+    {
+      "id": "neutral_tones",
+      "name": "中性色系",
+      "tip": "黑白灰为主，传达高级、克制、永恒",
+      "items": [
+        { "keyword": "极简黑白（Minimalist B&W）", "usage": "经典、高级、纯粹" },
+        { "keyword": "石墨黑（Graphite Black）", "usage": "深邃、科技、酷" },
+        { "keyword": "象牙白（Ivory White）", "usage": "温暖白、高雅、自然" },
+        { "keyword": "时尚灰（Fashionable Gray）", "usage": "高级、中性、百搭" },
+        { "keyword": "瓦灰色（Dim Gray）", "usage": "低调、沉稳、工业" },
+        { "keyword": "暗色调（Muted Tones）", "usage": "低饱和、情绪、高级" },
+        { "keyword": "莫兰迪色（Morandi Color）", "usage": "灰调柔和、艺术感" },
+        { "keyword": "银色调（Silver Tones）", "usage": "金属感、科技、冷静" },
+        { "keyword": "茶色/棕色（Tan）", "usage": "皮革、复古、大地" }
+      ]
+    },
+    {
+      "id": "special_palettes",
+      "name": "特殊配色方案",
+      "tip": "组合配色方案、特殊效果色彩",
+      "items": [
+        { "keyword": "红黑配色", "usage": "强烈、危险、热血" },
+        { "keyword": "黄黑配色", "usage": "警示、工业、冲突" },
+        { "keyword": "经典红黑白配色", "usage": "海报、漫画、复古" },
+        { "keyword": "青橙对比色（Teal & Orange）", "usage": "好莱坞经典、肤色突出" },
+        { "keyword": "紫黑配色", "usage": "暗黑、魔法、神秘" },
+        { "keyword": "金银色调", "usage": "奢华、宫殿、皇室" },
+        { "keyword": "日落渐变", "usage": "橙红紫、温暖浪漫" },
+        { "keyword": "霓虹色调（Neon Shades）", "usage": "赛博朋克、发光、夜" },
+        { "keyword": "镭射糖果纸色", "usage": "彩虹反射、童年" },
+        { "keyword": "果冻色（Jelly Color）", "usage": "半透明、柔和、甜美" },
+        { "keyword": "荧光色（Fluorescent）", "usage": "高亮、电子、未来" },
+        { "keyword": "水果色", "usage": "鲜艳、自然、食欲" },
+        { "keyword": "反射透明彩虹色", "usage": "虹彩、折射、梦幻" },
+        { "keyword": "水晶折射色", "usage": "棱镜、光谱、纯净" },
+        { "keyword": "水墨淡彩", "usage": "留白、淡雅、东方" }
+      ]
+    },
+    {
+      "id": "color_theory",
+      "name": "色彩理论/效果",
+      "tip": "色彩控制技术与效果",
+      "items": [
+        { "keyword": "高饱和度", "usage": "鲜艳、抢眼、活力" },
+        { "keyword": "低饱和度", "usage": "克制、高级、柔和" },
+        { "keyword": "互补色对比", "usage": "强烈视觉冲击" },
+        { "keyword": "类比色", "usage": "和谐、统一、舒适" },
+        { "keyword": "单色调（Monochrome）", "usage": "统一色系、层次感" },
+        { "keyword": "色散效果（Chromatic Dispersion）", "usage": "棱镜、彩虹分裂" },
+        { "keyword": "渐变色调（Gradient）", "usage": "色彩过渡、现代" },
+        { "keyword": "暖色主导", "usage": "温馨、热情、亲密" },
+        { "keyword": "冷色主导", "usage": "冷静、科技、疏离" },
+        { "keyword": "局部着色（Selective Color）", "usage": "黑白主体+彩色元素" }
+      ]
+    }
+  ]
+}

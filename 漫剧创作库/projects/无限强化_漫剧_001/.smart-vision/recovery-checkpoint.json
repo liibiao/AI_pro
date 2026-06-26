@@ -1,0 +1,16 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "checkpointAt": "2026-05-07",
+  "restoreOrder": [
+    "project.json",
+    ".smart-vision/project-state.json",
+    ".smart-vision/progress-ledger.json",
+    ".smart-vision/artifact-registry.json",
+    ".smart-vision/review-ledger.json",
+    ".smart-vision/continuity-ledger.json",
+    ".smart-vision/workflow-registry.json",
+    "07-workflows/"
+  ],
+  "note": "用于智能视界或其他工具接手时恢复当前项目上下文。"
+}

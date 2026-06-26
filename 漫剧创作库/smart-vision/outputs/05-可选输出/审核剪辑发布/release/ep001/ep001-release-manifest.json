@@ -1,0 +1,17 @@
+{
+  "schema": "smart-vision-release-package-v1",
+  "projectId": "infinite-awakening-001",
+  "episode": "ep001",
+  "version": "v0",
+  "status": "approved_minimum_closed_loop",
+  "sourceEdit": "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+  "releaseVideo": "05-可选输出/审核剪辑发布/release/ep001/ep001-release-v0.mp4",
+  "qaReport": "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+  "notes": [
+    "当前为 EP001 最小发布包登记版。",
+    "后续多镜头、字幕、声音与封面补齐后升级为正式发布版。"
+  ],
+  "updatedAt": "2026-05-08T14:22:00+08:00",
+  "approvalRecord": "05-可选输出/审核剪辑发布/publish/ep001/ep001-release-v0-approval.md",
+  "formalProductionBacklog": "05-可选输出/审核剪辑发布/publish/ep001/ep001-final-production-backlog.md"
+}

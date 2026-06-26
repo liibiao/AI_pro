@@ -1,0 +1,48 @@
+# 漫剧创作库 · Studio 快捷指令
+
+当用户输入以 `#LJ` 开头的消息时，按照以下规则解析和执行：
+
+## 指令格式
+
+### `#LJ start` / `#LJ 启动`
+启动灵境工作台。执行命令：
+```bash
+cd /Users/billy/Documents/AI_pro/漫剧创作库 && ./studio start
+```
+启动后自动在浏览器中打开工作台页面 `http://127.0.0.1:8766/workbench.html`。
+
+### `#LJ stop` / `#LJ 停止`
+停止工作台服务。执行：
+```bash
+cd /Users/billy/Documents/AI_pro/漫剧创作库 && ./studio stop
+```
+
+### `#LJ status` / `#LJ 状态`
+查看工作台运行状态。执行：
+```bash
+cd /Users/billy/Documents/AI_pro/漫剧创作库 && ./studio status
+```
+
+### `#LJ <剧本文本>` 或 `#LJ -f <文件路径>`
+从剧本文本生成提示词方案。
+- 如果以 `-f ` 开头，则从文件读取剧本，执行：
+  ```bash
+  cd /Users/billy/Documents/AI_pro/漫剧创作库 && ./studio generate -f <文件路径>
+  ```
+- 否则将后续文本作为剧本内容，执行：
+  ```bash
+  cd /Users/billy/Documents/AI_pro/漫剧创作库 && ./studio generate "<剧本文本>"
+  ```
+- 如果文本过长（>500字），建议先保存为文件再使用 `-f` 参数。
+
+### `#LJ pipeline <项目目录> [--ep N] [--style 风格] [--skip-assets] [--force]`
+运行项目完整流水线（前置检查 → 资产生产 → 提示词生成 → 自动校验）。
+
+### `#LJ help` / `#LJ 帮助`
+显示所有可用指令。
+
+## 注意事项
+- `#LJ` 不区分大小写，`#lj`、`#Lj` 等均可识别
+- `#LJ` 后的子命令支持缩写：`start`=`up`=`launch`，`stop`=`down`，`generate`=`gen`=`plan`，`pipeline`=`pipe`
+- 工作台服务端口固定为 8766，日志位于 `.codebuddy/logs/studio-server.log`
+- 所有命令都需要在 `/Users/billy/Documents/AI_pro/漫剧创作库` 目录下执行

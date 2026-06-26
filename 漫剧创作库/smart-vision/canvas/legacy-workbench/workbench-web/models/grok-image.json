@@ -1,0 +1,33 @@
+{
+  "id": "grok-image",
+  "name": "grok-image",
+  "type": "image",
+  "label": "Grok 文生图",
+  "model": "grok-imagine-1.0",
+  "baseUrl": "http://127.0.0.1:8000/v1",
+  "url": "http://127.0.0.1:8000/v1",
+  "key": "local-dev-no-auth",
+  "adapter": "grok-image",
+  "endpointPath": "/images/generations",
+  "supports": {
+    "txt2img": true,
+    "img2img": false,
+    "imageToImage": false,
+    "storyboard": true,
+    "panorama": false
+  },
+  "note": "Grok2API 文生图渠道。生产环境请在后台模型管理中替换为 Grok2API app.api_key。",
+  "protocol": {
+    "adapter": "grok-image",
+    "endpointPath": "/images/generations",
+    "method": "sync"
+  },
+  "defaults": {
+    "size": "1024x1024"
+  },
+  "ui": {
+    "label": "Grok 文生图",
+    "badge": "Grok",
+    "badgeColor": "#111827"
+  }
+}

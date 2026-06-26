@@ -1,0 +1,415 @@
+#!/bin/bash
+# ============================================================
+#  漫剧创作库 · 统一 CLI 入口
+#  用法：
+#    ./studio start          → 启动工作台（自动打开浏览器）
+#    ./studio stop           → 停止工作台服务
+#    ./studio status         → 查看工作台运行状态
+#    ./studio generate TEXT  → 从剧本文本生成提示词方案
+#    ./studio generate -f FILE  → 从文件读取剧本并生成方案
+#    ./studio pipeline PROJECT_DIR --ep N  → 运行项目流水线
+# ============================================================
+set -euo pipefail
+
+STUDIO_DIR="$(cd "$(dirname "$0")" && pwd)"
+TOOLS_DIR="$STUDIO_DIR/tools"
+LOG_DIR="$STUDIO_DIR/.codebuddy/logs"
+PID_FILE="$STUDIO_DIR/.codebuddy/studio-server.pid"
+LOG_FILE="$LOG_DIR/studio-server.log"
+HOST="127.0.0.1"
+PORT="8766"
+URL="http://$HOST:$PORT/workbench.html"
+IMAGE_URL="http://$HOST:$PORT/image-studio.html"
+CANVAS_URL="http://$HOST:$PORT/image-studio-canvas-next.html"
+LEGACY_CANVAS_URL="http://$HOST:$PORT/image-studio-canvas.html"
+
+mkdir -p "$LOG_DIR"
+
+load_env_file() {
+  local env_file="$STUDIO_DIR/.env"
+  if [ -f "$env_file" ]; then
+    set -a
+    # shellcheck disable=SC1090
+    source "$env_file"
+    set +a
+    echo "[Studio] 已加载环境变量：$env_file"
+  fi
+}
+
+# ─── 工作台服务管理 ────────────────────────────────────────
+
+server_running() {
+  python3 - <<PY
+import sys, urllib.request
+try:
+    urllib.request.urlopen("$URL", timeout=1.5)
+    sys.exit(0)
+except Exception:
+    sys.exit(1)
+PY
+}
+
+cmd_start() {
+  load_env_file
+  if server_running; then
+    echo "[Studio] 工作台已在运行：$URL"
+    open "$URL"
+    return
+  fi
+
+  if [ -f "$PID_FILE" ]; then
+    OLD_PID="$(cat "$PID_FILE" 2>/dev/null || true)"
+    if [ -n "$OLD_PID" ] && kill -0 "$OLD_PID" 2>/dev/null; then
+      echo "[Studio] 检测到旧进程，等待服务就绪…"
+    else
+      rm -f "$PID_FILE"
+    fi
+  fi
+
+  SERVER_SCRIPT="$TOOLS_DIR/workbench_server.py"
+  if [ ! -f "$SERVER_SCRIPT" ]; then
+    echo "[Studio] 错误：未找到 workbench_server.py" >&2
+    echo "  期望路径：$SERVER_SCRIPT" >&2
+    exit 1
+  fi
+
+  echo "[Studio] 正在启动工作台服务…"
+  cd "$STUDIO_DIR"
+  nohup python3 "$SERVER_SCRIPT" --host "$HOST" --port "$PORT" > "$LOG_FILE" 2>&1 &
+  echo $! > "$PID_FILE"
+
+  for _ in $(seq 1 20); do
+    if server_running; then
+      echo "[Studio] 服务启动成功：$URL"
+      open "$URL"
+      return
+    fi
+    sleep 0.5
+  done
+
+  echo "[Studio] 服务启动失败，请查看日志：$LOG_FILE" >&2
+  exit 1
+}
+
+cmd_stop() {
+  if [ -f "$PID_FILE" ]; then
+    PID="$(cat "$PID_FILE" 2>/dev/null || true)"
+    if [ -n "$PID" ] && kill -0 "$PID" 2>/dev/null; then
+      kill "$PID"
+      echo "[Studio] 已停止服务（PID: $PID）"
+    else
+      echo "[Studio] PID 文件存在，但进程已不在运行"
+    fi
+    rm -f "$PID_FILE"
+  else
+    echo "[Studio] 未找到运行中的服务"
+  fi
+}
+
+cmd_restart() {
+  cmd_stop || true
+  sleep 0.5
+  cmd_start
+}
+
+cmd_status() {
+  if server_running; then
+    echo "[Studio] 运行中：$URL"
+    [ -f "$PID_FILE" ] && echo "[Studio] PID：$(cat "$PID_FILE")"
+  else
+    echo "[Studio] 工作台未运行"
+    exit 1
+  fi
+}
+
+# ─── 提示词生成（从剧本文本） ─────────────────────────────
+
+cmd_generate() {
+  local text=""
+  local text_file=""
+
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -f|--file) text_file="$2"; shift 2 ;;
+      *) text="$1"; shift ;;
+    esac
+  done
+
+  if [ -n "$text_file" ]; then
+    if [ ! -f "$text_file" ]; then
+      echo "[Studio] 错误：文件不存在：$text_file" >&2
+      exit 1
+    fi
+    text="$(cat "$text_file")"
+  fi
+
+  if [ -z "$text" ]; then
+    echo "[Studio] 错误：请提供剧本内容或使用 -f 指定文件" >&2
+    echo "  用法: ./studio generate 剧本文本" >&2
+    echo "  用法: ./studio generate -f script.md" >&2
+    exit 1
+  fi
+
+  local cli_script="$TOOLS_DIR/workbench_cli.py"
+  if [ ! -f "$cli_script" ]; then
+    echo "[Studio] 错误：未找到 workbench_cli.py" >&2
+    exit 1
+  fi
+
+  cd "$STUDIO_DIR"
+  echo "[Studio] 正在分析剧本并生成提示词方案…"
+  echo ""
+  python3 "$cli_script" --text "$text" --no-interactive --action plan
+}
+
+# ─── 项目流水线 ───────────────────────────────────────────
+
+cmd_pipeline() {
+  local project_dir=""
+  local ep=""
+  local style="纪实克制"
+  local skip_assets=false
+  local force=false
+
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      --ep) ep="$2"; shift 2 ;;
+      --style) style="$2"; shift 2 ;;
+      --skip-assets) skip_assets=true; shift ;;
+      --force) force=true; shift ;;
+      *) project_dir="$1"; shift ;;
+    esac
+  done
+
+  if [ -z "$project_dir" ]; then
+    echo "[Studio] 错误：请指定项目目录" >&2
+    echo "  用法: ./studio pipeline PROJECT_DIR --ep N [--style 风格] [--skip-assets] [--force]" >&2
+    exit 1
+  fi
+
+  # 支持相对路径（相对于 STUDIO_DIR）
+  if [[ "$project_dir" != /* ]]; then
+    project_dir="$(cd "$STUDIO_DIR/$project_dir" 2>/dev/null && pwd)" || {
+      echo "[Studio] 错误：项目目录不存在：$project_dir" >&2
+      exit 1
+    }
+  fi
+
+  local pipeline_script="$TOOLS_DIR/project_pipeline_run.py"
+  if [ ! -f "$pipeline_script" ]; then
+    echo "[Studio] 错误：未找到 project_pipeline_run.py" >&2
+    exit 1
+  fi
+
+  cd "$TOOLS_DIR"
+  local argv=(python3 "$pipeline_script" --project-dir "$project_dir" --style "$style")
+  [ -n "$ep" ] && argv+=(--ep "$ep")
+  [ "$skip_assets" = true ] && argv+=(--skip-assets)
+  [ "$force" = true ] && argv+=(--force)
+
+  echo "[Studio] 正在运行项目流水线…"
+  echo "  项目: $project_dir"
+  [ -n "$ep" ] && echo "  集数: ep$ep"
+  echo "  风格: $style"
+  echo ""
+
+  "${argv[@]}"
+}
+
+cmd_image() {
+  if ! server_running; then
+    cmd_start
+  fi
+  echo "[Studio] 正在打开生图工具：$IMAGE_URL"
+  open "$IMAGE_URL"
+}
+
+cmd_canvas() {
+  if ! server_running; then
+    cmd_start
+  fi
+  echo "[Studio] 正在打开新版无限画布：$CANVAS_URL"
+  open "$CANVAS_URL"
+}
+
+cmd_create() {
+  local subcmd="${1:-}"
+  shift || true
+
+  case "$subcmd" in
+    img|image)
+      local prompt="$*"
+      if [ -z "$prompt" ]; then
+        echo "[Studio] 错误：请提供生图提示词" >&2
+        echo "  用法: ./studio create img 美女跳舞" >&2
+        exit 1
+      fi
+
+      if ! server_running; then
+        cmd_start
+      fi
+
+      local defaults_json
+      defaults_json="$(python3 - <<'PY'
+import json, urllib.request, sys
+try:
+    with urllib.request.urlopen('http://127.0.0.1:8766/api/workbench/image-studio/defaults', timeout=3) as resp:
+        data = json.load(resp)
+    defaults = data.get('defaults') or {}
+    print(json.dumps({
+        'baseUrl': defaults.get('baseUrl', ''),
+        'apiKey': defaults.get('apiKey', ''),
+        'model': defaults.get('model', ''),
+        'size': defaults.get('size', '1024x1024')
+    }, ensure_ascii=False))
+except Exception as exc:
+    print(json.dumps({'error': str(exc)}, ensure_ascii=False))
+    sys.exit(1)
+PY
+)" || {
+        echo "[Studio] 错误：读取生图默认配置失败" >&2
+        exit 1
+      }
+
+      local result
+      result="$(python3 - "$prompt" "$defaults_json" <<'PY'
+import json, sys, urllib.request
+prompt = sys.argv[1].strip()
+defaults = json.loads(sys.argv[2])
+if not defaults.get('apiKey'):
+    print(json.dumps({'ok': False, 'error': '未检测到 API Key，请先在生图工具或环境变量中配置'}, ensure_ascii=False))
+    sys.exit(2)
+payload = {
+    'action': 'txt2img',
+    'prompt': prompt,
+    'baseUrl': defaults.get('baseUrl', ''),
+    'apiKey': defaults.get('apiKey', ''),
+    'model': defaults.get('model', ''),
+    'size': defaults.get('size', '1024x1024'),
+    'outputDir': '/Users/billy/Documents/AI_pro/漫剧创作库/runninghub_outputs/image-studio-v3',
+}
+req = urllib.request.Request(
+    'http://127.0.0.1:8766/api/workbench/image-studio/generate',
+    data=json.dumps(payload, ensure_ascii=False).encode('utf-8'),
+    headers={'Content-Type': 'application/json'},
+    method='POST'
+)
+try:
+    with urllib.request.urlopen(req, timeout=600) as resp:
+        print(resp.read().decode('utf-8'))
+except urllib.error.HTTPError as exc:
+    body = exc.read().decode('utf-8', errors='ignore')
+    print(body or json.dumps({'ok': False, 'error': f'HTTP {exc.code}'}, ensure_ascii=False))
+    sys.exit(3)
+except Exception as exc:
+    print(json.dumps({'ok': False, 'error': str(exc)}, ensure_ascii=False))
+    sys.exit(4)
+PY
+)"
+
+      python3 - "$result" <<'PY'
+import json, sys
+raw = sys.argv[1]
+try:
+    data = json.loads(raw)
+except Exception:
+    print('[Studio] 生图接口返回了无法解析的结果：')
+    print(raw)
+    sys.exit(1)
+if not data.get('ok'):
+    print('[Studio] 生图失败：' + str(data.get('error') or '未知错误'))
+    sys.exit(1)
+result = data.get('result') or {}
+saved = result.get('saved') or {}
+print('[Studio] 生图成功')
+print('  提示词: ' + str(result.get('prompt') or ''))
+print('  模型: ' + str(result.get('model') or ''))
+print('  尺寸: ' + str(result.get('size') or ''))
+if saved.get('path'):
+    print('  保存路径: ' + str(saved.get('path')))
+if saved.get('url'):
+    print('  预览地址: ' + str(saved.get('url')))
+PY
+      ;;
+    *)
+      echo "[Studio] 错误：create 仅支持 img 子命令" >&2
+      echo "  用法: ./studio create img 美女跳舞" >&2
+      exit 1
+      ;;
+  esac
+}
+
+cmd_all() {
+  local admin_dir="/Users/billy/Documents/AI_pro/后台管理系统"
+  local dev_script="$admin_dir/scripts/dev-start.sh"
+
+  if [ ! -f "$dev_script" ]; then
+    echo "[Studio] 错误：未找到后台一键启动脚本：$dev_script" >&2
+    exit 1
+  fi
+
+  echo "[Studio] 正在一键启动画布相关服务…"
+  cd "$admin_dir"
+  bash "$dev_script"
+}
+
+# ─── 帮助 ─────────────────────────────────────────────────
+
+cmd_help() {
+  cat <<EOF
+漫剧创作库 · Studio CLI
+
+用法:
+  ./studio all                     一键启动画布相关全部服务
+  ./studio start                   启动工作台（自动打开浏览器）
+  ./studio image                   一键打开生图工具
+  ./studio canvas                  一键打开新版无限画布
+  ./studio stop                    停止工作台服务
+  ./studio status                  查看工作台运行状态
+  ./studio generate <剧本文本>     从剧本生成提示词方案
+  ./studio generate -f <文件>      从文件读取剧本并生成方案
+  ./studio pipeline <项目目录>      运行项目流水线
+       [--ep N] [--style 风格] [--skip-assets] [--force]
+
+示例:
+  ./studio all
+  ./studio start
+  ./studio image
+  ./studio canvas
+  ./studio create img 美女跳舞
+  ./studio generate -f projects/无限强化_漫剧_001/01-story/scripts/第1话-xxx-剧本正文.md
+  ./studio pipeline projects/无限强化_漫剧_001 --ep 001 --style 纪实克制 --skip-assets
+
+快捷指令（CodeBuddy 内）:
+  #canvas          → 打开无限画布
+  #image           → 打开生图工具
+  #LJ start        → 等同于 ./studio start
+  #LJ 剧本内容     → 等同于 ./studio generate 剧本内容
+  #LJ -f 文件路径  → 等同于 ./studio generate -f 文件路径
+EOF
+}
+
+# ─── 入口 ─────────────────────────────────────────────────
+
+case "${1:-help}" in
+  all|dev|full)     shift; cmd_all "$@" ;;
+  start|up|launch) shift; cmd_start "$@" ;;
+  image|img)       shift; cmd_image "$@" ;;
+  canvas|cv)       shift; cmd_canvas "$@" ;;
+  create)          shift; cmd_create "$@" ;;
+  stop|down|quit)  shift; cmd_stop "$@" ;;
+  restart|reload)  shift; cmd_restart "$@" ;;
+  status|info)     shift; cmd_status "$@" ;;
+  generate|gen|plan) shift; cmd_generate "$@" ;;
+  pipeline|pipe)   shift; cmd_pipeline "$@" ;;
+  help|--help|-h)  cmd_help ;;
+  *)
+    if [ $# -ge 1 ] && [ -f "$1" ]; then
+      cmd_generate -f "$1"
+    elif [ $# -ge 1 ]; then
+      cmd_generate "$*"
+    else
+      cmd_help
+    fi
+    ;;
+esac

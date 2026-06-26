@@ -1,0 +1,151 @@
+{
+  "schema": "mjb-workflow-v1",
+  "id": "ep001-storyboard-image-generation",
+  "name": "EP001 故事板图生成工作流",
+  "projectId": "infinite-awakening-001",
+  "episode": "ep001",
+  "type": "storyboard_image_generation",
+  "status": "todo",
+  "createdAt": "2026-05-07T15:17:00+08:00",
+  "canvas": {
+    "nodes": [
+      {
+        "id": "n1",
+        "type": "stylePreset",
+        "x": -520,
+        "y": 0,
+        "w": 360,
+        "values": {
+          "activePreset": "storyboard-core",
+          "selectedTags": ["gpt-image-2", "storyboard", "HZW", "EP001"]
+        },
+        "status": "waiting"
+      },
+      {
+        "id": "n2",
+        "type": "txt2img",
+        "x": 0,
+        "y": 0,
+        "w": 380,
+        "values": {
+          "_modelIdx": "0",
+          "size": "16:9",
+          "resolution": "1k",
+          "quality": "high",
+          "outputFormat": "png",
+          "n": "1",
+          "positive": "EP001 故事板图生成 Brief：读取 04-storyboard/ep001-storyboard.md、05-prompts/seedance/ep001-shots.md、05-prompts/seedance/ep001-fullref-15s.md 与 06-generated/asset-index.md；按分镜顺序生成静态故事板图，保持角色资产锚点、场景空间关系、镜头任务、第一读点、HZW 子风格与长版母稿追溯关系；输出目录 06-generated/images/storyboard/ep001，命名 ep001-storyboard-shot-{shotNo}.png。"
+        },
+        "status": "waiting"
+      },
+      {
+        "id": "n3",
+        "type": "singleImage",
+        "x": 460,
+        "y": 0,
+        "w": 340,
+        "values": {
+          "images": []
+        },
+        "status": "waiting"
+      }
+    ],
+    "conns": [
+      {
+        "from": "n1",
+        "fromPort": "prompt",
+        "to": "n2",
+        "toPort": "style",
+        "kind": "prompt"
+      },
+      {
+        "from": "n2",
+        "fromPort": "image",
+        "to": "n3",
+        "toPort": "image",
+        "kind": "image"
+      }
+    ],
+    "view": {
+      "tx": 360,
+      "ty": 170,
+      "scale": 1
+    },
+    "next": 4,
+    "muted": []
+  },
+  "inputs": {
+    "storyboard": "04-storyboard/ep001-storyboard.md",
+    "seedanceLongPrompt": "05-prompts/seedance/ep001-shots.md",
+    "fullReferencePrompt": "05-prompts/seedance/ep001-fullref-15s.md",
+    "assetIndex": "06-generated/asset-index.md",
+    "qaReport": "08-qa/v8-asset-consistency-qa-report.md"
+  },
+  "outputs": {
+    "targetDirectory": "06-generated/images/storyboard/ep001",
+    "namingPattern": "ep001-storyboard-shot-{shotNo}.png",
+    "registerTo": "06-generated/asset-index.md"
+  },
+  "nodes": [
+    {
+      "id": "load-storyboard",
+      "type": "artifact.read",
+      "title": "读取 EP001 分镜表",
+      "artifact": "04-storyboard/ep001-storyboard.md"
+    },
+    {
+      "id": "load-prompts",
+      "type": "artifact.read",
+      "title": "读取长版提示词母稿",
+      "artifact": "05-prompts/seedance/ep001-shots.md"
+    },
+    {
+      "id": "load-assets",
+      "type": "artifact.read",
+      "title": "读取资产索引与一致性报告",
+      "artifacts": [
+        "06-generated/asset-index.md",
+        "08-qa/v8-asset-consistency-qa-report.md"
+      ]
+    },
+    {
+      "id": "build-image-brief",
+      "type": "prompt.compose",
+      "title": "生成故事板图生图 Brief",
+      "methodology": [
+        "docs/gpt-image-prompt-methodology.md",
+        "docs/storyboard-methodology.md",
+        "docs/camera-shot-methodology.md",
+        "docs/prompt-standards.md"
+      ],
+      "requirements": [
+        "保持 EP001 分镜阅读顺序与镜头任务",
+        "保留角色资产锚点与场景空间关系",
+        "输出适合故事板图的静态画面提示词",
+        "不得覆盖长版母稿，只生成派生执行稿"
+      ]
+    },
+    {
+      "id": "generate-storyboard-images",
+      "type": "image.generate",
+      "title": "生成 EP001 故事板图",
+      "modelPreference": "gpt-image-2",
+      "outputDirectory": "06-generated/images/storyboard/ep001"
+    },
+    {
+      "id": "review-storyboard-images",
+      "type": "review.create",
+      "title": "创建故事板图审核项",
+      "reviewId": "ep001-storyboard-image-review",
+      "target": "06-generated/images/storyboard/ep001"
+    }
+  ],
+  "edges": [
+    ["load-storyboard", "build-image-brief"],
+    ["load-prompts", "build-image-brief"],
+    ["load-assets", "build-image-brief"],
+    ["build-image-brief", "generate-storyboard-images"],
+    ["generate-storyboard-images", "review-storyboard-images"]
+  ],
+  "notes": "Phase 1.5 最小样例：先验证注册、预览与画布导入，不执行全自动生成。"
+}

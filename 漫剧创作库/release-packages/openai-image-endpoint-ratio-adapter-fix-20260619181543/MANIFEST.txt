@@ -1,0 +1,13 @@
+openai-image-endpoint-ratio-adapter-fix-20260619181543
+
+Purpose:
+- Route OpenAI image adapters by endpoint so /images/generations and /images/edits keep the full aspect-ratio set.
+- Keep /responses and /chat/completions limited to their supported ratios.
+- Sync the backend fallback in both tools and smart-vision workbench copies.
+
+Files:
+- workbench-web/image-studio-canvas-next.html
+- tools/workbench-web/image-studio-canvas-next.html
+- tools/image_studio_backend.py
+- smart-vision/services/workbench/image_studio_backend.py
+- deploy/apply-openai-image-endpoint-ratio-adapter-fix-20260619181543-on-server.sh

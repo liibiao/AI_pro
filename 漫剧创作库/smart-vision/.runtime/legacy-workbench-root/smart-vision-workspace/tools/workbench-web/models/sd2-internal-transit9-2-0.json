@@ -1,0 +1,94 @@
+{
+  "id": "sd2-internal-transit9-2-0",
+  "configId": "sd2-internal-transit9-2-0",
+  "modelKey": "sd2-internal-transit9-2-0",
+  "providerKey": "canvas_sd2-internal",
+  "channelKey": "canvas_sd2-internal",
+  "name": "transit9-2.0",
+  "modelNick": "transit9-2.0",
+  "displayName": "Transit9 2.0",
+  "label": "Transit9 2.0",
+  "type": "video",
+  "model": "transit9-2.0",
+  "baseUrl": "http://103.236.54.113:8081/api/v1",
+  "url": "http://103.236.54.113:8081/api/v1/sd2/generate",
+  "key": "",
+  "adapter": "sd2-internal",
+  "endpointPath": "/sd2/generate",
+  "statusEndpointPath": "/sd2/task/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "firstFrame": true,
+    "firstLastFrame": true,
+    "referenceImages": true,
+    "referenceVideos": true,
+    "referenceAudios": true
+  },
+  "capabilities": {
+    "resolutions": ["720p", "1080p"],
+    "durations": [5, 10, 15],
+    "defaultDuration": 5,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "4:3", "3:4", "1:1", "21:9"],
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "supportsAudio": true,
+    "supportsVideo": true,
+    "supportsLastFrame": true,
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 15
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "second",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberDiscountRate": 1,
+      "chargedCreditsPerSecond": 56,
+      "originalCreditsPerSecond": 56,
+      "costCreditsPerSecond": 56,
+      "resolutionTiers": [
+        {
+          "resolution": "720p",
+          "chargedCreditsPerSecond": 56,
+          "originalCreditsPerSecond": 56,
+          "costCreditsPerSecond": 56
+        },
+        {
+          "resolution": "1080p",
+          "chargedCreditsPerSecond": 88,
+          "originalCreditsPerSecond": 88,
+          "costCreditsPerSecond": 88
+        }
+      ]
+    }
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "note": "SD2 内测视频接口：POST /api/v1/sd2/generate，GET /api/v1/sd2/task/{taskId}。后端 sd2-internal adapter 会提交 model/prompt/duration/ratio/resolution，并把图片、视频、音频参考映射到 images/reference_videos/audios。",
+  "protocol": {
+    "adapter": "sd2-internal",
+    "method": "async-poll",
+    "endpointPath": "/sd2/generate",
+    "endpoint_path": "/sd2/generate",
+    "statusEndpointPath": "/sd2/task/{taskId}",
+    "status_endpoint_path": "/sd2/task/{taskId}",
+    "uploadMode": "object_storage",
+    "upload_mode": "object_storage",
+    "requestSchema": "sd2-internal",
+    "responseType": "provider_url"
+  },
+  "ui": {
+    "label": "Transit9 2.0",
+    "badge": "2.0",
+    "badgeColor": "#ef4444"
+  }
+}

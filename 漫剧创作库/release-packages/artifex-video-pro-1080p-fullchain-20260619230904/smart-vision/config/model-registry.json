@@ -1,0 +1,236 @@
+{
+  "version": 1,
+  "description": "Image Studio 模型身份注册表。只管理稳定 identityKey 与 adapter 绑定，不存储 API Key，不接管显示名称/别名/真实模型名，不覆盖 models/*.json 渠道配置。",
+  "models": [
+    {
+      "configId": "gpt-image-2",
+      "identityKey": "gptimage2::gptimage2",
+      "adapter": "openai-edits"
+    },
+    {
+      "configId": "gpt-image-v2",
+      "identityKey": "gptimage2::gptimagev2",
+      "adapter": "gpt-image-v2"
+    },
+    {
+      "configId": "midjourney-imagine",
+      "identityKey": "midjourney::imagine",
+      "adapter": "midjourney-imagine"
+    },
+    {
+      "configId": "grok-image",
+      "identityKey": "grokimagine::text",
+      "adapter": "grok-image"
+    },
+    {
+      "configId": "grok-image-edit",
+      "identityKey": "grokimagine::edit",
+      "adapter": "grok-image-edit"
+    },
+    {
+      "configId": "grok-video",
+      "identityKey": "grokimagine::video",
+      "adapter": "grok-video"
+    },
+    {
+      "configId": "grok-llm",
+      "identityKey": "grok::llm",
+      "adapter": "grok-chat"
+    },
+    {
+      "configId": "gpt-5.5-responses-llm",
+      "identityKey": "openai::gpt-5.5-responses",
+      "adapter": "openai-responses"
+    },
+    {
+      "configId": "gemini-unified-image",
+      "identityKey": "gemini::image-generate",
+      "adapter": "gemini-image-generate"
+    },
+    {
+      "configId": "gemini-unified-image-edit",
+      "identityKey": "gemini::image-edit",
+      "adapter": "gemini-image-edit"
+    },
+    {
+      "configId": "gemini-pro-image",
+      "identityKey": "gemini::pro-image-generate",
+      "adapter": "gemini-image-generate"
+    },
+    {
+      "configId": "gemini-pro-image-edit",
+      "identityKey": "gemini::pro-image-edit",
+      "adapter": "gemini-image-edit"
+    },
+    {
+      "configId": "gemini-veo-video",
+      "identityKey": "gemini::veo-video",
+      "adapter": "gemini-video"
+    },
+    {
+      "configId": "seedance2-vip",
+      "identityKey": "seedance::2-vip",
+      "adapter": "seedance2-vip"
+    },
+    {
+      "configId": "lingdong-sd-2-vip",
+      "identityKey": "lingdong::sd-2-vip",
+      "adapter": "lingdong-sd-2-vip"
+    },
+    {
+      "configId": "zaomeng-seedance2-svip",
+      "identityKey": "zaomeng::seedance-2.0-svip",
+      "adapter": "zaomeng-seedance2"
+    },
+    {
+      "configId": "zaomeng-seedance2-fast",
+      "identityKey": "zaomeng::seedance-2.0-fast",
+      "adapter": "zaomeng-seedance2"
+    },
+    {
+      "configId": "sora-v4-pro",
+      "identityKey": "notevideo::sorav4pro",
+      "adapter": "notevideo"
+    },
+    {
+      "configId": "sora-video-pro",
+      "identityKey": "artifex::video-pro",
+      "adapter": "sora-video-pro"
+    },
+    {
+      "configId": "seedance2-fast",
+      "identityKey": "seedance2::video-fast",
+      "adapter": "seedance2"
+    },
+    {
+      "configId": "seedance2-pro",
+      "identityKey": "seedance2::video-pro",
+      "adapter": "seedance2"
+    },
+    {
+      "configId": "seedance2-pro-1080p",
+      "identityKey": "seedance2::video-pro-1080p",
+      "adapter": "seedance2"
+    },
+    {
+      "configId": "toapis-seedance-2",
+      "identityKey": "toapis::seedance-2",
+      "adapter": "toapis-seedance2"
+    },
+    {
+      "configId": "toapis-seedance-2-fast",
+      "identityKey": "toapis::seedance-2-fast",
+      "adapter": "toapis-seedance2"
+    },
+    {
+      "configId": "gemini-llm",
+      "identityKey": "gemini::llm",
+      "adapter": "gemini-chat"
+    },
+    {
+      "configId": "gemini-pro-llm",
+      "identityKey": "gemini::pro-llm",
+      "adapter": "gemini-chat"
+    },
+    {
+      "configId": "sd2",
+      "identityKey": "aiyunzhi::seedance-2",
+      "adapter": "seedance2-sd"
+    },
+    {
+      "configId": "sd2-fast",
+      "identityKey": "aiyunzhi::sd2-official-fast",
+      "adapter": "seedance2-sd"
+    },
+    {
+      "configId": "sd2-full",
+      "identityKey": "aiyunzhi::sd2-official-full",
+      "adapter": "seedance2-sd"
+    },
+    {
+      "configId": "aiyunzhi-sd2-preview-fast",
+      "identityKey": "aiyunzhi::sd2-preview-fast",
+      "adapter": "seedance2-sd"
+    },
+    {
+      "configId": "aiyunzhi-sd2-preview",
+      "identityKey": "aiyunzhi::sd2-preview",
+      "adapter": "seedance2-sd"
+    },
+    {
+      "configId": "aiyunzhi-grok-1-5-video",
+      "identityKey": "aiyunzhi::grok-1-5-video",
+      "adapter": "aiyunzhi-grok-video"
+    },
+    {
+      "configId": "aiyunzhi-grok-3-pro-video",
+      "identityKey": "aiyunzhi::grok-3-pro-video",
+      "adapter": "aiyunzhi-grok-video"
+    },
+    {
+      "configId": "aiyunzhi-veo-3-1",
+      "identityKey": "aiyunzhi::veo-3-1",
+      "adapter": "aiyunzhi-veo-video"
+    },
+    {
+      "configId": "aiyunzhi-veo-3-1-fast",
+      "identityKey": "aiyunzhi::veo-3-1-fast",
+      "adapter": "aiyunzhi-veo-video"
+    },
+    {
+      "configId": "aiyunzhi-firefly-gpt-image",
+      "identityKey": "aiyunzhi::firefly-gpt-image",
+      "adapter": "aiyunzhi-firefly-gpt-image"
+    },
+    {
+      "configId": "aiyunzhi-gpt-image-2",
+      "identityKey": "aiyunzhi::gpt-image-2",
+      "adapter": "aiyunzhi-firefly-gpt-image"
+    },
+    {
+      "configId": "aiyunzhi-gemini-2-5-flash-image",
+      "identityKey": "aiyunzhi::gemini-2-5-flash-image",
+      "adapter": "aiyunzhi-gemini-image"
+    },
+    {
+      "configId": "aiyunzhi-gemini-2-5-flash-image-preview",
+      "identityKey": "aiyunzhi::gemini-2-5-flash-image-preview",
+      "adapter": "aiyunzhi-gemini-image"
+    },
+    {
+      "configId": "aiyunzhi-gemini-3-1-flash-image",
+      "identityKey": "aiyunzhi::gemini-3-1-flash-image",
+      "adapter": "aiyunzhi-gemini-image"
+    },
+    {
+      "configId": "aiyunzhi-gemini-3-pro-image",
+      "identityKey": "aiyunzhi::gemini-3-pro-image",
+      "adapter": "aiyunzhi-gemini-image"
+    },
+    {
+      "configId": "fullblood-seedance-2",
+      "identityKey": "localhost::fullblood-seedance-2",
+      "adapter": "fullblood-video"
+    },
+    {
+      "configId": "fullblood-omni-video-2",
+      "identityKey": "localhost::fullblood-omni-video-2",
+      "adapter": "fullblood-video"
+    },
+    {
+      "configId": "sd2-internal-dreamina-mini",
+      "identityKey": "sd2-internal::dreamina-mini",
+      "adapter": "sd2-internal"
+    },
+    {
+      "configId": "sd2-internal-transit9-fast",
+      "identityKey": "sd2-internal::transit9-fast",
+      "adapter": "sd2-internal"
+    },
+    {
+      "configId": "sd2-internal-transit9-2-0",
+      "identityKey": "sd2-internal::transit9-2.0",
+      "adapter": "sd2-internal"
+    }
+  ]
+}

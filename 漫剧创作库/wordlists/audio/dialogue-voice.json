@@ -1,0 +1,178 @@
+{
+  "_meta": {
+    "source": "漫剧创作库/docs/dialogue-voice-design-standard.md",
+    "version": "soullens-v2",
+    "description": "对白配音词库：只负责人与人声层，不负责环境音、拟音、特效音",
+    "usage": "提示词中对白配音段的权威参考"
+  },
+  "dialogue_scope": {
+    "description": "对白配音的职责边界",
+    "includes": ["台词内容", "旁白/心声", "说话人身份", "音色倾向", "语速", "情绪力度", "停顿与气口", "是否需要贴口型/留字幕空间"],
+    "excludes": ["风声、雨声、空间底噪", "衣料摩擦、脚步、击打材质", "爆炸、法术、能量、怪兽吼叫", "BGM 铺底"]
+  },
+  "dialogue_tasks": {
+    "description": "对白在剧情中的任务分类",
+    "tasks": [
+      {
+        "id": "info_deliver",
+        "name": "交代信息",
+        "promptExample": "平静陈述，语速均匀，信息清晰"
+      },
+      {
+        "id": "relationship_push",
+        "name": "推进关系",
+        "promptExample": "带有试探或确认的语气，语速略慢，留气口"
+      },
+      {
+        "id": "face_slap",
+        "name": "打脸反压",
+        "promptExample": "语气从压抑到释放，节奏渐快，音量渐强"
+      },
+      {
+        "id": "hook",
+        "name": "留钩子",
+        "promptExample": "话说一半停住，或最后一句突然压低，留下悬念"
+      },
+      {
+        "id": "emotion_pause",
+        "name": "情绪停顿",
+        "promptExample": "本段无对白配音；保留角色呼吸、压气和收住呼吸"
+      },
+      {
+        "id": "no_dialogue",
+        "name": "完全无对白",
+        "promptExample": "本段无对白配音"
+      }
+    ]
+  },
+  "voice_delivery_methods": {
+    "description": "分镜承载方式",
+    "methods": [
+      {
+        "id": "frontal_delivery",
+        "name": "正面说出",
+        "note": "角色面朝镜头或对话对象，口型清晰可见"
+      },
+      {
+        "id": "back_turned",
+        "name": "背身压气后再说",
+        "note": "先压气，转身或回头时才开口，增加情感厚度"
+      },
+      {
+        "id": "off_screen",
+        "name": "画外旁白",
+        "note": "画面无说话人，声音从画外传来"
+      },
+      {
+        "id": "inner_monologue",
+        "name": "心声/内心独白",
+        "note": "角色不张嘴，声音带有'在脑子里回响'的质感"
+      },
+      {
+        "id": "broken_speech",
+        "name": "断句/吞字/压气",
+        "note": "受伤/恐惧/绝望时，话说不完整"
+      }
+    ]
+  },
+  "voice_parameters": {
+    "description": "对白配音的参数维度",
+    "parameters": [
+      {
+        "id": "speaker",
+        "name": "说话人",
+        "description": "谁在说，当前的身份和状态"
+      },
+      {
+        "id": "content",
+        "name": "台词/是否无台词",
+        "description": "说什么，或者明确'本段无对白配音'"
+      },
+      {
+        "id": "emotion",
+        "name": "情绪",
+        "options": ["压抑", "愤怒", "恐惧", "悲伤", "冷漠", "嘲讽", "温柔", "坚定", "绝望", "疯狂"]
+      },
+      {
+        "id": "tempo",
+        "name": "语速",
+        "options": ["极慢（每字都有重量）", "慢（沉稳/压抑）", "正常", "快（激动/紧张）", "极快（癫狂/暴怒）"]
+      },
+      {
+        "id": "pause",
+        "name": "停顿/气口",
+        "examples": [
+          "中间留 0.3 秒停顿",
+          "前半句压着痛感，后半句带回硬撑的狠劲",
+          "说话间有明显的呼吸间隔"
+        ]
+      },
+      {
+        "id": "lip_sync",
+        "name": "贴口型要求",
+        "options": ["需要贴口型", "不需要贴口型（旁白/心声）", "贴近嘴型，不要念成旁白"]
+      }
+    ]
+  },
+  "character_voice_binding": {
+    "description": "对白配音必须服从角色设定",
+    "dimensions": [
+      {
+        "id": "age",
+        "name": "年龄感",
+        "note": "少年/青年/中年/老年的声音差异"
+      },
+      {
+        "id": "status",
+        "name": "身份感",
+        "note": "身份地位影响说话的底气、节奏和用词"
+      },
+      {
+        "id": "personality",
+        "name": "性格锋利度",
+        "note": "外向/内向、直接/含蓄、暴烈/冷静"
+      },
+      {
+        "id": "current_phase",
+        "name": "当前阶段",
+        "options": ["低谷（声音虚弱/沙哑）", "受伤（气息不稳/断续）", "觉醒（渐强/渐清晰）", "暴怒（爆发/撕裂）", "克制（压着/内收）"]
+      },
+      {
+        "id": "power_dynamic",
+        "name": "与对手的权力高低位",
+        "note": "上位者语气从容/压迫，下位者紧张/颤抖/硬撑"
+      }
+    ]
+  },
+  "prompt_templates": {
+    "description": "对白配音段模板",
+    "templates": [
+      {
+        "type": "no_dialogue",
+        "example": "本段无对白配音；如保留人声，只保留林天近战喘息、蓄势压气与终段收住呼吸，不做额外台词铺陈。"
+      },
+      {
+        "type": "with_dialogue",
+        "example": "林天低声挤出'继续'。声音偏哑，气息短，前半句压着痛感，后半句带回硬撑的狠劲；中间留 0.3 秒停顿，贴近嘴型，不要念成旁白。"
+      },
+      {
+        "type": "inner_thought",
+        "example": "（心声）林天：'就这？' 声音带有内在回响感，语气轻蔑但压抑，不做嘴型。"
+      },
+      {
+        "type": "breath_only",
+        "example": "本段无台词。保留：受伤后的急促喘息 → 蓄势时的呼吸收住 → 命中后的一声短促闷哼 → 收势时的气息回沉。"
+      }
+    ]
+  },
+  "failure_signals": {
+    "description": "对白配音常见失败信号",
+    "signals": [
+      "把旁白、台词、呼吸、怒吼全混成一团",
+      "只写'情绪激动'，不写语速、停顿和气口",
+      "台词完全脱离角色设定",
+      "明明无对白，却硬塞说明性台词",
+      "本该由音效承担的信息，被塞到对白里解释"
+    ]
+  }
+}

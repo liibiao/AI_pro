@@ -1,0 +1,15 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "projectName": "无限强化·灵纹觉醒",
+  "projectPath": "projects/无限强化_漫剧_001",
+  "currentPhase": "Phase 4.1 提示词输出 / 资产与故事板生产闭环",
+  "currentEpisode": "ep001",
+  "status": "in_progress",
+  "updatedAt": "2026-05-07",
+  "nextActions": [
+    "接入真实项目文件扫描",
+    "推进 ep001 面板与视频生产闭环",
+    "修复 V8 资产名义与 V7/V4 物理文件版本一致性"
+  ]
+}

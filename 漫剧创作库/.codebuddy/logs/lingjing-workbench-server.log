@@ -1,0 +1,7 @@
+127.0.0.1 - - [20/Apr/2026 15:52:05] "GET /workbench.html HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 15:52:05] "GET /workbench.html HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 15:52:06] "GET /api/workbench/wordlists HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 15:52:06] "GET /api/workbench/health HTTP/1.1" 200 -
+127.0.0.1 - - [20/Apr/2026 15:52:06] code 404, message File not found
+127.0.0.1 - - [20/Apr/2026 15:52:06] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [20/Apr/2026 15:52:31] "POST /api/workbench/execute HTTP/1.1" 200 -

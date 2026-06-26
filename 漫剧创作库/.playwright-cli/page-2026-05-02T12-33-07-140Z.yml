@@ -1,0 +1,266 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - heading "漫剧创作库工作台" [level=1] [ref=e5]
+        - paragraph [ref=e6]: "把小说原文或剧本直接粘贴进来，系统会基于内容自动推断项目目录名、推荐导演风格、视觉风格和时长策略。你也可以直接选择现有项目与集数，一键把当前正文落进 `projects/` 并触发项目级提示词流水线。"
+        - generic [ref=e7]:
+          - generic [ref=e8] [cursor=pointer]: 小说 / 剧本一键粘贴
+          - generic [ref=e9] [cursor=pointer]: 项目级流水线直连
+          - generic [ref=e10] [cursor=pointer]: 实时运行日志
+          - generic [ref=e11] [cursor=pointer]: 结果可复制查看
+          - generic [ref=e12] [cursor=pointer]: 支持长版 / 简版 / 双版
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - strong [ref=e15]: 工作台现在能做什么
+          - text: "既能生成本地运行方案，也能把当前输入剧本同步进现有项目，然后直接调用 `project_pipeline_run.py` 跑正式提示词流水线。"
+        - generic [ref=e16]:
+          - strong [ref=e17]: 项目级执行逻辑
+          - text: "会先把输入区正文落盘到目标项目 `01-story/scripts/`，再自动补齐 `storyboard / shots / fullref`，最后生成即梦 / Seedance / 叙事三版本提示词。"
+        - generic [ref=e18]:
+          - strong [ref=e19]: 运行可视化
+          - text: 现在会在页面里实时刷新任务日志；完成后，底部会直接出现分镜 / 提示词的可复制查看区。
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - heading "输入区" [level=2] [ref=e23]
+          - paragraph [ref=e24]: 粘贴小说正文、剧本片段、剧情梗概都可以。你既可以只做方案预览，也可以直接选择项目和集数，点一次就跑项目级提示词生成。
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - generic [ref=e28]: 小说原文 / 剧本正文
+              - textbox "小说原文 / 剧本正文" [ref=e29]:
+                - /placeholder: "例如：\n# 第3话：觉醒\n林天在濒死痛楚中听见系统提示音，意识被强行拉入识海深处，灵纹纹路一寸寸点亮……"
+              - generic [ref=e30]: "如果你选择“项目级一键生成”，这段正文会先自动写入目标项目的 `01-story/scripts/`，再触发 `project_pipeline_run.py`。"
+            - generic [ref=e31]:
+              - generic [ref=e32]: 项目目录名（自动提炼）
+              - textbox "项目目录名（自动提炼）" [ref=e33]:
+                - /placeholder: 未输入内容时自动留空
+              - generic [ref=e34]: 用于本地方案预览与 outputs 导出；项目级执行时以你下方选中的现有项目为准。
+            - generic [ref=e35]:
+              - generic [ref=e36]: 视频时长
+              - combobox "视频时长" [ref=e37]:
+                - option "AI 智能模式（自动估算）" [selected]
+                - option "15 秒"
+                - option "30 秒"
+                - option "45 秒"
+                - option "60 秒"
+                - option "90 秒"
+                - option "120 秒"
+                - option "180 秒"
+              - generic [ref=e38]: 这一组仍用于本地方案预览，不直接传给项目级流水线。
+            - generic [ref=e39]:
+              - generic [ref=e40]: 导演风格
+              - generic [ref=e41]: 先选分类
+              - generic [ref=e42]:
+                - button "全部 / 通用" [ref=e43] [cursor=pointer]
+                - button "科幻" [ref=e44] [cursor=pointer]
+                - button "动作" [ref=e45] [cursor=pointer]
+                - button "悬疑" [ref=e46] [cursor=pointer]
+                - button "视觉美学" [ref=e47] [cursor=pointer]
+                - button "动画" [ref=e48] [cursor=pointer]
+                - button "东方" [ref=e49] [cursor=pointer]
+                - button "经典" [ref=e50] [cursor=pointer]
+                - button "奇幻" [ref=e51] [cursor=pointer]
+                - button "恐怖" [ref=e52] [cursor=pointer]
+              - generic [ref=e53]: 再选导演
+              - generic [ref=e54]:
+                - button "AI 智能模式" [ref=e55] [cursor=pointer]
+                - button "标准电影感（AI自由创作）" [ref=e56] [cursor=pointer]
+                - button "克里斯托弗·诺兰" [ref=e57] [cursor=pointer]
+                - button "詹姆斯·卡梅隆" [ref=e58] [cursor=pointer]
+                - button "丹尼斯·维伦纽瓦" [ref=e59] [cursor=pointer]
+                - button "史蒂文·斯皮尔伯格" [ref=e60] [cursor=pointer]
+                - button "马丁·斯科塞斯" [ref=e61] [cursor=pointer]
+                - button "大卫·芬奇" [ref=e62] [cursor=pointer]
+                - button "阿尔弗雷德·希区柯克" [ref=e63] [cursor=pointer]
+                - button "王家卫" [ref=e64] [cursor=pointer]
+                - button "昆汀·塔伦蒂诺" [ref=e65] [cursor=pointer]
+                - button "斯坦利·库布里克" [ref=e66] [cursor=pointer]
+                - button "宫崎骏" [ref=e67] [cursor=pointer]
+                - button "韦斯·安德森" [ref=e68] [cursor=pointer]
+                - button "李安" [ref=e69] [cursor=pointer]
+                - button "张艺谋" [ref=e70] [cursor=pointer]
+                - button "奉俊昊" [ref=e71] [cursor=pointer]
+                - button "成龙" [ref=e72] [cursor=pointer]
+                - button "法国新浪潮" [ref=e73] [cursor=pointer]
+                - button "约翰·卡朋特" [ref=e74] [cursor=pointer]
+                - button "朴赞郁" [ref=e75] [cursor=pointer]
+                - button "泰伦斯·马力克" [ref=e76] [cursor=pointer]
+                - button "亚利桑德罗·冈萨雷斯·伊纳里图" [ref=e77] [cursor=pointer]
+                - button "阿方索·卡隆" [ref=e78] [cursor=pointer]
+                - button "吉尔莫·德尔·托罗" [ref=e79] [cursor=pointer]
+                - button "雷德利·斯科特" [ref=e80] [cursor=pointer]
+                - button "沃卓斯基姐妹" [ref=e81] [cursor=pointer]
+                - button "罗伯特·泽米吉斯" [ref=e82] [cursor=pointer]
+                - button "蒂姆·波顿" [ref=e83] [cursor=pointer]
+                - button "新海诚" [ref=e84] [cursor=pointer]
+                - button "细田守" [ref=e85] [cursor=pointer]
+                - button "今敏" [ref=e86] [cursor=pointer]
+                - button "高畑勋" [ref=e87] [cursor=pointer]
+                - button "大卫·林奇" [ref=e88] [cursor=pointer]
+                - button "大卫·柯南伯格" [ref=e89] [cursor=pointer]
+                - button "乔治·罗梅罗" [ref=e90] [cursor=pointer]
+                - button "萨姆·佩金帕" [ref=e91] [cursor=pointer]
+                - button "吴宇森" [ref=e92] [cursor=pointer]
+                - button "徐克" [ref=e93] [cursor=pointer]
+                - button "袁和平" [ref=e94] [cursor=pointer]
+                - button "侯孝贤" [ref=e95] [cursor=pointer]
+                - button "杨德昌" [ref=e96] [cursor=pointer]
+                - button "陈凯歌" [ref=e97] [cursor=pointer]
+                - button "贾樟柯" [ref=e98] [cursor=pointer]
+                - button "金基德" [ref=e99] [cursor=pointer]
+                - button "是枝裕和" [ref=e100] [cursor=pointer]
+                - button "黑泽明" [ref=e101] [cursor=pointer]
+                - button "小津安二郎" [ref=e102] [cursor=pointer]
+              - generic [ref=e103]: "这一组保留给方案预览，不影响 `project_pipeline_run.py` 的项目级参数。"
+            - generic [ref=e104]:
+              - generic [ref=e105]: 视觉风格
+              - generic [ref=e106]: 先选分类
+              - generic [ref=e107]:
+                - button "全部" [ref=e108] [cursor=pointer]
+                - button "电影 / 写实" [ref=e109] [cursor=pointer]
+                - button "动画 / 漫画" [ref=e110] [cursor=pointer]
+                - button "东方 / 国风" [ref=e111] [cursor=pointer]
+                - button "绘画 / 艺术" [ref=e112] [cursor=pointer]
+                - button "风格化 / 类型化" [ref=e113] [cursor=pointer]
+                - button "数字 / 3D" [ref=e114] [cursor=pointer]
+              - generic [ref=e115]: 再选风格
+              - generic [ref=e116]:
+                - button "AI 智能模式" [ref=e117] [cursor=pointer]
+                - button "电影写实风格" [ref=e118] [cursor=pointer]
+                - button "日系动画风格" [ref=e119] [cursor=pointer]
+                - button "3D国风仙侠" [ref=e120] [cursor=pointer]
+                - button "水墨国风" [ref=e121] [cursor=pointer]
+                - button "水彩画风格" [ref=e122] [cursor=pointer]
+                - button "油画质感" [ref=e123] [cursor=pointer]
+                - button "漫画风格" [ref=e124] [cursor=pointer]
+                - button "像素风格" [ref=e125] [cursor=pointer]
+                - button "黑白电影风格" [ref=e126] [cursor=pointer]
+                - button "奇幻风格" [ref=e127] [cursor=pointer]
+                - button "赛博朋克风格" [ref=e128] [cursor=pointer]
+                - button "3D渲染风格" [ref=e129] [cursor=pointer]
+                - button "概念艺术风格" [ref=e130] [cursor=pointer]
+              - generic [ref=e131]: 视觉风格也用于本地预览，不直接传给项目级流水线。
+          - generic [ref=e132]:
+            - button "生成运行方案（预览）" [ref=e133] [cursor=pointer]
+            - button "调用 Python 预览" [ref=e134] [cursor=pointer]
+            - button "创建 outputs 目录" [ref=e135] [cursor=pointer]
+            - button "导出当前 test 结果" [ref=e136] [cursor=pointer]
+            - button "恢复 AI 智能模式" [ref=e137] [cursor=pointer]
+            - button "填充示例" [ref=e138] [cursor=pointer]
+            - button "清空内容" [ref=e139] [cursor=pointer]
+          - generic [ref=e140]:
+            - generic [ref=e141]:
+              - generic [ref=e142]: 项目级目标项目
+              - combobox "项目级目标项目" [ref=e143]:
+                - option "样板项目_逆光重生（demo_shortdrama_001）"
+                - option "无限强化·灵纹觉醒（无限强化_漫剧_001）" [selected]
+              - generic [ref=e144]: "这里选择 `projects/` 下已有项目；项目级一键生成会直接操作这个项目。"
+            - generic [ref=e145]:
+              - generic [ref=e146]: 目标集数
+              - textbox "目标集数" [ref=e147]:
+                - /placeholder: 例如 3 或 003
+              - generic [ref=e148]: 如果留空，会尽量从正文中的“第 X 话”自动识别。
+            - generic [ref=e149]:
+              - generic [ref=e150]: 提示词风格旋钮
+              - combobox "提示词风格旋钮" [ref=e151]:
+                - option "纪实克制" [selected]
+                - option "形式主义"
+                - option "新黑色"
+                - option "热血爆点"
+            - generic [ref=e152]:
+              - generic [ref=e153]: 提示词输出版本
+              - combobox "提示词输出版本" [ref=e154]:
+                - option "简版" [selected]
+                - option "长版"
+                - option "长版 + 简版"
+            - generic [ref=e156]:
+              - checkbox "跳过资产生成，只跑提示词" [checked] [ref=e157]
+              - generic [ref=e158]: 跳过资产生成，只跑提示词
+            - generic [ref=e160]:
+              - checkbox "强制覆盖已有本集输出" [checked] [ref=e161]
+              - generic [ref=e162]: 强制覆盖已有本集输出
+          - button "项目级一键生成提示词" [ref=e164] [cursor=pointer]
+          - generic [ref=e165]: 本地 Python 服务已连接：网页可以直接执行项目级提示词流水线。
+      - generic [ref=e166]:
+        - generic [ref=e167]:
+          - generic [ref=e168]:
+            - heading "运行结果预览" [level=2] [ref=e169]
+            - paragraph [ref=e170]: 这里会把当前输入转换成可执行的工作流参数，并显示你当前准备投递到哪个项目与哪一话。
+          - generic [ref=e171]:
+            - generic [ref=e172]:
+              - heading "当前模式" [level=3] [ref=e173]
+              - generic [ref=e174]:
+                - strong [ref=e175]: 导演风格
+                - generic [ref=e176]: AI 智能模式
+                - strong [ref=e177]: 视觉风格
+                - generic [ref=e178]: AI 智能模式
+                - strong [ref=e179]: 视频时长
+                - generic [ref=e180]: AI 智能模式
+                - strong [ref=e181]: 项目目录
+                - generic [ref=e182]: 待输入正文后生成
+            - generic [ref=e183]:
+              - heading "工作流判断" [level=3] [ref=e184]
+              - generic [ref=e185]:
+                - strong [ref=e186]: 剧情类型
+                - generic [ref=e187]: 待分析
+                - strong [ref=e188]: 节奏建议
+                - generic [ref=e189]: 待分析
+                - strong [ref=e190]: 推荐理由
+                - generic [ref=e191]: 输入正文后自动生成
+            - generic [ref=e192]:
+              - heading "项目级执行参数" [level=3] [ref=e193]
+              - generic [ref=e194]:
+                - strong [ref=e195]: 目标项目
+                - generic [ref=e196]: 无限强化·灵纹觉醒（无限强化_漫剧_001）
+                - strong [ref=e197]: 目标集数
+                - generic [ref=e198]: 待输入
+                - strong [ref=e199]: 输出版本
+                - generic [ref=e200]: 简版
+                - strong [ref=e201]: 资产策略
+                - generic [ref=e202]: 跳过资产，仅生成提示词
+            - generic [ref=e203]:
+              - heading "将要执行的流程" [level=3] [ref=e204]
+              - list [ref=e205]:
+                - listitem [ref=e206]: "把当前输入剧本写入目标项目 `01-story/scripts/` 对应集数文件"
+                - listitem [ref=e207]: "自动补齐 `storyboard / shots / fullref` 三个前置文件"
+                - listitem [ref=e208]: "调用 `project_pipeline_run.py` 输出即梦 / Seedance / 叙事三版本提示词"
+        - generic [ref=e209]:
+          - generic [ref=e210]:
+            - heading "运行指令与执行结果" [level=2] [ref=e211]
+            - paragraph [ref=e212]: "本页既能做本地方案预览，也能直接请求本地 Python 服务执行 `project_pipeline_run.py`，并返回落盘脚本、日志和生成文件链接。"
+          - generic [ref=e213]:
+            - generic [ref=e214]:
+              - heading "@studio 调用文本" [level=3] [ref=e215]
+              - generic [ref=e216]: 请先输入小说原文或剧本正文，然后点击“生成运行方案（预览）”。
+              - button "复制调用文本" [ref=e218] [cursor=pointer]
+            - generic [ref=e219]:
+              - heading "执行结果" [level=3] [ref=e220]
+              - generic [ref=e221]:
+                - strong [ref=e222]: 服务状态
+                - generic [ref=e223]: 在线
+                - strong [ref=e224]: 最近动作
+                - generic [ref=e225]: 尚未执行
+                - strong [ref=e226]: 输出目录
+                - generic [ref=e227]: 尚未生成
+              - generic [ref=e228]: 这里支持方案预览、outputs 初始化导出，以及项目级一键提示词生成。
+              - button "重新检测服务" [ref=e230] [cursor=pointer]
+            - generic [ref=e231]:
+              - heading "实时运行过程" [level=3] [ref=e232]
+              - generic [ref=e233]: 尚未执行项目级流水线。
+            - generic [ref=e234]:
+              - heading "运行参数 JSON" [level=3] [ref=e235]
+              - generic [ref=e236]: "{ \"mode\": \"ai-smart\", \"projectName\": \"\", \"directorStyle\": null, \"visualStyle\": null, \"duration\": null }"
+              - button "复制 JSON 参数" [ref=e238] [cursor=pointer]
+    - generic [ref=e239]:
+      - generic [ref=e240]:
+        - heading "结果查看器（可复制）" [level=2] [ref=e241]
+        - paragraph [ref=e242]: 运行完成后，这里会自动列出分镜表、fullref、即梦、Seedance、叙事等结果。点击上方标签即可切换，右上角可直接复制当前内容。
+      - generic [ref=e243]:
+        - generic [ref=e244]:
+          - button "复制当前查看内容" [ref=e245] [cursor=pointer]
+          - button "打开当前文件" [ref=e246] [cursor=pointer]
+          - generic [ref=e247]: 尚未载入结果文件
+        - generic [ref=e248]: 项目级流水线完成后，这里会直接展示可复制内容。
+  - generic: 已复制

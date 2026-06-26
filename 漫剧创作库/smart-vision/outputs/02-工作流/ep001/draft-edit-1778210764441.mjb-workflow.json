@@ -1,0 +1,173 @@
+{
+  "schema": "mjb-workflow-v1",
+  "id": "draft-edit-1778210764441",
+  "name": "edit 任务上下文包 Workflow 草案",
+  "taskType": "edit",
+  "path": "02-工作流/ep001/draft-edit-1778210764441.mjb-workflow.json",
+  "importUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-工作流%2Fep001%2Fdraft-edit-1778210764441.mjb-workflow.json",
+  "contextPack": {
+    "taskType": "edit",
+    "title": "edit 任务上下文包",
+    "methodologyPackId": "smart-vision-methodology-core-v0.1",
+    "skillPackId": "smart-vision-skill-core-v0.1",
+    "templatePackId": "smart-vision-template-core-v0.1",
+    "docs": [],
+    "skills": [],
+    "agents": [],
+    "templates": [],
+    "inputArtifacts": [
+      "04-storyboard/ep001-storyboard.md",
+      "05-prompts/seedance/ep001-shots.md",
+      "01-资产图与提示词/asset-index.md",
+      "08-qa/v8-asset-consistency-qa-report.md",
+      "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "01-story/chapters/ch01/README.md",
+      "01-story/chapters/ch02/README.md",
+      "01-story/chapters/ch02/source-novel.md",
+      "01-story/chapters/ch03/README.md",
+      "01-story/character-bible.md",
+      "01-story/inspiration.md",
+      "01-story/logline.md",
+      "01-story/scripts/第10话-银门逃亡-剧本正文.md",
+      "01-story/scripts/第11话-坠落荒原-剧本正文.md",
+      "01-story/scripts/第12话-猎影潜行-剧本正文.md",
+      "01-story/scripts/第13话-赌命一搏-剧本正文.md",
+      "01-story/scripts/第14话-灵纹苏醒-剧本正文.md",
+      "01-story/scripts/第15话-一拳碎颅-剧本正文.md",
+      "01-story/scripts/第1话-废物-剧本正文.md",
+      "01-story/scripts/第1话-废物.md",
+      "01-story/scripts/第2话-伪灵纹-剧本正文.md",
+      "01-story/scripts/第2话-伪灵纹.md",
+      "01-story/scripts/第3话-踩在脚下.md",
+      "01-story/scripts/第3话-觉醒-剧本正文.md"
+    ],
+    "workflowHints": [],
+    "phaseGateItems": [
+      "读取 docs/workflow.md 与 docs/phase-gate-checklist.md 后再进入下一阶段。",
+      "输出必须能追溯到项目状态源、能力包索引与真实产物路径。",
+      "缺少方法论、Skill 或模板匹配时不得静默执行，应在上下文包中暴露空数组。"
+    ],
+    "redlines": [
+      "不得绕过 .smart-vision 状态源直接假设项目进度。",
+      "不得输出无法追溯到 docs / skills / templates / project artifacts 的任务指令。",
+      "不得把能力包索引当作最终生成结果，必须继续进入具体任务执行或 Workflow Builder。"
+    ],
+    "memoryPolicy": "优先读取项目文件化记忆与 .smart-vision 状态源；对影响方法论、模板、门禁、Agent/Skill 协作的结论必须回写项目文件。",
+    "generatedAt": "2026-05-08T03:26:04.441Z"
+  },
+  "canvas": {
+    "nodes": [
+      {
+        "id": "n1",
+        "type": "contextPack",
+        "title": "任务上下文包",
+        "x": 80,
+        "y": 120,
+        "w": 320,
+        "h": 180,
+        "data": {
+          "taskType": "edit",
+          "taskPlan": null,
+          "docs": [],
+          "skills": [],
+          "templates": [],
+          "redlines": [
+            "不得绕过 .smart-vision 状态源直接假设项目进度。",
+            "不得输出无法追溯到 docs / skills / templates / project artifacts 的任务指令。",
+            "不得把能力包索引当作最终生成结果，必须继续进入具体任务执行或 Workflow Builder。"
+          ]
+        }
+      },
+      {
+        "id": "n2",
+        "type": "artifactInput",
+        "title": "输入产物",
+        "x": 460,
+        "y": 120,
+        "w": 320,
+        "h": 180,
+        "data": {
+          "artifacts": [
+            "04-storyboard/ep001-storyboard.md",
+            "05-prompts/seedance/ep001-shots.md",
+            "01-资产图与提示词/asset-index.md",
+            "08-qa/v8-asset-consistency-qa-report.md",
+            "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+            "01-story/chapters/ch01/README.md",
+            "01-story/chapters/ch02/README.md",
+            "01-story/chapters/ch02/source-novel.md",
+            "01-story/chapters/ch03/README.md",
+            "01-story/character-bible.md",
+            "01-story/inspiration.md",
+            "01-story/logline.md"
+          ]
+        }
+      },
+      {
+        "id": "n3",
+        "type": "workflowBuilder",
+        "title": "Workflow Builder 草案",
+        "x": 840,
+        "y": 120,
+        "w": 320,
+        "h": 180,
+        "data": {
+          "phaseGateItems": [
+            "读取 docs/workflow.md 与 docs/phase-gate-checklist.md 后再进入下一阶段。",
+            "输出必须能追溯到项目状态源、能力包索引与真实产物路径。",
+            "缺少方法论、Skill 或模板匹配时不得静默执行，应在上下文包中暴露空数组。"
+          ],
+          "memoryPolicy": "优先读取项目文件化记忆与 .smart-vision 状态源；对影响方法论、模板、门禁、Agent/Skill 协作的结论必须回写项目文件。"
+        }
+      },
+      {
+        "id": "n4",
+        "type": "phaseGate",
+        "title": "Phase Gate 审核",
+        "x": 1220,
+        "y": 120,
+        "w": 320,
+        "h": 180,
+        "data": {
+          "redlines": [
+            "不得绕过 .smart-vision 状态源直接假设项目进度。",
+            "不得输出无法追溯到 docs / skills / templates / project artifacts 的任务指令。",
+            "不得把能力包索引当作最终生成结果，必须继续进入具体任务执行或 Workflow Builder。"
+          ],
+          "generatedAt": "2026-05-08T03:26:04.441Z"
+        }
+      }
+    ],
+    "conns": [
+      {
+        "from": "n1",
+        "fromPort": "context",
+        "to": "n3",
+        "toPort": "context",
+        "kind": "json"
+      },
+      {
+        "from": "n2",
+        "fromPort": "artifacts",
+        "to": "n3",
+        "toPort": "inputs",
+        "kind": "json"
+      },
+      {
+        "from": "n3",
+        "fromPort": "workflow",
+        "to": "n4",
+        "toPort": "review",
+        "kind": "json"
+      }
+    ],
+    "view": {
+      "x": 0,
+      "y": 0,
+      "k": 0.82
+    },
+    "next": 5,
+    "muted": []
+  },
+  "generatedAt": "2026-05-08T03:26:04.441Z"
+}

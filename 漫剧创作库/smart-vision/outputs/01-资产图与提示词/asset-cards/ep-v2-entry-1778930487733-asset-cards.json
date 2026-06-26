@@ -1,0 +1,109 @@
+{
+  "episodeId": "ep-v2-entry-1778930487733",
+  "planId": "creative-plan-ep-v2-entry-1778930487733-1778930488063",
+  "assets": [
+    {
+      "id": "character-01",
+      "type": "character",
+      "typeLabel": "角色",
+      "name": "他冷笑着",
+      "sourceShots": [
+        "shot-01",
+        "shot-02"
+      ],
+      "usage": "角色资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "他冷笑着，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "character-02",
+      "type": "character",
+      "typeLabel": "角色",
+      "name": "重要配角",
+      "sourceShots": [
+        "shot-01",
+        "shot-02"
+      ],
+      "usage": "角色资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "重要配角，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-01",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "林天在林家练武场",
+      "sourceShots": [
+        "shot-01"
+      ],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "林天在林家练武场，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-02",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "失败者变成压迫全场",
+      "sourceShots": [
+        "shot-02"
+      ],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "失败者变成压迫全场，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-03",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "冷灰练武场",
+      "sourceShots": [],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "冷灰练武场，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-04",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "林天在林",
+      "sourceShots": [],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "林天在林，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-05",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "家练武场被林",
+      "sourceShots": [],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "家练武场被林，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "scene-06",
+      "type": "scene",
+      "typeLabel": "场景",
+      "name": "气浪震开林",
+      "sourceShots": [],
+      "usage": "场景资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "气浪震开林，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    },
+    {
+      "id": "prop-01",
+      "type": "prop",
+      "typeLabel": "道具",
+      "name": "碎石",
+      "sourceShots": [
+        "shot-01",
+        "shot-02"
+      ],
+      "usage": "道具资产，用于资产图、故事板和视频工作流一致性锚定。",
+      "visualPrompt": "碎石，HZW 漫剧视觉风格，清晰轮廓，高识别度，适合 9:16 竖屏短剧生产，保持跨镜头一致。",
+      "referencePolicy": "如用户导入参考图，则在无限画布 workflow 中作为参考图填入；否则由资产卡提示词生成首版资产图。"
+    }
+  ]
+}

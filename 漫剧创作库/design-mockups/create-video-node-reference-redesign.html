@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>创建视频节点聚合 UI 效果图</title>
+  <style>
+    *{box-sizing:border-box}
+    :root{
+      color-scheme:dark;
+      --bg:#060a0f;
+      --panel:#0d1520;
+      --panel-2:#101b29;
+      --panel-3:#132235;
+      --line:rgba(148,163,184,.16);
+      --line-strong:rgba(96,165,250,.38);
+      --text:#edf4ff;
+      --muted:#8d99aa;
+      --muted-2:#667386;
+      --blue:#2d6df6;
+      --blue-2:#1f4fd0;
+      --cyan:#63e6ff;
+      --green:#54e28e;
+    }
+    body{
+      margin:0;
+      width:1920px;
+      height:1080px;
+      overflow:hidden;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+      background:
+        radial-gradient(circle at 14% 12%,rgba(45,109,246,.12),transparent 34%),
+        radial-gradient(circle at 90% 16%,rgba(20,184,166,.07),transparent 28%),
+        linear-gradient(180deg,#070b12 0%,#05080c 100%);
+      color:var(--text);
+    }
+    body::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:radial-gradient(rgba(148,163,184,.18) 1.1px,transparent 1.1px);
+      background-size:30px 30px;
+      opacity:.5;
+      pointer-events:none;
+    }
+    .topbar{
+      position:absolute;
+      left:0;
+      top:0;
+      right:0;
+      height:70px;
+      display:flex;
+      align-items:center;
+      gap:22px;
+      padding:0 24px;
+      border-bottom:1px solid rgba(148,163,184,.12);
+      background:rgba(8,13,20,.84);
+      backdrop-filter:blur(18px);
+      z-index:2;
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:840;font-size:18px}
+    .mark{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#5b8cff,#21d4fd 55%,#ff5da2)}
+    .nav{display:flex;gap:8px;margin-left:18px}
+    .nav span{
+      height:36px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:0 16px;
+      border-radius:999px;
+      color:#b7c2d2;
+      font-size:14px;
+    }
+    .nav .active{color:#fff;background:rgba(45,109,246,.16);border:1px solid rgba(45,109,246,.36)}
+    .account{margin-left:auto;display:flex;gap:10px;align-items:center;color:#bdc8d8}
+    .account span{height:34px;padding:0 14px;border:1px solid rgba(148,163,184,.14);border-radius:999px;display:flex;align-items:center;background:rgba(15,23,34,.78)}
+    .sidebar{
+      position:absolute;
+      left:16px;
+      top:92px;
+      bottom:36px;
+      width:72px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(10,16,24,.76);
+      display:grid;
+      grid-template-rows:repeat(7,72px) 1fr 72px;
+      padding:10px 8px;
+      z-index:1;
+    }
+    .sideItem{
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      color:#94a3b8;
+      font-size:20px;
+    }
+    .sideItem.active{
+      background:rgba(45,109,246,.18);
+      color:#82b1ff;
+      border:1px solid rgba(45,109,246,.42);
+    }
+    .shell{
+      position:absolute;
+      left:96px;
+      top:92px;
+      width:1788px;
+      height:940px;
+      border:1px solid rgba(148,163,184,.18);
+      border-radius:22px;
+      background:rgba(9,15,23,.92);
+      box-shadow:0 32px 100px rgba(0,0,0,.52),inset 0 1px 0 rgba(255,255,255,.04);
+      overflow:hidden;
+      z-index:1;
+    }
+    .shellHead{
+      height:74px;
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding:0 22px;
+      border-bottom:1px solid var(--line);
+      background:#0d1520;
+    }
+    .nodeIcon{width:32px;height:32px;border-radius:9px;background:#4f8cff;box-shadow:0 0 28px rgba(79,140,255,.34)}
+    .nodeTitle{display:flex;align-items:baseline;gap:12px}
+    .nodeTitle b{font-size:21px;letter-spacing:.01em}
+    .nodeTitle em{font-style:normal;color:#7f8da0;font-weight:700}
+    .headPills{margin-left:auto;display:flex;gap:9px}
+    .headPills span{
+      height:36px;
+      display:flex;
+      align-items:center;
+      padding:0 14px;
+      border-radius:10px;
+      border:1px solid rgba(148,163,184,.14);
+      background:#101826;
+      color:#bdc7d7;
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .main{
+      height:calc(100% - 74px - 92px);
+      display:grid;
+      grid-template-columns:54% 46%;
+      min-height:0;
+    }
+    .source{
+      min-width:0;
+      border-right:1px solid var(--line);
+      display:grid;
+      grid-template-rows:48px minmax(0,1fr);
+    }
+    .tableHead,.row{
+      display:grid;
+      grid-template-columns:242px minmax(260px,1.05fr) 146px 292px;
+      min-width:0;
+    }
+    .tableHead{
+      background:#111a28;
+      border-bottom:1px solid var(--line);
+      color:#94a3b8;
+      font-weight:760;
+      font-size:14px;
+    }
+    .tableHead div,.row>div{padding:0 18px;border-right:1px solid rgba(148,163,184,.10)}
+    .tableHead div{display:flex;align-items:center}
+    .rows{min-height:0;overflow:hidden}
+    .row{
+      height:184px;
+      border-bottom:1px solid rgba(148,163,184,.11);
+      background:#0b121b;
+    }
+    .row:nth-child(2n){background:#0d1623}
+    .row.active{background:linear-gradient(90deg,rgba(45,109,246,.14),rgba(45,109,246,.05) 44%,rgba(13,22,35,1))}
+    .previewCell{display:grid;align-content:center;gap:10px}
+    .miniGrid{
+      width:194px;
+      height:112px;
+      border-radius:10px;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      grid-template-rows:1fr 1fr;
+      gap:2px;
+      padding:2px;
+      background:#05080d;
+      border:1px solid rgba(148,163,184,.16);
+    }
+    .miniGrid i{
+      position:relative;
+      display:block;
+      border-radius:5px;
+      background:
+        radial-gradient(circle at 68% 28%,rgba(255,255,255,.18),transparent 12%),
+        linear-gradient(135deg,var(--a),var(--b));
+    }
+    .miniGrid i::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg,transparent 0 35%,rgba(255,255,255,.08) 36% 38%,transparent 39% 100%);
+      opacity:.45;
+    }
+    .statusLine{display:flex;align-items:center;gap:8px;color:#b8c4d5;font-size:12px}
+    .okDot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 12px rgba(84,226,142,.65)}
+    .shotInfo{display:grid;align-content:center;gap:12px}
+    .shotInfo b{font-size:16px}
+    .shotInfo p{margin:0;color:#a0acbd;font-size:13px;line-height:1.65;max-height:68px;overflow:hidden}
+    .duration{display:grid;align-content:center;gap:9px;color:#d6deea}
+    .duration b{font-size:16px}
+    .duration span{
+      width:max-content;
+      height:32px;
+      display:flex;
+      align-items:center;
+      padding:0 12px;
+      border-radius:10px;
+      color:#b9c6d6;
+      background:#142033;
+      border:1px solid rgba(96,165,250,.14);
+      font-weight:760;
+    }
+    .duration small{color:#718096;font-size:12px}
+    .assetWrap{display:flex;align-content:center;align-items:center;gap:8px;flex-wrap:wrap;min-height:100%;padding-top:14px;padding-bottom:14px}
+    .chip{
+      height:36px;
+      max-width:132px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:3px 10px 3px 4px;
+      border-radius:10px;
+      background:#111d33;
+      border:1px solid rgba(96,165,250,.26);
+      color:#d9e5f7;
+      font-size:13px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .avatar{
+      width:28px;
+      height:28px;
+      flex:0 0 28px;
+      border-radius:7px;
+      background:
+        radial-gradient(circle at 58% 20%,rgba(255,255,255,.78),transparent 11%),
+        linear-gradient(135deg,var(--ta,#e2e8f0),var(--tb,#334155));
+      border:1px solid rgba(255,255,255,.18);
+    }
+    .creator{
+      min-width:0;
+      display:grid;
+      grid-template-rows:auto auto minmax(0,1fr);
+      padding:18px;
+      gap:14px;
+      background:#0b121b;
+    }
+    .creatorHead{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .creatorHead h2{font-size:20px;margin:0;display:flex;gap:10px;align-items:center}
+    .badge{
+      min-width:27px;
+      height:25px;
+      display:grid;
+      place-items:center;
+      padding:0 8px;
+      border-radius:8px;
+      background:#1e3a8a;
+      color:#dbeafe;
+      font-size:13px;
+    }
+    .switcher{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      padding:8px;
+      border:1px solid rgba(148,163,184,.13);
+      border-radius:15px;
+      background:#0f1724;
+    }
+    .switcher button{
+      height:44px;
+      border:0;
+      border-radius:11px;
+      background:transparent;
+      color:#b8c4d4;
+      font-size:15px;
+      font-weight:820;
+      letter-spacing:.01em;
+    }
+    .switcher button.active{
+      background:linear-gradient(180deg,#2e6ff6,#1f52d8);
+      color:#fff;
+      box-shadow:0 12px 34px rgba(45,109,246,.28),inset 0 1px 0 rgba(255,255,255,.18);
+    }
+    .template{
+      border:1px solid var(--line);
+      border-radius:15px;
+      padding:14px 16px;
+      background:#0e1622;
+      display:grid;
+      gap:8px;
+    }
+    .templateTop{display:flex;align-items:center;justify-content:space-between;color:#9aa8bc;font-size:13px}
+    .template button{
+      height:30px;
+      border:1px solid rgba(148,163,184,.14);
+      border-radius:9px;
+      background:#151f2e;
+      color:#cad5e5;
+      padding:0 12px;
+    }
+    .template p{margin:0;color:#dce6f5;font-size:14px;line-height:1.6}
+    .template em{font-style:normal;color:#7dd3fc}
+    .template b{color:#a7f3d0}
+    .videoGrid{
+      min-height:0;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      grid-auto-rows:229px;
+      gap:12px;
+    }
+    .videoCard{
+      min-width:0;
+      border:1px solid rgba(96,165,250,.30);
+      border-radius:14px;
+      background:#101a28;
+      padding:12px;
+      display:grid;
+      grid-template-rows:auto 92px 1fr 42px;
+      gap:9px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.03);
+    }
+    .cardTop{display:flex;align-items:center;gap:8px;color:#d7e2ef}
+    .cardTop span:first-child{
+      width:30px;height:26px;border-radius:8px;background:#121e2e;border:1px solid rgba(148,163,184,.15);
+      display:grid;place-items:center;color:#aeb9c9;font-weight:820;
+    }
+    .cardTop b{font-size:14px}
+    .cardTop i{margin-left:auto;color:#7f8ea1;font-style:normal;font-weight:900;letter-spacing:2px}
+    .cardBody{display:grid;grid-template-columns:1fr 112px;gap:10px;min-width:0}
+    .cardBody .miniGrid{width:100%;height:92px}
+    .miniAssets{display:flex;align-content:flex-start;gap:6px;flex-wrap:wrap;overflow:hidden}
+    .miniAssets .chip{height:27px;max-width:104px;font-size:11px;border-radius:8px}
+    .miniAssets .avatar{width:21px;height:21px;flex-basis:21px;border-radius:6px}
+    .cardState{display:flex;align-items:center;gap:8px;color:#54e28e;font-size:13px;font-weight:800}
+    .cardState .time{margin-left:auto;color:#c8d2df;background:#142033;border:1px solid rgba(148,163,184,.12);height:28px;padding:0 12px;border-radius:9px;display:flex;align-items:center}
+    .createBtn{
+      height:40px;
+      border:0;
+      border-radius:10px;
+      color:#fff;
+      font-weight:850;
+      font-size:14px;
+      background:linear-gradient(180deg,#2e6ff6,#1f52d8);
+      box-shadow:0 10px 24px rgba(37,99,235,.24);
+    }
+    .footer{
+      height:92px;
+      display:grid;
+      grid-template-columns:1fr 1fr 1.18fr .86fr;
+      gap:12px;
+      padding:16px 18px;
+      border-top:1px solid var(--line);
+      background:#0d1520;
+    }
+    .bigAction{
+      border:1px solid rgba(148,163,184,.14);
+      border-radius:13px;
+      background:#141c28;
+      color:#cbd6e5;
+      font-weight:840;
+      font-size:16px;
+      display:grid;
+      place-items:center;
+      gap:2px;
+    }
+    .bigAction small{display:block;color:#748196;font-size:12px;font-weight:700;margin-top:3px}
+    .bigAction.primary{background:linear-gradient(180deg,#2f6ff4,#1e4dcc);color:#fff;border-color:rgba(86,139,255,.58)}
+    .bigAction.ghost{background:#101822}
+    .caption{
+      position:absolute;
+      left:112px;
+      bottom:16px;
+      color:#728095;
+      font-size:12px;
+      z-index:1;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><i class="mark"></i><span>Manju Studio</span></div>
+    <nav class="nav">
+      <span>创意中心</span>
+      <span>剧本创作</span>
+      <span>分镜规划</span>
+      <span class="active">视频生成</span>
+      <span>素材库</span>
+      <span>我的项目</span>
+    </nav>
+    <div class="account"><span>算力 215</span><span>Pro</span><span>Creator</span></div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="sideItem">▦</div>
+    <div class="sideItem">文</div>
+    <div class="sideItem">⌁</div>
+    <div class="sideItem active">▶</div>
+    <div class="sideItem">库</div>
+    <div class="sideItem">AI</div>
+    <div class="sideItem">出</div>
+    <div></div>
+    <div class="sideItem">⚙</div>
+  </aside>
+
+  <main class="shell">
+    <section class="shellHead">
+      <i class="nodeIcon"></i>
+      <div class="nodeTitle">
+        <b>创建视频节点</b>
+        <em>从分镜表聚合生成视频任务</em>
+      </div>
+      <div class="headPills">
+        <span>来源：资产确认</span>
+        <span>9 个 @资源</span>
+        <span>4 段分镜</span>
+        <span>单段 15s</span>
+      </div>
+    </section>
+
+    <section class="main">
+      <section class="source">
+        <div class="tableHead">
+          <div>分镜图预览</div>
+          <div>分镜 / 镜头信息</div>
+          <div>输出时长</div>
+          <div>自动绑定 @资源</div>
+        </div>
+        <div class="rows">
+          <article class="row">
+            <div class="previewCell">
+              <div class="miniGrid">
+                <i style="--a:#171923;--b:#c2410c"></i><i style="--a:#0f172a;--b:#f59e0b"></i>
+                <i style="--a:#111827;--b:#2563eb"></i><i style="--a:#020617;--b:#ef4444"></i>
+              </div>
+              <span class="statusLine"><i class="okDot"></i>4 张分镜图已生成</span>
+            </div>
+            <div class="shotInfo"><b>镜头 01-04</b><p>陆燃第一枪直刺烬魔王咽喉，烬魔王侧头避开，黑角被擦出火花；烬魔王反手横斩，黑焰巨刃扫向陆燃腰腹。</p></div>
+            <div class="duration"><b>0 - 15s</b><span>15s/镜头</span><small>总 4 镜头</small></div>
+            <div class="assetWrap">
+              <span class="chip"><i class="avatar" style="--ta:#e8eef7;--tb:#475569"></i>@陆燃</span>
+              <span class="chip"><i class="avatar" style="--ta:#fef3c7;--tb:#78350f"></i>@烬魔王</span>
+              <span class="chip"><i class="avatar" style="--ta:#ef4444;--tb:#111827"></i>@血誓</span>
+              <span class="chip"><i class="avatar" style="--ta:#fde68a;--tb:#334155"></i>@战场</span>
+              <span class="chip"><i class="avatar" style="--ta:#e5e7eb;--tb:#475569"></i>@分镜图01</span>
+            </div>
+          </article>
+          <article class="row active">
+            <div class="previewCell">
+              <div class="miniGrid">
+                <i style="--a:#1e293b;--b:#38bdf8"></i><i style="--a:#020617;--b:#a855f7"></i>
+                <i style="--a:#451a03;--b:#f97316"></i><i style="--a:#172554;--b:#f8fafc"></i>
+              </div>
+              <span class="statusLine"><i class="okDot"></i>4 张分镜图已生成</span>
+            </div>
+            <div class="shotInfo"><b>镜头 05-08</b><p>烬魔王抬臂硬挡，魔甲炸裂；陆燃借力跃起，枪锋划过黑焰，沈清岚的护符光芒从后方亮起。</p></div>
+            <div class="duration"><b>15 - 30s</b><span>15s/镜头</span><small>总 4 镜头</small></div>
+            <div class="assetWrap">
+              <span class="chip"><i class="avatar" style="--ta:#e8eef7;--tb:#475569"></i>@陆燃</span>
+              <span class="chip"><i class="avatar" style="--ta:#fef3c7;--tb:#78350f"></i>@烬魔王</span>
+              <span class="chip"><i class="avatar" style="--ta:#dbeafe;--tb:#1e3a8a"></i>@沈清岚</span>
+              <span class="chip"><i class="avatar" style="--ta:#fde68a;--tb:#334155"></i>@战场</span>
+              <span class="chip"><i class="avatar" style="--ta:#e5e7eb;--tb:#475569"></i>@分镜图02</span>
+            </div>
+          </article>
+          <article class="row">
+            <div class="previewCell">
+              <div class="miniGrid">
+                <i style="--a:#0f172a;--b:#64748b"></i><i style="--a:#1e1b4b;--b:#c084fc"></i>
+                <i style="--a:#3b0764;--b:#ec4899"></i><i style="--a:#020617;--b:#60a5fa"></i>
+              </div>
+              <span class="statusLine"><i class="okDot"></i>4 张分镜图已生成</span>
+            </div>
+            <div class="shotInfo"><b>镜头 09-12</b><p>韩峥以盾阵封住左翼，陆燃从盾阵缝隙中突进，镜头穿过飞溅的火星与断旗。</p></div>
+            <div class="duration"><b>30 - 45s</b><span>15s/镜头</span><small>总 4 镜头</small></div>
+            <div class="assetWrap">
+              <span class="chip"><i class="avatar" style="--ta:#e8eef7;--tb:#475569"></i>@陆燃</span>
+              <span class="chip"><i class="avatar" style="--ta:#f1f5f9;--tb:#334155"></i>@韩峥</span>
+              <span class="chip"><i class="avatar" style="--ta:#fde68a;--tb:#334155"></i>@战场</span>
+              <span class="chip"><i class="avatar" style="--ta:#e5e7eb;--tb:#475569"></i>@分镜图03</span>
+            </div>
+          </article>
+          <article class="row">
+            <div class="previewCell">
+              <div class="miniGrid">
+                <i style="--a:#020617;--b:#dc2626"></i><i style="--a:#450a0a;--b:#fb923c"></i>
+                <i style="--a:#111827;--b:#7c3aed"></i><i style="--a:#172554;--b:#facc15"></i>
+              </div>
+              <span class="statusLine"><i class="okDot"></i>4 张分镜图已生成</span>
+            </div>
+            <div class="shotInfo"><b>镜头 13-16</b><p>沈清岚护住伤兵，烬魔王黑焰压境，陆燃与众人合力一击，战场升起血誓光芒。</p></div>
+            <div class="duration"><b>45 - 60s</b><span>15s/镜头</span><small>总 4 镜头</small></div>
+            <div class="assetWrap">
+              <span class="chip"><i class="avatar" style="--ta:#dbeafe;--tb:#1e3a8a"></i>@沈清岚</span>
+              <span class="chip"><i class="avatar" style="--ta:#fef3c7;--tb:#78350f"></i>@烬魔王</span>
+              <span class="chip"><i class="avatar" style="--ta:#ef4444;--tb:#111827"></i>@血誓</span>
+              <span class="chip"><i class="avatar" style="--ta:#e5e7eb;--tb:#475569"></i>@分镜图04</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <aside class="creator">
+        <div class="creatorHead">
+          <h2>创建视频节点 <span class="badge">4</span></h2>
+          <div class="headPills"><span>聚合 Grid 节点</span></div>
+        </div>
+        <div class="switcher">
+          <button class="active">按分镜图生成</button>
+          <button>纯提示词生成</button>
+        </div>
+        <section class="template">
+          <div class="templateTop"><span>统一视频提示词模板</span><button>查看 / 编辑模板</button></div>
+          <p>
+            <b>@陆燃</b> = 主角角色图　<b>@战场</b> = 场景图　<b>@分镜图</b> = 当前分镜图。<br>
+            <em>请严格参考角色和场景图，根据 @分镜图 生成视频。</em>
+          </p>
+        </section>
+        <section class="videoGrid">
+          <article class="videoCard">
+            <div class="cardTop"><span>01</span><b>镜头 01-04</b><i>•••</i></div>
+            <div class="cardBody">
+              <div class="miniGrid">
+                <i style="--a:#171923;--b:#c2410c"></i><i style="--a:#0f172a;--b:#f59e0b"></i>
+                <i style="--a:#111827;--b:#2563eb"></i><i style="--a:#020617;--b:#ef4444"></i>
+              </div>
+              <div class="miniAssets">
+                <span class="chip"><i class="avatar"></i>@陆燃</span>
+                <span class="chip"><i class="avatar"></i>@战场</span>
+                <span class="chip"><i class="avatar"></i>@血誓</span>
+              </div>
+            </div>
+            <div class="cardState"><i class="okDot"></i>提示词已生成<span class="time">15s</span></div>
+            <button class="createBtn">创建视频</button>
+          </article>
+          <article class="videoCard">
+            <div class="cardTop"><span>02</span><b>镜头 05-08</b><i>•••</i></div>
+            <div class="cardBody">
+              <div class="miniGrid">
+                <i style="--a:#1e293b;--b:#38bdf8"></i><i style="--a:#020617;--b:#a855f7"></i>
+                <i style="--a:#451a03;--b:#f97316"></i><i style="--a:#172554;--b:#f8fafc"></i>
+              </div>
+              <div class="miniAssets">
+                <span class="chip"><i class="avatar"></i>@陆燃</span>
+                <span class="chip"><i class="avatar"></i>@烬魔王</span>
+                <span class="chip"><i class="avatar"></i>@分镜图</span>
+              </div>
+            </div>
+            <div class="cardState"><i class="okDot"></i>提示词已生成<span class="time">15s</span></div>
+            <button class="createBtn">创建视频</button>
+          </article>
+          <article class="videoCard">
+            <div class="cardTop"><span>03</span><b>镜头 09-12</b><i>•••</i></div>
+            <div class="cardBody">
+              <div class="miniGrid">
+                <i style="--a:#0f172a;--b:#64748b"></i><i style="--a:#1e1b4b;--b:#c084fc"></i>
+                <i style="--a:#3b0764;--b:#ec4899"></i><i style="--a:#020617;--b:#60a5fa"></i>
+              </div>
+              <div class="miniAssets">
+                <span class="chip"><i class="avatar"></i>@韩峥</span>
+                <span class="chip"><i class="avatar"></i>@战场</span>
+                <span class="chip"><i class="avatar"></i>@分镜图</span>
+              </div>
+            </div>
+            <div class="cardState"><i class="okDot"></i>提示词已生成<span class="time">15s</span></div>
+            <button class="createBtn">创建视频</button>
+          </article>
+          <article class="videoCard">
+            <div class="cardTop"><span>04</span><b>镜头 13-16</b><i>•••</i></div>
+            <div class="cardBody">
+              <div class="miniGrid">
+                <i style="--a:#020617;--b:#dc2626"></i><i style="--a:#450a0a;--b:#fb923c"></i>
+                <i style="--a:#111827;--b:#7c3aed"></i><i style="--a:#172554;--b:#facc15"></i>
+              </div>
+              <div class="miniAssets">
+                <span class="chip"><i class="avatar"></i>@烬魔王</span>
+                <span class="chip"><i class="avatar"></i>@血誓</span>
+                <span class="chip"><i class="avatar"></i>@分镜图</span>
+              </div>
+            </div>
+            <div class="cardState"><i class="okDot"></i>提示词已生成<span class="time">15s</span></div>
+            <button class="createBtn">创建视频</button>
+          </article>
+        </section>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      <button class="bigAction">批量生成分镜图<small>为缺失段落补齐分镜</small></button>
+      <button class="bigAction">批量生成提示词<small>统一刷新分段视频提示词</small></button>
+      <button class="bigAction primary">创建 4 个视频节点<small>基于分镜图，批量创建聚合视频节点</small></button>
+      <button class="bigAction ghost">切换为纯提示词<small>无分镜图时一次性生成视频</small></button>
+    </footer>
+  </main>
+
+  <div class="caption">效果稿：创建视频节点支持“按分镜图生成 / 纯提示词生成”，最终进入右侧聚合 Grid 节点。</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{
+  "version": "0.1.0",
+  "runId": "task-queue-run-1778247391837",
+  "taskPlanId": "sv-task-video-generation-orchestration-smoke",
+  "subtaskId": "register-and-review",
+  "taskQueueId": "task-queue-orchestration-sv-task-video-generation-orchestration-smoke-register-and-review",
+  "taskType": "video_generation",
+  "title": "video_generation / 登记产物并进入审核",
+  "ownerRole": "Runtime",
+  "status": "done",
+  "startedAt": "2026-05-08T13:36:31.842Z",
+  "completedAt": "2026-05-08T13:36:31.842Z",
+  "executionMode": "orchestration_report",
+  "progressItemId": "orchestration-sv-task-video-generation-orchestration-smoke-register-and-review",
+  "phase": "generation_to_review",
+  "dependencyProgressIds": [
+    "orchestration-sv-task-video-generation-orchestration-smoke-produce-runtime-output"
+  ],
+  "inputChecks": [
+    {
+      "path": "03-视频/**/*.mp4",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    },
+    {
+      "path": "03-视频/**/*.mov",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    },
+    {
+      "path": "05-prompts/**/video-prompt.md",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    }
+  ],
+  "outputChecks": [
+    {
+      "path": "review-ledger 记录",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    },
+    {
+      "path": "progress-ledger 更新",
+      "check": "skipped",
+      "reason": "logical_or_glob_artifact"
+    }
+  ],
+  "acceptanceCriteria": [
+    "产物已登记到对应 registry。",
+    "需要人工审核的任务已创建 waiting_review 记录。"
+  ],
+  "notes": [
+    "此报告由 Smart Vision 任务队列执行器生成，用于闭环记录编排任务的执行状态。",
+    "涉及外部模型、画布或人工生产的产物仍需由对应 Runtime / 人工环节实际生成并登记。"
+  ],
+  "error": null
+}

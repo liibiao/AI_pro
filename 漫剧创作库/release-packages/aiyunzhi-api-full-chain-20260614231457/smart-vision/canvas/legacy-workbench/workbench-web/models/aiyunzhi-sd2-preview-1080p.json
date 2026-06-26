@@ -1,0 +1,67 @@
+{
+  "id": "aiyunzhi-sd2-preview-1080p",
+  "configId": "aiyunzhi-sd2-preview-1080p",
+  "modelKey": "aiyunzhi-sd2-preview-1080p",
+  "providerKey": "aiyunzhi",
+  "channelKey": "aiyunzhi-sd2-preview-1080p",
+  "name": "sd2-1080p-preview",
+  "displayName": "Aiyunzhi SD2 1080P Preview",
+  "label": "Aiyunzhi SD2 1080P Preview",
+  "type": "video",
+  "model": "sd2-1080p-preview",
+  "baseUrl": "https://aiyunzhi.top/v1",
+  "url": "https://aiyunzhi.top/v1/videos",
+  "key": "",
+  "adapter": "seedance2-sd",
+  "endpointPath": "/videos",
+  "statusEndpointPath": "/videos/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "firstFrame": true,
+    "firstLastFrame": true,
+    "referenceImages": true,
+    "referenceVideos": true,
+    "referenceAudios": true
+  },
+  "capabilities": {
+    "resolutions": ["1080p"],
+    "durations": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "defaultDuration": 15,
+    "defaultResolution": "1080p",
+    "aspectRatios": ["16:9", "9:16", "4:3", "3:4", "1:1", "21:9"],
+    "maxImages": { "full": 9, "smartMultiFrame": 9, "firstLast": 2 },
+    "supportsAudio": true,
+    "supportsVideo": true,
+    "supportsLastFrame": true,
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "soundControlField": "metadata.enableSound",
+    "defaultEnableSound": true
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "generation",
+      "billingMode": "generation",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "chargedCreditsPerGeneration": 700,
+      "originalCreditsPerGeneration": 700,
+      "costCreditsPerGeneration": 700
+    }
+  },
+  "modelAssembly": { "type": "passthrough" },
+  "note": "Aiyunzhi low-price SD2 preview. POST /v1/videos with metadata.enableSound on/off.",
+  "protocol": {
+    "adapter": "seedance2-sd",
+    "endpointPath": "/videos",
+    "statusEndpointPath": "/videos/{taskId}",
+    "contentEndpointPath": "/videos/{taskId}/content",
+    "requestSchema": "official-sd2",
+    "soundField": "metadata.enableSound",
+    "method": "async-poll",
+    "uploadMode": "object_storage"
+  },
+  "ui": { "label": "SD2 1080P Preview", "badge": "SD2", "badgeColor": "#ef4444" }
+}

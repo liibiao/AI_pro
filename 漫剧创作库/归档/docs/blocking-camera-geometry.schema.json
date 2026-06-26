@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.1.0",
+  "redline_rules_ref": "docs/prompt-redline-rules.json",
+  "coordinate_system": {
+    "aspect": "9:16",
+    "x_range": [0, 1],
+    "y_range": [0, 1],
+    "subtitle_safe_zone": {
+      "y_min": 0.82,
+      "y_max": 1.0
+    },
+    "default_focus_anchor": {
+      "x": 0.5,
+      "x_tol": 0.05,
+      "y": 0.33,
+      "y_tol": 0.05
+    }
+  },
+  "lines": {
+    "geometry": {
+      "prefix": "【几何约束】",
+      "required_substrings": ["roll=0±1°", "禁止跳轴"],
+      "regexes": {
+        "horizon": "(地平线\\s*y0\\.\\d{2}±0\\.\\d{2}|地平线不可见时)",
+        "eyeline": "眼线\\s*y0\\.\\d{2}±0\\.\\d{2}"
+      },
+      "defaults": {
+        "horizon": "地平线 y0.42±0.03",
+        "eyeline": "眼线 y0.48±0.05",
+        "roll": "roll=0±1°"
+      },
+      "triggers": [
+        {
+          "when": "对话/对峙/人物表演镜头",
+          "must_include": ["眼线"]
+        }
+      ]
+    },
+    "blocking": {
+      "prefix": "【位置关系】",
+      "required_substrings": ["空间:"],
+      "group_delimiter": " | ",
+      "crowd_trigger_keywords": ["群众分组锁定:", "队形模板: 环形围压"],
+      "crowd_required_substrings": [
+        "群众分组锁定:",
+        "动作循环(节拍锁定):",
+        "屏幕坐标锁定(9:16 x,y):",
+        "字幕安全区禁入:",
+        "位移≤3%画面宽度/秒",
+        "禁止瞬间换站位/换人数"
+      ],
+      "defaults": {
+        "distance": "对峙 2-4m；拉拽 0.3-0.6m；近身 1-2m",
+        "hit_point": "命中点=中心偏上 1/3（允许 ±5% 微调）"
+      }
+    },
+    "focus": {
+      "prefix": "【读点保护】",
+      "required_substrings": ["坐标=", "禁止侵入字幕安全区 y0.82-1.00", "不得遮挡"],
+      "regexes": {
+        "focus_name": "首看点=.+?；",
+        "focus_coord": "坐标=\\s*x0\\.\\d{2}±0\\.\\d{2},\\s*y0\\.\\d{2}±0\\.\\d{2}"
+      },
+      "defaults": {
+        "coord": "x0.50±0.05, y0.33±0.05"
+      },
+      "triggers": [
+        {
+          "when": "首看点含\"字样/文字/牌匾/婚约\"",
+          "must_include": ["文字必须可读（至少 1 秒稳定呈现）"]
+        },
+        {
+          "when": "首看点含\"眼神/瞳孔/目光/眼睛\"",
+          "must_include": ["catchlight"]
+        },
+        {
+          "when": "首看点含\"命中/拳/砰/冲击/裂血/指节\"",
+          "must_include": ["结果帧清晰可读"]
+        }
+      ]
+    }
+  },
+  "formats": {
+    "omni": {
+      "shot_heading_regex": "^##\\s+Shot\\s+\\d+\\s+—\\s+",
+      "required_lines": ["geometry", "blocking", "focus"]
+    },
+    "seedance2_field": {
+      "segment_start_regex": "^【\\d+s-\\d+s】$",
+      "required_substrings_in_segment": ["读点保护：", "位置关系：", "门禁："],
+      "forbid_substrings": []
+    },
+    "seedance2_narrative": {
+      "required_substrings": ["门禁：", "整体仅保留自然环境音与动作音效，无背景音乐。画面无字幕，无文字叠加。"],
+      "forbid_substrings": ["BGM:"]
+    }
+  },
+  "redline_sections": {
+    "description": "红线门禁 — 方法论强制约束，由 prompt_redline_validate.py 校验",
+    "required_fixed_sections": ["环境联动", "光线", "对白配音", "音效设计", "画质", "负面提示词"],
+    "forbid_patterns": ["镜头与构图", "【镜头】", "## 镜头"],
+    "forbid_abstract_words": ["高级感", "电影感", "氛围感", "震撼", "激烈打斗", "史诗级激烈战斗"],
+    "require_camera_action_binding": {
+      "description": "运镜行必须包含心理动机关键词",
+      "trigger_prefix": "【运镜】",
+      "required_keywords": ["心理动机", "施压", "疏离", "聚焦", "沉浸", "释放", "压住"]
+    },
+    "require_timestamp_zero_start": {
+      "description": "片段标题必须从 0s 开始",
+      "pattern": "【(\\d+)s-\\d+s】",
+      "max_start_seconds": 0
+    },
+    "require_subtitle_safe_zone": "禁止侵入字幕安全区",
+    "require_no_extra_entities": {
+      "forbid_keywords": ["新增角色", "添加角色"],
+      "require_keywords": ["禁止额外角色"]
+    },
+    "require_combat_clarity": {
+      "description": "武戏场景必须声明结果帧清晰和人物边缘清晰",
+      "trigger_keywords": ["打斗", "武戏", "对撞", "命中", "拳"],
+      "required_keywords": ["结果帧清晰可读", "人物/武器边缘必须清"]
+    },
+    "audio_section_separation": {
+      "description": "对白配音段只负责人声层，音效设计段负责其余",
+      "forbid_in_dubbing": ["环境底噪", "BGM:", "背景音乐", "脚步声", "碰撞声"],
+      "no_dialogue_marker": "本段无对白配音"
+    }
+  }
+}

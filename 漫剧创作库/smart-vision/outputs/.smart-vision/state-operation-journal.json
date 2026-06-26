@@ -1,0 +1,3385 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "operations": [
+    {
+      "id": "state-op-release_publish_queue_requeue-1778260053955",
+      "operation": "release_publish_queue_requeue",
+      "target": "release_publish_queue",
+      "status": "running",
+      "at": "2026-05-08T17:07:33.955Z",
+      "metadata": {
+        "reason": "state_safety_smoke"
+      }
+    },
+    {
+      "id": "state-op-release_publish_queue_requeue-1778260053955",
+      "operation": "release_publish_queue_requeue",
+      "target": "release_publish_queue",
+      "status": "done",
+      "at": "2026-05-08T17:07:33.988Z",
+      "startedAt": "2026-05-08T17:07:33.955Z",
+      "metadata": {
+        "reason": "state_safety_smoke"
+      }
+    },
+    {
+      "id": "state-op-pipeline_run_create-1778290049445",
+      "operation": "pipeline_run_create",
+      "target": "ep001",
+      "status": "running",
+      "at": "2026-05-09T01:27:29.445Z",
+      "metadata": {
+        "prepareFirstStage": true
+      }
+    },
+    {
+      "id": "state-op-pipeline_run_create-1778290049445",
+      "operation": "pipeline_run_create",
+      "target": "ep001",
+      "status": "done",
+      "at": "2026-05-09T01:27:29.583Z",
+      "startedAt": "2026-05-09T01:27:29.445Z",
+      "metadata": {
+        "prepareFirstStage": true
+      }
+    },
+    {
+      "id": "state-op-pipeline_run_advance-1778290074200",
+      "operation": "pipeline_run_advance",
+      "target": "pipeline-run-ep001-1778290049528",
+      "status": "running",
+      "at": "2026-05-09T01:27:54.200Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-pipeline_run_advance-1778290074200",
+      "operation": "pipeline_run_advance",
+      "target": "pipeline-run-ep001-1778290049528",
+      "status": "done",
+      "at": "2026-05-09T01:27:54.207Z",
+      "startedAt": "2026-05-09T01:27:54.200Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-pipeline_run_repair-1778295366680",
+      "operation": "pipeline_run_repair",
+      "target": "pipeline-run-ep001-1778290049528",
+      "status": "running",
+      "at": "2026-05-09T02:56:06.680Z",
+      "metadata": {
+        "rebuildMissingWorkflow": true
+      }
+    },
+    {
+      "id": "state-op-pipeline_run_repair-1778295366680",
+      "operation": "pipeline_run_repair",
+      "target": "pipeline-run-ep001-1778290049528",
+      "status": "done",
+      "at": "2026-05-09T02:56:06.711Z",
+      "startedAt": "2026-05-09T02:56:06.680Z",
+      "metadata": {
+        "rebuildMissingWorkflow": true
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778298477203",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T03:47:57.203Z",
+      "metadata": {
+        "nodeId": "idempotency-node",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778298477203",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T03:47:57.222Z",
+      "startedAt": "2026-05-09T03:47:57.203Z",
+      "metadata": {
+        "nodeId": "idempotency-node",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778298484019",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T03:48:04.019Z",
+      "metadata": {
+        "nodeId": "idempotency-node",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778298484019",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T03:48:04.027Z",
+      "startedAt": "2026-05-09T03:48:04.019Z",
+      "metadata": {
+        "nodeId": "idempotency-node",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778299100412",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T03:58:20.412Z",
+      "metadata": {
+        "nodeId": "retry-smoke-node",
+        "nodeType": "txt2img"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778299100412",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T03:58:20.421Z",
+      "startedAt": "2026-05-09T03:58:20.412Z",
+      "metadata": {
+        "nodeId": "retry-smoke-node",
+        "nodeType": "txt2img"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_retry-1778299125737",
+      "operation": "canvas_output_retry",
+      "target": "canvas-output-retry-smoke",
+      "status": "running",
+      "at": "2026-05-09T03:58:45.737Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_output_retry-1778299125737",
+      "operation": "canvas_output_retry",
+      "target": "canvas-output-retry-smoke",
+      "status": "done",
+      "at": "2026-05-09T03:58:45.754Z",
+      "startedAt": "2026-05-09T03:58:45.737Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_output_retry-1778299134623",
+      "operation": "canvas_output_retry",
+      "target": "canvas-output-retry-smoke",
+      "status": "running",
+      "at": "2026-05-09T03:58:54.623Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_output_retry-1778299134623",
+      "operation": "canvas_output_retry",
+      "target": "canvas-output-retry-smoke",
+      "status": "failed",
+      "at": "2026-05-09T03:58:54.624Z",
+      "startedAt": "2026-05-09T03:58:54.623Z",
+      "error": "Failed canvas output not found: canvas-output-retry-smoke",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_output_retry-1778299181193",
+      "operation": "canvas_output_retry",
+      "target": "canvas-output-retry-smoke",
+      "status": "running",
+      "at": "2026-05-09T03:59:41.193Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_output_retry-1778299181193",
+      "operation": "canvas_output_retry",
+      "target": "canvas-output-retry-smoke",
+      "status": "done",
+      "at": "2026-05-09T03:59:41.202Z",
+      "startedAt": "2026-05-09T03:59:41.193Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_output_register-1778301587731",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778290049554",
+      "status": "running",
+      "at": "2026-05-09T04:39:47.731Z",
+      "metadata": {
+        "nodeId": "pipeline-asset-output-smoke-node",
+        "nodeType": "txt2img"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778301587731",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778290049554",
+      "status": "done",
+      "at": "2026-05-09T04:39:47.747Z",
+      "startedAt": "2026-05-09T04:39:47.731Z",
+      "metadata": {
+        "nodeId": "pipeline-asset-output-smoke-node",
+        "nodeType": "txt2img"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778302154767",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778301596146",
+      "status": "running",
+      "at": "2026-05-09T04:49:14.767Z",
+      "metadata": {
+        "nodeId": "pipeline-storyboard-output-smoke-node",
+        "nodeType": "img2imgAll"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778302154767",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778301596146",
+      "status": "done",
+      "at": "2026-05-09T04:49:14.783Z",
+      "startedAt": "2026-05-09T04:49:14.767Z",
+      "metadata": {
+        "nodeId": "pipeline-storyboard-output-smoke-node",
+        "nodeType": "img2imgAll"
+      }
+    },
+    {
+      "id": "state-op-runtime_repair-1778302270026",
+      "operation": "runtime_repair",
+      "target": "workflow_runtime",
+      "status": "running",
+      "at": "2026-05-09T04:51:10.026Z",
+      "metadata": {
+        "dryRun": false
+      }
+    },
+    {
+      "id": "state-op-runtime_repair-1778302270026",
+      "operation": "runtime_repair",
+      "target": "workflow_runtime",
+      "status": "done",
+      "at": "2026-05-09T04:51:10.065Z",
+      "startedAt": "2026-05-09T04:51:10.026Z",
+      "metadata": {
+        "dryRun": false
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778302812130",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778302161828",
+      "status": "running",
+      "at": "2026-05-09T05:00:12.130Z",
+      "metadata": {
+        "nodeId": "pipeline-video-output-smoke-node",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778302812130",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778302161828",
+      "status": "done",
+      "at": "2026-05-09T05:00:12.147Z",
+      "startedAt": "2026-05-09T05:00:12.130Z",
+      "metadata": {
+        "nodeId": "pipeline-video-output-smoke-node",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778303361466",
+      "operation": "canvas_output_register",
+      "target": "draft-edit-1778302819995",
+      "status": "running",
+      "at": "2026-05-09T05:09:21.466Z",
+      "metadata": {
+        "nodeId": "pipeline-edit-output-smoke-node",
+        "nodeType": "videoEditor"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778303361466",
+      "operation": "canvas_output_register",
+      "target": "draft-edit-1778302819995",
+      "status": "done",
+      "at": "2026-05-09T05:09:21.482Z",
+      "startedAt": "2026-05-09T05:09:21.466Z",
+      "metadata": {
+        "nodeId": "pipeline-edit-output-smoke-node",
+        "nodeType": "videoEditor"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778304296310",
+      "operation": "canvas_output_register",
+      "target": "draft-qa-1778303373129",
+      "status": "running",
+      "at": "2026-05-09T05:24:56.310Z",
+      "metadata": {
+        "nodeId": "pipeline-qa-output-smoke-node",
+        "nodeType": "qaReview"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778304296310",
+      "operation": "canvas_output_register",
+      "target": "draft-qa-1778303373129",
+      "status": "done",
+      "at": "2026-05-09T05:24:56.350Z",
+      "startedAt": "2026-05-09T05:24:56.310Z",
+      "metadata": {
+        "nodeId": "pipeline-qa-output-smoke-node",
+        "nodeType": "qaReview"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778304594428",
+      "operation": "canvas_output_register",
+      "target": "draft-release-1778304322583",
+      "status": "running",
+      "at": "2026-05-09T05:29:54.428Z",
+      "metadata": {
+        "nodeId": "pipeline-release-manifest-smoke-node",
+        "nodeType": "releasePackager"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778304594428",
+      "operation": "canvas_output_register",
+      "target": "draft-release-1778304322583",
+      "status": "done",
+      "at": "2026-05-09T05:29:54.473Z",
+      "startedAt": "2026-05-09T05:29:54.428Z",
+      "metadata": {
+        "nodeId": "pipeline-release-manifest-smoke-node",
+        "nodeType": "releasePackager"
+      }
+    },
+    {
+      "id": "state-op-release_status_update-1778304594498",
+      "operation": "release_status_update",
+      "target": "release-ep001-auto-draft-qa-1778303373129",
+      "status": "running",
+      "at": "2026-05-09T05:29:54.498Z",
+      "metadata": {
+        "status": "approved"
+      }
+    },
+    {
+      "id": "state-op-release_status_update-1778304594498",
+      "operation": "release_status_update",
+      "target": "release-ep001-auto-draft-qa-1778303373129",
+      "status": "done",
+      "at": "2026-05-09T05:29:54.512Z",
+      "startedAt": "2026-05-09T05:29:54.498Z",
+      "metadata": {
+        "status": "approved"
+      }
+    },
+    {
+      "id": "state-op-release_status_update-1778304594516",
+      "operation": "release_status_update",
+      "target": "release-ep001-auto-draft-qa-1778303373129",
+      "status": "running",
+      "at": "2026-05-09T05:29:54.516Z",
+      "metadata": {
+        "status": "published"
+      }
+    },
+    {
+      "id": "state-op-release_status_update-1778304594516",
+      "operation": "release_status_update",
+      "target": "release-ep001-auto-draft-qa-1778303373129",
+      "status": "done",
+      "at": "2026-05-09T05:29:54.525Z",
+      "startedAt": "2026-05-09T05:29:54.516Z",
+      "metadata": {
+        "status": "published"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778305893089",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778290049554",
+      "status": "running",
+      "at": "2026-05-09T05:51:33.089Z",
+      "metadata": {
+        "nodeId": "ui-canvas-retry-smoke-node",
+        "nodeType": "txt2img"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778305893089",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778290049554",
+      "status": "done",
+      "at": "2026-05-09T05:51:33.115Z",
+      "startedAt": "2026-05-09T05:51:33.089Z",
+      "metadata": {
+        "nodeId": "ui-canvas-retry-smoke-node",
+        "nodeType": "txt2img"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_retry-1778305893152",
+      "operation": "canvas_output_retry",
+      "target": "ui-canvas-output-retry-smoke",
+      "status": "running",
+      "at": "2026-05-09T05:51:33.152Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_output_retry-1778305893152",
+      "operation": "canvas_output_retry",
+      "target": "ui-canvas-output-retry-smoke",
+      "status": "done",
+      "at": "2026-05-09T05:51:33.175Z",
+      "startedAt": "2026-05-09T05:51:33.152Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_output_register-1778317815198",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T09:10:15.198Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778317815198",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T09:10:15.244Z",
+      "startedAt": "2026-05-09T09:10:15.198Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778319054621",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T09:30:54.621Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778319054621",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T09:30:54.644Z",
+      "startedAt": "2026-05-09T09:30:54.621Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778323203849",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T10:40:03.849Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778323203849",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T10:40:03.864Z",
+      "startedAt": "2026-05-09T10:40:03.849Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778324596304",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T11:03:16.304Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778324596304",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T11:03:16.336Z",
+      "startedAt": "2026-05-09T11:03:16.304Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_output_register-1778324596365",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T11:03:16.365Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778324596365",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T11:03:16.384Z",
+      "startedAt": "2026-05-09T11:03:16.365Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-pipeline_run_create-1778326076321",
+      "operation": "pipeline_run_create",
+      "target": "ep001-prod-validate",
+      "status": "running",
+      "at": "2026-05-09T11:27:56.321Z",
+      "metadata": {
+        "prepareFirstStage": true
+      }
+    },
+    {
+      "id": "state-op-pipeline_run_create-1778326076321",
+      "operation": "pipeline_run_create",
+      "target": "ep001-prod-validate",
+      "status": "done",
+      "at": "2026-05-09T11:27:56.444Z",
+      "startedAt": "2026-05-09T11:27:56.321Z",
+      "metadata": {
+        "prepareFirstStage": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778326103840",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778326076407",
+      "status": "running",
+      "at": "2026-05-09T11:28:23.840Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778326103840",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778326076407",
+      "status": "done",
+      "at": "2026-05-09T11:28:23.853Z",
+      "startedAt": "2026-05-09T11:28:23.840Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328535840",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T12:08:55.840Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328535840",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T12:08:55.871Z",
+      "startedAt": "2026-05-09T12:08:55.840Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328535893",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T12:08:55.893Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328535893",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T12:08:55.914Z",
+      "startedAt": "2026-05-09T12:08:55.893Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328719829",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778326076407",
+      "status": "running",
+      "at": "2026-05-09T12:11:59.829Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328719829",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778326076407",
+      "status": "done",
+      "at": "2026-05-09T12:11:59.840Z",
+      "startedAt": "2026-05-09T12:11:59.829Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328719846",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778326076407",
+      "status": "running",
+      "at": "2026-05-09T12:11:59.846Z",
+      "metadata": {
+        "nodeId": "asset_images-prod-validate-output",
+        "nodeType": "asset_image_generation"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328719846",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778326076407",
+      "status": "done",
+      "at": "2026-05-09T12:11:59.870Z",
+      "startedAt": "2026-05-09T12:11:59.846Z",
+      "metadata": {
+        "nodeId": "asset_images-prod-validate-output",
+        "nodeType": "asset_image_generation"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328719933",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778328719888",
+      "status": "running",
+      "at": "2026-05-09T12:11:59.933Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328719933",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778328719888",
+      "status": "done",
+      "at": "2026-05-09T12:11:59.942Z",
+      "startedAt": "2026-05-09T12:11:59.933Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328719948",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778328719888",
+      "status": "running",
+      "at": "2026-05-09T12:11:59.948Z",
+      "metadata": {
+        "nodeId": "storyboard_images-prod-validate-output",
+        "nodeType": "storyboard_image_generation"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328719948",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778328719888",
+      "status": "done",
+      "at": "2026-05-09T12:11:59.965Z",
+      "startedAt": "2026-05-09T12:11:59.948Z",
+      "metadata": {
+        "nodeId": "storyboard_images-prod-validate-output",
+        "nodeType": "storyboard_image_generation"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328720021",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778328719978",
+      "status": "running",
+      "at": "2026-05-09T12:12:00.021Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328720021",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778328719978",
+      "status": "done",
+      "at": "2026-05-09T12:12:00.031Z",
+      "startedAt": "2026-05-09T12:12:00.021Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328720038",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778328719978",
+      "status": "running",
+      "at": "2026-05-09T12:12:00.038Z",
+      "metadata": {
+        "nodeId": "videos-prod-validate-output",
+        "nodeType": "seedance_video_generation"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328720038",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778328719978",
+      "status": "done",
+      "at": "2026-05-09T12:12:00.107Z",
+      "startedAt": "2026-05-09T12:12:00.038Z",
+      "metadata": {
+        "nodeId": "videos-prod-validate-output",
+        "nodeType": "seedance_video_generation"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328720165",
+      "operation": "canvas_run_session_start",
+      "target": "draft-edit-1778328720121",
+      "status": "running",
+      "at": "2026-05-09T12:12:00.165Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "edit"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328720165",
+      "operation": "canvas_run_session_start",
+      "target": "draft-edit-1778328720121",
+      "status": "done",
+      "at": "2026-05-09T12:12:00.176Z",
+      "startedAt": "2026-05-09T12:12:00.165Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "edit"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328720181",
+      "operation": "canvas_output_register",
+      "target": "draft-edit-1778328720121",
+      "status": "running",
+      "at": "2026-05-09T12:12:00.181Z",
+      "metadata": {
+        "nodeId": "edit-prod-validate-output",
+        "nodeType": "video_editing"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328720181",
+      "operation": "canvas_output_register",
+      "target": "draft-edit-1778328720121",
+      "status": "done",
+      "at": "2026-05-09T12:12:00.243Z",
+      "startedAt": "2026-05-09T12:12:00.181Z",
+      "metadata": {
+        "nodeId": "edit-prod-validate-output",
+        "nodeType": "video_editing"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328720298",
+      "operation": "canvas_run_session_start",
+      "target": "draft-qa-1778328720254",
+      "status": "running",
+      "at": "2026-05-09T12:12:00.298Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "qa"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328720298",
+      "operation": "canvas_run_session_start",
+      "target": "draft-qa-1778328720254",
+      "status": "done",
+      "at": "2026-05-09T12:12:00.308Z",
+      "startedAt": "2026-05-09T12:12:00.298Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "qa"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328720314",
+      "operation": "canvas_output_register",
+      "target": "draft-qa-1778328720254",
+      "status": "running",
+      "at": "2026-05-09T12:12:00.314Z",
+      "metadata": {
+        "nodeId": "qa-prod-validate-output",
+        "nodeType": "context_pack_workflow"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328720314",
+      "operation": "canvas_output_register",
+      "target": "draft-qa-1778328720254",
+      "status": "done",
+      "at": "2026-05-09T12:12:00.332Z",
+      "startedAt": "2026-05-09T12:12:00.314Z",
+      "metadata": {
+        "nodeId": "qa-prod-validate-output",
+        "nodeType": "context_pack_workflow"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328720399",
+      "operation": "canvas_run_session_start",
+      "target": "draft-release-1778328720344",
+      "status": "running",
+      "at": "2026-05-09T12:12:00.399Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "release"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778328720399",
+      "operation": "canvas_run_session_start",
+      "target": "draft-release-1778328720344",
+      "status": "done",
+      "at": "2026-05-09T12:12:00.409Z",
+      "startedAt": "2026-05-09T12:12:00.399Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-prod-validate-1778326076394",
+        "stageId": "release"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328720414",
+      "operation": "canvas_output_register",
+      "target": "draft-release-1778328720344",
+      "status": "running",
+      "at": "2026-05-09T12:12:00.414Z",
+      "metadata": {
+        "nodeId": "release-prod-validate-output",
+        "nodeType": "context_pack_workflow"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778328720414",
+      "operation": "canvas_output_register",
+      "target": "draft-release-1778328720344",
+      "status": "done",
+      "at": "2026-05-09T12:12:00.435Z",
+      "startedAt": "2026-05-09T12:12:00.414Z",
+      "metadata": {
+        "nodeId": "release-prod-validate-output",
+        "nodeType": "context_pack_workflow"
+      }
+    },
+    {
+      "id": "state-op-release_status_update-1778328784657",
+      "operation": "release_status_update",
+      "target": "release-ep001-auto-draft-qa-1778328720254",
+      "status": "running",
+      "at": "2026-05-09T12:13:04.657Z",
+      "metadata": {
+        "status": "approved"
+      }
+    },
+    {
+      "id": "state-op-release_status_update-1778328784657",
+      "operation": "release_status_update",
+      "target": "release-ep001-auto-draft-qa-1778328720254",
+      "status": "done",
+      "at": "2026-05-09T12:13:04.676Z",
+      "startedAt": "2026-05-09T12:13:04.657Z",
+      "metadata": {
+        "status": "approved"
+      }
+    },
+    {
+      "id": "state-op-release_status_update-1778328793955",
+      "operation": "release_status_update",
+      "target": "release-ep001-auto-draft-qa-1778328720254",
+      "status": "running",
+      "at": "2026-05-09T12:13:13.955Z",
+      "metadata": {
+        "status": "published"
+      }
+    },
+    {
+      "id": "state-op-release_status_update-1778328793955",
+      "operation": "release_status_update",
+      "target": "release-ep001-auto-draft-qa-1778328720254",
+      "status": "done",
+      "at": "2026-05-09T12:13:13.973Z",
+      "startedAt": "2026-05-09T12:13:13.955Z",
+      "metadata": {
+        "status": "published"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778329600344",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T12:26:40.344Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778329600344",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T12:26:40.389Z",
+      "startedAt": "2026-05-09T12:26:40.344Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_output_register-1778329600432",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T12:26:40.432Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778329600432",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T12:26:40.476Z",
+      "startedAt": "2026-05-09T12:26:40.432Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778329913382",
+      "operation": "canvas_run_session_start",
+      "target": "ep001-storyboard-image-generation",
+      "status": "running",
+      "at": "2026-05-09T12:31:53.382Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778329913382",
+      "operation": "canvas_run_session_start",
+      "target": "ep001-storyboard-image-generation",
+      "status": "done",
+      "at": "2026-05-09T12:31:53.577Z",
+      "startedAt": "2026-05-09T12:31:53.382Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_run_session_status-1778329913591",
+      "operation": "canvas_run_session_status",
+      "target": "canvas-run-ep001-storyboard-image-generation-1778329913401",
+      "status": "running",
+      "at": "2026-05-09T12:31:53.591Z",
+      "metadata": {
+        "status": "running"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_status-1778329913591",
+      "operation": "canvas_run_session_status",
+      "target": "canvas-run-ep001-storyboard-image-generation-1778329913401",
+      "status": "done",
+      "at": "2026-05-09T12:31:53.635Z",
+      "startedAt": "2026-05-09T12:31:53.591Z",
+      "metadata": {
+        "status": "running"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_status-1778329913648",
+      "operation": "canvas_run_session_status",
+      "target": "canvas-run-ep001-storyboard-image-generation-1778329913401",
+      "status": "running",
+      "at": "2026-05-09T12:31:53.648Z",
+      "metadata": {
+        "status": "cancelled"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_status-1778329913648",
+      "operation": "canvas_run_session_status",
+      "target": "canvas-run-ep001-storyboard-image-generation-1778329913401",
+      "status": "done",
+      "at": "2026-05-09T12:31:53.673Z",
+      "startedAt": "2026-05-09T12:31:53.648Z",
+      "metadata": {
+        "status": "cancelled"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778331230475",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T12:53:50.475Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778331230475",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T12:53:50.505Z",
+      "startedAt": "2026-05-09T12:53:50.475Z",
+      "metadata": {}
+    },
+    {
+      "id": "state-op-canvas_output_register-1778331230532",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "running",
+      "at": "2026-05-09T12:53:50.532Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778331230532",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778298423240",
+      "status": "done",
+      "at": "2026-05-09T12:53:50.567Z",
+      "startedAt": "2026-05-09T12:53:50.532Z",
+      "metadata": {
+        "nodeId": "canvas-output-register-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778336289505",
+      "operation": "creative_production_start",
+      "target": "ep-smoke",
+      "status": "running",
+      "at": "2026-05-09T14:18:09.505Z",
+      "metadata": {
+        "scriptLength": 78,
+        "importedFileCount": 1,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778336289505",
+      "operation": "creative_production_start",
+      "target": "ep-smoke",
+      "status": "done",
+      "at": "2026-05-09T14:18:09.645Z",
+      "startedAt": "2026-05-09T14:18:09.505Z",
+      "metadata": {
+        "scriptLength": 78,
+        "importedFileCount": 1,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778336349840",
+      "operation": "creative_production_start",
+      "target": "ep-smoke2",
+      "status": "running",
+      "at": "2026-05-09T14:19:09.840Z",
+      "metadata": {
+        "scriptLength": 63,
+        "importedFileCount": 0,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778336349840",
+      "operation": "creative_production_start",
+      "target": "ep-smoke2",
+      "status": "done",
+      "at": "2026-05-09T14:19:10.005Z",
+      "startedAt": "2026-05-09T14:19:09.840Z",
+      "metadata": {
+        "scriptLength": 63,
+        "importedFileCount": 0,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778340962581",
+      "operation": "creative_production_start",
+      "target": "ep001",
+      "status": "running",
+      "at": "2026-05-09T15:36:02.582Z",
+      "metadata": {
+        "scriptLength": 7,
+        "importedFileCount": 0,
+        "createPipelineRun": false
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778340962581",
+      "operation": "creative_production_start",
+      "target": "ep001",
+      "status": "done",
+      "at": "2026-05-09T15:36:02.649Z",
+      "startedAt": "2026-05-09T15:36:02.582Z",
+      "metadata": {
+        "scriptLength": 7,
+        "importedFileCount": 0,
+        "createPipelineRun": false
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778341279959",
+      "operation": "creative_production_start",
+      "target": "ep001",
+      "status": "running",
+      "at": "2026-05-09T15:41:19.959Z",
+      "metadata": {
+        "scriptLength": 7,
+        "importedFileCount": 0,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778341279959",
+      "operation": "creative_production_start",
+      "target": "ep001",
+      "status": "done",
+      "at": "2026-05-09T15:41:20.223Z",
+      "startedAt": "2026-05-09T15:41:19.959Z",
+      "metadata": {
+        "scriptLength": 7,
+        "importedFileCount": 0,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778346403958",
+      "operation": "creative_production_start",
+      "target": "ep001",
+      "status": "running",
+      "at": "2026-05-09T17:06:43.958Z",
+      "metadata": {
+        "scriptLength": 7,
+        "importedFileCount": 0,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778346403958",
+      "operation": "creative_production_start",
+      "target": "ep001",
+      "status": "done",
+      "at": "2026-05-09T17:06:44.185Z",
+      "startedAt": "2026-05-09T17:06:43.958Z",
+      "metadata": {
+        "scriptLength": 7,
+        "importedFileCount": 0,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778346476590",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778346404133",
+      "status": "running",
+      "at": "2026-05-09T17:07:56.590Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-1778346404121",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778346476590",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778346404133",
+      "status": "done",
+      "at": "2026-05-09T17:07:56.704Z",
+      "startedAt": "2026-05-09T17:07:56.590Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-1778346404121",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778346531715",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778346404133",
+      "status": "running",
+      "at": "2026-05-09T17:08:51.715Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-1778346404121",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778346531715",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778346404133",
+      "status": "done",
+      "at": "2026-05-09T17:08:51.824Z",
+      "startedAt": "2026-05-09T17:08:51.715Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep001-1778346404121",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778916850793",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778916850484",
+      "status": "running",
+      "at": "2026-05-16T07:34:10.793Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778916850793",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778916850484",
+      "status": "done",
+      "at": "2026-05-16T07:34:11.324Z",
+      "startedAt": "2026-05-16T07:34:10.793Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778917005074",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778917004765",
+      "status": "running",
+      "at": "2026-05-16T07:36:45.074Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778917005074",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778917004765",
+      "status": "done",
+      "at": "2026-05-16T07:36:45.667Z",
+      "startedAt": "2026-05-16T07:36:45.074Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778917005700",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778917005559",
+      "status": "running",
+      "at": "2026-05-16T07:36:45.700Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778917004765-1778917005461",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778917005700",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778917005559",
+      "status": "done",
+      "at": "2026-05-16T07:36:45.739Z",
+      "startedAt": "2026-05-16T07:36:45.700Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778917004765-1778917005461",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778917005788",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778917005559",
+      "status": "running",
+      "at": "2026-05-16T07:36:45.788Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778917005788",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778917005559",
+      "status": "done",
+      "at": "2026-05-16T07:36:45.839Z",
+      "startedAt": "2026-05-16T07:36:45.788Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778917499158",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778917498851",
+      "status": "running",
+      "at": "2026-05-16T07:44:59.158Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778917499158",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778917498851",
+      "status": "done",
+      "at": "2026-05-16T07:44:59.751Z",
+      "startedAt": "2026-05-16T07:44:59.158Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778917499784",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778917499613",
+      "status": "running",
+      "at": "2026-05-16T07:44:59.784Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778917498851-1778917499518",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778917499784",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778917499613",
+      "status": "done",
+      "at": "2026-05-16T07:44:59.832Z",
+      "startedAt": "2026-05-16T07:44:59.784Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778917498851-1778917499518",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778917499896",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778917499613",
+      "status": "running",
+      "at": "2026-05-16T07:44:59.896Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778917499896",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778917499613",
+      "status": "done",
+      "at": "2026-05-16T07:44:59.957Z",
+      "startedAt": "2026-05-16T07:44:59.896Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778917500155",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778917500016",
+      "status": "running",
+      "at": "2026-05-16T07:45:00.155Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778917498851-1778917499518",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778917500155",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778917500016",
+      "status": "done",
+      "at": "2026-05-16T07:45:00.204Z",
+      "startedAt": "2026-05-16T07:45:00.155Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778917498851-1778917499518",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778917500281",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778917500016",
+      "status": "running",
+      "at": "2026-05-16T07:45:00.281Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778917500281",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778917500016",
+      "status": "done",
+      "at": "2026-05-16T07:45:00.338Z",
+      "startedAt": "2026-05-16T07:45:00.281Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778918114706",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778918114394",
+      "status": "running",
+      "at": "2026-05-16T07:55:14.706Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778918114706",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778918114394",
+      "status": "done",
+      "at": "2026-05-16T07:55:15.256Z",
+      "startedAt": "2026-05-16T07:55:14.706Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918115286",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778918115117",
+      "status": "running",
+      "at": "2026-05-16T07:55:15.286Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918114394-1778918115035",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918115286",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778918115117",
+      "status": "done",
+      "at": "2026-05-16T07:55:15.338Z",
+      "startedAt": "2026-05-16T07:55:15.286Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918114394-1778918115035",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918115401",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778918115117",
+      "status": "running",
+      "at": "2026-05-16T07:55:15.401Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918115401",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778918115117",
+      "status": "done",
+      "at": "2026-05-16T07:55:15.466Z",
+      "startedAt": "2026-05-16T07:55:15.401Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918115711",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778918115565",
+      "status": "running",
+      "at": "2026-05-16T07:55:15.711Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918114394-1778918115035",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918115711",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778918115565",
+      "status": "done",
+      "at": "2026-05-16T07:55:15.764Z",
+      "startedAt": "2026-05-16T07:55:15.711Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918114394-1778918115035",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918115827",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778918115565",
+      "status": "running",
+      "at": "2026-05-16T07:55:15.827Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918115827",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778918115565",
+      "status": "done",
+      "at": "2026-05-16T07:55:15.891Z",
+      "startedAt": "2026-05-16T07:55:15.827Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778918636442",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778918636130",
+      "status": "running",
+      "at": "2026-05-16T08:03:56.442Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778918636442",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778918636130",
+      "status": "done",
+      "at": "2026-05-16T08:03:57.055Z",
+      "startedAt": "2026-05-16T08:03:56.442Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918637090",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778918636869",
+      "status": "running",
+      "at": "2026-05-16T08:03:57.090Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918636130-1778918636780",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918637090",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778918636869",
+      "status": "done",
+      "at": "2026-05-16T08:03:57.166Z",
+      "startedAt": "2026-05-16T08:03:57.090Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918636130-1778918636780",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918637251",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778918636869",
+      "status": "running",
+      "at": "2026-05-16T08:03:57.251Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918637251",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778918636869",
+      "status": "done",
+      "at": "2026-05-16T08:03:57.338Z",
+      "startedAt": "2026-05-16T08:03:57.251Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918637625",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778918637443",
+      "status": "running",
+      "at": "2026-05-16T08:03:57.625Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918636130-1778918636780",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918637625",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778918637443",
+      "status": "done",
+      "at": "2026-05-16T08:03:57.701Z",
+      "startedAt": "2026-05-16T08:03:57.625Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918636130-1778918636780",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918637798",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778918637443",
+      "status": "running",
+      "at": "2026-05-16T08:03:57.798Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918637798",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778918637443",
+      "status": "done",
+      "at": "2026-05-16T08:03:57.888Z",
+      "startedAt": "2026-05-16T08:03:57.798Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918638186",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778918637989",
+      "status": "running",
+      "at": "2026-05-16T08:03:58.186Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918636130-1778918636780",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918638186",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778918637989",
+      "status": "done",
+      "at": "2026-05-16T08:03:58.271Z",
+      "startedAt": "2026-05-16T08:03:58.186Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918636130-1778918636780",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918638371",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778918637989",
+      "status": "running",
+      "at": "2026-05-16T08:03:58.371Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918638371",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778918637989",
+      "status": "done",
+      "at": "2026-05-16T08:03:58.473Z",
+      "startedAt": "2026-05-16T08:03:58.371Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778918721543",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778918721232",
+      "status": "running",
+      "at": "2026-05-16T08:05:21.543Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778918721543",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778918721232",
+      "status": "done",
+      "at": "2026-05-16T08:05:22.172Z",
+      "startedAt": "2026-05-16T08:05:21.543Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918722210",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778918721977",
+      "status": "running",
+      "at": "2026-05-16T08:05:22.210Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918721232-1778918721887",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918722210",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778918721977",
+      "status": "done",
+      "at": "2026-05-16T08:05:22.299Z",
+      "startedAt": "2026-05-16T08:05:22.210Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918721232-1778918721887",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918722397",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778918721977",
+      "status": "running",
+      "at": "2026-05-16T08:05:22.397Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918722397",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778918721977",
+      "status": "done",
+      "at": "2026-05-16T08:05:22.502Z",
+      "startedAt": "2026-05-16T08:05:22.397Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918722812",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778918722606",
+      "status": "running",
+      "at": "2026-05-16T08:05:22.812Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918721232-1778918721887",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918722812",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778918722606",
+      "status": "done",
+      "at": "2026-05-16T08:05:22.901Z",
+      "startedAt": "2026-05-16T08:05:22.812Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918721232-1778918721887",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918723021",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778918722606",
+      "status": "running",
+      "at": "2026-05-16T08:05:23.021Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918723021",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778918722606",
+      "status": "done",
+      "at": "2026-05-16T08:05:23.126Z",
+      "startedAt": "2026-05-16T08:05:23.021Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918723503",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778918723241",
+      "status": "running",
+      "at": "2026-05-16T08:05:23.503Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918721232-1778918721887",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778918723503",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778918723241",
+      "status": "done",
+      "at": "2026-05-16T08:05:23.599Z",
+      "startedAt": "2026-05-16T08:05:23.503Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778918721232-1778918721887",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918723722",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778918723241",
+      "status": "running",
+      "at": "2026-05-16T08:05:23.722Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778918723722",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778918723241",
+      "status": "done",
+      "at": "2026-05-16T08:05:23.885Z",
+      "startedAt": "2026-05-16T08:05:23.722Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-pipeline_run_repair-1778919083157",
+      "operation": "pipeline_run_repair",
+      "target": "pipeline-runs",
+      "status": "running",
+      "at": "2026-05-16T08:11:23.157Z",
+      "metadata": {
+        "rebuildMissingWorkflow": true
+      }
+    },
+    {
+      "id": "state-op-pipeline_run_repair-1778919083157",
+      "operation": "pipeline_run_repair",
+      "target": "pipeline-runs",
+      "status": "done",
+      "at": "2026-05-16T08:11:23.626Z",
+      "startedAt": "2026-05-16T08:11:23.157Z",
+      "metadata": {
+        "rebuildMissingWorkflow": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778919111706",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778919111387",
+      "status": "running",
+      "at": "2026-05-16T08:11:51.706Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778919111706",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778919111387",
+      "status": "done",
+      "at": "2026-05-16T08:11:52.903Z",
+      "startedAt": "2026-05-16T08:11:51.706Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778919112966",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778919112515",
+      "status": "running",
+      "at": "2026-05-16T08:11:52.966Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778919111387-1778919112311",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778919112966",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778919112515",
+      "status": "done",
+      "at": "2026-05-16T08:11:53.220Z",
+      "startedAt": "2026-05-16T08:11:52.966Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778919111387-1778919112311",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778919113411",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778919112515",
+      "status": "running",
+      "at": "2026-05-16T08:11:53.411Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778919113411",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778919112515",
+      "status": "done",
+      "at": "2026-05-16T08:11:53.633Z",
+      "startedAt": "2026-05-16T08:11:53.411Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778919138135",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778919137839",
+      "status": "running",
+      "at": "2026-05-16T08:12:18.135Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778919138135",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778919137839",
+      "status": "done",
+      "at": "2026-05-16T08:12:18.835Z",
+      "startedAt": "2026-05-16T08:12:18.135Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778919138888",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778919138560",
+      "status": "running",
+      "at": "2026-05-16T08:12:18.888Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778919137839-1778919138464",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778919138888",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778919138560",
+      "status": "done",
+      "at": "2026-05-16T08:12:19.020Z",
+      "startedAt": "2026-05-16T08:12:18.888Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778919137839-1778919138464",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778919139165",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778919138560",
+      "status": "running",
+      "at": "2026-05-16T08:12:19.165Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778919139165",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778919138560",
+      "status": "done",
+      "at": "2026-05-16T08:12:19.316Z",
+      "startedAt": "2026-05-16T08:12:19.165Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778919139741",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778919139432",
+      "status": "running",
+      "at": "2026-05-16T08:12:19.741Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778919137839-1778919138464",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778919139741",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778919139432",
+      "status": "done",
+      "at": "2026-05-16T08:12:19.863Z",
+      "startedAt": "2026-05-16T08:12:19.741Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778919137839-1778919138464",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778919140003",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778919139432",
+      "status": "running",
+      "at": "2026-05-16T08:12:20.003Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778919140003",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778919139432",
+      "status": "done",
+      "at": "2026-05-16T08:12:20.170Z",
+      "startedAt": "2026-05-16T08:12:20.003Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778919140574",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778919140286",
+      "status": "running",
+      "at": "2026-05-16T08:12:20.574Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778919137839-1778919138464",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778919140574",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778919140286",
+      "status": "done",
+      "at": "2026-05-16T08:12:20.730Z",
+      "startedAt": "2026-05-16T08:12:20.574Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778919137839-1778919138464",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778919140878",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778919140286",
+      "status": "running",
+      "at": "2026-05-16T08:12:20.878Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778919140878",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778919140286",
+      "status": "done",
+      "at": "2026-05-16T08:12:21.078Z",
+      "startedAt": "2026-05-16T08:12:20.878Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778928058164",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778928057858",
+      "status": "running",
+      "at": "2026-05-16T10:40:58.164Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778928058164",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778928057858",
+      "status": "done",
+      "at": "2026-05-16T10:40:58.956Z",
+      "startedAt": "2026-05-16T10:40:58.164Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928059004",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778928058633",
+      "status": "running",
+      "at": "2026-05-16T10:40:59.004Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928057858-1778928058535",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928059004",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778928058633",
+      "status": "done",
+      "at": "2026-05-16T10:40:59.154Z",
+      "startedAt": "2026-05-16T10:40:59.004Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928057858-1778928058535",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928059348",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778928058633",
+      "status": "running",
+      "at": "2026-05-16T10:40:59.348Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928059348",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778928058633",
+      "status": "done",
+      "at": "2026-05-16T10:40:59.512Z",
+      "startedAt": "2026-05-16T10:40:59.348Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928059976",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778928059630",
+      "status": "running",
+      "at": "2026-05-16T10:40:59.976Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928057858-1778928058535",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928059976",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778928059630",
+      "status": "done",
+      "at": "2026-05-16T10:41:00.130Z",
+      "startedAt": "2026-05-16T10:40:59.976Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928057858-1778928058535",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928060310",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778928059630",
+      "status": "running",
+      "at": "2026-05-16T10:41:00.310Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928060310",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778928059630",
+      "status": "done",
+      "at": "2026-05-16T10:41:00.470Z",
+      "startedAt": "2026-05-16T10:41:00.310Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928060946",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778928060590",
+      "status": "running",
+      "at": "2026-05-16T10:41:00.946Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928057858-1778928058535",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928060946",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778928060590",
+      "status": "done",
+      "at": "2026-05-16T10:41:01.097Z",
+      "startedAt": "2026-05-16T10:41:00.946Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928057858-1778928058535",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928061286",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778928060590",
+      "status": "running",
+      "at": "2026-05-16T10:41:01.286Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928061286",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778928060590",
+      "status": "done",
+      "at": "2026-05-16T10:41:01.487Z",
+      "startedAt": "2026-05-16T10:41:01.286Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928061972",
+      "operation": "canvas_run_session_start",
+      "target": "draft-edit-1778928061604",
+      "status": "running",
+      "at": "2026-05-16T10:41:01.972Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928057858-1778928058535",
+        "stageId": "edit"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928061972",
+      "operation": "canvas_run_session_start",
+      "target": "draft-edit-1778928061604",
+      "status": "done",
+      "at": "2026-05-16T10:41:02.143Z",
+      "startedAt": "2026-05-16T10:41:01.972Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928057858-1778928058535",
+        "stageId": "edit"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928062326",
+      "operation": "canvas_output_register",
+      "target": "draft-edit-1778928061604",
+      "status": "running",
+      "at": "2026-05-16T10:41:02.326Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-edit-smoke",
+        "nodeType": "videoEditor"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928062326",
+      "operation": "canvas_output_register",
+      "target": "draft-edit-1778928061604",
+      "status": "done",
+      "at": "2026-05-16T10:41:02.566Z",
+      "startedAt": "2026-05-16T10:41:02.326Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-edit-smoke",
+        "nodeType": "videoEditor"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928063066",
+      "operation": "canvas_run_session_start",
+      "target": "draft-qa-1778928062685",
+      "status": "running",
+      "at": "2026-05-16T10:41:03.066Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928057858-1778928058535",
+        "stageId": "qa"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928063066",
+      "operation": "canvas_run_session_start",
+      "target": "draft-qa-1778928062685",
+      "status": "done",
+      "at": "2026-05-16T10:41:03.233Z",
+      "startedAt": "2026-05-16T10:41:03.066Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928057858-1778928058535",
+        "stageId": "qa"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928063424",
+      "operation": "canvas_output_register",
+      "target": "draft-qa-1778928062685",
+      "status": "running",
+      "at": "2026-05-16T10:41:03.424Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-qa-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928063424",
+      "operation": "canvas_output_register",
+      "target": "draft-qa-1778928062685",
+      "status": "done",
+      "at": "2026-05-16T10:41:03.654Z",
+      "startedAt": "2026-05-16T10:41:03.424Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-qa-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928064332",
+      "operation": "canvas_run_session_start",
+      "target": "draft-release-1778928063780",
+      "status": "running",
+      "at": "2026-05-16T10:41:04.332Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928057858-1778928058535",
+        "stageId": "release"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928064332",
+      "operation": "canvas_run_session_start",
+      "target": "draft-release-1778928063780",
+      "status": "done",
+      "at": "2026-05-16T10:41:04.485Z",
+      "startedAt": "2026-05-16T10:41:04.332Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928057858-1778928058535",
+        "stageId": "release"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928064658",
+      "operation": "canvas_output_register",
+      "target": "draft-release-1778928063780",
+      "status": "running",
+      "at": "2026-05-16T10:41:04.658Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-release-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928064658",
+      "operation": "canvas_output_register",
+      "target": "draft-release-1778928063780",
+      "status": "done",
+      "at": "2026-05-16T10:41:04.821Z",
+      "startedAt": "2026-05-16T10:41:04.658Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-release-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778928166506",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778928166193",
+      "status": "running",
+      "at": "2026-05-16T10:42:46.506Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778928166506",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778928166193",
+      "status": "done",
+      "at": "2026-05-16T10:42:47.215Z",
+      "startedAt": "2026-05-16T10:42:46.506Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928167259",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778928166897",
+      "status": "running",
+      "at": "2026-05-16T10:42:47.259Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928166193-1778928166810",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928167259",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778928166897",
+      "status": "done",
+      "at": "2026-05-16T10:42:47.403Z",
+      "startedAt": "2026-05-16T10:42:47.259Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928166193-1778928166810",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928167565",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778928166897",
+      "status": "running",
+      "at": "2026-05-16T10:42:47.565Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928167565",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778928166897",
+      "status": "done",
+      "at": "2026-05-16T10:42:47.715Z",
+      "startedAt": "2026-05-16T10:42:47.565Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928168161",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778928167821",
+      "status": "running",
+      "at": "2026-05-16T10:42:48.161Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928166193-1778928166810",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928168161",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778928167821",
+      "status": "done",
+      "at": "2026-05-16T10:42:48.332Z",
+      "startedAt": "2026-05-16T10:42:48.161Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928166193-1778928166810",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928168493",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778928167821",
+      "status": "running",
+      "at": "2026-05-16T10:42:48.493Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928168493",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778928167821",
+      "status": "done",
+      "at": "2026-05-16T10:42:48.665Z",
+      "startedAt": "2026-05-16T10:42:48.493Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928169130",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778928168771",
+      "status": "running",
+      "at": "2026-05-16T10:42:49.130Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928166193-1778928166810",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928169130",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778928168771",
+      "status": "done",
+      "at": "2026-05-16T10:42:49.281Z",
+      "startedAt": "2026-05-16T10:42:49.130Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928166193-1778928166810",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928169470",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778928168771",
+      "status": "running",
+      "at": "2026-05-16T10:42:49.470Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928169470",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778928168771",
+      "status": "done",
+      "at": "2026-05-16T10:42:49.665Z",
+      "startedAt": "2026-05-16T10:42:49.470Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928170121",
+      "operation": "canvas_run_session_start",
+      "target": "draft-edit-1778928169769",
+      "status": "running",
+      "at": "2026-05-16T10:42:50.121Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928166193-1778928166810",
+        "stageId": "edit"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928170121",
+      "operation": "canvas_run_session_start",
+      "target": "draft-edit-1778928169769",
+      "status": "done",
+      "at": "2026-05-16T10:42:50.286Z",
+      "startedAt": "2026-05-16T10:42:50.121Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928166193-1778928166810",
+        "stageId": "edit"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928170453",
+      "operation": "canvas_output_register",
+      "target": "draft-edit-1778928169769",
+      "status": "running",
+      "at": "2026-05-16T10:42:50.453Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-edit-smoke",
+        "nodeType": "videoEditor"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928170453",
+      "operation": "canvas_output_register",
+      "target": "draft-edit-1778928169769",
+      "status": "done",
+      "at": "2026-05-16T10:42:50.667Z",
+      "startedAt": "2026-05-16T10:42:50.453Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-edit-smoke",
+        "nodeType": "videoEditor"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928171142",
+      "operation": "canvas_run_session_start",
+      "target": "draft-qa-1778928170769",
+      "status": "running",
+      "at": "2026-05-16T10:42:51.142Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928166193-1778928166810",
+        "stageId": "qa"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928171142",
+      "operation": "canvas_run_session_start",
+      "target": "draft-qa-1778928170769",
+      "status": "done",
+      "at": "2026-05-16T10:42:51.292Z",
+      "startedAt": "2026-05-16T10:42:51.142Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928166193-1778928166810",
+        "stageId": "qa"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928171466",
+      "operation": "canvas_output_register",
+      "target": "draft-qa-1778928170769",
+      "status": "running",
+      "at": "2026-05-16T10:42:51.466Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-qa-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928171466",
+      "operation": "canvas_output_register",
+      "target": "draft-qa-1778928170769",
+      "status": "done",
+      "at": "2026-05-16T10:42:51.639Z",
+      "startedAt": "2026-05-16T10:42:51.466Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-qa-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928172278",
+      "operation": "canvas_run_session_start",
+      "target": "draft-release-1778928171748",
+      "status": "running",
+      "at": "2026-05-16T10:42:52.278Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928166193-1778928166810",
+        "stageId": "release"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778928172278",
+      "operation": "canvas_run_session_start",
+      "target": "draft-release-1778928171748",
+      "status": "done",
+      "at": "2026-05-16T10:42:52.451Z",
+      "startedAt": "2026-05-16T10:42:52.278Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778928166193-1778928166810",
+        "stageId": "release"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928172641",
+      "operation": "canvas_output_register",
+      "target": "draft-release-1778928171748",
+      "status": "running",
+      "at": "2026-05-16T10:42:52.641Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-release-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778928172641",
+      "operation": "canvas_output_register",
+      "target": "draft-release-1778928171748",
+      "status": "done",
+      "at": "2026-05-16T10:42:52.815Z",
+      "startedAt": "2026-05-16T10:42:52.641Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-release-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778930488051",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778930487733",
+      "status": "running",
+      "at": "2026-05-16T11:21:28.051Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778930488051",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778930487733",
+      "status": "done",
+      "at": "2026-05-16T11:21:30.129Z",
+      "startedAt": "2026-05-16T11:21:28.051Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778930490229",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778930489002",
+      "status": "running",
+      "at": "2026-05-16T11:21:30.229Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778930487733-1778930488684",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778930490229",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778930489002",
+      "status": "done",
+      "at": "2026-05-16T11:21:30.559Z",
+      "startedAt": "2026-05-16T11:21:30.229Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778930487733-1778930488684",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778930490863",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778930489002",
+      "status": "running",
+      "at": "2026-05-16T11:21:30.863Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778930490863",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778930489002",
+      "status": "done",
+      "at": "2026-05-16T11:21:31.176Z",
+      "startedAt": "2026-05-16T11:21:30.863Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778930491983",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778930491360",
+      "status": "running",
+      "at": "2026-05-16T11:21:31.983Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778930487733-1778930488684",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778930491983",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778930491360",
+      "status": "done",
+      "at": "2026-05-16T11:21:32.285Z",
+      "startedAt": "2026-05-16T11:21:31.983Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778930487733-1778930488684",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778930492591",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778930491360",
+      "status": "running",
+      "at": "2026-05-16T11:21:32.591Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778930492591",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778930491360",
+      "status": "done",
+      "at": "2026-05-16T11:21:32.903Z",
+      "startedAt": "2026-05-16T11:21:32.591Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778930493712",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778930493073",
+      "status": "running",
+      "at": "2026-05-16T11:21:33.712Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778930487733-1778930488684",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778930493712",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778930493073",
+      "status": "done",
+      "at": "2026-05-16T11:21:34.040Z",
+      "startedAt": "2026-05-16T11:21:33.712Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778930487733-1778930488684",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778930494364",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778930493073",
+      "status": "running",
+      "at": "2026-05-16T11:21:34.364Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778930494364",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778930493073",
+      "status": "done",
+      "at": "2026-05-16T11:21:34.723Z",
+      "startedAt": "2026-05-16T11:21:34.364Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778930495549",
+      "operation": "canvas_run_session_start",
+      "target": "draft-edit-1778930494882",
+      "status": "running",
+      "at": "2026-05-16T11:21:35.549Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778930487733-1778930488684",
+        "stageId": "edit"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778930495549",
+      "operation": "canvas_run_session_start",
+      "target": "draft-edit-1778930494882",
+      "status": "done",
+      "at": "2026-05-16T11:21:35.865Z",
+      "startedAt": "2026-05-16T11:21:35.549Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778930487733-1778930488684",
+        "stageId": "edit"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778930496204",
+      "operation": "canvas_output_register",
+      "target": "draft-edit-1778930494882",
+      "status": "running",
+      "at": "2026-05-16T11:21:36.204Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-edit-smoke",
+        "nodeType": "videoEditor"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778930496204",
+      "operation": "canvas_output_register",
+      "target": "draft-edit-1778930494882",
+      "status": "done",
+      "at": "2026-05-16T11:21:36.557Z",
+      "startedAt": "2026-05-16T11:21:36.204Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-edit-smoke",
+        "nodeType": "videoEditor"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778930497548",
+      "operation": "canvas_run_session_start",
+      "target": "draft-qa-1778930496735",
+      "status": "running",
+      "at": "2026-05-16T11:21:37.548Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778930487733-1778930488684",
+        "stageId": "qa"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778930497548",
+      "operation": "canvas_run_session_start",
+      "target": "draft-qa-1778930496735",
+      "status": "done",
+      "at": "2026-05-16T11:21:37.894Z",
+      "startedAt": "2026-05-16T11:21:37.548Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778930487733-1778930488684",
+        "stageId": "qa"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778930498309",
+      "operation": "canvas_output_register",
+      "target": "draft-qa-1778930496735",
+      "status": "running",
+      "at": "2026-05-16T11:21:38.309Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-qa-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778930498309",
+      "operation": "canvas_output_register",
+      "target": "draft-qa-1778930496735",
+      "status": "done",
+      "at": "2026-05-16T11:21:38.680Z",
+      "startedAt": "2026-05-16T11:21:38.309Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-qa-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778930499721",
+      "operation": "canvas_run_session_start",
+      "target": "draft-release-1778930498843",
+      "status": "running",
+      "at": "2026-05-16T11:21:39.721Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778930487733-1778930488684",
+        "stageId": "release"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778930499721",
+      "operation": "canvas_run_session_start",
+      "target": "draft-release-1778930498843",
+      "status": "done",
+      "at": "2026-05-16T11:21:39.979Z",
+      "startedAt": "2026-05-16T11:21:39.721Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778930487733-1778930488684",
+        "stageId": "release"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778930500258",
+      "operation": "canvas_output_register",
+      "target": "draft-release-1778930498843",
+      "status": "running",
+      "at": "2026-05-16T11:21:40.258Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-release-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778930500258",
+      "operation": "canvas_output_register",
+      "target": "draft-release-1778930498843",
+      "status": "done",
+      "at": "2026-05-16T11:21:40.531Z",
+      "startedAt": "2026-05-16T11:21:40.258Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-release-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778932458672",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778932458375",
+      "status": "running",
+      "at": "2026-05-16T11:54:18.672Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-creative_production_start-1778932458672",
+      "operation": "creative_production_start",
+      "target": "ep-v2-entry-1778932458375",
+      "status": "done",
+      "at": "2026-05-16T11:54:19.657Z",
+      "startedAt": "2026-05-16T11:54:18.672Z",
+      "metadata": {
+        "scriptLength": 237,
+        "importedFileCount": 2,
+        "createPipelineRun": true
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778932459721",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778932459111",
+      "status": "running",
+      "at": "2026-05-16T11:54:19.721Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778932458375-1778932459013",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778932459721",
+      "operation": "canvas_run_session_start",
+      "target": "draft-asset_image_generation-1778932459111",
+      "status": "done",
+      "at": "2026-05-16T11:54:19.983Z",
+      "startedAt": "2026-05-16T11:54:19.721Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778932458375-1778932459013",
+        "stageId": "asset_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778932460272",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778932459111",
+      "status": "running",
+      "at": "2026-05-16T11:54:20.272Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778932460272",
+      "operation": "canvas_output_register",
+      "target": "draft-asset_image_generation-1778932459111",
+      "status": "done",
+      "at": "2026-05-16T11:54:20.541Z",
+      "startedAt": "2026-05-16T11:54:20.272Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778932461271",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778932460671",
+      "status": "running",
+      "at": "2026-05-16T11:54:21.271Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778932458375-1778932459013",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778932461271",
+      "operation": "canvas_run_session_start",
+      "target": "draft-storyboard_image_generation-1778932460671",
+      "status": "done",
+      "at": "2026-05-16T11:54:21.530Z",
+      "startedAt": "2026-05-16T11:54:21.271Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778932458375-1778932459013",
+        "stageId": "storyboard_images"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778932461822",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778932460671",
+      "status": "running",
+      "at": "2026-05-16T11:54:21.822Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778932461822",
+      "operation": "canvas_output_register",
+      "target": "draft-storyboard_image_generation-1778932460671",
+      "status": "done",
+      "at": "2026-05-16T11:54:22.095Z",
+      "startedAt": "2026-05-16T11:54:21.822Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-storyboard-smoke",
+        "nodeType": "singleImage"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778932462799",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778932462228",
+      "status": "running",
+      "at": "2026-05-16T11:54:22.799Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778932458375-1778932459013",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778932462799",
+      "operation": "canvas_run_session_start",
+      "target": "draft-video_generation-1778932462228",
+      "status": "done",
+      "at": "2026-05-16T11:54:23.049Z",
+      "startedAt": "2026-05-16T11:54:22.799Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778932458375-1778932459013",
+        "stageId": "videos"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778932463343",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778932462228",
+      "status": "running",
+      "at": "2026-05-16T11:54:23.343Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778932463343",
+      "operation": "canvas_output_register",
+      "target": "draft-video_generation-1778932462228",
+      "status": "done",
+      "at": "2026-05-16T11:54:23.661Z",
+      "startedAt": "2026-05-16T11:54:23.343Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-video-smoke",
+        "nodeType": "seedanceVideo"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778932464355",
+      "operation": "canvas_run_session_start",
+      "target": "draft-edit-1778932463784",
+      "status": "running",
+      "at": "2026-05-16T11:54:24.355Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778932458375-1778932459013",
+        "stageId": "edit"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778932464355",
+      "operation": "canvas_run_session_start",
+      "target": "draft-edit-1778932463784",
+      "status": "done",
+      "at": "2026-05-16T11:54:24.618Z",
+      "startedAt": "2026-05-16T11:54:24.355Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778932458375-1778932459013",
+        "stageId": "edit"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778932464919",
+      "operation": "canvas_output_register",
+      "target": "draft-edit-1778932463784",
+      "status": "running",
+      "at": "2026-05-16T11:54:24.919Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-edit-smoke",
+        "nodeType": "videoEditor"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778932464919",
+      "operation": "canvas_output_register",
+      "target": "draft-edit-1778932463784",
+      "status": "done",
+      "at": "2026-05-16T11:54:25.262Z",
+      "startedAt": "2026-05-16T11:54:24.919Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-edit-smoke",
+        "nodeType": "videoEditor"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778932465985",
+      "operation": "canvas_run_session_start",
+      "target": "draft-qa-1778932465394",
+      "status": "running",
+      "at": "2026-05-16T11:54:25.985Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778932458375-1778932459013",
+        "stageId": "qa"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778932465985",
+      "operation": "canvas_run_session_start",
+      "target": "draft-qa-1778932465394",
+      "status": "done",
+      "at": "2026-05-16T11:54:26.259Z",
+      "startedAt": "2026-05-16T11:54:25.985Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778932458375-1778932459013",
+        "stageId": "qa"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778932466552",
+      "operation": "canvas_output_register",
+      "target": "draft-qa-1778932465394",
+      "status": "running",
+      "at": "2026-05-16T11:54:26.552Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-qa-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778932466552",
+      "operation": "canvas_output_register",
+      "target": "draft-qa-1778932465394",
+      "status": "done",
+      "at": "2026-05-16T11:54:26.857Z",
+      "startedAt": "2026-05-16T11:54:26.552Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-qa-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778932467858",
+      "operation": "canvas_run_session_start",
+      "target": "draft-release-1778932466983",
+      "status": "running",
+      "at": "2026-05-16T11:54:27.858Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778932458375-1778932459013",
+        "stageId": "release"
+      }
+    },
+    {
+      "id": "state-op-canvas_run_session_start-1778932467858",
+      "operation": "canvas_run_session_start",
+      "target": "draft-release-1778932466983",
+      "status": "done",
+      "at": "2026-05-16T11:54:28.125Z",
+      "startedAt": "2026-05-16T11:54:27.858Z",
+      "metadata": {
+        "pipelineRunId": "pipeline-run-ep-v2-entry-1778932458375-1778932459013",
+        "stageId": "release"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778932468425",
+      "operation": "canvas_output_register",
+      "target": "draft-release-1778932466983",
+      "status": "running",
+      "at": "2026-05-16T11:54:28.425Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-release-smoke",
+        "nodeType": "contextPack"
+      }
+    },
+    {
+      "id": "state-op-canvas_output_register-1778932468425",
+      "operation": "canvas_output_register",
+      "target": "draft-release-1778932466983",
+      "status": "done",
+      "at": "2026-05-16T11:54:28.727Z",
+      "startedAt": "2026-05-16T11:54:28.425Z",
+      "metadata": {
+        "nodeId": "smart-canvas-v2-entry-release-smoke",
+        "nodeType": "contextPack"
+      }
+    }
+  ],
+  "updatedAt": "2026-05-16T11:54:28.727Z"
+}

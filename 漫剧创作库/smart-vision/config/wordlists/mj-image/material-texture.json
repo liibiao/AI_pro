@@ -1,0 +1,107 @@
+{
+  "_meta": {
+    "dimension": "材质纹理",
+    "priority": 4.5,
+    "required": false,
+    "description": "描述物体表面的材质与纹理质感，增强画面真实感与触觉体验",
+    "tip": "可与光影搭配使用，材质+光影=真实质感的关键"
+  },
+  "categories": [
+    {
+      "id": "metal",
+      "name": "金属类",
+      "tip": "钢铁、合金、贵金属",
+      "items": [
+        { "keyword": "拉丝金属（Brushed Metal）", "usage": "方向性纹理、工业感" },
+        { "keyword": "抛光金属（Polished Metal）", "usage": "镜面反射、光滑" },
+        { "keyword": "做旧金属（Aged Metal）", "usage": "锈蚀、磨损、历史感" },
+        { "keyword": "铬合金（Chrome）", "usage": "高反光、科幻、汽车" },
+        { "keyword": "古铜质感（Antique Brass）", "usage": "复古、暗金、温暖" },
+        { "keyword": "液态金属（Liquid Metal）", "usage": "流动、未来、终结者" },
+        { "keyword": "钛金属质感（Titanium）", "usage": "轻量、高级灰" },
+        { "keyword": "氧化铜绿（Patina）", "usage": "铜锈、年代感" }
+      ]
+    },
+    {
+      "id": "stone_mineral",
+      "name": "石质/矿物",
+      "tip": "岩石、大理石、宝石",
+      "items": [
+        { "keyword": "大理石纹理（Marble Texture）", "usage": "纹路、高贵、建筑" },
+        { "keyword": "混凝土质感（Concrete）", "usage": "粗粝、工业、灰调" },
+        { "keyword": "火山岩（Volcanic Stone）", "usage": "多孔、黑灰、原始" },
+        { "keyword": "板岩质感（Slate）", "usage": "层理、深色、简约" },
+        { "keyword": "水晶质感（Crystal）", "usage": "透明、折射、棱角" },
+        { "keyword": "宝石光泽（Gemstone）", "usage": "多面切割、闪光" },
+        { "keyword": "玉石质感（Jade）", "usage": "温润、半透明、东方" },
+        { "keyword": "砂岩纹理（Sandstone）", "usage": "颗粒感、暖色、自然" }
+      ]
+    },
+    {
+      "id": "fabric_leather",
+      "name": "织物/皮革",
+      "tip": "布料、丝绸、皮革质感",
+      "items": [
+        { "keyword": "丝绸质感（Silk）", "usage": "光滑、光泽、飘逸" },
+        { "keyword": "纱绸质感（Chiffon）", "usage": "轻薄、透明、梦幻" },
+        { "keyword": "天鹅绒（Velvet）", "usage": "柔软、深色、奢华" },
+        { "keyword": "亚麻质感（Linen）", "usage": "自然纹理、棉麻" },
+        { "keyword": "牛仔布（Denim）", "usage": "粗纹理、蓝色、日常" },
+        { "keyword": "皮革质感（Leather）", "usage": "皮质、韧性、高端" },
+        { "keyword": "鳄鱼皮纹（Pebbled Leather）", "usage": "凹凸纹理、奢侈" },
+        { "keyword": "毛绒质感（Furry/Fur）", "usage": "柔软、温暖、动物" },
+        { "keyword": "针织质感（Knitted）", "usage": "毛衣纹路、温暖" },
+        { "keyword": "棉质（Cotton）", "usage": "自然、柔软、日常" }
+      ]
+    },
+    {
+      "id": "wood_paper",
+      "name": "木质/纸张",
+      "tip": "木纹、纸张、自然纹理",
+      "items": [
+        { "keyword": "家具木纹（Wood Grain）", "usage": "温暖、自然、生活" },
+        { "keyword": "抛光栗木（Polished Chestnut）", "usage": "深棕、光滑、高端" },
+        { "keyword": "橡木纹理（Oak Plank）", "usage": "浅色、清晰纹路" },
+        { "keyword": "胡桃木色（Walnut Stain）", "usage": "深色木纹、经典" },
+        { "keyword": "水彩纸纹理（Watercolor Paper）", "usage": "粗纹、水渍边缘" },
+        { "keyword": "羊皮纸（Parchment）", "usage": "复古、泛黄、手稿" },
+        { "keyword": "牛皮纸（Kraft Paper）", "usage": "粗糙、棕色、手工" },
+        { "keyword": "纸板质感（Cardboard）", "usage": "朴素质感、包装" }
+      ]
+    },
+    {
+      "id": "glass_transparent",
+      "name": "玻璃/透明",
+      "tip": "透明、折射、发光材质",
+      "items": [
+        { "keyword": "玻璃质感（Glass）", "usage": "透明、折射、光滑" },
+        { "keyword": "磨砂玻璃（Frosted Glass）", "usage": "半透明、模糊、隐私" },
+        { "keyword": "虹彩玻璃（Iridescent Glass）", "usage": "变色、折射、梦幻" },
+        { "keyword": "全息质感（Holographic）", "usage": "彩虹色、未来感" },
+        { "keyword": "冰质感（Ice Texture）", "usage": "冰冷、透明、裂纹" },
+        { "keyword": "树脂质感（Resin）", "usage": "半透明、琥珀、琥珀色" }
+      ]
+    },
+    {
+      "id": "special_material",
+      "name": "特殊材质",
+      "tip": "非常规材质、特效",
+      "items": [
+        { "keyword": "陶瓷质感（Ceramic）", "usage": "光滑、釉面、精致" },
+        { "keyword": "粘土质感（Clay）", "usage": "手工、可塑、哑光" },
+        { "keyword": "塑料质感（Plastic）", "usage": "光滑、工业、廉价" },
+        { "keyword": "橡胶质感（Rubber）", "usage": "弹性、哑光、防水" },
+        { "keyword": "液态质感（Liquid）", "usage": "流动、透明、有机" },
+        { "keyword": "火焰质感（Fire Texture）", "usage": "火焰表面、能量" },
+        { "keyword": "沙质感（Sand Texture）", "usage": "颗粒、干燥、沙漠" },
+        { "keyword": "水波纹（Water Ripple）", "usage": "涟漪、水面、倒影" },
+        { "keyword": "珠光质感（Pearlescent）", "usage": "柔和光泽、高级" },
+        { "keyword": "哑光质感（Matte）", "usage": "无光泽、柔和、高级" },
+        { "keyword": "砖石质感（Brick Texture）", "usage": "粗糙、建筑、纹理" },
+        { "keyword": "油漆质感（Paint Texture）", "usage": "涂层、光滑或剥落" },
+        { "keyword": "刺绣质感（Embroidery）", "usage": "线绣图案、精致" },
+        { "keyword": "折纸质感（Origami）", "usage": "折叠线条、纸张" }
+      ]
+    }
+  ]
+}

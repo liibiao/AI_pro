@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "purpose": "小白风格推荐器规则库：从创作源关键词推荐 Top3 影片风格画质基调。",
+  "rules": [
+    {"id":"xianxia-awakening","keywords":["灵纹","觉醒","宗门","练武场","逆袭","少年","灵力","石碑"],"recommend":["cinematic-hzw-premium","donghua-nezha-mythic-cg","donghua-qin-wuxia-3d"],"reason":"玄幻逆袭、少年觉醒、训练场反打适合国漫热血与电影质感。"},
+    {"id":"youth-romance","keywords":["高中","校园","黄昏","电车","告白","离别","青春","窗帘","夏天"],"recommend":["anime-shinkai-youth-sky","cinematic-literary-filmgrain","anime-ghibli-healing"],"reason":"青春、离别、天空和电车意象适合透明天空光与文艺胶片。"},
+    {"id":"cyber-police","keywords":["赛博","义体","黑客","AI","飞车","未来城市","霓虹","雨夜","警探"],"recommend":["genre-cyberpunk-neon-rain","cinematic-noir-crime","anime-trigger-impact"],"reason":"未来都市、义体和警匪追逐适合霓虹雨夜与冷峻犯罪质感。"},
+    {"id":"gangster-undercover","keywords":["黑帮","卧底","交易","枪声","审讯","街头火拼","毒品","黑钱"],"recommend":["cinematic-noir-crime","cinematic-hzw-premium","genre-cyberpunk-neon-rain"],"reason":"黑帮、卧底、枪战和交易适合低调照明、硬光阴影和城市写实。"},
+    {"id":"horror-ghost","keywords":["凶宅","怨灵","鬼影","怪谈","附身","门缝","电视闪烁","走廊"],"recommend":["genre-jhorror-ghost","cinematic-noir-crime","cinematic-hzw-premium"],"reason":"灵异异常、凶宅和怪谈适合日常空间异常化与信息延迟。"},
+    {"id":"zombie-apocalypse","keywords":["僵尸","尸群","生化","末日","废墟","防线","逃亡","感染"],"recommend":["genre-zombie-gritty","cinematic-hzw-premium","cinematic-noir-crime"],"reason":"尸群、防线和废墟适合破败写实、灰绿暗红和生存压迫。"},
+    {"id":"pet-healing","keywords":["小狗","小猫","萌宠","森林","小精灵","回家","亲子","治愈"],"recommend":["pet-pixar-warm-cg","anime-ghibli-healing","anime-shinkai-youth-sky"],"reason":"动物主角、森林冒险和治愈关系适合温暖CG或手绘自然光。"},
+    {"id":"wuxia-dark","keywords":["江湖","复仇","暗杀","门派","夜战","刀客","剑客","屋檐"],"recommend":["donghua-buliangren-dark-jianghu","donghua-qin-wuxia-3d","cinematic-hzw-premium"],"reason":"江湖复仇、夜战和暗杀适合暗黑江湖或国风武侠3D。"},
+    {"id":"mecha-impact","keywords":["机甲","驾驶舱","巨型机器人","驾驶员","末日","怪兽","同步率"],"recommend":["anime-trigger-impact","cinematic-hzw-premium","genre-cyberpunk-neon-rain"],"reason":"机甲和巨物压迫适合高张力动画或PBR工业电影质感。"}
+  ],
+  "fallback": ["cinematic-hzw-premium", "cinematic-literary-filmgrain", "anime-shinkai-youth-sky"]
+}

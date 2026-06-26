@@ -1,0 +1,69 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "packId": "smart-vision-methodology-core-v0.1",
+  "title": "智能视界 Phase 2 方法论核心包",
+  "updatedAt": "2026-05-07T15:25:00+08:00",
+  "categories": [
+    {
+      "id": "workflow-gate",
+      "title": "工作流与门禁",
+      "taskTypes": ["project_control", "phase_gate", "qa"],
+      "documents": [
+        "docs/workflow.md",
+        "docs/phase-gate-checklist.md",
+        "docs/pipeline-sync-protocol.md",
+        "docs/project-memory-system.md"
+      ]
+    },
+    {
+      "id": "storyboard-shot",
+      "title": "分镜与镜头设计",
+      "taskTypes": ["storyboard", "shot_design", "director_storyboard"],
+      "documents": [
+        "docs/storyboard-methodology.md",
+        "docs/scene-storyboard-formulas.md",
+        "docs/camera-shot-methodology.md",
+        "docs/shot-language-library.md",
+        "docs/blocking-camera-geometry-methodology.md"
+      ]
+    },
+    {
+      "id": "prompt-generation",
+      "title": "长版提示词与平台生成",
+      "taskTypes": ["seedance_prompt", "jimeng_prompt", "image_prompt", "video_generation"],
+      "documents": [
+        "docs/prompt-standards.md",
+        "docs/long-prompt-detail-gate.md",
+        "docs/seedance-prompt-engineering.md",
+        "docs/jimeng-anti-collapse-core.md",
+        "docs/gpt-image-prompt-methodology.md"
+      ]
+    },
+    {
+      "id": "action-audiovisual",
+      "title": "动作戏与视听调度",
+      "taskTypes": ["action_scene", "combat_prompt", "impact_sound"],
+      "documents": [
+        "docs/action-speed-design-standard.md",
+        "docs/action-combat-design-standard.md",
+        "docs/action-case-opposition-force-camera.md",
+        "docs/staging-impact-audiovisual-methodology.md",
+        "docs/sound-design-montage-standard.md"
+      ]
+    },
+    {
+      "id": "asset-style",
+      "title": "资产、美术与子风格",
+      "taskTypes": ["character_asset", "scene_asset", "prop_asset", "style_bible"],
+      "documents": [
+        "docs/hzw-master-style-system.md",
+        "docs/master-methodology-toolkit.md",
+        "docs/character-design-sheet-spec.md",
+        "docs/scene-design-sheet-spec.md",
+        "docs/film-style-bible-standard.md"
+      ]
+    }
+  ],
+  "note": "Phase 2 雏形：先登记高频任务必读方法论文档，后续升级为按任务自动组装上下文包。"
+}

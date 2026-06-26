@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>分镜图创建视频聚合节点效果图</title>
+  <style>
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      width:1600px;
+      height:1000px;
+      overflow:hidden;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+      color:#e8eef8;
+      background:
+        radial-gradient(circle at 30% 8%,rgba(56,189,248,.08),transparent 32%),
+        radial-gradient(circle at 76% 86%,rgba(34,197,94,.06),transparent 34%),
+        #070b10;
+    }
+    body::before{
+      content:"";
+      position:absolute;inset:0;
+      background-image:radial-gradient(rgba(148,163,184,.22) 1.25px,transparent 1.25px);
+      background-size:28px 28px;
+      opacity:.42;
+    }
+    .board{
+      position:absolute;
+      left:64px;top:52px;
+      width:1472px;height:896px;
+      border:.75px solid rgba(148,163,184,.18);
+      border-radius:24px;
+      background:#0b1118;
+      box-shadow:0 34px 100px rgba(0,0,0,.56),inset 0 1px 0 rgba(255,255,255,.04);
+      overflow:hidden;
+    }
+    .head{
+      height:78px;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      padding:0 22px;
+      border-bottom:.75px solid rgba(148,163,184,.14);
+      background:#0f1722;
+    }
+    .title{display:grid;gap:4px;min-width:278px}
+    .title b{font-size:20px;letter-spacing:.02em}
+    .title span{font-size:12px;color:rgba(203,213,225,.58)}
+    .seg{
+      display:flex;
+      gap:6px;
+      padding:5px;
+      border:.75px solid rgba(96,165,250,.20);
+      border-radius:18px;
+      background:#111b27;
+    }
+    .seg button{
+      height:42px;
+      min-width:174px;
+      padding:0 18px;
+      border:0;
+      border-radius:14px;
+      background:transparent;
+      color:rgba(226,232,240,.65);
+      font-size:14px;
+      font-weight:760;
+    }
+    .seg button.active{
+      background:linear-gradient(180deg,rgba(37,99,235,.74),rgba(14,116,144,.42));
+      color:#fff;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+    }
+    .meta{
+      margin-left:auto;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      color:rgba(203,213,225,.72);
+      font-size:12px;
+    }
+    .pill{
+      height:34px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:0 12px;
+      border:.75px solid rgba(96,165,250,.18);
+      border-radius:999px;
+      background:rgba(37,99,235,.10);
+      white-space:nowrap;
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:#63e6be;box-shadow:0 0 16px rgba(99,230,190,.55)}
+    .layout{
+      height:calc(100% - 78px - 78px);
+      display:grid;
+      grid-template-columns:272px minmax(0,1fr) 384px;
+      gap:12px;
+      padding:14px;
+      min-height:0;
+    }
+    .rail,.grid,.side{
+      min-height:0;
+      border:.75px solid rgba(148,163,184,.14);
+      border-radius:18px;
+      background:#0f1722;
+      overflow:hidden;
+    }
+    .rail{display:grid;grid-template-rows:auto 1fr;gap:10px;padding:14px}
+    .rail h3,.grid h3,.side h3{margin:0;font-size:14px;color:#f4f7fc}
+    .hint{
+      margin-top:8px;
+      padding:12px;
+      border:.75px solid rgba(14,165,233,.20);
+      border-radius:14px;
+      background:rgba(14,116,144,.10);
+      color:rgba(191,219,254,.86);
+      font-size:12px;
+      line-height:1.55;
+    }
+    .flow{display:grid;gap:10px;align-content:start}
+    .step{
+      padding:12px;
+      border:.75px solid rgba(148,163,184,.12);
+      border-radius:14px;
+      background:#121d2a;
+      display:grid;
+      gap:7px;
+    }
+    .step b{font-size:13px}
+    .step span{font-size:11px;color:rgba(203,213,225,.55);line-height:1.45}
+    .step.active{border-color:rgba(34,197,94,.35);background:rgba(20,83,45,.16)}
+    .grid{display:grid;grid-template-rows:auto minmax(0,1fr);padding:14px;gap:12px}
+    .gridHead{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .gridHead span{color:rgba(203,213,225,.55);font-size:12px}
+    .cards{
+      min-height:0;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      grid-auto-rows:260px;
+      gap:12px;
+    }
+    .card{
+      position:relative;
+      min-width:0;
+      display:grid;
+      grid-template-rows:132px auto 42px;
+      gap:9px;
+      padding:10px;
+      border:.75px solid rgba(148,163,184,.15);
+      border-radius:16px;
+      background:#111b27;
+      overflow:hidden;
+    }
+    .card.active{border-color:rgba(96,165,250,.48);background:#12243a}
+    .preview{
+      position:relative;
+      border-radius:12px;
+      background:#070b10;
+      overflow:hidden;
+      border:.75px solid rgba(255,255,255,.08);
+    }
+    .quad{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:1px;background:rgba(255,255,255,.12)}
+    .quad i{display:block;background:linear-gradient(135deg,var(--a),var(--b));position:relative}
+    .quad i::after{content:attr(data-n);position:absolute;left:7px;top:6px;width:20px;height:20px;border-radius:999px;display:grid;place-items:center;background:rgba(0,0,0,.42);font-size:10px;font-weight:800;color:#fff}
+    .tag{
+      position:absolute;left:8px;top:8px;z-index:2;
+      height:24px;display:inline-flex;align-items:center;padding:0 9px;
+      border-radius:999px;background:rgba(2,6,23,.68);border:.75px solid rgba(255,255,255,.13);
+      font-size:11px;color:#dbeafe;
+    }
+    .card h4{margin:0;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .card p{margin:0;color:rgba(203,213,225,.58);font-size:12px;line-height:1.45;height:34px;overflow:hidden}
+    .refs{display:flex;gap:6px;flex-wrap:wrap;align-content:flex-start;overflow:hidden}
+    .chip{
+      height:30px;display:inline-flex;align-items:center;gap:6px;max-width:118px;
+      padding:3px 9px 3px 3px;border:.75px solid rgba(96,165,250,.24);
+      border-radius:999px;background:rgba(37,99,235,.13);font-size:11px;color:#dbeafe;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+    .thumb{width:24px;height:24px;border-radius:8px;background:linear-gradient(135deg,#dbeafe,#334155);flex:0 0 24px}
+    .side{display:grid;grid-template-rows:auto 162px auto minmax(0,1fr);gap:12px;padding:14px}
+    .sideTop{display:flex;align-items:center;justify-content:space-between}
+    .sideTop span{font-size:12px;color:rgba(203,213,225,.55)}
+    .videoBox{
+      position:relative;
+      border-radius:16px;
+      border:.75px solid rgba(255,255,255,.10);
+      background:linear-gradient(135deg,#1e3a8a,#0e7490 60%,#172554);
+      overflow:hidden;
+    }
+    .play{
+      position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+      width:54px;height:54px;border-radius:999px;display:grid;place-items:center;
+      background:rgba(0,0,0,.42);color:#fff;font-size:22px;
+      border:.75px solid rgba(255,255,255,.18);
+    }
+    .prompt{
+      min-height:0;
+      overflow:auto;
+      padding:14px;
+      border:.75px solid rgba(148,163,184,.14);
+      border-radius:16px;
+      background:#151f2c;
+      color:rgba(235,242,252,.88);
+      font-size:13px;
+      line-height:1.68;
+    }
+    .prompt b{color:#86efac}
+    .prompt em{font-style:normal;color:#93c5fd}
+    .subhead{font-size:12px;color:rgba(203,213,225,.48)}
+    .foot{
+      height:78px;
+      display:grid;
+      grid-template-columns:1fr auto auto auto;
+      align-items:center;
+      gap:12px;
+      padding:12px 18px;
+      border-top:.75px solid rgba(148,163,184,.14);
+      background:#0f1722;
+    }
+    .config{display:flex;gap:10px;align-items:center;min-width:0}
+    .select{height:38px;min-width:128px;border:.75px solid rgba(148,163,184,.16);border-radius:999px;background:#151f2c;display:flex;align-items:center;justify-content:center;color:rgba(235,242,252,.82);font-size:13px}
+    .btn{height:44px;min-width:166px;border:0;border-radius:14px;background:#172033;color:rgba(226,232,240,.78);font-size:14px;font-weight:760}
+    .btn.primary{min-width:196px;background:linear-gradient(180deg,#2563eb,#1d4ed8);color:#fff}
+    .btn.green{background:rgba(34,197,94,.18);color:#bbf7d0;border:.75px solid rgba(34,197,94,.32)}
+  </style>
+</head>
+<body>
+  <main class="board">
+    <header class="head">
+      <div class="title">
+        <b>创建视频节点 · 聚合确认</b>
+        <span>从分镜图或分段提示词批量创建视频节点</span>
+      </div>
+      <div class="seg">
+        <button class="active">分镜图 + 统一提示词</button>
+        <button>仅长提示词</button>
+      </div>
+      <div class="meta">
+        <span class="pill"><i class="dot"></i> 12 段视频</span>
+        <span class="pill">4 张分镜图</span>
+        <span class="pill">最多 9 张参考图</span>
+      </div>
+    </header>
+    <section class="layout">
+      <aside class="rail">
+        <div>
+          <h3>创建方式</h3>
+          <div class="hint">已有分镜图时，可用分镜图作为画面约束；没有分镜图时，退回为纯提示词创建视频节点。</div>
+        </div>
+        <div class="flow">
+          <div class="step active"><b>1. 绑定角色与场景</b><span>@陆燃、@烬魔王、@荒原战场等资产自动进入每段视频引用。</span></div>
+          <div class="step active"><b>2. 选择分镜图</b><span>@分镜图03 作为画面构图、镜头关系、动作节奏参考。</span></div>
+          <div class="step"><b>3. 批量创建视频节点</b><span>生成一个聚合节点，内部按段落 grid 管理视频生成、重试和预览。</span></div>
+        </div>
+      </aside>
+      <section class="grid">
+        <div class="gridHead">
+          <h3>分段视频 Grid</h3>
+          <span>点击卡片查看统一提示词和参考图绑定</span>
+        </div>
+        <div class="cards">
+          <article class="card active">
+            <div class="preview">
+              <span class="tag">分镜图输入</span>
+              <div class="quad"><i data-n="1" style="--a:#334155;--b:#ef4444"></i><i data-n="2" style="--a:#1e293b;--b:#f97316"></i><i data-n="3" style="--a:#0f172a;--b:#38bdf8"></i><i data-n="4" style="--a:#451a03;--b:#facc15"></i></div>
+            </div>
+            <div><h4>镜头 01-04 · 荒原开战</h4><p>两军冲锋，荒原决战开场，血色夕阳与魔族黑潮压境。</p></div>
+            <div class="refs"><span class="chip"><i class="thumb"></i>@陆燃</span><span class="chip"><i class="thumb"></i>@烬魔王</span><span class="chip"><i class="thumb"></i>@分镜图01</span></div>
+          </article>
+          <article class="card">
+            <div class="preview"><span class="tag">分镜图输入</span><div class="quad"><i data-n="1" style="--a:#082f49;--b:#38bdf8"></i><i data-n="2" style="--a:#1f2937;--b:#e5e7eb"></i><i data-n="3" style="--a:#422006;--b:#f97316"></i><i data-n="4" style="--a:#172554;--b:#60a5fa"></i></div></div>
+            <div><h4>镜头 05-08 · 血色冲锋</h4><p>陆燃破阵、韩峥护盾、沈清岚医帐射落魔兽。</p></div>
+            <div class="refs"><span class="chip"><i class="thumb"></i>@韩峥</span><span class="chip"><i class="thumb"></i>@沈清岚</span><span class="chip"><i class="thumb"></i>@分镜图02</span></div>
+          </article>
+          <article class="card">
+            <div class="preview"><span class="tag">仅提示词</span><div class="quad"><i data-n="T" style="--a:#111827;--b:#1d4ed8"></i><i data-n="P" style="--a:#312e81;--b:#7c3aed"></i><i data-n="R" style="--a:#0f172a;--b:#475569"></i><i data-n="M" style="--a:#020617;--b:#0891b2"></i></div></div>
+            <div><h4>镜头 09-12 · 温存片刻</h4><p>护符系在长枪上，角色关系和情绪推进。</p></div>
+            <div class="refs"><span class="chip"><i class="thumb"></i>@陆燃</span><span class="chip"><i class="thumb"></i>@沈清岚</span></div>
+          </article>
+          <article class="card">
+            <div class="preview"><span class="tag">分镜图输入</span><div class="quad"><i data-n="1" style="--a:#020617;--b:#991b1b"></i><i data-n="2" style="--a:#450a0a;--b:#ef4444"></i><i data-n="3" style="--a:#111827;--b:#a855f7"></i><i data-n="4" style="--a:#1f2937;--b:#f97316"></i></div></div>
+            <div><h4>镜头 13-16 · 魔王降临</h4><p>烬魔王撕裂防线，黑焰尸潮压迫人族阵线。</p></div>
+            <div class="refs"><span class="chip"><i class="thumb"></i>@烬魔王</span><span class="chip"><i class="thumb"></i>@荒原战场</span><span class="chip"><i class="thumb"></i>@分镜图04</span></div>
+          </article>
+          <article class="card">
+            <div class="preview"><span class="tag">分镜图输入</span><div class="quad"><i data-n="1" style="--a:#0f172a;--b:#f59e0b"></i><i data-n="2" style="--a:#1e1b4b;--b:#ef4444"></i><i data-n="3" style="--a:#082f49;--b:#22d3ee"></i><i data-n="4" style="--a:#172554;--b:#f8fafc"></i></div></div>
+            <div><h4>镜头 17-20 · 兄弟牺牲</h4><p>韩峥巨盾阻挡魔兽，医帐撤离，阵线崩裂。</p></div>
+            <div class="refs"><span class="chip"><i class="thumb"></i>@韩峥</span><span class="chip"><i class="thumb"></i>@医帐</span><span class="chip"><i class="thumb"></i>@分镜图05</span></div>
+          </article>
+          <article class="card">
+            <div class="preview"><span class="tag">待生成</span><div class="quad"><i data-n="+" style="--a:#0b1120;--b:#1e293b"></i><i data-n="+" style="--a:#0b1120;--b:#1e293b"></i><i data-n="+" style="--a:#0b1120;--b:#1e293b"></i><i data-n="+" style="--a:#0b1120;--b:#1e293b"></i></div></div>
+            <div><h4>镜头 21-24 · 血誓觉醒</h4><p>主角觉醒血誓之力，与烬魔王进入终局对峙。</p></div>
+            <div class="refs"><span class="chip"><i class="thumb"></i>@陆燃</span><span class="chip"><i class="thumb"></i>@烬魔王</span></div>
+          </article>
+        </div>
+      </section>
+      <aside class="side">
+        <div class="sideTop"><h3>所选段落详情</h3><span>镜头 01-04</span></div>
+        <div class="videoBox"><div class="play">▶</div></div>
+        <div class="subhead">统一视频提示词预览</div>
+        <div class="prompt">
+          <b>@陆燃</b> = 人族青年战将，银甲残破，手持长枪逐日。<br>
+          <b>@烬魔王</b> = 魔族统帅，黑角赤瞳，破碎魔翼，黑焰巨刃。<br>
+          <b>@荒原战场</b> = 血色黄昏、龟裂荒原、人魔大战主战场。<br>
+          <b>@分镜图01</b> = 当前 4 宫格分镜图。<br><br>
+          <em>请严格参考角色和场景图，根据 @分镜图01 生成视频。</em><br>
+          镜头需要遵循分镜图的构图、人物站位、动作方向、前中后景层次和光影气氛；不要改变角色身份，不要替换场景，不要新增无关角色。
+        </div>
+      </aside>
+    </section>
+    <footer class="foot">
+      <div class="config">
+        <span class="select">模型 Seedance</span>
+        <span class="select">时长 15s</span>
+        <span class="select">比例 16:9</span>
+        <span class="select">参考图上限 9</span>
+      </div>
+      <button class="btn">导出视频提示词</button>
+      <button class="btn green">仅创建聚合节点</button>
+      <button class="btn primary">批量创建视频节点</button>
+    </footer>
+  </main>
+</body>
+</html>

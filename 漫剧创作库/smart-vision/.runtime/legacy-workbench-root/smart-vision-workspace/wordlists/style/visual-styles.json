@@ -1,0 +1,114 @@
+{
+  "_meta": {
+    "source": "神词系统原建词库，作为视觉风格参考资源层",
+    "version": "soullens-v2",
+    "description": "13 种视觉风格关键词与负面提示词，用于 MJ/Seedance 风格锁定",
+    "usage": "风格推荐时匹配 visualStyle ID，取 keywords 作为正向提示词，negative 作为负面提示词"
+  },
+  "visual_styles": [
+    {
+      "id": "cinematic",
+      "name": "电影写实风格",
+      "nameEn": "Cinematic Film",
+      "description": "电影写实风格，画面清晰流畅",
+      "keywords": ["photorealistic", "cinematic film still", "35mm film", "film grain", "shallow depth of field"],
+      "negative": ["anime", "cartoon", "illustration", "painting"]
+    },
+    {
+      "id": "anime",
+      "name": "日系动画风格",
+      "nameEn": "Japanese Anime",
+      "description": "日系动画风格，画面清晰流畅",
+      "keywords": ["anime style", "cel shading", "vibrant colors", "clean lines"],
+      "negative": ["photorealistic", "3D render", "live action"]
+    },
+    {
+      "id": "donghua_xianxia",
+      "name": "3D国风仙侠",
+      "nameEn": "3D Chinese Fantasy",
+      "description": "3D国风仙侠，电影级画质，画面清晰流畅",
+      "keywords": ["3D Chinese fantasy", "xianxia", "martial arts", "flowing robes", "mystical atmosphere"],
+      "negative": ["2D", "flat", "western style"]
+    },
+    {
+      "id": "ink_wash",
+      "name": "水墨国风",
+      "nameEn": "Chinese Ink Wash",
+      "description": "水墨国风，画面清晰流畅",
+      "keywords": ["Chinese ink wash painting", "sumi-e", "monochrome", "brush strokes", "minimalist"],
+      "negative": ["colorful", "photorealistic", "3D"]
+    },
+    {
+      "id": "watercolor",
+      "name": "水彩画风格",
+      "nameEn": "Watercolor",
+      "description": "水彩画风格，画面清晰流畅",
+      "keywords": ["watercolor painting", "soft edges", "transparent layers", "paper texture"],
+      "negative": ["photorealistic", "3D", "sharp edges"]
+    },
+    {
+      "id": "oil_painting",
+      "name": "油画质感",
+      "nameEn": "Oil Painting",
+      "description": "油画质感，画面清晰流畅",
+      "keywords": ["oil painting", "thick brush strokes", "impasto", "canvas texture", "rich colors"],
+      "negative": ["photorealistic", "digital", "flat"]
+    },
+    {
+      "id": "comic",
+      "name": "漫画风格",
+      "nameEn": "Comic Book",
+      "description": "漫画风格，画面清晰流畅",
+      "keywords": ["comic book style", "bold outlines", "halftone dots", "speech bubbles"],
+      "negative": ["photorealistic", "3D", "painterly"]
+    },
+    {
+      "id": "pixel_art",
+      "name": "像素风格",
+      "nameEn": "Pixel Art",
+      "description": "像素风格，画面清晰流畅",
+      "keywords": ["pixel art", "8-bit", "16-bit", "retro gaming", "low resolution aesthetic"],
+      "negative": ["high resolution", "photorealistic", "smooth"]
+    },
+    {
+      "id": "noir",
+      "name": "黑白电影风格",
+      "nameEn": "Film Noir",
+      "description": "黑白电影风格，画面清晰流畅",
+      "keywords": ["film noir", "black and white", "high contrast", "dramatic shadows", "1940s style"],
+      "negative": ["colorful", "bright", "flat lighting"]
+    },
+    {
+      "id": "fantasy",
+      "name": "奇幻风格",
+      "nameEn": "Fantasy",
+      "description": "奇幻风格，电影级画质，画面清晰流畅",
+      "keywords": ["fantasy art", "magical atmosphere", "epic scale", "mythical creatures"],
+      "negative": ["realistic", "modern", "mundane"]
+    },
+    {
+      "id": "cyberpunk",
+      "name": "赛博朋克风格",
+      "nameEn": "Cyberpunk",
+      "description": "赛博朋克风格，电影级画质，画面清晰流畅",
+      "keywords": ["cyberpunk", "neon lights", "futuristic", "dystopian", "high tech low life"],
+      "negative": ["natural", "pastoral", "historical"]
+    },
+    {
+      "id": "3d_render",
+      "name": "3D渲染风格",
+      "nameEn": "3D Render",
+      "description": "3D渲染风格，画面清晰流畅",
+      "keywords": ["3D render", "CGI", "ray tracing", "clean geometry", "studio lighting"],
+      "negative": ["2D", "hand drawn", "photorealistic"]
+    },
+    {
+      "id": "concept_art",
+      "name": "概念艺术风格",
+      "nameEn": "Concept Art",
+      "description": "概念艺术风格，画面清晰流畅",
+      "keywords": ["concept art", "matte painting", "digital painting", "atmospheric perspective"],
+      "negative": ["photorealistic", "finished illustration", "flat"]
+    }
+  ]
+}

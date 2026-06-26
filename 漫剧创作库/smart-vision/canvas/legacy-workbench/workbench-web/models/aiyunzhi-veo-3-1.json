@@ -1,0 +1,39 @@
+{
+  "id": "aiyunzhi-veo-3-1",
+  "configId": "aiyunzhi-veo-3-1",
+  "modelKey": "aiyunzhi-veo-3-1",
+  "providerKey": "aiyunzhi",
+  "channelKey": "aiyunzhi-veo-3-1",
+  "name": "veo_3_1",
+  "displayName": "Aiyunzhi Veo 3.1",
+  "label": "Aiyunzhi Veo 3.1",
+  "type": "video",
+  "model": "veo_3_1",
+  "baseUrl": "https://aiyunzhi.top/v1",
+  "url": "https://aiyunzhi.top/v1/chat/completions",
+  "key": "",
+  "adapter": "aiyunzhi-veo-video",
+  "endpointPath": "/chat/completions",
+  "uploadMode": "object_storage",
+  "supports": { "txt2video": true, "img2video": true, "firstFrame": true, "firstLastFrame": false, "referenceImages": true },
+  "capabilities": {
+    "resolutions": ["720p", "1080p"],
+    "durations": [4, 6, 8],
+    "defaultDuration": 8,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16"],
+    "maxImages": { "full": 2, "smartMultiFrame": 2, "firstLast": 0 },
+    "supportsAudio": false,
+    "supportsVideo": false,
+    "supportsLastFrame": false
+  },
+  "modelAssembly": { "type": "passthrough" },
+  "note": "Aiyunzhi Veo 3.1 maps UI selections to firefly-veo31-{duration}s-{ratio}-{resolution}; reference mode uses firefly-veo31-ref.",
+  "protocol": {
+    "adapter": "aiyunzhi-veo-video",
+    "endpointPath": "/chat/completions",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "ui": { "label": "Veo 3.1", "badge": "Veo", "badgeColor": "#2563eb" }
+}

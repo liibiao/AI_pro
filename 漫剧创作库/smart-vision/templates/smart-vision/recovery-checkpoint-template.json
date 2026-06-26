@@ -1,0 +1,15 @@
+{
+  "checkpoint_id": "",
+  "created_at": "",
+  "project_state_ref": ".smart-vision/project-state.json",
+  "last_stable_phase": "",
+  "last_stable_episode_id": "",
+  "last_stable_storyboard_id": "",
+  "next_recommended_action": "",
+  "scan_status": "not_run",
+  "missing_registry_items": [],
+  "orphan_files": [],
+  "needs_review": [],
+  "capability_status": "locked",
+  "notes": []
+}

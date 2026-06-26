@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>编辑分镜图详情弹窗</title>
+  <style>
+    :root{
+      color-scheme:dark;
+      --bg:#05080d;
+      --panel:#0a111c;
+      --panel2:#0d1724;
+      --line:rgba(148,163,184,.16);
+      --line2:rgba(96,165,250,.34);
+      --text:#eef5ff;
+      --muted:rgba(203,213,225,.64);
+      --weak:rgba(148,163,184,.48);
+      --blue:#3b82f6;
+      --green:#4ade80;
+      --amber:#facc15;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",sans-serif;
+      letter-spacing:0;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 18% 92%,rgba(107,33,168,.15),transparent 34%),
+        radial-gradient(circle at 82% 12%,rgba(37,99,235,.18),transparent 30%),
+        linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px),
+        #05070b;
+      background-size:auto,auto,32px 32px,32px 32px,auto;
+    }
+    .stage{
+      width:1920px;
+      height:1080px;
+      display:grid;
+      place-items:center;
+      padding:38px;
+      background:rgba(0,0,0,.42);
+    }
+    .modal{
+      width:1500px;
+      height:900px;
+      display:grid;
+      grid-template-rows:auto minmax(0,1fr) auto;
+      overflow:hidden;
+      border:1px solid rgba(148,163,184,.22);
+      border-radius:22px;
+      background:linear-gradient(180deg,rgba(9,17,28,.98),rgba(4,9,16,.98));
+      box-shadow:0 40px 120px rgba(0,0,0,.72),inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .header{
+      height:78px;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:18px;
+      align-items:center;
+      padding:0 22px;
+      border-bottom:1px solid var(--line);
+      background:rgba(11,18,29,.90);
+    }
+    .title{min-width:0}
+    .title b{display:block;font-size:22px;line-height:1.1}
+    .title span{display:block;margin-top:7px;color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .head-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .pill{
+      height:34px;display:inline-flex;align-items:center;gap:7px;
+      padding:0 12px;border:1px solid var(--line);border-radius:10px;
+      background:rgba(255,255,255,.035);color:rgba(226,232,240,.78);
+      font-size:13px;white-space:nowrap;
+    }
+    .pill.green{border-color:rgba(74,222,128,.24);background:rgba(22,101,52,.20);color:#bbf7d0}
+    .close{
+      width:38px;height:38px;display:grid;place-items:center;border-radius:999px;
+      border:1px solid var(--line);background:rgba(15,23,42,.72);color:#e5e7eb;font-size:20px;
+    }
+    .body{
+      min-height:0;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) 360px;
+      gap:14px;
+      padding:16px;
+    }
+    .editor-main{
+      min-width:0;min-height:0;
+      display:grid;
+      grid-template-rows:minmax(0,1fr) 178px;
+      gap:12px;
+    }
+    .canvas-panel{
+      min-width:0;min-height:0;
+      border:1px solid var(--line2);
+      border-radius:18px;
+      background:rgba(2,6,12,.74);
+      overflow:hidden;
+      display:grid;
+      grid-template-rows:auto minmax(0,1fr);
+    }
+    .panel-head{
+      height:48px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:0 14px;border-bottom:1px solid var(--line);
+      background:rgba(12,20,32,.72);
+    }
+    .panel-head b{font-size:15px}.panel-head span{font-size:12px;color:var(--weak)}
+    .grid-wrap{
+      min-height:0;
+      padding:14px;
+      display:grid;
+      place-items:center;
+    }
+    .story-grid{
+      width:min(100%,840px);
+      aspect-ratio:16/9;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      grid-template-rows:repeat(3,minmax(0,1fr));
+      border:1px solid rgba(103,232,249,.42);
+      border-radius:18px;
+      overflow:hidden;
+      background:#030712;
+      box-shadow:0 20px 54px rgba(0,0,0,.36),inset 0 0 0 1px rgba(255,255,255,.02);
+    }
+    .cell{
+      position:relative;overflow:hidden;
+      border-right:1px solid rgba(103,232,249,.28);
+      border-bottom:1px solid rgba(103,232,249,.28);
+      background:rgba(15,23,42,.74);
+    }
+    .cell:nth-child(3n){border-right:0}
+    .cell:nth-child(n+7){border-bottom:0}
+    .cell:nth-child(1){background:linear-gradient(135deg,#1e293b,#7c2d12)}
+    .cell:nth-child(2){background:linear-gradient(135deg,#172554,#0e7490)}
+    .cell:nth-child(3){background:linear-gradient(135deg,#111827,#9333ea)}
+    .cell:nth-child(4){background:linear-gradient(135deg,#064e3b,#1e1b4b)}
+    .cell:nth-child(5){background:linear-gradient(135deg,#451a03,#0f172a)}
+    .cell:nth-child(6){background:linear-gradient(135deg,#7f1d1d,#312e81)}
+    .cell:nth-child(7){background:linear-gradient(135deg,#082f49,#713f12)}
+    .cell:nth-child(8){background:linear-gradient(135deg,#3f1d1d,#0f172a)}
+    .cell:nth-child(9){background:linear-gradient(135deg,#0f172a,#164e63)}
+    .cell:before{
+      content:"";position:absolute;inset:18% 16%;
+      border-radius:48% 52% 36% 54%;
+      background:radial-gradient(circle at 42% 22%,rgba(255,255,255,.24),transparent 18%),rgba(255,255,255,.12);
+      filter:blur(.2px);
+    }
+    .cell .index{
+      position:absolute;left:10px;top:9px;
+      color:#e5eefc;font-size:13px;font-weight:800;text-shadow:0 2px 8px rgba(0,0,0,.5);
+    }
+    .cell .status{
+      position:absolute;right:8px;bottom:8px;
+      height:24px;display:inline-flex;align-items:center;padding:0 8px;
+      border:1px solid rgba(226,232,240,.16);border-radius:999px;
+      background:rgba(2,6,12,.60);color:rgba(226,232,240,.80);font-size:11px;
+    }
+    .cell.selected{box-shadow:inset 0 0 0 3px rgba(96,165,250,.92)}
+    .composer{
+      min-width:0;min-height:0;
+      display:grid;
+      grid-template-columns:126px minmax(0,1fr) 260px;
+      gap:12px;
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(6,13,22,.82);
+    }
+    .ref-card{
+      display:grid;place-items:center;
+      border-radius:16px;
+      border:1px dashed rgba(148,163,184,.24);
+      background:rgba(255,255,255,.025);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .ref-stack{
+      width:58px;height:72px;position:relative;
+    }
+    .ref-stack i{
+      position:absolute;inset:0;border-radius:10px;background:linear-gradient(135deg,#cbd5e1,#475569);
+      opacity:.72;transform:rotate(-9deg);
+    }
+    .ref-stack i:nth-child(2){transform:translate(10px,2px) rotate(7deg);opacity:.55}
+    .ref-stack i:nth-child(3){transform:translate(20px,8px) rotate(15deg);opacity:.42}
+    .composer-mid{min-width:0;display:grid;grid-template-rows:auto minmax(0,1fr);gap:10px}
+    .shot-chips{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .shot-chip{
+      height:32px;min-width:38px;display:grid;place-items:center;
+      padding:0 11px;border-radius:999px;border:1px solid var(--line);
+      background:rgba(255,255,255,.035);color:rgba(226,232,240,.78);font-size:12px;font-weight:800;
+    }
+    .shot-chip.active{border-color:rgba(96,165,250,.42);background:rgba(37,99,235,.25);color:#dbeafe}
+    .prompt-box{
+      min-height:0;overflow:auto;
+      padding:10px 12px;border:1px solid rgba(148,163,184,.14);border-radius:12px;
+      background:rgba(2,6,12,.52);color:rgba(226,232,240,.82);
+      font-size:13px;line-height:1.55;
+      scrollbar-width:thin;scrollbar-color:rgba(96,165,250,.28) transparent;
+    }
+    .composer-side{display:grid;grid-template-rows:1fr auto;gap:10px;min-width:0}
+    .hint-card{
+      padding:12px;border:1px solid rgba(96,165,250,.18);border-radius:12px;background:rgba(37,99,235,.08);
+      color:rgba(191,219,254,.82);font-size:12px;line-height:1.5;
+    }
+    .side-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .side-panel{
+      min-width:0;min-height:0;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:rgba(6,13,22,.82);
+      overflow:hidden;
+      display:grid;
+      grid-template-rows:auto auto minmax(0,1fr);
+    }
+    .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px;border-bottom:1px solid var(--line)}
+    .tab{
+      height:36px;border:1px solid var(--line);border-radius:11px;
+      background:rgba(15,23,42,.72);color:rgba(226,232,240,.72);font-weight:800;font-size:13px;
+    }
+    .tab.active{border-color:rgba(96,165,250,.44);background:rgba(37,99,235,.24);color:#dbeafe}
+    .resource-block{padding:12px;border-bottom:1px solid var(--line)}
+    .resource-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .resource-title b{font-size:13px}.resource-title span{font-size:12px;color:var(--weak)}
+    .resource-list{display:flex;gap:8px;flex-wrap:wrap;align-content:flex-start}
+    .resource{
+      max-width:150px;height:38px;display:grid;grid-template-columns:32px minmax(0,1fr);align-items:center;gap:7px;
+      padding:2px 8px 2px 2px;border:1px solid rgba(96,165,250,.22);border-radius:10px;background:rgba(30,64,175,.18);
+    }
+    .avatar{
+      width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#e5e7eb,#334155);position:relative;overflow:hidden;
+    }
+    .avatar.scene{background:linear-gradient(135deg,#92400e,#0f172a)}
+    .avatar.demon{background:linear-gradient(135deg,#450a0a,#111827)}
+    .avatar:after{content:"";position:absolute;left:10px;top:6px;width:12px;height:20px;border-radius:999px;background:rgba(15,23,42,.38)}
+    .resource b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .inspector{min-height:0;overflow:auto;padding:12px;scrollbar-width:thin;scrollbar-color:rgba(96,165,250,.28) transparent}
+    .field{display:grid;gap:7px;margin-bottom:12px}
+    .field label{font-size:12px;color:var(--weak)}
+    .control{
+      min-height:38px;display:flex;align-items:center;justify-content:space-between;gap:8px;
+      padding:0 11px;border:1px solid var(--line);border-radius:11px;background:rgba(15,23,42,.72);
+      color:rgba(226,232,240,.80);font-size:13px;
+    }
+    .textarea{
+      height:130px;overflow:auto;padding:10px 11px;border:1px solid var(--line);border-radius:11px;
+      background:rgba(2,6,12,.52);color:rgba(226,232,240,.82);font-size:13px;line-height:1.55;
+      scrollbar-width:thin;scrollbar-color:rgba(96,165,250,.28) transparent;
+    }
+    .footer{
+      height:76px;display:grid;grid-template-columns:minmax(0,1fr) auto;
+      gap:12px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);
+      background:rgba(11,18,29,.86);
+    }
+    .toolstrip{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+    .btn{
+      height:40px;min-width:76px;padding:0 14px;border:1px solid var(--line);border-radius:12px;
+      background:rgba(15,23,42,.82);color:rgba(226,232,240,.82);font-weight:800;font-size:13px;
+    }
+    .btn.primary{border-color:rgba(37,99,235,.52);background:linear-gradient(180deg,#2f6cef,#1d4ed8);color:#fff}
+    .btn.green{border-color:rgba(34,197,94,.32);background:rgba(22,101,52,.42);color:#bbf7d0}
+    .btn.ghost{min-width:54px}
+    @media(max-width:1200px){
+      .stage{transform:scale(.62)}
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <section class="modal">
+      <header class="header">
+        <div class="title">
+          <b>编辑分镜图详情</b>
+          <span>弹出详情页，不创建画布节点；按当前段落的分镜数和图片比例自适应预览。</span>
+        </div>
+        <div class="head-actions">
+          <span class="pill green">镜头 01-09 已选择</span>
+          <span class="pill">整图 16:9</span>
+          <span class="pill">9 张分镜</span>
+          <span class="pill">Seedance 15s</span>
+          <button class="close">×</button>
+        </div>
+      </header>
+
+      <main class="body">
+        <section class="editor-main">
+          <div class="canvas-panel">
+            <div class="panel-head">
+              <b>整张分镜图预览</b>
+              <span>点击单格可选镜头；竖屏/横屏图片只改变画布比例，不挤压下方工具栏</span>
+            </div>
+            <div class="grid-wrap">
+              <div class="story-grid">
+                <div class="cell selected"><span class="index">01</span><span class="status">已选</span></div>
+                <div class="cell selected"><span class="index">02</span><span class="status">已选</span></div>
+                <div class="cell selected"><span class="index">03</span><span class="status">已选</span></div>
+                <div class="cell"><span class="index">04</span><span class="status">未选</span></div>
+                <div class="cell selected"><span class="index">05</span><span class="status">已选</span></div>
+                <div class="cell selected"><span class="index">06</span><span class="status">已选</span></div>
+                <div class="cell selected"><span class="index">07</span><span class="status">已选</span></div>
+                <div class="cell"><span class="index">08</span><span class="status">未选</span></div>
+                <div class="cell selected"><span class="index">09</span><span class="status">已选</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="composer">
+            <div class="ref-card">
+              <div>
+                <div class="ref-stack"><i></i><i></i><i></i></div>
+                <div style="margin-top:8px;text-align:center">参考图</div>
+              </div>
+            </div>
+            <div class="composer-mid">
+              <div class="shot-chips">
+                <span class="shot-chip active">01</span>
+                <span class="shot-chip active">02</span>
+                <span class="shot-chip active">03</span>
+                <span class="shot-chip">04</span>
+                <span class="shot-chip active">05</span>
+                <span class="shot-chip active">06</span>
+                <span class="shot-chip active">07</span>
+                <span class="shot-chip">08</span>
+                <span class="shot-chip active">09</span>
+              </div>
+              <div class="prompt-box">
+                镜号、提示词或筛选说明：第一枪直刺、侧身闪避、黑焰横扫、枪尾撑地、落地反压。选中的分镜会参与合成与视频节点引用，未选镜头保留在原图中但不写入视频提示词。
+              </div>
+            </div>
+            <div class="composer-side">
+              <div class="hint-card">用于编辑当前段落分镜图的局部选择、切割、合成和重生成。完成后回填到“分镜 + Seedance 提示词节点”的当前段落预览。</div>
+              <div class="side-actions">
+                <button class="btn">取消</button>
+                <button class="btn primary">保存回填</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="side-panel">
+          <div class="panel-head"><b>分镜编辑参数</b><span>当前段落</span></div>
+          <div class="tabs">
+            <button class="tab active">分镜图</button>
+            <button class="tab">提示词</button>
+          </div>
+          <div class="resource-block">
+            <div class="resource-title"><b>绑定资源</b><span>5 / 9</span></div>
+            <div class="resource-list">
+              <div class="resource"><div class="avatar"></div><b>@陆燃</b></div>
+              <div class="resource"><div class="avatar demon"></div><b>@炽魔王</b></div>
+              <div class="resource"><div class="avatar scene"></div><b>@战场</b></div>
+            </div>
+          </div>
+          <div class="inspector">
+            <div class="field">
+              <label>宫格数量</label>
+              <div class="control">9 宫格 <span>⌄</span></div>
+            </div>
+            <div class="field">
+              <label>切割策略</label>
+              <div class="control">按分镜边界自动识别 <span>⌄</span></div>
+            </div>
+            <div class="field">
+              <label>整图比例</label>
+              <div class="control">源图 / 16:9 <span>⌄</span></div>
+            </div>
+            <div class="field">
+              <label>生成模型</label>
+              <div class="control">GPT 2 优化 <span>⌄</span></div>
+            </div>
+            <div class="field">
+              <label>当前视频提示词片段</label>
+              <div class="textarea">请严格参考 @陆燃、@炽魔王、@战场 和当前分镜图。镜头从中景固定开始，动作发生时轻微推近；禁止抽象镜头，所有动作必须落到人物身体、武器碰撞和地面反馈。</div>
+            </div>
+          </div>
+        </aside>
+      </main>
+
+      <footer class="footer">
+        <div class="toolstrip">
+          <button class="btn">9 宫格</button>
+          <button class="btn ghost">全选</button>
+          <button class="btn ghost">清空</button>
+          <button class="btn ghost">未选</button>
+          <button class="btn ghost">切割</button>
+          <button class="btn green">合成</button>
+          <button class="btn">GPT 2 优化</button>
+          <button class="btn">2K</button>
+        </div>
+        <div class="toolstrip">
+          <button class="btn">重新生成分镜图</button>
+          <button class="btn primary">保存并关闭</button>
+        </div>
+      </footer>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+{
+  "id": "zaomeng-seedance2-fast",
+  "configId": "zaomeng-seedance2-fast",
+  "modelKey": "zaomeng-seedance2-fast",
+  "providerKey": "zaomeng-seedance2",
+  "channelKey": "zaomeng-seedance2",
+  "name": "seedance-2.0-fast",
+  "modelNick": "造梦 Seedance 2.0 快速",
+  "displayName": "造梦 Seedance 2.0 快速",
+  "label": "造梦 Seedance 2.0 快速",
+  "type": "video",
+  "model": "seedance-2.0-fast",
+  "baseUrl": "https://winter-cell-1964.as522254919.workers.dev",
+  "url": "https://winter-cell-1964.as522254919.workers.dev/v1/video/generations",
+  "key": "replace-with-zaomeng-api-key",
+  "adapter": "zaomeng-seedance2",
+  "endpointPath": "/v1/video/generations",
+  "statusEndpointPath": "/v1/videos/{taskId}",
+  "balanceEndpointPath": "/v1/balance",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "referenceImages": true,
+    "referenceVideo": true,
+    "referenceAudio": true
+  },
+  "capabilities": {
+    "resolutions": ["720p", "1080p"],
+    "durations": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "durationsByResolution": {
+      "720p": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+      "1080p": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    },
+    "defaultDuration": 5,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "maxImages": { "full": 9, "smartMultiFrame": 9, "firstLast": 2 },
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "maxMaterials": 9,
+    "maxVideoDurationSeconds": 15,
+    "maxVideoDurationSecondsByResolution": { "720p": 15, "1080p": 12 },
+    "maxAudioDurationSeconds": 0,
+    "minAudioDurationSeconds": 3,
+    "maxPromptLength": 4000,
+    "supportsVideo": true,
+    "supportsAudio": true,
+    "supportsLastFrame": false,
+    "referencePromptMarkersRequired": true,
+    "referenceFilesField": "files"
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "second",
+      "billingMode": "per_second",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberDiscountRate": 1,
+      "chargedCreditsPerSecond": 1,
+      "originalCreditsPerSecond": 1,
+      "costCreditsPerSecond": 1,
+      "resolutionTiers": [
+        { "resolution": "720p", "chargedCreditsPerSecond": 1, "originalCreditsPerSecond": 1, "costCreditsPerSecond": 1 },
+        { "resolution": "1080p", "chargedCreditsPerSecond": 2, "originalCreditsPerSecond": 2, "costCreditsPerSecond": 2 }
+      ],
+      "note": "文档余额单位为秒：720P 每秒扣 1 秒，1080P 每秒扣 2 秒；生成失败上游自动退回余额。"
+    },
+    "duration": 5,
+    "resolution": "720p",
+    "aspectRatio": "16:9"
+  },
+  "modelAssembly": { "type": "passthrough" },
+  "note": "造梦 Seedance 2.0 快速模型。POST /v1/video/generations 创建任务，GET /v1/videos/{id} 轮询；创建响应必须使用 id 字段轮询。参考素材统一放 files 字段，prompt 使用 @IMG1/@VID1/@AUD1 标记。",
+  "protocol": {
+    "adapter": "zaomeng-seedance2",
+    "endpointPath": "/v1/video/generations",
+    "statusEndpointPath": "/v1/videos/{taskId}",
+    "balanceEndpointPath": "/v1/balance",
+    "method": "async-poll",
+    "pollIntervalSeconds": 5,
+    "uploadMode": "object_storage",
+    "requestSchema": "zaomeng-seedance2-files"
+  },
+  "ui": { "label": "造梦 Seedance 2.0 快速", "badge": "FAST", "badgeColor": "#22c55e" }
+}

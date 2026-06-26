@@ -1,0 +1,197 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]: 漫剧Flow
+    - button "API" [ref=e5] [cursor=pointer]
+    - button "📁 存图目录" [ref=e6] [cursor=pointer]
+    - generic [ref=e7]:
+      - button "RUN 工作流" [ref=e8] [cursor=pointer]
+      - button "文生图" [ref=e9] [cursor=pointer]
+      - button "图生图" [active] [ref=e10] [cursor=pointer]
+      - button "多轮迭代" [ref=e11] [cursor=pointer]
+      - button "预设生图" [ref=e12] [cursor=pointer]
+    - generic [ref=e13]:
+      - button "保存模板" [ref=e14] [cursor=pointer]
+      - button "加载模板" [ref=e15] [cursor=pointer]
+      - button "清空" [ref=e16] [cursor=pointer]
+      - button "›" [ref=e17] [cursor=pointer]
+  - complementary [ref=e18]:
+    - button "适配全部视图" [ref=e19] [cursor=pointer]: ⊞ 适配全部视图
+    - button "聚焦选中节点" [ref=e20] [cursor=pointer]: ◎ 聚焦选中节点
+    - button "横向排列节点" [ref=e22] [cursor=pointer]: ⇔ 横向排列节点
+    - button "纵向排列节点" [ref=e23] [cursor=pointer]: ⇕ 纵向排列节点
+    - button "切换网格吸附" [ref=e25] [cursor=pointer]: "# 切换网格吸附"
+    - button "全选节点" [ref=e27] [cursor=pointer]: ☑ 全选节点
+    - button "取消全部屏蔽" [ref=e28] [cursor=pointer]: ▶ 取消全部屏蔽
+  - complementary [ref=e29]:
+    - generic [ref=e30]:
+      - generic [ref=e31]:
+        - text: 生图历史
+        - generic [ref=e32]: "0"
+      - generic [ref=e33]: 所有生成的图片将自动记录在此。点击可查看详情。
+    - generic [ref=e35]:
+      - generic [ref=e36]: 📭
+      - text: 暂无生成记录
+      - text: 执行生图/视频后自动记录
+    - button "🗑 清空历史" [ref=e38] [cursor=pointer]
+  - main [ref=e39]:
+    - img
+    - img
+    - generic:
+      - generic [ref=e180]:
+        - generic:
+          - button "聚焦": ⌖ 聚焦
+          - button "复制": ⧉ 复制
+          - button "屏蔽": ◐ 屏蔽
+        - button "删除节点" [ref=e181] [cursor=pointer]: ×
+        - button "快速创建下游" [ref=e182] [cursor=pointer]: ＋
+        - generic:
+          - generic: STY
+          - generic: 风格预设
+        - generic [ref=e184]:
+          - generic "预设提示词" [ref=e186]
+          - generic [ref=e189]:
+            - generic [ref=e190]:
+              - generic [ref=e191]: 角色主视觉 · 适合角色海报、人物定妆、封面主图
+              - generic "漫剧角色主海报，稳定出高级感" [ref=e192] [cursor=pointer]: 国漫写实风格，角色主视觉海报，半身像…
+              - generic "角色卡、立绘封面" [ref=e193] [cursor=pointer]: 日系高完成度角色立绘，半身像，清晰轮…
+              - generic "真人感肖像、角色写实封面" [ref=e194] [cursor=pointer]: 超写实肖像摄影，近景，85mm人像镜…
+              - generic "反派或Boss海报" [ref=e195] [cursor=pointer]: 暗黑奇幻角色海报，近景到中近景，仰拍…
+              - generic "主角/配角定妆照" [ref=e196] [cursor=pointer]: 国漫写实风格，角色半身定妆照，三分法…
+              - generic "仙侠角色全身立绘" [ref=e197] [cursor=pointer]: 古风仙侠角色立绘，全身，轻微仰拍，衣…
+              - generic [ref=e198]: 动作爆点 · 适合战斗、爆发、技能释放与短视频封面
+              - generic "拳脚爆点、技能瞬间" [ref=e199] [cursor=pointer]: 国漫写实风格，战斗爆点瞬间，全身，低…
+              - generic "大场面空战与终局决战" [ref=e200] [cursor=pointer]: 史诗级电影概念设计，高空战斗，极远景…
+              - generic "都市追逐、赛博战斗" [ref=e201] [cursor=pointer]: 赛博朋克动作场景，雨夜街头追击，中远…
+              - generic "武侠招式展示" [ref=e202] [cursor=pointer]: 武侠定格瞬间，侧面拍摄，全身，剑刃寒…
+              - generic "近身格斗冲击帧" [ref=e203] [cursor=pointer]: 近身格斗爆发瞬间，中近景，拳头即将命…
+              - generic "技能蓄力爆点" [ref=e204] [cursor=pointer]: 技能释放蓄力瞬间，全身，低角度仰拍，…
+              - generic [ref=e205]: 情绪文戏 · 适合人物对话、关系戏、氛围静帧
+              - generic "情绪对话与关系冲突" [ref=e206] [cursor=pointer]: 电影感文戏对话，双人过肩景，近景，正…
+              - generic "日常陪伴、温柔桥段" [ref=e207] [cursor=pointer]: 温暖治愈日常插画，中景，窗边自然光，…
+              - generic "孤独、漂泊、等待" [ref=e208] [cursor=pointer]: 孤独沉思氛围海报，背面视角，中远景，…
+              - generic "古风感情戏" [ref=e209] [cursor=pointer]: 古风虐恋氛围，双人隔雨幕对望，近景，…
+              - generic "沉默对峙文戏" [ref=e210] [cursor=pointer]: 双人沉默对峙，过肩景，近景，前景肩膀…
+              - generic "内心独白/回忆" [ref=e211] [cursor=pointer]: 窗边独白场景，半身近景，角色侧脸看向…
+              - generic [ref=e212]: 场景概念 · 适合世界观建立、场景氛围和美术前期探索
+              - generic "末世/废墟概念图" [ref=e213] [cursor=pointer]: 史诗级电影概念设计，废墟都市全景，极…
+              - generic "古代神殿、秘境场景" [ref=e214] [cursor=pointer]: 东方奇幻神殿场景，宏大空间，全景，居…
+              - generic "森林秘境、精灵栖居地" [ref=e215] [cursor=pointer]: 魔幻森林概念图，广角全景，引导线构图…
+              - generic "科幻大场景建立" [ref=e216] [cursor=pointer]: 太空科幻场景设计，超广角镜头，巨大飞…
+              - generic "赛博都市建立镜头" [ref=e217] [cursor=pointer]: 赛博朋克城市夜景，全景，高角度俯拍，…
+              - generic "仙侠宗门场景" [ref=e218] [cursor=pointer]: 古代宗门山门场景，极远景，云雾缭绕的…
+              - generic [ref=e219]: 商业插画与产品图 · 适合封面、电商KV、社媒宣传图
+              - generic "宣传KV、活动头图" [ref=e220] [cursor=pointer]: 商业插画主KV，主体明确，干净背景，…
+              - generic "电商主图与详情页头图" [ref=e221] [cursor=pointer]: 高级产品摄影，产品主角特写，微距摄影…
+              - generic "潮流品牌海报" [ref=e222] [cursor=pointer]: 潮流海报设计，强图形构成，红黑白配色…
+              - generic "美食商品图" [ref=e223] [cursor=pointer]: 甜品美食广告图，近景特写，暖色柔光，…
+              - generic "香水/美妆产品图" [ref=e224] [cursor=pointer]: 高端香水产品广告，产品居中，透明玻璃…
+              - generic "国潮品牌宣传" [ref=e225] [cursor=pointer]: 国潮品牌主视觉海报，红黑金配色，传统…
+              - generic [ref=e226]: 科技发布海报 / 社媒官宣 · 适合 GPT Image 2 这种品牌发布、产品上线预热、信息型海报与长图封面
+              - generic "最接近 OpenAI 风格的科技官宣封面" [ref=e227] [cursor=pointer]: 顶级科技品牌发布海报，深色背景，蓝紫…
+              - generic "适合新品发布、上线公告、版本发布图" [ref=e228] [cursor=pointer]: 未来科技产品上线海报，黑蓝渐变背景，…
+              - generic "适合 AI 产品、模型升级、功能发布" [ref=e229] [cursor=pointer]: 高端 AI 产品宣传图，纯黑背景，蓝…
+              - generic "适合微博/X/社媒公告截图式宣传图" [ref=e230] [cursor=pointer]: 社交媒体平台官宣长图封面，深色卡片界…
+              - generic "适合发布会、峰会、直播预约海报" [ref=e231] [cursor=pointer]: 科技大会主视觉 KV，黑色舞台感背景…
+              - generic "适合产品更新说明、版本亮点长图" [ref=e232] [cursor=pointer]: 信息型长图海报，深夜科技蓝底色，模块…
+            - generic [ref=e233]:
+              - generic [ref=e235] [cursor=pointer]:
+                - text: 风格
+                - generic [ref=e236]: ▸
+              - generic [ref=e238] [cursor=pointer]:
+                - text: 光影氛围
+                - generic [ref=e239]: ▸
+              - generic [ref=e241] [cursor=pointer]:
+                - text: 画质渲染
+                - generic [ref=e242]: ▸
+              - generic [ref=e244] [cursor=pointer]:
+                - text: 负面词
+                - generic [ref=e245]: ▸
+      - generic [ref=e246]:
+        - generic:
+          - button "聚焦": ⌖ 聚焦
+          - button "复制": ⧉ 复制
+          - button "屏蔽": ◐ 屏蔽
+          - button "执行": ▶ 执行
+        - button "删除节点" [ref=e247] [cursor=pointer]: ×
+        - button "快速创建下游" [ref=e248] [cursor=pointer]: ＋
+        - generic:
+          - generic: I2I
+          - generic: 图生图
+        - generic [ref=e250]:
+          - generic:
+            - generic "参考图" [ref=e252]
+            - generic "风格预设" [ref=e254]
+            - generic "图片输出" [ref=e256]
+          - generic [ref=e259]:
+            - img [ref=e262]
+            - generic [ref=e267]:
+              - generic [ref=e268]:
+                - generic [ref=e269]:
+                  - generic [ref=e271]: 参考
+                  - button "+" [ref=e272] [cursor=pointer]
+                - generic:
+                  - text: 图片
+                  - button "+ 参考内容 参考内容"
+              - generic [ref=e273]:
+                - generic [ref=e274]: Fast 模式：参考图仅本地预览，不上传腾讯云，生成时直接提交 base64
+                - textbox "描述希望在参考图基础上改成什么…" [ref=e275]
+            - generic [ref=e276]:
+              - combobox [ref=e277] [cursor=pointer]:
+                - option "gpt-image-2" [selected]
+              - combobox "出图模式" [ref=e278] [cursor=pointer]:
+                - option "Fast" [selected]
+                - option "VIP"
+              - combobox [ref=e279] [cursor=pointer]:
+                - option "1K" [selected]
+                - option "2K"
+                - option "4K"
+              - combobox [ref=e280] [cursor=pointer]:
+                - option "auto · 自动比例"
+                - option "1:1 · 1024×1024"
+                - option "3:2 · 1536×1024"
+                - option "2:3 · 1024×1536" [selected]
+                - option "16:9 · 1792×1024"
+                - option "9:16 · 1024×1792"
+              - combobox [ref=e281] [cursor=pointer]:
+                - option "常规" [selected]
+                - option "low"
+                - option "medium"
+                - option "high"
+              - combobox [ref=e282] [cursor=pointer]:
+                - option "1张" [selected]
+                - option "2张"
+                - option "3张"
+                - option "4张"
+              - button "▶" [ref=e283] [cursor=pointer]
+      - generic [ref=e284]:
+        - generic:
+          - button "聚焦": ⌖ 聚焦
+          - button "复制": ⧉ 复制
+          - button "屏蔽": ◐ 屏蔽
+          - button "修图": ✦ 修图
+          - button "保存到图库": ✓ 保存到图库
+          - button "绘画": ✐ 绘画
+          - button "替换图片": ↻ 替换图片
+          - button "移除图片": ⌫ 移除图片
+        - button "删除节点" [ref=e285] [cursor=pointer]: ×
+        - button "快速创建下游" [ref=e286] [cursor=pointer]: ＋
+        - generic:
+          - generic: IMG
+          - generic: 图片节点
+        - generic [ref=e288]:
+          - generic:
+            - generic "图片输入" [ref=e290]
+            - generic "图片输出" [ref=e292]
+          - generic [ref=e296] [cursor=pointer]:
+            - generic [ref=e297]: +
+            - generic [ref=e298]: 上传 / 接入图片
+    - generic [ref=e99]:
+      - generic [ref=e101]: 就绪
+      - generic [ref=e102]: 节点 3
+      - generic [ref=e103]: 连线 0
+      - generic [ref=e104]: 0,0
+    - generic [ref=e105]:
+      - button "−" [ref=e106] [cursor=pointer]
+      - generic [ref=e107]: 58%
+      - button "＋" [ref=e108] [cursor=pointer]
+      - button "重置视野" [ref=e109] [cursor=pointer]

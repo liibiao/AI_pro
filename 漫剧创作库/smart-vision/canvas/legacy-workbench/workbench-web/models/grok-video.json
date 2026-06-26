@@ -1,0 +1,46 @@
+{
+  "id": "grok-video",
+  "name": "grok-video",
+  "type": "video",
+  "label": "Grok 生视频",
+  "model": "grok-imagine-1.0-video",
+  "baseUrl": "http://127.0.0.1:8000/v1",
+  "url": "http://127.0.0.1:8000/v1",
+  "key": "local-dev-no-auth",
+  "adapter": "grok-video",
+  "endpointPath": "/videos",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true
+  },
+  "capabilities": {
+    "resolutions": ["480p", "720p"],
+    "durations": [6, 10, 12, 15, 30],
+    "defaultDuration": 6,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "3:2", "2:3", "1:1"],
+    "maxImages": {
+      "full": 4,
+      "smartMultiFrame": 4,
+      "firstLast": 2
+    },
+    "supportsAudio": false,
+    "supportsVideo": false
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "note": "Grok2API 视频渠道，后台会把画布分辨率/比例映射到 /v1/videos 的 size/quality/seconds。",
+  "protocol": {
+    "adapter": "grok-video",
+    "endpointPath": "/videos",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "Grok 生视频",
+    "badge": "Grok",
+    "badgeColor": "#7c3aed"
+  }
+}

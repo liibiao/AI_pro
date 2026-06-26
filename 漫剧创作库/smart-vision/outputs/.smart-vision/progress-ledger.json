@@ -1,0 +1,1387 @@
+{
+  "version": "0.1.0",
+  "projectId": "infinite-awakening-001",
+  "episode": "ep001",
+  "items": [
+    {
+      "id": "creative-source",
+      "title": "创作源 / 风格锁定",
+      "status": "done",
+      "updatedAt": "2026-05-07T19:11:20.382Z"
+    },
+    {
+      "id": "script",
+      "title": "故事 / 剧本",
+      "status": "done"
+    },
+    {
+      "id": "director",
+      "title": "导演讲戏",
+      "status": "done"
+    },
+    {
+      "id": "assets",
+      "title": "资产生产",
+      "status": "done",
+      "updatedAt": "2026-05-16T11:54:20.563Z"
+    },
+    {
+      "id": "storyboard",
+      "title": "故事板生产包",
+      "status": "done",
+      "updatedAt": "2026-05-16T11:54:22.124Z"
+    },
+    {
+      "id": "prompts",
+      "title": "配套生成说明",
+      "status": "done"
+    },
+    {
+      "id": "generation",
+      "title": "生图 / 生视频",
+      "status": "done",
+      "updatedAt": "2026-05-08T13:56:00+08:00"
+    },
+    {
+      "id": "edit",
+      "title": "剪辑 / 拼接",
+      "status": "done",
+      "updatedAt": "2026-05-08T13:59:00+08:00"
+    },
+    {
+      "id": "qa",
+      "title": "QA / 发布",
+      "status": "done",
+      "updatedAt": "2026-05-08T14:22:00+08:00"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778182715841",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 ep001-storyboard-image-generation 的产物审核通过后自动创建。",
+      "status": "waiting_review",
+      "items": [
+        "02-工作流/ep001/draft-video_generation-1778182715841.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778182715841",
+      "sourceWorkflowId": "ep001-storyboard-image-generation",
+      "reviewId": "artifact-ep001-storyboard-image-generation-04-storyboard-ep001-storyboard-md-review",
+      "artifactPath": "04-storyboard/ep001-storyboard.md",
+      "updatedAt": "2026-05-08T07:36:30.640Z"
+    },
+    {
+      "id": "workflow-chain-draft-edit-1778210764441",
+      "title": "下一阶段 Workflow：edit",
+      "description": "由 draft-video_generation-1778182715841 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-edit-1778210764441.mjb-workflow.json",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json",
+        "已登记输出并送审"
+      ],
+      "workflowId": "draft-edit-1778210764441",
+      "sourceWorkflowId": "draft-video_generation-1778182715841",
+      "reviewId": "artifact-draft-video_generation-1778182715841-03-视频-ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE--review",
+      "artifactPath": "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "updatedAt": "2026-05-08T13:59:00+08:00"
+    },
+    {
+      "id": "workflow-chain-draft-qa-1778211540000",
+      "title": "下一阶段 Workflow：qa",
+      "description": "由 draft-edit-1778210764441 的剪辑产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-qa-1778211540000.mjb-workflow.json",
+        "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-release-v0-approval.md",
+        "QA 与发布包 v0 最终审核完成"
+      ],
+      "workflowId": "draft-qa-1778211540000",
+      "sourceWorkflowId": "draft-edit-1778210764441",
+      "reviewId": "artifact-draft-edit-1778210764441-ep001-review-cut-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "updatedAt": "2026-05-08T14:22:00+08:00"
+    },
+    {
+      "id": "release-v0-ep001",
+      "title": "EP001 发布包 v0",
+      "description": "QA 最小闭环后登记的发布包 v0。",
+      "status": "done",
+      "items": [
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-v0.mp4",
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-release-v0-approval.md",
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-final-production-backlog.md"
+      ],
+      "workflowId": "draft-qa-1778211540000",
+      "updatedAt": "2026-05-08T14:22:00+08:00"
+    },
+    {
+      "id": "formal-production-backlog-ep001",
+      "title": "EP001 正式成片补齐",
+      "description": "发布包 v0 之后的正式成片生产待办。",
+      "status": "todo",
+      "items": [
+        "05-可选输出/审核剪辑发布/publish/ep001/ep001-final-production-backlog.md",
+        "资产 V8 一致性",
+        "全镜头视频",
+        "字幕 / 声音 / 转场 / 封面"
+      ],
+      "updatedAt": "2026-05-08T14:22:00+08:00"
+    },
+    {
+      "id": "orchestration-sv-task-video-generation-orchestration-smoke-load-data-pack",
+      "title": "video_generation / 加载并校验任务数据包",
+      "description": "任务编排器生成：video_generation Smart Vision 任务计划。负责人：Orchestrator。依赖：无。",
+      "status": "done",
+      "items": [
+        "输入：docs/prompt-standards.md",
+        "输入：docs/long-prompt-detail-gate.md",
+        "输入：docs/seedance-prompt-engineering.md",
+        "输入：skills/seedance-action-skill.md",
+        "输出：任务数据包解析摘要",
+        "验收：所有必需 docs / skills / templates 均已解析或显式列出缺失项。",
+        "验收：任务输入产物来自 .smart-vision 状态源或扫描产物索引。"
+      ],
+      "taskPlanId": "sv-task-video-generation-orchestration-smoke",
+      "subtaskId": "load-data-pack",
+      "taskType": "video_generation",
+      "phase": "generation_to_review",
+      "phaseGate": "generation_to_review",
+      "ownerRole": "Orchestrator",
+      "dependsOn": [],
+      "inputArtifacts": [
+        "docs/prompt-standards.md",
+        "docs/long-prompt-detail-gate.md",
+        "docs/seedance-prompt-engineering.md",
+        "skills/seedance-action-skill.md",
+        "skills/runninghub-image-skill.md",
+        "templates/_shared/prompt-output/seedance-long-template.md",
+        "templates/_shared/prompt-output/jimeng-template.md"
+      ],
+      "outputArtifacts": [
+        "任务数据包解析摘要"
+      ],
+      "acceptanceCriteria": [
+        "所有必需 docs / skills / templates 均已解析或显式列出缺失项。",
+        "任务输入产物来自 .smart-vision 状态源或扫描产物索引。"
+      ],
+      "updatedAt": "2026-05-08T14:44:08.766Z",
+      "previousExecutionReportPath": ".smart-vision/task-runs/sv-task-video-generation-orchestration-smoke/task-queue-run-1778246695942-load-data-pack.json",
+      "requeuedAt": "2026-05-08T14:44:03.312Z",
+      "requeueReason": "api_smoke_requeue",
+      "executionReportPath": ".smart-vision/task-runs/sv-task-video-generation-orchestration-smoke/task-queue-run-1778251448766-load-data-pack.json",
+      "executionRunId": "task-queue-run-1778251448766"
+    },
+    {
+      "id": "orchestration-sv-task-video-generation-orchestration-smoke-assemble-task-brief",
+      "title": "video_generation / 组装任务执行 Brief",
+      "description": "任务编排器生成：video_generation Smart Vision 任务计划。负责人：Generation Operator。依赖：load-data-pack。",
+      "status": "done",
+      "items": [
+        "输入：docs/prompt-standards.md",
+        "输入：docs/long-prompt-detail-gate.md",
+        "输入：docs/seedance-prompt-engineering.md",
+        "输入：skills/seedance-action-skill.md",
+        "输出：任务 Brief",
+        "输出：输入产物清单",
+        "验收：Brief 明确任务边界、输入、输出、红线和门禁。",
+        "验收：Brief 中每条要求可追溯到数据包引用或项目产物。"
+      ],
+      "taskPlanId": "sv-task-video-generation-orchestration-smoke",
+      "subtaskId": "assemble-task-brief",
+      "taskType": "video_generation",
+      "phase": "generation_to_review",
+      "phaseGate": "generation_to_review",
+      "ownerRole": "Generation Operator",
+      "dependsOn": [
+        "load-data-pack"
+      ],
+      "inputArtifacts": [
+        "docs/prompt-standards.md",
+        "docs/long-prompt-detail-gate.md",
+        "docs/seedance-prompt-engineering.md",
+        "skills/seedance-action-skill.md",
+        "skills/runninghub-image-skill.md",
+        "templates/_shared/prompt-output/seedance-long-template.md",
+        "templates/_shared/prompt-output/jimeng-template.md",
+        "04-storyboard/ep001-storyboard.md",
+        "05-prompts/seedance/ep001-shots.md",
+        "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+        "01-资产图与提示词/asset-index.md",
+        "08-qa/v8-asset-consistency-qa-report.md",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4"
+      ],
+      "outputArtifacts": [
+        "任务 Brief",
+        "输入产物清单"
+      ],
+      "acceptanceCriteria": [
+        "Brief 明确任务边界、输入、输出、红线和门禁。",
+        "Brief 中每条要求可追溯到数据包引用或项目产物。"
+      ],
+      "updatedAt": "2026-05-08T13:36:31.840Z",
+      "executionReportPath": ".smart-vision/task-runs/sv-task-video-generation-orchestration-smoke/task-queue-run-1778247391837-assemble-task-brief.json",
+      "executionRunId": "task-queue-run-1778247391837"
+    },
+    {
+      "id": "orchestration-sv-task-video-generation-orchestration-smoke-produce-runtime-output",
+      "title": "video_generation / 生成运行产物",
+      "description": "任务编排器生成：video_generation Smart Vision 任务计划。负责人：Generation Operator。依赖：assemble-task-brief。",
+      "status": "done",
+      "items": [
+        "输入：04-storyboard/ep001-storyboard.md",
+        "输入：05-prompts/seedance/ep001-shots.md",
+        "输入：03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+        "输入：01-资产图与提示词/asset-index.md",
+        "输出：03-视频/**/*.mp4",
+        "输出：03-视频/**/*.mov",
+        "输出：05-prompts/**/video-prompt.md",
+        "验收：产物路径符合 smart-vision/outputs 目录约定。",
+        "验收：产物可被 Artifact Registry 或 Workflow Registry 登记。"
+      ],
+      "taskPlanId": "sv-task-video-generation-orchestration-smoke",
+      "subtaskId": "produce-runtime-output",
+      "taskType": "video_generation",
+      "phase": "generation_to_review",
+      "phaseGate": "generation_to_review",
+      "ownerRole": "Generation Operator",
+      "dependsOn": [
+        "assemble-task-brief"
+      ],
+      "inputArtifacts": [
+        "04-storyboard/ep001-storyboard.md",
+        "05-prompts/seedance/ep001-shots.md",
+        "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+        "01-资产图与提示词/asset-index.md",
+        "08-qa/v8-asset-consistency-qa-report.md",
+        "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4"
+      ],
+      "outputArtifacts": [
+        "03-视频/**/*.mp4",
+        "03-视频/**/*.mov",
+        "05-prompts/**/video-prompt.md"
+      ],
+      "acceptanceCriteria": [
+        "产物路径符合 smart-vision/outputs 目录约定。",
+        "产物可被 Artifact Registry 或 Workflow Registry 登记。"
+      ],
+      "updatedAt": "2026-05-08T13:36:31.842Z",
+      "executionReportPath": ".smart-vision/task-runs/sv-task-video-generation-orchestration-smoke/task-queue-run-1778247391837-produce-runtime-output.json",
+      "executionRunId": "task-queue-run-1778247391837"
+    },
+    {
+      "id": "orchestration-sv-task-video-generation-orchestration-smoke-register-and-review",
+      "title": "video_generation / 登记产物并进入审核",
+      "description": "任务编排器生成：video_generation Smart Vision 任务计划。负责人：Runtime。依赖：produce-runtime-output。",
+      "status": "done",
+      "items": [
+        "输入：03-视频/**/*.mp4",
+        "输入：03-视频/**/*.mov",
+        "输入：05-prompts/**/video-prompt.md",
+        "输出：review-ledger 记录",
+        "输出：progress-ledger 更新",
+        "验收：产物已登记到对应 registry。",
+        "验收：需要人工审核的任务已创建 waiting_review 记录。"
+      ],
+      "taskPlanId": "sv-task-video-generation-orchestration-smoke",
+      "subtaskId": "register-and-review",
+      "taskType": "video_generation",
+      "phase": "generation_to_review",
+      "phaseGate": "generation_to_review",
+      "ownerRole": "Runtime",
+      "dependsOn": [
+        "produce-runtime-output"
+      ],
+      "inputArtifacts": [
+        "03-视频/**/*.mp4",
+        "03-视频/**/*.mov",
+        "05-prompts/**/video-prompt.md"
+      ],
+      "outputArtifacts": [
+        "review-ledger 记录",
+        "progress-ledger 更新"
+      ],
+      "acceptanceCriteria": [
+        "产物已登记到对应 registry。",
+        "需要人工审核的任务已创建 waiting_review 记录。"
+      ],
+      "updatedAt": "2026-05-08T13:36:31.842Z",
+      "executionReportPath": ".smart-vision/task-runs/sv-task-video-generation-orchestration-smoke/task-queue-run-1778247391837-register-and-review.json",
+      "executionRunId": "task-queue-run-1778247391837"
+    },
+    {
+      "id": "orchestration-sv-task-video-generation-orchestration-smoke-media-quality-pass",
+      "title": "video_generation / 媒体质量检查",
+      "description": "任务编排器生成：video_generation Smart Vision 任务计划。负责人：Reviewer。依赖：produce-runtime-output。",
+      "status": "done",
+      "items": [
+        "输入：03-视频/**/*.mp4",
+        "输入：03-视频/**/*.mov",
+        "输入：05-prompts/**/video-prompt.md",
+        "输出：媒体质量审核记录",
+        "验收：视频文件路径可读取。",
+        "验收：生成参数、镜头来源和审核结论可追溯。"
+      ],
+      "taskPlanId": "sv-task-video-generation-orchestration-smoke",
+      "subtaskId": "media-quality-pass",
+      "taskType": "video_generation",
+      "phase": "generation_to_review",
+      "phaseGate": "generation_to_review",
+      "ownerRole": "Reviewer",
+      "dependsOn": [
+        "produce-runtime-output"
+      ],
+      "inputArtifacts": [
+        "03-视频/**/*.mp4",
+        "03-视频/**/*.mov",
+        "05-prompts/**/video-prompt.md"
+      ],
+      "outputArtifacts": [
+        "媒体质量审核记录"
+      ],
+      "acceptanceCriteria": [
+        "视频文件路径可读取。",
+        "生成参数、镜头来源和审核结论可追溯。"
+      ],
+      "updatedAt": "2026-05-08T13:36:31.843Z",
+      "executionReportPath": ".smart-vision/task-runs/sv-task-video-generation-orchestration-smoke/task-queue-run-1778247391837-media-quality-pass.json",
+      "executionRunId": "task-queue-run-1778247391837"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778301596146",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778290049554 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-storyboard_image_generation-1778301596146.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778301596146",
+      "sourceWorkflowId": "draft-asset_image_generation-1778290049554",
+      "reviewId": "artifact-draft-asset_image_generation-1778290049554-01--ep001-pipeline-asset-output-smoke-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep001/pipeline-asset-output-smoke.png",
+      "updatedAt": "2026-05-09T05:31:51.619Z"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778302161828",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 draft-storyboard_image_generation-1778301596146 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-video_generation-1778302161828.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778302161828",
+      "sourceWorkflowId": "draft-storyboard_image_generation-1778301596146",
+      "reviewId": "artifact-draft-storyboard_image_generation-1778301596146-01--storyboard-ep001-pipeline-storyboard-output-smoke-png-review",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep001/pipeline-storyboard-output-smoke.png",
+      "updatedAt": "2026-05-09T05:31:51.634Z"
+    },
+    {
+      "id": "workflow-chain-draft-edit-1778302819995",
+      "title": "下一阶段 Workflow：edit",
+      "description": "由 draft-video_generation-1778302161828 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-edit-1778302819995.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-edit-1778302819995",
+      "sourceWorkflowId": "draft-video_generation-1778302161828",
+      "reviewId": "artifact-draft-video_generation-1778302161828-03--ep001-pipeline-video-output-smoke-mp4-review",
+      "artifactPath": "03-视频/ep001/pipeline-video-output-smoke.mp4",
+      "updatedAt": "2026-05-09T05:31:51.649Z"
+    },
+    {
+      "id": "workflow-chain-draft-qa-1778303373129",
+      "title": "下一阶段 Workflow：qa",
+      "description": "由 draft-edit-1778302819995 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-qa-1778303373129.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-qa-1778303373129",
+      "sourceWorkflowId": "draft-edit-1778302819995",
+      "reviewId": "artifact-draft-edit-1778302819995-05--edit-ep001-pipeline-edit-output-smoke-mp4-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep001/pipeline-edit-output-smoke.mp4",
+      "updatedAt": "2026-05-09T05:31:51.663Z"
+    },
+    {
+      "id": "workflow-chain-draft-release-1778304322583",
+      "title": "下一阶段 Workflow：release",
+      "description": "由 draft-qa-1778303373129 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-release-1778304322583.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-release-1778304322583",
+      "sourceWorkflowId": "draft-qa-1778303373129",
+      "reviewId": "artifact-draft-qa-1778303373129-05--review-ep001-pipeline-qa-output-smoke-md-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep001/pipeline-qa-output-smoke.md",
+      "updatedAt": "2026-05-09T05:31:51.677Z"
+    },
+    {
+      "id": "release-draft-release-ep001-auto-draft-qa-1778303373129",
+      "title": "发布草稿：EP001",
+      "description": "QA review artifact-draft-qa-1778303373129-05--review-ep001-pipeline-qa-output-smoke-md-review 完成后自动创建 release draft。",
+      "status": "done",
+      "items": [
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+        "送审 release review",
+        "批准后进入发布队列"
+      ],
+      "workflowId": "draft-qa-1778303373129",
+      "reviewId": "artifact-draft-qa-1778303373129-05--review-ep001-pipeline-qa-output-smoke-md-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep001/pipeline-qa-output-smoke.md",
+      "releaseId": "release-ep001-auto-draft-qa-1778303373129",
+      "updatedAt": "2026-05-09T05:31:51.663Z"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778328719888",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778326076407 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-storyboard_image_generation-1778328719888.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778328719888",
+      "sourceWorkflowId": "draft-asset_image_generation-1778326076407",
+      "reviewId": "artifact-draft-asset_image_generation-1778326076407-01--ep001-prod-validate-asset-run-output-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep001-prod-validate/asset-run-output.png",
+      "updatedAt": "2026-05-09T12:11:59.993Z"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778328719978",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 draft-storyboard_image_generation-1778328719888 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-video_generation-1778328719978.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778328719978",
+      "sourceWorkflowId": "draft-storyboard_image_generation-1778328719888",
+      "reviewId": "artifact-draft-storyboard_image_generation-1778328719888-01--storyboard-ep001-prod-validate-storyboard-run-output-png-review",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep001-prod-validate/storyboard-run-output.png",
+      "updatedAt": "2026-05-09T12:12:00.138Z"
+    },
+    {
+      "id": "workflow-chain-draft-edit-1778328720121",
+      "title": "下一阶段 Workflow：edit",
+      "description": "由 draft-video_generation-1778328719978 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-edit-1778328720121.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-edit-1778328720121",
+      "sourceWorkflowId": "draft-video_generation-1778328719978",
+      "reviewId": "artifact-draft-video_generation-1778328719978-03--ep001-prod-validate-video-run-output-mp4-review",
+      "artifactPath": "03-视频/ep001-prod-validate/video-run-output.mp4",
+      "updatedAt": "2026-05-09T12:12:00.269Z"
+    },
+    {
+      "id": "workflow-chain-draft-qa-1778328720254",
+      "title": "下一阶段 Workflow：qa",
+      "description": "由 draft-edit-1778328720121 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-qa-1778328720254.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-qa-1778328720254",
+      "sourceWorkflowId": "draft-edit-1778328720121",
+      "reviewId": "artifact-draft-edit-1778328720121-05--edit-ep001-prod-validate-edit-run-output-mp4-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep001-prod-validate/edit-run-output.mp4",
+      "updatedAt": "2026-05-09T12:12:00.358Z"
+    },
+    {
+      "id": "workflow-chain-draft-release-1778328720344",
+      "title": "下一阶段 Workflow：release",
+      "description": "由 draft-qa-1778328720254 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-release-1778328720344.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-release-1778328720344",
+      "sourceWorkflowId": "draft-qa-1778328720254",
+      "reviewId": "artifact-draft-qa-1778328720254-05--review-ep001-prod-validate-qa-report-md-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep001-prod-validate/qa-report.md",
+      "updatedAt": "2026-05-09T12:12:00.444Z"
+    },
+    {
+      "id": "release-draft-release-ep001-auto-draft-qa-1778328720254",
+      "title": "发布草稿：EP001",
+      "description": "QA review artifact-draft-qa-1778328720254-05--review-ep001-prod-validate-qa-report-md-review 完成后自动创建 release draft。",
+      "status": "done",
+      "items": [
+        "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+        "送审 release review",
+        "批准后进入发布队列"
+      ],
+      "workflowId": "draft-release-1778328720344",
+      "sourceWorkflowId": "draft-qa-1778328720254",
+      "reviewId": "artifact-draft-qa-1778328720254-05--review-ep001-prod-validate-qa-report-md-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep001-prod-validate/qa-report.md",
+      "releaseId": "release-ep001-auto-draft-qa-1778328720254",
+      "updatedAt": "2026-05-09T12:12:00.444Z"
+    },
+    {
+      "id": "creative-plan-ep-smoke",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、14 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-smoke-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-smoke-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-smoke-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-smoke-creative-plan.json",
+      "updatedAt": "2026-05-09T14:18:09.518Z"
+    },
+    {
+      "id": "creative-plan-ep-smoke2",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、10 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-smoke2-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-smoke2-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-smoke2-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-smoke2-creative-plan.json",
+      "updatedAt": "2026-05-09T14:19:09.856Z"
+    },
+    {
+      "id": "creative-plan-ep001",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 1 个视频段、4 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep001-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep001-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep001-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep001-creative-plan.json",
+      "updatedAt": "2026-05-09T17:06:43.980Z"
+    },
+    {
+      "id": "creative-plan-ep-v2-entry-1778916850484",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、9 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-v2-entry-1778916850484-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-v2-entry-1778916850484-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-v2-entry-1778916850484-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-v2-entry-1778916850484-creative-plan.json",
+      "updatedAt": "2026-05-16T07:34:10.802Z"
+    },
+    {
+      "id": "creative-plan-ep-v2-entry-1778917004765",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、9 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-v2-entry-1778917004765-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-v2-entry-1778917004765-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-v2-entry-1778917004765-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-v2-entry-1778917004765-creative-plan.json",
+      "updatedAt": "2026-05-16T07:36:45.086Z"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778917005899",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778917005559 的产物审核通过后自动创建。",
+      "status": "todo",
+      "items": [
+        "02-工作流/ep001/draft-storyboard_image_generation-1778917005899.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778917005899",
+      "sourceWorkflowId": "draft-asset_image_generation-1778917005559",
+      "reviewId": "artifact-draft-asset_image_generation-1778917005559-01--ep-v2-entry-1778917004765-smart-canvas-v2-entry-asset-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778917004765/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T07:36:45.846Z"
+    },
+    {
+      "id": "creative-plan-ep-v2-entry-1778917498851",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、9 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-v2-entry-1778917498851-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-v2-entry-1778917498851-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-v2-entry-1778917498851-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-v2-entry-1778917498851-creative-plan.json",
+      "updatedAt": "2026-05-16T07:44:59.169Z"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778917500016",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778917499613 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep001/draft-storyboard_image_generation-1778917500016.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778917500016",
+      "sourceWorkflowId": "draft-asset_image_generation-1778917499613",
+      "reviewId": "artifact-draft-asset_image_generation-1778917499613-01--ep-v2-entry-1778917498851-smart-canvas-v2-entry-asset-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778917498851/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T07:45:00.467Z"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778917500401",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 draft-storyboard_image_generation-1778917500016 的产物审核通过后自动创建。",
+      "status": "todo",
+      "items": [
+        "02-工作流/ep001/draft-video_generation-1778917500401.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778917500401",
+      "sourceWorkflowId": "draft-storyboard_image_generation-1778917500016",
+      "reviewId": "artifact-draft-storyboard_image_generation-1778917500016-01--storyboard-ep-v2-entry-1778917498851-smart-canvas-v2-entry-storyboard-png-review",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778917498851/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T07:45:00.345Z"
+    },
+    {
+      "id": "creative-plan-ep-v2-entry-1778918114394",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、9 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-v2-entry-1778918114394-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-v2-entry-1778918114394-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-v2-entry-1778918114394-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-v2-entry-1778918114394-creative-plan.json",
+      "updatedAt": "2026-05-16T07:55:14.715Z"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778918115565",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778918115117 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778918114394/draft-storyboard_image_generation-1778918115565.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778918115565",
+      "sourceWorkflowId": "draft-asset_image_generation-1778918115117",
+      "reviewId": "artifact-draft-asset_image_generation-1778918115117-01--ep-v2-entry-1778918114394-smart-canvas-v2-entry-asset-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778918114394/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T07:55:16.056Z"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778918115987",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 draft-storyboard_image_generation-1778918115565 的产物审核通过后自动创建。",
+      "status": "todo",
+      "items": [
+        "02-工作流/ep-v2-entry-1778918114394/draft-video_generation-1778918115987.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778918115987",
+      "sourceWorkflowId": "draft-storyboard_image_generation-1778918115565",
+      "reviewId": "artifact-draft-storyboard_image_generation-1778918115565-01--storyboard-ep-v2-entry-1778918114394-smart-canvas-v2-entry-storyboard-png-review",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918114394/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T07:55:15.898Z"
+    },
+    {
+      "id": "creative-plan-ep-v2-entry-1778918636130",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、9 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-v2-entry-1778918636130-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-v2-entry-1778918636130-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-v2-entry-1778918636130-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-v2-entry-1778918636130-creative-plan.json",
+      "updatedAt": "2026-05-16T08:03:56.452Z"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778918637443",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778918636869 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778918636130/draft-storyboard_image_generation-1778918637443.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778918637443",
+      "sourceWorkflowId": "draft-asset_image_generation-1778918636869",
+      "reviewId": "artifact-draft-asset_image_generation-1778918636869-01--ep-v2-entry-1778918636130-smart-canvas-v2-entry-asset-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778918636130/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:03:58.084Z"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778918637989",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 draft-storyboard_image_generation-1778918637443 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778918636130/draft-video_generation-1778918637989.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778918637989",
+      "sourceWorkflowId": "draft-storyboard_image_generation-1778918637443",
+      "reviewId": "artifact-draft-storyboard_image_generation-1778918637443-01--storyboard-ep-v2-entry-1778918636130-smart-canvas-v2-entry-storyboard-png-review",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918636130/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T08:03:58.665Z"
+    },
+    {
+      "id": "workflow-chain-draft-edit-1778918638572",
+      "title": "下一阶段 Workflow：edit",
+      "description": "由 draft-video_generation-1778918637989 的产物审核通过后自动创建。",
+      "status": "todo",
+      "items": [
+        "02-工作流/ep-v2-entry-1778917004765/draft-edit-1778918638572.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-edit-1778918638572",
+      "sourceWorkflowId": "draft-video_generation-1778918637989",
+      "reviewId": "artifact-draft-video_generation-1778918637989-03--ep-v2-entry-1778918636130-smart-canvas-v2-entry-video-mp4-review",
+      "artifactPath": "03-视频/ep-v2-entry-1778918636130/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T08:03:58.483Z"
+    },
+    {
+      "id": "creative-plan-ep-v2-entry-1778918721232",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、9 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-v2-entry-1778918721232-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-v2-entry-1778918721232-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-v2-entry-1778918721232-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-v2-entry-1778918721232-creative-plan.json",
+      "updatedAt": "2026-05-16T08:05:21.554Z"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778918722606",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778918721977 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778918721232/draft-storyboard_image_generation-1778918722606.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778918722606",
+      "sourceWorkflowId": "draft-asset_image_generation-1778918721977",
+      "reviewId": "artifact-draft-asset_image_generation-1778918721977-01--ep-v2-entry-1778918721232-smart-canvas-v2-entry-asset-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778918721232/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:05:23.358Z"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778918723241",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 draft-storyboard_image_generation-1778918722606 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778918721232/draft-video_generation-1778918723241.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778918723241",
+      "sourceWorkflowId": "draft-storyboard_image_generation-1778918722606",
+      "reviewId": "artifact-draft-storyboard_image_generation-1778918722606-01--storyboard-ep-v2-entry-1778918721232-smart-canvas-v2-entry-storyboard-png-review",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778918721232/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T08:05:24.103Z"
+    },
+    {
+      "id": "workflow-chain-draft-edit-1778918723986",
+      "title": "下一阶段 Workflow：edit",
+      "description": "由 draft-video_generation-1778918723241 的产物审核通过后自动创建。",
+      "status": "todo",
+      "items": [
+        "02-工作流/ep-v2-entry-1778918721232/draft-edit-1778918723986.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-edit-1778918723986",
+      "sourceWorkflowId": "draft-video_generation-1778918723241",
+      "reviewId": "artifact-draft-video_generation-1778918723241-03--ep-v2-entry-1778918721232-smart-canvas-v2-entry-video-mp4-review",
+      "artifactPath": "03-视频/ep-v2-entry-1778918721232/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T08:05:23.895Z"
+    },
+    {
+      "id": "creative-plan-ep-v2-entry-1778919111387",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、9 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-v2-entry-1778919111387-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-v2-entry-1778919111387-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-v2-entry-1778919111387-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-v2-entry-1778919111387-creative-plan.json",
+      "updatedAt": "2026-05-16T08:11:51.723Z"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778919113867",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778919112515 的产物审核通过后自动创建。",
+      "status": "todo",
+      "items": [
+        "02-工作流/ep-v2-entry-1778919111387/draft-storyboard_image_generation-1778919113867.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778919113867",
+      "sourceWorkflowId": "draft-asset_image_generation-1778919112515",
+      "reviewId": "artifact-draft-asset_image_generation-1778919112515-01--ep-v2-entry-1778919111387-smart-canvas-v2-entry-asset-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778919111387/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:11:53.655Z"
+    },
+    {
+      "id": "creative-plan-ep-v2-entry-1778919137839",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、9 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-v2-entry-1778919137839-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-v2-entry-1778919137839-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-v2-entry-1778919137839-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-v2-entry-1778919137839-creative-plan.json",
+      "updatedAt": "2026-05-16T08:12:18.143Z"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778919139432",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778919138560 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778919137839/draft-storyboard_image_generation-1778919139432.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778919139432",
+      "sourceWorkflowId": "draft-asset_image_generation-1778919138560",
+      "reviewId": "artifact-draft-asset_image_generation-1778919138560-01--ep-v2-entry-1778919137839-smart-canvas-v2-entry-asset-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778919137839/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T08:12:20.423Z"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778919140286",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 draft-storyboard_image_generation-1778919139432 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778919137839/draft-video_generation-1778919140286.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778919140286",
+      "sourceWorkflowId": "draft-storyboard_image_generation-1778919139432",
+      "reviewId": "artifact-draft-storyboard_image_generation-1778919139432-01--storyboard-ep-v2-entry-1778919137839-smart-canvas-v2-entry-storyboard-png-review",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778919137839/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T08:12:21.363Z"
+    },
+    {
+      "id": "workflow-chain-draft-edit-1778919141190",
+      "title": "下一阶段 Workflow：edit",
+      "description": "由 draft-video_generation-1778919140286 的产物审核通过后自动创建。",
+      "status": "todo",
+      "items": [
+        "02-工作流/ep-v2-entry-1778919137839/draft-edit-1778919141190.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-edit-1778919141190",
+      "sourceWorkflowId": "draft-video_generation-1778919140286",
+      "reviewId": "artifact-draft-video_generation-1778919140286-03--ep-v2-entry-1778919137839-smart-canvas-v2-entry-video-mp4-review",
+      "artifactPath": "03-视频/ep-v2-entry-1778919137839/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T08:12:21.089Z"
+    },
+    {
+      "id": "creative-plan-ep-v2-entry-1778928057858",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、9 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-v2-entry-1778928057858-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-v2-entry-1778928057858-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-v2-entry-1778928057858-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-v2-entry-1778928057858-creative-plan.json",
+      "updatedAt": "2026-05-16T10:40:58.173Z"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778928059630",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778928058633 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778928057858/draft-storyboard_image_generation-1778928059630.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778928059630",
+      "sourceWorkflowId": "draft-asset_image_generation-1778928058633",
+      "reviewId": "artifact-draft-asset_image_generation-1778928058633-01--ep-v2-entry-1778928057858-smart-canvas-v2-entry-asset-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778928057858/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T10:41:00.772Z"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778928060590",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 draft-storyboard_image_generation-1778928059630 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778928057858/draft-video_generation-1778928060590.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778928060590",
+      "sourceWorkflowId": "draft-storyboard_image_generation-1778928059630",
+      "reviewId": "artifact-draft-storyboard_image_generation-1778928059630-01--storyboard-ep-v2-entry-1778928057858-smart-canvas-v2-entry-storyboard-png-review",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778928057858/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T10:41:01.786Z"
+    },
+    {
+      "id": "workflow-chain-draft-edit-1778928061604",
+      "title": "下一阶段 Workflow：edit",
+      "description": "由 draft-video_generation-1778928060590 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778928057858/draft-edit-1778928061604.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-edit-1778928061604",
+      "sourceWorkflowId": "draft-video_generation-1778928060590",
+      "reviewId": "artifact-draft-video_generation-1778928060590-03--ep-v2-entry-1778928057858-smart-canvas-v2-entry-video-mp4-review",
+      "artifactPath": "03-视频/ep-v2-entry-1778928057858/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T10:41:02.879Z"
+    },
+    {
+      "id": "workflow-chain-draft-qa-1778928062685",
+      "title": "下一阶段 Workflow：qa",
+      "description": "由 draft-edit-1778928061604 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778928057858/draft-qa-1778928062685.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-qa-1778928062685",
+      "sourceWorkflowId": "draft-edit-1778928061604",
+      "reviewId": "artifact-draft-edit-1778928061604-05--edit-ep-v2-entry-1778928057858-smart-canvas-v2-entry-edit-mp4-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778928057858/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T10:41:03.949Z"
+    },
+    {
+      "id": "workflow-chain-draft-release-1778928063780",
+      "title": "下一阶段 Workflow：release",
+      "description": "由 draft-qa-1778928062685 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778928057858/draft-release-1778928063780.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-release-1778928063780",
+      "sourceWorkflowId": "draft-qa-1778928062685",
+      "reviewId": "artifact-draft-qa-1778928062685-05--review-ep-v2-entry-1778928057858-smart-canvas-v2-entry-qa-report-md-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928057858/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T10:41:04.837Z"
+    },
+    {
+      "id": "release-draft-release-ep-v2-entry-1778928057858-auto-draft-qa-1778928062685",
+      "title": "发布草稿：EP-V2-ENTRY-1778928057858",
+      "description": "QA review artifact-draft-qa-1778928062685-05--review-ep-v2-entry-1778928057858-smart-canvas-v2-entry-qa-report-md-review 完成后自动创建 release draft。",
+      "status": "done",
+      "items": [
+        "manifest 待补齐",
+        "送审 release review",
+        "批准后进入发布队列"
+      ],
+      "workflowId": "draft-release-1778928063780",
+      "sourceWorkflowId": "draft-qa-1778928062685",
+      "reviewId": "artifact-draft-qa-1778928062685-05--review-ep-v2-entry-1778928057858-smart-canvas-v2-entry-qa-report-md-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928057858/smart-canvas-v2-entry-qa-report.md",
+      "releaseId": "release-ep-v2-entry-1778928057858-auto-draft-qa-1778928062685",
+      "updatedAt": "2026-05-16T10:41:04.837Z"
+    },
+    {
+      "id": "creative-plan-ep-v2-entry-1778928166193",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、9 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-v2-entry-1778928166193-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-v2-entry-1778928166193-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-v2-entry-1778928166193-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-v2-entry-1778928166193-creative-plan.json",
+      "updatedAt": "2026-05-16T10:42:46.516Z"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778928167821",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778928166897 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778928166193/draft-storyboard_image_generation-1778928167821.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778928167821",
+      "sourceWorkflowId": "draft-asset_image_generation-1778928166897",
+      "reviewId": "artifact-draft-asset_image_generation-1778928166897-01--ep-v2-entry-1778928166193-smart-canvas-v2-entry-asset-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778928166193/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T10:42:48.927Z"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778928168771",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 draft-storyboard_image_generation-1778928167821 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778928166193/draft-video_generation-1778928168771.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778928168771",
+      "sourceWorkflowId": "draft-storyboard_image_generation-1778928167821",
+      "reviewId": "artifact-draft-storyboard_image_generation-1778928167821-01--storyboard-ep-v2-entry-1778928166193-smart-canvas-v2-entry-storyboard-png-review",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778928166193/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T10:42:49.946Z"
+    },
+    {
+      "id": "workflow-chain-draft-edit-1778928169769",
+      "title": "下一阶段 Workflow：edit",
+      "description": "由 draft-video_generation-1778928168771 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778928166193/draft-edit-1778928169769.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-edit-1778928169769",
+      "sourceWorkflowId": "draft-video_generation-1778928168771",
+      "reviewId": "artifact-draft-video_generation-1778928168771-03--ep-v2-entry-1778928166193-smart-canvas-v2-entry-video-mp4-review",
+      "artifactPath": "03-视频/ep-v2-entry-1778928166193/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T10:42:50.933Z"
+    },
+    {
+      "id": "workflow-chain-draft-qa-1778928170769",
+      "title": "下一阶段 Workflow：qa",
+      "description": "由 draft-edit-1778928169769 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778928166193/draft-qa-1778928170769.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-qa-1778928170769",
+      "sourceWorkflowId": "draft-edit-1778928169769",
+      "reviewId": "artifact-draft-edit-1778928169769-05--edit-ep-v2-entry-1778928166193-smart-canvas-v2-entry-edit-mp4-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778928166193/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T10:42:51.916Z"
+    },
+    {
+      "id": "workflow-chain-draft-release-1778928171748",
+      "title": "下一阶段 Workflow：release",
+      "description": "由 draft-qa-1778928170769 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778928166193/draft-release-1778928171748.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-release-1778928171748",
+      "sourceWorkflowId": "draft-qa-1778928170769",
+      "reviewId": "artifact-draft-qa-1778928170769-05--review-ep-v2-entry-1778928166193-smart-canvas-v2-entry-qa-report-md-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928166193/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T10:42:52.835Z"
+    },
+    {
+      "id": "release-draft-release-ep-v2-entry-1778928166193-auto-draft-qa-1778928170769",
+      "title": "发布草稿：EP-V2-ENTRY-1778928166193",
+      "description": "QA review artifact-draft-qa-1778928170769-05--review-ep-v2-entry-1778928166193-smart-canvas-v2-entry-qa-report-md-review 完成后自动创建 release draft。",
+      "status": "done",
+      "items": [
+        "manifest 待补齐",
+        "送审 release review",
+        "批准后进入发布队列"
+      ],
+      "workflowId": "draft-release-1778928171748",
+      "sourceWorkflowId": "draft-qa-1778928170769",
+      "reviewId": "artifact-draft-qa-1778928170769-05--review-ep-v2-entry-1778928166193-smart-canvas-v2-entry-qa-report-md-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778928166193/smart-canvas-v2-entry-qa-report.md",
+      "releaseId": "release-ep-v2-entry-1778928166193-auto-draft-qa-1778928170769",
+      "updatedAt": "2026-05-16T10:42:52.835Z"
+    },
+    {
+      "id": "creative-plan-ep-v2-entry-1778930487733",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、9 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-v2-entry-1778930487733-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-v2-entry-1778930487733-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-v2-entry-1778930487733-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-v2-entry-1778930487733-creative-plan.json",
+      "updatedAt": "2026-05-16T11:21:28.077Z"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778930491360",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778930489002 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778930487733/draft-storyboard_image_generation-1778930491360.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778930491360",
+      "sourceWorkflowId": "draft-asset_image_generation-1778930489002",
+      "reviewId": "artifact-draft-asset_image_generation-1778930489002-01--ep-v2-entry-1778930487733-smart-canvas-v2-entry-asset-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778930487733/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T11:21:33.377Z"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778930493073",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 draft-storyboard_image_generation-1778930491360 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778930487733/draft-video_generation-1778930493073.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778930493073",
+      "sourceWorkflowId": "draft-storyboard_image_generation-1778930491360",
+      "reviewId": "artifact-draft-storyboard_image_generation-1778930491360-01--storyboard-ep-v2-entry-1778930487733-smart-canvas-v2-entry-storyboard-png-review",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778930487733/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T11:21:35.210Z"
+    },
+    {
+      "id": "workflow-chain-draft-edit-1778930494882",
+      "title": "下一阶段 Workflow：edit",
+      "description": "由 draft-video_generation-1778930493073 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778930487733/draft-edit-1778930494882.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-edit-1778930494882",
+      "sourceWorkflowId": "draft-video_generation-1778930493073",
+      "reviewId": "artifact-draft-video_generation-1778930493073-03--ep-v2-entry-1778930487733-smart-canvas-v2-entry-video-mp4-review",
+      "artifactPath": "03-视频/ep-v2-entry-1778930487733/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T11:21:37.076Z"
+    },
+    {
+      "id": "workflow-chain-draft-qa-1778930496735",
+      "title": "下一阶段 Workflow：qa",
+      "description": "由 draft-edit-1778930494882 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778930487733/draft-qa-1778930496735.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-qa-1778930496735",
+      "sourceWorkflowId": "draft-edit-1778930494882",
+      "reviewId": "artifact-draft-edit-1778930494882-05--edit-ep-v2-entry-1778930487733-smart-canvas-v2-entry-edit-mp4-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778930487733/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T11:21:39.189Z"
+    },
+    {
+      "id": "workflow-chain-draft-release-1778930498843",
+      "title": "下一阶段 Workflow：release",
+      "description": "由 draft-qa-1778930496735 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778930487733/draft-release-1778930498843.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-release-1778930498843",
+      "sourceWorkflowId": "draft-qa-1778930496735",
+      "reviewId": "artifact-draft-qa-1778930496735-05--review-ep-v2-entry-1778930487733-smart-canvas-v2-entry-qa-report-md-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778930487733/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T11:21:40.551Z"
+    },
+    {
+      "id": "release-draft-release-ep-v2-entry-1778930487733-auto-draft-qa-1778930496735",
+      "title": "发布草稿：EP-V2-ENTRY-1778930487733",
+      "description": "QA review artifact-draft-qa-1778930496735-05--review-ep-v2-entry-1778930487733-smart-canvas-v2-entry-qa-report-md-review 完成后自动创建 release draft。",
+      "status": "done",
+      "items": [
+        "manifest 待补齐",
+        "送审 release review",
+        "批准后进入发布队列"
+      ],
+      "workflowId": "draft-release-1778930498843",
+      "sourceWorkflowId": "draft-qa-1778930496735",
+      "reviewId": "artifact-draft-qa-1778930496735-05--review-ep-v2-entry-1778930487733-smart-canvas-v2-entry-qa-report-md-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778930487733/smart-canvas-v2-entry-qa-report.md",
+      "releaseId": "release-ep-v2-entry-1778930487733-auto-draft-qa-1778930496735",
+      "updatedAt": "2026-05-16T11:21:40.551Z"
+    },
+    {
+      "id": "creative-plan-ep-v2-entry-1778932458375",
+      "title": "剧本解析与任务编排",
+      "description": "已根据用户输入生成 2 个视频段、9 张资产卡，并写入生产输入文件。",
+      "status": "done",
+      "items": [
+        "04-storyboard/ep-v2-entry-1778932458375-storyboard.md",
+        "01-资产图与提示词/asset-cards/ep-v2-entry-1778932458375-asset-cards.md",
+        "01-资产图与提示词/asset-index.md",
+        "05-prompts/seedance/ep-v2-entry-1778932458375-shots.md"
+      ],
+      "artifactPath": "05-可选输出/剧本/ep-v2-entry-1778932458375-creative-plan.json",
+      "updatedAt": "2026-05-16T11:54:18.683Z"
+    },
+    {
+      "id": "workflow-chain-draft-storyboard_image_generation-1778932460671",
+      "title": "下一阶段 Workflow：storyboard_image_generation",
+      "description": "由 draft-asset_image_generation-1778932459111 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778932458375/draft-storyboard_image_generation-1778932460671.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-storyboard_image_generation-1778932460671",
+      "sourceWorkflowId": "draft-asset_image_generation-1778932459111",
+      "reviewId": "artifact-draft-asset_image_generation-1778932459111-01--ep-v2-entry-1778932458375-smart-canvas-v2-entry-asset-png-review",
+      "artifactPath": "01-资产图与提示词/资产图/ep-v2-entry-1778932458375/smart-canvas-v2-entry-asset.png",
+      "updatedAt": "2026-05-16T11:54:22.499Z"
+    },
+    {
+      "id": "workflow-chain-draft-video_generation-1778932462228",
+      "title": "下一阶段 Workflow：video_generation",
+      "description": "由 draft-storyboard_image_generation-1778932460671 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778932458375/draft-video_generation-1778932462228.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-video_generation-1778932462228",
+      "sourceWorkflowId": "draft-storyboard_image_generation-1778932460671",
+      "reviewId": "artifact-draft-storyboard_image_generation-1778932460671-01--storyboard-ep-v2-entry-1778932458375-smart-canvas-v2-entry-storyboard-png-review",
+      "artifactPath": "01-资产图与提示词/故事板/storyboard/ep-v2-entry-1778932458375/smart-canvas-v2-entry-storyboard.png",
+      "updatedAt": "2026-05-16T11:54:24.061Z"
+    },
+    {
+      "id": "workflow-chain-draft-edit-1778932463784",
+      "title": "下一阶段 Workflow：edit",
+      "description": "由 draft-video_generation-1778932462228 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778932458375/draft-edit-1778932463784.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-edit-1778932463784",
+      "sourceWorkflowId": "draft-video_generation-1778932462228",
+      "reviewId": "artifact-draft-video_generation-1778932462228-03--ep-v2-entry-1778932458375-smart-canvas-v2-entry-video-mp4-review",
+      "artifactPath": "03-视频/ep-v2-entry-1778932458375/smart-canvas-v2-entry-video.mp4",
+      "updatedAt": "2026-05-16T11:54:25.672Z"
+    },
+    {
+      "id": "workflow-chain-draft-qa-1778932465394",
+      "title": "下一阶段 Workflow：qa",
+      "description": "由 draft-edit-1778932463784 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778932458375/draft-qa-1778932465394.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-qa-1778932465394",
+      "sourceWorkflowId": "draft-edit-1778932463784",
+      "reviewId": "artifact-draft-edit-1778932463784-05--edit-ep-v2-entry-1778932458375-smart-canvas-v2-entry-edit-mp4-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/edit/ep-v2-entry-1778932458375/smart-canvas-v2-entry-edit.mp4",
+      "updatedAt": "2026-05-16T11:54:27.277Z"
+    },
+    {
+      "id": "workflow-chain-draft-release-1778932466983",
+      "title": "下一阶段 Workflow：release",
+      "description": "由 draft-qa-1778932465394 的产物审核通过后自动创建。",
+      "status": "done",
+      "items": [
+        "02-工作流/ep-v2-entry-1778932458375/draft-release-1778932466983.mjb-workflow.json",
+        "导入画布执行",
+        "完成后登记输出并送审"
+      ],
+      "workflowId": "draft-release-1778932466983",
+      "sourceWorkflowId": "draft-qa-1778932465394",
+      "reviewId": "artifact-draft-qa-1778932465394-05--review-ep-v2-entry-1778932458375-smart-canvas-v2-entry-qa-report-md-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778932458375/smart-canvas-v2-entry-qa-report.md",
+      "updatedAt": "2026-05-16T11:54:28.754Z"
+    },
+    {
+      "id": "release-draft-release-ep-v2-entry-1778932458375-auto-draft-qa-1778932465394",
+      "title": "发布草稿：EP-V2-ENTRY-1778932458375",
+      "description": "QA review artifact-draft-qa-1778932465394-05--review-ep-v2-entry-1778932458375-smart-canvas-v2-entry-qa-report-md-review 完成后自动创建 release draft。",
+      "status": "done",
+      "items": [
+        "manifest 待补齐",
+        "送审 release review",
+        "批准后进入发布队列"
+      ],
+      "workflowId": "draft-release-1778932466983",
+      "sourceWorkflowId": "draft-qa-1778932465394",
+      "reviewId": "artifact-draft-qa-1778932465394-05--review-ep-v2-entry-1778932458375-smart-canvas-v2-entry-qa-report-md-review",
+      "artifactPath": "05-可选输出/审核剪辑发布/review/ep-v2-entry-1778932458375/smart-canvas-v2-entry-qa-report.md",
+      "releaseId": "release-ep-v2-entry-1778932458375-auto-draft-qa-1778932465394",
+      "updatedAt": "2026-05-16T11:54:28.754Z"
+    }
+  ],
+  "updatedAt": "2026-05-08T14:44:08.767Z"
+}

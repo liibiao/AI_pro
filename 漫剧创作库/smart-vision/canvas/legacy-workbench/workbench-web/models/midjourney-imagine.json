@@ -1,0 +1,39 @@
+{
+  "id": "midjourney-imagine",
+  "name": "midjourney-imagine",
+  "type": "image",
+  "label": "Midjourney Imagine",
+  "model": "midjourney-imagine",
+  "baseUrl": "https://your-midjourney-proxy.example.com",
+  "url": "https://your-midjourney-proxy.example.com",
+  "key": "",
+  "adapter": "midjourney-imagine",
+  "endpointPath": "/mj/submit/imagine",
+  "statusEndpointPath": "/mj/task/{taskId}/fetch",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2img": true,
+    "img2img": true,
+    "imageToImage": true,
+    "storyboard": true,
+    "panorama": false,
+    "repair": false
+  },
+  "note": "Midjourney Imagine 独立生图渠道。提交接口 POST /mj/submit/imagine；参考图会作为公网 URL 前缀写入 prompt，或以 base64Array 提交。若上游查询路径不同，请在后台或本地配置中修改 statusEndpointPath。",
+  "protocol": {
+    "adapter": "midjourney-imagine",
+    "endpointPath": "/mj/submit/imagine",
+    "statusEndpointPath": "/mj/task/{taskId}/fetch",
+    "method": "async-poll",
+    "uploadMode": "object_storage"
+  },
+  "defaults": {
+    "botType": "MID_JOURNEY",
+    "speedMode": "FAST"
+  },
+  "ui": {
+    "label": "Midjourney Imagine",
+    "badge": "MJ",
+    "badgeColor": "#0f172a"
+  }
+}

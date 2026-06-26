@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "pipeline_end": {
+    "enabled_nodes": ["assets", "prompts"],
+    "disabled_nodes": ["video_generation", "edit", "review"]
+  },
+  "precheck": {
+    "required_items": [
+      { "path": "project.json", "type": "file" },
+      { "path": "01-story/scripts", "type": "dir", "glob": "*.md", "min_files": 1 },
+      { "path": "02-director/README.md", "type": "file" },
+      { "path": "03-assets/asset-index.md", "type": "file" },
+      { "path": "03-assets/characters", "type": "dir", "glob": "*.md", "min_files": 1 },
+      { "path": "03-assets/scenes", "type": "dir", "glob": "*.md", "min_files": 1 },
+      { "path": "03-assets/props", "type": "dir", "glob": "*.md", "min_files": 1 }
+    ],
+    "ep_script_name_contains": "第{ep}话"
+  },
+  "assets": {
+    "enabled": true,
+    "types": ["characters", "scenes", "props"]
+  },
+  "prompts": {
+    "enabled": true,
+    "style_default": "纪实克制"
+  }
+}

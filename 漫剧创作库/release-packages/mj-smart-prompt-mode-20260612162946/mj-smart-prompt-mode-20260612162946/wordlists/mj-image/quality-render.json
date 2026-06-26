@@ -1,0 +1,110 @@
+{
+  "_meta": {
+    "dimension": "画质细节与渲染",
+    "priority": 5,
+    "required": true,
+    "description": "保底画质，固定放在正向词的最后部分",
+    "tip": "建议直接选择一个预设组合快速填入"
+  },
+  "categories": [
+    {
+      "id": "resolution",
+      "name": "分辨率",
+      "tip": "基础清晰度保障",
+      "items": [
+        { "keyword": "HD高清", "usage": "基础高清" },
+        { "keyword": "4K超清", "usage": "标准高清出图" },
+        { "keyword": "8K超高清", "usage": "极致清晰" },
+        { "keyword": "16K分辨率", "usage": "超高精度" },
+        { "keyword": "超高清分辨率（UHD）", "usage": "通用画质保底" },
+        { "keyword": "高分辨率（High Resolution）", "usage": "通用保底" }
+      ]
+    },
+    {
+      "id": "render_engine",
+      "name": "渲染引擎",
+      "tip": "不同引擎有不同光影/材质特色",
+      "items": [
+        { "keyword": "Unreal Engine 5渲染", "usage": "最主流游戏级渲染" },
+        { "keyword": "Unreal Engine渲染", "usage": "通用UE渲染" },
+        { "keyword": "Octane渲染", "usage": "光影细腻、物理准确" },
+        { "keyword": "V-Ray渲染", "usage": "建筑/产品级精度" },
+        { "keyword": "Corona渲染", "usage": "室内场景、柔和光" },
+        { "keyword": "Redshift渲染", "usage": "GPU加速、速度与质量平衡" },
+        { "keyword": "Mental Ray渲染", "usage": "电影工业标准" },
+        { "keyword": "Blender渲染", "usage": "开源3D、全能" },
+        { "keyword": "FStorm渲染", "usage": "写实人像、快速" },
+        { "keyword": "光线追踪（Ray Tracing）", "usage": "真实反射、折射" },
+        { "keyword": "PBR物理材质", "usage": "真实材质质感" },
+        { "keyword": "全局光照（Global Illumination）", "usage": "真实光散射" },
+        { "keyword": "环境光遮蔽（Ambient Occlusion）", "usage": "角落阴影、层次感" },
+        { "keyword": "体积渲染（Volume Rendering）", "usage": "烟雾、云、体积光" },
+        { "keyword": "HDR高动态范围", "usage": "明暗细节丰富" },
+        { "keyword": "建筑渲染（ArchViz）", "usage": "建筑可视化" }
+      ]
+    },
+    {
+      "id": "detail_precision",
+      "name": "细节精度",
+      "tip": "强化画面精细程度",
+      "items": [
+        { "keyword": "极致细节（Ultra Detailed）", "usage": "通用细节强化" },
+        { "keyword": "高细节（Highly Detailed）", "usage": "通用细节提升" },
+        { "keyword": "超精细纹理", "usage": "材质细节" },
+        { "keyword": "锐化边缘", "usage": "轮廓清晰" },
+        { "keyword": "无糊帧", "usage": "排除动态模糊" },
+        { "keyword": "高锐度", "usage": "整体清晰" },
+        { "keyword": "超清晰（Super Clarity）", "usage": "极致清晰" },
+        { "keyword": "超高品质（Hyper Quality）", "usage": "顶级品质" },
+        { "keyword": "毛发细节清晰", "usage": "角色发丝、动物毛发" },
+        { "keyword": "皮肤毛孔可见", "usage": "超写实人像" },
+        { "keyword": "微距级细节", "usage": "极度精细" },
+        { "keyword": "精致细节（Intricate Details）", "usage": "复杂纹样、装饰" },
+        { "keyword": "清晰对焦（Sharp Focus）", "usage": "主体清晰锐利" },
+        { "keyword": "照片级细节", "usage": "达到照片精细度" }
+      ]
+    },
+    {
+      "id": "aspect_ratio",
+      "name": "画幅格式",
+      "tip": "控制画面比例",
+      "items": [
+        { "keyword": "16:9宽屏画幅", "usage": "横屏电影/漫剧标准" },
+        { "keyword": "电影宽幅 2.35:1", "usage": "极致电影感" },
+        { "keyword": "9:16竖屏画幅", "usage": "手机竖屏/短视频" },
+        { "keyword": "1:1方形画幅", "usage": "社交媒体/海报" },
+        { "keyword": "4:3经典画幅", "usage": "复古、传统感" },
+        { "keyword": "21:9超宽画幅", "usage": "超宽屏电影" }
+      ]
+    },
+    {
+      "id": "quality_descriptors",
+      "name": "品质描述词",
+      "tip": "提升整体品质的通用修饰词",
+      "items": [
+        { "keyword": "大师之作（Masterpiece）", "usage": "顶级品质标签" },
+        { "keyword": "杰作（Best Quality）", "usage": "最高品质" },
+        { "keyword": "高质量（High Quality）", "usage": "通用品质" },
+        { "keyword": "惊人画质（Amazing Quality）", "usage": "令人印象深刻" },
+        { "keyword": "超写实（Hyperrealistic）", "usage": "超越真实" },
+        { "keyword": "电影级（Cinematic）", "usage": "影视质感" },
+        { "keyword": "专业级（Professional）", "usage": "工业标准" },
+        { "keyword": "杂志封面级", "usage": "印刷品质" },
+        { "keyword": "获奖照片级", "usage": "摄影比赛品质" }
+      ]
+    },
+    {
+      "id": "preset_combo",
+      "name": "一键预设组合",
+      "tip": "推荐直接选用预设，覆盖多个维度",
+      "items": [
+        { "keyword": "4K超清，8K分辨率，Unreal Engine 5渲染，光线追踪，PBR材质，极致细节，超精细纹理，HDR高动态范围，16:9宽屏画幅", "usage": "标准电影级预设，覆盖全部画质维度", "isCombo": true },
+        { "keyword": "4K超清，Octane渲染，光线追踪，极致细节，高锐度，HDR高动态范围，16:9宽屏画幅", "usage": "精致质感预设，侧重光影渲染", "isCombo": true },
+        { "keyword": "8K超高清，Unreal Engine 5渲染，PBR材质，超精细纹理，毛发细节清晰，皮肤毛孔可见，16:9宽屏画幅", "usage": "超写实人物预设，侧重角色细节", "isCombo": true },
+        { "keyword": "4K超清，全局光照，HDR高动态范围，极致细节，16:9宽屏画幅", "usage": "轻量预设，出图更快", "isCombo": true },
+        { "keyword": "8K超高清，V-Ray渲染，光线追踪，PBR材质，清晰对焦，环境光遮蔽，HDR，2.35:1电影宽幅", "usage": "建筑/场景渲染预设", "isCombo": true },
+        { "keyword": "4K超清，Corona渲染，全局光照，柔和光效，室内场景，高细节，16:9宽屏画幅", "usage": "室内/角色肖像预设", "isCombo": true }
+      ]
+    }
+  ]
+}

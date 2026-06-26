@@ -1,0 +1,4 @@
+# ffmpeg concat 片段清单示例
+# 每行格式：file '相对或绝对视频路径'
+# file '../08_视频源输出/Seedance输出/入选视频/shot001.mp4'
+# file '../08_视频源输出/Sora输出/入选视频/shot002.mp4'

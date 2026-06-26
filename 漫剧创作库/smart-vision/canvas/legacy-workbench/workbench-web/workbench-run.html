@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>漫剧运行过程</title>
+  <style>
+    :root {
+      --bg:#08101d; --panel:rgba(18,25,53,.94); --line:rgba(255,255,255,.1); --text:#eef2ff; --muted:#9fb0d9;
+      --ok:#54d2a5; --warn:#ffcf70; --error:#ff8f95; --shadow:0 18px 40px rgba(0,0,0,.28);
+    }
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC",sans-serif;color:var(--text);background:radial-gradient(circle at top,#122349 0%,#08101d 42%,#060b15 100%)}
+    .wrap{max-width:1320px;margin:0 auto;padding:28px 20px 48px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}.panel+.panel{margin-top:18px}
+    .head{padding:20px 22px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.03)}.head h1,.head h2{margin:0 0 8px}.head p{margin:0;color:var(--muted);line-height:1.8}
+    .body{padding:20px}.kv{display:grid;grid-template-columns:120px 1fr;gap:8px 12px;font-size:14px;line-height:1.8}.kv strong{color:#dbe6ff}.status{margin-top:14px;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+    .status.ok{color:#dbfff0;border-color:rgba(84,210,165,.3);background:rgba(84,210,165,.12)} .status.warn{color:#fff1cb;border-color:rgba(255,207,112,.3);background:rgba(255,207,112,.12)} .status.error{color:#ffd9dc;border-color:rgba(255,143,149,.3);background:rgba(255,143,149,.12)}
+    pre{margin:0;white-space:pre-wrap;word-break:break-word;background:rgba(8,13,29,.95);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px;line-height:1.72;color:#ebf2ff;font-size:13px;max-height:560px;overflow:auto}
+    .toolbar,.links{display:flex;flex-wrap:wrap;gap:10px}.links{margin-top:14px}.link{display:block;text-decoration:none;color:var(--text);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.03)} .link strong{display:block;margin-bottom:4px}.link span{color:var(--muted);font-size:12px;line-height:1.6}
+    button{appearance:none;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:11px 16px;cursor:pointer;font:inherit;color:var(--text);background:linear-gradient(180deg,#24366c,#1a264e)}
+    button.secondary{background:linear-gradient(180deg,#1b233f,#151b31)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="panel">
+      <div class="head">
+        <h1>漫剧运行过程页</h1>
+        <p>这里会持续展示项目级流水线的真实运行日志。任务完成后，如果产出了可交互的 HTML 结果页，页面会自动跳转过去。</p>
+      </div>
+      <div class="body">
+        <div class="kv">
+          <strong>任务 ID</strong><span id="taskIdView">读取中</span>
+          <strong>项目</strong><span id="projectView">读取中</span>
+          <strong>集数</strong><span id="episodeView">读取中</span>
+          <strong>状态</strong><span id="statusView">读取中</span>
+          <strong>结果页</strong><span id="resultView">待生成</span>
+        </div>
+        <div class="status warn" id="statusLine">正在连接任务状态…</div>
+        <div class="links" id="resultLinks"></div>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="head">
+        <h2>实时运行日志</h2>
+        <p>日志会自动滚动；若最终成功生成 `prompts-viewer.html`，系统会直接跳到结果页面。</p>
+      </div>
+      <div class="body">
+        <div class="toolbar" style="margin-bottom:12px">
+          <button id="openResultBtn">打开结果页</button>
+          <button class="secondary" id="backWorkbenchBtn">返回工作台</button>
+        </div>
+        <pre id="logBox">任务尚未开始。</pre>
+      </div>
+    </section>
+  </div>
+  <script>
+    const API_BASE = '/api/workbench';
+    const params = new URLSearchParams(location.search);
+    const taskId = params.get('taskId') || '';
+    const state = { timer:null, resultViewerUrl:'', redirected:false };
+    const $ = id => document.getElementById(id);
+    const logBox = $('logBox');
+    function setStatus(text, level='warn'){ const el=$('statusLine'); el.className=`status ${level}`; el.textContent=text; $('statusView').textContent=text; }
+    function withNoCache(url){
+      if (!url) return '';
+      const joiner = url.includes('?') ? '&' : '?';
+      return `${url}${joiner}v=${Date.now()}`;
+    }
+    function renderLinks(files=[]){ $('resultLinks').innerHTML = files.map(file => `<a class="link" href="${withNoCache(file.url)}" target="_blank" rel="noreferrer"><strong>${file.label || file.kind || '结果文件'}</strong><span>${file.relativePath || file.path || ''}</span></a>`).join(''); }
+    function maybeRedirect(task){ const rawUrl = task?.result?.resultViewerUrl || task?.meta?.resultViewerUrl || ''; if (!rawUrl) return; const url = withNoCache(rawUrl); state.resultViewerUrl = url; $('resultView').textContent = rawUrl; if (task.status === 'completed' && !state.redirected) { state.redirected = true; setStatus('任务完成，正在用新预览打开 HTML 结果页…', 'ok'); setTimeout(() => { window.open(url, '_blank'); }, 700); } }
+    async function poll(){ if (!taskId) { setStatus('缺少 taskId，无法查看运行过程。', 'error'); return; }
+      try {
+        const response = await fetch(`${API_BASE}/task?taskId=${encodeURIComponent(taskId)}`, { cache:'no-store' });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || `HTTP ${response.status}`);
+        const task = data.task || {};
+        $('taskIdView').textContent = task.id || taskId; $('projectView').textContent = task.meta?.projectId || '未知项目'; $('episodeView').textContent = task.meta?.episode || '未知';
+        logBox.textContent = (task.logs || []).join('\n') || '任务已创建，等待日志输出…'; logBox.scrollTop = logBox.scrollHeight;
+        renderLinks(task.result?.generatedFiles || []); maybeRedirect(task);
+        if (task.status === 'running') { setStatus('项目级流水线运行中，正在实时刷新日志…', 'warn'); state.timer = setTimeout(poll, 1000); return; }
+        if (task.status === 'completed') { setStatus('项目级流水线已完成。', 'ok'); return; }
+        setStatus(`任务失败：${task.error || '未知错误'}`, 'error');
+      } catch (error) {
+        setStatus(`轮询失败：${error.message}`, 'error');
+      }
+    }
+    $('openResultBtn').addEventListener('click', () => { if (state.resultViewerUrl) window.open(state.resultViewerUrl, '_blank'); });
+    $('backWorkbenchBtn').addEventListener('click', () => { location.href = '/workbench.html'; });
+    poll();
+  </script>
+</body>
+</html>

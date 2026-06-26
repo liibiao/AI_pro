@@ -1,0 +1,630 @@
+{
+  "schema": "mjb-workflow-v1",
+  "id": "draft-release-1778304322583",
+  "name": "release 任务上下文包 Workflow 草案",
+  "taskType": "release",
+  "path": "02-工作流/ep001/draft-release-1778304322583.mjb-workflow.json",
+  "importUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-release-1778304322583.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199",
+  "editUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-release-1778304322583.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=edit",
+  "runUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-release-1778304322583.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=manual",
+  "canvasExecution": {
+    "executor": "infinite_canvas",
+    "adapter": "smart-vision-canvas-workflow-adapter",
+    "executionCarrier": "workflow_json",
+    "directModelExecution": false,
+    "modelInvocation": "never_direct_from_smart_vision",
+    "strategy": {
+      "mode": "operator_controlled",
+      "carrier": "workflow_json",
+      "executor": "infinite_canvas",
+      "workflowMode": "context_pack_workflow",
+      "pipelineStage": "release",
+      "pipelineTaskType": "release",
+      "consumes": [
+        "qa_review",
+        "release_review"
+      ],
+      "produces": [
+        "release_package"
+      ],
+      "directModelExecution": false,
+      "modelInvocation": "never_direct_from_smart_vision",
+      "defaultAction": "open_canvas_for_review",
+      "allowedActions": [
+        "generate_workflow_json",
+        "open_canvas",
+        "edit_workflow",
+        "manual_run_in_canvas",
+        "register_canvas_output"
+      ],
+      "gates": [
+        "workflow_json_generated",
+        "prompts_filled",
+        "reference_images_filled",
+        "output_paths_filled",
+        "operator_or_strategy_approval_before_run"
+      ],
+      "note": "Smart Vision 只生成并调度无限画布 Workflow JSON；模型执行只能由画布工作流按策略承载。"
+    },
+    "workflowMode": "context_pack_workflow",
+    "status": "draft_only",
+    "workflowPath": "02-工作流/ep001/draft-release-1778304322583.mjb-workflow.json",
+    "importUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-release-1778304322583.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199",
+    "editUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-release-1778304322583.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=edit",
+    "runUrl": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-release-1778304322583.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=manual",
+    "bridgeBase": "http://127.0.0.1:5199",
+    "promptCount": 10,
+    "referenceImageCount": 4,
+    "prompts": [
+      {
+        "path": "upstream/05-prompts/seedance/ep001-fullref-15s.md",
+        "sourceKind": "artifact",
+        "score": 63,
+        "exists": true,
+        "excerpt": "第1话《废物》— Seedance 长版母稿（修正版） > **项目：** 无限强化·灵纹觉醒 > **用途：** 作为 `Seedance / 即梦 / 叙事版` 的唯一真实源 > **结构说明：** 严格采用 `画面主体【完整：...】 + @Image 起手 + 逐条时间轴 + 六个固定段名` --- 【第 1 段：0s - 5s】 画面主体【完整：建立末世联邦与林家练武场的空间压迫关系，让观众先看到灰暗世界与屏障秩序，再落到灵纹碑石与试炼现场的核心读点。】 @Image@联邦全景 / @林家练武场 / @灵纹碑石——先远后近，屏障穹顶罩住灰暗城市，练武场在画面下半区成型，第一听感是远处低频风压与屏障嗡鸣。 0.0s（24fps / 高空俯瞰 / 固定起幅）：能量屏障穹顶覆盖整座灰暗城市，边缘冷蓝微光缓慢游走，屏障外荒芜废土上异兽剪影缓慢掠过——【音效：远处低频风压 + 极弱异兽嘶吼】。 1.8s（24fps / 高空俯瞰 / 缓慢下压）：镜头沿穹顶边缘下沉，城市轮廓向后退去，练武场从尘雾里显形——【音效：屏障低频嗡鸣持续，风声微增强】。 3.0s（24fps / 全景 / 稳定停住）：烈日下练武场人头攒动，中央黑色巨...",
+        "headings": [
+          "第1话《废物》— Seedance 长版母稿（修正版）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/ep003-fullref-15s.md",
+        "sourceKind": "artifact",
+        "score": 55,
+        "exists": true,
+        "excerpt": "第3话《觉醒》 — Seedance 2.0 全能参考 15 秒分镜提示词 > 项目：无限强化·灵纹觉醒 > 镜头数：4 > 结构：HOOK→PROBLEM→SOLUTION→CTA/钩子收束（适合宣发/预告） --- 参考图清单 | 用途 | 文件路径 | 用于镜头 | |------|---------|---------| | @林天 | 06-generated/images/characters/林天觉醒后-v8-1.png | Shot 1 | | @系统UI面板 | 06-generated/images/props/系统UI面板-v8-1.png | Shot 1 | | @联邦全景 | 06-generated/images/scenes/联邦全景-v8-1.png | Shot 2 | --- 素材职责矩阵（避免抢权漂移） | 控制维度 | 主控制源 | 约束 | |---------|----------|------| | 角色形象/阶段/战损一致性 | @角色-… | 禁止跨阶段换装与战损消失 | | 场景空间/光影基准 | @场景-… | 主光方向一致，保留字幕安全区 | | 剧情支点道具可读性 ...",
+        "headings": [
+          "第3话《觉醒》 — Seedance 2.0 全能参考 15 秒分镜提示词",
+          "参考图清单",
+          "素材职责矩阵（避免抢权漂移）",
+          "片段节拍纪律",
+          "Shot 1 — HOOK",
+          "Shot 2 — PROBLEM→SOLUTION",
+          "Shot 3 — SOLUTION（高光）",
+          "Shot 4 — CTA / 钩子收束"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/即梦/ep001-omni-paste.md",
+        "sourceKind": "artifact",
+        "score": 53,
+        "exists": true,
+        "excerpt": "第1话《废物》— 即梦版长提示词（修正版） > **项目：** 无限强化·灵纹觉醒 > **版本：** 即梦版（长版投喂稿） > **规则：** 每段 10s，分镜逻辑不变，扩展时间轴；最后一段不足 10s 按实际铺满 > **来源：** 基于 `ep001-fullref-15s.md` 同步修正，保留位置关系与六固定段名 --- 【第 1 段：0s - 10s】 画面主体【完整：先建立末世联邦与林家练武场，再把首看点落到灵纹碑石与试炼现场。】 @Image@联邦全景 / @林家练武场 / @灵纹碑石——先远后近，屏障穹顶罩住灰暗城市，练武场落在画面下半区，第一听感是远处低频风压与屏障嗡鸣。 位置关系：屏障穹顶在最上层包住整座城市；练武场在下半区中央；灵纹碑石固定在中轴偏下；废土与异兽剪影只留在屏障外后景，不得前压到练武场前景。 0.0s（24fps / 高空俯瞰 / 固定起幅）：屏障覆盖灰暗城市，边缘冷蓝微光游走，废土异兽剪影缓慢掠过——【音效：低频风压 + 极弱异兽嘶吼】。 1.8s（24fps / 高空俯瞰 / 缓慢下压）：镜头沿穹顶边缘下沉，城市后退，练武场从尘雾里显形——【音效：屏障嗡鸣持续】。 3.0s（24f...",
+        "headings": [
+          "第1话《废物》— 即梦版长提示词（修正版）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/即梦/ep001-omni-paste.short.md",
+        "sourceKind": "artifact",
+        "score": 53,
+        "exists": true,
+        "excerpt": "> **项目：** 无限强化·灵纹觉醒 > **大创意：** 压抑蓄力——废物到天才的反差，最终钩子是\"林天，上来吧\" > **视觉隐喻：** 暗色调底色中偶尔闪现的银色纹路微光（希望种子） > **镜头数：** 8 镜头 Seedance 素材上传顺序 | 序号 | 资源 | 路径 | |---|---|---| --- 即梦版（Omni-Reference） text [0.0-0.3s] 蓄力起手：@林傲天 右臂抬起至胸前，掌心出现紫色电弧（24fps）。机位固定中景。 [0.3-0.5s] 掌碑瞬间：接触点白色闪光（0.1s 过曝后恢复），冲击波纹扩散。机位固定。 [0.5-1.5s] 雷光炸裂（降格 60fps）：紫色闪电放射 6-8 道；右臂弹回 15°；空气热畸变；群众倒退+衣摆猎猎+尘土颗粒。人物边缘清晰，运动模糊仅限背景。 [1.5-2.5s] 碑文点亮（恢复 24fps）：紫色闪电消散，金色大字逐字亮起（间隔 0.3s）。 [2.5-3.5s] 余波回稳：右臂放下握拳；群众恢复站姿；环境光回归暖色调。 [3.5-6.0s] 回头兑现：头部缓慢转向镜头（30°/s），机位极缓推进；嘴角拉开冷笑+下巴上抬 8...",
+        "headings": [
+          "Seedance 素材上传顺序",
+          "即梦版（Omni-Reference）",
+          "Shot 1 — 俯瞰建立（HOOK）",
+          "Shot 2 — 角落相依（PROBLEM）",
+          "Shot 3 — 嘲讽与隐忍（PROBLEM）",
+          "Shot 4 — 闪回·父亲背影（PROBLEM）",
+          "Shot 5 — 闪回·权力更替+婚约（PROBLEM）",
+          "Shot 6 — 林傲天金甲登场（PROBLEM）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/叙事/ep001-seedance2-narrative-paste.md",
+        "sourceKind": "artifact",
+        "score": 53,
+        "exists": true,
+        "excerpt": "第1话《废物》— 叙事版长提示词（修正版） > **项目：** 无限强化·灵纹觉醒 > **版本：** Seedance 叙事版（导演口述） > **规则：** 每段 15s，分镜逻辑不变，扩展时间轴与细节动作；最后一段不足 15s 按实际铺满 > **来源：** 基于 `ep001-fullref-15s.md` 同步修正，保留位置关系与六固定段名 --- 【第 1 段：0s - 15s】 画面主体【完整：先建立末世联邦与林家练武场，再把读点稳稳落到灵纹碑石和试炼现场，让观众先感到压迫，再感到秩序。】 @Image@联邦全景 / @林家练武场 / @灵纹碑石——先给远处灰暗城市和能量屏障，再顺着视线往下落到练武场中央巨碑，第一听感是风压和屏障的低频嗡鸣。 位置关系：屏障穹顶在画面最上层包住整座城市，练武场落在画面下半区中央，灵纹碑石固定在中轴偏下作为唯一空间核心，废土与异兽剪影只留在屏障外后景。 0.0s（24fps / 高空俯瞰 / 固定起幅）：能量屏障覆盖整座灰暗城市，边缘冷蓝微光缓慢游走，屏障外荒芜废土上的异兽剪影缓慢掠过——【音效：远处低频风压 + 极弱异兽嘶吼】。 1.8s（24fps / 高空俯瞰 / 缓慢下压...",
+        "headings": [
+          "第1话《废物》— 叙事版长提示词（修正版）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/叙事/ep001-seedance2-narrative-paste.short.md",
+        "sourceKind": "artifact",
+        "score": 53,
+        "exists": true,
+        "excerpt": "> **项目：** 无限强化·灵纹觉醒 > **大创意：** 压抑蓄力——废物到天才的反差，最终钩子是\"林天，上来吧\" > **视觉隐喻：** 暗色调底色中偶尔闪现的银色纹路微光（希望种子） > **镜头数：** 8 镜头 Seedance 素材上传顺序 | 序号 | 资源 | 路径 | |---|---|---| --- Seedance2叙事版（长句叙事）",
+        "headings": [
+          "Seedance 素材上传顺序",
+          "Seedance2叙事版（长句叙事）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/seedance/ep001-seedance2-paste.md",
+        "sourceKind": "artifact",
+        "score": 53,
+        "exists": true,
+        "excerpt": "第1话《废物》— Seedance 版长提示词（修正版） > **项目：** 无限强化·灵纹觉醒 > **版本：** Seedance 长版母稿直出 > **规则：** 每段 15s，分镜逻辑不变，扩展时间轴与细节动作；最后一段不足 15s 按实际铺满 > **说明：** 已修正为项目规范要求的 `画面主体【完整】 + @Image 起手 + 逐条时间轴 + 六固定段名` --- 【第 1 段：0s - 15s】 画面主体【完整：建立末世联邦与林家练武场的空间压迫关系，让观众先看到灰暗世界与屏障秩序，再落到灵纹碑石与试炼现场的核心读点。】 @Image@联邦全景 / @林家练武场 / @灵纹碑石——先远后近，屏障穹顶罩住灰暗城市，练武场在画面下半区成型，第一听感是远处低频风压与屏障嗡鸣。 0.0s（24fps / 高空俯瞰 / 固定起幅）：能量屏障穹顶覆盖整座灰暗城市，边缘冷蓝微光缓慢游走，屏障外荒芜废土上异兽剪影缓慢掠过——【音效：远处低频风压 + 极弱异兽嘶吼】。 1.8s（24fps / 高空俯瞰 / 缓慢下压）：镜头沿穹顶边缘下沉，城市轮廓向后退去，建筑废墟在尘雾中若隐若现——【音效：屏障低频嗡鸣持续，风声微增强】。...",
+        "headings": [
+          "第1话《废物》— Seedance 版长提示词（修正版）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/第01集/seedance/ep001-seedance2-paste.short.md",
+        "sourceKind": "artifact",
+        "score": 53,
+        "exists": true,
+        "excerpt": "> **项目：** 无限强化·灵纹觉醒 > **大创意：** 压抑蓄力——废物到天才的反差，最终钩子是\"林天，上来吧\" > **视觉隐喻：** 暗色调底色中偶尔闪现的银色纹路微光（希望种子） > **镜头数：** 8 镜头 Seedance 素材上传顺序 | 序号 | 资源 | 路径 | |---|---|---| --- Seedance版（灵境长版母稿）",
+        "headings": [
+          "Seedance 素材上传顺序",
+          "Seedance版（灵境长版母稿）"
+        ]
+      },
+      {
+        "path": "upstream/05-prompts/seedance/ep001-shots.md",
+        "sourceKind": "artifact",
+        "score": 53,
+        "exists": true,
+        "excerpt": "ep001-shots.md — 第1话《废物》Seedance 镜头提示词 > **项目：** 无限强化·灵纹觉醒 > **章节：** 第1话《废物》 > **用途：** 从 `04-storyboard/ep001-storyboard.md` 拆为可执行的 Seedance 镜头稿。 --- 参考图清单 | 用途 | 文件路径 | 用于镜头 | |------|---------|---------| | @林天 | 06-generated/images/characters/林天觉醒前-v8-1.png | S1-S8 | | @林婉儿 | 06-generated/images/characters/林婉儿-v8-1.png | S2, S4, S5, S8 | | @林傲天 | 06-generated/images/characters/林傲天-v8-1.png | S5, S6, S7 | | @林啸 | 06-generated/images/characters/林啸-v8-1.png | S5 | | @执事长老 | 06-generated/images/characters/执事长老-v8-1.p...",
+        "headings": [
+          "ep001-shots.md — 第1话《废物》Seedance 镜头提示词",
+          "参考图清单",
+          "Shot 1 — 俯瞰建立",
+          "Shot 2 — 角落相依",
+          "Shot 3 — 嘲讽与隐忍",
+          "Shot 4 — 闪回·父亲背影",
+          "Shot 5 — 闪回·权力更替+婚约",
+          "Shot 6 — 林傲天金甲登场"
+        ]
+      },
+      {
+        "path": "upstream/04-storyboard/动作戏提示词补充规范.md",
+        "sourceKind": "artifact",
+        "score": 51,
+        "exists": true,
+        "excerpt": "动作戏提示词补充规范 > 用途：给 `Seedance` / `即梦` / `叙事版` 提示词补充动作戏专用描述层，确保“对抗关系、速度变化、受力反馈、结果镜头”完整可执行。 --- 一、补充原则 - 动作戏提示词不能只写“做了什么”，必须写“怎么打、打多快、打到哪、打完怎样” - 所有动作 Prompt 至少补 4 层： - 对抗关系 - 速度变化 - 身体受力 - 环境联动 - 强动作镜头必须补镜头反应，但镜头表达服从读点保护 --- 二、动作镜头最小补充结构 A. 对抗关系 - 当前谁压谁 - 谁是主动进攻 - 谁是被迫防守 - 这一击是否改变关系 B. 速度变化 - 起势是否停顿 - 出手是突然暴起还是持续推进 - 命中是瞬间定格还是直接掠过 - 结果是猛然击飞还是慢半拍坠落 C. 身体受力 - 攻击者如何发力 - 受击者身体怎么变形 - 重心如何变化 - 是否离地、滑退、失衡、回弹 D. 环境联动 - 地面是否裂开 - 尘土/碎石/叶片/水花是否被带动 - 道具是否震动、破裂、偏移 E. 镜头反应 - 镜头推进还是跟拍 - 命中瞬间是否轻震 - 结果镜头是否拉开看破坏 --- 三、Prompt 写法要求 1. 必须...",
+        "headings": [
+          "动作戏提示词补充规范",
+          "一、补充原则",
+          "二、动作镜头最小补充结构",
+          "A. 对抗关系",
+          "B. 速度变化",
+          "C. 身体受力",
+          "D. 环境联动",
+          "E. 镜头反应"
+        ]
+      }
+    ],
+    "referenceImages": [
+      {
+        "name": "pipeline-storyboard-output-smoke.png",
+        "role": "storyboard",
+        "artifactPath": "01-资产图与提示词/故事板/storyboard/ep001/pipeline-storyboard-output-smoke.png",
+        "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/smart-vision/outputs/01-资产图与提示词/故事板/storyboard/ep001/pipeline-storyboard-output-smoke.png",
+        "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=01-%E8%B5%84%E4%BA%A7%E5%9B%BE%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%2F%E6%95%85%E4%BA%8B%E6%9D%BF%2Fstoryboard%2Fep001%2Fpipeline-storyboard-output-smoke.png&raw=1",
+        "uploadMode": "object_storage"
+      },
+      {
+        "name": "pipeline-asset-output-smoke.png",
+        "role": "asset",
+        "artifactPath": "01-资产图与提示词/资产图/ep001/pipeline-asset-output-smoke.png",
+        "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/smart-vision/outputs/01-资产图与提示词/资产图/ep001/pipeline-asset-output-smoke.png",
+        "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=01-%E8%B5%84%E4%BA%A7%E5%9B%BE%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%2F%E8%B5%84%E4%BA%A7%E5%9B%BE%2Fep001%2Fpipeline-asset-output-smoke.png&raw=1",
+        "uploadMode": "object_storage"
+      },
+      {
+        "name": "idempotency-smoke.png",
+        "role": "asset",
+        "artifactPath": "01-资产图与提示词/画布回写/idempotency-smoke.png",
+        "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/smart-vision/outputs/01-资产图与提示词/画布回写/idempotency-smoke.png",
+        "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=01-%E8%B5%84%E4%BA%A7%E5%9B%BE%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%2F%E7%94%BB%E5%B8%83%E5%9B%9E%E5%86%99%2Fidempotency-smoke.png&raw=1",
+        "uploadMode": "object_storage"
+      },
+      {
+        "name": "retry-smoke.png",
+        "role": "asset",
+        "artifactPath": "01-资产图与提示词/画布回写/retry-smoke.png",
+        "localPath": "/Users/billy/Documents/AI_pro/漫剧创作库/smart-vision/outputs/01-资产图与提示词/画布回写/retry-smoke.png",
+        "localUrl": "http://127.0.0.1:5199/api/smart-vision/artifacts/read?path=01-%E8%B5%84%E4%BA%A7%E5%9B%BE%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%2F%E7%94%BB%E5%B8%83%E5%9B%9E%E5%86%99%2Fretry-smoke.png&raw=1",
+        "uploadMode": "object_storage"
+      }
+    ],
+    "outputArtifacts": [
+      "05-可选输出/审核剪辑发布/release/**/release-manifest.json"
+    ],
+    "actions": [
+      {
+        "id": "edit_in_canvas",
+        "label": "编辑工作流",
+        "url": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-release-1778304322583.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=edit"
+      },
+      {
+        "id": "open_in_canvas",
+        "label": "导入画布",
+        "url": "http://127.0.0.1:8877/image-studio-canvas.html?workflowPath=02-%E5%B7%A5%E4%BD%9C%E6%B5%81%2Fep001%2Fdraft-release-1778304322583.mjb-workflow.json&bridgeBase=http%3A%2F%2F127.0.0.1%3A5199&mode=manual"
+      }
+    ],
+    "generatedAt": "2026-05-09T05:25:22.591Z"
+  },
+  "contextPack": {
+    "taskType": "release",
+    "title": "release 任务上下文包",
+    "methodologyPackId": "smart-vision-methodology-core-v0.1",
+    "skillPackId": "smart-vision-skill-core-v0.1",
+    "templatePackId": "smart-vision-template-core-v0.1",
+    "aliases": [
+      "release",
+      "qa",
+      "phase_gate",
+      "project_control",
+      "prompt_qa"
+    ],
+    "docs": [
+      "docs/workflow.md",
+      "docs/phase-gate-checklist.md",
+      "docs/pipeline-sync-protocol.md",
+      "docs/project-memory-system.md"
+    ],
+    "skills": [
+      "skills/seedance-action-skill.md",
+      "skills/runninghub-image-skill.md",
+      "skills/prompt-experiment-skill.md",
+      "skills/quality-control-skill.md"
+    ],
+    "agents": [],
+    "templates": [],
+    "inputArtifacts": [
+      "05-可选输出/审核剪辑发布/review/**/review-report.md",
+      "04-storyboard/ep001-storyboard.md",
+      "05-prompts/seedance/ep001-shots.md",
+      "01-资产图与提示词/asset-index.md",
+      "08-qa/v8-asset-consistency-qa-report.md",
+      "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+      "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+      "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json",
+      "02-工作流/ep001/draft-qa-1778211540000.mjb-workflow.json",
+      "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-precheck.md",
+      "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+      "05-可选输出/审核剪辑发布/review/ep001/ep001-rework-chain-test.md",
+      "05-可选输出/审核剪辑发布/release/ep001/ep001-release-v0.mp4",
+      "05-可选输出/审核剪辑发布/release/ep001/ep001-release-manifest.json",
+      "05-可选输出/审核剪辑发布/publish/ep001/ep001-release-v0-approval.md",
+      "05-可选输出/审核剪辑发布/publish/ep001/ep001-final-production-backlog.md",
+      "01-资产图与提示词/故事板/storyboard/ep001/pipeline-storyboard-output-smoke.png",
+      "01-资产图与提示词/画布回写/idempotency-smoke.png",
+      "01-资产图与提示词/画布回写/retry-smoke.png",
+      "01-资产图与提示词/提示词/README.md",
+      "01-资产图与提示词/资产图/ep001/pipeline-asset-output-smoke.png",
+      "01-资产图与提示词/README.md",
+      "02-工作流/ep001/draft-asset_image_generation-1778290049554.mjb-workflow.json",
+      "02-工作流/ep001/draft-asset_image_generation-1778298423240.mjb-workflow.json"
+    ],
+    "workflowHints": [],
+    "selectedCapabilityItems": {
+      "methodologies": [
+        {
+          "id": "workflow-gate",
+          "title": "工作流与门禁",
+          "taskTypes": [
+            "project_control",
+            "phase_gate",
+            "qa"
+          ]
+        }
+      ],
+      "skills": [
+        {
+          "id": "prompt-generation",
+          "title": "视频与生图提示词",
+          "taskTypes": [
+            "seedance_prompt",
+            "image_prompt",
+            "storyboard_image_generation",
+            "prompt_qa"
+          ]
+        }
+      ],
+      "templates": []
+    },
+    "parsedReferences": [
+      {
+        "path": "docs/workflow.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 24045,
+        "parsedAt": "2026-05-09T05:25:22.577Z",
+        "format": "markdown",
+        "headings": [
+          "workflow — Agent × Skill 协作流程标准",
+          "一、项目生命周期（8 个阶段）",
+          "二、精益 Agent 体系 (6 个核心角色)",
+          "三、阶段详细流程 (精益版)",
+          "Phase 0: INTAKE / METHODOLOGY / STYLE — 创作源输入、母版定层与风格初筛",
+          "Phase 1: STORY — 故事阶段",
+          "Phase 2: DIRECTOR & ASSETS — 导演与资产阶段",
+          "Phase 3: STORYBOARD — 分镜阶段"
+        ],
+        "excerpt": "workflow — Agent × Skill 协作流程标准 > 本文档定义从零到一创建项目和小说改编创建项目的完整流程。 > 所有 Agent 和 Skill 的调用顺序、输入输出、门禁条件在此统一规定。 --- 一、项目生命周期（8 个阶段） > 工作流开端不是固定“剧本输入”，而是统一称为 **创作源输入 / 项目立项输入**。系统必须支持故事梗概、小说原文、已有剧本、角色设定、世界观、一句话创意、从 0 到 1 原创需求、已有分镜 / 资产继续生产等多入口。 > 当前项目自动流水线暂时截止到 **Phase 3.1（故事板生产包输出）**。 > Phase 4（生成说明与视频生成）及 Phase 5/6（剪辑/审片/质检）暂时保留目录与规范，但不作为中游核心交付；待“即梦/视频平台”具备一键化条件后再恢复自动化执行。 > Phase 1-3 的门禁检查可通过项目级配置 `pipeline.config.json` 进行..."
+      },
+      {
+        "path": "docs/phase-gate-checklist.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 17112,
+        "parsedAt": "2026-05-09T05:25:22.577Z",
+        "format": "markdown",
+        "headings": [
+          "Phase Gate Checklist — 阶段门禁检查清单",
+          "0. 前置检查：链路闭环（Pipeline Sync v2 分层版）",
+          "0.5 前置检查：创作源输入 / 母版 / 影片风格基调定层",
+          "1. 项目信息",
+          "2. story → director",
+          "3. director → assets / storyboard",
+          "4. assets → storyboard",
+          "5. storyboard → prompt-lab / generation"
+        ],
+        "excerpt": "Phase Gate Checklist — 阶段门禁检查清单 > 用途：在各阶段流转前做统一门禁检查，配合 `master` 的放行判断使用。适合作为 `08-qa/phase-gate.md` 的母版模板。 --- 0. 前置检查：链路闭环（Pipeline Sync v2 分层版） > **详细规范**：`docs/pipeline-sync-protocol.md` 在执行任何阶段门禁前，Producer 必须确认： - [ ] 自上次 Phase Gate 以来，是否存在**未完成的 L3 闭环任务** - [ ] L1/L2 积累变更是否已在本次门禁前**批量签收** - [ ] `docs/pipeline-sync-log.md` 中无未签收的 L3 记录 - [ ] 若本阶段新增或修改了方法论、工作流、Agent 职责、Skill 调用、模板、门禁、项目产出物状态或复盘结论，已按 `docs/project-m..."
+      },
+      {
+        "path": "docs/pipeline-sync-protocol.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 8000,
+        "parsedAt": "2026-05-09T05:25:22.577Z",
+        "format": "markdown",
+        "headings": [
+          "流水线链路闭环协议 — Pipeline Sync Protocol (v2 分层版)",
+          "一、影响等级分类（快速判断，< 100 tokens）",
+          "快速判断口诀",
+          "二、L1 轻量闭环（3 步，~300 tokens）",
+          "Step 1：变更登记",
+          "Step 2：传播自检（只做脑内检查，不读文件）",
+          "Step 3：日志签收",
+          "三、L2 中等闭环（4 步，~800 tokens）"
+        ],
+        "excerpt": "流水线链路闭环协议 — Pipeline Sync Protocol (v2 分层版) > **核心原则**：每新增/修改一个 Skill、方法论、规范或 Agent 能力，必须执行链路闭环验证。 > **但验证深度按影响等级分层**——不是每个变更都配得上全链路干跑，把 token 用在刀刃上。 --- 一、影响等级分类（快速判断，< 100 tokens） 在执行闭环前，Producer 先用以下矩阵判断本次变更的影响等级： | 等级 | 判断标准 | 典型场景 | 预估 token 消耗 | |------|---------|---------|---------------| | **L1 轻量** | 不改变产出格式、不改变 Agent 职责、不改变门禁条件、不改变数据流方向 | 修正 Skill 错别字/措辞、补充示例、优化说明文字、新增注释 | ~300 | | **L2 中等** | 新增可选能力、补充但不替换..."
+      },
+      {
+        "path": "docs/project-memory-system.md",
+        "sourceKind": "docs",
+        "exists": true,
+        "extension": ".md",
+        "size": 23506,
+        "parsedAt": "2026-05-09T05:25:22.577Z",
+        "format": "markdown",
+        "headings": [
+          "项目记忆系统与工作流协作规范",
+          "一、记忆系统总原则",
+          "1. 文件化优先",
+          "2. 对话记忆与项目文件的关系",
+          "二、文件化记忆分层",
+          "L0：入口与总控层",
+          "L1：方法论记忆层",
+          "L2：执行能力记忆层"
+        ],
+        "excerpt": "项目记忆系统与工作流协作规范 > 用途：把创作库的长期记忆、方法论、工作流协作思想和产出物闭环，以项目文件形式固定保存。 > 核心原则：**对话记忆不是唯一记忆源；所有可复用方法、规则、协作方式、产出物链路和阶段结论，都必须落到项目文件中，形成可检索、可追溯、可复用的文件化记忆链条。** --- 一、记忆系统总原则 1. 文件化优先 任何新增或修改以下内容时，不能只停留在聊天、临时总结或外部记忆中： - 方法论 - 提示词规则 - 分镜 / 镜头 / 动作 / 声音 / 生图 / 视频生成规范 - Agent 职责 - Skill 调用规则 - Workflow 阶段流转方式 - Phase Gate 门禁 - Pipeline Sync 闭环记录 - 项目级产出物状态 - 失败复盘和成功经验 必须至少同步到一个项目内文件；若影响到工作流或产出标准，必须按 Pipeline Sync v2 继续同步到相关上下游文件。 2. 对话..."
+      },
+      {
+        "path": "skills/seedance-action-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 10938,
+        "parsedAt": "2026-05-09T05:25:22.578Z",
+        "format": "markdown",
+        "headings": [
+          "seedance-action-skill — Seedance 动作武打戏设计技能",
+          "技能定位",
+          "适用任务",
+          "七大风格速查",
+          "1. 袁和平",
+          "2. 洪金宝",
+          "3. 成龙",
+          "4. 李连杰"
+        ],
+        "excerpt": "seedance-action-skill — Seedance 动作武打戏设计技能 技能定位 专用于 Seedance 2.0 模型的动作戏设计与分镜拆解，融合港片与商业动作片七大体系：袁和平、洪金宝、成龙、李连杰、甄子丹、林正英、好莱坞动作节奏。 适用任务 - 设计动作链 - 设计动作分镜 - 编写 Seedance 动作提示词 - 控制动作节拍密度与镜头长度 - 为武打戏、追逐戏、法术戏提供专用模板 - 把抽象动作氛围拆成可执行镜头信息 七大风格速查 1. 袁和平 写实、短促、力学清晰、一招制敌。 2. 洪金宝 借力打力、环境互动、灵巧实战。 3. 成龙 幽默武打、险境化解、道具连锁。 4. 李连杰 飘逸写意、节奏留白、古风美感。 5. 甄子丹 高速压制、MMA 连招、不给喘息时间。 6. 林正英 道教仪式、符咒施法、僵尸受击逻辑、法术动作。 7. 好莱坞 极快切、重击反馈、大场面冲击力。 Seedance 动作约束 - ..."
+      },
+      {
+        "path": "skills/runninghub-image-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 8443,
+        "parsedAt": "2026-05-09T05:25:22.578Z",
+        "format": "markdown",
+        "headings": [
+          "RunningHub 图像生成技能 — runninghub-image-skill",
+          "技能定位",
+          "适用场景",
+          "能力清单",
+          "一、工作流模式（Workflow）",
+          "二、标准模型 API 模式",
+          "标准执行流程",
+          "第一步：编写任务卡"
+        ],
+        "excerpt": "RunningHub 图像生成技能 — runninghub-image-skill 技能定位 统一封装 RunningHub 平台的全部图像生成能力，覆盖从任务卡编写、CLI 执行、产出归档到资产索引回填的完整闭环。 --- 适用场景 - 需要生成角色定妆图、封面图、场景氛围图、道具设计图 - 需要对已有图片做编辑修正或高清增强 - 需要使用 MJ-V7 / MJ-Niji7 / MJ-Niji6 做风格探索 - 需要批量执行 RunningHub 图像任务并归档 --- 能力清单 一、工作流模式（Workflow） | 模式 | CLI 参数 | 用途 | 输入 | |------|----------|------|------| | Banana2 三图生成 | `--banana2` | 角色图 / 封面草稿 / 探索图 | 角色图 + 服装图 + 场景图 + 提示词 | | Banana2 单图编辑 | `--ban..."
+      },
+      {
+        "path": "skills/prompt-experiment-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 5810,
+        "parsedAt": "2026-05-09T05:25:22.578Z",
+        "format": "markdown",
+        "headings": [
+          "prompt-experiment-skill — 提示词实验技能",
+          "技能定位",
+          "适用任务",
+          "核心输出",
+          "实验原则",
+          "推荐实验流程",
+          "结果记录建议",
+          "失败信号"
+        ],
+        "excerpt": "prompt-experiment-skill — 提示词实验技能 技能定位 用于系统化测试不同提示词写法、不同模型组合和不同镜头变量，找到更稳定、更可复用的生成方案。 适用任务 - 同镜头多版本提示词测试 - 不同模型效果对比 - 稳定关键词筛选 - 失败关键词排查 - baseline / 强化版 / 回退版实验 - 外部视频参考改写验证 核心输出 - 实验记录表 - 推荐版本 - 失败案例总结 - 模型适配建议 - 回退策略建议 实验原则 - 一次只改变少量变量 - 先拆外部视频中可吸收的方法信息，再列出禁止照搬项 - baseline 先保住主体、关系、受力、节奏、结果镜头 - 强化版每次只增加一层变量 - 记录模型 / 光影 / 动作密度 / 运镜差异 - 一旦漂移，优先回退最近新增强化层 - 明确结果评级 - 优先沉淀可复用结论 - 对失败版、保底版和观察型镜头，补写失败层级、触发器与减负动作 - **镜头动作融合实..."
+      },
+      {
+        "path": "skills/quality-control-skill.md",
+        "sourceKind": "skills",
+        "exists": true,
+        "extension": ".md",
+        "size": 5951,
+        "parsedAt": "2026-05-09T05:25:22.578Z",
+        "format": "markdown",
+        "headings": [
+          "quality-control-skill — 两步审核技能",
+          "技能定位",
+          "适用任务",
+          "输入要求",
+          "两步审核法",
+          "第一步：业务审核",
+          "故事板生产包与配套生成说明加测项",
+          "专业导演故事板图（D12-Sora2 / D15-Seedance2 加测项）"
+        ],
+        "excerpt": "quality-control-skill — 两步审核技能 技能定位 用于在每个阶段结束后，对项目产出进行业务审核与合规审核，并输出一次性、可执行的修改建议。目标是减少返工，提高阶段放行质量。 适用任务 - 审核剧本 - 审核导演讲戏 - 审核资产设计 - 审核故事板生产包 - 审核 D12-Sora2 / D15-Seedance2 专业导演故事板图、连续性卡、资产引用矩阵、参考图职责矩阵和视频模型适配包 - 审核 `05-prompts/` 配套生成说明是否忠实继承故事板生产包 - 审核平台合规风险 输入要求 1. 当前待审核文件 2. `project.json` 3. `docs/style-guide.md` 4. `docs/prompt-standards.md` 5. `docs/long-prompt-detail-gate.md` 6. 历史 QA 记录（若有） 两步审核法 第一步：业务审核 按阶段打分： ..."
+      }
+    ],
+    "referenceIssues": [],
+    "dataPackSummary": {
+      "methodologyCount": 1,
+      "skillCount": 1,
+      "templateCount": 0,
+      "referenceCount": 8,
+      "missingReferenceCount": 0,
+      "parsedAt": "2026-05-09T05:25:22.579Z"
+    },
+    "phaseGateItems": [
+      "读取 docs/workflow.md 与 docs/phase-gate-checklist.md 后再进入下一阶段。",
+      "输出必须能追溯到项目状态源、能力包索引与真实产物路径。",
+      "缺少方法论、Skill 或模板匹配时不得静默执行，应在上下文包中暴露空数组。"
+    ],
+    "redlines": [
+      "不得绕过 .smart-vision 状态源直接假设项目进度。",
+      "不得输出无法追溯到 docs / skills / templates / project artifacts 的任务指令。",
+      "不得把能力包索引当作最终生成结果，必须继续进入具体任务执行或 Workflow Builder。"
+    ],
+    "memoryPolicy": "优先读取项目文件化记忆与 .smart-vision 状态源；对影响方法论、模板、门禁、Agent/Skill 协作的结论必须回写项目文件。",
+    "generatedAt": "2026-05-09T05:25:22.583Z"
+  },
+  "canvas": {
+    "nodes": [
+      {
+        "id": "n1",
+        "type": "contextPack",
+        "title": "任务上下文包",
+        "x": 80,
+        "y": 120,
+        "w": 320,
+        "h": 180,
+        "data": {
+          "taskType": "release",
+          "taskPlan": null,
+          "docs": [
+            "docs/workflow.md",
+            "docs/phase-gate-checklist.md",
+            "docs/pipeline-sync-protocol.md",
+            "docs/project-memory-system.md"
+          ],
+          "skills": [
+            "skills/seedance-action-skill.md",
+            "skills/runninghub-image-skill.md",
+            "skills/prompt-experiment-skill.md",
+            "skills/quality-control-skill.md"
+          ],
+          "templates": [],
+          "redlines": [
+            "不得绕过 .smart-vision 状态源直接假设项目进度。",
+            "不得输出无法追溯到 docs / skills / templates / project artifacts 的任务指令。",
+            "不得把能力包索引当作最终生成结果，必须继续进入具体任务执行或 Workflow Builder。"
+          ]
+        }
+      },
+      {
+        "id": "n2",
+        "type": "artifactInput",
+        "title": "输入产物",
+        "x": 460,
+        "y": 120,
+        "w": 320,
+        "h": 180,
+        "data": {
+          "artifacts": [
+            "05-可选输出/审核剪辑发布/review/**/review-report.md",
+            "04-storyboard/ep001-storyboard.md",
+            "05-prompts/seedance/ep001-shots.md",
+            "01-资产图与提示词/asset-index.md",
+            "08-qa/v8-asset-consistency-qa-report.md",
+            "03-视频/ep001-shot01-seedance-task_rD9O9UwXPNOD81FSNC07sIPgkNQpDlfE.mp4",
+            "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut.mp4",
+            "05-可选输出/审核剪辑发布/edit/ep001/ep001-review-cut-manifest.json",
+            "02-工作流/ep001/draft-qa-1778211540000.mjb-workflow.json",
+            "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-precheck.md",
+            "05-可选输出/审核剪辑发布/review/ep001/ep001-qa-final-report.md",
+            "05-可选输出/审核剪辑发布/review/ep001/ep001-rework-chain-test.md"
+          ]
+        }
+      },
+      {
+        "id": "n3",
+        "type": "workflowBuilder",
+        "title": "Workflow Builder 草案",
+        "x": 840,
+        "y": 120,
+        "w": 320,
+        "h": 180,
+        "data": {
+          "phaseGateItems": [
+            "读取 docs/workflow.md 与 docs/phase-gate-checklist.md 后再进入下一阶段。",
+            "输出必须能追溯到项目状态源、能力包索引与真实产物路径。",
+            "缺少方法论、Skill 或模板匹配时不得静默执行，应在上下文包中暴露空数组。"
+          ],
+          "memoryPolicy": "优先读取项目文件化记忆与 .smart-vision 状态源；对影响方法论、模板、门禁、Agent/Skill 协作的结论必须回写项目文件。"
+        }
+      },
+      {
+        "id": "n4",
+        "type": "phaseGate",
+        "title": "Phase Gate 审核",
+        "x": 1220,
+        "y": 120,
+        "w": 320,
+        "h": 180,
+        "data": {
+          "redlines": [
+            "不得绕过 .smart-vision 状态源直接假设项目进度。",
+            "不得输出无法追溯到 docs / skills / templates / project artifacts 的任务指令。",
+            "不得把能力包索引当作最终生成结果，必须继续进入具体任务执行或 Workflow Builder。"
+          ],
+          "generatedAt": "2026-05-09T05:25:22.583Z"
+        }
+      }
+    ],
+    "conns": [
+      {
+        "from": "n1",
+        "fromPort": "context",
+        "to": "n3",
+        "toPort": "context",
+        "kind": "json"
+      },
+      {
+        "from": "n2",
+        "fromPort": "artifacts",
+        "to": "n3",
+        "toPort": "inputs",
+        "kind": "json"
+      },
+      {
+        "from": "n3",
+        "fromPort": "workflow",
+        "to": "n4",
+        "toPort": "review",
+        "kind": "json"
+      }
+    ],
+    "view": {
+      "x": 0,
+      "y": 0,
+      "k": 0.82
+    },
+    "next": 5,
+    "muted": []
+  },
+  "generatedAt": "2026-05-09T05:25:22.591Z"
+}

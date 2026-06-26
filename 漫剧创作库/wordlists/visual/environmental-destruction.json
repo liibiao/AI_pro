@@ -1,0 +1,109 @@
+{
+  "_meta": {
+    "source": "漫剧创作库/docs/environmental-destruction-standard.md + action-vocabulary.md",
+    "version": "soullens-v2",
+    "description": "材质破坏词库：不同材质遵循固有的物理碎裂逻辑，动作威力由破坏效果反向衬托",
+    "usage": "严禁写模糊的 'everything is destroyed'，必须写出具体的碎片元素"
+  },
+  "material_types": [
+    {
+      "id": "stone_concrete",
+      "name": "石材与水泥",
+      "nameEn": "Stone / Concrete",
+      "physics": "极度的刚性和脆性。受巨力时不会弯曲，而是瞬间粉碎或大块龟裂",
+      "visualElements": [
+        "蜘蛛网状的裂纹向四周蔓延",
+        "大块的不规则碎石飞溅",
+        "极其浓重的粉尘（Dust Cloud）爆出"
+      ],
+      "prompts": [
+        "concrete pillar explodes into jagged chunks, massive spiderweb cracks spreading across the ground, thick cloud of grey dust billowing outwards",
+        "stone floor shattering with radiating cracks, heavy rubble and debris flying, dense dust cloud erupting from impact point",
+        "granite wall crumbling, irregular stone fragments tumbling outward, blinding cloud of pulverized concrete"
+      ],
+      "soundKeywords": ["沉重闷击", "碎石飞溅", "粉尘爆炸", "低频轰响"]
+    },
+    {
+      "id": "wood_timber",
+      "name": "木材与树木",
+      "nameEn": "Wood / Timber",
+      "physics": "纤维结构。受击时必须是折断、劈裂和撕裂",
+      "visualElements": [
+        "木刺（Splinters）向外喷射",
+        "断裂处呈参差不齐的纤维状（而非平滑切口）"
+      ],
+      "prompts": [
+        "wooden door shatters violently, hundreds of sharp wooden splinters flying through the air, jagged broken timber edges, tearing wood",
+        "wooden pillar snapped in half with splintering fracture, wood fibers visible at the break point, sharp debris spinning outward",
+        "ancient wooden table smashed apart, jagged splinters and wood shards scattering, grain of the wood visible at fracture points"
+      ],
+      "soundKeywords": ["断裂脆响", "纤维撕裂", "木刺飞射", "沉重闷裂"]
+    },
+    {
+      "id": "glass_crystal",
+      "name": "玻璃与晶体",
+      "nameEn": "Glass / Crystals",
+      "physics": "极度的脆性和透明感",
+      "visualElements": [
+        "瞬间的星爆状碎裂（Starburst）",
+        "成千上万带反光的碎片（Shards）在半空中慢动作飞舞",
+        "清脆的破碎声"
+      ],
+      "prompts": [
+        "glass window shatters instantly in a starburst pattern, thousands of glittering shards suspended in mid-air reflecting light, slow-motion glass explosion",
+        "crystalline barrier exploding into prismatic shards, rainbow light refracting through flying glass fragments, sparkles cascading downward",
+        "massive glass wall detonating outward, reflective shards catching light from every angle, crystal rain suspended in time"
+      ],
+      "soundKeywords": ["清脆碎裂", "叮叮落下", "玻璃雨", "高频锐响"]
+    },
+    {
+      "id": "metal_armor",
+      "name": "金属与装甲",
+      "nameEn": "Metal / Armor",
+      "physics": "延展性和韧性。受击时先凹陷（Denting），后撕裂（Tearing）",
+      "visualElements": [
+        "高温下的扭曲发红",
+        "金属摩擦爆出的橘红色火花（Sparks）",
+        "极速撕裂的刺耳感"
+      ],
+      "prompts": [
+        "thick steel armor severely dented inward, screeching metal tearing open, shower of bright orange sparks erupting from the impact point, glowing red edges",
+        "metal shield buckling under force, deep dent with radiating stress fractures, shower of orange sparks and molten droplets",
+        "iron door torn open with jagged metal edges, glowing hot where the metal was sheared, sparks cascading down"
+      ],
+      "soundKeywords": ["金属刺耳撕裂", "火花四溅", "沉闷凹陷", "高温嘶嘶"]
+    }
+  ],
+  "collapse_phases": {
+    "description": "巨型崩塌的延迟与重力感——严禁瞬间消失",
+    "phases": [
+      {
+        "phase": 1,
+        "name": "受击",
+        "description": "剧震、局部爆炸、大量粉尘喷出",
+        "prompts": ["massive shockwave with dust eruption", "structural cracking with debris shower"]
+      },
+      {
+        "phase": 2,
+        "name": "倾斜与断裂",
+        "description": "主体开始缓慢倾斜，内部结构发出令人牙酸的折断声",
+        "prompts": ["slow lean with interior groaning and cracking sounds", "stress fractures spreading before collapse"]
+      },
+      {
+        "phase": 3,
+        "name": "轰然倒塌",
+        "description": "带着巨大的质量感砸向地面，掀起遮天蔽日的尘土墙",
+        "prompts": ["massive collapse with earth-shaking impact, wall of dust billowing outward", "tons of rubble crashing down with a deafening roar, dust cloud engulfing everything"]
+      }
+    ]
+  },
+  "destruction_negative_prompts": {
+    "description": "破坏效果常见问题——如果像水流/棉花/果冻一样融化，直接打回",
+    "prompts": [
+      "destruction looking like melting or dissolving (不能像融化)",
+      "destruction like cotton or soft material (不能像棉花)",
+      "instant disappearance without debris (不能瞬间消失)",
+      "no visible debris, dust, or fragments (必须有碎片)"
+    ]
+  }
+}
