@@ -1,0 +1,16 @@
+{
+  "name": "fanqie_duanpian_001",
+  "type": "short_novel",
+  "platform": "番茄",
+  "genre": ["规则怪谈", "都市职业", "社区惊悚"],
+  "target_readers": "番茄短篇用户，偏好高概念、快节奏、强钩子与规则破局感",
+  "target_length": 8000,
+  "status": "ready_for_retro",
+  "writing_mode": "standalone",
+  "style_profile": "强情绪 + 快节奏 + 高反转",
+  "core_selling_point": "基层社区管理员被迫接手夜里会改规则的异常小区，在荒谬却致命的社区守则里找出漏洞并反杀规则",
+  "system_version": "v2.0",
+  "project_role": "mvp_validation_sample",
+  "selected_topic": "A02 社区规则怪谈管理员",
+  "last_gate": "P7_pass"
+}
