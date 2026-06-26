@@ -1,0 +1,11 @@
+c38f26c11a9975e96106b469b7c41dadeb8391d94f5a5eb86a70429604ebd5aa  ./api-server/dist/apply-artifex-seedance2-channels.js
+d3ca544f9727b86958d07627bb9fbc95a7c617927b1c3018b17604fcf23f7f08  ./api-server/dist/modules/generation/adapters/registry.js
+4a4c4ddeb2d2580f5075fa2212bd1667a46ebcb433f2121e1bf3d7499498a3c4  ./api-server/src/apply-artifex-seedance2-channels.ts
+d8f4a85c82642d96af747ab93511fe08c332ce0986ccabea06bece475e7dbc94  ./api-server/src/modules/generation/adapters/registry.ts
+975e7c5b0073de09850ca7ae93f2437d9b205f2edd33614b4fae7e47a18e7db4  ./deploy/apply-seedance2-artifex-720-model-map-fix-20260613010931-on-server.sh
+ca580adb4bc81c364f7768e1e4c287d4cb3a9989a245ca77430b8be7aa65ef8f  ./smart-vision/canvas/legacy-workbench/workbench-web/models/seedance2-fast.json
+9c768de6fa3ce286d8875f0b720ecf1709c306162f991e84dd5e774046460116  ./smart-vision/canvas/legacy-workbench/workbench-web/models/seedance2-pro.json
+ca580adb4bc81c364f7768e1e4c287d4cb3a9989a245ca77430b8be7aa65ef8f  ./tools/workbench-web/models/seedance2-fast.json
+9c768de6fa3ce286d8875f0b720ecf1709c306162f991e84dd5e774046460116  ./tools/workbench-web/models/seedance2-pro.json
+ca580adb4bc81c364f7768e1e4c287d4cb3a9989a245ca77430b8be7aa65ef8f  ./workbench-web/models/seedance2-fast.json
+9c768de6fa3ce286d8875f0b720ecf1709c306162f991e84dd5e774046460116  ./workbench-web/models/seedance2-pro.json

@@ -1,0 +1,569 @@
+openapi: 3.1.0
+info:
+  title: Infinite Canvas Business API
+  version: 0.1.0
+  description: 用户、账户、计费、代理和画布工作流的业务 API 契约草案。
+servers:
+  - url: http://127.0.0.1:8766
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ApiError:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          const: false
+        code:
+          type: string
+        error:
+          type: string
+      required: [ok, error]
+    AuthUser:
+      type: object
+      properties:
+        id:
+          type: string
+        nickname:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        isAgent:
+          type: boolean
+      required: [id, nickname, roles, isAgent]
+    Wallet:
+      type: object
+      properties:
+        balance:
+          type: integer
+          description: 以最小点数单位保存，例如 120 表示 120 credits。
+        frozen:
+          type: integer
+        currency:
+          type: string
+          default: credits
+      required: [balance, frozen, currency]
+    Membership:
+      type: object
+      properties:
+        active:
+          type: boolean
+        plan:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+      required: [active]
+    CanvasWorkflow:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        canvas:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required: [id, name, canvas]
+paths:
+  /api/auth/register:
+    post:
+      security: []
+      summary: 注册账号
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                nickname:
+                  type: string
+                inviteCode:
+                  type: string
+              required: [password]
+      responses:
+        "200":
+          description: 注册成功
+  /api/auth/login:
+    post:
+      security: []
+      summary: 登录
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                password:
+                  type: string
+              required: [account, password]
+      responses:
+        "200":
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    const: true
+                  accessToken:
+                    type: string
+                  refreshToken:
+                    type: string
+                  user:
+                    $ref: "#/components/schemas/AuthUser"
+                required: [ok, accessToken, refreshToken, user]
+  /api/account/me:
+    get:
+      summary: 当前登录用户
+      responses:
+        "200":
+          description: 当前用户信息
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    const: true
+                  user:
+                    allOf:
+                      - $ref: "#/components/schemas/AuthUser"
+                      - type: object
+                        properties:
+                          membership:
+                            $ref: "#/components/schemas/Membership"
+                          wallet:
+                            $ref: "#/components/schemas/Wallet"
+                required: [ok, user]
+  /api/account/summary:
+    get:
+      summary: 用户账户汇总
+      responses:
+        "200":
+          description: 当前用户、钱包、会员、最近生成、最近充值、最近钱包流水
+  /api/account/wallet/logs:
+    get:
+      summary: 当前用户钱包流水
+      responses:
+        "200":
+          description: 钱包流水列表
+  /api/account/usages:
+    get:
+      summary: 当前用户生成记录
+      responses:
+        "200":
+          description: 模型调用记录列表
+  /api/membership/current:
+    get:
+      summary: 当前有效会员
+      responses:
+        "200":
+          description: 当前会员或 null
+  /api/membership/purchase:
+    post:
+      summary: 使用余额购买会员套餐
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                planId:
+                  type: string
+              required: [planId]
+      responses:
+        "200":
+          description: 购买成功，返回会员、余额和可能产生的代理佣金
+  /api/generate/image:
+    post:
+      summary: 图片生成
+      responses:
+        "200":
+          description: 返回图片结果、扣费、余额和生成记录
+  /api/generate/video/start:
+    post:
+      summary: 发起视频生成
+      responses:
+        "200":
+          description: 返回任务 ID、扣费、余额和生成记录
+  /api/generate/video/status:
+    post:
+      summary: 查询视频生成状态
+      responses:
+        "200":
+          description: 返回任务状态和结果地址
+  /api/generate/llm/chat:
+    post:
+      summary: 语言模型对话
+      responses:
+        "200":
+          description: 返回文本结果、扣费、余额和生成记录
+  /api/billing/wallet:
+    get:
+      summary: 钱包余额
+      responses:
+        "200":
+          description: 钱包
+  /api/billing/ledger:
+    get:
+      summary: 账户流水
+      parameters:
+        - name: cursor
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        "200":
+          description: 流水列表
+  /api/billing/usage/preflight:
+    post:
+      summary: 生成前费用预占
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scene:
+                  type: string
+                  enum: [image_generate, video_generate]
+                nodeId:
+                  type: string
+                workflowId:
+                  type: string
+                model:
+                  type: string
+                quantity:
+                  type: integer
+                  minimum: 1
+                size:
+                  type: string
+                metadata:
+                  type: object
+                  additionalProperties: true
+              required: [scene, nodeId, model, quantity]
+      responses:
+        "200":
+          description: 预占成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    const: true
+                  reservationId:
+                    type: string
+                  estimatedCost:
+                    type: integer
+                  balanceBefore:
+                    type: integer
+                  balanceAfter:
+                    type: integer
+                required: [ok, reservationId, estimatedCost]
+        "402":
+          description: 余额不足
+  /api/billing/usage/commit:
+    post:
+      summary: 生成成功后确认扣费
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reservationId:
+                  type: string
+                status:
+                  type: string
+                  enum: [success]
+                actualCost:
+                  type: integer
+                providerTaskId:
+                  type: string
+                result:
+                  type: object
+                  additionalProperties: true
+              required: [reservationId, status]
+      responses:
+        "200":
+          description: 扣费成功
+  /api/billing/usage/cancel:
+    post:
+      summary: 生成失败或取消后释放预占
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reservationId:
+                  type: string
+                reason:
+                  type: string
+              required: [reservationId]
+      responses:
+        "200":
+          description: 取消成功
+  /api/canvas/workflows:
+    get:
+      summary: 工作流列表
+      responses:
+        "200":
+          description: 工作流列表
+    post:
+      summary: 创建工作流
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CanvasWorkflow"
+      responses:
+        "200":
+          description: 创建成功
+  /api/canvas/workflows/{id}:
+    get:
+      summary: 工作流详情
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 工作流详情
+    put:
+      summary: 更新工作流
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CanvasWorkflow"
+      responses:
+        "200":
+          description: 更新成功
+    delete:
+      summary: 删除工作流
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 删除成功
+  /api/agent/customers:
+    get:
+      summary: 代理客户列表
+      responses:
+        "200":
+          description: 客户列表
+    post:
+      summary: 录入并绑定客户
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  description: 已存在用户 ID，可选
+                customerPhone:
+                  type: string
+                  description: 客户手机号；未存在时会自动创建客户账号
+                customerName:
+                  type: string
+      responses:
+        "200":
+          description: 绑定成功；如自动创建账号，会返回 initialPassword
+        "409":
+          description: 客户已被其他代理绑定
+  /api/agent/accounts/claim:
+    post:
+      summary: 代理领取会员核销账号
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  minimum: 1
+                  maximum: 10
+              required: [quantity]
+      responses:
+        "200":
+          description: 领取成功
+  /api/agent/accounts/redeem:
+    post:
+      summary: 核销会员账号
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                userId:
+                  type: string
+              required: [code, userId]
+      responses:
+        "200":
+          description: 核销成功
+  /api/agent/sub-agents:
+    get:
+      summary: 下级代理列表
+      responses:
+        "200":
+          description: 下级代理列表
+    post:
+      summary: 创建下级代理
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                  description: 下级代理手机号；未存在时会自动创建账号
+                nickname:
+                  type: string
+                name:
+                  type: string
+                commissionRate:
+                  type: number
+                  minimum: 0
+                  maximum: 1
+                settlementDelayDays:
+                  type: integer
+                  minimum: 0
+              required: [phone, name]
+      responses:
+        "200":
+          description: 创建成功；如自动创建账号，会返回 initialPassword
+        "403":
+          description: 只有一级/初创代理可创建下级代理
+  /api/agent/performance:
+    get:
+      summary: 代理业绩总览
+      responses:
+        "200":
+          description: 客户数、核销数、佣金汇总
+  /api/recharge/orders:
+    get:
+      summary: 充值订单列表
+      responses:
+        "200":
+          description: 当前用户或管理员可见的充值订单列表
+    post:
+      summary: 创建充值订单并返回二维码内容
+      description: 默认 voucher 兑换码线下支付模式下不会创建二维码订单，会返回 VOUCHER_PAYMENT_MODE；仅 alipay/mock 模式使用。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amountYuan:
+                  type: number
+                  minimum: 1
+                channel:
+                  type: string
+                  enum: [ALIPAY, MOCK]
+              required: [amountYuan]
+      responses:
+        "200":
+          description: 创建成功，返回 order.qrCode
+  /api/recharge/orders/{orderNo}:
+    get:
+      summary: 查询充值订单状态
+      parameters:
+        - name: orderNo
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 订单详情
+  /api/recharge/orders/{orderNo}/mock-pay:
+    post:
+      summary: 本地开发模拟支付成功
+      parameters:
+        - name: orderNo
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 模拟入账成功
+  /api/pay/alipay/notify:
+    post:
+      summary: 支付宝异步通知回调
+      responses:
+        "200":
+          description: 返回 success 或 fail 文本
+  /api/dashboard:
+    get:
+      summary: 管理后台总览
+      responses:
+        "200":
+          description: 总览数据

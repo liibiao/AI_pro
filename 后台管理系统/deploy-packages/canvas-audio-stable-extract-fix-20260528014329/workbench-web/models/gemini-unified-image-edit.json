@@ -1,0 +1,34 @@
+{
+  "id": "gemini-unified-image-edit",
+  "name": "gemini-unified-image-edit",
+  "type": "image",
+  "model": "gemini-3.1-flash-image-preview",
+  "adapter": "gemini-image-edit",
+  "baseUrl": "http://127.0.0.1:8000/v1",
+  "url": "http://127.0.0.1:8000/v1",
+  "key": "local-dev-no-auth",
+  "endpointPath": "/images/edits",
+  "uploadMode": "object_storage",
+  "protocol": {
+    "adapter": "gemini-image-edit",
+    "endpointPath": "/images/edits",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "supports": {
+    "txt2img": false,
+    "img2img": true,
+    "imageToImage": true,
+    "storyboard": true,
+    "panorama": false
+  },
+  "defaults": {
+    "size": "1024x1024",
+    "response_format": "b64_json"
+  },
+  "ui": {
+    "label": "Gemini 统一图生图",
+    "badge": "Gemini",
+    "badgeColor": "#0ea5e9"
+  }
+}

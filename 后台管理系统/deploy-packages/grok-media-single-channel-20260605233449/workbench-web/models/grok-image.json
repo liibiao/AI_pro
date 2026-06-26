@@ -1,0 +1,35 @@
+{
+  "id": "grok-image",
+  "name": "grok-image",
+  "type": "image",
+  "label": "Grok 文生图",
+  "model": "grok-imagine-image",
+  "baseUrl": "http://45.77.211.38:8317/v1",
+  "url": "http://45.77.211.38:8317/v1",
+  "key": "replace-with-cliproxy-api-key",
+  "adapter": "grok-image",
+  "endpointPath": "/images/generations",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2img": true,
+    "img2img": false,
+    "imageToImage": false,
+    "storyboard": true,
+    "panorama": false
+  },
+  "note": "CLIProxyAPI xAI OAuth 文生图渠道。生产环境请在后台模型管理中配置 CLIProxyAPI 访问 Key。",
+  "protocol": {
+    "adapter": "grok-image",
+    "endpointPath": "/images/generations",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "defaults": {
+    "size": "1024x1024"
+  },
+  "ui": {
+    "label": "Grok 文生图",
+    "badge": "Grok",
+    "badgeColor": "#111827"
+  }
+}

@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PKG="${1:-/tmp/video-timeline-editor-fix-20260520.tar.gz}"
+CANVAS_DIR="${CANVAS_DIR:-/home/ubuntu/漫剧创作库}"
+ONLINE_WORKBENCH_DIR="${ONLINE_WORKBENCH_DIR:-/var/www/ai-admin/workbench-web}"
+WORK_DIR="/tmp/video-timeline-editor-fix-20260520-$(date +%Y%m%d%H%M%S)"
+
+echo "==> 检查包和目录"
+test -f "$PKG"
+test -d "$CANVAS_DIR"
+mkdir -p "$ONLINE_WORKBENCH_DIR"
+mkdir -p "$WORK_DIR"
+
+echo "==> 解压补丁包"
+tar -xzf "$PKG" -C "$WORK_DIR"
+
+echo "==> 部署画布源码"
+rsync -a "$WORK_DIR/漫剧创作库/" "$CANVAS_DIR/"
+
+echo "==> 覆盖线上 workbench HTML"
+cp "$CANVAS_DIR/tools/workbench-web/image-studio-canvas-next.html" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+
+echo "==> 校验视频时间轴编辑器"
+grep -n "node-type-singleVideo:has(.vfi-panel)" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "content-visibility:visible!important;contain:none!important" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "width:calc(100% + 88px)" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "margin:12px -44px 0 -44px" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "vfi-head{position:relative" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "vfi-close-icon" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "关闭时间轴" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "vfi-segments" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "vfi-seg+.vfi-seg::before" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "vfi-seg.selected" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "data-vfi-seg-delete" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "data-vfi-seg-move" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "data-vfi-commit" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "node-type-singleVideo:has(.vfi-panel) .node-tools" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "sourceTimeToEditedTime" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "editedTimeToSourceTime" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "selectSegmentFromEvent" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "commitInlineVideoFrameEdit" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "enforceVideoFrameSegments" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "triggerBrowserDownload" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "isLocalUserFileEntry" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "isLocalUserVideoNode" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "await downloadImg(n.id)" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "_derivedImageSpawnCount" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+grep -n "n?.type==='singleImage'&&Array.isArray(valueImages)" "$ONLINE_WORKBENCH_DIR/image-studio-canvas-next.html"
+
+echo "部署完成：视频时间轴、单图/视频磁盘下载、截帧图片错位和大图预览已更新。"

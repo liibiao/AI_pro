@@ -1,0 +1,88 @@
+{
+  "id": "lingdong-sd-2-vip",
+  "configId": "lingdong-sd-2-vip",
+  "modelKey": "lingdong-sd-2-vip",
+  "providerKey": "lingdong-sd-2-vip",
+  "channelKey": "lingdong-sd-2-vip",
+  "name": "sd-2-vip",
+  "modelNick": "SD 2 VIP 专属折扣",
+  "displayName": "SD 2 VIP 专属折扣",
+  "label": "SD 2 VIP 专属折扣",
+  "type": "video",
+  "model": "sd-2-vip",
+  "baseUrl": "https://www.lingdongapi.com/v1",
+  "url": "https://www.lingdongapi.com/v1/videos",
+  "key": "replace-with-lingdong-api-key",
+  "adapter": "lingdong-sd-2-vip",
+  "endpointPath": "/videos",
+  "statusEndpointPath": "/video/generations/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "referenceImages": true,
+    "referenceVideo": true,
+    "referenceAudio": true
+  },
+  "capabilities": {
+    "resolutions": ["small", "large"],
+    "sizes": ["small", "large"],
+    "defaultResolution": "small",
+    "defaultSize": "small",
+    "durations": [15],
+    "defaultDuration": 15,
+    "aspectRatios": ["9:16", "16:9", "1:1"],
+    "orientations": ["portrait", "landscape", "square"],
+    "defaultOrientation": "portrait",
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "supportsAudio": true,
+    "supportsVideo": true,
+    "supportsLastFrame": false,
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "maxPromptLength": 4000,
+    "maxImageSizeMb": 30,
+    "maxVideoSizeMb": 50,
+    "maxAudioSizeMb": 15,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 15
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "generation",
+      "billingMode": "per_generation",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberDiscountRate": 1,
+      "memberCreditsPerGeneration": 0,
+      "chargedCreditsPerGeneration": 0,
+      "originalCreditsPerGeneration": 0,
+      "costCreditsPerGeneration": 0,
+      "note": "API 文档未提供专属折扣价格；请在后台模型管理中配置后启用。"
+    },
+    "size": "small",
+    "orientation": "portrait",
+    "duration": 15
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "note": "灵动 sd-2-vip 视频渠道；POST /v1/videos 创建任务，GET /v1/video/generations/{task_id} 查询。图片最多 9 张，视频最多 3 段，音频最多 3 个；音频建议搭配图片或视频使用。价格文档未提供，需在后台模型管理中配置。",
+  "protocol": {
+    "adapter": "lingdong-sd-2-vip",
+    "endpointPath": "/videos",
+    "statusEndpointPath": "/video/generations/{taskId}",
+    "method": "async-poll",
+    "pollIntervalSeconds": 8,
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "SD 2 VIP 专属折扣",
+    "badge": "专属",
+    "badgeColor": "#f59e0b"
+  }
+}

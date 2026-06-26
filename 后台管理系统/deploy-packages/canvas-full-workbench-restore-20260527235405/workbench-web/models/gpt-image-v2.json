@@ -1,0 +1,33 @@
+{
+  "id": "gpt-image-v2",
+  "name": "gpt-image-v2",
+  "type": "image",
+  "label": "GPT-Image-V2",
+  "model": "gpt-image-2",
+  "baseUrl": "https://socdabat.it.com/v1",
+  "url": "https://socdabat.it.com/v1",
+  "key": "sk-r89banjA3kSDJ2uno66tNpaH04D53ZQU88ou9ybnZgJVHmPI",
+  "adapter": "gpt-image-v2",
+  "endpointPath": "/images/generations",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2img": true,
+    "img2img": true
+  },
+  "note": "GPT Image V2 渠道（aspect_ratio + resolution + reference_images，参考图走对象存储公网 URL）",
+  "protocol": {
+    "adapter": "gpt-image-v2",
+    "endpointPath": "/images/generations",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "defaults": {
+    "resolution": "2k",
+    "reasoning_effort": "medium"
+  },
+  "ui": {
+    "label": "GPT-Image-V2",
+    "badge": "V2",
+    "badgeColor": "#6366f1"
+  }
+}

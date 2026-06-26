@@ -1,0 +1,70 @@
+{
+  "id": "seedance-2",
+  "configId": "seedance-2",
+  "modelKey": "seedance-2",
+  "providerKey": "aiyunzhi-seedance2",
+  "channelKey": "aiyunzhi-seedance2",
+  "name": "seedance-2",
+  "modelNick": "seedance-2",
+  "displayName": "Seedance 2.0 满血版",
+  "label": "Seedance 2.0 满血版",
+  "type": "video",
+  "model": "seedance-2",
+  "baseUrl": "https://aiyunzhi.top/v1",
+  "url": "https://aiyunzhi.top/v1/video/generations",
+  "key": "sk-t0v504skmtX34eQFtGtWRhyLNZBelHkgszUivJi4G326n6q9",
+  "adapter": "seedance2-sd",
+  "endpointPath": "/video/generations",
+  "statusEndpointPath": "/video/generations/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "firstFrame": true,
+    "firstLastFrame": true,
+    "referenceImages": true
+  },
+  "capabilities": {
+    "resolutions": ["720p"],
+    "durations": [15],
+    "defaultDuration": 15,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "1:1", "4:3", "21:9"],
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "supportsAudio": false,
+    "supportsVideo": false,
+    "supportsLastFrame": true,
+    "maxVideos": 0,
+    "maxAudios": 0
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "generation",
+      "billingMode": "generation",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberCreditsPerGeneration": 500,
+      "chargedCreditsPerGeneration": 500,
+      "originalCreditsPerGeneration": 500,
+      "costCreditsPerGeneration": 350
+    }
+  },
+  "note": "Aiyunzhi Seedance 2.0 满血版固定 15 秒、720P、按次计费；不发送声音参数；无参考图走 /video/generations，有参考图自动走 /video/generations/multipart，最多 9 张参考图。",
+  "protocol": {
+    "adapter": "seedance2-sd",
+    "endpointPath": "/video/generations",
+    "multipartEndpointPath": "/video/generations/multipart",
+    "statusEndpointPath": "/video/generations/{taskId}",
+    "method": "async-poll",
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "Seedance 2.0 满血版",
+    "badge": "FULL",
+    "badgeColor": "#ef4444"
+  }
+}

@@ -1,0 +1,363 @@
+import { prisma } from './db.js';
+import { encryptSecret } from './security.js';
+import { IMAGE_PRICING_TIERS, VIDEO_PRICING, defaultPricingDefaults, imagePricingDefaults, videoPricingDefaults } from './pricing.js';
+import { Prisma } from '@prisma/client';
+
+const providerId = process.env.CLIPROXY_XAI_PROVIDER_ID || 'cliproxy-xai-media';
+const providerKey = process.env.CLIPROXY_XAI_PROVIDER_KEY || 'cliproxy_xai_media';
+const baseUrl = (process.env.CLIPROXY_XAI_BASE_URL || 'http://45.77.211.38:8317/v1').replace(/\/+$/, '');
+const apiKey = String(process.env.CLIPROXY_XAI_API_KEY || process.env.GROK_MEDIA_API_KEY || '').trim();
+const status = process.env.CLIPROXY_XAI_DISABLED === 'true' ? 'DISABLED' : 'ACTIVE';
+const keepLegacyGrokChannels = process.env.KEEP_LEGACY_GROK_CHANNELS === 'true';
+const overwriteExistingGrokMedia = process.env.CLIPROXY_XAI_OVERWRITE_EXISTING === 'true';
+
+if (!apiKey) {
+  throw new Error('CLIPROXY_XAI_API_KEY is required to create the Grok media channel.');
+}
+
+async function main() {
+  const existingProvider = await prisma.upstreamProvider.findUnique({ where: { id: providerId } });
+  const provider = await prisma.upstreamProvider.upsert({
+    where: { id: providerId },
+    update: {
+      providerKey: overwriteExistingGrokMedia ? providerKey : existingProvider?.providerKey || providerKey,
+      name: overwriteExistingGrokMedia ? 'CLIProxy xAI Grok 图片视频LLM' : existingProvider?.name || 'CLIProxy xAI Grok 图片视频LLM',
+      type: overwriteExistingGrokMedia ? null : existingProvider?.type ?? null,
+      adapter: overwriteExistingGrokMedia ? 'grok_image' : existingProvider?.adapter || 'grok_image',
+      baseUrl: overwriteExistingGrokMedia ? baseUrl : existingProvider?.baseUrl || baseUrl,
+      ...(overwriteExistingGrokMedia || !existingProvider?.apiKeyEncrypted ? { apiKeyEncrypted: encryptSecret(apiKey) } : {}),
+      endpointPath: overwriteExistingGrokMedia ? null : existingProvider?.endpointPath ?? null,
+      statusEndpointPath: overwriteExistingGrokMedia ? null : existingProvider?.statusEndpointPath ?? null,
+      uploadMode: overwriteExistingGrokMedia ? 'object_storage' : existingProvider?.uploadMode || 'object_storage',
+      requestMethod: overwriteExistingGrokMedia ? null : existingProvider?.requestMethod ?? null,
+      defaultModel: overwriteExistingGrokMedia ? 'grok-imagine-image' : existingProvider?.defaultModel || 'grok-imagine-image',
+      timeoutMs: overwriteExistingGrokMedia ? 900000 : existingProvider?.timeoutMs || 900000,
+      status: overwriteExistingGrokMedia ? status : existingProvider?.status || status,
+    },
+    create: {
+      id: providerId,
+      providerKey,
+      name: 'CLIProxy xAI Grok 图片视频LLM',
+      type: null,
+      adapter: 'grok_image',
+      baseUrl,
+      apiKeyEncrypted: encryptSecret(apiKey),
+      endpointPath: null,
+      statusEndpointPath: null,
+      uploadMode: 'object_storage',
+      requestMethod: null,
+      defaultModel: 'grok-imagine-image',
+      timeoutMs: 900000,
+      status,
+    },
+  });
+
+  await upsertGrokImageModel(provider.id);
+  await upsertGrokVideoModel(provider.id);
+  await upsertGrokLlmModel(provider.id);
+  await disableSupersededGrokModels(provider.id);
+
+  if (!keepLegacyGrokChannels) {
+    await disableLegacyGrokChannels(provider.id);
+  }
+
+  console.log(`Grok unified channel applied. providerKey=${provider.providerKey}, baseUrl=${baseUrl}`);
+}
+
+async function disableLegacyGrokChannels(activeProviderId: string) {
+  const grokAdapters = ['grok_image', 'grok-image-unified', 'grok-image', 'grok-image-edit', 'grok-video', 'grok-chat', 'grok-llm'];
+  await prisma.aiModel.updateMany({
+    where: {
+      providerId: { not: activeProviderId },
+      OR: [
+        { adapter: { in: grokAdapters } },
+        { name: { startsWith: 'grok-imagine-1.0' } },
+        { name: { startsWith: 'grok-4' } },
+        { id: { in: ['canvas-grok-image', 'canvas-grok-image-edit', 'canvas-grok-video', 'canvas-grok-llm'] } },
+        { modelKey: { in: ['grok-imagine-1-0', 'grok-imagine-1-0-edit', 'grok-imagine-1-0-video', 'grok-4'] } },
+      ],
+    },
+    data: { status: 'DISABLED' },
+  });
+  await prisma.upstreamProvider.updateMany({
+    where: {
+      id: { not: activeProviderId },
+      OR: [
+        { adapter: { in: grokAdapters } },
+        { defaultModel: { startsWith: 'grok-imagine-1.0' } },
+        { defaultModel: { startsWith: 'grok-4' } },
+        { id: { in: ['canvas-provider-grok-image', 'canvas-provider-grok-image-edit', 'canvas-provider-grok-video', 'canvas-provider-grok-llm'] } },
+        { providerKey: { in: ['canvas_grok-image', 'canvas_grok-image-edit', 'canvas_grok-video', 'canvas_grok-llm'] } },
+      ],
+    },
+    data: { status: 'DISABLED' },
+  });
+}
+
+async function disableSupersededGrokModels(activeProviderId: string) {
+  await prisma.aiModel.updateMany({
+    where: {
+      providerId: activeProviderId,
+      id: { in: ['cliproxy-grok-image-edit'] },
+    },
+    data: { status: 'DISABLED' },
+  });
+}
+
+async function upsertGrokImageModel(providerIdValue: string) {
+  await prisma.aiModel.upsert({
+    where: { id: 'cliproxy-grok-image' },
+    update: {
+      providerId: providerIdValue,
+      name: 'grok-imagine-image',
+      displayName: 'Grok 生图',
+      type: 'IMAGE',
+      adapter: 'grok_image',
+      endpointPath: '/images/generations',
+      statusEndpointPath: null,
+      uploadMode: 'object_storage',
+      protocol: { adapter: 'grok_image', endpointPath: '/images/generations', editEndpointPath: '/images/edits', method: 'sync', uploadMode: 'object_storage' },
+      supports: { txt2img: true, img2img: true, imageToImage: true, storyboard: true, panorama: false },
+      defaults: { ...imagePricingDefaults(IMAGE_PRICING_TIERS), size: '16:9', aspectRatio: '16:9', resolution: '1K' },
+      capabilities: {
+        aspectRatios: ['1:1', '16:9', '9:16', '4:3', '3:4', '3:2', '2:3', '2:1', '1:2', '19.5:9', '9:19.5', '20:9', '9:20', 'auto'],
+        resolutions: ['1K', '2K'],
+        sizes: ['1:1', '16:9', '9:16', '4:3', '3:4', '3:2', '2:3', '2:1', '1:2', '19.5:9', '9:19.5', '20:9', '9:20', 'auto'],
+      },
+      ui: { label: 'Grok 生图', badge: 'Grok', badgeColor: '#111827' },
+      status: 'ACTIVE',
+    },
+    create: {
+      id: 'cliproxy-grok-image',
+      providerId: providerIdValue,
+      modelKey: 'cliproxy-grok-image',
+      name: 'grok-imagine-image',
+      displayName: 'Grok 生图',
+      type: 'IMAGE',
+      unit: 'image_resolution_tier',
+      salePrice: IMAGE_PRICING_TIERS[0].chargedCredits,
+      costPrice: IMAGE_PRICING_TIERS[0].costCredits,
+      adapter: 'grok_image',
+      endpointPath: '/images/generations',
+      uploadMode: 'object_storage',
+      protocol: { adapter: 'grok_image', endpointPath: '/images/generations', editEndpointPath: '/images/edits', method: 'sync', uploadMode: 'object_storage' },
+      supports: { txt2img: true, img2img: true, imageToImage: true, storyboard: true, panorama: false },
+      defaults: { ...imagePricingDefaults(IMAGE_PRICING_TIERS), size: '16:9', aspectRatio: '16:9', resolution: '1K' },
+      capabilities: {
+        aspectRatios: ['1:1', '16:9', '9:16', '4:3', '3:4', '3:2', '2:3', '2:1', '1:2', '19.5:9', '9:19.5', '20:9', '9:20', 'auto'],
+        resolutions: ['1K', '2K'],
+        sizes: ['1:1', '16:9', '9:16', '4:3', '3:4', '3:2', '2:3', '2:1', '1:2', '19.5:9', '9:19.5', '20:9', '9:20', 'auto'],
+      },
+      ui: { label: 'Grok 生图', badge: 'Grok', badgeColor: '#111827' },
+      status: 'ACTIVE',
+    },
+  });
+}
+
+async function upsertGrokImageEditModel(providerIdValue: string) {
+  await prisma.aiModel.upsert({
+    where: { id: 'cliproxy-grok-image-edit' },
+    update: {
+      providerId: providerIdValue,
+      name: 'grok-imagine-image',
+      displayName: 'Grok 图生图',
+      type: 'IMAGE',
+      adapter: 'grok-image-edit',
+      endpointPath: '/images/edits',
+      statusEndpointPath: null,
+      uploadMode: 'object_storage',
+      protocol: { adapter: 'grok-image-edit', endpointPath: '/images/edits', method: 'sync', uploadMode: 'object_storage' },
+      supports: { txt2img: false, img2img: true, imageToImage: true, storyboard: true, panorama: false },
+      defaults: { ...imagePricingDefaults(IMAGE_PRICING_TIERS), size: '1024x1024' },
+      ui: { label: 'Grok 图生图', badge: 'Grok', badgeColor: '#0f766e' },
+      status: 'ACTIVE',
+    },
+    create: {
+      id: 'cliproxy-grok-image-edit',
+      providerId: providerIdValue,
+      modelKey: 'cliproxy-grok-image-edit',
+      name: 'grok-imagine-image',
+      displayName: 'Grok 图生图',
+      type: 'IMAGE',
+      unit: 'image_resolution_tier',
+      salePrice: IMAGE_PRICING_TIERS[0].chargedCredits,
+      costPrice: IMAGE_PRICING_TIERS[0].costCredits,
+      adapter: 'grok-image-edit',
+      endpointPath: '/images/edits',
+      uploadMode: 'object_storage',
+      protocol: { adapter: 'grok-image-edit', endpointPath: '/images/edits', method: 'sync', uploadMode: 'object_storage' },
+      supports: { txt2img: false, img2img: true, imageToImage: true, storyboard: true, panorama: false },
+      defaults: { ...imagePricingDefaults(IMAGE_PRICING_TIERS), size: '1024x1024' },
+      ui: { label: 'Grok 图生图', badge: 'Grok', badgeColor: '#0f766e' },
+      status: 'ACTIVE',
+    },
+  });
+}
+
+async function upsertGrokVideoModel(providerIdValue: string) {
+  const existing = await prisma.aiModel.findUnique({ where: { id: 'cliproxy-grok-video' } });
+  const defaultVideoModelName = process.env.CLIPROXY_XAI_VIDEO_MODEL || 'grok-imagine-video-1.5-preview';
+  const defaultProtocol = { adapter: 'grok-video', endpointPath: '/videos', statusEndpointPath: '/videos/{taskId}', method: 'async-poll', uploadMode: 'object_storage' };
+  const defaultSupports = { txt2video: true, img2video: true, imageToVideo: true, referenceToVideo: true };
+  const defaultDefaults = videoPricingDefaults(VIDEO_PRICING);
+  const defaultDurations = Array.from({ length: 15 }, (_, index) => index + 1);
+  const defaultCapabilities = {
+    resolutions: ['480p', '720p'],
+    durations: defaultDurations,
+    defaultDuration: 6,
+    defaultResolution: '720p',
+    aspectRatios: ['1:1', '16:9', '9:16', '4:3', '3:4', '3:2', '2:3'],
+    maxVideoDurationSeconds: 15,
+    max_video_duration_seconds: 15,
+    maxImageReferenceDurationSeconds: 15,
+    max_image_reference_duration_seconds: 15,
+    maxVideoDurationSecondsByMode: { 'text-to-video': 15, 'image-to-video': 15, 'reference-to-video': 15 },
+    max_video_duration_seconds_by_mode: { 'text-to-video': 15, 'image-to-video': 15, 'reference-to-video': 15 },
+    maxDurationByMode: { 'text-to-video': 15, 'image-to-video': 15, 'reference-to-video': 15 },
+    durationsByMode: { 'text-to-video': defaultDurations, 'image-to-video': defaultDurations, 'reference-to-video': defaultDurations },
+    maxImages: { full: 4, smartMultiFrame: 4, firstLast: 2 },
+    supportsAudio: false,
+    supportsVideo: false,
+  };
+  const defaultModelAssembly = { type: 'passthrough' };
+  const defaultUi = { label: 'Grok 生视频', badge: 'Grok', badgeColor: '#7c3aed' };
+  const updateData: Prisma.AiModelUncheckedUpdateInput = overwriteExistingGrokMedia ? {
+    providerId: providerIdValue,
+    name: defaultVideoModelName,
+    displayName: 'Grok 生视频',
+    type: 'VIDEO' as const,
+    adapter: 'grok-video',
+    endpointPath: '/videos',
+    statusEndpointPath: '/videos/{taskId}',
+    uploadMode: 'object_storage',
+    protocol: defaultProtocol as Prisma.InputJsonValue,
+    supports: defaultSupports,
+    defaults: defaultDefaults,
+    capabilities: defaultCapabilities,
+    modelAssembly: defaultModelAssembly,
+    ui: defaultUi,
+    status: 'ACTIVE' as const,
+  } : {
+    providerId: providerIdValue,
+    name: defaultVideoModelName,
+    displayName: existing?.displayName || 'Grok 生视频',
+    type: 'VIDEO' as const,
+    adapter: existing?.adapter || 'grok-video',
+    endpointPath: existing?.endpointPath || '/videos',
+    statusEndpointPath: existing?.statusEndpointPath || '/videos/{taskId}',
+    uploadMode: existing?.uploadMode || 'object_storage',
+    protocol: mergeJsonObjects(defaultProtocol, jsonObject(existing?.protocol)) as Prisma.InputJsonValue,
+    supports: mergeJsonObjects(jsonObject(existing?.supports), defaultSupports) as Prisma.InputJsonValue,
+    defaults: mergeJsonObjects(defaultDefaults as Record<string, unknown>, jsonObject(existing?.defaults)) as Prisma.InputJsonValue,
+    capabilities: mergeJsonObjects(jsonObject(existing?.capabilities), defaultCapabilities) as Prisma.InputJsonValue,
+    modelAssembly: (jsonObject(existing?.modelAssembly) || defaultModelAssembly) as Prisma.InputJsonValue,
+    ui: mergeJsonObjects(defaultUi, jsonObject(existing?.ui)) as Prisma.InputJsonValue,
+    status: existing?.status || 'ACTIVE' as const,
+  };
+  await prisma.aiModel.upsert({
+    where: { id: 'cliproxy-grok-video' },
+    update: updateData,
+    create: {
+      id: 'cliproxy-grok-video',
+      providerId: providerIdValue,
+      modelKey: 'cliproxy-grok-video',
+      name: defaultVideoModelName,
+      displayName: 'Grok 生视频',
+      type: 'VIDEO',
+      unit: 'second',
+      pricePerSecond: VIDEO_PRICING.chargedCreditsPerSecond,
+      costPrice: VIDEO_PRICING.costCreditsPerSecond,
+      adapter: 'grok-video',
+      endpointPath: '/videos',
+      statusEndpointPath: '/videos/{taskId}',
+      uploadMode: 'object_storage',
+      protocol: { adapter: 'grok-video', endpointPath: '/videos', statusEndpointPath: '/videos/{taskId}', method: 'async-poll', uploadMode: 'object_storage' },
+      supports: { txt2video: true, img2video: true, imageToVideo: true, referenceToVideo: true },
+      defaults: videoPricingDefaults(VIDEO_PRICING),
+      capabilities: {
+        resolutions: ['480p', '720p'],
+        durations: defaultDurations,
+        defaultDuration: 6,
+        defaultResolution: '720p',
+        aspectRatios: ['1:1', '16:9', '9:16', '4:3', '3:4', '3:2', '2:3'],
+        maxVideoDurationSeconds: 15,
+        max_video_duration_seconds: 15,
+        maxImageReferenceDurationSeconds: 15,
+        max_image_reference_duration_seconds: 15,
+        maxVideoDurationSecondsByMode: { 'text-to-video': 15, 'image-to-video': 15, 'reference-to-video': 15 },
+        max_video_duration_seconds_by_mode: { 'text-to-video': 15, 'image-to-video': 15, 'reference-to-video': 15 },
+        maxDurationByMode: { 'text-to-video': 15, 'image-to-video': 15, 'reference-to-video': 15 },
+        durationsByMode: { 'text-to-video': defaultDurations, 'image-to-video': defaultDurations, 'reference-to-video': defaultDurations },
+        maxImages: { full: 4, smartMultiFrame: 4, firstLast: 2 },
+        supportsAudio: false,
+        supportsVideo: false,
+      },
+      modelAssembly: { type: 'passthrough' },
+      ui: { label: 'Grok 生视频', badge: 'Grok', badgeColor: '#7c3aed' },
+      status: 'ACTIVE',
+    },
+  });
+}
+
+function jsonObject(value: unknown) {
+  return value && typeof value === 'object' && !Array.isArray(value) ? value as Record<string, unknown> : undefined;
+}
+
+function mergeJsonObjects(...items: Array<Record<string, unknown> | undefined>) {
+  return items.reduce<Record<string, unknown>>((acc, item) => {
+    if (!item) return acc;
+    Object.entries(item).forEach(([key, value]) => {
+      const left = acc[key];
+      if (left && value && typeof left === 'object' && typeof value === 'object' && !Array.isArray(left) && !Array.isArray(value)) {
+        acc[key] = { ...(left as Record<string, unknown>), ...(value as Record<string, unknown>) };
+        return;
+      }
+      acc[key] = value;
+    });
+    return acc;
+  }, {});
+}
+
+async function upsertGrokLlmModel(providerIdValue: string) {
+  await prisma.aiModel.upsert({
+    where: { id: 'cliproxy-grok-llm' },
+    update: {
+      providerId: providerIdValue,
+      name: process.env.CLIPROXY_XAI_LLM_MODEL || 'grok-4',
+      displayName: 'Grok LLM',
+      type: 'LLM',
+      adapter: 'grok-llm',
+      endpointPath: '/chat/completions',
+      statusEndpointPath: null,
+      uploadMode: null,
+      protocol: { adapter: 'grok-llm', endpointPath: '/chat/completions', method: 'sync' },
+      supports: { chat: true, text: true, vision: true },
+      defaults: defaultPricingDefaults('LLM'),
+      ui: { label: 'Grok LLM', badge: 'Grok', badgeColor: '#334155' },
+      status: 'ACTIVE',
+    },
+    create: {
+      id: 'cliproxy-grok-llm',
+      providerId: providerIdValue,
+      modelKey: 'cliproxy-grok-llm',
+      name: process.env.CLIPROXY_XAI_LLM_MODEL || 'grok-4',
+      displayName: 'Grok LLM',
+      type: 'LLM',
+      unit: 'token_usd_ratio',
+      inputPriceUsdPer1m: 1,
+      outputPriceUsdPer1m: 5,
+      cnyPerUsdCost: 0.2,
+      creditsPerUsdCost: 20,
+      markupRate: 1,
+      adapter: 'grok-llm',
+      endpointPath: '/chat/completions',
+      protocol: { adapter: 'grok-llm', endpointPath: '/chat/completions', method: 'sync' },
+      supports: { chat: true, text: true, vision: true },
+      defaults: defaultPricingDefaults('LLM'),
+      ui: { label: 'Grok LLM', badge: 'Grok', badgeColor: '#334155' },
+      status: 'ACTIVE',
+    },
+  });
+}
+
+main().finally(() => prisma.$disconnect());

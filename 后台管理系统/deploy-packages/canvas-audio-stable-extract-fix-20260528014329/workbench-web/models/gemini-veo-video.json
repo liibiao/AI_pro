@@ -1,0 +1,39 @@
+{
+  "id": "gemini-veo-video",
+  "name": "gemini-veo-video",
+  "type": "video",
+  "model": "veo-3.1-generate-preview",
+  "adapter": "gemini-video",
+  "baseUrl": "http://127.0.0.1:8000/v1",
+  "url": "http://127.0.0.1:8000/v1",
+  "key": "local-dev-no-auth",
+  "endpointPath": "/videos",
+  "statusEndpointPath": "/videos/{taskId}",
+  "uploadMode": "object_storage",
+  "protocol": {
+    "adapter": "gemini-video",
+    "endpointPath": "/videos",
+    "statusEndpointPath": "/videos/{taskId}",
+    "method": "async-poll",
+    "uploadMode": "object_storage"
+  },
+  "supports": {
+    "txt2video": true,
+    "img2video": true
+  },
+  "capabilities": {
+    "resolutions": ["720p", "1080p"],
+    "durations": [4, 6, 8],
+    "defaultDuration": 8,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16"],
+    "maxImages": { "full": 4, "smartMultiFrame": 4, "firstLast": 2 },
+    "supportsAudio": false,
+    "supportsVideo": false
+  },
+  "ui": {
+    "label": "Gemini Veo 视频",
+    "badge": "Veo",
+    "badgeColor": "#8b5cf6"
+  }
+}

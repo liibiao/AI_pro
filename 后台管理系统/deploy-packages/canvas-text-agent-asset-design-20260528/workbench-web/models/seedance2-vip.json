@@ -1,0 +1,79 @@
+{
+  "id": "seedance2-vip",
+  "name": "sora-vip3-pro",
+  "type": "video",
+  "label": "Seedance 2.0 VIP",
+  "model": "sora-vip3-pro",
+  "baseUrl": "https://notevideo.asia/v1",
+  "url": "https://notevideo.asia/v1/videos",
+  "key": "sk-ACcmDSKr7qE57QrQ36kkgfaPWtRqoskCBIR5RL8UavJiFzk0",
+  "adapter": "seedance2-vip",
+  "endpointPath": "/videos",
+  "statusEndpointPath": "/videos/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true
+  },
+  "capabilities": {
+    "resolutions": ["720p", "1080p"],
+    "durations": [5, 10, 15],
+    "defaultDuration": 5,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "4:3", "3:4", "1:1", "21:9"],
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "supportsAudio": true,
+    "supportsVideo": true,
+    "supportsLastFrame": true,
+    "maxVideos": 1,
+    "maxAudios": 1,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 14.9
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "second",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberDiscountRate": 0.4,
+      "chargedCreditsPerSecond": 34,
+      "originalCreditsPerSecond": 85,
+      "costCreditsPerSecond": 23.8,
+      "resolutionTiers": [
+        {
+          "resolution": "720p",
+          "chargedCreditsPerSecond": 34,
+          "originalCreditsPerSecond": 85,
+          "costCreditsPerSecond": 23.8
+        },
+        {
+          "resolution": "1080p",
+          "chargedCreditsPerSecond": 54,
+          "originalCreditsPerSecond": 135,
+          "costCreditsPerSecond": 37.8
+        }
+      ]
+    }
+  },
+  "modelAssembly": {
+    "type": "template",
+    "template": "{model}-{resolution}"
+  },
+  "note": "Seedance 2.0 VIP 视频渠道；全能参考最多 9 张图、智能多帧最多 9 张图、首尾帧 2 张图，支持 1 个参考视频和 1 个参考音频；对真人审核友好。",
+  "protocol": {
+    "adapter": "seedance2-vip",
+    "endpointPath": "/videos",
+    "statusEndpointPath": "/videos/{taskId}",
+    "method": "async-poll",
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "Seedance 2.0 VIP",
+    "badge": "VIP",
+    "badgeColor": "#f59e0b"
+  }
+}

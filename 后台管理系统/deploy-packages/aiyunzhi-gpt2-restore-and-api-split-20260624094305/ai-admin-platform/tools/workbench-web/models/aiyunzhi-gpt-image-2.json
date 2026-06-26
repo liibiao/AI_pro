@@ -1,0 +1,48 @@
+{
+  "id": "aiyunzhi-gpt-image-2",
+  "configId": "aiyunzhi-gpt-image-2",
+  "modelKey": "aiyunzhi-gpt-image-2",
+  "providerKey": "aiyunzhi",
+  "channelKey": "aiyunzhi-gpt-image-2",
+  "name": "firefly-gpt-image",
+  "displayName": "Aiyunzhi GPT Image 2 / firefly-gpt-image",
+  "label": "Aiyunzhi GPT Image 2 / firefly-gpt-image",
+  "type": "image",
+  "model": "firefly-gpt-image",
+  "baseUrl": "https://aiyunzhi.top",
+  "url": "https://aiyunzhi.top",
+  "key": "",
+  "adapter": "aiyunzhi-firefly-gpt-image",
+  "endpointPath": "/v1/chat/completions",
+  "uploadMode": "object_storage",
+  "supports": { "txt2img": true, "img2img": true },
+  "capabilities": {
+    "imageSizes": ["1K", "2K", "4K"],
+    "resolutions": ["1K", "2K", "4K"],
+    "aspectRatios": ["16:9", "1:1", "21:9", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16"],
+    "aspectRatiosByResolution": {
+      "1K": ["16:9", "1:1", "21:9", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16"],
+      "2K": ["16:9", "1:1", "21:9", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16"],
+      "4K": ["16:9", "1:1", "21:9", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16"]
+    },
+    "imageSizeOptionsByResolution": {
+      "1K": ["16:9", "1:1", "21:9", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16"],
+      "2K": ["16:9", "1:1", "21:9", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16"],
+      "4K": ["16:9", "1:1", "21:9", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "9:16"]
+    },
+    "maxImages": 6
+  },
+  "defaults": { "imageSize": "1K", "resolution": "1K", "aspectRatio": "16:9", "size": "16:9" },
+  "modelAssembly": {
+    "type": "template",
+    "template": "firefly-gpt-image-{resolution}-{aspectRatioSlug}"
+  },
+  "note": "Aiyunzhi GPT Image 2 channel uses Firefly GPT Image upstream models. Actual model is firefly-gpt-image-{imageSize}-{aspectRatioSlug}, for example firefly-gpt-image-1k-16x9.",
+  "protocol": {
+    "adapter": "aiyunzhi-firefly-gpt-image",
+    "endpointPath": "/v1/chat/completions",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "ui": { "label": "GPT Image 2 / firefly-gpt-image", "badge": "Image", "badgeColor": "#10b981" }
+}

@@ -1,0 +1,86 @@
+{
+  "id": "sd2",
+  "configId": "sd2",
+  "modelKey": "sd2",
+  "providerKey": "aiyunzhi-seedance2-full",
+  "channelKey": "aiyunzhi-seedance2-full",
+  "name": "seedance-2",
+  "modelNick": "sd2",
+  "displayName": "SD 2.0",
+  "label": "SD 2.0",
+  "type": "video",
+  "model": "seedance-2",
+  "baseUrl": "https://aiyunzhi.top/v1",
+  "url": "https://aiyunzhi.top/v1/video/generations",
+  "key": "sk-t0v504skmtX34eQFtGtWRhyLNZBelHkgszUivJi4G326n6q9",
+  "adapter": "seedance2-sd",
+  "endpointPath": "/video/generations",
+  "statusEndpointPath": "/video/generations/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "firstFrame": true,
+    "firstLastFrame": true,
+    "referenceImages": true,
+    "apiReferenceVideos": true,
+    "apiReferenceAudios": true,
+    "generateAudio": true
+  },
+  "capabilities": {
+    "resolutions": ["720p"],
+    "durations": [15],
+    "defaultDuration": 15,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "1:1", "4:3", "21:9"],
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "supportsAudio": false,
+    "supportsVideo": false,
+    "supportsLastFrame": true,
+    "maxVideos": 0,
+    "maxAudios": 0,
+    "apiSupportsVideoReferences": true,
+    "apiSupportsAudioReferences": true,
+    "apiSupportsGenerateAudio": true,
+    "apiMaxVideos": 3,
+    "apiMaxAudios": 3,
+    "clientReferenceMediaEntryEnabled": false
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "generation",
+      "billingMode": "generation",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberCreditsPerGeneration": 500,
+      "chargedCreditsPerGeneration": 500,
+      "originalCreditsPerGeneration": 500,
+      "costCreditsPerGeneration": 350
+    }
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "note": "SD 2.0 对应真实模型 seedance-2，固定 720P、15 秒、按次计费；提交走 /v1/video/generations，有本地文件才走 /multipart，generate_audio 保留。",
+  "protocol": {
+    "adapter": "seedance2-sd",
+    "endpointPath": "/video/generations",
+    "multipartEndpointPath": "/video/generations/multipart",
+    "statusEndpointPath": "/video/generations/{taskId}",
+    "referenceTransport": ["content_url", "content_asset", "multipart"],
+    "contentTypes": ["image_url", "video_url", "audio_url", "image_asset", "video_asset", "audio_asset", "text"],
+    "soundField": "generate_audio",
+    "legacySoundFieldDisabled": "enableSound",
+    "method": "async-poll",
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "SD 2.0",
+    "badge": "STANDARD",
+    "badgeColor": "#22c55e"
+  }
+}

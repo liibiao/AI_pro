@@ -1,0 +1,912 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  AGENT
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum ApiTokenStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum EnterpriseStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum EnterpriseUserRole {
+  ENTERPRISE_ADMIN
+  ENTERPRISE_VIEWER
+}
+
+enum EnterpriseUserStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum UserStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum ProviderStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum ModelType {
+  IMAGE
+  VIDEO
+  LLM
+}
+
+enum ModelStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum ModelUsageStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+enum GenerationTaskStatus {
+  CREATED
+  PENDING
+  RUNNING
+  SUCCESS
+  FAILED
+  TIMEOUT
+  REFUNDED
+  CANCELLED
+  MANUAL_REVIEW
+}
+
+enum GenerationRefundStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+enum GenerationRefundSource {
+  AUTO
+  ADMIN
+}
+
+enum WalletLogType {
+  RECHARGE
+  CONSUME
+  REFUND
+  ADMIN_ADD
+  ADMIN_DEDUCT
+  COMMISSION
+  SETTLEMENT
+}
+
+enum PaymentChannel {
+  ALIPAY
+  MOCK
+  AGENT_VOUCHER
+  ADMIN_MANUAL
+}
+
+enum RechargeOrderStatus {
+  PENDING
+  PAID
+  CLOSED
+  FAILED
+}
+
+enum MembershipPlanStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum MemberAccountStatus {
+  AVAILABLE
+  CLAIMED
+  REDEEMED
+  VOIDED
+}
+
+enum AgentLevel {
+  NORMAL
+  FOUNDER
+}
+
+enum AgentStatus {
+  ACTIVE
+  DISABLED
+}
+
+enum RedemptionStatus {
+  SUCCESS
+  CANCELLED
+}
+
+enum CommissionStatus {
+  PENDING
+  SETTLED
+  CANCELLED
+}
+
+enum SettlementStatus {
+  PENDING
+  SETTLED
+  CANCELLED
+}
+
+enum TrialCardStatus {
+  AVAILABLE
+  USED
+  VOIDED
+  EXPIRED
+}
+
+enum AgentCreditVoucherStatus {
+  AVAILABLE
+  REDEEMED
+  CANCELLED
+  EXPIRED
+}
+
+enum AgentCreditVoucherSource {
+  AGENT
+  ADMIN
+}
+
+enum AgentCreditVoucherRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+enum AgentCreditLedgerType {
+  ADMIN_GRANT
+  VOUCHER_FREEZE
+  VOUCHER_REDEEM
+  VOUCHER_CANCEL
+  VOUCHER_EXPIRE
+  MANUAL_ADJUST
+}
+
+enum AgentReconciliationOrderType {
+  PREPAID_GRANT
+  VOUCHER_REQUEST
+  VOUCHER_REDEEM
+  SETTLEMENT
+  MANUAL_ADJUST
+}
+
+enum AgentReconciliationOrderStatus {
+  PENDING
+  CONFIRMED
+  SETTLED
+  CANCELLED
+}
+
+enum SystemSettingValueType {
+  STRING
+  NUMBER
+  BOOLEAN
+  SECRET
+}
+
+model User {
+  id           String     @id @default(cuid())
+  phone        String?    @unique
+  email        String?    @unique
+  passwordHash String     @map("password_hash")
+  nickname     String
+  role         UserRole   @default(USER)
+  status       UserStatus @default(ACTIVE)
+  agentId      String?    @map("agent_id")
+  agent        Agent?     @relation("UserBoundAgent", fields: [agentId], references: [id])
+  createdAt    DateTime   @default(now()) @map("created_at")
+  updatedAt    DateTime   @updatedAt @map("updated_at")
+
+  wallet                             Wallet?
+  rechargeOrders                     RechargeOrder[]
+  agentProfile                       Agent?                      @relation("AgentUser")
+  walletLogs                         WalletLog[]
+  modelUsages                        ModelUsage[]
+  generationTasks                    GenerationTask[]
+  generationRefunds                  GenerationRefund[]
+  memberships                        UserMembership[]
+  agentCustomerRecord                AgentCustomer?
+  redemptions                        AccountRedemption[]
+  trialCardsUsed                     TrialCard[]                 @relation("TrialCardUsedUser")
+  canvasWorkflows                    CanvasWorkflow[]
+  adminLogs                          AdminLog[]                  @relation("AdminLogActor")
+  agentCreditVouchers                AgentCreditVoucher[]
+  createdAgentCreditVouchers         AgentCreditVoucher[]        @relation("AgentCreditVoucherCreatedByAdmin")
+  agentCreditVoucherRequests         AgentCreditVoucherRequest[]
+  reviewedAgentCreditVoucherRequests AgentCreditVoucherRequest[] @relation("AgentCreditVoucherRequestReviewer")
+  confirmedReconciliationOrders      AgentReconciliationOrder[]  @relation("AgentReconciliationConfirmedBy")
+  enterpriseBillingAccount           EnterpriseAccount?          @relation("EnterpriseBillingUser")
+  personalApiTokens                  PersonalApiToken[]
+  enterpriseAccountsCreated          EnterpriseAccount[]         @relation("EnterpriseAccountCreatedBy")
+
+  @@map("users")
+}
+
+model PersonalApiToken {
+  id          String         @id @default(cuid())
+  userId      String         @map("user_id")
+  name        String
+  tokenHash   String         @unique @map("token_hash")
+  tokenPrefix String         @map("token_prefix")
+  status      ApiTokenStatus @default(ACTIVE)
+  lastUsedAt  DateTime?      @map("last_used_at")
+  createdAt   DateTime       @default(now()) @map("created_at")
+  updatedAt   DateTime       @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, status])
+  @@map("personal_api_tokens")
+}
+
+model EnterpriseAccount {
+  id            String           @id @default(cuid())
+  name          String
+  billingUserId String           @unique @map("billing_user_id")
+  status        EnterpriseStatus @default(ACTIVE)
+  remark        String?          @db.Text
+  createdById   String           @map("created_by_id")
+  createdAt     DateTime         @default(now()) @map("created_at")
+  updatedAt     DateTime         @updatedAt @map("updated_at")
+
+  billingUser User                 @relation("EnterpriseBillingUser", fields: [billingUserId], references: [id])
+  createdBy   User                 @relation("EnterpriseAccountCreatedBy", fields: [createdById], references: [id])
+  users       EnterpriseUser[]
+  tokens      EnterpriseApiToken[]
+
+  @@index([status, createdAt])
+  @@map("enterprise_accounts")
+}
+
+model EnterpriseUser {
+  id            String               @id @default(cuid())
+  enterpriseId String               @map("enterprise_id")
+  email         String?              @unique
+  phone         String?              @unique
+  passwordHash  String               @map("password_hash")
+  nickname      String
+  role          EnterpriseUserRole   @default(ENTERPRISE_ADMIN)
+  status        EnterpriseUserStatus @default(ACTIVE)
+  lastLoginAt   DateTime?            @map("last_login_at")
+  createdAt     DateTime             @default(now()) @map("created_at")
+  updatedAt     DateTime             @updatedAt @map("updated_at")
+
+  enterprise EnterpriseAccount @relation(fields: [enterpriseId], references: [id])
+
+  @@index([enterpriseId, status])
+  @@map("enterprise_users")
+}
+
+model EnterpriseApiToken {
+  id            String         @id @default(cuid())
+  enterpriseId  String         @map("enterprise_id")
+  name          String
+  tokenHash     String         @unique @map("token_hash")
+  tokenPrefix   String         @map("token_prefix")
+  status        ApiTokenStatus @default(ACTIVE)
+  expiredAt     DateTime?      @map("expired_at")
+  lastUsedAt    DateTime?      @map("last_used_at")
+  createdById   String         @map("created_by_id")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  updatedAt     DateTime       @updatedAt @map("updated_at")
+
+  enterprise EnterpriseAccount @relation(fields: [enterpriseId], references: [id])
+
+  @@index([enterpriseId, status])
+  @@map("enterprise_api_tokens")
+}
+
+model Wallet {
+  id        String   @id @default(cuid())
+  userId    String   @unique @map("user_id")
+  balance   Int      @default(0)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("wallets")
+}
+
+model WalletLog {
+  id            String        @id @default(cuid())
+  userId        String        @map("user_id")
+  type          WalletLogType
+  amount        Int
+  balanceBefore Int           @map("balance_before")
+  balanceAfter  Int           @map("balance_after")
+  relatedType   String?       @map("related_type")
+  relatedId     String?       @map("related_id")
+  remark        String?
+  createdAt     DateTime      @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
+  @@map("wallet_logs")
+}
+
+model RechargeOrder {
+  id             String              @id @default(cuid())
+  orderNo        String              @unique @map("order_no")
+  userId         String              @map("user_id")
+  channel        PaymentChannel
+  status         RechargeOrderStatus @default(PENDING)
+  amountCents    Int                 @map("amount_cents")
+  credits        Int
+  qrCode         String?             @map("qr_code") @db.Text
+  paymentTradeNo String?             @map("payment_trade_no")
+  notifyPayload  Json?               @map("notify_payload")
+  paidAt         DateTime?           @map("paid_at")
+  expiredAt      DateTime            @map("expired_at")
+  createdAt      DateTime            @default(now()) @map("created_at")
+  updatedAt      DateTime            @updatedAt @map("updated_at")
+
+  user               User                @relation(fields: [userId], references: [id])
+  agentCreditVoucher AgentCreditVoucher?
+
+  @@index([userId, createdAt])
+  @@index([status, createdAt])
+  @@map("recharge_orders")
+}
+
+model UpstreamProvider {
+  id                 String         @id @default(cuid())
+  providerKey        String         @unique @map("provider_key")
+  name               String
+  type               ModelType?
+  adapter            String         @default("openai-image")
+  baseUrl            String         @map("base_url")
+  apiKeyEncrypted    String         @map("api_key_encrypted")
+  endpointPath       String?        @map("endpoint_path")
+  statusEndpointPath String?        @map("status_endpoint_path")
+  uploadMode         String?        @map("upload_mode")
+  requestMethod      String?        @map("request_method")
+  defaultModel       String?        @map("default_model")
+  defaultParams      Json?          @map("default_params")
+  timeoutMs          Int            @default(60000) @map("timeout_ms")
+  weight             Int            @default(100)
+  concurrencyLimit   Int            @default(0) @map("concurrency_limit")
+  failureThreshold   Int            @default(5) @map("failure_threshold")
+  status             ProviderStatus @default(ACTIVE)
+  createdAt          DateTime       @default(now()) @map("created_at")
+
+  models     AiModel[]
+  tasks      GenerationTask[]
+  healthLogs ProviderHealthLog[]
+
+  @@index([adapter, status])
+  @@map("upstream_providers")
+}
+
+model AiModel {
+  id                  String      @id @default(cuid())
+  providerId          String      @map("provider_id")
+  modelKey            String?     @map("model_key")
+  name                String
+  displayName         String      @map("display_name")
+  type                ModelType
+  unit                String
+  salePrice           Int         @default(0) @map("sale_price")
+  costPrice           Decimal     @default(0) @map("cost_price") @db.Decimal(12, 4)
+  pricePerSecond      Int         @default(0) @map("price_per_second")
+  inputPriceUsdPer1m  Decimal     @default(0) @map("input_price_usd_per_1m") @db.Decimal(12, 6)
+  outputPriceUsdPer1m Decimal     @default(0) @map("output_price_usd_per_1m") @db.Decimal(12, 6)
+  cnyPerUsdCost       Decimal     @default(0) @map("cny_per_usd_cost") @db.Decimal(12, 6)
+  creditsPerUsdCost   Decimal     @default(0) @map("credits_per_usd_cost") @db.Decimal(12, 6)
+  markupRate          Decimal     @default(1) @map("markup_rate") @db.Decimal(12, 6)
+  adapter             String?     @map("adapter")
+  endpointPath        String?     @map("endpoint_path")
+  statusEndpointPath  String?     @map("status_endpoint_path")
+  uploadMode          String?     @map("upload_mode")
+  protocol            Json?
+  supports            Json?
+  defaults            Json?
+  capabilities        Json?
+  modelAssembly       Json?       @map("model_assembly")
+  ui                  Json?
+  status              ModelStatus @default(ACTIVE)
+  createdAt           DateTime    @default(now()) @map("created_at")
+
+  provider   UpstreamProvider    @relation(fields: [providerId], references: [id])
+  usages     ModelUsage[]
+  tasks      GenerationTask[]
+  healthLogs ProviderHealthLog[]
+
+  @@index([type, status])
+  @@index([providerId, modelKey])
+  @@map("ai_models")
+}
+
+model ModelUsage {
+  id              String           @id @default(cuid())
+  userId          String           @map("user_id")
+  modelId         String           @map("model_id")
+  modelType       ModelType        @map("model_type")
+  quantity        Int              @default(1)
+  durationSeconds Int              @default(0) @map("duration_seconds")
+  saleAmount      Int              @default(0) @map("sale_amount")
+  costAmount      Decimal          @default(0) @map("cost_amount") @db.Decimal(12, 4)
+  inputTokens     Int              @default(0) @map("input_tokens")
+  outputTokens    Int              @default(0) @map("output_tokens")
+  totalTokens     Int              @default(0) @map("total_tokens")
+  costUsd         Decimal          @default(0) @map("cost_usd") @db.Decimal(12, 6)
+  chargedCredits  Int              @default(0) @map("charged_credits")
+  status          ModelUsageStatus @default(PENDING)
+  prompt          String?          @db.Text
+  requestJson     Json?            @map("request_json")
+  responseJson    Json?            @map("response_json")
+  resultUrl       String?          @map("result_url")
+  requestId       String?          @map("request_id")
+  upstreamTaskId  String?          @map("upstream_task_id")
+  errorMessage    String?          @map("error_message")
+  createdAt       DateTime         @default(now()) @map("created_at")
+
+  user  User    @relation(fields: [userId], references: [id])
+  model AiModel @relation(fields: [modelId], references: [id])
+
+  @@index([userId, createdAt])
+  @@index([modelId, createdAt])
+  @@map("model_usages")
+}
+
+model GenerationTask {
+  id                String               @id @default(cuid())
+  userId            String               @map("user_id")
+  clientRequestId   String?              @map("client_request_id")
+  providerId        String               @map("provider_id")
+  modelId           String               @map("model_id")
+  channelKey        String               @map("channel_key")
+  type              ModelType
+  mode              String
+  status            GenerationTaskStatus @default(CREATED)
+  prompt            String               @db.Text
+  negativePrompt    String?              @map("negative_prompt") @db.Text
+  inputFilesJson    Json?                @map("input_files_json")
+  paramsJson        Json?                @map("params_json")
+  requestJson       Json?                @map("request_json")
+  responseJson      Json?                @map("response_json")
+  upstreamTaskId    String?              @map("upstream_task_id")
+  upstreamRequestId String?              @map("upstream_request_id")
+  resultJson        Json?                @map("result_json")
+  resultUrlsJson    Json?                @map("result_urls_json")
+  chargedCredits    Int                  @default(0) @map("charged_credits")
+  costAmount        Decimal              @default(0) @map("cost_amount") @db.Decimal(12, 4)
+  costUsd           Decimal              @default(0) @map("cost_usd") @db.Decimal(12, 6)
+  refundCredits     Int                  @default(0) @map("refund_credits")
+  refundStatus      String               @default("NONE") @map("refund_status")
+  refundReason      String?              @map("refund_reason")
+  errorCode         String?              @map("error_code")
+  errorMessage      String?              @map("error_message")
+  retryCount        Int                  @default(0) @map("retry_count")
+  progress          Int                  @default(0)
+  startedAt         DateTime?            @map("started_at")
+  completedAt       DateTime?            @map("completed_at")
+  failedAt          DateTime?            @map("failed_at")
+  refundedAt        DateTime?            @map("refunded_at")
+  createdAt         DateTime             @default(now()) @map("created_at")
+  updatedAt         DateTime             @updatedAt @map("updated_at")
+
+  user       User                @relation(fields: [userId], references: [id])
+  provider   UpstreamProvider    @relation(fields: [providerId], references: [id])
+  model      AiModel             @relation(fields: [modelId], references: [id])
+  refunds    GenerationRefund[]
+  healthLogs ProviderHealthLog[]
+
+  @@unique([userId, clientRequestId])
+  @@index([userId, createdAt])
+  @@index([channelKey, status, createdAt])
+  @@index([type, status, createdAt])
+  @@map("generation_tasks")
+}
+
+model GenerationRefund {
+  id          String                 @id @default(cuid())
+  taskId      String                 @map("task_id")
+  userId      String                 @map("user_id")
+  amount      Int
+  status      GenerationRefundStatus @default(PENDING)
+  source      GenerationRefundSource @default(AUTO)
+  reason      String?
+  operatorId  String?                @map("operator_id")
+  createdAt   DateTime               @default(now()) @map("created_at")
+  processedAt DateTime?              @map("processed_at")
+
+  task GenerationTask @relation(fields: [taskId], references: [id])
+  user User           @relation(fields: [userId], references: [id])
+
+  @@index([taskId, createdAt])
+  @@index([userId, createdAt])
+  @@map("generation_refunds")
+}
+
+model ProviderHealthLog {
+  id           String   @id @default(cuid())
+  providerId   String   @map("provider_id")
+  modelId      String?  @map("model_id")
+  taskId       String?  @map("task_id")
+  status       String
+  latencyMs    Int      @default(0) @map("latency_ms")
+  errorCode    String?  @map("error_code")
+  errorMessage String?  @map("error_message")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  provider UpstreamProvider @relation(fields: [providerId], references: [id])
+  model    AiModel?         @relation(fields: [modelId], references: [id])
+  task     GenerationTask?  @relation(fields: [taskId], references: [id])
+
+  @@index([providerId, createdAt])
+  @@index([status, createdAt])
+  @@map("provider_health_logs")
+}
+
+model MembershipPlan {
+  id           String               @id @default(cuid())
+  name         String
+  price        Int
+  bonusCredits Int                  @default(0) @map("bonus_credits")
+  durationDays Int                  @map("duration_days")
+  status       MembershipPlanStatus @default(ACTIVE)
+
+  memberships    UserMembership[]
+  memberAccounts MemberAccount[]
+  redemptions    AccountRedemption[]
+  trialCards     TrialCard[]
+
+  @@map("membership_plans")
+}
+
+model UserMembership {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  planId    String   @map("plan_id")
+  startedAt DateTime @map("started_at")
+  expiredAt DateTime @map("expired_at")
+  source    String
+
+  user User           @relation(fields: [userId], references: [id])
+  plan MembershipPlan @relation(fields: [planId], references: [id])
+
+  @@index([userId, expiredAt])
+  @@map("user_memberships")
+}
+
+model MemberAccount {
+  id             String              @id @default(cuid())
+  code           String              @unique
+  planId         String              @map("plan_id")
+  status         MemberAccountStatus @default(AVAILABLE)
+  claimedAgentId String?             @map("claimed_agent_id")
+  claimedAt      DateTime?           @map("claimed_at")
+  redeemedUserId String?             @map("redeemed_user_id")
+  redeemedAt     DateTime?           @map("redeemed_at")
+  createdAt      DateTime            @default(now()) @map("created_at")
+
+  plan         MembershipPlan     @relation(fields: [planId], references: [id])
+  claimedAgent Agent?             @relation(fields: [claimedAgentId], references: [id])
+  redemption   AccountRedemption?
+
+  @@index([status, createdAt])
+  @@map("member_accounts")
+}
+
+model Agent {
+  id                  String      @id @default(cuid())
+  userId              String      @unique @map("user_id")
+  name                String
+  level               AgentLevel  @default(NORMAL)
+  parentAgentId       String?     @map("parent_agent_id")
+  commissionRate      Decimal     @default(0) @map("commission_rate") @db.Decimal(8, 4)
+  settlementDelayDays Int         @default(1) @map("settlement_delay_days")
+  status              AgentStatus @default(ACTIVE)
+  createdAt           DateTime    @default(now()) @map("created_at")
+
+  user                  User                        @relation("AgentUser", fields: [userId], references: [id])
+  boundUsers            User[]                      @relation("UserBoundAgent")
+  parentAgent           Agent?                      @relation("AgentParent", fields: [parentAgentId], references: [id])
+  subAgents             Agent[]                     @relation("AgentParent")
+  customers             AgentCustomer[]
+  claimedAccounts       MemberAccount[]
+  claims                AccountClaim[]
+  redemptions           AccountRedemption[]
+  commissionLogs        CommissionLog[]
+  settlements           Settlement[]
+  trialCards            TrialCard[]
+  creditAccount         AgentCreditAccount?
+  creditVouchers        AgentCreditVoucher[]
+  creditVoucherRequests AgentCreditVoucherRequest[]
+  creditLedgers         AgentCreditLedger[]
+  reconciliationOrders  AgentReconciliationOrder[]
+
+  @@map("agents")
+}
+
+model AgentCustomer {
+  id            String   @id @default(cuid())
+  agentId       String   @map("agent_id")
+  userId        String   @unique @map("user_id")
+  customerPhone String?  @unique @map("customer_phone")
+  customerName  String?  @map("customer_name")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  agent Agent @relation(fields: [agentId], references: [id])
+  user  User  @relation(fields: [userId], references: [id])
+
+  @@index([agentId, createdAt])
+  @@map("agent_customers")
+}
+
+model AccountClaim {
+  id        String   @id @default(cuid())
+  agentId   String   @map("agent_id")
+  quantity  Int
+  createdAt DateTime @default(now()) @map("created_at")
+
+  agent Agent @relation(fields: [agentId], references: [id])
+
+  @@map("account_claims")
+}
+
+model AccountRedemption {
+  id               String           @id @default(cuid())
+  accountId        String           @unique @map("account_id")
+  agentId          String           @map("agent_id")
+  userId           String           @map("user_id")
+  planId           String           @map("plan_id")
+  commissionAmount Int              @default(0) @map("commission_amount")
+  status           RedemptionStatus @default(SUCCESS)
+  redeemedAt       DateTime         @default(now()) @map("redeemed_at")
+
+  account MemberAccount  @relation(fields: [accountId], references: [id])
+  agent   Agent          @relation(fields: [agentId], references: [id])
+  user    User           @relation(fields: [userId], references: [id])
+  plan    MembershipPlan @relation(fields: [planId], references: [id])
+
+  commissionLogs CommissionLog[]
+
+  @@index([agentId, redeemedAt])
+  @@map("account_redemptions")
+}
+
+model CommissionLog {
+  id           String           @id @default(cuid())
+  agentId      String           @map("agent_id")
+  userId       String?          @map("user_id")
+  sourceType   String           @map("source_type")
+  sourceId     String           @map("source_id")
+  redemptionId String?          @map("redemption_id")
+  amount       Int
+  status       CommissionStatus @default(PENDING)
+  settledAt    DateTime?        @map("settled_at")
+  createdAt    DateTime         @default(now()) @map("created_at")
+
+  agent      Agent              @relation(fields: [agentId], references: [id])
+  redemption AccountRedemption? @relation(fields: [redemptionId], references: [id])
+
+  @@index([agentId, status])
+  @@map("commission_logs")
+}
+
+model Settlement {
+  id        String           @id @default(cuid())
+  agentId   String           @map("agent_id")
+  amount    Int
+  status    SettlementStatus @default(PENDING)
+  remark    String?
+  createdAt DateTime         @default(now()) @map("created_at")
+  settledAt DateTime?        @map("settled_at")
+
+  agent Agent @relation(fields: [agentId], references: [id])
+
+  @@map("settlements")
+}
+
+model TrialCard {
+  id         String          @id @default(cuid())
+  code       String          @unique
+  agentId    String?         @map("agent_id")
+  planId     String          @map("plan_id")
+  status     TrialCardStatus @default(AVAILABLE)
+  expiredAt  DateTime        @map("expired_at")
+  usedUserId String?         @map("used_user_id")
+  usedAt     DateTime?       @map("used_at")
+
+  agent    Agent?         @relation(fields: [agentId], references: [id])
+  plan     MembershipPlan @relation(fields: [planId], references: [id])
+  usedUser User?          @relation("TrialCardUsedUser", fields: [usedUserId], references: [id])
+
+  @@map("trial_cards")
+}
+
+model AgentCreditAccount {
+  id                String   @id @default(cuid())
+  agentId           String   @unique @map("agent_id")
+  availableCredits  Int      @default(0) @map("available_credits")
+  frozenCredits     Int      @default(0) @map("frozen_credits")
+  usedCredits       Int      @default(0) @map("used_credits")
+  creditLimit       Int      @default(0) @map("credit_limit")
+  receivableCredits Int      @default(0) @map("receivable_credits")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  agent Agent @relation(fields: [agentId], references: [id])
+
+  @@map("agent_credit_accounts")
+}
+
+model AgentCreditVoucher {
+  id              String                   @id @default(cuid())
+  voucherNo       String                   @unique @map("voucher_no")
+  codeHash        String                   @unique @map("code_hash")
+  codeEncrypted   String?                  @map("code_encrypted") @db.Text
+  codeLast4       String                   @map("code_last4")
+  source          AgentCreditVoucherSource @default(AGENT)
+  agentId         String?                  @map("agent_id")
+  createdByAdminId String?                 @map("created_by_admin_id")
+  userId          String                   @map("user_id")
+  credits         Int
+  amountCents     Int                      @default(0) @map("amount_cents")
+  status          AgentCreditVoucherStatus @default(AVAILABLE)
+  expiredAt       DateTime                 @map("expired_at")
+  redeemedAt      DateTime?                @map("redeemed_at")
+  rechargeOrderId String?                  @unique @map("recharge_order_id")
+  createdAt       DateTime                 @default(now()) @map("created_at")
+  updatedAt       DateTime                 @updatedAt @map("updated_at")
+
+  agent          Agent?                    @relation(fields: [agentId], references: [id])
+  createdByAdmin User?                     @relation("AgentCreditVoucherCreatedByAdmin", fields: [createdByAdminId], references: [id])
+  user           User                      @relation(fields: [userId], references: [id])
+  rechargeOrder  RechargeOrder?            @relation(fields: [rechargeOrderId], references: [id])
+  request        AgentCreditVoucherRequest?
+
+  @@index([agentId, createdAt])
+  @@index([source, status, createdAt])
+  @@index([userId, status])
+  @@map("agent_credit_vouchers")
+}
+
+model AgentCreditVoucherRequest {
+  id                    String                          @id @default(cuid())
+  requestNo             String                          @unique @map("request_no")
+  agentId               String                          @map("agent_id")
+  userId                String                          @map("user_id")
+  credits               Int
+  amountCents           Int                             @default(0) @map("amount_cents")
+  validDays             Int                             @default(30) @map("valid_days")
+  transferChannel       String?                         @map("transfer_channel")
+  transferNo            String?                         @map("transfer_no")
+  proofImageUrl         String?                         @map("proof_image_url") @db.Text
+  remark                String?
+  status                AgentCreditVoucherRequestStatus @default(PENDING)
+  voucherId             String?                         @unique @map("voucher_id")
+  reconciliationOrderId String?                         @unique @map("reconciliation_order_id")
+  codeEncrypted         String?                         @map("code_encrypted") @db.Text
+  codeViewedAt          DateTime?                       @map("code_viewed_at")
+  reviewedByAdminId     String?                         @map("reviewed_by_admin_id")
+  reviewedAt            DateTime?                       @map("reviewed_at")
+  rejectReason          String?                         @map("reject_reason")
+  createdAt             DateTime                        @default(now()) @map("created_at")
+  updatedAt             DateTime                        @updatedAt @map("updated_at")
+
+  agent               Agent                     @relation(fields: [agentId], references: [id])
+  user                User                      @relation(fields: [userId], references: [id])
+  voucher             AgentCreditVoucher?       @relation(fields: [voucherId], references: [id])
+  reconciliationOrder AgentReconciliationOrder? @relation(fields: [reconciliationOrderId], references: [id])
+  reviewedByAdmin     User?                     @relation("AgentCreditVoucherRequestReviewer", fields: [reviewedByAdminId], references: [id])
+
+  @@index([agentId, status, createdAt])
+  @@index([status, createdAt])
+  @@index([userId, createdAt])
+  @@map("agent_credit_voucher_requests")
+}
+
+model AgentCreditLedger {
+  id            String                @id @default(cuid())
+  agentId       String                @map("agent_id")
+  type          AgentCreditLedgerType
+  amount        Int
+  balanceBefore Int                   @map("balance_before")
+  balanceAfter  Int                   @map("balance_after")
+  relatedType   String?               @map("related_type")
+  relatedId     String?               @map("related_id")
+  remark        String?
+  createdAt     DateTime              @default(now()) @map("created_at")
+
+  agent Agent @relation(fields: [agentId], references: [id])
+
+  @@index([agentId, createdAt])
+  @@map("agent_credit_ledgers")
+}
+
+model AgentReconciliationOrder {
+  id                 String                         @id @default(cuid())
+  orderNo            String                         @unique @map("order_no")
+  agentId            String                         @map("agent_id")
+  type               AgentReconciliationOrderType
+  status             AgentReconciliationOrderStatus @default(PENDING)
+  credits            Int                            @default(0)
+  amountCents        Int                            @default(0) @map("amount_cents")
+  transferChannel    String?                        @map("transfer_channel")
+  transferNo         String?                        @map("transfer_no")
+  proofImageUrl      String?                        @map("proof_image_url") @db.Text
+  relatedType        String?                        @map("related_type")
+  relatedId          String?                        @map("related_id")
+  remark             String?
+  confirmedByAdminId String?                        @map("confirmed_by_admin_id")
+  confirmedAt        DateTime?                      @map("confirmed_at")
+  createdAt          DateTime                       @default(now()) @map("created_at")
+  updatedAt          DateTime                       @updatedAt @map("updated_at")
+
+  agent            Agent                      @relation(fields: [agentId], references: [id])
+  confirmedByAdmin User?                      @relation("AgentReconciliationConfirmedBy", fields: [confirmedByAdminId], references: [id])
+  voucherRequest   AgentCreditVoucherRequest?
+
+  @@index([agentId, createdAt])
+  @@index([status, createdAt])
+  @@map("agent_reconciliation_orders")
+}
+
+model CanvasWorkflow {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  name      String
+  dataJson  Json     @map("data_json")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, updatedAt])
+  @@map("canvas_workflows")
+}
+
+model AdminLog {
+  id          String   @id @default(cuid())
+  adminUserId String   @map("admin_user_id")
+  action      String
+  targetType  String   @map("target_type")
+  targetId    String   @map("target_id")
+  remark      String?
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  adminUser User @relation("AdminLogActor", fields: [adminUserId], references: [id])
+
+  @@index([adminUserId, createdAt])
+  @@map("admin_logs")
+}
+
+model SystemSetting {
+  id        String                 @id @default(cuid())
+  key       String                 @unique
+  label     String
+  group     String                 @map("setting_group")
+  value     String?                @db.Text
+  valueType SystemSettingValueType @default(STRING) @map("value_type")
+  isSecret  Boolean                @default(false) @map("is_secret")
+  remark    String?
+  createdAt DateTime               @default(now()) @map("created_at")
+  updatedAt DateTime               @updatedAt @map("updated_at")
+
+  @@index([group])
+  @@map("system_settings")
+}

@@ -1,0 +1,34 @@
+{
+  "id": "gemini-unified-image",
+  "name": "gemini-unified-image",
+  "type": "image",
+  "model": "gemini-3.1-flash-image-preview",
+  "adapter": "gemini-image-generate",
+  "baseUrl": "http://127.0.0.1:8000/v1",
+  "url": "http://127.0.0.1:8000/v1",
+  "key": "local-dev-no-auth",
+  "endpointPath": "/images/generations",
+  "uploadMode": "object_storage",
+  "protocol": {
+    "adapter": "gemini-image-generate",
+    "endpointPath": "/images/generations",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "supports": {
+    "txt2img": true,
+    "img2img": false,
+    "imageToImage": false,
+    "storyboard": true,
+    "panorama": false
+  },
+  "defaults": {
+    "size": "1024x1024",
+    "response_format": "b64_json"
+  },
+  "ui": {
+    "label": "Gemini 统一文生图",
+    "badge": "Gemini",
+    "badgeColor": "#4285f4"
+  }
+}

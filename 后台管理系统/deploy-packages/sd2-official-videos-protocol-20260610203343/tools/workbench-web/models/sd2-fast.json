@@ -1,0 +1,95 @@
+{
+  "id": "sd2-fast",
+  "configId": "sd2-fast",
+  "modelKey": "sd2-fast",
+  "providerKey": "aiyunzhi-seedance2-fast",
+  "channelKey": "aiyunzhi-seedance2-fast",
+  "name": "sd2-fast",
+  "modelNick": "sd2-fast",
+  "displayName": "SD 2.0 Fast",
+  "label": "SD 2.0 Fast",
+  "type": "video",
+  "model": "sd2-fast",
+  "baseUrl": "https://aiyunzhi.top/v1",
+  "url": "https://aiyunzhi.top/v1/videos",
+  "key": "sk-t0v504skmtX34eQFtGtWRhyLNZBelHkgszUivJi4G326n6q9",
+  "adapter": "seedance2-sd",
+  "endpointPath": "/videos",
+  "statusEndpointPath": "/videos/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "firstFrame": true,
+    "firstLastFrame": true,
+    "referenceImages": true,
+    "referenceVideos": true,
+    "referenceAudios": true
+  },
+  "capabilities": {
+    "resolutions": ["720p", "1080p"],
+    "durations": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "defaultDuration": 5,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "4:3", "3:4", "1:1", "21:9"],
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "supportsAudio": true,
+    "supportsVideo": true,
+    "supportsLastFrame": true,
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 15,
+    "soundControlField": "metadata.enableSound",
+    "defaultEnableSound": false
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "second",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberDiscountRate": 0.4,
+      "chargedCreditsPerSecond": 18,
+      "originalCreditsPerSecond": 45,
+      "costCreditsPerSecond": 12.6,
+      "resolutionTiers": [
+        {
+          "resolution": "720p",
+          "chargedCreditsPerSecond": 18,
+          "originalCreditsPerSecond": 45,
+          "costCreditsPerSecond": 12.6
+        },
+        {
+          "resolution": "1080p",
+          "chargedCreditsPerSecond": 34,
+          "originalCreditsPerSecond": 85,
+          "costCreditsPerSecond": 23.8
+        }
+      ]
+    }
+  },
+  "modelAssembly": {
+    "type": "template",
+    "template": "sd2-{resolution}-fast"
+  },
+  "note": "SD 2.0 Fast 官方 SD2 渠道。用户在节点选择 720P 或 1080P 后，真实上游模型自动拼接为 sd2-720p-fast 或 sd2-1080p-fast；提交走 /v1/videos，参考图/视频/音频传公网 URL。",
+  "protocol": {
+    "adapter": "seedance2-sd",
+    "endpointPath": "/videos",
+    "statusEndpointPath": "/videos/{taskId}",
+    "contentEndpointPath": "/videos/{taskId}/content",
+    "requestSchema": "official-sd2",
+    "soundField": "metadata.enableSound",
+    "method": "async-poll",
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "SD 2.0 Fast",
+    "badge": "FAST",
+    "badgeColor": "#0ea5e9"
+  }
+}

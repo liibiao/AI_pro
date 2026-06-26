@@ -1,0 +1,21 @@
+{
+  "items": [
+    {
+      "id": "manga-writer",
+      "label": "漫剧创作库 Writer Agent",
+      "description": "调用漫剧创作库 Writer / Skill / Doc / Template 的剧本与提示词生产规范。"
+    },
+    {
+      "id": "shortdrama-agent-1-5",
+      "label": "短剧 Agent 1.5",
+      "description": "短剧 Agent 包，适合短剧剧本、分场与商业化节奏。",
+      "sourcePath": "/Users/billy/Documents/短剧agent 1.5.7z"
+    },
+    {
+      "id": "ad-agent",
+      "label": "广告 Agent",
+      "description": "广告 Agent 包，适合广告创意、卖点脚本与投放素材提示词。",
+      "sourcePath": "/Users/billy/Documents/广告agent.7z"
+    }
+  ]
+}

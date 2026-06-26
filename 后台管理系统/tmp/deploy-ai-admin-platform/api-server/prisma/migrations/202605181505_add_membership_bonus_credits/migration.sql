@@ -1,0 +1,2 @@
+ALTER TABLE "membership_plans"
+ADD COLUMN IF NOT EXISTS "bonus_credits" INTEGER NOT NULL DEFAULT 0;

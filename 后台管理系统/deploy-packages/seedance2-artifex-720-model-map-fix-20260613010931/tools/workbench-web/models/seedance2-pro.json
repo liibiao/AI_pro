@@ -1,0 +1,68 @@
+{
+  "id": "seedance2-pro",
+  "configId": "seedance2-pro",
+  "modelKey": "seedance2-pro",
+  "providerKey": "artifex-seedance2",
+  "channelKey": "artifex-seedance2",
+  "name": "video-pro-720p",
+  "modelNick": "Seedance 2",
+  "displayName": "Seedance 2 高质量",
+  "label": "Seedance 2 高质量",
+  "type": "video",
+  "model": "video-pro-720p",
+  "baseUrl": "https://api.artifex.help/v1",
+  "url": "https://api.artifex.help/v1/videos",
+  "key": "replace-with-artifex-api-key",
+  "adapter": "seedance2",
+  "endpointPath": "/videos",
+  "statusEndpointPath": "/videos/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "referenceVideo": true,
+    "referenceAudio": true
+  },
+  "capabilities": {
+    "resolutions": ["720p"],
+    "durations": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "defaultDuration": 5,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "maxImages": {"full": 9, "smartMultiFrame": 9, "firstLast": 2},
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "maxMaterials": 12,
+    "maxMaterialSizeMb": 25,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 15,
+    "supportsAudio": true,
+    "supportsVideo": true,
+    "supportsLastFrame": false
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "generation",
+      "billingMode": "per_generation",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberDiscountRate": 1,
+      "memberCreditsPerGeneration": 600,
+      "chargedCreditsPerGeneration": 600,
+      "originalCreditsPerGeneration": 600,
+      "costCreditsPerGeneration": 600
+    }
+  },
+  "modelAssembly": {"type": "passthrough"},
+  "note": "Artifex Seedance 2 高质量版，真实上游模型 video-pro-720p，720p，4-15 秒，按次 600 积分。最多 9 图、3 视频、3 音频，合计不超过 12 个，每个素材不超过 25MB。",
+  "protocol": {
+    "adapter": "seedance2",
+    "endpointPath": "/videos",
+    "statusEndpointPath": "/videos/{taskId}",
+    "method": "async-poll",
+    "pollIntervalSeconds": 8,
+    "resultTtlHours": 6,
+    "uploadMode": "object_storage"
+  },
+  "ui": {"label": "Seedance 2 高质量", "badge": "HQ", "badgeColor": "#22c55e"}
+}

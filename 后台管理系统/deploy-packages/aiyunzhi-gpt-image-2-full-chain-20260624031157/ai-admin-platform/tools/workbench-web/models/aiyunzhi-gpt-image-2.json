@@ -1,0 +1,71 @@
+{
+  "id": "aiyunzhi-gpt-image-2",
+  "configId": "aiyunzhi-gpt-image-2",
+  "modelKey": "aiyunzhi-gpt-image-2",
+  "providerKey": "aiyunzhi",
+  "channelKey": "aiyunzhi-gpt-image-2",
+  "name": "gpt-image-2",
+  "displayName": "Aiyunzhi GPT Image 2",
+  "label": "Aiyunzhi GPT Image 2",
+  "type": "image",
+  "model": "gpt-image-2",
+  "baseUrl": "https://aiyunzhi.top",
+  "url": "https://aiyunzhi.top",
+  "key": "",
+  "adapter": "aiyunzhi-gpt-image-2",
+  "endpointPath": "/v1/images/generations",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2img": true,
+    "img2img": true,
+    "imageToImage": true,
+    "storyboard": true,
+    "panorama": false,
+    "repair": true
+  },
+  "capabilities": {
+    "imageSizes": ["1k", "2k", "4k"],
+    "resolutions": ["1k", "2k", "4k"],
+    "aspectRatios": ["1:1"],
+    "aspectRatiosByResolution": {
+      "1k": ["1:1"],
+      "2k": ["1:1"],
+      "4k": ["1:1"]
+    },
+    "imageSizeOptionsByResolution": {
+      "1k": ["1:1"],
+      "2k": ["1:1"],
+      "4k": ["1:1"]
+    },
+    "maxImages": 3,
+    "maxReferenceImages": 3,
+    "responseFormats": ["url", "b64_json"]
+  },
+  "defaults": {
+    "imageSize": "1k",
+    "resolution": "1k",
+    "size": "1k",
+    "n": 1,
+    "response_format": "url"
+  },
+  "modelAssembly": {
+    "type": "literal"
+  },
+  "note": "Aiyunzhi GPT Image 2 channel. Text-to-image uses JSON POST /v1/images/generations. Reference-image generation uses multipart/form-data POST /v1/images/edits with image or image[] files. Model is fixed to gpt-image-2; size supports 1k, 2k, 4k.",
+  "protocol": {
+    "adapter": "aiyunzhi-gpt-image-2",
+    "endpointPath": "/v1/images/generations",
+    "generationEndpointPath": "/v1/images/generations",
+    "editEndpointPath": "/v1/images/edits",
+    "method": "sync",
+    "uploadMode": "object_storage",
+    "requestSchema": "aiyunzhi-gpt-image-2",
+    "maxReferenceImages": 3,
+    "responseType": "provider_url"
+  },
+  "ui": {
+    "label": "Aiyunzhi GPT Image 2",
+    "badge": "GPT2",
+    "badgeColor": "#2563eb"
+  }
+}

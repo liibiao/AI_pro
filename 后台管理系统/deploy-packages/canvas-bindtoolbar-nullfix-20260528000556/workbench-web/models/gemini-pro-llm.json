@@ -1,0 +1,25 @@
+{
+  "id": "gemini-pro-llm",
+  "name": "gemini-pro-llm",
+  "type": "llm",
+  "model": "gemini-3-pro",
+  "adapter": "gemini-chat",
+  "baseUrl": "http://127.0.0.1:8000/v1",
+  "url": "http://127.0.0.1:8000/v1",
+  "key": "local-dev-no-auth",
+  "endpointPath": "/chat/completions",
+  "protocol": {
+    "adapter": "gemini-chat",
+    "endpointPath": "/chat/completions",
+    "method": "sync"
+  },
+  "supports": {
+    "chat": true,
+    "vision": true
+  },
+  "ui": {
+    "label": "Gemini 3 Pro",
+    "badge": "LLM",
+    "badgeColor": "#7c3aed"
+  }
+}

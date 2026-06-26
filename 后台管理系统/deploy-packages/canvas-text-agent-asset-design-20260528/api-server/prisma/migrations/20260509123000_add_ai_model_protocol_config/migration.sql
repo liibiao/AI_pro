@@ -1,0 +1,10 @@
+ALTER TABLE "ai_models" ADD COLUMN "adapter" TEXT;
+ALTER TABLE "ai_models" ADD COLUMN "endpoint_path" TEXT;
+ALTER TABLE "ai_models" ADD COLUMN "status_endpoint_path" TEXT;
+ALTER TABLE "ai_models" ADD COLUMN "upload_mode" TEXT;
+ALTER TABLE "ai_models" ADD COLUMN "protocol" JSONB;
+ALTER TABLE "ai_models" ADD COLUMN "supports" JSONB;
+ALTER TABLE "ai_models" ADD COLUMN "defaults" JSONB;
+ALTER TABLE "ai_models" ADD COLUMN "capabilities" JSONB;
+ALTER TABLE "ai_models" ADD COLUMN "model_assembly" JSONB;
+ALTER TABLE "ai_models" ADD COLUMN "ui" JSONB;

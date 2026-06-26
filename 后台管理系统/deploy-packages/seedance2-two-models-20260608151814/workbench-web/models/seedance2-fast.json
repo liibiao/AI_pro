@@ -1,0 +1,90 @@
+{
+  "id": "seedance2-fast",
+  "configId": "seedance2-fast",
+  "modelKey": "seedance2-fast",
+  "providerKey": "seedance2",
+  "channelKey": "seedance2",
+  "name": "seedance2-fast",
+  "modelNick": "seedance2-fast",
+  "displayName": "SD 2.0 Fast",
+  "label": "SD 2.0 Fast",
+  "type": "video",
+  "model": "video-fast",
+  "baseUrl": "https://api.artifex.help/v1",
+  "url": "https://api.artifex.help/v1/videos",
+  "key": "replace-with-seedance2-api-key",
+  "adapter": "seedance2",
+  "endpointPath": "/videos",
+  "statusEndpointPath": "/videos/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "referenceVideo": true,
+    "referenceAudio": true
+  },
+  "capabilities": {
+    "resolutions": ["480p", "720p"],
+    "durations": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "defaultDuration": 6,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "1:1", "21:9", "3:4", "4:3"],
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 15,
+    "supportsAudio": true,
+    "supportsVideo": true,
+    "supportsLastFrame": false
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "second",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "cnyPerSecond": 0.35,
+      "chargedCreditsPerSecond": 35,
+      "originalCreditsPerSecond": 35,
+      "costCreditsPerSecond": 24.5,
+      "grossMarginRate": 0.3,
+      "resolutionTiers": [
+        {
+          "resolution": "480p",
+          "cnyPerSecond": 0.27,
+          "chargedCreditsPerSecond": 27,
+          "originalCreditsPerSecond": 27,
+          "costCreditsPerSecond": 18.9
+        },
+        {
+          "resolution": "720p",
+          "cnyPerSecond": 0.35,
+          "chargedCreditsPerSecond": 35,
+          "originalCreditsPerSecond": 35,
+          "costCreditsPerSecond": 24.5
+        }
+      ]
+    }
+  },
+  "modelAssembly": {
+    "type": "template",
+    "template": "video-fast-{resolution}"
+  },
+  "note": "Seedance 2.0 /v1/videos 快速版按秒生视频渠道；真实上游模型由所选分辨率拼接为 video-fast-480p 或 video-fast-720p。参考图片/视频/音频需公网 HTTPS，prompt 中可用 @Image1 / @Video1 / @Audio1 引用。",
+  "protocol": {
+    "adapter": "seedance2",
+    "endpointPath": "/videos",
+    "statusEndpointPath": "/videos/{taskId}",
+    "method": "async-poll",
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "SD 2.0 Fast",
+    "badge": "FAST",
+    "badgeColor": "#0ea5e9"
+  }
+}

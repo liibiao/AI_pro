@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>漫剧创作库工作台</title>
+  <style>
+    :root {
+      --bg: #08101d;
+      --bg2: #0c1730;
+      --panel: rgba(18, 25, 53, 0.92);
+      --line: rgba(255,255,255,.1);
+      --text: #eef2ff;
+      --muted: #9fb0d9;
+      --ok: #54d2a5;
+      --warn: #ffcf70;
+      --error: #ff8f95;
+      --shadow: 0 18px 40px rgba(0,0,0,.25);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Helvetica Neue", sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top, #122349 0%, var(--bg) 42%, #060b15 100%);
+    }
+    .wrap { max-width: 1500px; margin: 0 auto; padding: 28px 20px 56px; }
+    .hero, .layout { display: grid; gap: 18px; }
+    .hero { grid-template-columns: 1.15fr .85fr; margin-bottom: 18px; }
+    .layout { grid-template-columns: minmax(0, 1.1fr) minmax(380px, .9fr); align-items: start; }
+    .hero-card, .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+    .hero-card { padding: 24px; }
+    .hero h1 { margin: 0 0 10px; font-size: 34px; line-height: 1.15; }
+    .hero p { margin: 0; color: var(--muted); line-height: 1.8; }
+    .badges, .chips, .toolbar, .result-tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+    .badges { margin-top: 16px; }
+    .badge, .tab {
+      padding: 7px 12px;
+      border: 1px solid rgba(125,167,255,.22);
+      border-radius: 999px;
+      background: rgba(125,167,255,.11);
+      color: #dbe6ff;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .tab.active { background: rgba(84,210,165,.18); border-color: rgba(84,210,165,.4); color: #ecfff7; }
+    .hero-side { padding: 22px; display: grid; gap: 14px; align-content: start; }
+    .stat, .card {
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 16px;
+    }
+    .stat strong, .card h3 { display: block; margin: 0 0 8px; }
+    .stat span, .card p, .card li { color: var(--muted); line-height: 1.75; font-size: 14px; }
+    .panel { overflow: hidden; }
+    .panel-head { padding: 18px 20px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.03); }
+    .panel-head h2 { margin: 0 0 6px; font-size: 20px; }
+    .panel-head p { margin: 0; color: var(--muted); line-height: 1.7; font-size: 14px; }
+    .panel-body { padding: 20px; }
+    .grid, .pipeline-grid { display: grid; gap: 14px; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-bottom: 16px; }
+    .pipeline-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 18px; padding-top: 18px; border-top: 1px dashed rgba(255,255,255,.12); }
+    .field { display: grid; gap: 8px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-size: 13px; color: #dbe6ff; font-weight: 600; }
+    textarea, select, input {
+      width: 100%; border: 1px solid rgba(255,255,255,.12); background: rgba(8, 13, 29, .95); color: var(--text);
+      border-radius: 14px; padding: 12px 14px; font: inherit; outline: none; transition: .2s ease;
+    }
+    textarea { min-height: 240px; resize: vertical; line-height: 1.7; }
+    textarea:focus, select:focus, input:focus { border-color: rgba(109,227,255,.55); box-shadow: 0 0 0 4px rgba(109,227,255,.08); }
+    .hint { color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .sub-label { margin-top: 10px; margin-bottom: 8px; font-size: 12px; color: #cfe0ff; font-weight: 600; }
+    .style-picker { padding: 16px; border: 1px solid rgba(255,255,255,.08); border-radius: 18px; background: rgba(255,255,255,.02); }
+    .option-chips { max-height: 190px; overflow: auto; padding-right: 4px; }
+    .chip {
+      border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); color: #dbe6ff;
+      border-radius: 999px; padding: 8px 12px; font-size: 13px; cursor: pointer; transition: .18s ease;
+    }
+    .chip:hover { border-color: rgba(125,167,255,.45); transform: translateY(-1px); }
+    .chip.active { background: linear-gradient(180deg, rgba(125,167,255,.28), rgba(125,167,255,.18)); border-color: rgba(125,167,255,.6); color: #fff; }
+    .toolbar { margin-top: 18px; }
+    button {
+      appearance: none; border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 11px 16px;
+      cursor: pointer; font: inherit; color: var(--text); background: linear-gradient(180deg, #24366c, #1a264e); transition: .18s ease;
+    }
+    button:hover { transform: translateY(-1px); border-color: rgba(125,167,255,.45); }
+    button.secondary { background: linear-gradient(180deg, #1b233f, #151b31); }
+    button.success { background: linear-gradient(180deg, #1f8b69, #17664f); }
+    button.ghost { background: linear-gradient(180deg, #16213d, #10172d); }
+    button:disabled { cursor: not-allowed; opacity: .55; transform: none; }
+    .summary { display: grid; gap: 14px; }
+    .kv { display: grid; grid-template-columns: 108px 1fr; gap: 8px 10px; font-size: 14px; line-height: 1.7; }
+    .kv strong { color: #dce7ff; font-weight: 600; }
+    .mode-ai { color: var(--ok); font-weight: 700; }
+    .mode-manual { color: var(--warn); font-weight: 700; }
+    pre, .viewer-content {
+      margin: 0; white-space: pre-wrap; word-break: break-word; background: rgba(8, 13, 29, .95);
+      border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 14px; line-height: 1.72; color: #ebf2ff; font-size: 13px;
+      max-height: 420px; overflow: auto;
+    }
+    .mini-list { display: grid; gap: 8px; margin: 0; padding-left: 18px; }
+    .status-line {
+      margin-top: 14px; padding: 12px 14px; border-radius: 14px; font-size: 13px; line-height: 1.7;
+      border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.03); color: #dce7ff;
+    }
+    .status-line.ok { color: #dbfff0; border-color: rgba(84,210,165,.3); background: rgba(84,210,165,.12); }
+    .status-line.warn { color: #fff1cb; border-color: rgba(255,207,112,.3); background: rgba(255,207,112,.12); }
+    .status-line.error { color: #ffd9dc; border-color: rgba(255,143,149,.3); background: rgba(255,143,149,.12); }
+    .link-list, .result-cards { display: grid; gap: 10px; margin-top: 14px; }
+    .result-link, .result-card {
+      display: block; text-decoration: none; color: var(--text); border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px; padding: 12px 14px; background: rgba(255,255,255,.03);
+    }
+    .result-link strong, .result-card strong { display: block; margin-bottom: 4px; }
+    .result-link span, .result-card span { color: var(--muted); font-size: 12px; line-height: 1.6; }
+    .check-row {
+      display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 12px;
+      border: 1px solid rgba(255,255,255,.12); border-radius: 14px; background: rgba(8, 13, 29, .95);
+    }
+    .check-row input { width: auto; margin: 0; }
+    .check-row label { margin: 0; font-weight: 500; }
+    .run-log { min-height: 260px; max-height: 520px; }
+    .viewer-shell { margin-top: 18px; }
+    .viewer-toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+    .viewer-empty { color: var(--muted); }
+    .toast {
+      position: fixed; right: 18px; bottom: 18px; background: rgba(84,210,165,.95); color: #05211a; font-weight: 700;
+      padding: 10px 14px; border-radius: 12px; box-shadow: var(--shadow); opacity: 0; transform: translateY(8px); transition: .2s ease; pointer-events: none;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 1120px) { .hero, .layout, .grid, .pipeline-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>漫剧创作库工作台</h1>
+        <p>把小说原文或剧本直接粘贴进来，系统会基于内容自动推断项目目录名、推荐导演风格、视觉风格和时长策略。你也可以直接选择现有项目与集数，一键把当前正文落进 `projects/` 并触发项目级提示词流水线。</p>
+        <div class="badges">
+          <span class="badge">小说 / 剧本一键粘贴</span>
+          <span class="badge">项目级流水线直连</span>
+          <span class="badge">实时运行日志</span>
+          <span class="badge">结果可复制查看</span>
+          <span class="badge">支持长版 / 简版 / 双版</span>
+        </div>
+      </div>
+      <div class="hero-card hero-side">
+        <div class="stat"><strong>工作台现在能做什么</strong><span>既能生成本地运行方案，也能把当前输入剧本同步进现有项目，然后直接调用 `project_pipeline_run.py` 跑正式提示词流水线。</span></div>
+        <div class="stat"><strong>项目级执行逻辑</strong><span>会先把输入区正文落盘到目标项目 `01-story/scripts/`，再自动补齐 `storyboard / shots / fullref`，最后生成即梦 / Seedance / 叙事三版本提示词。</span></div>
+        <div class="stat"><strong>运行可视化</strong><span>现在会在页面里实时刷新任务日志；完成后，底部会直接出现分镜 / 提示词的可复制查看区。</span></div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <div class="panel">
+        <div class="panel-head">
+          <h2>输入区</h2>
+          <p>粘贴小说正文、剧本片段、剧情梗概都可以。你既可以只做方案预览，也可以直接选择项目和集数，点一次就跑项目级提示词生成。</p>
+        </div>
+        <div class="panel-body">
+          <div class="grid">
+            <div class="field full">
+              <label for="sourceText">小说原文 / 剧本正文</label>
+              <textarea id="sourceText" placeholder="例如：
+# 第3话：觉醒
+林天在濒死痛楚中听见系统提示音，意识被强行拉入识海深处，灵纹纹路一寸寸点亮……"></textarea>
+              <div class="hint">如果你选择“项目级一键生成”，这段正文会先自动写入目标项目的 `01-story/scripts/`，再触发 `project_pipeline_run.py`。</div>
+            </div>
+            <div class="field">
+              <label for="projectName">项目目录名（自动提炼）</label>
+              <input id="projectName" type="text" placeholder="未输入内容时自动留空" />
+              <div class="hint">用于本地方案预览与 outputs 导出；项目级执行时以你下方选中的现有项目为准。</div>
+            </div>
+            <div class="field">
+              <label for="durationPreset">视频时长</label>
+              <select id="durationPreset">
+                <option value="">AI 智能模式（自动估算）</option>
+                <option value="15s">15 秒</option>
+                <option value="30s">30 秒</option>
+                <option value="45s">45 秒</option>
+                <option value="60s">60 秒</option>
+                <option value="90s">90 秒</option>
+                <option value="120s">120 秒</option>
+                <option value="180s">180 秒</option>
+              </select>
+              <div class="hint">这一组仍用于本地方案预览，不直接传给项目级流水线。</div>
+            </div>
+            <div class="field full style-picker">
+              <label>导演风格</label>
+              <div class="sub-label">先选分类</div>
+              <div class="chips" id="directorCategoryChips"></div>
+              <div class="sub-label">再选导演</div>
+              <div class="chips option-chips" id="directorOptionChips"></div>
+              <div class="hint">这一组保留给方案预览，不影响 `project_pipeline_run.py` 的项目级参数。</div>
+            </div>
+            <div class="field full style-picker">
+              <label>视觉风格</label>
+              <div class="sub-label">先选分类</div>
+              <div class="chips" id="visualCategoryChips"></div>
+              <div class="sub-label">再选风格</div>
+              <div class="chips option-chips" id="visualOptionChips"></div>
+              <div class="hint">视觉风格也用于本地预览，不直接传给项目级流水线。</div>
+            </div>
+          </div>
+
+          <div class="toolbar">
+            <button class="success" id="analyzeBtn">生成运行方案（预览）</button>
+            <button class="ghost" id="runPlanBtn">调用 Python 预览</button>
+            <button class="ghost" id="runInitBtn">创建 outputs 目录</button>
+            <button class="ghost" id="runExportBtn">导出当前 test 结果</button>
+            <button class="secondary" id="smartBtn">恢复 AI 智能模式</button>
+            <button class="secondary" id="exampleBtn">填充示例</button>
+            <button class="secondary" id="clearBtn">清空内容</button>
+            <button class="secondary" id="exportPipelineBtn">导出工作流</button>
+            <button class="secondary" id="importPipelineBtn">导入工作流</button>
+          </div>
+
+          <div class="pipeline-grid">
+            <div class="field">
+              <label for="pipelineProject">项目级目标项目</label>
+              <select id="pipelineProject"><option value="">正在加载项目列表…</option></select>
+              <div class="hint">这里选择 `projects/` 下已有项目；项目级一键生成会直接操作这个项目。</div>
+            </div>
+            <div class="field">
+              <label for="pipelineEpisode">目标集数</label>
+              <input id="pipelineEpisode" type="text" placeholder="例如 3 或 003" />
+              <div class="hint">如果留空，会尽量从正文中的“第 X 话”自动识别。</div>
+            </div>
+            <div class="field">
+              <label for="pipelineStyle">提示词风格旋钮</label>
+              <select id="pipelineStyle">
+                <option value="纪实克制">纪实克制</option>
+                <option value="形式主义">形式主义</option>
+                <option value="新黑色">新黑色</option>
+                <option value="热血爆点">热血爆点</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="pipelineVariant">提示词输出版本</label>
+              <select id="pipelineVariant">
+                <option value="short">简版</option>
+                <option value="long">长版</option>
+                <option value="both">长版 + 简版</option>
+              </select>
+            </div>
+            <div class="field"><div class="check-row"><input id="pipelineSkipAssets" type="checkbox" checked /><label for="pipelineSkipAssets">跳过资产生成，只跑提示词</label></div></div>
+            <div class="field"><div class="check-row"><input id="pipelineForce" type="checkbox" checked /><label for="pipelineForce">强制覆盖已有本集输出</label></div></div>
+          </div>
+
+          <div class="toolbar">
+            <button class="success" id="runPipelineBtn">项目级一键生成提示词</button>
+          </div>
+          <div class="status-line warn" id="serviceStatus">正在检查本地 Python 服务状态…</div>
+        </div>
+      </div>
+
+      <div class="summary">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>运行结果预览</h2>
+            <p>这里会把当前输入转换成可执行的工作流参数，并显示你当前准备投递到哪个项目与哪一话。</p>
+          </div>
+          <div class="panel-body">
+            <div class="card"><h3>当前模式</h3><div class="kv"><strong>导演风格</strong><span id="directorMode">AI 智能模式</span><strong>视觉风格</strong><span id="visualMode">AI 智能模式</span><strong>视频时长</strong><span id="durationMode">AI 智能模式</span><strong>项目目录</strong><span id="projectNameView">待输入正文后生成</span></div></div>
+            <div class="card"><h3>工作流判断</h3><div class="kv"><strong>剧情类型</strong><span id="genreView">待分析</span><strong>节奏建议</strong><span id="paceView">待分析</span><strong>推荐理由</strong><span id="reasonView">输入正文后自动生成</span></div></div>
+            <div class="card"><h3>项目级执行参数</h3><div class="kv"><strong>目标项目</strong><span id="pipelineProjectView">尚未选择</span><strong>目标集数</strong><span id="pipelineEpisodeView">待输入</span><strong>输出版本</strong><span id="pipelineVariantView">简版</span><strong>资产策略</strong><span id="pipelineAssetsView">跳过资产，仅生成提示词</span></div></div>
+            <div class="card"><h3>将要执行的流程</h3><ul class="mini-list"><li>把当前输入剧本写入目标项目 `01-story/scripts/` 对应集数文件</li><li>自动补齐 `storyboard / shots / fullref` 三个前置文件</li><li>调用 `project_pipeline_run.py` 输出即梦 / Seedance / 叙事三版本提示词</li></ul></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>运行指令与执行结果</h2>
+            <p>本页既能做本地方案预览，也能直接请求本地 Python 服务执行 `project_pipeline_run.py`，并返回落盘脚本、日志和生成文件链接。</p>
+          </div>
+          <div class="panel-body">
+            <div class="card"><h3>@studio 调用文本</h3><pre id="commandPreview">请先输入小说原文或剧本正文，然后点击“生成运行方案（预览）”。</pre><div class="toolbar"><button class="success" id="copyCommandBtn">复制调用文本</button></div></div>
+            <div class="card"><h3>执行结果</h3><div class="kv"><strong>服务状态</strong><span id="serviceStatusView">检查中</span><strong>最近动作</strong><span id="lastActionView">尚未执行</span><strong>输出目录</strong><span id="projectPathView">尚未生成</span></div><div class="status-line" id="executionStatus">这里支持方案预览、outputs 初始化导出，以及项目级一键提示词生成。</div><div class="link-list" id="resultLinks"></div><div class="toolbar compact"><button class="secondary" id="refreshServiceBtn">重新检测服务</button></div></div>
+            <div class="card"><h3>实时运行过程</h3><pre class="run-log" id="pipelineLog">尚未执行项目级流水线。</pre></div>
+            <div class="card"><h3>运行参数 JSON</h3><pre id="jsonPreview">{
+  "mode": "ai-smart",
+  "projectName": "",
+  "directorStyle": null,
+  "visualStyle": null,
+  "duration": null
+}</pre><div class="toolbar"><button class="secondary" id="copyJsonBtn">复制 JSON 参数</button></div></div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="panel viewer-shell">
+      <div class="panel-head">
+        <h2>结果查看器（可复制）</h2>
+        <p>运行完成后，这里会自动列出分镜表、fullref、即梦、Seedance、叙事等结果。点击上方标签即可切换，右上角可直接复制当前内容。</p>
+      </div>
+      <div class="panel-body">
+        <div class="result-tabs" id="resultTabs"></div>
+        <div class="viewer-toolbar">
+          <button class="secondary" id="copyViewerBtn">复制当前查看内容</button>
+          <button class="secondary" id="openViewerFileBtn">打开当前文件</button>
+          <span class="hint" id="viewerMeta">尚未载入结果文件</span>
+        </div>
+        <div class="viewer-content" id="viewerContent"><span class="viewer-empty">项目级流水线完成后，这里会直接展示可复制内容。</span></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast">已复制</div>
+
+  <style>
+    .modal-mask{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:600;display:none;align-items:center;justify-content:center}.modal-mask.show{display:flex}
+    .modal{width:420px;max-width:94vw;background:#1e293b;border:1px solid rgba(255,255,255,.08);border-radius:14px;box-shadow:0 24px 64px rgba(0,0,0,.5);overflow:hidden}
+    .modal-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.06);font-weight:800;font-size:13px;color:#e2e8f0}
+    .modal-close{width:26px;height:26px;border-radius:7px;border:none;background:rgba(255,255,255,.06);color:#94a3b8;font-size:15px;cursor:pointer;display:grid;place-items:center;transition:.15s}.modal-close:hover{background:rgba(248,113,113,.18);color:#f87171}
+    .modal-body{padding:14px 16px}
+    .modal-body input{width:100%;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:#0f172a;color:#e2e8f0;font-size:13px;margin-top:6px;box-sizing:border-box}
+    .modal-body p{color:#94a3b8;font-size:13px;margin:0}
+    .modal-foot{display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:10px 16px;border-top:1px solid rgba(255,255,255,.06)}
+    .modal-foot button{padding:6px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1);font-size:12px;font-weight:700;cursor:pointer;transition:.15s}
+    .modal-foot .btn-cancel{background:transparent;color:#94a3b8}.modal-foot .btn-cancel:hover{background:rgba(255,255,255,.06)}
+    .modal-foot .btn-ok{background:#818cf8;color:#fff;border-color:#818cf8}.modal-foot .btn-ok:hover{background:#6366f1}
+  </style>
+
+  <script>
+    const API_BASE = '/api/workbench';
+    const directorCategoryLabels = { all:'全部 / 通用', scifi:'科幻', action:'动作', thriller:'悬疑', visual:'视觉美学', anime:'动画', oriental:'东方', classic:'经典', fantasy:'奇幻', horror:'恐怖' };
+    const directorOptions = [
+      { id:'', name:'AI 智能模式', category:'smart' }, { id:'generic', name:'标准电影感（AI自由创作）', category:'all' }, { id:'nolan', name:'克里斯托弗·诺兰', category:'scifi' },
+      { id:'cameron', name:'詹姆斯·卡梅隆', category:'scifi' }, { id:'villeneuve', name:'丹尼斯·维伦纽瓦', category:'scifi' }, { id:'spielberg', name:'史蒂文·斯皮尔伯格', category:'classic' },
+      { id:'scorsese', name:'马丁·斯科塞斯', category:'classic' }, { id:'fincher', name:'大卫·芬奇', category:'thriller' }, { id:'hitchcock', name:'阿尔弗雷德·希区柯克', category:'thriller' },
+      { id:'wong', name:'王家卫', category:'visual' }, { id:'tarantino', name:'昆汀·塔伦蒂诺', category:'action' }, { id:'kubrick', name:'斯坦利·库布里克', category:'classic' },
+      { id:'miyazaki', name:'宫崎骏', category:'anime' }, { id:'anderson', name:'韦斯·安德森', category:'visual' }, { id:'lee_ang', name:'李安', category:'oriental' },
+      { id:'zhang', name:'张艺谋', category:'oriental' }, { id:'bong', name:'奉俊昊', category:'thriller' }, { id:'chan', name:'成龙', category:'action' },
+      { id:'new_wave', name:'法国新浪潮', category:'classic' }, { id:'carpenter', name:'约翰·卡朋特', category:'horror' }, { id:'park', name:'朴赞郁', category:'thriller' },
+      { id:'malick', name:'泰伦斯·马力克', category:'visual' }, { id:'inarritu', name:'亚利桑德罗·冈萨雷斯·伊纳里图', category:'classic' }, { id:'cuaron', name:'阿方索·卡隆', category:'scifi' },
+      { id:'del_toro', name:'吉尔莫·德尔·托罗', category:'fantasy' }, { id:'ridley', name:'雷德利·斯科特', category:'scifi' }, { id:'wachowski', name:'沃卓斯基姐妹', category:'scifi' },
+      { id:'zemeckis', name:'罗伯特·泽米吉斯', category:'classic' }, { id:'burton', name:'蒂姆·波顿', category:'fantasy' }, { id:'shinkai', name:'新海诚', category:'anime' },
+      { id:'hosoda', name:'细田守', category:'anime' }, { id:'kon', name:'今敏', category:'anime' }, { id:'takahata', name:'高畑勋', category:'anime' },
+      { id:'lynch', name:'大卫·林奇', category:'horror' }, { id:'cronenberg', name:'大卫·柯南伯格', category:'horror' }, { id:'romero', name:'乔治·罗梅罗', category:'horror' },
+      { id:'peckinpah', name:'萨姆·佩金帕', category:'action' }, { id:'woo', name:'吴宇森', category:'action' }, { id:'tsui', name:'徐克', category:'action' },
+      { id:'yuen', name:'袁和平', category:'action' }, { id:'hou', name:'侯孝贤', category:'oriental' }, { id:'yang', name:'杨德昌', category:'oriental' },
+      { id:'chen', name:'陈凯歌', category:'oriental' }, { id:'jia', name:'贾樟柯', category:'oriental' }, { id:'kim', name:'金基德', category:'oriental' },
+      { id:'kore_eda', name:'是枝裕和', category:'oriental' }, { id:'kurosawa', name:'黑泽明', category:'classic' }, { id:'ozu', name:'小津安二郎', category:'classic' }
+    ];
+    const visualCategoryLabels = { all:'全部', cinematic:'电影 / 写实', animation:'动画 / 漫画', oriental:'东方 / 国风', painting:'绘画 / 艺术', stylized:'风格化 / 类型化', digital:'数字 / 3D' };
+    const visualOptions = [
+      { id:'', name:'AI 智能模式', category:'smart' }, { id:'cinematic', name:'电影写实风格', category:'cinematic' }, { id:'anime', name:'日系动画风格', category:'animation' },
+      { id:'donghua_xianxia', name:'3D国风仙侠', category:'oriental' }, { id:'ink_wash', name:'水墨国风', category:'oriental' }, { id:'watercolor', name:'水彩画风格', category:'painting' },
+      { id:'oil_painting', name:'油画质感', category:'painting' }, { id:'comic', name:'漫画风格', category:'animation' }, { id:'pixel_art', name:'像素风格', category:'stylized' },
+      { id:'noir', name:'黑白电影风格', category:'stylized' }, { id:'fantasy', name:'奇幻风格', category:'stylized' }, { id:'cyberpunk', name:'赛博朋克风格', category:'stylized' },
+      { id:'3d_render', name:'3D渲染风格', category:'digital' }, { id:'concept_art', name:'概念艺术风格', category:'digital' }
+    ];
+    const paceMap = { action:'动作推进（快速切镜）', thriller:'悬疑压迫（中快切镜）', dialogue:'对话叙事（稳定节奏）', lyrical:'抒情意境（慢节奏）', balanced:'均衡叙事' };
+    const state = {
+      directorCategory:'all', director:'', visualCategory:'all', visual:'', duration:'', lastPlan:null, serviceOnline:false,
+      running:false, availableProjects:[], activeTaskId:'', taskPollTimer:null, viewerFiles:[], activeViewerPath:''
+    };
+
+    const $ = id => document.getElementById(id);
+    const sourceText = $('sourceText'); const projectName = $('projectName'); const durationPreset = $('durationPreset');
+    const directorCategoryChips = $('directorCategoryChips'); const directorOptionChips = $('directorOptionChips');
+    const visualCategoryChips = $('visualCategoryChips'); const visualOptionChips = $('visualOptionChips');
+    const pipelineProject = $('pipelineProject'); const pipelineEpisode = $('pipelineEpisode'); const pipelineStyle = $('pipelineStyle');
+    const pipelineVariant = $('pipelineVariant'); const pipelineSkipAssets = $('pipelineSkipAssets'); const pipelineForce = $('pipelineForce');
+    const pipelineProjectView = $('pipelineProjectView'); const pipelineEpisodeView = $('pipelineEpisodeView');
+    const pipelineVariantView = $('pipelineVariantView'); const pipelineAssetsView = $('pipelineAssetsView');
+    const pipelineLog = $('pipelineLog'); const toast = $('toast'); const serviceStatus = $('serviceStatus');
+    const serviceStatusView = $('serviceStatusView'); const executionStatus = $('executionStatus'); const projectPathView = $('projectPathView');
+    const lastActionView = $('lastActionView'); const resultLinks = $('resultLinks'); const resultTabs = $('resultTabs');
+    const viewerMeta = $('viewerMeta'); const viewerContent = $('viewerContent'); const runButtons = [$('runPlanBtn'), $('runInitBtn'), $('runExportBtn'), $('runPipelineBtn')];
+
+    function showToast(text) { toast.textContent = text; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 1400); }
+    function _customModal(opts){
+      const mask=document.createElement('div');mask.className='modal-mask show';
+      const m=document.createElement('div');m.className='modal';
+      m.innerHTML=`<div class="modal-head"><span>${opts.title||''}</span><button class="modal-close" data-role="cancel">×</button></div><div class="modal-body">${opts.bodyHtml||''}</div><div class="modal-foot">${opts.cancelText?`<button class="btn-cancel" data-role="cancel">${opts.cancelText}</button>`:''}<button class="btn-ok" data-role="ok">${opts.okText||'确定'}</button></div>`;
+      mask.appendChild(m);document.body.appendChild(mask);
+      return new Promise(resolve=>{
+        const close=v=>{mask.remove();resolve(v);};
+        mask.onclick=e=>{if(e.target===mask)close(null);};
+        m.querySelector('[data-role="cancel"]').onclick=()=>close(null);
+        m.querySelector('[data-role="ok"]').onclick=()=>close(opts.getInput?opts.getInput():true);
+        const firstInput=m.querySelector('input');if(firstInput)firstInput.focus();
+      });
+    }
+    async function copyText(text, successText='已复制') {
+      try { await navigator.clipboard.writeText(text); } catch (err) {
+        const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+      }
+      showToast(successText);
+    }
+    function escapeHtml(str='') { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+    function decorateInlineTags(text='') {
+      const escaped = escapeHtml(text);
+      return escaped.replace(/(^|[^\w])(@[^\s,，。；;：:!！?？()（）\[\]{}<>"'“”‘’]+)/g, (match, prefix, tag) => {
+        let roleClass = 'role-character';
+        if (/^@(scene-|场景|空间|环境)/i.test(tag)) roleClass = 'role-space';
+        else if (/^@(prop-|道具|物件)/i.test(tag)) roleClass = 'role-light';
+        else if (/^@(char-|角色|人物)/i.test(tag)) roleClass = 'role-character';
+        return `${prefix}<span class="prompt-tag ${roleClass}">${tag}</span>`;
+      });
+    }
+    function renderCategoryChips(target, labels, activeCategory, dataType) {
+      target.innerHTML = Object.entries(labels).map(([id,name]) => `<button type="button" class="chip ${activeCategory===id?'active':''}" data-category-type="${dataType}" data-category-id="${id}">${name}</button>`).join('');
+    }
+    function filterOptionsByCategory(options, category) { if (!category || category==='all') return options.filter(item => item.id); return options.filter(item => item.category===category); }
+    function renderOptionChips(target, items, activeValue, key) {
+      target.innerHTML = [`<button type="button" class="chip ${!activeValue?'active':''}" data-type="${key}" data-id="">AI 智能模式</button>`]
+        .concat(items.map(item => `<button type="button" class="chip ${activeValue===item.id?'active':''}" data-type="${key}" data-id="${item.id}">${item.name}</button>`)).join('');
+    }
+    function renderStylePickers() {
+      renderCategoryChips(directorCategoryChips, directorCategoryLabels, state.directorCategory, 'director');
+      renderOptionChips(directorOptionChips, filterOptionsByCategory(directorOptions, state.directorCategory), state.director, 'director');
+      renderCategoryChips(visualCategoryChips, visualCategoryLabels, state.visualCategory, 'visual');
+      renderOptionChips(visualOptionChips, filterOptionsByCategory(visualOptions, state.visualCategory), state.visual, 'visual');
+    }
+    function normalizeName(raw) {
+      return raw.replace(/^#+\s*/, '').replace(/^(标题|书名|剧名|小说名|第[0-9一二三四五六七八九十百千零〇两]+[话章节卷集篇])\s*[:：\-— ]*/, '')
+        .replace(/[<>:"/\\|?*\u0000-\u001f]/g, '').replace(/[ .,_，。、《》【】\[\]()（）:：;；\t]+$/g, '').trim().replace(/\s+/g, '_').slice(0, 48);
+    }
+    function extractProjectName(text) {
+      const lines = text.split(/\r?\n/).map(line => line.trim()).filter(Boolean); const candidates = [];
+      lines.slice(0,12).forEach(line => { if (line.startsWith('#')) candidates.push(line.replace(/^#+\s*/, '')); });
+      candidates.push(...[...text.matchAll(/《([^》]{1,40})》/g)].map(item => item[1]));
+      const episodeMatch = text.match(/(第\s*[0-9一二三四五六七八九十百千零〇两]+\s*[话章节卷集篇]\s*[:：\-— ]*[^\n]{0,30})/); if (episodeMatch) candidates.push(episodeMatch[1].trim());
+      lines.slice(0,8).forEach(line => { if (["剧本","小说","故事","正文","梗概","大纲"].some(key => line.includes(key))) candidates.push(line); });
+      lines.slice(0,8).forEach(line => { if (line.length>=2 && line.length<=40) candidates.push(line); });
+      if (lines[0]) { const firstSentence = lines[0].split(/[。！？!?\.]/)[0].trim(); if (firstSentence) candidates.push(firstSentence); }
+      for (const candidate of candidates) { const name = normalizeName(candidate); if (name.length>=2) return name; }
+      return '';
+    }
+    function detectGenre(text) {
+      const source = text.toLowerCase();
+      const rules = [
+        { genre:'动作 / 战斗', pace:'action', director:'成龙 / 昆汀 / 诺兰', visual:'电影写实 / 3D国风仙侠', keys:['打','战','杀','冲','爆','追','武','拳','刀','雷','觉醒'] },
+        { genre:'悬疑 / 压迫', pace:'thriller', director:'芬奇 / 希区柯克', visual:'电影写实 / 黑白电影风格', keys:['谜','查','疑','监视','秘密','恐惧','真相','线索'] },
+        { genre:'抒情 / 情绪', pace:'lyrical', director:'王家卫 / 李安 / 宫崎骏', visual:'水彩 / 水墨 / 电影写实', keys:['雨','夜','想念','告别','沉默','回忆','风','光'] },
+        { genre:'对话 / 关系', pace:'dialogue', director:'李安 / 斯皮尔伯格', visual:'电影写实 / 日系动画', keys:['说','对话','争吵','解释','会面','谈判'] }
+      ];
+      const matched = rules.find(rule => rule.keys.some(key => source.includes(key))); return matched || { genre:'综合叙事', pace:'balanced', director:'AI 智能推荐', visual:'AI 智能推荐', keys:[] };
+    }
+    function selectedLabel(list, value) { const item = list.find(entry => entry.id===value); return item ? item.name : 'AI 智能模式'; }
+    function summarizeMode(value, list) { if (!value) return '<span class="mode-ai">AI 智能模式</span>'; const item = list.find(entry => entry.id===value); return `<span class="mode-manual">手动指定：${item?item.name:value}</span>`; }
+    function inferEpisodeFromText(text) {
+      const match = text.match(/第\s*([0-9一二三四五六七八九十百千零〇两]+)\s*话/); if (!match) return '';
+      const raw = match[1]; if (/^\d+$/.test(raw)) return String(parseInt(raw, 10)).padStart(3,'0');
+      const map = { '零':0,'〇':0,'一':1,'二':2,'两':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9,'十':10 };
+      let value = 0; if (raw==='十') value = 10; else if (raw.includes('十')) { const parts = raw.split('十'); const tens = parts[0] ? (map[parts[0]]||0) : 1; const ones = parts[1] ? (map[parts[1]]||0) : 0; value = tens*10+ones; } else value = map[raw]||0;
+      return value ? String(value).padStart(3,'0') : '';
+    }
+    function buildCommand(text, derivedName, analysis) {
+      const cleanText = text.trim().replace(/\n{3,}/g, '\n\n'); let command = `@studio 生成提示词：\n${cleanText}`; const suffix = [];
+      if (derivedName) suffix.push(`项目目录：${derivedName}`); if (state.director) suffix.push(`导演风格：${selectedLabel(directorOptions, state.director)}`);
+      if (state.visual) suffix.push(`视觉风格：${selectedLabel(visualOptions, state.visual)}`); if (state.duration) suffix.push(`视频时长：${state.duration}`);
+      if (!suffix.length) suffix.push('风格与时长：AI智能模式'); suffix.push(`节奏建议：${paceMap[analysis.pace] || '均衡叙事'}`); return `${command}\n\n${suffix.join('，')}`;
+    }
+    function refreshDerivedName() {
+      const autoName = extractProjectName(sourceText.value.trim()); if (!projectName.dataset.userEdited || !projectName.value.trim()) projectName.value = autoName;
+      if (!pipelineEpisode.value.trim()) { const ep = inferEpisodeFromText(sourceText.value.trim()); if (ep) pipelineEpisode.value = ep; } updatePipelinePreview();
+    }
+    function updatePipelinePreview() {
+      const selected = state.availableProjects.find(item => item.id===pipelineProject.value);
+      pipelineProjectView.textContent = selected ? `${selected.name}（${selected.id}）` : '尚未选择';
+      pipelineEpisodeView.textContent = pipelineEpisode.value.trim() || inferEpisodeFromText(sourceText.value.trim()) || '待输入';
+      pipelineVariantView.textContent = pipelineVariant.value==='both' ? '长版 + 简版' : pipelineVariant.value==='long' ? '长版' : '简版';
+      pipelineAssetsView.textContent = pipelineSkipAssets.checked ? '跳过资产，仅生成提示词' : '连同资产一起跑';
+    }
+    function updatePlanView(plan) {
+      const analysis = { genre: plan.detectedGenre, pace: plan.recommendedPace };
+      $('directorMode').innerHTML = summarizeMode(plan.directorStyle, directorOptions); $('visualMode').innerHTML = summarizeMode(plan.visualStyle, visualOptions);
+      $('durationMode').innerHTML = plan.duration ? `<span class="mode-manual">手动指定：${plan.duration}</span>` : '<span class="mode-ai">AI 智能模式（自动估算）</span>';
+      $('projectNameView').textContent = plan.projectName || '待生成项目'; $('genreView').textContent = plan.detectedGenre; $('paceView').textContent = paceMap[analysis.pace] || '均衡叙事';
+      $('reasonView').textContent = plan.reason; $('commandPreview').textContent = plan.commandPreview; $('jsonPreview').textContent = JSON.stringify(plan, null, 2); state.lastPlan = plan; updatePipelinePreview();
+    }
+    function generateLocalPlan() {
+      const text = sourceText.value.trim(); if (!text) { showToast('请先粘贴正文内容'); return null; }
+      refreshDerivedName(); const derivedName = projectName.value.trim() || extractProjectName(text) || '待生成项目'; const analysis = detectGenre(text);
+      let reason = `正文内容更接近“${analysis.genre}”类型，建议按“${paceMap[analysis.pace] || '均衡叙事'}”处理。`;
+      if (!state.director) reason += ` 导演风格未指定，建议由系统从 ${analysis.director} 中智能匹配。`; if (!state.visual) reason += ` 视觉风格未指定，建议从 ${analysis.visual} 自动推荐。`; if (!state.duration) reason += ' 视频时长未指定，系统会按剧情密度自动估算。';
+      const plan = { mode: !state.director && !state.visual && !state.duration ? 'ai-smart' : 'manual-assisted', projectName: derivedName, directorCategory: state.director ? state.directorCategory : null, directorStyle: state.director || null, visualCategory: state.visual ? state.visualCategory : null, visualStyle: state.visual || null, duration: state.duration || null, detectedGenre: analysis.genre, recommendedPace: analysis.pace, reason, commandPreview: buildCommand(text, derivedName, analysis) };
+      updatePlanView(plan); return plan;
+    }
+    function setServiceBanner(text, level='warn') { serviceStatus.className = `status-line ${level}`; serviceStatus.textContent = text; serviceStatusView.textContent = level==='ok' ? '在线' : level==='error' ? '离线 / 异常' : '检查中'; }
+    function setExecutionStatus(text, level='warn') { executionStatus.className = `status-line ${level}`; executionStatus.textContent = text; }
+    function formatKind(kind) {
+      return ({ storyboard:'分镜表', shots:'镜头执行稿', fullref:'fullref', jimeng:'即梦提示词', seedance:'Seedance 提示词', narrative:'叙事提示词', script:'本次落盘剧本', htmlviewer:'交互结果页', file:'结果文件' })[kind] || '结果文件';
+    }
+    function renderResultLinks(payload) {
+      const links = [];
+      if (payload?.pipeline?.resultViewerUrl) links.push({ label:'交互结果页', desc:payload.pipeline.resultViewerRelativePath || payload.pipeline.resultViewerPath || payload.pipeline.resultViewerUrl, url:payload.pipeline.resultViewerUrl });
+      if (payload?.pipeline?.scriptUrl) links.push({ label:'本次落盘剧本', desc:payload.pipeline.scriptPath, url:payload.pipeline.scriptUrl });
+      resultLinks.innerHTML = links.map(link => `<a class="result-link" href="${withNoCache(link.url)}" target="_blank" rel="noreferrer"><strong>${link.label}</strong><span>${link.desc}</span></a>`).join('');
+    }
+    function resetViewer() {
+      state.viewerFiles = []; state.activeViewerPath = ''; resultTabs.innerHTML = ''; viewerMeta.textContent = '尚未载入结果文件'; viewerContent.innerHTML = '<span class="viewer-empty">项目级流水线完成后，这里会直接展示可复制内容。</span>';
+    }
+    function setRunning(isRunning) { state.running = isRunning; runButtons.forEach(button => { button.disabled = isRunning || !state.serviceOnline; }); $('refreshServiceBtn').disabled = isRunning; }
+    function renderProjects(projects) {
+      state.availableProjects = projects || []; if (!state.availableProjects.length) { pipelineProject.innerHTML = '<option value="">未发现可用项目</option>'; updatePipelinePreview(); return; }
+      pipelineProject.innerHTML = state.availableProjects.map(item => `<option value="${item.id}">${item.name}（${item.id}）</option>`).join('');
+      const preferred = state.availableProjects.find(item => item.id==='无限强化_漫剧_001'); pipelineProject.value = preferred ? preferred.id : state.availableProjects[0].id; updatePipelinePreview();
+    }
+    async function checkService(showTip=false) {
+      setServiceBanner('正在检查本地 Python 服务状态…', 'warn');
+      try {
+        const response = await fetch(`${API_BASE}/health`, { cache:'no-store' }); if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json(); state.serviceOnline = !!data.ok; renderProjects(data.availableProjects || []); setServiceBanner('本地 Python 服务已连接：网页可以直接执行项目级提示词流水线。', 'ok'); if (showTip) showToast('服务在线');
+      } catch (error) {
+        state.serviceOnline = false; setServiceBanner('未连接到本地 Python 服务。请先运行 `./studio` 或 `python3 tools/workbench_server.py`。', 'error'); if (showTip) showToast('服务未启动');
+      }
+      setRunning(state.running);
+    }
+    function buildPayload() {
+      const plan = generateLocalPlan(); if (!plan) return null;
+      return { text: sourceText.value.trim(), projectName: plan.projectName, directorStyle: state.director, visualStyle: state.visual, duration: state.duration };
+    }
+    async function executeAction(action) {
+      const payload = buildPayload(); if (!payload) return;
+      if (!state.serviceOnline) { await checkService(); if (!state.serviceOnline) { setExecutionStatus('服务未连接，暂时无法执行。请先启动本地 Python 服务。', 'error'); return; } }
+      try {
+        setRunning(true); lastActionView.textContent = `${action} 执行中`; setExecutionStatus(`正在请求本地 Python 服务执行 ${action}…`, 'warn');
+        const response = await fetch(`${API_BASE}/execute`, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ ...payload, action }) });
+        const data = await response.json(); if (!response.ok || !data.ok) throw new Error(data.error || `HTTP ${response.status}`);
+        updatePlanView(data.plan); lastActionView.textContent = action; projectPathView.textContent = data.project?.absolutePath || '本次仅返回运行方案，未创建目录'; pipelineLog.textContent = '当前动作不是项目级流水线，暂无额外日志。'; renderResultLinks(data); resetViewer(); setExecutionStatus(`已完成 ${action}。`, 'ok'); showToast(`已执行 ${action}`);
+      } catch (error) {
+        lastActionView.textContent = `${action} 失败`; setExecutionStatus(`执行失败：${error.message}`, 'error');
+      } finally { setRunning(false); }
+    }
+    function stopTaskPolling() { if (state.taskPollTimer) { clearTimeout(state.taskPollTimer); state.taskPollTimer = null; } }
+    async function loadViewerFile(relativePath) {
+      if (!relativePath) return;
+      const target = state.viewerFiles.find(file => file.relativePath === relativePath);
+      state.activeViewerPath = relativePath;
+      viewerMeta.textContent = relativePath;
+      if (target?.url && (target.kind === 'htmlviewer' || /\.html?$/i.test(relativePath))) {
+        viewerContent.innerHTML = `<iframe class="viewer-embed" src="${withNoCache(target.url)}" loading="lazy"></iframe>`;
+      } else {
+        const response = await fetch(`${API_BASE}/file?path=${encodeURIComponent(relativePath)}`, { cache:'no-store' });
+        const data = await response.json();
+        if (!response.ok || !data.ok) throw new Error(data.error || `HTTP ${response.status}`);
+        const decorated = String(data.content || '').split('\n').map(line => decorateInlineTags(line)).join('\n');
+        viewerContent.innerHTML = `<pre>${decorated}</pre>`;
+      }
+      [...resultTabs.querySelectorAll('.tab')].forEach(tab => tab.classList.toggle('active', tab.dataset.path===relativePath));
+    }
+    function renderViewerFiles(pipeline) {
+      const files = [
+        ...(pipeline?.resultViewerRelativePath && pipeline?.resultViewerUrl ? [{ kind:'htmlviewer', relativePath:pipeline.resultViewerRelativePath, url:pipeline.resultViewerUrl }] : []),
+        ...((pipeline?.sourceFiles || []).filter(file => file?.kind !== 'htmlviewer')),
+        ...((pipeline?.generatedFiles || []).filter(file => file?.kind !== 'htmlviewer'))
+      ];
+      const deduped = [];
+      const seen = new Set();
+      files.forEach(file => {
+        const key = file?.relativePath || file?.path || '';
+        if (!key || seen.has(key)) return;
+        seen.add(key);
+        deduped.push(file);
+      });
+      const preferredKinds = ['htmlviewer','storyboard','fullref','jimeng','seedance','narrative','shots','script'];
+      const sorted = [...deduped].sort((a,b) => preferredKinds.indexOf(a.kind) - preferredKinds.indexOf(b.kind));
+      state.viewerFiles = sorted;
+      resultTabs.innerHTML = sorted.map(file => `<button class="tab" data-path="${file.relativePath}" type="button">${formatKind(file.kind)}</button>`).join('');
+      if (sorted.length) loadViewerFile(sorted[0].relativePath).catch(err => { viewerContent.innerHTML = `<span class="viewer-empty">${escapeHtml(err.message)}</span>`; }); else resetViewer();
+    }
+    async function pollTask(taskId) {
+      try {
+        const response = await fetch(`${API_BASE}/task?taskId=${encodeURIComponent(taskId)}`, { cache:'no-store' }); const data = await response.json(); if (!response.ok || !data.ok) throw new Error(data.error || `HTTP ${response.status}`);
+        const task = data.task; pipelineLog.textContent = (task.logs || []).join('\n') || '任务已启动，等待首条日志…'; pipelineLog.scrollTop = pipelineLog.scrollHeight;
+        lastActionView.textContent = `pipeline · ep${task.meta?.episode || ''} · ${task.status}`; projectPathView.textContent = task.result?.projectDir || task.meta?.scriptPath || '执行中';
+        if (task.status === 'running') { setExecutionStatus('项目级流水线运行中，页面正在实时刷新日志…', 'warn'); state.taskPollTimer = setTimeout(() => pollTask(taskId), 1000); return; }
+        setRunning(false); stopTaskPolling();
+        if (task.status === 'completed') {
+          const pipeline = task.result || {}; renderResultLinks({ pipeline }); renderViewerFiles(pipeline);
+          setExecutionStatus(`项目级流水线已完成：ep${pipeline.episode || task.meta?.episode || ''} 结果已生成。`, 'ok'); showToast('流水线执行完成');
+        } else {
+          setExecutionStatus(`项目级流水线执行失败：${task.error || '未知错误'}`, 'error'); viewerContent.innerHTML = `<span class="viewer-empty">任务失败，暂无结果可展示。</span>`;
+        }
+      } catch (error) {
+        setRunning(false); stopTaskPolling(); setExecutionStatus(`轮询任务失败：${error.message}`, 'error'); pipelineLog.textContent += `\n[轮询失败] ${error.message}`;
+      }
+    }
+    async function executePipeline() {
+      const payload = buildPayload(); if (!payload) return; if (!pipelineProject.value) { setExecutionStatus('请先选择项目。', 'error'); return; }
+      const episode = pipelineEpisode.value.trim() || inferEpisodeFromText(sourceText.value.trim()); if (!episode) { setExecutionStatus('请先填写集数，或在正文中包含“第 X 话”。', 'error'); return; }
+      if (!state.serviceOnline) { await checkService(); if (!state.serviceOnline) { setExecutionStatus('服务未连接，暂时无法执行项目级流水线。', 'error'); return; } }
+      try {
+        stopTaskPolling(); resetViewer(); setRunning(true); lastActionView.textContent = 'pipeline 启动中'; pipelineLog.textContent = '正在提交项目级任务…'; setExecutionStatus('正在写入剧本并创建异步流水线任务…', 'warn');
+        const response = await fetch(`${API_BASE}/execute`, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ ...payload, action:'pipeline', pipelineProjectId:pipelineProject.value, pipelineEpisode:episode, pipelineStyle:pipelineStyle.value, pipelineVariant:pipelineVariant.value, pipelineSkipAssets:pipelineSkipAssets.checked, pipelineForce:pipelineForce.checked }) });
+        const data = await response.json(); if (!response.ok || !data.ok) throw new Error(data.error || `HTTP ${response.status}`);
+        updatePlanView(data.plan); state.activeTaskId = data.pipeline?.taskId || ''; lastActionView.textContent = `pipeline · ep${data.pipeline?.episode || episode} · running`; projectPathView.textContent = data.pipeline?.scriptPath || '执行中';
+        pipelineLog.textContent = `任务已创建：${state.activeTaskId}\n正在跳转到运行过程页…`; setExecutionStatus('项目级流水线已启动，正在进入独立运行过程页。', 'warn');
+        const runningUrl = data.pipeline?.runningUrl || `/workbench-run.html?taskId=${encodeURIComponent(state.activeTaskId)}`;
+        setTimeout(() => { window.location.href = runningUrl; }, 180);
+      } catch (error) {
+        setRunning(false); setExecutionStatus(`项目级流水线执行失败：${error.message}`, 'error'); pipelineLog.textContent = String(error.message || error);
+      }
+    }
+    function clearExecutionState() { stopTaskPolling(); state.activeTaskId = ''; lastActionView.textContent = '尚未执行'; projectPathView.textContent = '尚未生成'; resultLinks.innerHTML = ''; pipelineLog.textContent = '尚未执行项目级流水线。'; resetViewer(); setExecutionStatus('这里支持方案预览、outputs 初始化导出，以及项目级一键提示词生成。', 'warn'); }
+    function generatePlan() { const plan = generateLocalPlan(); if (!plan) return; clearExecutionState(); showToast('运行方案已生成'); }
+    function resetSmartMode() { state.directorCategory='all'; state.director=''; state.visualCategory='all'; state.visual=''; state.duration=''; durationPreset.value=''; renderStylePickers(); generatePlan(); }
+
+    directorCategoryChips.addEventListener('click', event => { const chip = event.target.closest('[data-category-type="director"]'); if (!chip) return; state.directorCategory = chip.dataset.categoryId; state.director = ''; renderStylePickers(); });
+    directorOptionChips.addEventListener('click', event => { const chip = event.target.closest('[data-type="director"]'); if (!chip) return; state.director = chip.dataset.id; renderStylePickers(); });
+    visualCategoryChips.addEventListener('click', event => { const chip = event.target.closest('[data-category-type="visual"]'); if (!chip) return; state.visualCategory = chip.dataset.categoryId; state.visual = ''; renderStylePickers(); });
+    visualOptionChips.addEventListener('click', event => { const chip = event.target.closest('[data-type="visual"]'); if (!chip) return; state.visual = chip.dataset.id; renderStylePickers(); });
+    durationPreset.addEventListener('change', () => { state.duration = durationPreset.value; });
+    pipelineProject.addEventListener('change', updatePipelinePreview); pipelineEpisode.addEventListener('input', updatePipelinePreview); pipelineVariant.addEventListener('change', updatePipelinePreview); pipelineSkipAssets.addEventListener('change', updatePipelinePreview);
+    sourceText.addEventListener('input', refreshDerivedName); projectName.addEventListener('input', () => { projectName.dataset.userEdited = projectName.value.trim() ? '1' : ''; });
+    $('analyzeBtn').addEventListener('click', generatePlan); $('runPlanBtn').addEventListener('click', () => executeAction('plan')); $('runInitBtn').addEventListener('click', () => executeAction('init')); $('runExportBtn').addEventListener('click', () => executeAction('export')); $('runPipelineBtn').addEventListener('click', executePipeline);
+    $('refreshServiceBtn').addEventListener('click', () => checkService(true)); $('smartBtn').addEventListener('click', resetSmartMode);
+    /* ─── 流水线工作流导出/导入 ──────────────────────── */
+    $('exportPipelineBtn').addEventListener('click', () => {
+      _customModal({title:'导出工作流',bodyHtml:'<label style="font-size:12px;color:#94a3b8">工作流名称</label><input id="_pipeExportName" type="text" value="我的流水线" style="width:100%;padding:8px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:#0f172a;color:#e2e8f0;font-size:13px;margin-top:4px">',okText:'导出',cancelText:'取消',getInput:()=>$('_pipeExportName')?.value?.trim()||'未命名流水线'}).then(name=>{
+        if(name===null)return;
+        const wf={schema:'mjb-pipeline-v1',version:'1.0.0',meta:{name,createdAt:new Date().toISOString()},pipeline:{directorCategory:state.directorCategory,director:state.director,visualCategory:state.visualCategory,visual:state.visual,duration:state.duration,durationPreset:durationPreset.value,pipelineStyle:pipelineStyle.value,pipelineVariant:pipelineVariant.value,pipelineSkipAssets:pipelineSkipAssets.checked,pipelineForce:pipelineForce.checked,pipelineProject:pipelineProject.value,pipelineEpisode:pipelineEpisode.value}};
+        try{const blob=new Blob([JSON.stringify(wf,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=(name.replace(/[^\w\u4e00-\u9fff]/g,'_'))+'-pipeline.json';a.click();URL.revokeObjectURL(url);showToast('流水线工作流已导出');}catch(err){showToast('导出失败：'+err.message);}
+      });
+    });
+    $('importPipelineBtn').addEventListener('click', () => {
+      const input=document.createElement('input');input.type='file';input.accept='.json';
+      input.onchange=async(e)=>{const file=e.target.files[0];if(!file)return;try{const text=await file.text();const wf=JSON.parse(text);if(wf.schema!=='mjb-pipeline-v1'){showToast('不兼容的工作流格式: '+(wf.schema||'未知'));return;}if(!wf.pipeline){showToast('文件中无流水线数据');return;}const p=wf.pipeline;if(p.directorCategory!==undefined)state.directorCategory=p.directorCategory;if(p.director!==undefined)state.director=p.director;if(p.visualCategory!==undefined)state.visualCategory=p.visualCategory;if(p.visual!==undefined)state.visual=p.visual;if(p.duration!==undefined)state.duration=p.duration;if(p.durationPreset!==undefined)durationPreset.value=p.durationPreset;if(p.pipelineStyle!==undefined)pipelineStyle.value=p.pipelineStyle;if(p.pipelineVariant!==undefined)pipelineVariant.value=p.pipelineVariant;if(p.pipelineSkipAssets!==undefined)pipelineSkipAssets.checked=p.pipelineSkipAssets;if(p.pipelineForce!==undefined)pipelineForce.checked=p.pipelineForce;if(p.pipelineProject!==undefined)pipelineProject.value=p.pipelineProject;if(p.pipelineEpisode!==undefined)pipelineEpisode.value=p.pipelineEpisode;renderStylePickers();generatePlan();showToast('流水线已导入: '+(wf.meta?.name||file.name));}catch(err){showToast('导入失败：'+err.message);}};
+      input.click();
+    });
+    $('clearBtn').addEventListener('click', () => {
+      sourceText.value=''; projectName.value=''; projectName.dataset.userEdited=''; pipelineEpisode.value=''; state.directorCategory='all'; state.director=''; state.visualCategory='all'; state.visual=''; state.duration=''; state.lastPlan=null;
+      durationPreset.value=''; pipelineStyle.value='纪实克制'; pipelineVariant.value='short'; pipelineSkipAssets.checked=true; pipelineForce.checked=true; renderStylePickers();
+      $('commandPreview').textContent='请先输入小说原文或剧本正文，然后点击“生成运行方案（预览）”。'; $('jsonPreview').textContent='{'+'\n  "mode": "ai-smart",\n  "projectName": "",\n  "directorStyle": null,\n  "visualStyle": null,\n  "duration": null\n}';
+      $('directorMode').innerHTML='<span class="mode-ai">AI 智能模式</span>'; $('visualMode').innerHTML='<span class="mode-ai">AI 智能模式</span>'; $('durationMode').innerHTML='<span class="mode-ai">AI 智能模式</span>'; $('projectNameView').textContent='待输入正文后生成'; $('genreView').textContent='待分析'; $('paceView').textContent='待分析'; $('reasonView').textContent='输入正文后自动生成'; updatePipelinePreview(); clearExecutionState(); showToast('已清空');
+    });
+    $('exampleBtn').addEventListener('click', () => {
+      sourceText.value = '# 第3话：觉醒\n林天在极致痛苦中听见系统提示音，意识被拉入识海。破碎记忆与现实重叠，灵纹开始点亮，压抑的反击欲望第一次真正苏醒。'; projectName.dataset.userEdited=''; refreshDerivedName(); state.directorCategory='all'; state.director=''; state.visualCategory='all'; state.visual=''; state.duration=''; durationPreset.value=''; pipelineVariant.value='both'; pipelineStyle.value='纪实克制'; pipelineSkipAssets.checked=true; pipelineForce.checked=true; renderStylePickers(); clearExecutionState(); generatePlan();
+    });
+    $('copyCommandBtn').addEventListener('click', () => copyText($('commandPreview').textContent, '已复制调用文本')); $('copyJsonBtn').addEventListener('click', () => copyText($('jsonPreview').textContent, '已复制 JSON 参数'));
+    $('copyViewerBtn').addEventListener('click', () => copyText(viewerContent.innerText || '', '已复制当前查看内容')); $('openViewerFileBtn').addEventListener('click', () => { const target = state.viewerFiles.find(file => file.relativePath === state.activeViewerPath); if (target) window.open(withNoCache(target.url), '_blank'); });
+    resultTabs.addEventListener('click', event => { const tab = event.target.closest('.tab'); if (!tab) return; loadViewerFile(tab.dataset.path).catch(err => setExecutionStatus(`读取结果文件失败：${err.message}`, 'error')); });
+
+    renderStylePickers(); updatePipelinePreview(); clearExecutionState(); checkService();
+  </script>
+</body>
+</html>

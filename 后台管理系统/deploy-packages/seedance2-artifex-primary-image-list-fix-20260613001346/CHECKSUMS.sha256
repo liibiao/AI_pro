@@ -1,0 +1,3 @@
+17708789162f53dc025a6b529d52e0ceed56a5d17fa48d6b1ebded71bb98e3d0  ./api-server/dist/modules/generation/adapters/registry.js
+743dddbe1a93effeb09bc1dcdf33834da141ace83e191e155b39c94fb3a10701  ./api-server/src/modules/generation/adapters/registry.ts
+2e8de3a8eda18f650c348a301b9a3934853e9fa29af6db528c7b87ea33883617  ./deploy/apply-seedance2-artifex-primary-image-list-fix-20260613001346-on-server.sh

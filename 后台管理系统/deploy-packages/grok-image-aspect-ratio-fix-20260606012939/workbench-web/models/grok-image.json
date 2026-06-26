@@ -1,0 +1,44 @@
+{
+  "id": "grok_image",
+  "name": "grok_image",
+  "type": "image",
+  "label": "Grok 生图",
+  "model": "grok-imagine-image",
+  "baseUrl": "http://45.77.211.38:8317/v1",
+  "url": "http://45.77.211.38:8317/v1",
+  "key": "replace-with-cliproxy-api-key",
+  "adapter": "grok_image",
+  "endpointPath": "/images/generations",
+  "editEndpointPath": "/images/edits",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2img": true,
+    "img2img": true,
+    "imageToImage": true,
+    "storyboard": true,
+    "panorama": false
+  },
+  "note": "CLIProxyAPI xAI OAuth 统一生图渠道。前端/后台会根据是否有参考图自动分流到 /images/generations 或 /images/edits。",
+  "protocol": {
+    "adapter": "grok_image",
+    "endpointPath": "/images/generations",
+    "editEndpointPath": "/images/edits",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "defaults": {
+    "size": "16:9",
+    "aspectRatio": "16:9",
+    "resolution": "1K"
+  },
+  "capabilities": {
+    "aspectRatios": ["1:1", "16:9", "9:16", "3:2", "2:3"],
+    "resolutions": ["1K"],
+    "sizes": ["1024x1024", "1792x1024", "1024x1792", "1536x1024", "1024x1536"]
+  },
+  "ui": {
+    "label": "Grok 生图",
+    "badge": "Grok",
+    "badgeColor": "#111827"
+  }
+}

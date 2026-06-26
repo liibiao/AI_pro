@@ -1,0 +1,35 @@
+{
+  "id": "grok-image-edit",
+  "name": "grok-image-edit",
+  "type": "image",
+  "label": "Grok 图生图",
+  "model": "grok-imagine-image",
+  "baseUrl": "http://45.77.211.38:8317/v1",
+  "url": "http://45.77.211.38:8317/v1",
+  "key": "replace-with-cliproxy-api-key",
+  "adapter": "grok-image-edit",
+  "endpointPath": "/images/edits",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2img": false,
+    "img2img": true,
+    "imageToImage": true,
+    "storyboard": true,
+    "panorama": false
+  },
+  "note": "CLIProxyAPI xAI OAuth 图生图渠道。参考图走对象存储公网 URL，后台会转 multipart/form-data 调用 /v1/images/edits。",
+  "protocol": {
+    "adapter": "grok-image-edit",
+    "endpointPath": "/images/edits",
+    "method": "sync",
+    "uploadMode": "object_storage"
+  },
+  "defaults": {
+    "size": "1024x1024"
+  },
+  "ui": {
+    "label": "Grok 图生图",
+    "badge": "Grok",
+    "badgeColor": "#0f766e"
+  }
+}

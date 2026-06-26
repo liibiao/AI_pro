@@ -1,0 +1,168 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>企业生成 API 接入文档 · AI Admin</title><style>:root{color-scheme:dark;--bg:#07080d;--panel:#11131b;--text:#f4f7fb;--muted:#a8b3c2;--line:rgba(255,255,255,.12);--brand:#7c5cff;--cyan:#39d5ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0,rgba(124,92,255,.18),transparent 34%),linear-gradient(180deg,#07080d,#090b12);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.65}.wrap{max-width:1180px;margin:0 auto;padding:34px 28px 80px}.hero{border:1px solid var(--line);border-radius:28px;padding:30px;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(57,213,255,.1),rgba(255,255,255,.04));margin-bottom:28px}.kicker{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:.12em}.hero h1{margin:8px 0 6px;font-size:38px}.hero p{color:#cbd5e1;margin:0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn{border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.07);color:#fff;padding:9px 14px;text-decoration:none;cursor:pointer}h2{margin-top:32px;border-top:1px solid var(--line);padding-top:24px}h3{margin-top:24px;color:#e5edff}p,li{color:#d6dee9}blockquote{border-left:4px solid var(--cyan);margin:18px 0;padding:10px 14px;background:rgba(57,213,255,.08);color:#dbeafe;border-radius:12px}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(255,255,255,.08);padding:2px 5px;border-radius:6px}pre{position:relative;background:#0b0d13;border:1px solid var(--line);border-radius:16px;padding:16px;overflow:auto;color:#e6edf7}pre code{background:transparent;padding:0}table{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:14px 0;display:table}th,td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;font-size:13px}th{background:rgba(255,255,255,.07);color:#dbeafe}td{color:#cbd5e1}.copy{float:right;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;padding:5px 10px;cursor:pointer}.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#10131c;border:1px solid var(--line);padding:9px 14px;border-radius:999px;display:none}.toast.show{display:block}@media(max-width:760px){.wrap{padding:22px 16px}.hero h1{font-size:28px}table{display:block;overflow:auto}}</style></head><body><main class="wrap"><section class="hero"><div class="kicker">ENTERPRISE OPEN API</div><h1>企业生成 API 接入文档</h1><p>已分离个人 / 企业文档，包含 Key 创建复制入口、modelId / mode 枚举和完整 params 示例。</p><div class="actions"><button class="btn" onclick="copyText(location.origin)">复制服务地址</button></div></section><h1>企业生成 API 接入文档</h1>
+<blockquote>本文档只覆盖企业 API。个人账号请使用 <code>customer-generation-api.html</code> / <code>customer-generation-api.md</code>。</blockquote>
+<h2>1. 创建和复制企业 API Token</h2>
+<p>入口：</p>
+<pre><button class="copy">复制</button><code>管理后台 → 企业 API 管理 → 创建企业 → 充值 → 创建 Token</code></pre>
+<p>操作步骤：</p>
+<ol>
+<li>超级管理员进入「企业 API 管理」。</li>
+<li>点击「创建企业」，填写企业名称、管理员邮箱 / 手机号、管理员昵称。</li>
+<li>给企业充值积分。</li>
+<li>在企业行点击「创建 Token」。</li>
+<li>创建成功弹窗会展示完整明文 Token，格式为 <code>ent_live_xxx</code>。</li>
+<li>立即点击「复制企业 Token」并交付给企业客户保存。</li>
+<li>关闭弹窗后，系统只保留 Token Hash，不能再次查看明文；如遗失请禁用旧 Token 后重新创建。</li>
+</ol>
+<p>企业开放 API 只用于 <code>/api/open/enterprise/*</code>；费用扣企业结算钱包，默认按企业 API 规则计费。</p>
+<h2>2. 鉴权方式</h2>
+<p>所有企业开放 API 请求必须携带：</p>
+<pre><button class="copy">复制</button><code>Authorization: Bearer ent_live_xxx
+Content-Type: application/json</code></pre>
+<h2>3. 接口列表</h2>
+<table>
+<tr><th>能力</th><th>方法</th><th>URL</th></tr>
+<tr><td>创建生成任务</td><td><code>POST</code></td><td><code>/api/open/enterprise/generation/tasks</code></td></tr>
+<tr><td>查询任务列表</td><td><code>GET</code></td><td><code>/api/open/enterprise/generation/tasks?limit=100</code></td></tr>
+<tr><td>查询任务详情</td><td><code>GET</code></td><td><code>/api/open/enterprise/generation/tasks/:id</code></td></tr>
+<tr><td>主动刷新任务</td><td><code>POST</code></td><td><code>/api/open/enterprise/generation/tasks/:id/query</code></td></tr>
+</table>
+<h2>4. 当前可用模型与参数</h2>
+<p>服务端会在 <code>channelKey</code> 对应渠道下，用 <code>modelId</code> 匹配模型 <code>id</code> / <code>modelKey</code> / <code>name</code>。以后台「模型管理」实际启用状态为准，当前画布同步模型如下：</p>
+<table>
+<tr><th>type</th><th>channelKey</th><th>modelId</th><th>真实模型名</th><th>支持 mode</th></tr>
+<tr><td><code>IMAGE</code></td><td><code>canvas_gemini-image</code></td><td><code>canvas-gemini-image</code></td><td><code>gemini-3-pro-image-preview</code></td><td><code>txt2img</code>, <code>img2img</code></td></tr>
+<tr><td><code>IMAGE</code></td><td><code>canvas_gpt-image-2-pro</code></td><td><code>canvas-gpt-image-2-pro</code></td><td><code>gpt-image-2</code></td><td><code>txt2img</code>, <code>img2img</code></td></tr>
+<tr><td><code>IMAGE</code></td><td><code>canvas_gpt-image-v2</code></td><td><code>canvas-gpt-image-v2</code></td><td><code>gpt-image-2</code></td><td><code>txt2img</code>, <code>img2img</code></td></tr>
+<tr><td><code>VIDEO</code></td><td><code>canvas_sora-2</code></td><td><code>canvas-sora-2</code></td><td><code>sora-2</code></td><td><code>text2video</code>, <code>img2video</code></td></tr>
+<tr><td><code>VIDEO</code></td><td><code>canvas_sora-v3-pro</code></td><td><code>canvas-sora-v3-pro</code></td><td><code>sora-v3-pro</code></td><td><code>text2video</code>, <code>img2video</code></td></tr>
+<tr><td><code>VIDEO</code></td><td><code>canvas_sora-v3-vip</code></td><td><code>canvas-sora-v3-vip</code></td><td><code>sora-v3-vip</code></td><td><code>text2video</code>, <code>img2video</code></td></tr>
+<tr><td><code>IMAGE</code></td><td><code>seed_default</code></td><td><code>seed-gpt-image-2</code></td><td><code>gpt-image-2</code></td><td><code>txt2img</code>, <code>img2img</code></td></tr>
+<tr><td><code>VIDEO</code></td><td><code>seed_default</code></td><td><code>seed-video-basic</code></td><td><code>video-generation</code></td><td><code>txt2video</code>, <code>text2video</code>, <code>img2video</code></td></tr>
+<tr><td><code>LLM</code></td><td><code>seed_default</code></td><td><code>seed-gpt-5-4</code></td><td><code>gpt-5.4</code></td><td><code>chat</code></td></tr>
+<tr><td><code>LLM</code></td><td><code>seed_default</code></td><td><code>seed-gpt-5-5</code></td><td><code>gpt-5.5</code></td><td><code>chat</code></td></tr>
+</table>
+<p><code>mode</code> 枚举：<code>txt2img</code>、<code>img2img</code>、<code>txt2video</code>、<code>text2video</code>、<code>img2video</code>、<code>chat</code>。</p>
+<h2>5. 创建生成任务</h2>
+<pre><button class="copy">复制</button><code>POST /api/open/enterprise/generation/tasks
+Authorization: Bearer ent_live_xxx
+Content-Type: application/json</code></pre>
+<h3>5.1 图片任务完整示例</h3>
+<pre><button class="copy">复制</button><code>{
+  &quot;channelKey&quot;: &quot;canvas_gpt-image-2-pro&quot;,
+  &quot;modelId&quot;: &quot;canvas-gpt-image-2-pro&quot;,
+  &quot;type&quot;: &quot;IMAGE&quot;,
+  &quot;mode&quot;: &quot;txt2img&quot;,
+  &quot;prompt&quot;: &quot;企业宣传海报，现代科技风，蓝紫渐变，中心产品发光&quot;,
+  &quot;negativePrompt&quot;: &quot;低清晰度，错字，水印，畸形元素&quot;,
+  &quot;inputFiles&quot;: [],
+  &quot;params&quot;: {
+    &quot;size&quot;: &quot;1024x1024&quot;,
+    &quot;width&quot;: 1024,
+    &quot;height&quot;: 1024,
+    &quot;resolution&quot;: &quot;1k&quot;,
+    &quot;quality&quot;: &quot;high&quot;,
+    &quot;quantity&quot;: 1,
+    &quot;n&quot;: 1,
+    &quot;seed&quot;: 123456,
+    &quot;transparentBackground&quot;: false,
+    &quot;referenceImages&quot;: [],
+    &quot;metadata&quot;: {
+      &quot;enterpriseOrderId&quot;: &quot;ent_order_001&quot;,
+      &quot;department&quot;: &quot;marketing&quot;
+    }
+  },
+  &quot;clientRequestId&quot;: &quot;ent_client_order_001&quot;
+}</code></pre>
+<h3>5.2 图生视频完整示例</h3>
+<pre><button class="copy">复制</button><code>{
+  &quot;channelKey&quot;: &quot;canvas_sora-v3-pro&quot;,
+  &quot;modelId&quot;: &quot;canvas-sora-v3-pro&quot;,
+  &quot;type&quot;: &quot;VIDEO&quot;,
+  &quot;mode&quot;: &quot;img2video&quot;,
+  &quot;prompt&quot;: &quot;产品在暗色科技展台上缓慢旋转，镜头环绕推进，边缘高光扫过金属表面&quot;,
+  &quot;negativePrompt&quot;: &quot;画面闪烁，产品变形，文字水印，低清晰度&quot;,
+  &quot;inputFiles&quot;: [
+    {
+      &quot;url&quot;: &quot;https://example.com/product-first-frame.png&quot;,
+      &quot;role&quot;: &quot;firstFrame&quot;,
+      &quot;mimeType&quot;: &quot;image/png&quot;
+    }
+  ],
+  &quot;params&quot;: {
+    &quot;duration&quot;: 5,
+    &quot;fps&quot;: 24,
+    &quot;resolution&quot;: &quot;720p&quot;,
+    &quot;aspectRatio&quot;: &quot;16:9&quot;,
+    &quot;width&quot;: 1280,
+    &quot;height&quot;: 720,
+    &quot;generateAudio&quot;: true,
+    &quot;cameraMotion&quot;: &quot;orbit_push_in&quot;,
+    &quot;motionStrength&quot;: 0.65,
+    &quot;seed&quot;: 123456,
+    &quot;referenceImages&quot;: [&quot;https://example.com/product-first-frame.png&quot;],
+    &quot;metadata&quot;: {
+      &quot;enterpriseOrderId&quot;: &quot;ent_video_001&quot;,
+      &quot;campaign&quot;: &quot;launch&quot;
+    }
+  },
+  &quot;clientRequestId&quot;: &quot;ent_client_video_001&quot;
+}</code></pre>
+<h3>5.3 请求体参数表</h3>
+<table>
+<tr><th>字段</th><th>必填</th><th>类型穷举</th><th>说明</th></tr>
+<tr><td><code>channelKey</code></td><td>是</td><td>上表 <code>channelKey</code> 枚举</td><td>渠道 Key，必须与 <code>modelId</code> 所属渠道匹配。</td></tr>
+<tr><td><code>modelId</code></td><td>是</td><td>上表 <code>modelId</code> 枚举，也可填模型 <code>modelKey</code> / <code>name</code></td><td>模型标识。服务端按 <code>id → modelKey → name</code> 匹配。</td></tr>
+<tr><td><code>type</code></td><td>是</td><td><code>&quot;IMAGE&quot; | &quot;VIDEO&quot; | &quot;LLM&quot;</code></td><td>生成类型。</td></tr>
+<tr><td><code>mode</code></td><td>是</td><td><code>&quot;txt2img&quot; | &quot;img2img&quot; | &quot;txt2video&quot; | &quot;text2video&quot; | &quot;img2video&quot; | &quot;chat&quot;</code></td><td>生成模式，必须与模型能力匹配。</td></tr>
+<tr><td><code>prompt</code></td><td>是</td><td><code>string</code></td><td>正向提示词。不能为空。</td></tr>
+<tr><td><code>negativePrompt</code></td><td>否</td><td><code>string</code></td><td>反向提示词。</td></tr>
+<tr><td><code>inputFiles</code></td><td>否</td><td><code>array</code></td><td>输入文件数组；图生图 / 图生视频需传参考图或首帧。</td></tr>
+<tr><td><code>params</code></td><td>否</td><td><code>object</code></td><td>模型扩展参数；支持 <code>string</code> / <code>number</code> / <code>boolean</code> / <code>array</code> / <code>object</code> / <code>null</code>。</td></tr>
+<tr><td><code>clientRequestId</code></td><td>否</td><td><code>string</code></td><td>企业维度幂等 ID，长度 1-160。</td></tr>
+</table>
+<h3>5.4 params 常见字段</h3>
+<table>
+<tr><th>字段</th><th>类型穷举</th><th>说明</th></tr>
+<tr><td><code>size</code></td><td><code>string</code></td><td>图片尺寸，如 <code>1024x1024</code>。</td></tr>
+<tr><td><code>width</code> / <code>height</code></td><td><code>number</code></td><td>宽高。</td></tr>
+<tr><td><code>resolution</code></td><td><code>&quot;720p&quot; | &quot;1080p&quot; | &quot;1k&quot; | &quot;2k&quot; | &quot;3k&quot; | &quot;4k&quot; | string</code></td><td>分辨率，按模型能力生效。</td></tr>
+<tr><td><code>quality</code></td><td><code>&quot;standard&quot; | &quot;high&quot; | string</code></td><td>图片质量。</td></tr>
+<tr><td><code>quantity</code> / <code>n</code></td><td><code>number</code></td><td>生成数量。</td></tr>
+<tr><td><code>seed</code></td><td><code>number | string</code></td><td>随机种子。</td></tr>
+<tr><td><code>duration</code></td><td><code>number | string</code></td><td>视频时长，常见 5 / 10 / 15 秒。</td></tr>
+<tr><td><code>fps</code></td><td><code>number</code></td><td>视频帧率。</td></tr>
+<tr><td><code>aspectRatio</code></td><td><code>&quot;1:1&quot; | &quot;16:9&quot; | &quot;9:16&quot; | &quot;4:3&quot; | &quot;3:4&quot; | string</code></td><td>输出比例。</td></tr>
+<tr><td><code>generateAudio</code></td><td><code>boolean</code></td><td>是否生成音频。</td></tr>
+<tr><td><code>referenceImages</code></td><td><code>array</code></td><td>参考图 URL / 文件对象数组。</td></tr>
+<tr><td><code>cameraMotion</code></td><td><code>string</code></td><td>运镜提示，是否生效取决于模型。</td></tr>
+<tr><td><code>motionStrength</code></td><td><code>number</code></td><td>运动强度，是否生效取决于模型。</td></tr>
+<tr><td><code>metadata</code></td><td><code>object</code></td><td>企业订单号、部门、活动等自定义信息。</td></tr>
+<tr><td>任意扩展字段</td><td><code>string | number | boolean | array | object | null</code></td><td>会透传给对应模型适配器，未知字段是否生效取决于后台适配器。</td></tr>
+</table>
+<h2>6. 查询任务</h2>
+<pre><button class="copy">复制</button><code>GET /api/open/enterprise/generation/tasks/:id
+Authorization: Bearer ent_live_xxx</code></pre>
+<pre><button class="copy">复制</button><code>POST /api/open/enterprise/generation/tasks/:id/query
+Authorization: Bearer ent_live_xxx</code></pre>
+<p>任务状态：<code>CREATED</code>、<code>PENDING</code>、<code>RUNNING</code>、<code>SUCCESS</code>、<code>FAILED</code>。</p>
+<h2>7. 常见错误码</h2>
+<table>
+<tr><th>code</th><th>含义</th><th>处理方式</th></tr>
+<tr><td><code>ENTERPRISE_API_TOKEN_REQUIRED</code></td><td>缺少企业 API Token</td><td>检查 <code>Authorization</code>。</td></tr>
+<tr><td><code>ENTERPRISE_API_TOKEN_INVALID</code></td><td>企业 Token 无效或已禁用</td><td>重新创建 Token 或检查复制是否完整。</td></tr>
+<tr><td><code>ENTERPRISE_API_TOKEN_EXPIRED</code></td><td>企业 Token 已过期</td><td>重新创建 Token。</td></tr>
+<tr><td><code>ENTERPRISE_DISABLED</code></td><td>企业账号已禁用</td><td>联系超级管理员。</td></tr>
+<tr><td><code>INSUFFICIENT_BALANCE</code></td><td>企业余额不足</td><td>给企业充值后重试。</td></tr>
+<tr><td><code>PROVIDER_NOT_FOUND</code></td><td>渠道不可用</td><td>检查 <code>channelKey</code>。</td></tr>
+<tr><td><code>PROVIDER_DISABLED</code></td><td>渠道已禁用</td><td>换可用渠道或联系管理员。</td></tr>
+<tr><td><code>MODEL_NOT_FOUND</code></td><td>模型不可用</td><td>检查 <code>modelId</code>、<code>type</code>、模型启用状态。</td></tr>
+<tr><td><code>GENERATION_TASK_NOT_FOUND</code></td><td>任务不存在或无权访问</td><td>确认任务 ID 属于当前企业 Token。</td></tr>
+<tr><td><code>GENERATION_SUBMIT_FAILED</code></td><td>提交上游失败</td><td>查看 <code>errorMessage</code> 后重试或联系管理员。</td></tr>
+</table>
+<h2>8. 安全说明</h2>
+<ul>
+<li>不要把企业 Token 放到公开网页、GitHub、截图或聊天群。</li>
+<li>企业客户应在自己的服务端保存 <code>ent_live_xxx</code>，不要下发到浏览器端。</li>
+<li>怀疑泄露后，立刻在「企业 API 管理」禁用旧 Token 并创建新 Token。</li>
+<li>请求体不允许指定 <code>userId</code> / <code>enterpriseId</code>，任务归属由企业 Token 自动识别。</li>
+</ul></main><div class="toast"></div><script>function copyText(t){navigator.clipboard&&navigator.clipboard.writeText(t).then(()=>toast('复制成功')).catch(()=>toast('复制失败'))}function toast(t){let e=document.querySelector('.toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1600)}document.addEventListener('click',e=>{if(e.target.matches('.copy')){const pre=e.target.closest('pre');copyText(pre.innerText.replace(/^复制\n?/,''))}})</script></body></html>

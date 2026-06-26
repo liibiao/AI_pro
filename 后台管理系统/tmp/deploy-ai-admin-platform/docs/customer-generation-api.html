@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>API 对接文档 · AI Admin</title>
+<style>
+:root{color-scheme:dark;--bg:#07080d;--panel:#11131b;--panel2:#161923;--text:#f4f7fb;--muted:#9aa4b2;--line:rgba(255,255,255,.1);--brand:#7c5cff;--cyan:#39d5ff;--green:#28e0a6;--warn:#ffd166}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 20% 0,rgba(124,92,255,.22),transparent 34%),radial-gradient(circle at 82% 16%,rgba(57,213,255,.16),transparent 30%),linear-gradient(180deg,#07080d,#090b12 38%,#06070b);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.65}.page{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;padding:24px 18px;border-right:1px solid var(--line);background:rgba(8,9,14,.72);backdrop-filter:blur(18px);overflow:auto}.brand{font-size:18px;font-weight:900;letter-spacing:.2px}.brand span{color:var(--cyan)}.nav{display:grid;gap:8px;margin-top:24px}.nav a{color:var(--muted);text-decoration:none;padding:9px 11px;border-radius:12px;font-size:13px}.nav a:hover{color:#fff;background:rgba(255,255,255,.07)}.main{padding:34px 38px 80px;max-width:1180px}.hero{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:30px;padding:38px;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(57,213,255,.1) 45%,rgba(255,255,255,.04));box-shadow:0 24px 80px rgba(0,0,0,.32)}.hero:after{content:"";position:absolute;right:-90px;top:-90px;width:260px;height:260px;border-radius:50%;background:rgba(57,213,255,.16);filter:blur(12px)}.kicker{color:var(--cyan);font-size:13px;font-weight:800}.hero h1{position:relative;margin:10px 0 10px;font-size:42px;line-height:1.12}.hero p{position:relative;margin:0;color:#c6cfda;max-width:760px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}.btn{height:38px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.07);color:#fff;padding:0 15px;cursor:pointer}.btn.primary{border-color:rgba(57,213,255,.36);background:linear-gradient(135deg,rgba(124,92,255,.8),rgba(57,213,255,.36))}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}.card{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.035));padding:18px;box-shadow:0 14px 48px rgba(0,0,0,.18)}.card b{display:block;margin-bottom:6px}.card span,.muted{color:var(--muted);font-size:13px}section{margin-top:28px}.section-title{display:flex;align-items:center;gap:10px;margin-bottom:12px}.section-title em{display:grid;place-items:center;width:28px;height:28px;border-radius:10px;background:rgba(57,213,255,.13);color:var(--cyan);font-style:normal;font-weight:900}h2{margin:0;font-size:24px}h3{margin:20px 0 10px;font-size:17px}.steps{counter-reset:step;display:grid;gap:12px}.step{counter-increment:step;display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.04);padding:14px}.step:before{content:counter(step);display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:rgba(40,224,166,.16);color:var(--green);font-weight:900}.code{position:relative;margin:12px 0;border:1px solid var(--line);border-radius:18px;background:#0b0d13;overflow:hidden}.code-head{height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid var(--line);color:#cbd5e1;font-size:12px}.copy{height:26px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.07);color:#fff;padding:0 10px;cursor:pointer;font-size:12px}pre{margin:0;padding:16px;overflow:auto;color:#e6edf7;font-size:13px;line-height:1.55}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.token-box{display:grid;grid-template-columns:1fr auto;gap:10px;border:1px solid rgba(57,213,255,.24);background:rgba(57,213,255,.06);border-radius:18px;padding:12px}.token-box input{height:38px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.28);color:#fff;padding:0 12px;outline:none}.table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:16px;border:1px solid var(--line)}.table th,.table td{border-bottom:1px solid var(--line);padding:11px 12px;text-align:left;font-size:13px}.table th{color:#dbeafe;background:rgba(255,255,255,.06)}.table td{color:#cbd5e1}.pill{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:#fff;background:rgba(255,255,255,.06);font-size:12px}.warn{border-color:rgba(255,209,102,.28);background:rgba(255,209,102,.08);color:#ffe3a3}.ok{border-color:rgba(40,224,166,.28);background:rgba(40,224,166,.08);color:#a7f3d0}.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(16px);opacity:0;pointer-events:none;border:1px solid var(--line);border-radius:999px;background:rgba(10,12,18,.92);color:#fff;padding:10px 16px;transition:.18s;box-shadow:0 18px 50px rgba(0,0,0,.35)}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}@media(max-width:900px){.page{grid-template-columns:1fr}.side{position:relative;height:auto}.main{padding:22px}.grid{grid-template-columns:1fr}.hero h1{font-size:31px}.token-box{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+  <aside class="side">
+    <div class="brand">AI <span>API Docs</span></div>
+    <div class="muted">个人 / 企业开放 API 对接指南</div>
+    <nav class="nav">
+      <a href="#quick">小白接入流程</a><a href="#token">Token 获取与复制</a><a href="#personal">个人 API</a><a href="#enterprise">企业 API</a><a href="#create">创建任务</a><a href="#query">查询结果</a><a href="#errors">错误码</a><a href="#safe">安全说明</a>
+    </nav>
+  </aside>
+  <main class="main">
+    <div class="hero">
+      <div class="kicker">RUNNINGHUB STYLE · OPEN API</div>
+      <h1>个人 / 企业 API 对接文档</h1>
+      <p>如果你不会写代码，只要按下面 4 步走：创建 Token → 复制 Token → 复制示例代码 → 替换提示词并运行。</p>
+      <div class="actions"><a class="btn primary" href="#quick">开始接入</a><button class="btn" onclick="copyText(location.origin)">复制当前服务地址</button></div>
+    </div>
+
+    <div class="grid">
+      <div class="card"><b>个人 API</b><span>用个人 API Key 调用，扣个人钱包，会员折扣实时生效。</span></div>
+      <div class="card"><b>企业 API</b><span>用企业 Token 调用，扣企业钱包，默认按 VIP 4 折计费。</span></div>
+      <div class="card"><b>安全设计</b><span>Token 明文只展示一次，服务端只保存 Hash，不暴露上游密钥。</span></div>
+    </div>
+
+    <section id="quick"><div class="section-title"><em>1</em><h2>小白接入流程</h2></div>
+      <div class="steps">
+        <div class="step"><div><b>进入入口</b><div class="muted">个人用户：画布 / 后台账户中心 → API 接入。企业用户：超级管理员后台 → 企业 API 管理。</div></div></div>
+        <div class="step"><div><b>创建并复制 Token</b><div class="muted">创建后立刻复制保存，关闭弹窗后不会再显示明文。</div></div></div>
+        <div class="step"><div><b>选择接口前缀</b><div class="muted">个人用 <code>/api/open/personal/*</code>，企业用 <code>/api/open/enterprise/*</code>。</div></div></div>
+        <div class="step"><div><b>复制示例代码运行</b><div class="muted">把示例里的 <code>sk_live_xxx</code> 或 <code>ent_live_xxx</code> 替换成自己的 Token。</div></div></div>
+      </div>
+    </section>
+
+    <section id="token"><div class="section-title"><em>2</em><h2>Token 获取与复制</h2></div>
+      <div class="token-box"><input id="tokenInput" placeholder="把刚创建的 API Key / 企业 Token 粘贴到这里，便于复制测试" /><button class="btn primary" onclick="copyText(document.getElementById('tokenInput').value)">复制 Token</button></div>
+      <p class="muted">请求头固定写法：</p>
+      <div class="code"><div class="code-head">HTTP Header <button class="copy" onclick="copyCode(this)">复制代码</button></div><pre><code>Authorization: Bearer 你的Token
+Content-Type: application/json</code></pre></div>
+    </section>
+
+    <section id="personal"><div class="section-title"><em>3</em><h2>个人 API</h2></div>
+      <table class="table"><tr><th>能力</th><th>说明</th></tr><tr><td>创建任务</td><td><code>POST /api/open/personal/generation/tasks</code></td></tr><tr><td>查询列表</td><td><code>GET /api/open/personal/generation/tasks?limit=100</code></td></tr><tr><td>查询详情</td><td><code>GET /api/open/personal/generation/tasks/:id</code></td></tr><tr><td>主动刷新</td><td><code>POST /api/open/personal/generation/tasks/:id/query</code></td></tr></table>
+      <p><span class="pill ok">扣费</span> 扣个人钱包；账号状态、余额、会员 / 体验卡折扣实时生效。</p>
+    </section>
+
+    <section id="enterprise"><div class="section-title"><em>4</em><h2>企业 API</h2></div>
+      <table class="table"><tr><th>能力</th><th>说明</th></tr><tr><td>创建任务</td><td><code>POST /api/open/enterprise/generation/tasks</code></td></tr><tr><td>查询列表</td><td><code>GET /api/open/enterprise/generation/tasks?limit=100</code></td></tr><tr><td>查询详情</td><td><code>GET /api/open/enterprise/generation/tasks/:id</code></td></tr><tr><td>主动刷新</td><td><code>POST /api/open/enterprise/generation/tasks/:id/query</code></td></tr></table>
+      <p><span class="pill ok">扣费</span> 扣企业钱包；企业无需购买会员，固定按 VIP 4 折计费。</p>
+    </section>
+
+    <section id="create"><div class="section-title"><em>5</em><h2>创建生成任务</h2></div>
+      <h3>cURL 示例</h3><div class="code"><div class="code-head">个人接口：把 Token 换成自己的 <button class="copy" onclick="copyCode(this)">复制代码</button></div><pre><code>curl -X POST "__BASE__/api/open/personal/generation/tasks" \
+  -H "Authorization: Bearer sk_live_xxx" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "channelKey": "gpt-image",
+    "modelId": "model_image_xxx",
+    "type": "IMAGE",
+    "mode": "txt2img",
+    "prompt": "一只赛博朋克风格的猫",
+    "negativePrompt": "",
+    "inputFiles": [],
+    "params": { "size": "1024x1024", "quantity": 1 },
+    "clientRequestId": "client_order_001"
+  }'</code></pre></div>
+      <h3>JavaScript 示例</h3><div class="code"><div class="code-head">浏览器 / Node.js <button class="copy" onclick="copyCode(this)">复制代码</button></div><pre><code>const res = await fetch('__BASE__/api/open/personal/generation/tasks', {
+  method: 'POST',
+  headers: {
+    Authorization: 'Bearer sk_live_xxx',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    channelKey: 'gpt-image',
+    modelId: 'model_image_xxx',
+    type: 'IMAGE',
+    mode: 'txt2img',
+    prompt: '一只赛博朋克风格的猫',
+    negativePrompt: '',
+    inputFiles: [],
+    params: { size: '1024x1024', quantity: 1 },
+    clientRequestId: 'client_order_001'
+  })
+});
+const data = await res.json();
+console.log(data.task.id, data.task.status);</code></pre></div>
+      <h3>Python 示例</h3><div class="code"><div class="code-head">requests <button class="copy" onclick="copyCode(this)">复制代码</button></div><pre><code>import requests
+
+res = requests.post(
+    '__BASE__/api/open/personal/generation/tasks',
+    headers={
+        'Authorization': 'Bearer sk_live_xxx',
+        'Content-Type': 'application/json'
+    },
+    json={
+        'channelKey': 'gpt-image',
+        'modelId': 'model_image_xxx',
+        'type': 'IMAGE',
+        'mode': 'txt2img',
+        'prompt': '一只赛博朋克风格的猫',
+        'negativePrompt': '',
+        'inputFiles': [],
+        'params': {'size': '1024x1024', 'quantity': 1},
+        'clientRequestId': 'client_order_001'
+    }
+)
+print(res.json())</code></pre></div>
+    </section>
+
+    <section id="query"><div class="section-title"><em>6</em><h2>查询结果</h2></div>
+      <div class="code"><div class="code-head">查询任务详情 <button class="copy" onclick="copyCode(this)">复制代码</button></div><pre><code>curl "__BASE__/api/open/personal/generation/tasks/task_xxx" \
+  -H "Authorization: Bearer sk_live_xxx"</code></pre></div>
+      <div class="code"><div class="code-head">主动刷新任务状态 <button class="copy" onclick="copyCode(this)">复制代码</button></div><pre><code>curl -X POST "__BASE__/api/open/personal/generation/tasks/task_xxx/query" \
+  -H "Authorization: Bearer sk_live_xxx"</code></pre></div>
+      <p class="muted">任务常见状态：<span class="pill">PENDING</span> <span class="pill">RUNNING</span> <span class="pill">SUCCESS</span> <span class="pill">FAILED</span></p>
+    </section>
+
+    <section id="errors"><div class="section-title"><em>7</em><h2>常见错误码</h2></div>
+      <table class="table"><tr><th>code</th><th>小白解释</th><th>处理方式</th></tr><tr><td>OPEN_API_TOKEN_REQUIRED</td><td>没传个人 Token</td><td>检查 Authorization 请求头</td></tr><tr><td>OPEN_API_TOKEN_INVALID</td><td>个人 Token 错误或被禁用</td><td>重新创建 / 复制 Token</td></tr><tr><td>ENTERPRISE_API_TOKEN_INVALID</td><td>企业 Token 错误或被禁用</td><td>联系管理员检查企业 Token</td></tr><tr><td>INSUFFICIENT_BALANCE</td><td>余额不足</td><td>充值后重试</td></tr><tr><td>MODEL_NOT_FOUND</td><td>模型不可用或 ID 写错</td><td>检查后台模型配置</td></tr><tr><td>GENERATION_TASK_NOT_FOUND</td><td>任务不存在或无权限</td><td>确认任务 ID 和 Token 是否属于同一账号</td></tr></table>
+    </section>
+
+    <section id="safe"><div class="section-title"><em>8</em><h2>安全说明</h2></div>
+      <div class="card warn"><b>重要</b><span>不要把 Token 写到公开网页、GitHub、截图或聊天群。Token 泄露后别人可以消耗你的余额；如怀疑泄露，请立即禁用并重新创建。</span></div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast">复制成功</div>
+<script>
+const BASE = location.origin;
+document.querySelectorAll('code').forEach(el => { el.textContent = el.textContent.replaceAll('__BASE__', BASE); });
+function showToast(text){const t=document.getElementById('toast');t.textContent=text||'复制成功';t.classList.add('show');clearTimeout(window.__toastTimer);window.__toastTimer=setTimeout(()=>t.classList.remove('show'),1600)}
+async function copyText(text){const value=String(text||'').trim();if(!value)return showToast('没有可复制内容');try{await navigator.clipboard.writeText(value);showToast('复制成功')}catch(e){const ta=document.createElement('textarea');ta.value=value;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('复制成功')}}
+function copyCode(btn){const code=btn.closest('.code').querySelector('code').textContent;copyText(code)}
+</script>
+</body>
+</html>

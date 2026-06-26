@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>企业生成 API 接入文档 · AI Admin</title>
+<style>
+:root{color-scheme:dark;--bg:#07080d;--panel:#11131b;--text:#f4f7fb;--muted:#a8b3c2;--line:rgba(255,255,255,.12);--brand:#7c5cff;--cyan:#39d5ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0,rgba(124,92,255,.18),transparent 34%),linear-gradient(180deg,#07080d,#090b12);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.65}.wrap{max-width:1180px;margin:0 auto;padding:34px 28px 80px}.hero{border:1px solid var(--line);border-radius:28px;padding:30px;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(57,213,255,.1),rgba(255,255,255,.04));margin-bottom:28px}.kicker{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:.12em}.hero h1{margin:8px 0 6px;font-size:38px}.hero p{color:#cbd5e1;margin:0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn{border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.07);color:#fff;padding:9px 14px;text-decoration:none;cursor:pointer}h2{margin-top:32px;border-top:1px solid var(--line);padding-top:24px}h3{margin-top:24px;color:#e5edff}p,li{color:#d6dee9}blockquote{border-left:4px solid var(--cyan);margin:18px 0;padding:10px 14px;background:rgba(57,213,255,.08);color:#dbeafe;border-radius:12px}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(255,255,255,.08);padding:2px 5px;border-radius:6px}pre{position:relative;background:#0b0d13;border:1px solid var(--line);border-radius:16px;padding:44px 16px 16px;overflow:auto;color:#e6edf7}pre code{background:transparent;padding:0;white-space:pre}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:16px;margin:14px 0}table{width:100%;border-collapse:collapse;min-width:860px;background:rgba(15,23,42,.45)}th,td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;font-size:13px}th{background:rgba(255,255,255,.07);color:#dbeafe}td{color:#cbd5e1}.copy{position:absolute;right:12px;top:10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;padding:5px 10px;cursor:pointer}.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(10px);z-index:999999;background:#10131c;border:1px solid rgba(57,213,255,.55);box-shadow:0 18px 60px rgba(0,0,0,.45);padding:10px 16px;border-radius:999px;display:block;opacity:0;pointer-events:none;color:#fff;font-weight:800;transition:opacity .18s ease,transform .18s ease}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}@media(max-width:760px){.wrap{padding:22px 16px}.hero h1{font-size:28px}table{min-width:760px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="hero"><div class="kicker">ENTERPRISE OPEN API</div><h1>企业生成 API 接入文档</h1><p>按个人 API 文档同版式更新：只保留生图 GPT 相关渠道、生视频 Sora 相关渠道和必要请求字段。</p><div class="actions"><button class="btn" onclick="copyText(location.origin)">复制服务地址</button><button class="btn" onclick="copyText('/api/open/enterprise/generation/tasks')">复制创建任务路径</button></div></section>
+<blockquote>本文档只覆盖企业 API。企业开放接口使用 <code>ent_live_xxx</code>；个人 API 请使用画布内置「个人 API 对接文档」。</blockquote>
+<h2>1. 创建和复制企业 API Token</h2>
+<p>入口：</p><pre><button class="copy">复制</button><code>管理后台 → 企业 API 管理 → 创建企业 → 充值 → 创建 Token</code></pre>
+<ol><li>超级管理员进入「企业 API 管理」。</li><li>创建企业账号并给企业充值积分。</li><li>在企业行点击「创建 Token」。</li><li>创建成功弹窗展示完整明文 Token，格式为 <code>ent_live_xxx</code>。</li><li>立即复制并交付给企业客户保存；关闭弹窗后不能再次查看明文。</li><li>Token 泄露或遗失时，禁用旧 Token 后重新创建。</li></ol>
+<p>企业开放 API 只用于 <code>/api/open/enterprise/*</code>；费用扣企业结算钱包。</p>
+<h2>2. 鉴权方式</h2>
+<pre><button class="copy">复制</button><code>Authorization: Bearer ent_live_xxx
+Content-Type: application/json</code></pre>
+<h2>3. 真实调用地址</h2>
+<div class="table-wrap"><table><tr><th>能力</th><th>方法</th><th>URL</th></tr><tr><td>创建生成任务</td><td><code>POST</code></td><td><code>/api/open/enterprise/generation/tasks</code></td></tr><tr><td>查询任务详情</td><td><code>GET</code></td><td><code>/api/open/enterprise/generation/tasks/:id</code></td></tr><tr><td>主动刷新任务</td><td><code>POST</code></td><td><code>/api/open/enterprise/generation/tasks/:id/query</code></td></tr><tr><td>查询任务列表</td><td><code>GET</code></td><td><code>/api/open/enterprise/generation/tasks?limit=100</code></td></tr></table></div>
+<h2>4. 当前可用生图 / 生视频模型</h2>
+<p>服务端按 <code>channelKey</code> 查渠道，并在该渠道下按 <code>modelId</code> 匹配模型。以下只保留企业接入最常用的生图 GPT 相关渠道与生视频 Sora 相关渠道，避免混淆。</p>
+<div class="table-wrap"><table><tr><th>type</th><th>channelKey</th><th>modelId</th><th>modelKey</th><th>支持 mode</th></tr><tr><td><code>IMAGE</code></td><td><code>canvas_gpt-image-2-pro</code></td><td><code>canvas-gpt-image-2-pro</code></td><td><code>gpt-image-2</code></td><td><code>txt2img</code> / <code>img2img</code></td></tr><tr><td><code>IMAGE</code></td><td><code>canvas_gpt-image-v2</code></td><td><code>canvas-gpt-image-v2</code></td><td><code>gpt-image-2</code></td><td><code>txt2img</code> / <code>img2img</code></td></tr><tr><td><code>IMAGE</code></td><td><code>seed_default</code></td><td><code>seed-gpt-image-2</code></td><td><code>gpt-image-2</code></td><td><code>txt2img</code> / <code>img2img</code></td></tr><tr><td><code>VIDEO</code></td><td><code>canvas_sora-2</code></td><td><code>canvas-sora-2</code></td><td><code>sora-2</code></td><td><code>text2video</code> / <code>img2video</code></td></tr><tr><td><code>VIDEO</code></td><td><code>canvas_sora-v3-pro</code></td><td><code>canvas-sora-v3-pro</code></td><td><code>sora-v3-pro</code></td><td><code>text2video</code> / <code>img2video</code></td></tr><tr><td><code>VIDEO</code></td><td><code>canvas_sora-v3-vip</code></td><td><code>canvas-sora-v3-vip</code></td><td><code>sora-v3-vip</code></td><td><code>text2video</code> / <code>img2video</code></td></tr></table></div>
+<h2>5. 请求体必要字段</h2>
+<div class="table-wrap"><table><tr><th>字段</th><th>必填</th><th>类型/枚举</th><th>示例</th><th>说明</th></tr><tr><td><code>channelKey</code></td><td>是</td><td>上表 <code>channelKey</code></td><td><code>canvas_gpt-image-2-pro</code></td><td>真实渠道 Key。</td></tr><tr><td><code>modelId</code></td><td>是</td><td>上表 <code>modelId</code></td><td><code>canvas-gpt-image-2-pro</code></td><td>推荐传数据库模型 ID。</td></tr><tr><td><code>type</code></td><td>是</td><td><code>IMAGE</code> / <code>VIDEO</code></td><td><code>IMAGE</code></td><td>必须与模型类型一致。</td></tr><tr><td><code>mode</code></td><td>是</td><td><code>txt2img</code> / <code>img2img</code> / <code>text2video</code> / <code>img2video</code></td><td><code>txt2img</code></td><td>按模型支持模式传入。</td></tr><tr><td><code>prompt</code></td><td>是</td><td><code>string</code></td><td>一只猫</td><td>正向提示词。</td></tr><tr><td><code>inputFiles</code></td><td>图生图/图生视频必填</td><td><code>array</code></td><td><code>[{url,role,mimeType}]</code></td><td>参考图数组；请传公网可访问图片 URL。</td></tr><tr><td><code>params</code></td><td>是</td><td><code>object</code></td><td><code>{resolution,size,n}</code></td><td>生图传尺寸/数量；生视频传时长/比例/清晰度。</td></tr></table></div>
+<h2>6. 可复制 JSON 请求示例</h2>
+<h3>6.1 文生图</h3><pre><button class="copy">复制</button><code>{
+  "channelKey": "canvas_gpt-image-2-pro",
+  "modelId": "canvas-gpt-image-2-pro",
+  "type": "IMAGE",
+  "mode": "txt2img",
+  "prompt": "企业宣传海报，现代科技风，蓝紫渐变，中心产品发光",
+  "inputFiles": [],
+  "params": {"model":"gpt-image-2","resolution":"1K","size":"1024x1024","width":1024,"height":1024,"n":1}
+}</code></pre>
+<h3>6.2 图生图</h3><pre><button class="copy">复制</button><code>{
+  "channelKey": "canvas_gpt-image-2-pro",
+  "modelId": "canvas-gpt-image-2-pro",
+  "type": "IMAGE",
+  "mode": "img2img",
+  "prompt": "保留参考图主体结构，改成高级商业海报质感",
+  "inputFiles": [{"url":"https://example.com/input.png","role":"referenceImage","mimeType":"image/png"}],
+  "params": {"model":"gpt-image-2","resolution":"1K","size":"1024x1024","n":1,"images":["https://example.com/input.png"]}
+}</code></pre>
+<h3>6.3 文生视频</h3><pre><button class="copy">复制</button><code>{
+  "channelKey": "canvas_sora-v3-pro",
+  "modelId": "canvas-sora-v3-pro",
+  "type": "VIDEO",
+  "mode": "text2video",
+  "prompt": "雨夜霓虹街道，镜头缓慢推进，企业产品在画面中央被灯光照亮",
+  "inputFiles": [],
+  "params": {"duration":10,"resolution":"720p","aspectRatio":"16:9","fps":24}
+}</code></pre>
+<h3>6.4 图生视频</h3><pre><button class="copy">复制</button><code>{
+  "channelKey": "canvas_sora-v3-pro",
+  "modelId": "canvas-sora-v3-pro",
+  "type": "VIDEO",
+  "mode": "img2video",
+  "prompt": "根据参考图生成产品展示视频，产品缓慢旋转，镜头轻微推进",
+  "inputFiles": [{"url":"https://example.com/product.png","role":"firstFrame","mimeType":"image/png"}],
+  "params": {"duration":10,"resolution":"720p","aspectRatio":"16:9","fps":24,"images":["https://example.com/product.png"]}
+}</code></pre>
+<h2>7. 响应结构</h2><pre><button class="copy">复制</button><code>{
+  "ok": true,
+  "task": {
+    "id": "&lt;GenerationTask.id&gt;",
+    "modelId": "canvas-gpt-image-2-pro",
+    "channelKey": "canvas_gpt-image-2-pro",
+    "type": "IMAGE",
+    "mode": "txt2img",
+    "status": "RUNNING",
+    "inputFilesJson": [],
+    "paramsJson": {"resolution":"1K","size":"1024x1024","n":1},
+    "resultJson": null,
+    "resultUrlsJson": null,
+    "chargedCredits": 5,
+    "errorCode": null,
+    "errorMessage": null,
+    "progress": 0,
+    "createdAt": "&lt;ISO时间&gt;",
+    "updatedAt": "&lt;ISO时间&gt;"
+  },
+  "balance": 995,
+  "chargedCredits": 5
+}</code></pre>
+<h2>8. 状态枚举</h2><p><code>CREATED</code> / <code>PENDING</code> / <code>RUNNING</code> / <code>SUCCESS</code> / <code>FAILED</code> / <code>TIMEOUT</code> / <code>REFUNDED</code> / <code>CANCELLED</code> / <code>MANUAL_REVIEW</code></p>
+<h2>9. 常见错误码</h2><div class="table-wrap"><table><tr><th>code</th><th>含义</th><th>处理方式</th></tr><tr><td><code>ENTERPRISE_API_TOKEN_REQUIRED</code></td><td>缺少企业 API Token</td><td>检查 <code>Authorization</code>。</td></tr><tr><td><code>ENTERPRISE_API_TOKEN_INVALID</code></td><td>企业 Token 无效或已禁用</td><td>重新创建 Token 或检查复制是否完整。</td></tr><tr><td><code>ENTERPRISE_API_TOKEN_EXPIRED</code></td><td>企业 Token 已过期</td><td>重新创建 Token。</td></tr><tr><td><code>ENTERPRISE_DISABLED</code></td><td>企业账号已禁用</td><td>联系超级管理员。</td></tr><tr><td><code>INSUFFICIENT_BALANCE</code></td><td>企业余额不足</td><td>给企业充值后重试。</td></tr><tr><td><code>PROVIDER_NOT_FOUND</code></td><td>渠道不可用</td><td>检查 <code>channelKey</code>。</td></tr><tr><td><code>MODEL_NOT_FOUND</code></td><td>模型不可用</td><td>检查 <code>modelId</code>、<code>type</code> 和模型启用状态。</td></tr><tr><td><code>GENERATION_SUBMIT_FAILED</code></td><td>提交上游失败</td><td>查看 <code>errorMessage</code> 后重试或联系管理员。</td></tr></table></div>
+<h2>10. 安全说明</h2><ul><li>企业 Token 只能保存在企业客户自己的服务端。</li><li>不要把 <code>ent_live_xxx</code> 放到公开网页、GitHub、截图或聊天群。</li><li>请求体不允许指定 <code>userId</code> / <code>enterpriseId</code>，任务归属由企业 Token 自动识别。</li></ul>
+</main><div id="toast" class="toast"></div><script>
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.__enterpriseCopyToastTimer);window.__enterpriseCopyToastTimer=setTimeout(()=>t.classList.remove('show'),1600)}
+function fallbackCopy(text){try{const ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.left='0';ta.style.top='0';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();ta.setSelectionRange(0,ta.value.length);const ok=document.execCommand('copy');ta.remove();toast(ok?'复制成功':'复制失败，请手动复制');return ok}catch(_){toast('复制失败，请手动复制');return false}}
+function copyText(text){try{const value=String(text||'');if(!value){toast('复制失败：内容为空');return}if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(value).then(()=>toast('复制成功')).catch(()=>fallbackCopy(value));else fallbackCopy(value)}catch(e){fallbackCopy(String(text||''))}}
+document.addEventListener('click',e=>{const btn=e.target.closest('.copy');if(!btn)return;e.preventDefault();e.stopPropagation();const pre=btn.closest('pre');const code=pre&&pre.querySelector('code');copyText(code?code.textContent:(pre?pre.textContent.replace(/^复制\s*/,''):''));});
+</script></body></html>

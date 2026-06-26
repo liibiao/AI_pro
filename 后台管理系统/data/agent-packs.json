@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "id": "manju-creation-library",
+      "label": "漫剧创作库 Writer Agent",
+      "description": "默认调用漫剧创作库 agents / skills / docs / templates / wordlists 的创作流水线规范。",
+      "sourcePath": "/Users/billy/Documents/AI_pro/漫剧创作库"
+    },
+    {
+      "id": "movie-agent",
+      "label": "电影 Agent",
+      "description": "电影 Agent 包，适合长片剧本、导演阐述、镜头设计和资产拆解。",
+      "sourcePath": "/Users/billy/Documents/gpt图库/电影agent.7z"
+    },
+    {
+      "id": "tv-drama-agent",
+      "label": "电视剧 Agent",
+      "description": "电视剧 Agent 包，适合剧集结构、人物弧线、分集剧情和连续资产规划。",
+      "sourcePath": "/Users/billy/Documents/电视剧agent1.7z"
+    },
+    {
+      "id": "shortdrama-agent-1-5",
+      "label": "短剧 Agent 1.5",
+      "description": "短剧 Agent 包，适合短剧剧本、分场与商业化节奏。",
+      "sourcePath": "/Users/billy/Documents/短剧agent 1.5.7z"
+    },
+    {
+      "id": "ad-agent",
+      "label": "广告 Agent",
+      "description": "广告 Agent 包，适合广告创意、卖点脚本与投放素材提示词。",
+      "sourcePath": "/Users/billy/Documents/广告agent.7z"
+    }
+  ]
+}

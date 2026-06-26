@@ -1,0 +1,48 @@
+{
+  "id": "grok-video",
+  "name": "grok-video",
+  "type": "video",
+  "label": "Grok 生视频",
+  "model": "grok-imagine-video",
+  "baseUrl": "http://45.77.211.38:8317/v1",
+  "url": "http://45.77.211.38:8317/v1",
+  "key": "replace-with-cliproxy-api-key",
+  "adapter": "grok-video",
+  "endpointPath": "/videos",
+  "statusEndpointPath": "/videos/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true
+  },
+  "capabilities": {
+    "resolutions": ["480p", "720p"],
+    "durations": [4, 6, 8, 10, 12, 15],
+    "defaultDuration": 6,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "4:3", "3:4", "3:2", "2:3", "1:1"],
+    "maxImages": {
+      "full": 4,
+      "smartMultiFrame": 4,
+      "firstLast": 2
+    },
+    "supportsAudio": false,
+    "supportsVideo": false
+  },
+  "modelAssembly": {
+    "type": "passthrough"
+  },
+  "note": "CLIProxyAPI xAI OAuth 视频渠道，后台会把画布分辨率/比例映射到 /v1/videos 的 size/aspect_ratio/resolution/seconds，并轮询 /v1/videos/{taskId}。",
+  "protocol": {
+    "adapter": "grok-video",
+    "endpointPath": "/videos",
+    "statusEndpointPath": "/videos/{taskId}",
+    "method": "async-poll",
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "Grok 生视频",
+    "badge": "Grok",
+    "badgeColor": "#7c3aed"
+  }
+}

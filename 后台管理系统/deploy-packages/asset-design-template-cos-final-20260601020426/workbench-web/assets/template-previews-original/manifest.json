@@ -1,0 +1,135 @@
+[
+  {
+    "id": "pink_nine_grid_character_sheet",
+    "label": "粉系九宫格设定板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/01.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/084d5ac85d4c4839b0d4b170d8a4f8dc.jpg",
+    "key": "mjb-reference/20260601/084d5ac85d4c4839b0d4b170d8a4f8dc.jpg"
+  },
+  {
+    "id": "pink_long_archive_board",
+    "label": "粉系长页全案板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/02.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/7e971b8366404c2d8c67f07b034c484b.jpg",
+    "key": "mjb-reference/20260601/7e971b8366404c2d8c67f07b034c484b.jpg"
+  },
+  {
+    "id": "industrial_idol_blueprint",
+    "label": "工业蓝图角色档案",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/03.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/e40b7f1b51d24cf59396a311f8c0ffd3.jpg",
+    "key": "mjb-reference/20260601/e40b7f1b51d24cf59396a311f8c0ffd3.jpg"
+  },
+  {
+    "id": "soft_profile_proportion_sheet",
+    "label": "角色比例档案板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/04.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/3dd5fffabdb0408da26d3340c9dec486.jpg",
+    "key": "mjb-reference/20260601/3dd5fffabdb0408da26d3340c9dec486.jpg"
+  },
+  {
+    "id": "portrait_detail_blueprint",
+    "label": "肖像细节蓝图板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/05.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/02e8e1ab632c41ae8b22be08795f92d6.jpg",
+    "key": "mjb-reference/20260601/02e8e1ab632c41ae8b22be08795f92d6.jpg"
+  },
+  {
+    "id": "blue_sitting_knit_board",
+    "label": "雾蓝半身坐姿蓝图",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/06.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/b741cb678ebb4f9eb33fa5dc8fbba04e.jpg",
+    "key": "mjb-reference/20260601/b741cb678ebb4f9eb33fa5dc8fbba04e.jpg"
+  },
+  {
+    "id": "pink_knit_visual_sheet",
+    "label": "粉色针织设定板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/07.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/39dec21b79d949d59fe643a6b49f2193.jpg",
+    "key": "mjb-reference/20260601/39dec21b79d949d59fe643a6b49f2193.jpg"
+  },
+  {
+    "id": "blue_knit_visual_sheet",
+    "label": "雾蓝针织设定板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/08.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/c1c33dda2c0b4236b40ff9fef6d1baf2.jpg",
+    "key": "mjb-reference/20260601/c1c33dda2c0b4236b40ff9fef6d1baf2.jpg"
+  },
+  {
+    "id": "pink_closeup_blueprint",
+    "label": "粉系近景蓝图板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/09.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/d354baf647a344e58f87cb651969eb4a.jpg",
+    "key": "mjb-reference/20260601/d354baf647a344e58f87cb651969eb4a.jpg"
+  },
+  {
+    "id": "blue_half_body_detail_sheet",
+    "label": "雾蓝半身细节板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/10.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/f5adb7afbaa24baca487b787f2a95d04.jpg",
+    "key": "mjb-reference/20260601/f5adb7afbaa24baca487b787f2a95d04.jpg"
+  },
+  {
+    "id": "pink_portrait_design_sheet",
+    "label": "粉色肖像设计板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/11.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/c64c07781fe642499621a2bc6e80be44.jpg",
+    "key": "mjb-reference/20260601/c64c07781fe642499621a2bc6e80be44.jpg"
+  },
+  {
+    "id": "mixed_closeup_blueprint",
+    "label": "混合五官蓝图板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/12.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/11d05d48bc7340d2b520e9d6101bce12.jpg",
+    "key": "mjb-reference/20260601/11d05d48bc7340d2b520e9d6101bce12.jpg"
+  },
+  {
+    "id": "blue_portrait_design_sheet",
+    "label": "雾蓝肖像设计板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/13.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/23c7cb0cd39a4234be4101dfa7cf8651.jpg",
+    "key": "mjb-reference/20260601/23c7cb0cd39a4234be4101dfa7cf8651.jpg"
+  },
+  {
+    "id": "lavender_knit_portrait_sheet",
+    "label": "薰紫针织设定板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/14.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/898d907b856f4f1e93d9d64a7a932c15.jpg",
+    "key": "mjb-reference/20260601/898d907b856f4f1e93d9d64a7a932c15.jpg"
+  },
+  {
+    "id": "cn_multi_angle_archive",
+    "label": "中文多角度档案板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/15.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/265da5d6f0ae4e86adff7b07c20884d1.jpg",
+    "key": "mjb-reference/20260601/265da5d6f0ae4e86adff7b07c20884d1.jpg"
+  },
+  {
+    "id": "soft_light_poster_archive",
+    "label": "柔光海报档案板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/16.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/4cb13d38e83946b4830d860d23c0ef64.jpg",
+    "key": "mjb-reference/20260601/4cb13d38e83946b4830d860d23c0ef64.jpg"
+  },
+  {
+    "id": "gentle_cn_full_asset_sheet",
+    "label": "温柔情懒中文设定集",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/17.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/e99302be4c46475e948afa3baf23dbbf.jpg",
+    "key": "mjb-reference/20260601/e99302be4c46475e948afa3baf23dbbf.jpg"
+  },
+  {
+    "id": "school_uniform_mood_archive",
+    "label": "灰蓝制服角色设定板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/18.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/1e2b166150564ab2b6e048616099ce88.jpg",
+    "key": "mjb-reference/20260601/1e2b166150564ab2b6e048616099ce88.jpg"
+  },
+  {
+    "id": "fantasy_white_gown_archive",
+    "label": "仙侠礼服角色设定板",
+    "source": "/Users/billy/Documents/AI_pro/漫剧创作库/template-reference-input/19.jpg",
+    "cos": "https://bl001-1303935072.cos.ap-guangzhou.myqcloud.com/mjb-reference/20260601/9e77de06c96645cab0d39679b683100f.jpg",
+    "key": "mjb-reference/20260601/9e77de06c96645cab0d39679b683100f.jpg"
+  }
+]

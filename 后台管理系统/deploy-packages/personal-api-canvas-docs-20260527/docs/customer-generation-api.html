@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>个人 API 接入文档 · AI Admin</title>
+<style>
+:root{color-scheme:dark;--bg:#07080d;--panel:#11131b;--text:#f4f7fb;--muted:#9aa4b2;--line:rgba(255,255,255,.1);--brand:#7c5cff;--cyan:#39d5ff;--green:#28e0a6;--warn:#ffd166}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 20% 0,rgba(124,92,255,.22),transparent 34%),linear-gradient(180deg,#07080d,#090b12 45%,#06070b);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.65}.page{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;padding:24px 18px;border-right:1px solid var(--line);background:rgba(8,9,14,.72);backdrop-filter:blur(18px);overflow:auto}.brand{font-size:18px;font-weight:900}.brand span{color:var(--cyan)}.nav{display:grid;gap:8px;margin-top:24px}.nav a{color:var(--muted);text-decoration:none;padding:9px 11px;border-radius:12px;font-size:13px}.nav a:hover{color:#fff;background:rgba(255,255,255,.07)}.main{padding:34px 38px 80px;max-width:1180px}.hero{border:1px solid var(--line);border-radius:30px;padding:38px;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(57,213,255,.1) 45%,rgba(255,255,255,.04));box-shadow:0 24px 80px rgba(0,0,0,.32)}.kicker{color:var(--cyan);font-size:13px;font-weight:800}.hero h1{margin:10px 0;font-size:42px;line-height:1.12}.hero p{margin:0;color:#c6cfda;max-width:760px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}.btn{height:38px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.07);color:#fff;padding:0 15px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}.btn.primary{border-color:rgba(57,213,255,.36);background:linear-gradient(135deg,rgba(124,92,255,.8),rgba(57,213,255,.36))}.card{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.035));padding:18px;margin:14px 0}.muted,.card span{color:var(--muted);font-size:13px}section{margin-top:30px}.section-title{display:flex;align-items:center;gap:10px;margin-bottom:12px}.section-title em{display:grid;place-items:center;width:28px;height:28px;border-radius:10px;background:rgba(57,213,255,.13);color:var(--cyan);font-style:normal;font-weight:900}h2{margin:0;font-size:24px}h3{margin:20px 0 10px;font-size:17px}.code{margin:12px 0;border:1px solid var(--line);border-radius:18px;background:#0b0d13;overflow:hidden}.code-head{height:38px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid var(--line);color:#cbd5e1;font-size:12px}.copy{height:26px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.07);color:#fff;padding:0 10px;cursor:pointer;font-size:12px}pre{margin:0;padding:16px;overflow:auto;color:#e6edf7;font-size:13px;line-height:1.55}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace}.table{width:100%;border-collapse:collapse;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:12px 0}.table th,.table td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;font-size:13px;vertical-align:top}.table th{color:#dbeafe;background:rgba(255,255,255,.06)}.table td{color:#cbd5e1}.pill{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:2px 8px;color:#fff;background:rgba(255,255,255,.06);font-size:12px}.ok{border-color:rgba(40,224,166,.28);background:rgba(40,224,166,.08);color:#a7f3d0}.warn{border-color:rgba(255,209,102,.28);background:rgba(255,209,102,.08);color:#ffe3a3}.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(16px);opacity:0;pointer-events:none;border:1px solid var(--line);border-radius:999px;background:rgba(10,12,18,.92);color:#fff;padding:10px 16px;transition:.18s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}@media(max-width:900px){.page{grid-template-columns:1fr}.side{position:relative;height:auto}.main{padding:22px}.hero h1{font-size:31px}}
+</style>
+</head>
+<body>
+<div class="page">
+  <aside class="side">
+    <div class="brand">个人 <span>API Docs</span></div>
+    <div class="muted">只包含个人 API，不包含企业入口</div>
+    <nav class="nav">
+      <a href="#quick">接入流程</a><a href="#auth">鉴权</a><a href="#apis">接口列表</a><a href="#create">创建任务</a><a href="#response">响应字段</a><a href="#query">查询接口</a><a href="#errors">错误码</a><a href="#safe">安全说明</a>
+    </nav>
+  </aside>
+  <main class="main">
+    <div class="hero">
+      <div class="kicker">PERSONAL OPEN API</div>
+      <h1>个人 API 接入文档</h1>
+      <p>从画布账户设置生成个人 API Key 后，即可调用 <code>/api/open/personal/*</code> 创建和查询生成任务。扣当前个人账号余额，会员 / 体验卡折扣实时生效。</p>
+      <div class="actions"><a class="btn primary" href="#quick">开始接入</a><button class="btn" onclick="copyText(location.origin)">复制服务地址</button></div>
+    </div>
+
+    <section id="quick"><div class="section-title"><em>1</em><h2>接入流程</h2></div>
+      <div class="card"><b>入口</b><span>画布 → 账户设置 → 个人 API 接入 → 创建 API Key。明文 Key 只展示一次，请立即复制保存。</span></div>
+    </section>
+
+    <section id="auth"><div class="section-title"><em>2</em><h2>鉴权方式</h2></div>
+      <div class="code"><div class="code-head">HTTP Header <button class="copy" onclick="copyCode(this)">复制代码</button></div><pre><code>Authorization: Bearer sk_live_xxx
+Content-Type: application/json</code></pre></div>
+    </section>
+
+    <section id="apis"><div class="section-title"><em>3</em><h2>接口列表</h2></div>
+      <table class="table"><tr><th>能力</th><th>方法</th><th>URL</th></tr><tr><td>创建生成任务</td><td><code>POST</code></td><td><code>/api/open/personal/generation/tasks</code></td></tr><tr><td>查询任务列表</td><td><code>GET</code></td><td><code>/api/open/personal/generation/tasks?limit=100</code></td></tr><tr><td>查询任务详情</td><td><code>GET</code></td><td><code>/api/open/personal/generation/tasks/:id</code></td></tr><tr><td>主动刷新任务</td><td><code>POST</code></td><td><code>/api/open/personal/generation/tasks/:id/query</code></td></tr></table>
+    </section>
+
+    <section id="create"><div class="section-title"><em>4</em><h2>创建生成任务</h2></div>
+      <div class="code"><div class="code-head">cURL 示例 <button class="copy" onclick="copyCode(this)">复制代码</button></div><pre><code>curl -X POST "__BASE__/api/open/personal/generation/tasks" \
+  -H "Authorization: Bearer sk_live_xxx" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "channelKey": "gpt-image",
+    "modelId": "model_image_xxx",
+    "type": "IMAGE",
+    "mode": "txt2img",
+    "prompt": "一只赛博朋克风格的猫",
+    "negativePrompt": "",
+    "inputFiles": [],
+    "params": { "size": "1024x1024", "quantity": 1 },
+    "clientRequestId": "client_order_001"
+  }'</code></pre></div>
+      <h3>请求体参数表</h3>
+      <table class="table"><tr><th>字段</th><th>必填</th><th>类型穷举</th><th>说明</th></tr><tr><td><code>channelKey</code></td><td>是</td><td><code>string</code></td><td>渠道 Key，不能为空。</td></tr><tr><td><code>modelId</code></td><td>是</td><td><code>string</code></td><td>模型 ID / modelKey / 模型名，不能为空。</td></tr><tr><td><code>type</code></td><td>是</td><td><code>"IMAGE" | "VIDEO" | "LLM"</code></td><td>生成类型。</td></tr><tr><td><code>mode</code></td><td>是</td><td><code>string</code></td><td>生成模式，如 txt2img、img2img、text2video。</td></tr><tr><td><code>prompt</code></td><td>是</td><td><code>string</code></td><td>正向提示词，不能为空。</td></tr><tr><td><code>negativePrompt</code></td><td>否</td><td><code>string</code></td><td>反向提示词。</td></tr><tr><td><code>inputFiles</code></td><td>否</td><td><code>array</code></td><td>默认 []，元素可为 URL 字符串或对象。</td></tr><tr><td><code>params</code></td><td>否</td><td><code>object</code></td><td>默认 {}，值可为 string / number / boolean / array / object / null。</td></tr><tr><td><code>clientRequestId</code></td><td>否</td><td><code>string</code></td><td>幂等 ID，长度 1-160。</td></tr></table>
+      <h3>params 常见字段类型</h3>
+      <table class="table"><tr><th>字段示例</th><th>类型穷举</th><th>说明</th></tr><tr><td><code>size</code></td><td><code>string</code></td><td>图片尺寸。</td></tr><tr><td><code>width</code> / <code>height</code></td><td><code>number</code></td><td>宽高。</td></tr><tr><td><code>quantity</code></td><td><code>number</code></td><td>生成数量。</td></tr><tr><td><code>seed</code></td><td><code>number | string</code></td><td>随机种子。</td></tr><tr><td><code>referenceImages</code></td><td><code>array</code></td><td>参考图数组。</td></tr><tr><td><code>duration</code></td><td><code>number | string</code></td><td>视频时长。</td></tr><tr><td><code>fps</code></td><td><code>number</code></td><td>视频帧率。</td></tr><tr><td>任意扩展字段</td><td><code>string | number | boolean | array | object | null</code></td><td>是否生效取决于模型适配器。</td></tr></table>
+    </section>
+
+    <section id="response"><div class="section-title"><em>5</em><h2>响应体参数表</h2></div>
+      <table class="table"><tr><th>字段</th><th>类型穷举</th><th>说明</th></tr><tr><td><code>ok</code></td><td><code>boolean</code></td><td>成功为 true。</td></tr><tr><td><code>task</code></td><td><code>object</code></td><td>任务对象。</td></tr><tr><td><code>chargedCredits</code></td><td><code>number</code></td><td>本次预扣积分。</td></tr><tr><td><code>balance</code></td><td><code>number | undefined</code></td><td>扣费后余额。</td></tr><tr><td><code>task.id</code></td><td><code>string</code></td><td>任务 ID。</td></tr><tr><td><code>task.type</code></td><td><code>"IMAGE" | "VIDEO" | "LLM"</code></td><td>生成类型。</td></tr><tr><td><code>task.status</code></td><td><code>"CREATED" | "PENDING" | "RUNNING" | "SUCCESS" | "FAILED"</code></td><td>任务状态。</td></tr><tr><td><code>task.resultJson</code></td><td><code>object | array | string | number | boolean | null</code></td><td>生成结果详情。</td></tr><tr><td><code>task.resultUrlsJson</code></td><td><code>array | null</code></td><td>结果资源 URL。</td></tr><tr><td><code>task.errorCode</code></td><td><code>string | null</code></td><td>错误码。</td></tr><tr><td><code>task.errorMessage</code></td><td><code>string | null</code></td><td>错误信息。</td></tr><tr><td><code>task.progress</code></td><td><code>number | null</code></td><td>进度，常见 0-100。</td></tr><tr><td><code>task.createdAt / updatedAt / startedAt / completedAt / failedAt</code></td><td><code>string | null</code></td><td>ISO 时间字符串。</td></tr><tr><td><code>task.model</code></td><td><code>object | undefined</code></td><td>查询接口可能返回模型信息。</td></tr><tr><td><code>task.provider</code></td><td><code>object | undefined</code></td><td>查询接口可能返回渠道信息。</td></tr></table>
+    </section>
+
+    <section id="query"><div class="section-title"><em>6</em><h2>查询接口</h2></div>
+      <div class="code"><div class="code-head">查询详情 <button class="copy" onclick="copyCode(this)">复制代码</button></div><pre><code>curl "__BASE__/api/open/personal/generation/tasks/task_xxx" \
+  -H "Authorization: Bearer sk_live_xxx"</code></pre></div>
+      <div class="code"><div class="code-head">主动刷新 <button class="copy" onclick="copyCode(this)">复制代码</button></div><pre><code>curl -X POST "__BASE__/api/open/personal/generation/tasks/task_xxx/query" \
+  -H "Authorization: Bearer sk_live_xxx"</code></pre></div>
+      <table class="table"><tr><th>字段</th><th>类型穷举</th><th>说明</th></tr><tr><td><code>limit</code></td><td><code>number | string</code></td><td>列表数量，默认 100，最大 300。</td></tr><tr><td><code>id</code></td><td><code>string</code></td><td>路径中的任务 ID。</td></tr><tr><td><code>items</code></td><td><code>array</code></td><td>任务列表数组。</td></tr><tr><td><code>refund</code></td><td><code>object | null | undefined</code></td><td>刷新失败任务时可能返回退款信息。</td></tr></table>
+    </section>
+
+    <section id="errors"><div class="section-title"><em>7</em><h2>错误码</h2></div>
+      <table class="table"><tr><th>code</th><th>含义</th><th>处理方式</th></tr><tr><td><code>OPEN_API_TOKEN_REQUIRED</code></td><td>缺少个人 API Key</td><td>检查 Authorization。</td></tr><tr><td><code>OPEN_API_TOKEN_INVALID</code></td><td>Key 无效或已禁用</td><td>重新创建 / 复制 Key。</td></tr><tr><td><code>USER_DISABLED</code></td><td>账号已禁用</td><td>联系管理员。</td></tr><tr><td><code>INSUFFICIENT_BALANCE</code></td><td>余额不足</td><td>充值后重试。</td></tr><tr><td><code>PROVIDER_NOT_FOUND</code></td><td>渠道不可用</td><td>检查 channelKey。</td></tr><tr><td><code>MODEL_NOT_FOUND</code></td><td>模型不可用</td><td>检查 modelId / type。</td></tr><tr><td><code>GENERATION_TASK_NOT_FOUND</code></td><td>任务不存在或无权访问</td><td>确认任务属于当前账号。</td></tr></table>
+    </section>
+
+    <section id="safe"><div class="section-title"><em>8</em><h2>安全说明</h2></div>
+      <div class="card warn"><b>重要</b><span>不要把 API Key 写到公开网页、GitHub、截图或聊天群。怀疑泄露后，请立即禁用并重新创建。</span></div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast">复制成功</div>
+<script>
+const BASE = location.origin;
+document.querySelectorAll('code').forEach(el => { el.textContent = el.textContent.replaceAll('__BASE__', BASE); });
+function showToast(text){const t=document.getElementById('toast');t.textContent=text||'复制成功';t.classList.add('show');clearTimeout(window.__toastTimer);window.__toastTimer=setTimeout(()=>t.classList.remove('show'),1600)}
+async function copyText(text){const value=String(text||'').trim();if(!value)return showToast('没有可复制内容');try{await navigator.clipboard.writeText(value);showToast('复制成功')}catch(e){const ta=document.createElement('textarea');ta.value=value;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();showToast('复制成功')}}
+function copyCode(btn){const code=btn.closest('.code').querySelector('code').textContent;copyText(code)}
+</script>
+</body>
+</html>

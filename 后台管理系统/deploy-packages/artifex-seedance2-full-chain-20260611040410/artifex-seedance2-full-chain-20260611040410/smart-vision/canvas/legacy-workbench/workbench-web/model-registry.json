@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "description": "Image Studio 模型身份注册表。只管理稳定 identityKey 与 adapter 绑定，不存储 API Key，不接管显示名称/别名/真实模型名，不覆盖 models/*.json 渠道配置。",
+  "models": [
+    {
+      "configId": "gpt-image-2",
+      "identityKey": "gptimage2::gptimage2",
+      "adapter": "openai-edits"
+    },
+    {
+      "configId": "gpt-image-v2",
+      "identityKey": "gptimage2::gptimagev2",
+      "adapter": "gpt-image-v2"
+    },
+    {
+      "configId": "midjourney-imagine",
+      "identityKey": "midjourney::imagine",
+      "adapter": "midjourney-imagine"
+    },
+    {
+      "configId": "sora-2",
+      "identityKey": "notevideo::sora2",
+      "adapter": "notevideo"
+    },
+    {
+      "configId": "sora-v3-pro",
+      "identityKey": "notevideo::sorav3pro",
+      "adapter": "notevideo"
+    },
+    {
+      "configId": "sora-v4-pro",
+      "identityKey": "notevideo::sorav4pro",
+      "adapter": "notevideo"
+    },
+    {
+      "configId": "sora-v3-vip",
+      "identityKey": "notevideo::sorav3vip",
+      "adapter": "notevideo"
+    },
+    {
+      "configId": "sora-video-pro",
+      "identityKey": "artifex::video-pro-720p",
+      "adapter": "sora-video-pro"
+    },
+    {
+      "configId": "seedance2-fast",
+      "identityKey": "seedance2::video-fast",
+      "adapter": "seedance2"
+    },
+    {
+      "configId": "seedance2-pro",
+      "identityKey": "seedance2::video-pro",
+      "adapter": "seedance2"
+    },
+    {
+      "configId": "seedance2-pro-1080p",
+      "identityKey": "seedance2::video-pro-1080p",
+      "adapter": "seedance2"
+    },
+    {
+      "configId": "seedance-2-0",
+      "identityKey": "seedance::doubao-seedance-2-0-260128",
+      "adapter": "seedance-task"
+    },
+    {
+      "configId": "grok-image",
+      "identityKey": "grokimagine::text",
+      "adapter": "grok-image"
+    },
+    {
+      "configId": "grok-image-edit",
+      "identityKey": "grokimagine::edit",
+      "adapter": "grok-image-edit"
+    },
+    {
+      "configId": "grok-video",
+      "identityKey": "grokimagine::video",
+      "adapter": "grok-video"
+    },
+    {
+      "configId": "grok-llm",
+      "identityKey": "grok::llm",
+      "adapter": "grok-chat"
+    },
+    {
+      "configId": "gemini-unified-image",
+      "identityKey": "gemini::image-generate",
+      "adapter": "gemini-image-generate"
+    },
+    {
+      "configId": "gemini-unified-image-edit",
+      "identityKey": "gemini::image-edit",
+      "adapter": "gemini-image-edit"
+    },
+    {
+      "configId": "gemini-pro-image",
+      "identityKey": "gemini::pro-image-generate",
+      "adapter": "gemini-image-generate"
+    },
+    {
+      "configId": "gemini-pro-image-edit",
+      "identityKey": "gemini::pro-image-edit",
+      "adapter": "gemini-image-edit"
+    },
+    {
+      "configId": "gemini-veo-video",
+      "identityKey": "gemini::veo-video",
+      "adapter": "gemini-video"
+    },
+    {
+      "configId": "gemini-llm",
+      "identityKey": "gemini::llm",
+      "adapter": "gemini-chat"
+    },
+    {
+      "configId": "gemini-pro-llm",
+      "identityKey": "gemini::pro-llm",
+      "adapter": "gemini-chat"
+    }
+  ]
+}

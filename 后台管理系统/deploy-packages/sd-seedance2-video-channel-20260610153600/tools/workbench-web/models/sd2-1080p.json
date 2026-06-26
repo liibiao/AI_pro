@@ -1,0 +1,69 @@
+{
+  "id": "sd2-1080p",
+  "configId": "sd2-1080p",
+  "modelKey": "sd2-1080p",
+  "providerKey": "aiyunzhi-seedance2",
+  "channelKey": "aiyunzhi-seedance2",
+  "name": "sd2-1080p",
+  "modelNick": "sd2-1080p",
+  "displayName": "SD 2.0 1080P",
+  "label": "SD 2.0 1080P",
+  "type": "video",
+  "model": "sd2-1080p",
+  "baseUrl": "https://aiyunzhi.top/v1",
+  "url": "https://aiyunzhi.top/v1/video/generations",
+  "key": "sk-t0v504skmtX34eQFtGtWRhyLNZBelHkgszUivJi4G326n6q9",
+  "adapter": "seedance2-sd",
+  "endpointPath": "/video/generations",
+  "statusEndpointPath": "/video/generations/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "firstFrame": true,
+    "firstLastFrame": true,
+    "referenceImages": true
+  },
+  "capabilities": {
+    "resolutions": ["1080p"],
+    "durations": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "defaultDuration": 5,
+    "defaultResolution": "1080p",
+    "aspectRatios": ["16:9", "9:16", "4:3", "3:4", "1:1", "21:9"],
+    "maxImages": {
+      "full": 9,
+      "smartMultiFrame": 9,
+      "firstLast": 2
+    },
+    "supportsAudio": false,
+    "supportsVideo": false,
+    "supportsLastFrame": true,
+    "maxVideos": 0,
+    "maxAudios": 0
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "second",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberDiscountRate": 0.4,
+      "chargedCreditsPerSecond": 54,
+      "originalCreditsPerSecond": 135,
+      "costCreditsPerSecond": 37.8
+    }
+  },
+  "note": "Aiyunzhi SD / Seedance 2.0 1080P 标准版；无参考图走 /video/generations，有参考图自动走 /video/generations/multipart，最多 9 张参考图。",
+  "protocol": {
+    "adapter": "seedance2-sd",
+    "endpointPath": "/video/generations",
+    "multipartEndpointPath": "/video/generations/multipart",
+    "statusEndpointPath": "/video/generations/{taskId}",
+    "method": "async-poll",
+    "uploadMode": "object_storage"
+  },
+  "ui": {
+    "label": "SD 2.0 1080P",
+    "badge": "1080P",
+    "badgeColor": "#f97316"
+  }
+}

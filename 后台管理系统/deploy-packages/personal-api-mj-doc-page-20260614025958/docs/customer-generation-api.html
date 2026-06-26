@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>个人生成 API 接入文档 · AI Admin</title>
+<style>
+:root{color-scheme:dark;--bg:#07080d;--panel:#11131b;--panel2:#151925;--text:#f4f7fb;--muted:#a8b3c2;--line:rgba(255,255,255,.12);--brand:#7c5cff;--cyan:#39d5ff;--green:#31d0aa;--orange:#fbbf24}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 18% 0,rgba(124,92,255,.22),transparent 34%),linear-gradient(180deg,#07080d,#090b12);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.65}.wrap{max-width:1220px;margin:0 auto;padding:34px 28px 80px}.hero{border:1px solid var(--line);border-radius:28px;padding:30px;background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(57,213,255,.1),rgba(255,255,255,.04));margin-bottom:28px}.kicker{color:var(--cyan);font-size:12px;font-weight:900;letter-spacing:.12em}.hero h1{margin:8px 0 6px;font-size:38px}.hero p{color:#cbd5e1;margin:0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.btn{border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.07);color:#fff;padding:9px 14px;text-decoration:none;cursor:pointer}.btn:hover,.copy:hover{border-color:rgba(57,213,255,.5);background:rgba(57,213,255,.13)}h2{margin-top:34px;border-top:1px solid var(--line);padding-top:24px}h3{margin-top:24px;color:#e5edff}p,li{color:#d6dee9}.note{border-left:4px solid var(--cyan);margin:18px 0;padding:10px 14px;background:rgba(57,213,255,.08);color:#dbeafe;border-radius:12px}.warn{border-left-color:var(--orange);background:rgba(251,191,36,.08)}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(255,255,255,.08);padding:2px 5px;border-radius:6px}pre{position:relative;background:#0b0d13;border:1px solid var(--line);border-radius:16px;padding:46px 16px 16px;overflow:auto;color:#e6edf7;box-shadow:0 12px 40px rgba(0,0,0,.24)}pre code{background:transparent;padding:0;white-space:pre;font-size:13px}.copy{position:absolute;right:12px;top:10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;padding:5px 10px;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.045);padding:16px}.table-wrap{width:100%;overflow:auto;border:1px solid var(--line);border-radius:16px;margin:14px 0;background:rgba(255,255,255,.025)}table{width:100%;border-collapse:collapse;min-width:780px}th,td{border-bottom:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;font-size:13px}th{background:rgba(255,255,255,.075);color:#dbeafe;white-space:nowrap}td{color:#cbd5e1}.tag{display:inline-block;border:1px solid rgba(57,213,255,.28);background:rgba(57,213,255,.08);color:#dff7ff;border-radius:999px;padding:1px 7px;margin:1px 2px;font-size:12px}.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:#10131c;border:1px solid var(--line);padding:9px 14px;border-radius:999px;display:none;z-index:9999}.toast.show{display:block}@media(max-width:760px){.wrap{padding:22px 16px}.hero h1{font-size:28px}.grid{grid-template-columns:1fr}table{min-width:720px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="hero">
+  <div class="kicker">PERSONAL OPEN API</div>
+  <h1>个人生成 API 接入文档</h1>
+  <p>个人 API 专用，可直接交给 AI 智能体 / CodeBuddy / 龙虾接入调试。包含真实接口、真实模型枚举、参数表、JSON 示例和可复制代码块。</p>
+  <div class="actions"><button class="btn" onclick="copyText(location.origin)">复制当前服务地址</button><button class="btn" onclick="copyText('/api/open/personal/generation/tasks')">复制创建任务路径</button></div>
+</section>
+
+<div class="note">本文档只覆盖个人 API。生成接口使用 <code>sk_live_xxx</code>；画布登录 Token 只用于在画布内创建个人 API Key。企业 API 请看 <code>enterprise-generation-api.html</code>。</div>
+
+<h2>1. Key 创建与鉴权</h2>
+<div class="grid">
+  <div class="card"><h3>1.1 在画布内创建个人 API Key</h3><p>画布弹窗点击「创建个人 API Key」，接口使用画布登录 Token。</p><pre><button class="copy">复制</button><code>POST /api/personal-api-tokens
+Authorization: Bearer &lt;画布登录 token&gt;
+Content-Type: application/json</code></pre></div>
+  <div class="card"><h3>1.2 生成接口鉴权</h3><p>创建成功后使用返回的 <code>plainToken</code> 调用个人开放 API。</p><pre><button class="copy">复制</button><code>Authorization: Bearer sk_live_xxx
+Content-Type: application/json</code></pre></div>
+</div>
+<h3>创建 Key 请求体</h3>
+<pre><button class="copy">复制</button><code>{
+  "name": "画布文档快捷创建 API Key"
+}</code></pre>
+<h3>创建 Key 成功响应</h3>
+<pre><button class="copy">复制</button><code>{
+  "ok": true,
+  "token": {
+    "id": "&lt;PersonalApiToken.id&gt;",
+    "name": "画布文档快捷创建 API Key",
+    "tokenPrefix": "sk_live_...",
+    "status": "ACTIVE",
+    "createdAt": "&lt;ISO时间&gt;",
+    "plainToken": "sk_live_xxx"
+  }
+}</code></pre>
+<div class="note warn"><code>plainToken</code> 只展示一次。生成接口必须使用 <code>sk_live_xxx</code>，不要使用画布登录 Token。</div>
+
+<h2>2. 真实接口列表</h2>
+<div class="table-wrap"><table><thead><tr><th>能力</th><th>方法</th><th>URL</th><th>鉴权</th></tr></thead><tbody>
+<tr><td>创建生成任务</td><td><code>POST</code></td><td><code>/api/open/personal/generation/tasks</code></td><td><code>Bearer sk_live_xxx</code></td></tr>
+<tr><td>查询任务列表</td><td><code>GET</code></td><td><code>/api/open/personal/generation/tasks?limit=100</code></td><td><code>Bearer sk_live_xxx</code></td></tr>
+<tr><td>查询任务详情</td><td><code>GET</code></td><td><code>/api/open/personal/generation/tasks/:id</code></td><td><code>Bearer sk_live_xxx</code></td></tr>
+<tr><td>主动刷新任务</td><td><code>POST</code></td><td><code>/api/open/personal/generation/tasks/:id/query</code></td><td><code>Bearer sk_live_xxx</code></td></tr>
+</tbody></table></div>
+
+<h2>3. 生产数据库 ACTIVE 模型枚举</h2>
+<p>服务端按 <code>channelKey</code> 查 <code>upstream_providers.provider_key</code>，再在该渠道下查 ACTIVE 模型；<code>modelId</code> 可匹配 <code>ai_models.id</code> / <code>modelKey</code> / <code>name</code>，推荐传 <code>ai_models.id</code>。</p>
+<div class="table-wrap"><table><thead><tr><th>type</th><th>channelKey</th><th>推荐 modelId</th><th>modelKey</th><th>后台显示名</th><th>adapter</th><th>支持 mode</th><th>真实能力/计费示例</th></tr></thead><tbody>
+<tr><td><code>IMAGE</code></td><td><code>canvas_gpt-image-2-pro</code></td><td><code>canvas-gpt-image-2-pro</code></td><td><code>gpt-image-2</code></td><td>GPT-Image-2-pro</td><td><code>openai-edits</code></td><td><span class="tag">txt2img</span><span class="tag">img2img</span></td><td><code>1K=5积分</code>、<code>2K=8积分</code>、<code>3K=25积分</code>、<code>4K=50积分</code></td></tr>
+<tr><td><code>IMAGE</code></td><td><code>canvas_grok-image</code></td><td><code>canvas-grok-image</code></td><td><code>grok-imagine-1.0</code></td><td>Grok 文生图</td><td><code>grok-image</code></td><td><span class="tag">txt2img</span></td><td>ACTIVE</td></tr>
+<tr><td><code>IMAGE</code></td><td><code>canvas_grok-image-edit</code></td><td><code>canvas-grok-image-edit</code></td><td><code>grok-imagine-1.0-edit</code></td><td>Grok 图生图</td><td><code>grok-image-edit</code></td><td><span class="tag">img2img</span></td><td>ACTIVE</td></tr>
+<tr><td><code>IMAGE</code></td><td><code>canvas_gemini-image</code></td><td><code>canvas-gemini-image</code></td><td><code>gemini-3-pro-image-preview</code></td><td>Gemini 图片</td><td><code>gemini-image</code></td><td><span class="tag">txt2img</span><span class="tag">img2img</span></td><td>ACTIVE</td></tr>
+<tr><td><code>IMAGE</code></td><td><code>canvas_gemini-unified-image</code></td><td><code>canvas-gemini-unified-image</code></td><td><code>gemini-3.1-flash-image-preview</code></td><td>Gemini 统一文生图</td><td><code>gemini-image-generate</code></td><td><span class="tag">txt2img</span></td><td>ACTIVE</td></tr>
+<tr><td><code>IMAGE</code></td><td><code>canvas_gemini-unified-image-edit</code></td><td><code>canvas-gemini-unified-image-edit</code></td><td><code>gemini-3.1-flash-image-preview</code></td><td>Gemini 统一图生图</td><td><code>gemini-image-edit</code></td><td><span class="tag">img2img</span></td><td>ACTIVE</td></tr>
+<tr><td><code>IMAGE</code></td><td><code>canvas_gemini-pro-image</code></td><td><code>canvas-gemini-pro-image</code></td><td><code>gemini-3-pro-image-preview</code></td><td>Gemini Pro 文生图</td><td><code>gemini-image-generate</code></td><td><span class="tag">txt2img</span></td><td>ACTIVE</td></tr>
+<tr><td><code>IMAGE</code></td><td><code>canvas_gemini-pro-image-edit</code></td><td><code>canvas-gemini-pro-image-edit</code></td><td><code>gemini-3-pro-image-preview</code></td><td>Gemini Pro 图生图</td><td><code>gemini-image-edit</code></td><td><span class="tag">img2img</span></td><td>ACTIVE</td></tr>
+<tr><td><code>IMAGE</code></td><td><code>midjourney_imagine</code></td><td><code>canvas-midjourney-imagine</code></td><td><code>midjourney-imagine</code></td><td>Midjourney Imagine</td><td><code>midjourney-imagine</code></td><td><span class="tag">txt2img</span><span class="tag">img2img</span><span class="tag">storyboard</span></td><td>异步轮询；<code>/mj/submit/imagine</code>；支持 MJ 参数、参考图 URL、<code>accountFilter.modes</code></td></tr>
+<tr><td><code>VIDEO</code></td><td><code>canvas_sora-2</code></td><td><code>canvas-sora-2</code></td><td><code>sora-2</code></td><td>sora-2</td><td><code>notevideo</code></td><td><span class="tag">text2video</span><span class="tag">img2video</span><span class="tag">firstLast</span><span class="tag">smartMultiFrame</span><span class="tag">full</span></td><td><code>36积分/秒</code>；<code>duration=4/8/12</code>；<code>maxImages.smartMultiFrame=4</code></td></tr>
+<tr><td><code>VIDEO</code></td><td><code>canvas_sora-v3-pro</code></td><td><code>canvas-sora-v3-pro</code></td><td><code>sora-v3-pro</code></td><td>sora-v3-pro</td><td><code>notevideo</code></td><td><span class="tag">text2video</span><span class="tag">img2video</span><span class="tag">firstLast</span><span class="tag">smartMultiFrame</span><span class="tag">full</span></td><td><code>36积分/秒</code>；ACTIVE</td></tr>
+<tr><td><code>VIDEO</code></td><td><code>canvas_sora-v3-vip</code></td><td><code>canvas-sora-v3-vip</code></td><td><code>sora-v3-vip</code></td><td>sora-v3-vip</td><td><code>notevideo</code></td><td><span class="tag">text2video</span><span class="tag">img2video</span><span class="tag">firstLast</span><span class="tag">smartMultiFrame</span><span class="tag">full</span></td><td><code>36积分/秒</code>；<code>duration=10/15</code>；<code>maxImages.smartMultiFrame=9</code></td></tr>
+<tr><td><code>VIDEO</code></td><td><code>canvas_grok-video</code></td><td><code>canvas-grok-video</code></td><td><code>grok-imagine-1.0-video</code></td><td>Grok 视频</td><td><code>grok-video</code></td><td><span class="tag">text2video</span><span class="tag">img2video</span></td><td>ACTIVE</td></tr>
+<tr><td><code>VIDEO</code></td><td><code>canvas_gemini-veo-video</code></td><td><code>canvas-gemini-veo-video</code></td><td><code>veo-3.1-generate-preview</code></td><td>Gemini Veo 视频</td><td><code>gemini-video</code></td><td><span class="tag">text2video</span><span class="tag">img2video</span></td><td>ACTIVE</td></tr>
+</tbody></table></div>
+
+<h2>4. 创建任务请求体字段表</h2>
+<div class="table-wrap"><table><thead><tr><th>字段</th><th>必填</th><th>类型/枚举</th><th>示例</th><th>说明</th></tr></thead><tbody>
+<tr><td><code>channelKey</code></td><td>是</td><td><code>string</code>，见上表所有 <code>channelKey</code></td><td><code>canvas_gpt-image-2-pro</code> / <code>canvas_sora-v3-pro</code></td><td>必须是 <code>upstream_providers.provider_key</code>，且与模型所属渠道匹配。</td></tr>
+<tr><td><code>modelId</code></td><td>是</td><td>见上表所有推荐 <code>modelId</code>；也可填 <code>modelKey</code> / <code>name</code></td><td><code>canvas-gpt-image-2-pro</code> / <code>canvas-sora-v3-pro</code></td><td>服务端按 <code>id → modelKey → name</code> 匹配，推荐传数据库模型 ID。</td></tr>
+<tr><td><code>type</code></td><td>是</td><td><code>"IMAGE" | "VIDEO" | "LLM"</code></td><td><code>IMAGE</code></td><td>必须与模型类型一致。</td></tr>
+<tr><td><code>mode</code></td><td>是</td><td><code>"txt2img" | "img2img" | "text2video" | "txt2video" | "img2video" | "firstLast" | "smartMultiFrame" | "full" | "chat"</code></td><td><code>txt2img</code></td><td>后端校验非空，具体可用性由模型适配器决定。</td></tr>
+<tr><td><code>prompt</code></td><td>是</td><td><code>string</code></td><td>一张电影感产品海报，黑色背景，主体居中</td><td>正向提示词，不能为空。</td></tr>
+<tr><td><code>negativePrompt</code></td><td>否</td><td><code>string</code></td><td>低清晰度，水印，畸形，多余肢体</td><td>反向提示词。</td></tr>
+<tr><td><code>inputFiles</code></td><td>否</td><td><code>array</code></td><td><code>[]</code> 或参考图对象数组</td><td>图生图/图生视频参考图。个人开放 API 当前不提供 <code>/v1/files</code> 上传鉴权，请传公网可访问真实图片 URL。</td></tr>
+<tr><td><code>params</code></td><td>否</td><td><code>object</code></td><td><code>{"resolution":"1K","size":"1024x1024","n":1}</code></td><td>扩展参数，保存到 <code>paramsJson</code> 并透传适配器。</td></tr>
+<tr><td><code>clientRequestId</code></td><td>否</td><td><code>string(1-160)</code></td><td><code>openapi-img-20260528-0001</code></td><td>幂等 ID；也可用 <code>Idempotency-Key</code>。</td></tr>
+</tbody></table></div>
+
+<h2>5. params 常见字段表</h2>
+<div class="table-wrap"><table><thead><tr><th>字段</th><th>类型/枚举</th><th>示例</th><th>适用</th><th>说明</th></tr></thead><tbody>
+<tr><td><code>size</code></td><td><code>string</code></td><td><code>1024x1024</code></td><td>图片</td><td>图片尺寸。</td></tr>
+<tr><td><code>width</code> / <code>height</code></td><td><code>number</code></td><td><code>1024</code> / <code>1024</code></td><td>图片/视频</td><td>输出宽高。</td></tr>
+<tr><td><code>resolution</code></td><td><code>"720p" | "1080p" | "1K" | "2K" | "3K" | "4K" | string</code></td><td><code>1K</code></td><td>图片/视频</td><td>分辨率，按模型能力生效。</td></tr>
+<tr><td><code>n</code> / <code>quantity</code></td><td><code>number</code></td><td><code>1</code></td><td>图片</td><td>生成数量。</td></tr>
+<tr><td><code>duration</code></td><td><code>number</code></td><td><code>10</code></td><td>视频</td><td>视频时长。</td></tr>
+<tr><td><code>fps</code></td><td><code>number</code></td><td><code>24</code></td><td>视频</td><td>视频帧率。</td></tr>
+<tr><td><code>aspectRatio</code> / <code>ratio</code></td><td><code>"1:1" | "16:9" | "9:16" | "4:3" | "3:4" | string</code></td><td><code>16:9</code></td><td>图片/视频</td><td>输出比例。</td></tr>
+<tr><td><code>images</code></td><td><code>array&lt;string&gt;</code></td><td><code>["https://example.com/a.png"]</code></td><td>图生图/图生视频</td><td>参考图片 URL 列表。</td></tr>
+<tr><td><code>referenceImages</code></td><td><code>array</code></td><td><code>[{"url":"https://example.com/a.png","role":"referenceImage"}]</code></td><td>图生图/多参考</td><td>参考图对象数组。</td></tr>
+<tr><td><code>aspectRatio</code></td><td><code>"1:1" | "16:9" | "9:16" | "2:3" | "3:2" | string</code></td><td><code>9:16</code></td><td>MJ 文生图</td><td>若 prompt 未写 <code>--ar</code>，后端会追加对应画幅。</td></tr>
+<tr><td><code>mjParams</code></td><td><code>string | object</code></td><td><code>--v 7 --q 2 --stylize 250</code></td><td>MJ 文生图</td><td>MJ 参数后缀。也可传 <code>{"promptSuffix":"--v 7 --q 2"}</code>。</td></tr>
+<tr><td><code>mjPromptImageUrls</code></td><td><code>array&lt;string&gt;</code></td><td><code>["https://example.com/ref.png"]</code></td><td>MJ 图生图/参考图</td><td>作为 Midjourney image prompt 放到提示词最前面；公网 HTTPS URL 最稳。</td></tr>
+<tr><td><code>speedMode</code></td><td><code>"RELAX" | "FAST" | "TURBO"</code></td><td><code>FAST</code></td><td>MJ 文生图</td><td>写入 <code>accountFilter.modes</code>；默认 <code>FAST</code>。</td></tr>
+<tr><td><code>botType</code></td><td><code>string</code></td><td><code>MID_JOURNEY</code></td><td>MJ 文生图</td><td>默认 <code>MID_JOURNEY</code>。</td></tr>
+<tr><td><code>accountFilter</code></td><td><code>object</code></td><td><code>{"modes":["FAST"]}</code></td><td>MJ 文生图</td><td>可指定 <code>instanceId</code>、<code>modes</code>、<code>remix</code>、<code>nijiRemix</code>、<code>remark</code>。</td></tr>
+<tr><td><code>firstFrame</code></td><td><code>string</code></td><td><code>https://example.com/first.png</code></td><td><code>firstLast</code> / <code>img2video</code></td><td>首帧 URL。</td></tr>
+<tr><td><code>lastFrame</code></td><td><code>string</code></td><td><code>https://example.com/last.png</code></td><td><code>firstLast</code></td><td>尾帧 URL。</td></tr>
+<tr><td><code>frames</code></td><td><code>array</code></td><td><code>[{"url":"https://example.com/1.png","order":1}]</code></td><td><code>smartMultiFrame</code></td><td>智能多帧参考帧。</td></tr>
+<tr><td><code>generateAudio</code></td><td><code>boolean</code></td><td><code>false</code></td><td>视频</td><td>是否生成音频。</td></tr>
+<tr><td><code>cameraMotion</code></td><td><code>string</code></td><td><code>slow push in</code></td><td>视频</td><td>运镜提示，是否生效取决于适配器。</td></tr>
+<tr><td><code>motionStrength</code></td><td><code>number</code></td><td><code>0.65</code></td><td>视频</td><td>运动强度。</td></tr>
+<tr><td><code>seed</code></td><td><code>number | string</code></td><td><code>20260528</code></td><td>图片/视频</td><td>随机种子。</td></tr>
+<tr><td><code>metadata</code></td><td><code>object</code></td><td><code>{"source":"open-personal-api"}</code></td><td>全部</td><td>自定义业务信息。</td></tr>
+</tbody></table></div>
+
+<h2>6. 完整 JSON 请求示例</h2>
+<h3>6.1 文生图 JSON</h3>
+<pre><button class="copy">复制</button><code>{
+  "channelKey": "canvas_gpt-image-2-pro",
+  "modelId": "canvas-gpt-image-2-pro",
+  "type": "IMAGE",
+  "mode": "txt2img",
+  "prompt": "一张电影感产品海报，黑色背景，主体居中，高级商业摄影灯光，清晰锐利",
+  "negativePrompt": "低清晰度，水印，畸形，文字错误，多余物体",
+  "inputFiles": [],
+  "params": {
+    "resolution": "1K",
+    "size": "1024x1024",
+    "width": 1024,
+    "height": 1024,
+    "n": 1,
+    "seed": 20260528
+  },
+  "clientRequestId": "openapi-img-20260528-0001"
+}</code></pre>
+<h3>6.2 图生图 JSON</h3>
+<pre><button class="copy">复制</button><code>{
+  "channelKey": "canvas_gpt-image-2-pro",
+  "modelId": "canvas-gpt-image-2-pro",
+  "type": "IMAGE",
+  "mode": "img2img",
+  "prompt": "保留参考图主体结构，改成电影级商业海报质感，背景更干净，光影更高级",
+  "negativePrompt": "低清晰度，水印，主体变形，额外文字，错误手指",
+  "inputFiles": [
+    {
+      "url": "https://example.com/input.png",
+      "role": "referenceImage",
+      "mimeType": "image/png"
+    }
+  ],
+  "params": {
+    "resolution": "1K",
+    "size": "1024x1024",
+    "n": 1,
+    "images": ["https://example.com/input.png"],
+    "referenceImages": [
+      {"url": "https://example.com/input.png", "role": "referenceImage"}
+    ],
+    "seed": 20260528
+  },
+  "clientRequestId": "openapi-i2i-20260528-0001"
+}</code></pre>
+<h3>6.3 MJ 文生图 JSON</h3>
+<pre><button class="copy">复制</button><code>{
+  "channelKey": "midjourney_imagine",
+  "modelId": "canvas-midjourney-imagine",
+  "type": "IMAGE",
+  "mode": "txt2img",
+  "prompt": "cinematic manga storyboard frame, a heroine looking back in heavy rain, neon alley, dramatic rim light, high detail --ar 9:16 --v 7",
+  "negativePrompt": "low quality, blurry, watermark, distorted hands, extra fingers",
+  "inputFiles": [],
+  "params": {
+    "aspectRatio": "9:16",
+    "mjParams": "--v 7 --q 2 --stylize 250",
+    "botType": "MID_JOURNEY",
+    "speedMode": "FAST",
+    "accountFilter": {
+      "modes": ["FAST"]
+    },
+    "notifyHook": ""
+  },
+  "clientRequestId": "openapi-mj-t2i-20260528-0001"
+}</code></pre>
+<h3>6.4 MJ 带参考图 JSON</h3>
+<pre><button class="copy">复制</button><code>{
+  "channelKey": "midjourney_imagine",
+  "modelId": "canvas-midjourney-imagine",
+  "type": "IMAGE",
+  "mode": "img2img",
+  "prompt": "same character identity, full body character design sheet, cinematic manga style --ar 2:3 --v 7 --iw 2",
+  "inputFiles": [
+    {
+      "url": "https://example.com/ref-character.png",
+      "role": "referenceImage",
+      "mimeType": "image/png"
+    }
+  ],
+  "params": {
+    "mjPromptImageUrls": ["https://example.com/ref-character.png"],
+    "aspectRatio": "2:3",
+    "mjParams": "--v 7 --q 2",
+    "speedMode": "FAST",
+    "accountFilter": {
+      "modes": ["FAST"]
+    }
+  },
+  "clientRequestId": "openapi-mj-i2i-20260528-0001"
+}</code></pre>
+<div class="note">MJ 是异步轮询模型。创建任务后继续使用 <code>GET /api/open/personal/generation/tasks/:id</code> 或 <code>POST /api/open/personal/generation/tasks/:id/query</code> 查询，成功后读取 <code>task.resultUrlsJson</code>。</div>
+<h3>6.5 文生视频 JSON</h3>
+<pre><button class="copy">复制</button><code>{
+  "channelKey": "canvas_sora-v3-pro",
+  "modelId": "canvas-sora-v3-pro",
+  "type": "VIDEO",
+  "mode": "text2video",
+  "prompt": "雨夜霓虹街道，一名角色从画面左侧走入，镜头缓慢推进，地面积水反射霓虹灯，电影感，高细节",
+  "negativePrompt": "画面闪烁，人物崩坏，肢体断裂，低清晰度，水印",
+  "inputFiles": [],
+  "params": {
+    "duration": 10,
+    "resolution": "720p",
+    "aspectRatio": "16:9",
+    "fps": 24,
+    "generateAudio": false,
+    "cameraMotion": "slow push in",
+    "motionStrength": 0.65
+  },
+  "clientRequestId": "openapi-t2v-20260528-0001"
+}</code></pre>
+<h3>6.6 图生视频 / 首尾帧 / 智能多帧 JSON</h3>
+<pre><button class="copy">复制</button><code>{
+  "channelKey": "canvas_sora-v3-pro",
+  "modelId": "canvas-sora-v3-pro",
+  "type": "VIDEO",
+  "mode": "smartMultiFrame",
+  "prompt": "根据多张参考帧生成连续镜头：角色从站立到转身再向前走，动作连贯，镜头保持电影感推进",
+  "negativePrompt": "画面闪烁，人物漂移，脸部变形，肢体断裂，参考帧错乱",
+  "inputFiles": [
+    {"url": "https://example.com/frame-1.png", "role": "frame", "order": 1, "mimeType": "image/png"},
+    {"url": "https://example.com/frame-2.png", "role": "frame", "order": 2, "mimeType": "image/png"}
+  ],
+  "params": {
+    "duration": 10,
+    "resolution": "720p",
+    "aspectRatio": "16:9",
+    "fps": 24,
+    "images": ["https://example.com/frame-1.png", "https://example.com/frame-2.png"],
+    "firstFrame": "https://example.com/frame-1.png",
+    "lastFrame": "https://example.com/frame-2.png",
+    "frames": [
+      {"url": "https://example.com/frame-1.png", "order": 1},
+      {"url": "https://example.com/frame-2.png", "order": 2}
+    ]
+  },
+  "clientRequestId": "openapi-i2v-20260528-0001"
+}</code></pre>
+<p><code>mode</code> 可换：<code>img2video</code> 单图生视频；<code>firstLast</code> 首尾帧；<code>smartMultiFrame</code> 多帧；<code>full</code> 全能参考。</p>
+
+<h2>7. curl 完整请求示例</h2>
+<pre><button class="copy">复制</button><code>curl -X POST "$BASE_URL/api/open/personal/generation/tasks" \
+  -H "Authorization: Bearer $PERSONAL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: openapi-img-20260528-0001" \
+  -d '{
+    "channelKey": "canvas_gpt-image-2-pro",
+    "modelId": "canvas-gpt-image-2-pro",
+    "type": "IMAGE",
+    "mode": "txt2img",
+    "prompt": "一张电影感产品海报，黑色背景，主体居中，高级商业摄影灯光，清晰锐利",
+    "negativePrompt": "低清晰度，水印，畸形，文字错误，多余物体",
+    "inputFiles": [],
+    "params": {"resolution":"1K","size":"1024x1024","width":1024,"height":1024,"n":1,"seed":20260528},
+    "clientRequestId": "openapi-img-20260528-0001"
+  }'</code></pre>
+<h3>7.1 MJ 文生图 curl 示例</h3>
+<pre><button class="copy">复制</button><code>curl -X POST "$BASE_URL/api/open/personal/generation/tasks" \
+  -H "Authorization: Bearer $PERSONAL_API_KEY" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: openapi-mj-t2i-20260528-0001" \
+  -d '{
+    "channelKey": "midjourney_imagine",
+    "modelId": "canvas-midjourney-imagine",
+    "type": "IMAGE",
+    "mode": "txt2img",
+    "prompt": "cinematic manga storyboard frame, a heroine looking back in heavy rain, neon alley, dramatic rim light, high detail --ar 9:16 --v 7",
+    "inputFiles": [],
+    "params": {
+      "aspectRatio": "9:16",
+      "mjParams": "--v 7 --q 2 --stylize 250",
+      "speedMode": "FAST",
+      "accountFilter": {"modes":["FAST"]}
+    },
+    "clientRequestId": "openapi-mj-t2i-20260528-0001"
+  }'</code></pre>
+
+<h2>8. 创建成功响应字段</h2>
+<pre><button class="copy">复制</button><code>{
+  "ok": true,
+  "task": {
+    "id": "&lt;GenerationTask.id&gt;",
+    "userId": "&lt;当前APIKey所属用户&gt;",
+    "clientRequestId": "openapi-img-20260528-0001",
+    "providerId": "canvas-provider-gpt-image-2-pro",
+    "modelId": "canvas-gpt-image-2-pro",
+    "channelKey": "canvas_gpt-image-2-pro",
+    "type": "IMAGE",
+    "mode": "txt2img",
+    "status": "RUNNING",
+    "prompt": "...",
+    "negativePrompt": "...",
+    "inputFilesJson": [],
+    "paramsJson": {"resolution":"1K","size":"1024x1024","n":1},
+    "upstreamTaskId": "&lt;上游任务ID或null&gt;",
+    "upstreamRequestId": "&lt;上游请求ID或null&gt;",
+    "resultJson": null,
+    "resultUrlsJson": null,
+    "chargedCredits": 5,
+    "costAmount": 0,
+    "costUsd": "0",
+    "refundCredits": 0,
+    "refundStatus": null,
+    "refundReason": null,
+    "errorCode": null,
+    "errorMessage": null,
+    "retryCount": 0,
+    "progress": 0,
+    "startedAt": "&lt;ISO时间&gt;",
+    "completedAt": null,
+    "failedAt": null,
+    "refundedAt": null,
+    "createdAt": "&lt;ISO时间&gt;",
+    "updatedAt": "&lt;ISO时间&gt;"
+  },
+  "balance": 995,
+  "chargedCredits": 5
+}</code></pre>
+
+<h2>9. task 字段说明</h2>
+<div class="table-wrap"><table><thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead><tbody>
+<tr><td><code>id</code></td><td><code>string</code></td><td>任务 ID。</td></tr>
+<tr><td><code>clientRequestId</code></td><td><code>string|null</code></td><td>客户端幂等 ID。</td></tr>
+<tr><td><code>providerId</code></td><td><code>string</code></td><td>数据库渠道 ID。</td></tr>
+<tr><td><code>modelId</code></td><td><code>string</code></td><td>数据库模型 ID。</td></tr>
+<tr><td><code>channelKey</code></td><td><code>string</code></td><td>渠道 Key。</td></tr>
+<tr><td><code>type</code></td><td><code>IMAGE | VIDEO | LLM</code></td><td>任务类型。</td></tr>
+<tr><td><code>mode</code></td><td><code>string</code></td><td>生成模式。</td></tr>
+<tr><td><code>status</code></td><td><code>CREATED | PENDING | RUNNING | SUCCESS | FAILED | TIMEOUT | REFUNDED | CANCELLED | MANUAL_REVIEW</code></td><td>任务状态。</td></tr>
+<tr><td><code>inputFilesJson</code></td><td><code>array</code></td><td>请求传入的 <code>inputFiles</code>。</td></tr>
+<tr><td><code>paramsJson</code></td><td><code>object</code></td><td>请求传入的 <code>params</code>。</td></tr>
+<tr><td><code>resultJson</code></td><td><code>object|null</code></td><td>上游结果原始结构。</td></tr>
+<tr><td><code>resultUrlsJson</code></td><td><code>array|null</code></td><td>结果 URL 列表。</td></tr>
+<tr><td><code>chargedCredits</code></td><td><code>number</code></td><td>扣费积分。</td></tr>
+<tr><td><code>errorCode/errorMessage</code></td><td><code>string|null</code></td><td>失败原因。</td></tr>
+<tr><td><code>progress</code></td><td><code>number</code></td><td>进度。</td></tr>
+<tr><td><code>model/provider</code></td><td><code>object|undefined</code></td><td>列表/详情接口会带摘要。</td></tr>
+</tbody></table></div>
+
+<h2>10. 查询与轮询</h2>
+<pre><button class="copy">复制</button><code>curl -X GET "$BASE_URL/api/open/personal/generation/tasks/$TASK_ID" -H "Authorization: Bearer $PERSONAL_API_KEY"
+curl -X POST "$BASE_URL/api/open/personal/generation/tasks/$TASK_ID/query" -H "Authorization: Bearer $PERSONAL_API_KEY"
+curl -X GET "$BASE_URL/api/open/personal/generation/tasks?limit=100" -H "Authorization: Bearer $PERSONAL_API_KEY"</code></pre>
+<pre><button class="copy">复制</button><code>const BASE_URL = 'http://124.156.137.236';
+const PERSONAL_API_KEY = process.env.PERSONAL_API_KEY;
+async function api(path, options = {}) {
+  const res = await fetch(BASE_URL + path, {
+    ...options,
+    headers: { Authorization: `Bearer ${PERSONAL_API_KEY}`, 'Content-Type': 'application/json', ...(options.headers || {}) },
+  });
+  const data = await res.json();
+  if (!res.ok || data.ok === false) throw new Error(data.error || data.message || data.code || 'API_ERROR');
+  return data;
+}
+async function waitTask(taskId) {
+  for (let i = 0; i &lt; 120; i++) {
+    const { task } = await api(`/api/open/personal/generation/tasks/${taskId}/query`, { method: 'POST' });
+    if (task.status === 'SUCCESS') return task.resultUrlsJson || task.resultJson;
+    if (['FAILED','TIMEOUT','REFUNDED','CANCELLED'].includes(task.status)) throw new Error(`${task.status}: ${task.errorCode || ''} ${task.errorMessage || ''}`);
+    await new Promise(r =&gt; setTimeout(r, 5000));
+  }
+  throw new Error('WAIT_TIMEOUT');
+}</code></pre>
+
+<h2>11. 常见错误码</h2>
+<div class="table-wrap"><table><thead><tr><th>code</th><th>含义</th><th>处理方式</th></tr></thead><tbody>
+<tr><td><code>OPEN_API_TOKEN_REQUIRED</code></td><td>缺少个人 API Key。</td><td>检查 <code>Authorization</code>。</td></tr>
+<tr><td><code>OPEN_API_TOKEN_INVALID</code></td><td>Key 无效或禁用。</td><td>重新复制或创建个人 API Key。</td></tr>
+<tr><td><code>USER_DISABLED</code></td><td>账号禁用。</td><td>联系管理员。</td></tr>
+<tr><td><code>INSUFFICIENT_BALANCE</code></td><td>余额不足。</td><td>充值后重试。</td></tr>
+<tr><td><code>PROVIDER_NOT_FOUND</code></td><td><code>channelKey</code> 找不到。</td><td>使用模型表里的真实 <code>channelKey</code>。</td></tr>
+<tr><td><code>PROVIDER_DISABLED</code></td><td>渠道禁用。</td><td>换可用渠道或联系管理员。</td></tr>
+<tr><td><code>MODEL_NOT_FOUND</code></td><td>模型不可用或 <code>type/channelKey/modelId</code> 不匹配。</td><td>检查模型表枚举。</td></tr>
+<tr><td><code>GENERATION_TASK_NOT_FOUND</code></td><td>任务不存在或不属于当前用户。</td><td>检查任务 ID 和 API Key。</td></tr>
+<tr><td><code>GENERATION_SUBMIT_FAILED</code></td><td>提交上游失败。</td><td>查看 <code>errorMessage</code>。</td></tr>
+<tr><td><code>UPSTREAM_TASK_ID_MISSING</code></td><td>上游未返回任务 ID 或结果。</td><td>重试或联系管理员。</td></tr>
+</tbody></table></div>
+
+<h2>12. 给智能体的最小接入信息</h2>
+<pre><button class="copy">复制</button><code>BASE_URL=http://124.156.137.236
+PERSONAL_API_KEY=sk_live_xxx
+创建任务：POST /api/open/personal/generation/tasks
+查询任务：GET /api/open/personal/generation/tasks/:id
+刷新任务：POST /api/open/personal/generation/tasks/:id/query
+文生图：channelKey=canvas_gpt-image-2-pro, modelId=canvas-gpt-image-2-pro, type=IMAGE, mode=txt2img
+图生图：channelKey=canvas_gpt-image-2-pro, modelId=canvas-gpt-image-2-pro, type=IMAGE, mode=img2img
+MJ文生图：channelKey=midjourney_imagine, modelId=canvas-midjourney-imagine, type=IMAGE, mode=txt2img, params.aspectRatio=9:16, params.mjParams="--v 7 --q 2"
+MJ参考图：mode=img2img, inputFiles=[{url,role:"referenceImage"}], params.mjPromptImageUrls=[url], params.speedMode=FAST
+生视频：channelKey=canvas_sora-v3-pro, modelId=canvas-sora-v3-pro, type=VIDEO, mode=text2video/img2video/firstLast/smartMultiFrame/full</code></pre>
+</main>
+<div class="toast"></div>
+<script>
+async function copyText(text){
+  const value=String(text||'');
+  if(!value){toast('复制失败：内容为空');return false}
+  try{
+    if(navigator.clipboard&&window.isSecureContext){
+      await navigator.clipboard.writeText(value);
+    }else{
+      const ta=document.createElement('textarea');
+      ta.value=value;
+      ta.setAttribute('readonly','');
+      ta.style.position='fixed';
+      ta.style.left='0';
+      ta.style.top='0';
+      ta.style.opacity='0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      ta.setSelectionRange(0,ta.value.length);
+      const ok=document.execCommand('copy');
+      ta.remove();
+      if(!ok)throw new Error('execCommand copy failed');
+    }
+    toast('复制成功');
+    return true;
+  }catch(err){toast('复制失败，请手动复制');return false}
+}
+function toast(text){
+  let el=document.querySelector('.toast');
+  if(!el){el=document.createElement('div');el.className='toast';document.body.appendChild(el)}
+  el.textContent=text;
+  el.classList.add('show');
+  clearTimeout(window.__copyToastTimer);
+  window.__copyToastTimer=setTimeout(()=>el.classList.remove('show'),1600);
+}
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('.copy');
+  if(!btn)return;
+  const pre=btn.closest('pre');
+  const code=pre&&pre.querySelector('code');
+  copyText(code?code.innerText:(pre?pre.innerText.replace(/^复制\n?/,''):''));
+});
+</script>
+</body>
+</html>

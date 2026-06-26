@@ -1,0 +1,36 @@
+{
+  "name": "ai-admin-platform",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Lightweight admin system for AI image, video, LLM usage, agents, wallets, and memberships.",
+  "scripts": {
+    "dev": "npm run dev --prefix api-server",
+    "dev:api": "npm run dev --prefix api-server",
+    "dev:web": "npm run dev --prefix admin-web",
+    "dev:all": "bash scripts/dev-start.sh",
+    "dev:stop": "bash scripts/dev-stop.sh",
+    "dev:status": "bash scripts/dev-status.sh",
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f postgres",
+    "build": "npm run build --prefix api-server && npm run build --prefix admin-web",
+    "lint": "npm run lint --prefix api-server && npm run lint --prefix admin-web",
+    "typecheck": "npm run typecheck --prefix api-server && npm run typecheck --prefix admin-web",
+    "prisma:generate": "npm run prisma:generate --prefix api-server",
+    "prisma:migrate": "npm run prisma:migrate --prefix api-server",
+    "prisma:deploy": "npm run prisma:deploy --prefix api-server",
+    "seed": "npm run seed --prefix api-server",
+    "sync:canvas-models": "npm run sync:canvas-models --prefix api-server",
+    "grok:media:apply": "npm run grok:media:apply --prefix api-server",
+    "artifex:seedance2:apply": "npm run artifex:seedance2:apply --prefix api-server",
+    "lingdong:sd2-vip:apply": "npm run lingdong:sd2-vip:apply --prefix api-server",
+    "zaomeng:seedance2:apply": "npm run zaomeng:seedance2:apply --prefix api-server",
+    "pricing:apply": "npm run pricing:apply --prefix api-server",
+    "selfcheck": "npm run selfcheck --prefix api-server",
+    "browser:smoke": "node scripts/browser-smoke.mjs",
+    "business:smoke": "node scripts/business-smoke.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

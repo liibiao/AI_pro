@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI 平台项目门户</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090b10;
+      --panel: rgba(18, 22, 31, 0.92);
+      --panel-soft: rgba(23, 29, 40, 0.86);
+      --line: rgba(255, 255, 255, 0.12);
+      --line-strong: rgba(125, 211, 252, 0.35);
+      --text: #f7f8fb;
+      --muted: #9aa4b5;
+      --soft: #c7d1de;
+      --blue: #60a5fa;
+      --cyan: #67e8f9;
+      --green: #86efac;
+      --amber: #fbbf24;
+      --red: #fb7185;
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.16), transparent 34rem),
+        radial-gradient(circle at 80% 0%, rgba(20, 184, 166, 0.14), transparent 28rem),
+        var(--bg);
+      background-size: 28px 28px, 28px 28px, auto, auto, auto;
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .page {
+      width: min(1440px, calc(100vw - 48px));
+      margin: 0 auto;
+      padding: 28px 0 44px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: end;
+      padding: 24px 0 28px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin: 0 0 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 56px);
+      line-height: 1.03;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      max-width: 820px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      display: inline-flex;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 14px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 140ms ease, background-color 140ms ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      border-color: var(--line-strong);
+      background: rgba(96, 165, 250, 0.12);
+    }
+
+    .btn.primary {
+      border-color: rgba(96, 165, 250, 0.45);
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.88), rgba(14, 116, 144, 0.86));
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 12px 0;
+      background: linear-gradient(to bottom, rgba(9, 11, 16, 0.96), rgba(9, 11, 16, 0.72));
+      backdrop-filter: blur(12px);
+    }
+
+    .tab {
+      flex: 0 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 9px 13px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--soft);
+      cursor: pointer;
+    }
+
+    .tab.active {
+      border-color: rgba(103, 232, 249, 0.46);
+      background: rgba(103, 232, 249, 0.1);
+      color: var(--text);
+    }
+
+    .section {
+      margin-top: 28px;
+      scroll-margin-top: 78px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+
+    .section-note {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      grid-column: span 4;
+      display: flex;
+      min-height: 220px;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .card.wide {
+      grid-column: span 6;
+    }
+
+    .card.full {
+      grid-column: 1 / -1;
+    }
+
+    .card-top {
+      display: grid;
+      gap: 12px;
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .tag {
+      display: inline-flex;
+      flex: 0 0 auto;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 9px;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .tag.online {
+      border-color: rgba(134, 239, 172, 0.36);
+      color: var(--green);
+    }
+
+    .tag.local {
+      border-color: rgba(251, 191, 36, 0.36);
+      color: var(--amber);
+    }
+
+    .tag.locked {
+      border-color: rgba(251, 113, 133, 0.36);
+      color: var(--red);
+    }
+
+    .desc {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .meta {
+      display: grid;
+      gap: 8px;
+      margin: 6px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .meta li {
+      display: grid;
+      grid-template-columns: 78px minmax(0, 1fr);
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .meta b {
+      color: var(--soft);
+      font-weight: 650;
+    }
+
+    .url {
+      overflow-wrap: anywhere;
+      color: var(--cyan);
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .mini-btn {
+      display: inline-flex;
+      min-height: 36px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 7px 11px;
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 140ms ease, background-color 140ms ease;
+    }
+
+    .mini-btn:hover {
+      border-color: var(--line-strong);
+      background: rgba(103, 232, 249, 0.09);
+    }
+
+    .code-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .code-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.26);
+      overflow: hidden;
+    }
+
+    .code-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .code-title {
+      font-size: 13px;
+      color: var(--soft);
+      font-weight: 700;
+    }
+
+    pre {
+      margin: 0;
+      padding: 14px;
+      overflow: auto;
+      color: #dbeafe;
+      font: 13px/1.65 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .flow-step {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--panel-soft);
+    }
+
+    .flow-step b {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .flow-step span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .notice {
+      border: 1px solid rgba(251, 191, 36, 0.28);
+      border-radius: 8px;
+      padding: 14px 16px;
+      background: rgba(251, 191, 36, 0.08);
+      color: #fde68a;
+      line-height: 1.65;
+    }
+
+    .toast {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 20;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(10px);
+      border: 1px solid rgba(134, 239, 172, 0.38);
+      border-radius: 8px;
+      padding: 11px 14px;
+      background: rgba(10, 16, 23, 0.96);
+      color: var(--green);
+      box-shadow: var(--shadow);
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1180px) {
+      .card,
+      .card.wide {
+        grid-column: span 6;
+      }
+
+      .flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(100vw - 28px, 720px);
+        padding-top: 18px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-actions {
+        justify-content: flex-start;
+      }
+
+      .card,
+      .card.wide {
+        grid-column: 1 / -1;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">AI Platform Operations Portal</p>
+        <h1>项目统一入口</h1>
+        <p class="subtitle">集中管理无限画布、后台管理系统、主平台 API、日本 CLIProxyAPI 中转站、CPAMC 管理面板，以及常用 SSH 隧道和排查命令。页面不保存密码、API Key 或管理密钥。</p>
+      </div>
+      <div class="quick-actions">
+        <a class="btn primary" href="http://124.156.137.236/image-studio-canvas-next.html" target="_blank" rel="noreferrer">打开画布</a>
+        <a class="btn" href="http://124.156.137.236/admin/" target="_blank" rel="noreferrer">打开后台</a>
+        <button class="btn" type="button" data-copy="ssh -N -L 127.0.0.1:3000:127.0.0.1:3000 -L 127.0.0.1:8317:127.0.0.1:8317 -L 127.0.0.1:1455:127.0.0.1:1455 ubuntu@43.165.186.217">复制日本隧道</button>
+      </div>
+    </header>
+
+    <nav class="toolbar" aria-label="项目门户分区">
+      <button class="tab active" type="button" data-target="#public-entry">公网入口</button>
+      <button class="tab" type="button" data-target="#proxy-entry">中转站入口</button>
+      <button class="tab" type="button" data-target="#workflow">调用链路</button>
+      <button class="tab" type="button" data-target="#ssh">SSH 与隧道</button>
+      <button class="tab" type="button" data-target="#ops">排查命令</button>
+    </nav>
+
+    <section id="public-entry" class="section">
+      <div class="section-head">
+        <div>
+          <h2>公网入口</h2>
+          <p class="section-note">这些地址可以直接从浏览器打开，不需要 SSH 隧道。</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>无限画布前端</h3>
+              <span class="tag online">公网</span>
+            </div>
+            <p class="desc">用户侧创作入口。登录、积分、模型列表、生图请求最终都接主平台 API。</p>
+            <ul class="meta">
+              <li><b>地址</b><span class="url">http://124.156.137.236/image-studio-canvas-next.html</span></li>
+              <li><b>服务器</b><span>主平台 · 香港 · 124.156.137.236</span></li>
+              <li><b>用途</b><span>创作、生成、账户入口</span></li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a class="mini-btn" href="http://124.156.137.236/image-studio-canvas-next.html" target="_blank" rel="noreferrer">打开</a>
+            <button class="mini-btn" type="button" data-copy="http://124.156.137.236/image-studio-canvas-next.html">复制地址</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>后台管理系统</h3>
+              <span class="tag online">公网</span>
+            </div>
+            <p class="desc">超级管理员、代理、用户、模型、兑换码、记账和系统配置管理入口。</p>
+            <ul class="meta">
+              <li><b>地址</b><span class="url">http://124.156.137.236/admin/</span></li>
+              <li><b>API</b><span class="url">http://124.156.137.236/api/</span></li>
+              <li><b>服务</b><span>ai-admin-api · PM2 · 127.0.0.1:4000</span></li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a class="mini-btn" href="http://124.156.137.236/admin/" target="_blank" rel="noreferrer">打开</a>
+            <a class="mini-btn" href="http://124.156.137.236/api/health" target="_blank" rel="noreferrer">健康检查</a>
+            <button class="mini-btn" type="button" data-copy="http://124.156.137.236/admin/">复制地址</button>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>日本中转节点</h3>
+              <span class="tag locked">限制访问</span>
+            </div>
+            <p class="desc">CLIProxyAPI 跑在日本 VPS。公网只开放健康检查；模型 API 只允许主平台服务器访问。</p>
+            <ul class="meta">
+              <li><b>健康</b><span class="url">http://43.165.186.217/health</span></li>
+              <li><b>模型 API</b><span class="url">http://43.165.186.217/v1/</span></li>
+              <li><b>限制</b><span>仅允许 124.156.137.236 访问 /v1</span></li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a class="mini-btn" href="http://43.165.186.217/health" target="_blank" rel="noreferrer">健康检查</a>
+            <button class="mini-btn" type="button" data-copy="http://43.165.186.217/v1">复制上游 Base URL</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="proxy-entry" class="section">
+      <div class="section-head">
+        <div>
+          <h2>中转站入口</h2>
+          <p class="section-note">这些入口需要先启动日本 VPS 的 SSH 隧道，再从本机浏览器打开。</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card wide">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>CPAMC 管理面板</h3>
+              <span class="tag local">本机隧道</span>
+            </div>
+            <p class="desc">CLIProxyAPI 的新管理面板，用于 OAuth、账号、配额、状态管理。需要隧道映射本机 3000 端口。</p>
+            <ul class="meta">
+              <li><b>地址</b><span class="url">http://127.0.0.1:3000/cpamc/</span></li>
+              <li><b>依赖</b><span>日本 VPS SSH 隧道</span></li>
+              <li><b>用途</b><span>Codex OAuth 登录、额度与认证管理</span></li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a class="mini-btn" href="http://127.0.0.1:3000/cpamc/" target="_blank" rel="noreferrer">打开</a>
+            <button class="mini-btn" type="button" data-copy="http://127.0.0.1:3000/cpamc/">复制地址</button>
+          </div>
+        </article>
+
+        <article class="card wide">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>CLIProxyAPI 接口检查</h3>
+              <span class="tag local">本机隧道</span>
+            </div>
+            <p class="desc">8317 是 OpenAI 兼容接口端口，不保证提供旧版 management.html 页面。当前主要用这里检查模型接口是否通。</p>
+            <ul class="meta">
+              <li><b>接口</b><span class="url">http://127.0.0.1:8317/v1/models</span></li>
+              <li><b>模型</b><span class="url">http://127.0.0.1:8317/v1/models</span></li>
+              <li><b>提示</b><span>没有 API Key 返回 Missing API key 也说明隧道和服务已连通</span></li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a class="mini-btn" href="http://127.0.0.1:8317/v1/models" target="_blank" rel="noreferrer">模型检查</a>
+            <button class="mini-btn" type="button" data-copy="http://127.0.0.1:8317/v1/models">复制地址</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="workflow" class="section">
+      <div class="section-head">
+        <div>
+          <h2>调用链路</h2>
+          <p class="section-note">当前上线架构的关键路径，排查问题时按这个顺序定位。</p>
+        </div>
+      </div>
+
+      <div class="card full">
+        <div class="flow">
+          <div class="flow-step">
+            <b>用户浏览器</b>
+            <span>打开画布页面，登录后发起文生图、图生图、视频或账户请求。</span>
+          </div>
+          <div class="flow-step">
+            <b>主平台 Nginx</b>
+            <span>公网入口 124.156.137.236，转发静态页面和 /api 请求。</span>
+          </div>
+          <div class="flow-step">
+            <b>主平台 API</b>
+            <span>Node 服务 127.0.0.1:4000，处理登录、积分扣费、任务和模型路由。</span>
+          </div>
+          <div class="flow-step">
+            <b>日本中转站</b>
+            <span>CLIProxyAPI 43.165.186.217/v1，仅允许主平台服务器调用。</span>
+          </div>
+          <div class="flow-step">
+            <b>上游模型</b>
+            <span>通过 CPAMC/OAuth 维护上游账号认证，返回图片、视频或模型响应。</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ssh" class="section">
+      <div class="section-head">
+        <div>
+          <h2>SSH 与隧道</h2>
+          <p class="section-note">复制后在 Mac 终端执行。密码不写入网页，登录时手动输入。</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card wide">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>日本 VPS 隧道</h3>
+              <span class="tag local">常用</span>
+            </div>
+            <p class="desc">打开 CPAMC、CLIProxyAPI 管理页和 OAuth callback 时使用。</p>
+            <div class="code-card">
+              <div class="code-head">
+                <span class="code-title">Mac 终端执行</span>
+                <button class="mini-btn" type="button" data-copy-from="#code-jp-tunnel">复制</button>
+              </div>
+              <pre id="code-jp-tunnel">ssh -N \
+  -L 127.0.0.1:3000:127.0.0.1:3000 \
+  -L 127.0.0.1:8317:127.0.0.1:8317 \
+  -L 127.0.0.1:1455:127.0.0.1:1455 \
+  ubuntu@43.165.186.217</pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="card wide">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>主平台 SSH</h3>
+              <span class="tag online">运维</span>
+            </div>
+            <p class="desc">进入后台管理系统服务器，用于 PM2、Nginx、数据库、模型配置排查。</p>
+            <div class="code-card">
+              <div class="code-head">
+                <span class="code-title">Mac 终端执行</span>
+                <button class="mini-btn" type="button" data-copy-from="#code-main-ssh">复制</button>
+              </div>
+              <pre id="code-main-ssh">ssh ubuntu@124.156.137.236</pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="card wide">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>日本 VPS SSH</h3>
+              <span class="tag online">运维</span>
+            </div>
+            <p class="desc">进入中转站服务器，用于 Docker、Nginx、CPAMC、OAuth 配置排查。</p>
+            <div class="code-card">
+              <div class="code-head">
+                <span class="code-title">Mac 终端执行</span>
+                <button class="mini-btn" type="button" data-copy-from="#code-jp-ssh">复制</button>
+              </div>
+              <pre id="code-jp-ssh">ssh ubuntu@43.165.186.217</pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="card wide">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>主平台测试日本上游</h3>
+              <span class="tag locked">服务器内执行</span>
+            </div>
+            <p class="desc">确认主平台服务器是否能访问日本 CLIProxyAPI 的 OpenAI 兼容接口。</p>
+            <div class="code-card">
+              <div class="code-head">
+                <span class="code-title">主平台服务器执行</span>
+                <button class="mini-btn" type="button" data-copy-from="#code-main-to-jp">复制</button>
+              </div>
+              <pre id="code-main-to-jp">curl -sS http://43.165.186.217/health
+curl -sS -H "Authorization: Bearer $GPT_IMAGE_KEY" http://43.165.186.217/v1/models</pre>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p class="notice">建议后续把两台服务器都改成 SSH 密钥登录，并关闭密码登录。当前门户页只保存命令模板，不保存服务器密码、管理密钥或模型 API Key。</p>
+    </section>
+
+    <section id="ops" class="section">
+      <div class="section-head">
+        <div>
+          <h2>排查命令</h2>
+          <p class="section-note">按服务边界分组，定位登录失败、接口不通、上游报错或模型调用异常。</p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <article class="card wide">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>主平台后台 API</h3>
+              <span class="tag online">124.156.137.236</span>
+            </div>
+            <div class="code-card">
+              <div class="code-head">
+                <span class="code-title">主平台服务器执行</span>
+                <button class="mini-btn" type="button" data-copy-from="#code-main-ops">复制</button>
+              </div>
+              <pre id="code-main-ops">pm2 status
+pm2 logs ai-admin-api --lines 120 --nostream
+ss -lntp | grep ':4000' || true
+curl http://127.0.0.1:4000/api/health
+curl http://124.156.137.236/api/health</pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="card wide">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>日本 CLIProxyAPI</h3>
+              <span class="tag online">43.165.186.217</span>
+            </div>
+            <div class="code-card">
+              <div class="code-head">
+                <span class="code-title">日本 VPS 执行</span>
+                <button class="mini-btn" type="button" data-copy-from="#code-jp-ops">复制</button>
+              </div>
+              <pre id="code-jp-ops">sudo docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}'
+sudo docker logs --tail 200 cli-proxy-api
+ss -lntp | grep -E ':80|:3000|:8317|:1455' || true
+curl http://127.0.0.1:8317/v1/models
+curl http://127.0.0.1:3000/cpamc/</pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="card wide">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>模型配置检查</h3>
+              <span class="tag locked">数据库</span>
+            </div>
+            <div class="code-card">
+              <div class="code-head">
+                <span class="code-title">主平台服务器 api-server 目录执行</span>
+                <button class="mini-btn" type="button" data-copy-from="#code-model-check">复制</button>
+              </div>
+              <pre id="code-model-check">cd /var/www/ai-admin/ai-admin-platform/api-server
+psql "$DB_URL" -x -c "
+select
+  m.id,
+  m.display_name,
+  m.name,
+  m.type,
+  m.adapter,
+  m.status,
+  p.provider_key,
+  p.base_url,
+  p.default_model,
+  p.status as provider_status
+from ai_models m
+join upstream_providers p on p.id = m.provider_id
+where m.display_name ilike '%GPT-Image%';
+"</pre>
+            </div>
+          </div>
+        </article>
+
+        <article class="card wide">
+          <div class="card-top">
+            <div class="card-title-row">
+              <h3>更新主平台上游地址</h3>
+              <span class="tag locked">上线操作</span>
+            </div>
+            <div class="code-card">
+              <div class="code-head">
+                <span class="code-title">确认日本 OAuth 成功后再执行</span>
+                <button class="mini-btn" type="button" data-copy-from="#code-update-provider">复制</button>
+              </div>
+              <pre id="code-update-provider">cd /var/www/ai-admin/ai-admin-platform/api-server
+psql "$DB_URL" -c "
+update upstream_providers
+set base_url = 'http://43.165.186.217/v1'
+where provider_key = 'canvas_gpt-image-2-pro';
+"
+pm2 restart ai-admin-api</pre>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">已复制</div>
+
+  <script>
+    const toast = document.getElementById('toast');
+    let toastTimer = 0;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => toast.classList.remove('show'), 1500);
+    }
+
+    async function copyText(text) {
+      const value = text.trim();
+      if (!value) return;
+      try {
+        await navigator.clipboard.writeText(value);
+        showToast('已复制');
+      } catch (error) {
+        const input = document.createElement('textarea');
+        input.value = value;
+        input.setAttribute('readonly', '');
+        input.style.position = 'fixed';
+        input.style.left = '-9999px';
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        showToast('已复制');
+      }
+    }
+
+    document.addEventListener('click', (event) => {
+      const copyButton = event.target.closest('[data-copy], [data-copy-from]');
+      if (copyButton) {
+        const directValue = copyButton.getAttribute('data-copy');
+        const sourceSelector = copyButton.getAttribute('data-copy-from');
+        const source = sourceSelector ? document.querySelector(sourceSelector) : null;
+        copyText(directValue || source?.textContent || '');
+        return;
+      }
+
+      const tab = event.target.closest('.tab[data-target]');
+      if (tab) {
+        document.querySelectorAll('.tab').forEach((item) => item.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelector(tab.getAttribute('data-target'))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  </script>
+</body>
+</html>

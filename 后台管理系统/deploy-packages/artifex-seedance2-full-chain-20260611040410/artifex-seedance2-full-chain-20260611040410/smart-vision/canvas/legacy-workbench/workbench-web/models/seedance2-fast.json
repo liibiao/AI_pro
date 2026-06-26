@@ -1,0 +1,68 @@
+{
+  "id": "seedance2-fast",
+  "configId": "seedance2-fast",
+  "modelKey": "seedance2-fast",
+  "providerKey": "artifex-seedance2-fast",
+  "channelKey": "artifex-seedance2-fast",
+  "name": "seedance-2-fast",
+  "modelNick": "Seedance 2 Fast",
+  "displayName": "Seedance 2 Fast",
+  "label": "Seedance 2 Fast",
+  "type": "video",
+  "model": "seedance-2-fast",
+  "baseUrl": "https://api.artifex.help/v1",
+  "url": "https://api.artifex.help/v1/videos",
+  "key": "replace-with-artifex-api-key",
+  "adapter": "seedance2",
+  "endpointPath": "/videos",
+  "statusEndpointPath": "/videos/{taskId}",
+  "uploadMode": "object_storage",
+  "supports": {
+    "txt2video": true,
+    "img2video": true,
+    "referenceVideo": true,
+    "referenceAudio": true
+  },
+  "capabilities": {
+    "resolutions": ["720p"],
+    "durations": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+    "defaultDuration": 5,
+    "defaultResolution": "720p",
+    "aspectRatios": ["16:9", "9:16", "1:1"],
+    "maxImages": {"full": 9, "smartMultiFrame": 9, "firstLast": 2},
+    "maxVideos": 3,
+    "maxAudios": 3,
+    "maxMaterials": 12,
+    "maxMaterialSizeMb": 25,
+    "maxVideoDurationSeconds": 15,
+    "maxAudioDurationSeconds": 15,
+    "supportsAudio": true,
+    "supportsVideo": true,
+    "supportsLastFrame": false
+  },
+  "defaults": {
+    "pricing": {
+      "unit": "generation",
+      "billingMode": "per_generation",
+      "currency": "credits",
+      "creditsPerCny": 100,
+      "memberDiscountRate": 1,
+      "memberCreditsPerGeneration": 450,
+      "chargedCreditsPerGeneration": 450,
+      "originalCreditsPerGeneration": 450,
+      "costCreditsPerGeneration": 450
+    }
+  },
+  "modelAssembly": {"type": "passthrough"},
+  "note": "Artifex Seedance 2 快速版，固定模型 seedance-2-fast，720p，4-15 秒，按次 450 积分。最多 9 图、3 视频、3 音频，合计不超过 12 个，每个素材不超过 25MB。",
+  "protocol": {
+    "adapter": "seedance2",
+    "endpointPath": "/videos",
+    "statusEndpointPath": "/videos/{taskId}",
+    "method": "async-poll",
+    "pollIntervalSeconds": 8,
+    "resultTtlHours": 6,
+    "uploadMode": "object_storage"
+  },
+  "ui": {"label": "Seedance 2 Fast", "badge": "FAST", "badgeColor": "#0ea5e9"}
+}

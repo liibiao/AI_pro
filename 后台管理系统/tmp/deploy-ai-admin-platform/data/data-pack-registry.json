@@ -1,0 +1,258 @@
+{
+  "version": "0.1.0",
+  "activeDataPackId": "manju-creation-library",
+  "packs": [
+    {
+      "id": "manju-creation-library",
+      "title": "漫剧创作库",
+      "type": "creative_automation",
+      "status": "active",
+      "source": "builtin_workspace",
+      "description": "当前工作区内置漫剧工业化创作数据包，包含 agents / docs / skills / templates / wordlists / tools / data / projects。",
+      "defaultTaskType": "creative_orchestration",
+      "roots": [
+        {
+          "id": "agents",
+          "title": "Agent 协作体系",
+          "root": "agents",
+          "sourceKind": "agents",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 500,
+          "parseLimit": 500
+        },
+        {
+          "id": "docs",
+          "title": "方法论 / 规范文档",
+          "root": "docs",
+          "sourceKind": "docs",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 800,
+          "parseLimit": 800
+        },
+        {
+          "id": "skills",
+          "title": "Skill 能力包",
+          "root": "skills",
+          "sourceKind": "skills",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 500,
+          "parseLimit": 500
+        },
+        {
+          "id": "templates",
+          "title": "模板体系",
+          "root": "templates",
+          "sourceKind": "templates",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 800,
+          "parseLimit": 800
+        },
+        {
+          "id": "wordlists",
+          "title": "词库 / 风格库",
+          "root": "wordlists",
+          "sourceKind": "wordlists",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 800,
+          "parseLimit": 800
+        },
+        {
+          "id": "tools",
+          "title": "自动化流水线工具",
+          "root": "tools",
+          "sourceKind": "tools",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml",
+            ".py",
+            ".sh",
+            ".csv"
+          ],
+          "limit": 240,
+          "parseLimit": 80
+        },
+        {
+          "id": "data",
+          "title": "资料库 / 解析数据",
+          "root": "data",
+          "sourceKind": "data",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 300,
+          "parseLimit": 80,
+          "maxFileBytes": 524288
+        },
+        {
+          "id": "projects",
+          "title": "项目样例与状态源",
+          "root": "projects",
+          "sourceKind": "projects",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 800,
+          "parseLimit": 220,
+          "maxFileBytes": 786432
+        },
+        {
+          "id": "aaa",
+          "title": "创作输入材料",
+          "root": "AAA",
+          "sourceKind": "creative_materials",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 240,
+          "parseLimit": 120,
+          "maxFileBytes": 786432
+        },
+        {
+          "id": "runninghub_outputs",
+          "title": "RunningHub 输出索引",
+          "root": "runninghub_outputs",
+          "sourceKind": "runninghub_outputs",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 240,
+          "parseLimit": 60,
+          "maxFileBytes": 524288
+        },
+        {
+          "id": "workbuddy_memory",
+          "title": "WorkBuddy 项目记忆",
+          "root": ".workbuddy/memory",
+          "sourceKind": "memory",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 120,
+          "parseLimit": 80
+        },
+        {
+          "id": "codebuddy_plans",
+          "title": "CodeBuddy 计划与交接",
+          "root": ".codebuddy/plans",
+          "sourceKind": "memory",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 160,
+          "parseLimit": 80
+        },
+        {
+          "id": "codebuddy_teams",
+          "title": "CodeBuddy 团队配置",
+          "root": ".codebuddy/teams",
+          "sourceKind": "memory",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 80,
+          "parseLimit": 40
+        },
+        {
+          "id": "novel_assistant",
+          "title": "小说助手规则 / 风格 / 记忆",
+          "root": ".novel-assistant",
+          "sourceKind": "novel_assistant",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 360,
+          "parseLimit": 120,
+          "maxFileBytes": 524288
+        },
+        {
+          "id": "waqu_project",
+          "title": "挖取项目输出",
+          "root": ".waqu-project/outputs",
+          "sourceKind": "waqu_outputs",
+          "extensions": [
+            ".md",
+            ".json",
+            ".txt",
+            ".yaml",
+            ".yml"
+          ],
+          "limit": 180,
+          "parseLimit": 60,
+          "maxFileBytes": 524288
+        }
+      ],
+      "tags": [],
+      "capabilities": {},
+      "metadata": {},
+      "rootBase": "workspace",
+      "createdAt": "2026-05-16T00:00:00.000Z",
+      "updatedAt": "2026-05-16T00:00:00.000Z"
+    }
+  ],
+  "updatedAt": "2026-05-16T05:52:35.931Z"
+}
