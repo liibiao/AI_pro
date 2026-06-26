@@ -1,0 +1,166 @@
+[
+  {
+    "label": "home",
+    "file": "/Users/billy/Documents/AI_pro/Autumn/src/assets/generated-ui/e13-visual-regression/home-playwright-1280x720.png",
+    "errors": [],
+    "viewport": {
+      "width": 1280,
+      "height": 720,
+      "dpr": 1
+    },
+    "appScale": "0.5",
+    "hasHorizontalOverflow": false,
+    "hasVerticalPageOverflow": false,
+    "keyBoxes": {
+      "app": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "right": 1280,
+        "bottom": 720
+      },
+      "topbar": {
+        "x": 13,
+        "y": 14,
+        "width": 1254,
+        "height": 41,
+        "right": 1267,
+        "bottom": 55
+      },
+      "layout": {
+        "x": 206,
+        "y": 84,
+        "width": 1061,
+        "height": 624,
+        "right": 1267,
+        "bottom": 708
+      },
+      "timelinePanel": null,
+      "timelineTracks": null,
+      "lastTrackRow": null,
+      "chatComposer": null
+    }
+  },
+  {
+    "label": "timeline-ready",
+    "file": "/Users/billy/Documents/AI_pro/Autumn/src/assets/generated-ui/e13-visual-regression/timeline-ready-playwright-1280x720.png",
+    "errors": [],
+    "viewport": {
+      "width": 1280,
+      "height": 720,
+      "dpr": 1
+    },
+    "appScale": "0.5",
+    "hasHorizontalOverflow": false,
+    "hasVerticalPageOverflow": false,
+    "keyBoxes": {
+      "app": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "right": 1280,
+        "bottom": 720
+      },
+      "topbar": {
+        "x": 13,
+        "y": 14,
+        "width": 1254,
+        "height": 33,
+        "right": 1267,
+        "bottom": 47
+      },
+      "layout": {
+        "x": 13,
+        "y": 71,
+        "width": 1254,
+        "height": 649,
+        "right": 1267,
+        "bottom": 720
+      },
+      "timelinePanel": {
+        "x": 271,
+        "y": 525,
+        "width": 595,
+        "height": 195,
+        "right": 866,
+        "bottom": 720
+      },
+      "timelineTracks": {
+        "x": 272,
+        "y": 600,
+        "width": 593,
+        "height": 119,
+        "right": 865,
+        "bottom": 719
+      },
+      "lastTrackRow": {
+        "x": 272,
+        "y": 679,
+        "width": 593,
+        "height": 40,
+        "right": 865,
+        "bottom": 719
+      },
+      "chatComposer": {
+        "x": 879,
+        "y": 648,
+        "width": 381,
+        "height": 65,
+        "right": 1259,
+        "bottom": 712
+      }
+    }
+  },
+  {
+    "label": "empty-workspace",
+    "file": "/Users/billy/Documents/AI_pro/Autumn/src/assets/generated-ui/e13-visual-regression/empty-workspace-playwright-1280x720.png",
+    "errors": [],
+    "viewport": {
+      "width": 1280,
+      "height": 720,
+      "dpr": 1
+    },
+    "appScale": "0.5",
+    "hasHorizontalOverflow": false,
+    "hasVerticalPageOverflow": false,
+    "keyBoxes": {
+      "app": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720,
+        "right": 1280,
+        "bottom": 720
+      },
+      "topbar": {
+        "x": 13,
+        "y": 14,
+        "width": 1254,
+        "height": 33,
+        "right": 1267,
+        "bottom": 47
+      },
+      "layout": {
+        "x": 13,
+        "y": 71,
+        "width": 1254,
+        "height": 649,
+        "right": 1267,
+        "bottom": 720
+      },
+      "timelinePanel": null,
+      "timelineTracks": null,
+      "lastTrackRow": null,
+      "chatComposer": {
+        "x": 886,
+        "y": 648,
+        "width": 373,
+        "height": 65,
+        "right": 1259,
+        "bottom": 712
+      }
+    }
+  }
+]
