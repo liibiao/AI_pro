@@ -1,0 +1,267 @@
+{
+  "lighting_setups": [
+    {
+      "id": "three_point",
+      "name": "三点布光",
+      "nameEn": "Three-Point Lighting",
+      "description": "主光+补光+轮廓光",
+      "mood": "标准、自然、通用",
+      "usage": "人物访谈、标准场景"
+    },
+    {
+      "id": "natural_light",
+      "name": "自然光",
+      "nameEn": "Natural Light",
+      "description": "窗光、日光、环境光",
+      "mood": "真实、柔和、生活化",
+      "usage": "日常场景、纪实风格"
+    },
+    {
+      "id": "golden_hour",
+      "name": "黄金时刻",
+      "nameEn": "Golden Hour",
+      "description": "日出日落前后的暖金色光",
+      "mood": "温暖、浪漫、怀旧",
+      "usage": "情感场景、回忆片段"
+    },
+    {
+      "id": "blue_hour",
+      "name": "蓝调时刻",
+      "nameEn": "Blue Hour",
+      "description": "黄昏后的冷蓝色光",
+      "mood": "忧郁、神秘、孤独",
+      "usage": "夜景开场、情绪低落"
+    },
+    {
+      "id": "high_key",
+      "name": "高调照明",
+      "nameEn": "High-Key Lighting",
+      "description": "明亮、低对比、少阴影",
+      "mood": "轻松、欢快、积极",
+      "usage": "喜剧、广告、梦境"
+    },
+    {
+      "id": "low_key",
+      "name": "低调照明",
+      "nameEn": "Low-Key Lighting",
+      "description": "暗部为主、高对比、强阴影",
+      "mood": "神秘、紧张、戏剧化",
+      "usage": "悬疑、惊悚、黑色电影"
+    },
+    {
+      "id": "rembrandt",
+      "name": "伦勃朗光",
+      "nameEn": "Rembrandt Lighting",
+      "description": "45度侧光，脸颊形成三角光斑",
+      "mood": "戏剧化、经典、肖像感",
+      "usage": "人物特写、肖像式构图"
+    },
+    {
+      "id": "butterfly",
+      "name": "蝴蝶光",
+      "nameEn": "Butterfly Lighting",
+      "description": "正面高位光，鼻下形成蝴蝶形阴影",
+      "mood": "魅力、优雅、好莱坞式",
+      "usage": "美妆、时尚、明星肖像"
+    },
+    {
+      "id": "rim_light",
+      "name": "轮廓光/边缘光",
+      "nameEn": "Rim Light",
+      "description": "从背后或侧后方照亮主体边缘",
+      "mood": "分离、神圣、英雄化",
+      "usage": "人物登场、英雄时刻"
+    },
+    {
+      "id": "silhouette",
+      "name": "剪影光",
+      "nameEn": "Silhouette Lighting",
+      "description": "强背光，主体呈黑色剪影",
+      "mood": "神秘、悬念、象征",
+      "usage": "悬疑揭示、身份隐藏"
+    },
+    {
+      "id": "neon",
+      "name": "霓虹灯光",
+      "nameEn": "Neon Lighting",
+      "description": "彩色霓虹灯、城市夜景",
+      "mood": "都市、孤独、赛博朋克",
+      "usage": "夜景、都市题材、科幻"
+    },
+    {
+      "id": "practical",
+      "name": "实景光源",
+      "nameEn": "Practical Lighting",
+      "description": "画面内可见的光源（台灯、蜡烛等）",
+      "mood": "真实、沉浸、生活化",
+      "usage": "室内场景、营造氛围"
+    },
+    {
+      "id": "motivated",
+      "name": "动机光",
+      "nameEn": "Motivated Lighting",
+      "description": "模拟合理光源方向的布光",
+      "mood": "真实、可信、自然",
+      "usage": "所有需要真实感的场景"
+    },
+    {
+      "id": "hard_light",
+      "name": "硬光",
+      "nameEn": "Hard Light",
+      "description": "强烈、清晰的阴影边缘",
+      "mood": "戏剧化、紧张、对抗",
+      "usage": "冲突场景、黑色电影"
+    },
+    {
+      "id": "soft_light",
+      "name": "柔光",
+      "nameEn": "Soft Light",
+      "description": "柔和、渐变的阴影",
+      "mood": "温柔、浪漫、舒适",
+      "usage": "情感场景、亲密时刻"
+    }
+  ],
+  "color_temperatures": [
+    {
+      "id": "warm",
+      "name": "暖色调",
+      "kelvin": "2700K-3500K",
+      "colors": ["橙黄", "金色", "琥珀"],
+      "mood": "温暖、舒适、怀旧、亲密"
+    },
+    {
+      "id": "neutral",
+      "name": "中性色调",
+      "kelvin": "4000K-5000K",
+      "colors": ["白色", "自然光"],
+      "mood": "客观、真实、日常"
+    },
+    {
+      "id": "cool",
+      "name": "冷色调",
+      "kelvin": "5500K-7000K",
+      "colors": ["蓝色", "青色", "钢灰"],
+      "mood": "冷峻、疏离、科技、忧郁"
+    },
+    {
+      "id": "mixed",
+      "name": "冷暖混合",
+      "kelvin": "混合",
+      "colors": ["蓝橙对比", "青黄对比"],
+      "mood": "冲突、对立、戏剧化"
+    }
+  ],
+  "atmospheric_effects": [
+    {
+      "id": "fog",
+      "name": "雾气/烟雾",
+      "description": "空气中的雾气或烟雾",
+      "effect": "柔化光线、增加层次、神秘感"
+    },
+    {
+      "id": "dust",
+      "name": "尘埃/光柱",
+      "description": "光束中的尘埃粒子",
+      "effect": "可视化光线、增加质感、丁达尔效应"
+    },
+    {
+      "id": "rain",
+      "name": "雨水反光",
+      "description": "雨天的反光和水汽",
+      "effect": "增加质感、情绪渲染、视觉丰富"
+    },
+    {
+      "id": "lens_flare",
+      "name": "镜头光晕",
+      "description": "强光源造成的光晕",
+      "effect": "真实感、电影感、视觉冲击"
+    },
+    {
+      "id": "bokeh",
+      "name": "散景/虚化",
+      "description": "失焦区域的光斑",
+      "effect": "浪漫、梦幻、突出主体"
+    }
+  ],
+  "lighting_ratios": [
+    {
+      "id": "1_1",
+      "ratio": "1:1",
+      "description": "主光与补光等强",
+      "mood": "平淡、无戏剧性",
+      "usage": "新闻、纪录"
+    },
+    {
+      "id": "2_1",
+      "ratio": "2:1",
+      "description": "主光是补光的2倍",
+      "mood": "自然、柔和",
+      "usage": "日常场景、访谈"
+    },
+    {
+      "id": "4_1",
+      "ratio": "4:1",
+      "description": "主光是补光的4倍",
+      "mood": "戏剧化、立体感强",
+      "usage": "剧情片、人物塑造"
+    },
+    {
+      "id": "8_1",
+      "ratio": "8:1及以上",
+      "description": "极强对比",
+      "mood": "强烈戏剧化、黑色电影",
+      "usage": "悬疑、惊悚、黑色电影"
+    }
+  ],
+  "time_of_day": [
+    {
+      "id": "dawn",
+      "name": "黎明",
+      "time": "日出前30分钟",
+      "light": "冷蓝色、柔和、低对比",
+      "mood": "希望、新生、宁静"
+    },
+    {
+      "id": "morning",
+      "name": "清晨",
+      "time": "日出后2小时",
+      "light": "暖金色、清新、中对比",
+      "mood": "活力、开始、积极"
+    },
+    {
+      "id": "noon",
+      "name": "正午",
+      "time": "11:00-13:00",
+      "light": "顶光、强烈、高对比",
+      "mood": "炎热、直接、无遮掩"
+    },
+    {
+      "id": "afternoon",
+      "name": "下午",
+      "time": "14:00-17:00",
+      "light": "侧光、温暖、中对比",
+      "mood": "平和、日常、舒适"
+    },
+    {
+      "id": "golden_hour",
+      "name": "黄昏",
+      "time": "日落前1小时",
+      "light": "暖金色、柔和、低对比",
+      "mood": "浪漫、怀旧、温情"
+    },
+    {
+      "id": "dusk",
+      "name": "薄暮",
+      "time": "日落后30分钟",
+      "light": "冷蓝紫、神秘、低对比",
+      "mood": "忧郁、过渡、不确定"
+    },
+    {
+      "id": "night",
+      "name": "深夜",
+      "time": "21:00-05:00",
+      "light": "人工光源、高对比、局部照明",
+      "mood": "孤独、神秘、危险"
+    }
+  ]
+}

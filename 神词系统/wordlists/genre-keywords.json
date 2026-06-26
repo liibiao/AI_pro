@@ -1,0 +1,80 @@
+{
+  "_meta": {
+    "source": "soullensV69更新 (1).html · Rl() 题材识别正则 + Vu 题材-风格映射数组",
+    "version": "lingjing-6.9",
+    "description": "两层题材识别：① 基础节奏题材（4类正则） ② 精细风格题材（30条关键词映射）",
+    "usage": "先用 genreRegex 识别 action/thriller/dialogue/lyrical/balanced，驱动节奏预设；再用 styleKeywords 命中率排序，推荐 Top3 导演+视觉风格"
+  },
+  "genreRegex": {
+    "action": {
+      "label": "动作",
+      "pattern": "(追逐|打斗|枪战|爆炸|战斗|搏斗|动作|逃亡|冲刺|对决|生死|危机|高速|追车)",
+      "mappedPace": "action"
+    },
+    "thriller": {
+      "label": "悬疑/惊悚",
+      "pattern": "(悬疑|惊悚|恐怖|诡异|凶案|密室|追凶|反转|谜团|真相|压迫)",
+      "mappedPace": "thriller"
+    },
+    "dialogue": {
+      "label": "对话",
+      "pattern": "(对话|谈判|争吵|辩论|审讯|采访|会议|课堂|独白|旁白)",
+      "mappedPace": "dialogue"
+    },
+    "lyrical": {
+      "label": "抒情",
+      "pattern": "(回忆|抒情|浪漫|温柔|诗意|治愈|宁静|唯美|思念|感伤|情绪)",
+      "mappedPace": "lyrical",
+      "fallbackTrigger": "narrativeMode === 'mood'"
+    },
+    "default": {
+      "label": "均衡",
+      "mappedPace": "balanced"
+    }
+  },
+  "styleKeywords": [
+    {"keywords": ["都市孤独","暗恋","擦肩而过","霓虹","酒吧","香港","旗袍","深夜","暧昧","错过","情人","寂寞","雨夜都市","花样年华","重庆森林"], "directorId": "wong", "visualStyle": "vintage", "label": "🌃 王家卫·都市迷离"},
+    {"keywords": ["京剧","霸王","别姬","史诗悲剧","命运","朝堂","帝王","宫廷","皇帝","妃子","荆轲","始皇","后宫","太后","公主","科举"], "directorId": "chenkaige", "visualStyle": "gongbi", "label": "🏛️ 陈凯歌·史诗悲剧"},
+    {"keywords": ["武打","飘逸","钢丝","威亚","拳脚","格斗","对打","招式","武术"], "directorId": "yuen", "visualStyle": "cinematic", "label": "🥋 袁和平·飘逸武打"},
+    {"keywords": ["枪战","双枪","白鸽","教堂","兄弟","义气","卧底","黑帮","警匪","对峙"], "directorId": "woo", "visualStyle": "cinematic", "label": "🔫 吴宇森·暴力美学"},
+    {"keywords": ["非线性","血腥","黑色幽默","复仇","杀手","赏金","西部","地下","黑帮交易"], "directorId": "tarantino", "visualStyle": "vintage", "label": "💀 塔伦蒂诺·暴力美学"},
+    {"keywords": ["赛博","义体","黑客","虚拟世界","AI意识","机器人","数字世界","攻壳","网络","电子脑","赛博朋克"], "directorId": "oshii", "visualStyle": "cyberpunk", "label": "🤖 押井守·赛博哲学"},
+    {"keywords": ["机甲","高达","EVA","使徒","驾驶舱","末日","人类补完","意识流","机器人大战"], "directorId": "anno", "visualStyle": "mecha", "label": "🦾 庵野秀明·机甲末日"},
+    {"keywords": ["吉卜力","龙猫","千寻","宫崎骏","飞行","草原","森林","精灵","魔女","天空之城","风之谷","幽灵公主","哈尔的移动城堡"], "directorId": "miyazaki", "visualStyle": "ghibli", "label": "🌿 宫崎骏·自然治愈"},
+    {"keywords": ["你的名字","天气之子","铃芽","彗星","天空","云彩","青春","距离","思念","城市夜景","电车","暮色"], "directorId": "shinkai", "visualStyle": "anime", "label": "🌈 新海诚·青春天空"},
+    {"keywords": ["成长","母亲","父亲","暑假","夏天","数码世界","变身","家庭动画"], "directorId": "hosoda", "visualStyle": "anime", "label": "🌻 细田守·家庭温情"},
+    {"keywords": ["梦境","现实与梦","幻觉","偶像","女演员","精神分裂","千年","穿越时空","记忆碎片","红辣椒"], "directorId": "kon", "visualStyle": "anime", "label": "🌀 今敏·梦境穿越"},
+    {"keywords": ["推理","凶手","密室","线索","侦探","案件","悬疑","谋杀","嫌疑人","真相","连环杀手","暗网"], "directorId": "fincher", "visualStyle": "noir", "label": "🔍 大卫芬奇·冷峻悬疑"},
+    {"keywords": ["偷窥","后窗","心理暗示","悬念","惊魂","鸟群","双面人","身份"], "directorId": "hitchcock", "visualStyle": "noir", "label": "🕵️ 希区柯克·经典悬念"},
+    {"keywords": ["伦敦","英国","犯罪喜剧","毒品","黑帮","赌场","绅士们","偷抢骗"], "directorId": "ritchie", "visualStyle": "cinematic", "label": "🎩 盖里奇·英伦犯罪"},
+    {"keywords": ["灵异","闹鬼","凶宅","恶灵","附身","驱魔","招魂","鬼","怨灵","诅咒"], "directorId": "wan", "visualStyle": "noir", "label": "👻 温子仁·灵异恐怖"},
+    {"keywords": ["贞子","录像带","日式恐怖","长发女鬼","电话","爬行","水鬼"], "directorId": "nakata", "visualStyle": "noir", "label": "📺 中田秀夫·日式恐怖"},
+    {"keywords": ["民俗","仲夏","白昼恐怖","邪教","仪式","献祭","遗传","北欧"], "directorId": "aster", "visualStyle": "noir", "label": "🌻 阿里阿斯特·民俗恐怖"},
+    {"keywords": ["反恐","拆弹","特种部队","中东","伊拉克","阿富汗","狙击","任务","情报"], "directorId": "bigelow", "visualStyle": "documentary", "label": "🎯 毕格罗·现代战争"},
+    {"keywords": ["战争诗意","太平洋","自然","哲学","意识流","生命","死亡意义"], "directorId": "malick", "visualStyle": "watercolor", "label": "🌾 马力克·战争诗意"},
+    {"keywords": ["台湾","眷村","童年","成长","90年代","小镇","乡愁","铁道","老街"], "directorId": "hou", "visualStyle": "vintage", "label": "🎞️ 侯孝贤·时光流逝"},
+    {"keywords": ["贵州","雾气","长镜头","梦","诗","路边","野餐","地球","夜晚","KTV"], "directorId": "bigan", "visualStyle": "cinematic", "label": "🌙 毕赣·诗意长镜"},
+    {"keywords": ["民国","旗袍","上海滩","租界","洋行","黄包车","舞厅","老上海","十里洋场"], "directorId": "wong", "visualStyle": "minguo", "label": "💃 民国风情"},
+    {"keywords": ["敦煌","飞天","壁画","佛像","莫高窟","丝绸之路","大唐","盛唐"], "directorId": "zhang", "visualStyle": "dunhuang", "label": "🏛️ 敦煌艺术"},
+    {"keywords": ["日常","慢生活","田园","做饭","猫","狗","咖啡","花园","散步","四季","温暖","治愈"], "directorId": "koreeda", "visualStyle": "watercolor", "label": "🌿 是枝裕和·治愈日常"},
+    {"keywords": ["漫画","超级英雄","正义联盟","300","斯巴达","慢动作","视觉奇观"], "directorId": "zack", "visualStyle": "comic", "label": "💥 扎克施奈德·视觉奇观"},
+    {"keywords": ["纪录","真实","纪实","采访","人物志","探索","自然","野生","乡村","小镇"], "directorId": "hou", "visualStyle": "documentary", "label": "📹 侯孝贤·纪实诗意"},
+    {"keywords": ["蒸汽朋克","齿轮","维多利亚","发条","蒸汽","铜管","工业革命"], "directorId": "burton", "visualStyle": "steampunk", "label": "⚙️ 蒸汽朋克"},
+    {"keywords": ["魔法","龙","精灵","矮人","冒险","勇者","魔王","地牢","宝藏","奇幻"], "directorId": "spielberg", "visualStyle": "fantasy", "label": "🧙 斯皮尔伯格·奇幻冒险"},
+    {"keywords": ["萤火虫","战后","童话","辉夜姬","回忆","童年往事","日本乡村"], "directorId": "takahata", "visualStyle": "watercolor", "label": "🍃 高畑勋·写实细腻"},
+    {"keywords": ["功夫喜剧","警察","醉拳","特技","环境利用","滑稽","追逐","打斗搞笑"], "directorId": "chan", "visualStyle": "cinematic", "label": "🥊 成龙·功夫喜剧"},
+    {"keywords": ["韩国","复仇","老男孩","小姐","暴力美学","华丽","黑暗","对称"], "directorId": "wook", "visualStyle": "cinematic", "label": "🔪 朴赞郁·华丽暴力"}
+  ],
+  "fallback": {
+    "label": "🎬 标准电影感",
+    "directorId": "generic",
+    "visualStyle": "cinematic",
+    "hitCount": 0
+  },
+  "matchStrategy": {
+    "step1": "遍历 styleKeywords，统计每条 keywords 命中次数（hitCount）",
+    "step2": "按 hitCount 降序，去重 directorId，取 Top3",
+    "step3": "命中总数为 0 时回落到 fallback",
+    "step4": "返回 {recommendations: [...Top3], durationEstimate: Ku(script)}"
+  }
+}

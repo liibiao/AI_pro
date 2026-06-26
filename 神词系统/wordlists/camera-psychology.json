@@ -1,0 +1,191 @@
+{
+  "_meta": {
+    "source": "漫剧创作库/docs/camera-psychology-movement-standard.md",
+    "version": "soullens-v2",
+    "description": "心理运镜系统：摄影机的每一次运动都与角色内心状态或剧情推演直接绑定",
+    "usage": "Director 讲戏时严禁写'镜头推近'这种缺乏情绪的词，必须写明心理动机"
+  },
+  "psychology_movements": [
+    {
+      "id": "aggressive_push",
+      "name": "侵入与施压",
+      "nameEn": "Aggressive Push-in / Dolly In",
+      "psychologicalHint": "揭示真相、内心恐惧放大、反派/强权的致命逼近",
+      "visualFeature": "镜头以不可阻挡的匀速（甚至略带加速）向人物面部推进，空间被急剧压缩",
+      "seedancePrompts": [
+        "aggressive push in, dolly towards character face, rapid zoom, background compression",
+        "relentless camera push-in, space compressing around the subject",
+        "accelerating dolly in, claustrophobic framing tightening"
+      ],
+      "taboo": "不要在普通的日常对话中使用，会显得莫名其妙地紧张",
+      "directorExample": "[侵入性推进：放大主角得知真相的恐惧]"
+    },
+    {
+      "id": "pull_back",
+      "name": "疏离与遗弃",
+      "nameEn": "Pull Back / Dolly Out",
+      "psychologicalHint": "孤独、无助、绝望、或人物被庞大的世界/宿命吞噬",
+      "visualFeature": "镜头缓慢向后退，人物在画面中变得越来越小，周围空旷的负空间越来越多",
+      "seedancePrompts": [
+        "slow pull back, camera dollying out, expanding negative space, character becoming small in the frame",
+        "camera retreating, vast emptiness growing around the isolated figure",
+        "lonely pull-back reveal, character dwarfed by the environment"
+      ],
+      "taboo": "不要在角色获得胜利或力量觉醒时使用，这会削弱力量感",
+      "directorExample": "[缓慢后退：表现主角被家族遗弃的孤独]"
+    },
+    {
+      "id": "handheld",
+      "name": "偷窥与焦虑",
+      "nameEn": "Handheld / Shaky Cam",
+      "psychologicalHint": "混乱、真实感、极度的心理焦虑、被人暗中监视",
+      "visualFeature": "镜头带有不规则的微小呼吸感或剧烈晃动，甚至焦点不实",
+      "seedancePrompts": [
+        "handheld camera, shaky cam, documentary style, unstable framing",
+        "nervous handheld movement, slight out-of-focus moments, voyeuristic angle",
+        "breathing camera shake, anxious framing, gritty documentary feel"
+      ],
+      "taboo": "文戏中如果不是表现极度焦虑，严禁使用晃动镜头，否则会破坏权力的稳定感",
+      "directorExample": "[手持晃动：掩盖杀人现场的焦虑]"
+    },
+    {
+      "id": "dutch_vertigo",
+      "name": "迷失与失控",
+      "nameEn": "Dutch Angle / Vertigo Effect",
+      "psychologicalHint": "世界观崩塌、精神失常、走火入魔、邪恶降临",
+      "visualFeatures": [
+        {
+          "type": "dutch_angle",
+          "description": "荷兰角：地平线倾斜，画面不再横平竖直",
+          "prompts": ["Dutch angle, tilted camera, tilted horizon", "off-kilter framing, world off-balance"]
+        },
+        {
+          "type": "dolly_zoom",
+          "description": "滑动变焦：机位后退同时拉长焦，背景剧烈空间扭曲",
+          "prompts": ["vertigo effect, dolly zoom, background warping while subject stays same size", "Hitchcock zoom, disorienting perspective shift"]
+        }
+      ],
+      "seedancePrompts": [
+        "Dutch angle, tilted camera, tilted horizon, vertigo effect",
+        "dolly zoom, background warping, disorienting perspective distortion"
+      ],
+      "taboo": "全剧只能在主角三观破碎或大反派现出真身时使用1-2次",
+      "directorExample": "[Dutch Angle：走火入魔，世界观崩塌]"
+    },
+    {
+      "id": "circular_tracking",
+      "name": "环绕与宿命",
+      "nameEn": "Circular Tracking / Arc Shot",
+      "psychologicalHint": "命运的交汇、极致的浪漫、或无路可逃的绝境",
+      "visualFeatures": [
+        {
+          "speed": "慢速环绕",
+          "mood": "高光时刻的史诗感或浪漫",
+          "prompt": "slow 180-degree arc shot around the character, epic grandeur"
+        },
+        {
+          "speed": "快速环绕",
+          "mood": "人物陷入重围、迷失方向或极度恐慌",
+          "prompt": "rapid 360-degree spin around the character, disorienting circular tracking"
+        }
+      ],
+      "seedancePrompts": [
+        "camera tracking in a circle around the character, 360 degree arc shot, spinning camera",
+        "slow orbit around the subject, revealing the environment from all angles"
+      ],
+      "directorExample": "[慢速环绕：命运的交汇点]"
+    },
+    {
+      "id": "fpv_flythrough",
+      "name": "穿越与压迫",
+      "nameEn": "FPV Fly-Through / Tunnel Run",
+      "psychologicalHint": "强侵入、目标锁定、危险逼近、命悬一线的高速推进感",
+      "visualFeature": "第一人称或高度主观的广角高速前冲，镜头贴着障碍物擦身而过，前景快速切换",
+      "triggerConditions": [
+        "追逐 / 逃逸 / 坠落 / 闯关 / 穿洞 / 钻缝 / 穿楼 / 通道突破",
+        "场景内存在明确的洞口/门窗/裂缝/桥洞/走廊/管道/峡谷",
+        "需要观众获得'马上要撞上去'的身体感"
+      ],
+      "seedancePrompts": [
+        "FPV fly-through, first-person high-speed rush, threading through a narrow gap",
+        "near-miss pass, tunnel run, wide-angle distortion, edge motion blur",
+        "speeding through corridor, obstacles flashing past, urgent forward momentum"
+      ],
+      "fiveAnchors": {
+        "entry": "入口建立镜头——明确起点和方向",
+        "medium": "穿越/撞击/擦身镜头——障碍物、介质、速度参照",
+        "exit": "出口镜头——穿出后的结果兑现",
+        "note": "一段 FPV 不得只靠单镜头，默认拆成'入口→穿越→落幅'"
+      },
+      "taboo": "不能只写'很快地飞过去'，必须明确入口、穿越介质、出口和结果揭示"
+    }
+  ],
+  "motion_blur_levels": {
+    "description": "运动模糊强度分级",
+    "levels": [
+      {
+        "level": 1,
+        "name": "轻度 blur",
+        "applicable": "一般出拳、闪避、冲刺、轻甩镜",
+        "prompt": "slight motion blur on the moving limb",
+        "usage": "适合大多数商业动作镜头"
+      },
+      {
+        "level": 2,
+        "name": "中度 blur",
+        "applicable": "高速连击、横向急闪、武器连续挥砍、快速跟拍",
+        "prompt": "moderate motion blur on the weapon swing, background streaking",
+        "usage": "适合高潮段落"
+      },
+      {
+        "level": 3,
+        "name": "重度 blur",
+        "applicable": "极限高速、超能力爆发、极快 whip pan",
+        "prompt": "heavy motion blur, extreme speed lines, background completely smeared",
+        "usage": "只能短时使用，必须配合清晰落点"
+      }
+    ],
+    "clear_zones": {
+      "description": "必须保持清晰的区域——模糊优先用于动作过程，爽点帧必须保持清晰",
+      "must_clear": ["起手姿态", "眼神锁定", "武器出鞘瞬间", "命中接触点", "爽点定格", "终结动作收势"],
+      "can_blur": ["拳脚挥动过程", "刀锋摆动过程", "高速横移", "急速闪避", "转身中段", "冲刺中的背景", "whip pan 甩镜过程"]
+    }
+  },
+  "speed_ramp_protocols": {
+    "description": "变速节奏协议：Hit Stop / 升格 / 降格",
+    "techniques": [
+      {
+        "id": "hit_stop",
+        "name": "Hit Stop / 命中定格",
+        "description": "命中瞬间画面冻结2-4帧（约0.08-0.17秒），制造极致的冲击感",
+        "prompt": "hit stop on impact, brief freeze frame at the moment of contact",
+        "usage": "每个关键命中点必须使用"
+      },
+      {
+        "id": "speed_ramp_up",
+        "name": "升格蓄力",
+        "description": "动作启动前进入慢动作，蓄积力量感",
+        "prompt": "slow motion build-up before the strike, speed ramp increasing",
+        "usage": "大招/终结技前"
+      },
+      {
+        "id": "speed_ramp_down",
+        "name": "降格释放",
+        "description": "蓄力结束后瞬间恢复正常速度甚至加速，释放爆发力",
+        "prompt": "sudden return to normal speed after slow-motion build-up, explosive release",
+        "usage": "接升格蓄力后使用"
+      },
+      {
+        "id": "bullet_time",
+        "name": "子弹时间",
+        "description": "撞击或交锋瞬间的极慢动作（能看清飞溅的血珠或碎裂的火花），随后瞬间快切",
+        "prompt": "bullet time, extreme slow-motion capturing flying sparks and debris mid-air",
+        "usage": "高潮段落的关键命中"
+      }
+    ],
+    "speed_arc_template": {
+      "description": "速度弧线模板：蓄力→骤静→Hit Stop→爆裂释放",
+      "structure": "起势清楚 → 爆发加速 → 命中清晰(Hit Stop) → 余势收尾"
+    }
+  }
+}

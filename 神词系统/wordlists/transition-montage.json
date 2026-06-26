@@ -1,0 +1,94 @@
+{
+  "_meta": {
+    "source": "漫剧创作库/docs/transition-montage-standard.md",
+    "version": "soullens-v2",
+    "description": "转场与蒙太奇词库：消除'PPT幻灯片感'，通过电影级转场提升叙事流畅度",
+    "usage": "Director 分镜表中凡跨场景/跨时间段禁止默认硬切，必须标明转场方式"
+  },
+  "core_principle": {
+    "description": "切点即隐喻",
+    "rule": "转场必须承载时间流逝、空间跳跃、动作延续或情绪隐喻的功能",
+    "taboo": "不要为了切而切，孤立镜头硬切拼在一起会造成极度视觉断裂"
+  },
+  "transition_types": [
+    {
+      "id": "match_cut",
+      "name": "相似性剪辑 / 形状匹配",
+      "nameEn": "Match Cut",
+      "definition": "上一镜的构图形状/色彩，与下一镜完全重合",
+      "function": "表现极具宿命感的时空跳跃",
+      "classicExample": "剑锋滴落的一滴鲜血（特写），切到茶杯里滴入的一滴红茶（特写）",
+      "executionRequirement": "必须在分镜表中明确'上下两镜的构图必须完全一致'，锁定画面的视觉中心点",
+      "seedancePrompt": "match cut, identical framing composition carrying over from previous shot"
+    },
+    {
+      "id": "action_match",
+      "name": "动势衔接 / 动作连贯剪辑",
+      "nameEn": "Action Match Cut",
+      "definition": "利用动作的惯性和方向性，跨越空间或时间",
+      "function": "动作的延续感，制造连击或跨越时空的打击",
+      "classicExample": "主角在酒馆向左挥出一记重拳（中景），瞬间切到反派在街道上被击飞向右倒下（全景）",
+      "executionRequirements": [
+        "第 1 镜的结尾必须有极强的高速位移（带有 Motion Blur）",
+        "第 2 镜的开头必须继承第 1 镜的运动方向（左出右进）",
+        "Seedance 用 Whip Pan 作为两段视频的衔接点"
+      ],
+      "seedancePrompt": "action match cut, inheriting motion direction from previous shot, whip pan transition"
+    },
+    {
+      "id": "j_cut",
+      "name": "声画错位 — 声音先入 (J-Cut)",
+      "nameEn": "J-Cut",
+      "definition": "画面还是上一幕，但下一幕的声音已经提前响起",
+      "function": "时空交错的心理暗示",
+      "classicExample": "画面还是平静的湖面，但下一场戏的惨叫声已经提前响起",
+      "executionRequirement": "剪辑台上标注哪一秒音频开始提前进入",
+      "seedancePrompt": "J-Cut, audio from next scene begins before visual transition"
+    },
+    {
+      "id": "l_cut",
+      "name": "声画错位 — 声音延续 (L-Cut)",
+      "nameEn": "L-Cut",
+      "definition": "画面切到了下一幕，但上一幕的声音还在回荡",
+      "function": "极其丝滑的过渡",
+      "classicExample": "画面切到了平静的清晨，但上一幕主角绝望的叹息声还在回荡",
+      "executionRequirement": "剪辑台上标注哪一秒音频开始拖尾",
+      "seedancePrompt": "L-Cut, audio from previous scene continues after visual transition"
+    },
+    {
+      "id": "wipe_blocking",
+      "name": "遮挡转场 / 擦黑",
+      "nameEn": "Wipe / Blocking Transition",
+      "definition": "利用前景物体划过镜头，完全遮挡的瞬间切到下一个场景",
+      "function": "天然的转场遮挡",
+      "classicExample": "一根柱子、走过的人影划过镜头，变黑的瞬间切场",
+      "executionRequirement": "提示词中强制写明遮挡物，以全黑帧作为剪辑点",
+      "seedancePrompt": "camera tracks horizontally past a dark pillar obscuring the view, wipe transition to black"
+    },
+    {
+      "id": "rack_focus_transition",
+      "name": "拉焦 / 焦点转移",
+      "nameEn": "Rack Focus Transition",
+      "definition": "机位不动，通过焦点变化引导注意力，实现'内部转场'",
+      "function": "不剪辑也能揭示信息",
+      "classicExample": "从前景的酒杯虚化，背景的人物变得清晰",
+      "executionRequirement": "Seedance 提示词中写入焦点转移指令",
+      "seedancePrompt": "rack focus from foreground object to character in the background, internal transition"
+    }
+  ],
+  "continuity_rules": {
+    "description": "素材'留头留尾'规则",
+    "rules": [
+      "动作不能在最后一帧刚好做完，必须留出至少 1 秒的余量",
+      "余量形式：Motion Blur 或空镜",
+      "供后期剪辑使用"
+    ]
+  },
+  "reviewer_gate": {
+    "description": "审片门禁",
+    "rules": [
+      "连续 3 个以上的镜头是不相干的硬切（PPT感）→ 必须用 J-Cut 或环境空镜润滑",
+      "Director 在分镜表中跨场景/跨时间 → 禁止默认硬切，必须标明转场方式"
+    ]
+  }
+}

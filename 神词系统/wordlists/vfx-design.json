@@ -1,0 +1,203 @@
+{
+  "_meta": {
+    "source": "漫剧创作库/docs/vfx-design-standard.md + atmosphere-interaction-standard.md + environmental-destruction-standard.md + action-vocabulary.md",
+    "version": "soullens-v2",
+    "description": "视觉特效词库：光源绑定、热畸变、余韵残留、材质破坏、环境联动",
+    "usage": "Seedance/MJ 提示词中特效相关词汇的权威参考，按物理规律分类"
+  },
+  "interactive_lighting": {
+    "description": "光源绑定法则：任何发光特效必须对周围产生真实光照反射",
+    "categories": [
+      {
+        "id": "face_feedback",
+        "name": "面部光照反馈",
+        "prompts": [
+          "casting harsh blue light on the character's face",
+          "warm firelight flickering across facial features",
+          "green energy glow reflecting in the character's pupils",
+          "purple magic illuminating one side of the face, deep shadows on the other",
+          "golden aura casting soft upward light under the chin"
+        ]
+      },
+      {
+        "id": "material_feedback",
+        "name": "材质光照反馈",
+        "prompts": [
+          "blue energy sphere reflecting cold metallic sheen on armor",
+          "fire magic scorching the ground with orange-red glow",
+          "lightning casting sharp white highlights on wet surfaces",
+          "spiritual energy making jade accessories glow translucent",
+          "dark energy corroding nearby stone surfaces with purple-black veins"
+        ]
+      },
+      {
+        "id": "environment_feedback",
+        "name": "环境光照反馈",
+        "prompts": [
+          "energy blast illuminating surrounding fog from within",
+          "magic circle light casting long shadows across the floor",
+          "explosion lighting up entire corridor in flash of orange",
+          "spiritual aura making dust particles glow like fireflies",
+          "power surge causing nearby lights to flicker and shatter"
+        ]
+      }
+    ]
+  },
+  "heat_distortion": {
+    "description": "热畸变与介质扭曲：高温/高能法术周围空气的物理形变",
+    "categories": [
+      {
+        "id": "air_refraction",
+        "name": "空气折射",
+        "prompts": [
+          "intense heat distortion blurring the background behind the fire",
+          "shimmering air around the concentrated energy sphere",
+          "thermal haze warping the visible space around the character",
+          "superheated air causing visible heat ripples above the impact point",
+          "reality itself seems to bend and warp around the gathering power"
+        ]
+      },
+      {
+        "id": "shockwave",
+        "name": "冲击波",
+        "prompts": [
+          "invisible shockwave kicking up a ring of dust from the ground",
+          "concentric shockwave rippling outward through rain drops",
+          "pressure wave causing nearby debris to fly outward",
+          "air displacement blowing hair and clothes outward from impact",
+          "shockwave visibly distorting the air in an expanding sphere"
+        ]
+      },
+      {
+        "id": "energy_trails",
+        "name": "能量尾迹",
+        "prompts": [
+          "trailing arcs of electricity following hand movement",
+          "fading afterimage of light along the weapon's swing path",
+          "energy particles streaming behind the charging character",
+          "glowing residue left on surfaces the energy touched",
+          "fading light trail marking the path of the projectile"
+        ]
+      }
+    ]
+  },
+  "lingering_aftermath": {
+    "description": "生命周期的余韵：特效必须有始、中、终，严禁瞬间抹除",
+    "categories": [
+      {
+        "id": "embers_sparks",
+        "name": "余烬与火花",
+        "prompts": [
+          "drifting glowing embers floating upward from the scorched ground",
+          "shower of bright orange sparks erupting from metal-on-metal impact",
+          "tiny floating particles of residual energy slowly fading",
+          "scattered sparks dancing in the air before extinguishing",
+          "embers swirling in the updraft created by the blast"
+        ]
+      },
+      {
+        "id": "smoke_dust",
+        "name": "硝烟与粉尘",
+        "prompts": [
+          "lingering thick smoke slowly rising from the impact crater",
+          "billowing cloud of grey dust settling gradually",
+          "wisps of dark smoke curling from the charred remains",
+          "fine ash particles drifting through the air like snow",
+          "lingering haze obscuring the aftermath, slowly clearing"
+        ]
+      },
+      {
+        "id": "environment_scars",
+        "name": "环境疤痕",
+        "prompts": [
+          "scorched earth with glowing red cracks still radiating heat",
+          "deep crater with molten edges slowly cooling to black",
+          "spiderweb cracks spreading across the stone surface, some still faintly glowing",
+          "shattered ground with exposed glowing energy veins beneath",
+          "permanent scorch marks on walls and floor from the energy blast"
+        ]
+      }
+    ]
+  },
+  "special_effects_types": {
+    "description": "特效分类词库：按能量类型和视觉特征分类",
+    "categories": [
+      {
+        "id": "spiritual_energy",
+        "name": "灵力/法术",
+        "mood": "仙侠/玄幻",
+        "keywords": ["spiritual energy", "aura", "qi", "mana", "ethereal glow"],
+        "prompts": [
+          "pulsing blue-white spiritual energy radiating from the body",
+          "ancient sigils glowing with golden light beneath the skin",
+          "swirling vortex of ethereal energy gathering in the palm",
+          "crackling lines of spirit power racing across the ground",
+          "translucent aura forming a protective barrier around the character"
+        ]
+      },
+      {
+        "id": "lightning_thunder",
+        "name": "雷电",
+        "mood": "力量/觉醒",
+        "keywords": ["lightning", "thunder", "electricity", "plasma"],
+        "prompts": [
+          "violet lightning arcing between fingertips",
+          "a massive bolt of lightning striking down from above",
+          "chain lightning jumping between multiple targets",
+          "static electricity making hair stand on end with crackling arcs",
+          "thunderous shockwave accompanying a lightning strike"
+        ]
+      },
+      {
+        "id": "fire_flame",
+        "name": "火焰",
+        "mood": "毁灭/激情",
+        "keywords": ["fire", "flame", "inferno", "blaze"],
+        "prompts": [
+          "raging inferno consuming everything in its path",
+          "concentrated fireball launched from the palm",
+          "flames engulfing the character's arm as they charge an attack",
+          "blue-white supernova fire expanding outward",
+          "wall of fire erupting from the ground in a line"
+        ]
+      },
+      {
+        "id": "ice_frost",
+        "name": "冰霜",
+        "mood": "寒意/控制",
+        "keywords": ["ice", "frost", "crystal", "frozen"],
+        "prompts": [
+          "ice crystals rapidly spreading across the ground from the point of impact",
+          "frost creeping up the victim's limbs, slowing movement",
+          "massive icicles forming mid-air and launching downward",
+          "entire area flash-frozen with visible frost patterns",
+          "shattered ice creating a glittering cloud of razor shards"
+        ]
+      },
+      {
+        "id": "dark_void",
+        "name": "暗影/虚无",
+        "mood": "邪恶/吞噬",
+        "keywords": ["darkness", "void", "shadow", "corruption"],
+        "prompts": [
+          "tendrils of darkness writhing from the ground",
+          "shadow expanding to swallow all light in the area",
+          "void energy corroding reality with visible distortion",
+          "dark matter swirling into a singularity point",
+          "black miasma seeping from cracks in the earth"
+        ]
+      }
+    ]
+  },
+  "vfx_negative_prompts": {
+    "description": "特效负面提示词：特效最常见的问题",
+    "prompts": [
+      "effect not illuminating character face (光源脱节)",
+      "effect disappearing instantly with no aftermath (无余韵)",
+      "glowing sphere floating with no environmental interaction (贴图感)",
+      "over-saturated neon glow looking like cheap game UI (光污染)",
+      "plastic-looking energy effect (塑料感)",
+      "particle effects without physical weight or momentum (无重力感)"
+    ]
+  }
+}

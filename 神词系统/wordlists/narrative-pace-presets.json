@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "source": "soullensV69更新 (1).html · ps() / Us() 函数（第 907 行附近）",
+    "version": "lingjing-6.9",
+    "description": "5 种叙事节奏预设，用于驱动 jl() 镜头时长分配算法",
+    "fields": {
+      "shotDivisor": "镜头划分系数，总时长 ÷ shotDivisor ≈ 推荐镜头数",
+      "phase": "4 阶段情绪权重数组（起/承/转/合），按镜头索引位置取权重",
+      "pattern": "节奏循环模式数组（长短交替权重），按镜头索引 % 长度取值",
+      "links": "镜头连接类型循环数组，对应每一镜的过渡方式",
+      "minShotSec": "单镜最短时长（秒）",
+      "maxShotSec": "单镜最长时长（秒）",
+      "cuttingGuide": "剪辑指导语，写入系统提示词指导 AI 切镜"
+    },
+    "usage": "autoMatchPace(script) → preset → jl(totalSec, shotCount, offset, maxShot, preset)"
+  },
+  "presets": {
+    "action": {
+      "label": "动作推进（快速切镜）",
+      "shotDivisor": 2.8,
+      "phase": [0.95, 0.8, 1.3, 0.75],
+      "pattern": [0.55, 1.2, 0.75, 1.45],
+      "links": ["动作承接", "速度切换", "空间跃迁", "冲突升级"],
+      "minShotSec": 1.5,
+      "maxShotSec": 5,
+      "cuttingGuide": "动作/武打场景：密集切镜，每个动作拆成独立镜头（出拳=1镜、格挡=1镜、后退=1镜），景别快速跳切（近景→特写→中景），制造视觉冲击力"
+    },
+    "thriller": {
+      "label": "悬疑压迫（中快切镜）",
+      "shotDivisor": 4,
+      "phase": [1, 0.9, 1.25, 0.85],
+      "pattern": [0.65, 1.15, 0.9, 1.35],
+      "links": ["视线切换", "信息揭示", "情绪递进", "空间转接"],
+      "minShotSec": 2,
+      "maxShotSec": 8,
+      "cuttingGuide": "悬疑场景：正常段落用中等镜头（4-6秒），发现线索/真相揭示时切为快速短镜头（2-3秒），制造紧迫感"
+    },
+    "dialogue": {
+      "label": "对话叙事（稳定节奏）",
+      "shotDivisor": 7.2,
+      "phase": [1.15, 1.05, 1.1, 0.95],
+      "pattern": [0.95, 1.05, 1, 1.1],
+      "links": ["视线切换", "对话接续", "情绪递进", "关系反打"],
+      "minShotSec": 3,
+      "maxShotSec": 10,
+      "cuttingGuide": "对话场景：以中景/中近景为主，每句台词或情绪反应可独立成镜，用过肩反打守180°轴线"
+    },
+    "lyrical": {
+      "label": "抒情意境（慢节奏）",
+      "shotDivisor": 7.8,
+      "phase": [1.2, 1.1, 1, 0.9],
+      "pattern": [1.1, 0.95, 1.15, 0.9],
+      "links": ["意象延展", "光影呼吸", "情绪递进", "空间转接"],
+      "minShotSec": 4,
+      "maxShotSec": 12,
+      "cuttingGuide": "抒情场景：长镜头为主，让画面呼吸，情绪转折时才切镜，每镜内用缓慢运镜制造流动感"
+    },
+    "balanced": {
+      "label": "均衡叙事",
+      "shotDivisor": 5,
+      "phase": [1.05, 0.9, 1.2, 0.8],
+      "pattern": [0.7, 1.15, 0.85, 1.35],
+      "links": ["动作承接", "视线切换", "情绪递进", "空间转接"],
+      "minShotSec": 2,
+      "maxShotSec": 10,
+      "cuttingGuide": "均衡场景：根据内容灵活调整——动作密集段落用短镜头（2-4秒），情绪/对话段落用长镜头（5-8秒）"
+    }
+  },
+  "phaseMapping": {
+    "rule": "按镜头相对位置 t = index / (total - 1) 取 phase 权重",
+    "intervals": [
+      {"range": "t < 0.2", "phaseIndex": 0, "name": "起（铺垫）"},
+      {"range": "0.2 ≤ t < 0.5", "phaseIndex": 1, "name": "承（推进）"},
+      {"range": "0.5 ≤ t < 0.75", "phaseIndex": 2, "name": "转（冲突）"},
+      {"range": "t ≥ 0.75", "phaseIndex": 3, "name": "合（收束）"}
+    ]
+  },
+  "paceClassification": {
+    "rule": "根据最终 duration 分类",
+    "levels": [
+      {"range": "≤ 4s", "label": "快"},
+      {"range": "5-7s", "label": "中"},
+      {"range": "8-10s", "label": "慢"},
+      {"range": "≥ 11s", "label": "长"}
+    ]
+  }
+}

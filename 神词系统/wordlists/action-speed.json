@@ -1,0 +1,262 @@
+{
+  "_meta": {
+    "source": "漫剧创作库/docs/action-speed-design-standard.md + action-vocabulary.md",
+    "version": "soullens-v2",
+    "description": "动作速度词库：速度与节奏、身体形变与受力、环境联动、镜头反应",
+    "usage": "动作戏分镜和提示词的直接查阅字典"
+  },
+  "speed_rhythm": {
+    "description": "动作戏的张力来自于'速度变化'，切忌全篇使用'快速'",
+    "phases": [
+      {
+        "id": "buildup",
+        "name": "起势/蓄力",
+        "prompts": [
+          "压低重心、缓慢蓄力、微停半拍",
+          "肩背绷紧、手腕回扣、呼吸收住",
+          "力量内压、杀意凝住、起手极稳",
+          "先静后响、蓄势待发、杀气锁定"
+        ]
+      },
+      {
+        "id": "launch",
+        "name": "突进/启动",
+        "prompts": [
+          "突然暴起、瞬间前冲、贴地突进",
+          "极速逼近、爆冲上前、闪身切入",
+          "一步欺近、猛然前压、掠地疾进",
+          "残影突袭、极速位移、崩裂起步"
+        ]
+      },
+      {
+        "id": "attack",
+        "name": "出招/攻击",
+        "prompts": [
+          "极速挥出、直劈而下、横斩掠过",
+          "连环追击、快如闪电、如暴风骤雨",
+          "连续刺击、重拳轰出、鞭腿横扫",
+          "反手回斩、全力一击、破空斩击"
+        ]
+      },
+      {
+        "id": "clash",
+        "name": "对抗/碰撞",
+        "prompts": [
+          "硬接、硬撼、正面碰撞、当空对撞",
+          "瞬间交击、火花炸开、冲击波扩散",
+          "短暂停顿、轻微定格、力道顶死",
+          "双武器锁死、僵持不下、能量对冲"
+        ]
+      },
+      {
+        "id": "counter",
+        "name": "反击/追打",
+        "prompts": [
+          "毫无停顿立刻反击、借势反打",
+          "转守为攻、连招追身、回身补刀",
+          "抢进中线、反手追斩、二段爆发",
+          "再度加速、连续压制、不给喘息"
+        ]
+      },
+      {
+        "id": "result",
+        "name": "结果/收势",
+        "prompts": [
+          "猛然砸落、重重落地、缓缓收势",
+          "稳稳落定、提刀俯视、收剑入鞘",
+          "气息回沉、气场压制、冷冷逼视",
+          "余波散尽、尘埃落定、不动如山"
+        ]
+      }
+    ]
+  },
+  "body_mechanics": {
+    "description": "力量必须传递到角色身上，AI 才会有反馈",
+    "categories": [
+      {
+        "id": "power_generation",
+        "name": "发力部位",
+        "prompts": [
+          "重心转移、肩背带动、肘腕传导",
+          "指节/拳锋/脚掌落点、肌肉暴起",
+          "腰部旋转带动、全身发力链",
+          "蹬地发力、借地反弹、全身冲量"
+        ]
+      },
+      {
+        "id": "defense_reaction",
+        "name": "命中/防守",
+        "prompts": [
+          "瞬间格挡、仓促格挡、侧身闪避",
+          "滑步卸力、借力偏转、横兵封挡",
+          "抬臂硬架、后撤半步、险险避开",
+          "擦身而过、勉强撑住、单膝跪地"
+        ]
+      },
+      {
+        "id": "torso_damage",
+        "name": "躯干受损",
+        "prompts": [
+          "精准命中、正中胸口、命中侧肋",
+          "打穿防线、身体后仰、重心失控",
+          "离地倒飞、身体呈反弓状、空中滞空",
+          "胸腔震塌、脊背弓起、口角溢血"
+        ]
+      },
+      {
+        "id": "subtle_feedback",
+        "name": "细微反馈",
+        "prompts": [
+          "手臂无力摊开、手臂剧烈回弹",
+          "肌肉瞬间紧绷、后槽牙咬紧",
+          "面部痛苦扭曲、口角溢血/狂喷鲜血",
+          "眼底血丝暴突、瞳孔骤缩"
+        ]
+      },
+      {
+        "id": "item_feedback",
+        "name": "物品反馈",
+        "prompts": [
+          "衣料放射状炸裂、甲片崩碎飞散",
+          "发丝狂舞、墨镜/饰品震飞旋转",
+          "武器脱手、剑身弯曲、盾牌碎裂"
+        ]
+      }
+    ]
+  },
+  "environment_linkage": {
+    "description": "环境是力量的放大镜，但不能遮挡角色读点",
+    "categories": [
+      {
+        "id": "ground_feedback",
+        "name": "地面反馈",
+        "prompts": [
+          "重重砸落、轰然坠地、翻滚滑出",
+          "嵌入地面、沿地拖行、石屑炸飞",
+          "地面崩裂出蛛网裂纹、青石板震出深坑",
+          "落点震开裂纹、地面凹陷"
+        ]
+      },
+      {
+        "id": "medium_feedback",
+        "name": "介质反馈",
+        "prompts": [
+          "尘土冲天炸开、大面积碎石飞溅",
+          "水花/气浪向四周排空",
+          "脚下竹叶被气流卷起纷飞",
+          "冲击波推开水面"
+        ]
+      },
+      {
+        "id": "surrounding_feedback",
+        "name": "周遭反馈",
+        "prompts": [
+          "周围树木/竹子被震得剧烈晃动",
+          "落叶纷飞、背后建筑涂鸦剥落",
+          "围观群众被气压推退半步",
+          "窗户玻璃震碎、墙壁开裂"
+        ]
+      }
+    ]
+  },
+  "camera_reaction": {
+    "description": "赋予镜头物理属性，打破旁观者视角",
+    "categories": [
+      {
+        "id": "camera_movement",
+        "name": "运镜反应",
+        "prompts": [
+          "低角度仰拍（赋予压迫感）",
+          "贴地快速推进",
+          "微仰跟拍",
+          "快速推近后突然拉开到全景（展示破坏范围）"
+        ]
+      },
+      {
+        "id": "camera_shake",
+        "name": "物理晃动",
+        "prompts": [
+          "全程手持摄影风格画面轻微晃动",
+          "碰撞瞬间画面轻微定格",
+          "命中瞬间镜头猛烈震动（仿佛摄影师被气浪波及）",
+          "镜头慢放特写受力瞬间"
+        ]
+      },
+      {
+        "id": "visual_style",
+        "name": "视觉风格",
+        "prompts": [
+          "动态模糊（仅限过程，命中点禁用）",
+          "速度线、残影拖影",
+          "Hit Stop 命中定格",
+          "冲击波画面畸变"
+        ]
+      }
+    ],
+    "mandatory_rules": [
+      "严禁跳轴",
+      "地平线迅速回稳",
+      "不遮挡脸部与命中点"
+    ]
+  },
+  "high_tension_compositions": {
+    "description": "高张力构图与特效——适用场景：濒死、暴走、绝杀、力量碰撞",
+    "techniques": [
+      {
+        "id": "dutch_angle",
+        "name": "Dutch Angle（荷兰角/倾斜构图）",
+        "effect": "打破平衡，营造极度不安或力量压制感",
+        "prompt": "Dutch angle, tilted horizon, extreme off-balance framing"
+      },
+      {
+        "id": "extreme_foreshortening",
+        "name": "极限透视（张力透视）",
+        "effect": "广角畸变，前景肢体极度夸张放大，强化攻击的扑面而来感",
+        "prompt": "extreme foreshortening, wide-angle distortion, foreground fist dramatically enlarged"
+      },
+      {
+        "id": "bullet_time",
+        "name": "子弹时间（变速升格）",
+        "effect": "撞击瞬间的极慢动作，能看清飞溅的血珠或碎裂的火花",
+        "prompt": "bullet time, extreme slow-motion, frozen mid-air debris and sparks"
+      },
+      {
+        "id": "environmental_suspension",
+        "name": "环境重力异常（滞空）",
+        "effect": "巨大能量场导致重力失效，碎石、血珠、雨滴在空中悬浮缓降",
+        "prompt": "zero gravity effect, debris and rain drops suspended mid-air, slow-motion floating particles"
+      },
+      {
+        "id": "chromatic_aberration",
+        "name": "色散/边缘畸变",
+        "effect": "巨大冲击波撕裂空间，画面边缘出现红蓝色彩分离",
+        "prompt": "chromatic aberration, RGB fringing at frame edges, spatial distortion from shockwave"
+      }
+    ]
+  },
+  "action_template_library": {
+    "description": "经典动作段落的模板参考",
+    "templates": [
+      {
+        "id": "triple_strike",
+        "name": "近身三连击",
+        "structure": "起势清晰：压肩逼近 → 爆发快切：拳、肘、膝连续输出 → 命中清晰：最后一击打实 → 反应镜头：对手踉跄后退"
+      },
+      {
+        "id": "dodge_counter",
+        "name": "高速闪避反打",
+        "structure": "敌方攻击清晰压来 → 主角横向急闪（身体边缘blur）→ 镜头甩跟（背景拉糊）→ 落点恢复清晰 → 反手命中必须清楚"
+      },
+      {
+        "id": "sword_clash",
+        "name": "刀剑高速对拼",
+        "structure": "两人逼近 → 数个短快切展示挥刀路径 → 刀锋带轻度拖尾与blur → 兵刃碰撞点必须清晰 → 最后一击结果镜头稳住"
+      },
+      {
+        "id": "desperate_counter",
+        "name": "被压制后的强行反击",
+        "structure": "主角先被持续压制，步伐凌乱 → 被逼退瞬间硬顶出拳（身体前冲）→ 命中前短暂停顿 → 命中瞬间快速推进 → 反击后身体撞散再次稳住"
+      }
+    ]
+  }
+}

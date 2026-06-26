@@ -1,0 +1,106 @@
+#!/bin/bash
+
+set -euo pipefail
+
+LINGJING_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="$(cd "$LINGJING_DIR/.." && pwd)"
+SERVER_SCRIPT="$LINGJING_DIR/tools/workbench_server.py"
+HOST="127.0.0.1"
+PORT="8766"
+URL="http://$HOST:$PORT/workbench.html"
+LOG_DIR="$PROJECT_ROOT/.codebuddy/logs"
+PID_FILE="$PROJECT_ROOT/.codebuddy/lingjing-workbench-server.pid"
+LOG_FILE="$LOG_DIR/lingjing-workbench-server.log"
+
+mkdir -p "$LOG_DIR"
+
+server_running() {
+  python3 - <<PY
+import sys
+import urllib.request
+try:
+    urllib.request.urlopen("$URL", timeout=1.5)
+    sys.exit(0)
+except Exception:
+    sys.exit(1)
+PY
+}
+
+start_server() {
+  if server_running; then
+    echo "[灵境工作台] 服务已在运行：$URL"
+    return
+  fi
+
+  if [ -f "$PID_FILE" ]; then
+    OLD_PID="$(cat "$PID_FILE" 2>/dev/null || true)"
+    if [ -n "$OLD_PID" ] && kill -0 "$OLD_PID" 2>/dev/null; then
+      echo "[灵境工作台] 检测到旧进程仍在，等待服务就绪…"
+    else
+      rm -f "$PID_FILE"
+    fi
+  fi
+
+  echo "[灵境工作台] 正在启动本地服务…"
+  nohup python3 "$SERVER_SCRIPT" --host "$HOST" --port "$PORT" > "$LOG_FILE" 2>&1 &
+  SERVER_PID=$!
+  echo "$SERVER_PID" > "$PID_FILE"
+
+  for _ in $(seq 1 20); do
+    if server_running; then
+      echo "[灵境工作台] 服务启动成功：$URL"
+      return
+    fi
+    sleep 0.5
+  done
+
+  echo "[灵境工作台] 服务启动失败，请查看日志：$LOG_FILE" >&2
+  exit 1
+}
+
+open_browser() {
+  echo "[灵境工作台] 正在打开网页工作台…"
+  open "$URL"
+}
+
+case "${1:-start}" in
+  start|up|launch)
+    start_server
+    open_browser
+    ;;
+  server)
+    start_server
+    ;;
+  open)
+    open_browser
+    ;;
+  status)
+    if server_running; then
+      echo "[灵境工作台] 运行中：$URL"
+      if [ -f "$PID_FILE" ]; then
+        echo "[灵境工作台] PID：$(cat "$PID_FILE")"
+      fi
+    else
+      echo "[灵境工作台] 未运行"
+      exit 1
+    fi
+    ;;
+  stop)
+    if [ -f "$PID_FILE" ]; then
+      PID="$(cat "$PID_FILE" 2>/dev/null || true)"
+      if [ -n "$PID" ] && kill -0 "$PID" 2>/dev/null; then
+        kill "$PID"
+        echo "[灵境工作台] 已停止服务（PID: $PID）"
+      else
+        echo "[灵境工作台] PID 文件存在，但进程已不在运行"
+      fi
+      rm -f "$PID_FILE"
+    else
+      echo "[灵境工作台] 未找到运行中的服务 PID"
+    fi
+    ;;
+  *)
+    echo "用法: ./lingjing-workbench [start|server|open|status|stop]"
+    exit 1
+    ;;
+esac

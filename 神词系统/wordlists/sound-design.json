@@ -1,0 +1,287 @@
+{
+  "_meta": {
+    "source": "漫剧创作库/docs/sound-design-montage-standard.md + dialogue-voice-design-standard.md + action-vocabulary.md",
+    "version": "soullens-v2",
+    "description": "听觉系统词库：成片声音 = BGM + 对白（人声层）+ 音效（环境音 + 拟音 + 特效音 + 状态音）",
+    "usage": "提示词中听觉维度的权威参考。默认只强制写：对白配音 + 音效设计；BGM 交给后期精配"
+  },
+  "sound_structure": {
+    "description": "成片声音总结构",
+    "formula": "成片声音 = BGM + 对白（人声层）+ 音效（环境音 + 拟音 + 特效音 + 状态音）",
+    "promptDefault": "提示词默认只强制写：对白配音 + 音效设计；BGM 默认不写进主提示词固定段名，交给后期人工精配"
+  },
+  "room_tone": {
+    "description": "环境底噪（Room Tone）：每场戏必须有一层符合空间大小的底噪",
+    "categories": [
+      {
+        "id": "indoor_small",
+        "name": "室内小空间",
+        "examples": [
+          {
+            "space": "狭窄木屋",
+            "description": "木板受力的吱呀声 + 极低的风穿堂声",
+            "prompt": "木板受力的吱呀声，极低风穿堂声，木头沉降声"
+          },
+          {
+            "space": "密室/地下室",
+            "description": "沉闷回音 + 管道低频嗡嗡",
+            "prompt": "沉闷封闭回音，管道低频嗡嗡，水滴声偶尔响起"
+          },
+          {
+            "space": "卧房/安静室内",
+            "description": "极低底噪 + 时钟滴答/窗外的远处白噪音",
+            "prompt": "极低底噪，远处城市白噪音，时钟滴答声"
+          }
+        ]
+      },
+      {
+        "id": "indoor_large",
+        "name": "室内大空间",
+        "examples": [
+          {
+            "space": "宗门大殿",
+            "description": "空旷石质回音 + 脚步回响 + 木质横梁偶尔的沉降声",
+            "prompt": "空旷石质空间回音，脚步声在殿内回响，木质结构偶尔沉降声"
+          },
+          {
+            "space": "地下竞技场",
+            "description": "巨大空间混响 + 石壁回音 + 远处水滴",
+            "prompt": "巨大地下空间混响，石壁多层回音，远处滴水声"
+          }
+        ]
+      },
+      {
+        "id": "outdoor_nature",
+        "name": "室外自然",
+        "examples": [
+          {
+            "space": "山洞",
+            "description": "微弱的风穿堂声 + 脚步回音 + 远处水滴",
+            "prompt": "微弱风穿堂声，脚步在石面上的回音，远处水滴声"
+          },
+          {
+            "space": "竹林",
+            "description": "竹叶沙沙 + 风穿竹林 + 远处鸟鸣",
+            "prompt": "竹叶沙沙摩擦声，风穿过竹林的声音，远处鸟鸣"
+          },
+          {
+            "space": "悬崖/高地",
+            "description": "持续的风声 + 远处鹰啸 + 空旷的空间感",
+            "prompt": "持续呼啸风声，远处鹰啸，空旷环境白噪音"
+          }
+        ]
+      },
+      {
+        "id": "outdoor_urban",
+        "name": "室外都市",
+        "examples": [
+          {
+            "space": "废墟/战场",
+            "description": "极低电流底床 + 远处碎石滑落 + 偶尔的金属沉降声",
+            "prompt": "极低电流/数字噪声底床，远处碎石滑落声，金属结构偶尔沉降"
+          },
+          {
+            "space": "雨夜街道",
+            "description": "持续雨声 + 远处雷声 + 水流下水道",
+            "prompt": "持续中雨声，远处低沉雷声，雨水流入下水道的声音"
+          }
+        ]
+      },
+      {
+        "id": "special_space",
+        "name": "特殊/异空间",
+        "examples": [
+          {
+            "space": "灵纹觉醒空间",
+            "description": "低频灵力嗡鸣 + 能量脉冲 + 空间共振",
+            "prompt": "低频灵力嗡鸣声，不规则能量脉冲，空间共振余韵"
+          },
+          {
+            "space": "系统界面空间",
+            "description": "极低电子底噪 + 系统提示音回响 + 数字化空间感",
+            "prompt": "极低电子底噪，系统提示音的空间回响，数字化环境音"
+          }
+        ]
+      }
+    ]
+  },
+  "foley": {
+    "description": "材质拟音（Foley）：声音决定画面'看起来'有多重",
+    "categories": [
+      {
+        "id": "footsteps",
+        "name": "脚步声",
+        "examples": [
+          { "surface": "石板/地面", "sound": "沉稳的脚步声，鞋底与石面的摩擦" },
+          { "surface": "木地板", "sound": "木板的吱呀和闷响" },
+          { "surface": "泥地/沙地", "sound": "沉闷的踩踏声，沙粒摩擦" },
+          { "surface": "积水地面", "sound": "水花溅起声，泥浆声" },
+          { "surface": "金属桥面", "sound": "金属共振回响，空旷脚步声" }
+        ]
+      },
+      {
+        "id": "clothing",
+        "name": "衣料摩擦",
+        "examples": [
+          { "material": "丝绸袍服", "sound": "丝绸轻柔摩擦声，布料飘动声" },
+          { "material": "铠甲", "sound": "金属甲片碰撞的细碎声，链甲摩擦" },
+          { "material": "皮衣", "sound": "皮革的沙沙声" },
+          { "material": "棉布", "sound": "粗布的轻微摩擦" }
+        ]
+      },
+      {
+        "id": "weapons",
+        "name": "武器声音",
+        "examples": [
+          { "weapon": "拔剑", "sound": "剑刃出鞘的清脆蜂鸣，金属摩擦的尖锐声" },
+          { "weapon": "收剑", "sound": "剑入鞘的短促碰撞声" },
+          { "weapon": "挥拳", "sound": "衣料破空声，拳风" },
+          { "weapon": "金属碰撞", "sound": "高频金属撞击声，余音震荡" }
+        ]
+      },
+      {
+        "id": "body",
+        "name": "身体声音",
+        "examples": [
+          { "action": "沉重呼吸", "sound": "胸膛起伏，鼻腔气流声" },
+          { "action": "咬牙", "sound": "后槽牙咬紧声" },
+          { "action": "吞咽", "sound": "喉咙吞咽声" },
+          { "action": "倒地", "sound": "身体撞击地面的闷响" },
+          { "action": "擦血", "sound": "手掌擦过嘴角的湿润声" }
+        ]
+      }
+    ]
+  },
+  "sfx": {
+    "description": "特效音（SFX）：蓄力声→骤静→命中爆裂→余波，与动作时间轴同步",
+    "categories": [
+      {
+        "id": "buildup",
+        "name": "蓄力声",
+        "prompts": [
+          "低频电流聚集声，嗡嗡渐强",
+          "灵力涌动的低沉嗡鸣，能量蓄积的压迫声",
+          "风压渐增，空气被压缩的沉闷声",
+          "心跳加速的低频脉冲"
+        ]
+      },
+      {
+        "id": "silence",
+        "name": "骤静（反高潮静音）",
+        "prompts": [
+          "所有声音瞬间抽空，绝对死寂0.3-0.5秒",
+          "BGM瞬间消失，只剩一声沉重的呼吸",
+          "反高潮静音——在致命一击前抽掉所有声音",
+          "全场景骤静，只剩呼吸和暗金燃烧微响"
+        ]
+      },
+      {
+        "id": "impact",
+        "name": "命中爆裂",
+        "prompts": [
+          "低频冲击波 + 中频肉感 + 高频碎裂（三层分离）",
+          "拳头命中面的沉闷肉感 + 骨骼震动 + 冲击波扩散",
+          "金属碰撞的高频锐响 + 火花声 + 余音震荡",
+          "掌心拍地骤静0.3s → 裂纹蔓延电流滋滋 → 雷光暴涌深沉雷鸣"
+        ]
+      },
+      {
+        "id": "aftermath",
+        "name": "余波",
+        "prompts": [
+          "能量消散的渐弱嗡鸣",
+          "碎石继续滚落的细碎声",
+          "空气中残留的电流滋滋声",
+          "呼吸和心跳逐渐平复"
+        ]
+      }
+    ],
+    "time_sync_template": {
+      "description": "音效时间轴同步模板",
+      "example": "60-61s：低频电流聚集 → 61s：骤静0.3s → 61.3s：裂纹蔓延电流滋滋 → 62s：雷鸣轰响 + 冲击波 + 碎裂声 → 63s：人群惊叫 → 64s：全场景骤静（反高潮静音），只剩呼吸"
+    }
+  },
+  "state_sound": {
+    "description": "状态音：角色的内在声音状态",
+    "categories": [
+      {
+        "id": "breathing",
+        "name": "呼吸",
+        "examples": ["急促喘息", "沉重呼吸", "屏住呼吸", "微弱呼吸", "鼻息声"]
+      },
+      {
+        "id": "heartbeat",
+        "name": "心跳",
+        "examples": ["急促心跳", "沉重心跳", "心跳逐渐减弱", "心跳停止"]
+      },
+      {
+        "id": "tinnitus",
+        "name": "耳鸣/失聪",
+        "examples": [
+          "尖锐的高频耳鸣声",
+          "外界声音做'水下闷声处理'",
+          "声音猛地灌回（从耳鸣恢复正常听觉）"
+        ]
+      }
+    ]
+  },
+  "bgm": {
+    "description": "BGM 的克制与留白——音乐的'停顿'比'响起'更有力量",
+    "principles": [
+      {
+        "id": "restraint",
+        "name": "克制原则",
+        "description": "BGM 不能从头响到尾，情绪被音乐绑架会导致听觉疲劳"
+      },
+      {
+        "id": "silence_power",
+        "name": "静音的力量",
+        "description": "在即将砍下致命一刀的瞬间，瞬间抽掉所有 BGM，让画面陷入死寂"
+      },
+      {
+        "id": "default_defer",
+        "name": "默认后置",
+        "description": "BGM 默认不写进主提示词，交给后期人工精配。只有 MV/音乐卡点等场景才额外声明 BGM 方向"
+      }
+    ],
+    "techniques": [
+      {
+        "id": "anti_climax_silence",
+        "name": "反高潮静音",
+        "description": "在最大张力点瞬间抽掉音乐，制造极致的紧张感",
+        "usage": "致命一刀前、最残酷真相前、终极对决前"
+      },
+      {
+        "id": "j_cut_audio",
+        "name": "声音预现（J-Cut）",
+        "description": "画面还是平静的，但下一个场景的声音已经提前响起",
+        "usage": "时空交错的心理暗示"
+      },
+      {
+        "id": "subjective_hearing",
+        "name": "听觉主观化",
+        "description": "通过操控声音频率和有无，强行把观众拉入角色心理状态",
+        "usage": "耳鸣与失聪、水下闷声处理、声音猛地灌入"
+      }
+    ]
+  },
+  "mixing_guidelines": {
+    "description": "混音指导",
+    "rules": [
+      "命中点先给主音再给尾音",
+      "BGM 让位主台词与命中点，不可盖过关键句",
+      "群声永远让位主台词与命中点",
+      "环境音铺底但不可抢戏"
+    ]
+  },
+  "sound_design_failure_signals": {
+    "description": "声音设计常见失败信号",
+    "signals": [
+      "闭眼听初剪，听不出是在山洞还是在卧室（无空间感）",
+      "一场文戏从头到尾只有 BGM 没有脚步/衣服摩擦声（无颗粒度）",
+      "BGM 从头响到尾（听觉疲劳）",
+      "特效音与命中点不同步（声画脱节）",
+      "所有场景的底噪一样（无空间差异化）"
+    ]
+  }
+}

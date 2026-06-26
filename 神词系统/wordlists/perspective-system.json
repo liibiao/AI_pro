@@ -1,0 +1,267 @@
+{
+  "_meta": {
+    "source": "漫剧创作库/docs/perspective-system-emotional-mapping.md",
+    "version": "soullens-v2",
+    "description": "八大叙事视角体系：视角决定叙事身份 > 角度叠加权力 > 景别决定信息密度",
+    "usage": "先选视角（叙事身份）→ 再选角度（权力关系）→ 再选景别（信息密度）→ 再选运镜（节奏方式）→ 再配光（氛围质感）"
+  },
+  "perspectives": [
+    {
+      "id": "pov",
+      "name": "POV 主观视角",
+      "nameEn": "First-Person POV",
+      "cameraIdentity": "角色的眼睛",
+      "psychologicalFunction": "完全代入，零距离沉浸",
+      "audienceFeeling": "我就是角色，我看到的就是角色看到的",
+      "applicableScenes": [
+        "从昏迷中醒来（视觉模糊→清晰）",
+        "被追杀时的逃亡奔跑（剧烈晃动+边缘模糊）",
+        "发现关键证据的瞬间",
+        "恐怖/悬疑场景（不知道身后有什么）",
+        "武器瞄准/战斗第一击"
+      ],
+      "notApplicable": ["群像展示", "环境交代", "角色之间的互动关系展示"],
+      "seedancePrompts": [
+        "first-person POV, subjective camera, through the character's eyes",
+        "POV shot, camera as the character's eyes, blurred edges from disorientation",
+        "subjective perspective, shaking handheld as if the character is running"
+      ],
+      "usageLimit": "连续不超过2-3秒，每集1-2次",
+      "transitionTip": "切换回第三人称时用'角色眨眼/甩头'作为硬切锚点"
+    },
+    {
+      "id": "ots",
+      "name": "OTS 越肩视角",
+      "nameEn": "Over-the-Shoulder",
+      "cameraIdentity": "站在一个角色身后，越过肩膀看另一个角色",
+      "psychologicalFunction": "关系性视角，建立'我在这个对话里'的空间感",
+      "audienceFeeling": "既是旁观者，又参与了这场对话的权力关系",
+      "applicableScenes": [
+        "双人对峙/对话的核心镜头",
+        "对话中'倾听者'的反应镜头",
+        "权力反转场景（前后半段切换谁在前谁在后）",
+        "谈判/审讯/告白"
+      ],
+      "notApplicable": ["无对话的动作场面", "环境展示"],
+      "seedancePrompts": [
+        "over-the-shoulder shot, camera behind character's shoulder, looking past at the other character",
+        "OTS framing, character's shoulder and head occupying 15-20% of frame edge"
+      ],
+      "usageLimit": "每集4-8次，建议占比15-20%",
+      "constraints": "前景肩膀不能遮挡画面主体超过15-20%；双侧对切保持高度一致"
+    },
+    {
+      "id": "observational",
+      "name": "行为观察视角",
+      "nameEn": "Behavioral Observer (Standard Third-Person)",
+      "cameraIdentity": "隐形旁观者，站在场景边缘记录",
+      "psychologicalFunction": "客观记录，让观众看到完整的动作和空间关系",
+      "audienceFeeling": "我在看这个角色的故事，但保持一定距离",
+      "applicableScenes": [
+        "日常叙事的默认视角（全剧占比最高，约50-60%）",
+        "角色行走、转身、与物体互动",
+        "动作戏的'安全距离'展示",
+        "群像站位和空间关系交代"
+      ],
+      "notApplicable": ["需要极强代入感的生死瞬间", "需要展示宏大局面的俯瞰"],
+      "variants": [
+        {
+          "id": "observational_side",
+          "name": "侧拍行为视角",
+          "description": "从90°侧面记录，适合展示横向运动（追逐、对峙走位）",
+          "prompt": "observational camera from 90-degree side angle, steady recording"
+        },
+        {
+          "id": "observational_front",
+          "name": "正面行为视角",
+          "description": "角色面对镜头，适合独白、宣言、最终决战前的对视",
+          "prompt": "observational camera, character facing the lens directly"
+        },
+        {
+          "id": "observational_back",
+          "name": "背面行为视角",
+          "description": "角色背对镜头，适合表现孤独、离别、走向未知",
+          "prompt": "camera positioned behind the character, showing their back, watching them walk away"
+        }
+      ],
+      "usageLimit": "持续使用，建议占比50-60%"
+    },
+    {
+      "id": "god_eye",
+      "name": "上帝视角（俯瞰）",
+      "nameEn": "Bird's Eye / Overhead",
+      "cameraIdentity": "全知全能的旁观者，从高空俯视一切",
+      "psychologicalFunction": "宿命感、渺小感、全局掌控或全局失控",
+      "audienceFeeling": "这些人在命运面前多么渺小",
+      "applicableScenes": [
+        "战场全貌/城市全景/大规模场面",
+        "角色孤独地站在巨大的空旷空间中",
+        "棋盘式布局（攻防阵型、包围圈）",
+        "时间流逝/四季更迭的蒙太奇",
+        "'上帝视角被打破'的反转（从俯瞰→快速拉近到特写）"
+      ],
+      "notApplicable": ["情感细节展示", "对话", "需要观众代入恐惧的场景"],
+      "seedancePrompts": [
+        "bird's eye view, aerial shot looking straight down, overhead perspective",
+        "extreme overhead shot, character appearing tiny in vast landscape"
+      ],
+      "usageLimit": "每集0-1次，不超过3-4秒"
+    },
+    {
+      "id": "fisheye",
+      "name": "鱼眼/畸变视角",
+      "nameEn": "Fisheye / Distorted Perspective",
+      "cameraIdentity": "扭曲现实的观察者",
+      "psychologicalFunction": "表现角色主观的异常心理状态——眩晕、幻觉、世界观崩塌",
+      "audienceFeeling": "画面不对劲了，和角色一起感到不安/迷幻/恐惧",
+      "applicableScenes": [
+        "受到重击后的眩晕反应",
+        "精神控制/洗脑/走火入魔的表现",
+        "力量觉醒时世界观被重写的瞬间",
+        "反派的压倒性力量展示",
+        "梦境/幻觉/中毒"
+      ],
+      "notApplicable": ["正常叙事段落"],
+      "seedancePrompts": [
+        "fisheye lens, barrel distortion, warped perspective, extreme wide-angle distortion",
+        "lens distortion creating surreal visual effect, reality bending around the subject"
+      ],
+      "usageLimit": "每集最多0-1次，全剧≤3次，每次不超过2秒",
+      "warning": "视觉核弹级别，比 Dutch Angle 更稀有，用多了变廉价"
+    },
+    {
+      "id": "dynamic",
+      "name": "动态视角（跟拍+实时切换）",
+      "nameEn": "Dynamic Camera / Fluid Tracking",
+      "cameraIdentity": "有反应的舞者，跟随角色的能量场实时调整",
+      "psychologicalFunction": "节奏引擎，让观众的心率跟着镜头一起加速/减速",
+      "audienceFeeling": "画面活了，摄像机在呼吸",
+      "applicableScenes": [
+        "动作戏的核心视角——连招跟拍、打击瞬间切换景别",
+        "追逐戏的加速/减速节奏控制",
+        "角色情绪爆发时的'呼吸运镜'",
+        "高潮蒙太奇的节奏控制"
+      ],
+      "notApplicable": ["需要稳定情绪压住的文戏", "正式对话"],
+      "seedancePrompts": [
+        "dynamic camera, fluid tracking shot, camera responds to character movement, real-time framing adjustment",
+        "breathing camera movement, accelerating with action, decelerating on impact"
+      ],
+      "usageLimit": "每集2-4次，建议占比10-15%",
+      "keyPrinciple": "运镜必须有'呼吸节奏'——加速→爆发→减速→停顿→再加速"
+    },
+    {
+      "id": "worms_eye",
+      "name": "低处/虫视角",
+      "nameEn": "Worm's Eye / Ground Level",
+      "cameraIdentity": "趴在地上或贴着地面仰视",
+      "psychologicalFunction": "极端的权力倒置——让观众感到渺小、被压制",
+      "audienceFeeling": "我在地上，那个东西太大了/太强了/太可怕了",
+      "applicableScenes": [
+        "被击倒后仰望施暴者/对手",
+        "巨型敌人/建筑/自然力量的压迫感",
+        "反派出场的'不可阻挡'感",
+        "角色跪地后的视角"
+      ],
+      "notApplicable": ["平等对话", "需要展示环境全貌"],
+      "seedancePrompts": [
+        "worm's eye view, ground level camera, extreme low angle looking up, towering perspective",
+        "camera on the ground looking up at the dominating figure, ground occupying bottom 30-50% of frame"
+      ],
+      "usageLimit": "每集0-2次",
+      "distinction": "与'低角度仰拍'的区别：低角度是腰部高度向上拍；虫视角是贴地，地面占画面下30-50%"
+    },
+    {
+      "id": "voyeuristic",
+      "name": "窥视视角",
+      "nameEn": "Voyeuristic / Surveillance",
+      "cameraIdentity": "藏起来的偷窥者——门缝、窗帘后、监控摄像头、镜子反射",
+      "psychologicalFunction": "不安、危险、偷窥感、被监视的恐惧",
+      "audienceFeeling": "我不应该看到这个 / 我不知道有没有人在看我",
+      "applicableScenes": [
+        "悬疑/恐怖场景",
+        "反派的秘密行为",
+        "角色被跟踪/监视",
+        "通过镜子/水面/窗户的间接观察",
+        "'打破第四面墙'的前奏"
+      ],
+      "notApplicable": ["正常的叙事展示", "英雄时刻"],
+      "seedancePrompts": [
+        "surveillance camera, hidden camera, through crack in door",
+        "reflection in mirror, voyeuristic framing, peeping through blinds"
+      ],
+      "usageLimit": "每集0-1次",
+      "constraint": "必须有'被发现'或'转向正常视角'的后续镜头"
+    }
+  ],
+  "perspective_power_mapping": {
+    "description": "视角-权力关系映射表",
+    "mappings": [
+      {
+        "powerState": "角色强势/觉醒",
+        "recommended": ["observational (正面)", "ots (角色在后)", "worms_eye (对手仰望)"],
+        "avoided": ["god_eye", "fisheye", "voyeuristic"]
+      },
+      {
+        "powerState": "角色弱势/被压制",
+        "recommended": ["worms_eye", "pov (被打)", "fisheye (眩晕)", "voyeuristic (被监视)"],
+        "avoided": ["observational (正面)", "god_eye"]
+      },
+      {
+        "powerState": "双方势均力敌",
+        "recommended": ["ots 对切", "observational (侧拍)", "dynamic"],
+        "avoided": ["god_eye", "pov"]
+      },
+      {
+        "powerState": "揭示真相/反转",
+        "recommended": ["god_eye → 快速拉近", "voyeuristic → 揭示"],
+        "avoided": ["稳定行为观察"]
+      },
+      {
+        "powerState": "孤独/遗弃",
+        "recommended": ["god_eye (角色很小)", "observational (背面)", "pull_back_reveal"],
+        "avoided": ["pov", "ots"]
+      },
+      {
+        "powerState": "亲密/信任",
+        "recommended": ["ots (距离近)", "observational (MCU)", "observational (正面)"],
+        "avoided": ["god_eye", "fisheye", "voyeuristic"]
+      }
+    ]
+  },
+  "perspective_transition_leverage": {
+    "description": "视角切换的情绪杠杆",
+    "transitions": [
+      {
+        "from": "行为观察",
+        "to": "POV",
+        "emotionalEffect": "代入突增：从'旁观'瞬间变成'我就是他'",
+        "frequency": "每集1-2次，用在关键爆发点"
+      },
+      {
+        "from": "行为观察",
+        "to": "俯瞰",
+        "emotionalEffect": "孤独突增：角色突然变得渺小",
+        "frequency": "每集0-1次，用在情绪低谷"
+      },
+      {
+        "from": "俯瞰",
+        "to": "快速拉近到CU",
+        "emotionalEffect": "冲击突增：从上帝视角瞬间砸到角色面前",
+        "frequency": "每集0-1次，用在反转点"
+      },
+      {
+        "from": "正常",
+        "to": "鱼眼",
+        "emotionalEffect": "世界观崩塌：角色精神状态突变",
+        "frequency": "每集最多0-1次，全剧≤3次"
+      },
+      {
+        "from": "任何视角",
+        "to": "窥视",
+        "emotionalEffect": "恐惧突增：有人/有危险在暗处",
+        "frequency": "每集0-1次"
+      }
+    ]
+  }
+}

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>第11话《无限强化_漫剧_001》- 灵境提示词 HTML 查看器</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121935;
+      --panel-2: #182147;
+      --line: rgba(255,255,255,.12);
+      --text: #eef2ff;
+      --muted: #a7b0d6;
+      --accent: #78a6ff;
+      --accent-2: #6ee7ff;
+      --success: #54d2a5;
+      --shadow: 0 18px 45px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Helvetica Neue", sans-serif;
+      background: linear-gradient(180deg, #09101d 0%, #0d1530 100%);
+      color: var(--text);
+    }
+    .wrap {
+      max-width: 1680px;
+      margin: 0 auto;
+      padding: 28px 20px 40px;
+    }
+    .hero {
+      background: linear-gradient(135deg, rgba(120,166,255,.16), rgba(110,231,255,.08));
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    button {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, #1f2b5a, #182147);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: .2s ease;
+    }
+    button:hover { transform: translateY(-1px); border-color: rgba(120,166,255,.5); }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 14px;
+    }
+    .tab-btn.active {
+      background: linear-gradient(180deg, #3a63d8, #2748a8);
+      border-color: rgba(255,255,255,.26);
+    }
+    .panel {
+      display: none;
+      background: rgba(13, 21, 48, .82);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .panel.active { display: block; }
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .panel-head h2 {
+      margin: 0;
+      font-size: 18px;
+    }
+    .panel-head span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .table-wrap { overflow: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1380px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      border-right: 1px solid rgba(255,255,255,.06);
+      padding: 12px 12px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+    th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: #121935;
+      color: #dbe6ff;
+      font-size: 12px;
+      letter-spacing: .02em;
+      white-space: nowrap;
+    }
+    td.small { white-space: nowrap; color: #d9e2ff; }
+    td.desc { min-width: 280px; }
+    td.prompt { min-width: 620px; }
+    .prompt-box {
+      display: grid;
+      gap: 10px;
+      white-space: normal;
+      word-break: break-word;
+      color: #edf2ff;
+    }
+    .prompt-segments {
+      display: grid;
+      gap: 8px;
+    }
+    .prompt-segment {
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+    }
+    .prompt-segment-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .prompt-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(120,166,255,.16);
+      border: 1px solid rgba(120,166,255,.3);
+      color: #dbe6ff;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 600;
+    }
+    .prompt-tag.role-subject { background: rgba(84,210,165,.14); border-color: rgba(84,210,165,.3); color: #dcfff3; }
+    .prompt-tag.role-space { background: rgba(110,231,255,.12); border-color: rgba(110,231,255,.28); color: #ddfbff; }
+    .prompt-tag.role-light { background: rgba(255,207,112,.12); border-color: rgba(255,207,112,.26); color: #fff1cd; }
+    .prompt-tag.role-camera { background: rgba(195,140,255,.14); border-color: rgba(195,140,255,.28); color: #f0ddff; }
+    .prompt-tag.role-character { background: rgba(255,143,149,.14); border-color: rgba(255,143,149,.28); color: #ffdfe1; }
+    .prompt-segment-body {
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.72;
+    }
+    .prompt-plain {
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.72;
+    }
+    .row-actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .copy-btn {
+      padding: 7px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      background: linear-gradient(180deg, #1e8b68, #17664e);
+    }
+    .copy-btn.secondary {
+      background: linear-gradient(180deg, #31406f, #243056);
+    }
+    .footer-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .pill {
+      display: inline-block;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(120,166,255,.12);
+      border: 1px solid rgba(120,166,255,.22);
+      color: #dbe6ff;
+      font-size: 12px;
+    }
+    .ok {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      background: rgba(84,210,165,.95);
+      color: #06261d;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: .25s ease;
+      pointer-events: none;
+      font-weight: 600;
+    }
+    .ok.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 24px; }
+      .wrap { padding: 16px 12px 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>第11话《无限强化_漫剧_001》- 灵境提示词 HTML 查看器</h1>
+      <p>这份页面用于直接查看和复制本次生成的分镜表与多版本提示词。你可以切换版本、复制单镜提示词，或一键复制整页当前版本的全部提示词内容。</p>
+      <div style="margin-top:14px;">
+        <span class="pill">表格直观查看</span>
+        <span class="pill">每镜复制</span>
+        <span class="pill">一键复制全版本</span>
+        <span class="pill">本地静态 HTML</span>
+      </div>
+      <div class="toolbar">
+        <button onclick="copyCurrentAll()">复制当前版本全部提示词</button>
+        <button onclick="copyCurrentTable()">复制当前表格全文</button>
+        <button onclick="openCurrentSource()">打开当前源文件</button>
+      </div>
+    </section>
+
+    <div class="tabs" id="tabs"></div>
+    <div id="panels"></div>
+
+    <div class="footer-note">
+      当前页面为纯本地静态文件，可直接在浏览器打开。后续继续生成新话数时，将沿用这一套查看器结构稳定输出。
+    </div>
+  </div>
+
+  <div class="ok" id="toast">已复制</div>
+
+  <script>
+    const datasets = [{"kind": "storyboard", "title": "灵境分镜表", "label": "ep011-storyboard.md", "relativePath": "projects/无限强化_漫剧_001/04-storyboard/ep011-storyboard.md", "url": "/projects/无限强化_漫剧_001/04-storyboard/ep011-storyboard.md", "content": "# 第11话《坠落荒原》 分镜剧本\n\n> **项目：** 无限强化·灵纹觉醒\n> **集数：** 第 11 话\n> **总镜头数：** 5个\n\n---\n\n## 分镜表\n\n| 镜号 | 镜头任务 | 景别 | 内容描述 | 首看点 | 运镜 | 时长 | 节拍数 | 安全区 | @引用 | 光影参数 | 风险 / 回退点 | AI模型 |\n|------|----------|------|---------|--------|------|------|-------|--------|-------|---------|---------------|--------|\n| S1 | 场景 11-1 ？ 虚空通道·崩塌中 |  | 银色通道内部像碎裂的镜面，兄妹二人在虚空中翻滚坠落，银光碎片割过皮肤。 / 特写：系统倒计时在视野角落急速跳动——【剩余 12 秒】。 |  |  | 4s | 1 | 前0.5s / 后0.5s |  |  |  | Seedance |\n| S2 | 场景 11-2 黄昏 外 墙外废土·坠落点 |  | 银光炸裂，兄妹二人从半空坠落，重重砸在一片灰色沙地上，扬起漫天尘土。 / 全景：废土荒原一望无际。断裂的公路桥墩像巨人的残肢插在沙地中，远处有倾倒的摩天大楼残骸，锈蚀的钢筋像骨骼一样裸露。天空是病态的橘红色，没有云，只有灰蒙蒙的尘霾。 |  |  | 4s | 1 | 前0.5s / 后0.5s |  |  |  | Seedance |\n| S3 | 场景 11-3 黄昏 外 废土坠落点·燃烧归零 |  | 近景：林天仰面躺在沙地上，黑金光辉在体表做最后的闪烁，如将灭的烛火。 / 黑金光辉骤然熄灭。林天全身像被抽空了力量，面色惨白如纸，嘴角溢出黑红色的血。身体开始不受控制地痉挛。 |  |  | 4s | 1 | 前0.5s / 后0.5s |  |  |  | Seedance |\n| S4 | 场景 11-4 黄昏 外 废土坠落点·独自面对 |  | 中景：林婉儿抱着昏迷的林天，泪水滴落在他苍白的脸上。四周是无尽的荒原，没有任何庇护。 / 她咬牙抹掉眼泪，环顾四周，开始拖着林天向最近的废墟残骸移动。 |  |  | 4s | 1 | 前0.5s / 后0.5s |  |  |  | Seedance |\n| S5 | 场景 11-5 夜 外 废土废墟·异兽逼近（钩子） |  | 近景：林婉儿把林天靠在一堵断墙后面，用自己的外衣盖在他身上，双手紧紧攥着。 / 特写：她的手在发抖，但眼神从恐惧中逐渐凝出一丝坚定。 |  |  | 4s | 1 | 前0.5s / 后0.5s |  |  |  | Seedance |\n\n---\n\n## Seedance 提示词\n\n### 镜头 S1\n```\n银色通道内部像碎裂的镜面，兄妹二人在虚空中翻滚坠落，银光碎片割过皮肤。 / 特写：系统倒计时在视野角落急速跳动——【剩余 12 秒】。\n```\n\n### 镜头 S2\n```\n银光炸裂，兄妹二人从半空坠落，重重砸在一片灰色沙地上，扬起漫天尘土。 / 全景：废土荒原一望无际。断裂的公路桥墩像巨人的残肢插在沙地中，远处有倾倒的摩天大楼残骸，锈蚀的钢筋像骨骼一样裸露。天空是病态的橘红色，没有云，只有灰蒙蒙的尘霾。\n```\n\n### 镜头 S3\n```\n近景：林天仰面躺在沙地上，黑金光辉在体表做最后的闪烁，如将灭的烛火。 / 黑金光辉骤然熄灭。林天全身像被抽空了力量，面色惨白如纸，嘴角溢出黑红色的血。身体开始不受控制地痉挛。\n```\n\n### 镜头 S4\n```\n中景：林婉儿抱着昏迷的林天，泪水滴落在他苍白的脸上。四周是无尽的荒原，没有任何庇护。 / 她咬牙抹掉眼泪，环顾四周，开始拖着林天向最近的废墟残骸移动。\n```\n\n### 镜头 S5\n```\n近景：林婉儿把林天靠在一堵断墙后面，用自己的外衣盖在他身上，双手紧紧攥着。 / 特写：她的手在发抖，但眼神从恐惧中逐渐凝出一丝坚定。\n```\n", "promptLabel": "SEEDANCE提示词", "rows": [{"id": "S1", "time": "4s", "shot": "", "move": "", "desc": "银色通道内部像碎裂的镜面，兄妹二人在虚空中翻滚坠落，银光碎片割过皮肤。 / 特写：系统倒计时在视野角落急速跳动——【剩余 12 秒】。", "light": "", "prompt": "银色通道内部像碎裂的镜面，兄妹二人在虚空中翻滚坠落，银光碎片割过皮肤。 / 特写：系统倒计时在视野角落急速跳动——【剩余 12 秒】。"}, {"id": "S2", "time": "4s", "shot": "", "move": "", "desc": "银光炸裂，兄妹二人从半空坠落，重重砸在一片灰色沙地上，扬起漫天尘土。 / 全景：废土荒原一望无际。断裂的公路桥墩像巨人的残肢插在沙地中，远处有倾倒的摩天大楼残骸，锈蚀的钢筋像骨骼一样裸露。天空是病态的橘红色，没有云，只有灰蒙蒙的尘霾。", "light": "", "prompt": "银光炸裂，兄妹二人从半空坠落，重重砸在一片灰色沙地上，扬起漫天尘土。 / 全景：废土荒原一望无际。断裂的公路桥墩像巨人的残肢插在沙地中，远处有倾倒的摩天大楼残骸，锈蚀的钢筋像骨骼一样裸露。天空是病态的橘红色，没有云，只有灰蒙蒙的尘霾。"}, {"id": "S3", "time": "4s", "shot": "", "move": "", "desc": "近景：林天仰面躺在沙地上，黑金光辉在体表做最后的闪烁，如将灭的烛火。 / 黑金光辉骤然熄灭。林天全身像被抽空了力量，面色惨白如纸，嘴角溢出黑红色的血。身体开始不受控制地痉挛。", "light": "", "prompt": "近景：林天仰面躺在沙地上，黑金光辉在体表做最后的闪烁，如将灭的烛火。 / 黑金光辉骤然熄灭。林天全身像被抽空了力量，面色惨白如纸，嘴角溢出黑红色的血。身体开始不受控制地痉挛。"}, {"id": "S4", "time": "4s", "shot": "", "move": "", "desc": "中景：林婉儿抱着昏迷的林天，泪水滴落在他苍白的脸上。四周是无尽的荒原，没有任何庇护。 / 她咬牙抹掉眼泪，环顾四周，开始拖着林天向最近的废墟残骸移动。", "light": "", "prompt": "中景：林婉儿抱着昏迷的林天，泪水滴落在他苍白的脸上。四周是无尽的荒原，没有任何庇护。 / 她咬牙抹掉眼泪，环顾四周，开始拖着林天向最近的废墟残骸移动。"}, {"id": "S5", "time": "4s", "shot": "", "move": "", "desc": "近景：林婉儿把林天靠在一堵断墙后面，用自己的外衣盖在他身上，双手紧紧攥着。 / 特写：她的手在发抖，但眼神从恐惧中逐渐凝出一丝坚定。", "light": "", "prompt": "近景：林婉儿把林天靠在一堵断墙后面，用自己的外衣盖在他身上，双手紧紧攥着。 / 特写：她的手在发抖，但眼神从恐惧中逐渐凝出一丝坚定。"}]}, {"kind": "shots", "title": "镜头执行稿", "label": "ep011-shots.md", "relativePath": "projects/无限强化_漫剧_001/05-prompts/seedance/ep011-shots.md", "url": "/projects/无限强化_漫剧_001/05-prompts/seedance/ep011-shots.md", "content": "# ep011-shots.md — 第11话《坠落荒原》 Seedance 镜头提示词\n\n> **项目：** 无限强化·灵纹觉醒\n> **章节：** 第11话《坠落荒原》\n> **用途：** 将 `04-storyboard/ep011-storyboard.md` 中的 5 镜拆为可执行的 Seedance 正式镜头稿。\n> **执行原则：** 先保住人物关系、身体受力、镜头结果，再决定是否加速度强化。\n\n---\n\n## 一、参考资产建议 (自动生成版)\n\n### 全局风格参考 (SREF)\n- `06-generated/images/characters/林天觉醒后-v3-3.png`\n\n## 二、镜头执行稿\n\n## SHOT S1 — 场景 11-1 ？ 虚空通道·崩塌中\n### 目标\n保住画面基本逻辑。\n\n### 推荐引用\n- (无)\n\n### baseline\n银色通道内部像碎裂的镜面，兄妹二人在虚空中翻滚坠落，银光碎片割过皮肤。 / 特写：系统倒计时在视野角落急速跳动——【剩余 12 秒】。。漫画分镜构图，层级清晰，保留对白区。\n\n---\n\n## SHOT S2 — 场景 11-2 黄昏 外 墙外废土·坠落点\n### 目标\n保住画面基本逻辑。\n\n### 推荐引用\n- (无)\n\n### baseline\n银光炸裂，兄妹二人从半空坠落，重重砸在一片灰色沙地上，扬起漫天尘土。 / 全景：废土荒原一望无际。断裂的公路桥墩像巨人的残肢插在沙地中，远处有倾倒的摩天大楼残骸，锈蚀的钢筋像骨骼一样裸露。天空是病态的橘红色，没有云，只有灰蒙蒙的尘霾。。漫画分镜构图，层级清晰，保留对白区。\n\n---\n\n## SHOT S3 — 场景 11-3 黄昏 外 废土坠落点·燃烧归零\n### 目标\n保住画面基本逻辑。\n\n### 推荐引用\n- (无)\n\n### baseline\n近景：@林天仰面躺在沙地上，黑金光辉在体表做最后的闪烁，如 将灭的烛火。 / 黑金光辉骤然熄灭。@林天全身像被抽空了力量，面色惨白如纸，嘴角溢出黑红色的血。身体 开始不受控制地痉挛。。漫画分镜构图，层级清晰，保留对白区。\n\n---\n\n## SHOT S4 — 场景 11-4 黄昏 外 废土坠落点·独自面对\n### 目标\n保住画面基本逻辑。\n\n### 推荐引用\n- (无)\n\n### baseline\n中景：@林婉儿抱着昏迷的@林天，泪水滴落 在他苍白的脸上。四周是无尽的荒原，没有任何庇护。 / 她咬牙抹掉眼泪，环顾四周，开始拖着@林天向最 近的废墟残骸移动。。漫画分镜构图，层级清晰，保留对白区。\n\n---\n\n## SHOT S5 — 场景 11-5 夜 外 废土废墟·异兽逼近（钩子）\n### 目标\n保住画面基本逻辑。\n\n### 推荐引用\n- (无)\n\n### baseline\n近景：@林婉儿 把@林天靠在一堵断墙后面，用自己的外衣盖在他身上， 双手紧紧攥着。 / 特写：她的手在发抖，但眼神从恐惧中逐渐凝出一丝坚定。。漫画分镜构图，层级清晰，保留对白区。\n\n---\n", "promptLabel": "镜头执行稿", "rows": [{"id": "S1", "time": "", "shot": "", "move": "", "desc": "S1 — 场景 11-1 ？ 虚空通道·崩塌中", "light": "", "prompt": "银色通道内部像碎裂的镜面，兄妹二人在虚空中翻滚坠落，银光碎片割过皮肤。 / 特写：系统倒计时在视野角落急速跳动——【剩余 12 秒】。。漫画分镜构图，层级清晰，保留对白区。"}, {"id": "S2", "time": "", "shot": "", "move": "", "desc": "S2 — 场景 11-2 黄昏 外 墙外废土·坠落点", "light": "", "prompt": "银光炸裂，兄妹二人从半空坠落，重重砸在一片灰色沙地上，扬起漫天尘土。 / 全景：废土荒原一望无际。断裂的公路桥墩像巨人的残肢插在沙地中，远处有倾倒的摩天大楼残骸，锈蚀的钢筋像骨骼一样裸露。天空是病态的橘红色，没有云，只有灰蒙蒙的尘霾。。漫画分镜构图，层级清晰，保留对白区。"}, {"id": "S3", "time": "", "shot": "", "move": "", "desc": "S3 — 场景 11-3 黄昏 外 废土坠落点·燃烧归零", "light": "", "prompt": "近景：@林天仰面躺在沙地上，黑金光辉在体表做最后的闪烁，如 将灭的烛火。 / 黑金光辉骤然熄灭。@林天全身像被抽空了力量，面色惨白如纸，嘴角溢出黑红色的血。身体 开始不受控制地痉挛。。漫画分镜构图，层级清晰，保留对白区。"}, {"id": "S4", "time": "", "shot": "", "move": "", "desc": "S4 — 场景 11-4 黄昏 外 废土坠落点·独自面对", "light": "", "prompt": "中景：@林婉儿抱着昏迷的@林天，泪水滴落 在他苍白的脸上。四周是无尽的荒原，没有任何庇护。 / 她咬牙抹掉眼泪，环顾四周，开始拖着@林天向最 近的废墟残骸移动。。漫画分镜构图，层级清晰，保留对白区。"}, {"id": "S5", "time": "", "shot": "", "move": "", "desc": "S5 — 场景 11-5 夜 外 废土废墟·异兽逼近（钩子）", "light": "", "prompt": "近景：@林婉儿 把@林天靠在一堵断墙后面，用自己的外衣盖在他身上， 双手紧紧攥着。 / 特写：她的手在发抖，但眼神从恐惧中逐渐凝出一丝坚定。。漫画分镜构图，层级清晰，保留对白区。"}]}, {"kind": "fullref", "title": "FullRef", "label": "ep011-fullref-15s.md", "relativePath": "projects/无限强化_漫剧_001/05-prompts/seedance/ep011-fullref-15s.md", "url": "/projects/无限强化_漫剧_001/05-prompts/seedance/ep011-fullref-15s.md", "content": "# 第11话《坠落荒原》 — Seedance 2.0 全能参考 15 秒分镜提示词\n> 项目：无限强化·灵纹觉醒\n> 镜头数：4\n> 结构：HOOK→PROBLEM→SOLUTION→CTA/钩子收束（适合宣发/预告）\n\n---\n\n## 参考图清单\n\n| 用途 | 文件路径 | 用于镜头 |\n|------|---------|---------|\n| @林天 | 06-generated/images/characters/林天觉醒后-v8-1.png | Shot 2-4 |\n| @林婉儿 | 06-generated/images/characters/林婉儿-v8-1.png | Shot 3-4 |\n| @系统UI面板 | 06-generated/images/props/系统UI面板-v8-1.png | Shot 1 |\n\n---\n\n## 素材职责矩阵（避免抢权漂移）\n\n| 控制维度 | 主控制源 | 约束 |\n|---------|----------|------|\n| 角色形象/阶段/战损一致性 | @角色-… | 禁止跨阶段换装与战损消失 |\n| 场景空间/光影基准 | @场景-… | 主光方向一致，保留字幕安全区 |\n| 剧情支点道具可读性 | @道具-… | 关键道具必须可读，不抢主读点 |\n| 动作/受力/结果可读性 | 由文字指令定义 | 命中点与结果镜头必须清晰，过程可适度 motion blur |\n| 节奏与声画空间 | 由文字指令定义 | 写清骤静/入点/收束与 Room Tone/Foley |\n\n## 片段节拍纪律\n\n- 节拍密度：每 2.5 秒 ≤ 1 个关键动作节拍；每个 Shot 只承担 1 个核心视觉任务。\n- 清晰帧保护：爆点 Shot 必须写明“命中点/结果镜头必须清晰可读”。\n\n---\n\n## Shot 1 — HOOK\n\n【0-3s】\n【运镜】固定/轻推/轻摇（绑定心理动机）\n【画面】银色通道内部像碎裂的镜面，兄妹二人在虚空中翻滚坠落，银光碎片割过皮肤。 / 特写：系统倒计时在视野角落急速跳动——【剩余 12 秒】。\n【参考】@系统UI面板\n【音效】环境底噪/留白/入点/收束（按情绪曲线设计）\n【风格】统一画风、主光方向与字幕安全区；提示词只写动态变化，不重复静态事实\n\n---\n\n## Shot 2 — PROBLEM→SOLUTION\n\n【3-7s】\n【运镜】固定/轻推/轻摇（绑定心理动机）\n【画面】近景：林天仰面躺在沙地上，黑金光辉在体表做最后的闪烁，如将灭的烛火。 / 黑金光辉骤然熄灭。林天全身像被抽空了力量，面色惨白如纸，嘴角溢出黑红色的血。身体开始不受控制地痉挛。\n【参考】@林天\n【音效】环境底噪/留白/入点/收束（按情绪曲线设计）\n【风格】统一画风、主光方向与字幕安全区；提示词只写动态变化，不重复静态事实\n\n---\n\n## Shot 3 — SOLUTION（高光）\n\n【7-11s】\n【运镜】固定/轻推/轻摇（绑定心理动机）\n【画面】中景：林婉儿抱着昏迷的林天，泪水滴落在他苍白的脸上。四周是无尽的荒原，没有任何庇护。 / 她咬牙抹掉眼泪，环顾四周，开始拖着林天向最近的废墟残骸移动。\n【参考】@林婉儿, @林天\n【音效】环境底噪/留白/入点/收束（按情绪曲线设计）\n【风格】统一画风、主光方向与字幕安全区；提示词只写动态变化，不重复静态事实\n\n---\n\n## Shot 4 — CTA / 钩子收束\n\n【11-15s】\n【运镜】固定/轻推/轻摇（绑定心理动机）\n【画面】近景：林婉儿把林天靠在一堵断墙后面，用自己的外衣盖在他身上，双手紧紧攥着。 / 特写：她的手在发抖，但眼神从恐惧中逐渐凝出一丝坚定。\n【参考】@林婉儿, @林天\n【音效】环境底噪/留白/入点/收束（按情绪曲线设计）\n【风格】统一画风、主光方向与字幕安全区；提示词只写动态变化，不重复静态事实\n\n---\n\n## 全片技术参数\n\n| 参数 | 值 |\n|------|-----|\n| 画面比例 | 9:16 |\n| 总时长 | 15秒（4镜头） |\n| 模式 | 全部 I2V（全能参考入口） |\n| 转场 | 叠化 / 闪切 / 硬切 / 首尾帧桥接 |\n| 配乐走向 | Shot1铺底 → Shot2骤静/压迫 → Shot3高潮 → Shot4收束/钩子 |\n\n## 情绪曲线\n\n```\n情绪强度\n  ↑\n  │      ★S3(高光)\n  │     /\n  │ ★S1/ ★S4(收束/钩子)\n  │   ★S2\n  └────────→ 时间 0 3 7 11 15s\n```\n\n## 使用说明\n\n- 修改时只改【画面】中的动态描述与【运镜】，静态内容由参考图决定无需重复。\n- `comic-panels` 首帧为可选增强：有则可按 Shot 替换 @场景/@角色参考以锁定构图与一致性；无则不影响执行。\n", "promptLabel": "FullRef", "rows": [{"id": "1", "time": "", "shot": "", "move": "", "desc": "1 — HOOK", "light": "", "prompt": "【0-3s】\n【运镜】固定/轻推/轻摇（绑定心理动机）\n【画面】银色通道内部像碎裂的镜面，兄妹二人在虚空中翻滚坠落，银光碎片割过皮肤。 / 特写：系统倒计时在视野角落急速跳动——【剩余 12 秒】。\n【参考】@系统UI面板\n【音效】环境底噪/留白/入点/收束（按情绪曲线设计）\n【风格】统一画风、主光方向与字幕安全区；提示词只写动态变化，不重复静态事实\n\n---"}, {"id": "2", "time": "", "shot": "", "move": "", "desc": "2 — PROBLEM→SOLUTION", "light": "", "prompt": "【3-7s】\n【运镜】固定/轻推/轻摇（绑定心理动机）\n【画面】近景：林天仰面躺在沙地上，黑金光辉在体表做最后的闪烁，如将灭的烛火。 / 黑金光辉骤然熄灭。林天全身像被抽空了力量，面色惨白如纸，嘴角溢出黑红色的血。身体开始不受控制地痉挛。\n【参考】@林天\n【音效】环境底噪/留白/入点/收束（按情绪曲线设计）\n【风格】统一画风、主光方向与字幕安全区；提示词只写动态变化，不重复静态事实\n\n---"}, {"id": "3", "time": "", "shot": "", "move": "", "desc": "3 — SOLUTION（高光）", "light": "", "prompt": "【7-11s】\n【运镜】固定/轻推/轻摇（绑定心理动机）\n【画面】中景：林婉儿抱着昏迷的林天，泪水滴落在他苍白的脸上。四周是无尽的荒原，没有任何庇护。 / 她咬牙抹掉眼泪，环顾四周，开始拖着林天向最近的废墟残骸移动。\n【参考】@林婉儿, @林天\n【音效】环境底噪/留白/入点/收束（按情绪曲线设计）\n【风格】统一画风、主光方向与字幕安全区；提示词只写动态变化，不重复静态事实\n\n---"}, {"id": "4", "time": "", "shot": "", "move": "", "desc": "4 — CTA / 钩子收束", "light": "", "prompt": "【11-15s】\n【运镜】固定/轻推/轻摇（绑定心理动机）\n【画面】近景：林婉儿把林天靠在一堵断墙后面，用自己的外衣盖在他身上，双手紧紧攥着。 / 特写：她的手在发抖，但眼神从恐惧中逐渐凝出一丝坚定。\n【参考】@林婉儿, @林天\n【音效】环境底噪/留白/入点/收束（按情绪曲线设计）\n【风格】统一画风、主光方向与字幕安全区；提示词只写动态变化，不重复静态事实\n\n---"}]}, {"kind": "jimeng", "title": "即梦提示词", "label": "ep011-omni-paste.short.md", "relativePath": "projects/无限强化_漫剧_001/05-prompts/seedance/第02集/即梦/ep011-omni-paste.short.md", "url": "/projects/无限强化_漫剧_001/05-prompts/seedance/第02集/即梦/ep011-omni-paste.short.md", "content": "> 项目：无限强化·灵纹觉醒\n> 镜头数：4\n> 结构：HOOK→PROBLEM→SOLUTION→CTA/钩子收束（适合宣发/预告）\n\n## Seedance 素材上传顺序\n\n| 序号 | 资源 | 路径 |\n|---|---|---|\n| 1 | @林天 | 林天觉醒后-v8-1.png |\n| 2 | @林婉儿 | 林婉儿-v8-1.png |\n| 3 | @系统UI面板 | 系统UI面板-v8-1.png |\n\n\n---\n\n## 即梦版（Omni-Reference）\n\n```text\n模式：全能参考（Omni-Reference）。\n要求：人物一致性锁定、主光方向一致、字幕安全区保留、不要多余人物与黑边。\n风格旋钮：纪实克制（可选：纪实克制/形式主义/新黑色/热血爆点）\n\n全局母指令（稳定性优先，镜头只写差异项）：\n\n摄影机系统：标头/轻长焦为主；主体清晰；运镜克制（无动机不花活）。\n镜头运动质感：默认稳定；压迫/不安=极轻手持；高速动作允许背景速度感，但人物/武器边缘必须清。\n几何门禁（构图稳定）：roll=0±1°；禁 Dutch；地平线/消失点稳定；对话/对峙眼线一致；禁止跳轴。\n\n光影方案：主光方向全片一致；冷蓝灵纹/系统金光作点光；读点必须见光，脸不被特效糊。\n对比与黑位：黑位干净；暗部有层次；高光受控不过曝。\n\n调色与质感：低饱和冷调；爆点仅在灵纹/雷霆/系统金光局部提饱和；轻 film grain；锐度人物>字>背景。\n\n美术与构图秩序：读点顺序明确；前中后景分层；禁新增角色/乱加道具/UI；字幕安全区留白。\n\n剪辑与节奏：留白可用；爆点抬 1-2 拍即收；转场仅硬切/叠化/闪切/定格。\n\n声音总纲：配音优先；底噪铺空间；拟音重材质；SFX 分层；BGM 克制；可用先静后响/反高潮静音。\n\n导演门禁：先建空间再动作；屏幕方向/站位跨镜头一致；守 180° 轴线；首看点不可被特效遮挡。\n群戏门禁：分组锁位；人数/节拍/循环固定；切镜不重排；群声方位一致并让位台词。\n坐标门禁：9:16 x,y 描述；主角活动区/群众禁入区明确；群演位移≤3%/秒；读点≈中心偏上 1/3±5%。\n字幕/版式门禁（9:16）：字幕安全区= y0.82-1.00 禁入。\n负向约束（门禁）：禁新增角色/随机道具/UI/水印/黑边/过曝雾化导致主体糊。\n\n风格偏好（覆盖项）：\n风格偏好（纪实克制）：机位克制、情绪内收、信息可读优先；少炫技，多用真实空间与表演细节完成压迫与反转。\n摄影机：以标头/轻长焦为主，轻微呼吸感推拉；手持只在“心理不稳”时极弱介入。\n光影：自然主义主光+少量负补光；阴影压迫但不遮眼神与口型。\n声音：环境底噪与拟音比 BGM 更重要；BGM 以低频 Drone 铺底，爆点前先抽空。\n空间锚定：距离标尺=对峙 2-4m；拉拽 0.3-0.6m；命中点=中心偏上 1/3 | 地平线与眼线=地平线 y0.42±0.03（同空间稳定）；眼线 y0.48±0.05（对话一致）；roll=0±1° | 连续性=同一空间内左右/前后/高低关系不互换；如需反打先给建立镜头再切\n\n\n## Shot 1 — HOOK\n\n【0-3s】\n【运镜】固定/轻推/轻摇\n【镜头参数】焦段倾向 50-85mm\n【几何约束】地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定\n【画面】银色通道内部像碎裂的镜面\n【表演】动作压住\n【参考】@系统UI面板\n【音效】环境底噪: 极低电流/数字噪声底床\n【位置关系】空间:当前空间（前/中/后景层级清晰，保留字幕安全区）\n【读点保护】首看点=首看点；坐标= x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n【风格】3D国漫；纪实克制\n\n【转场】定格→硬切（声音可先静后响，钩子更锋利）\n---\n\n\n## Shot 2 — PROBLEM→SOLUTION\n\n【3-7s】\n【运镜】固定/轻推/轻摇\n【镜头参数】焦段倾向 50-85mm\n【几何约束】地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定\n【画面】近景：林天仰面躺在沙地上，环境重力异常(碎石/血珠/雨滴悬浮缓降)\n【表演】动作压住\n【参考】@林天觉醒后\n【音效】环境底噪: 极低电流/数字噪声底床\n【位置关系】空间:当前空间（前/中/后景层级清晰，保留字幕安全区）\n【读点保护】首看点=首看点；坐标= x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n【风格】3D国漫；纪实克制\n\n【转场】定格→硬切（声音可先静后响，钩子更锋利）\n---\n\n\n## Shot 3 — SOLUTION（高光）\n\n【7-11s】\n【运镜】固定/轻推/轻摇\n【镜头参数】焦段倾向 35-50mm\n【几何约束】地平线 y0.42±0.04，眼线 y0.48±0.05，roll=0±1°，禁止跳轴，同空间消失点稳定\n【画面】中景：林婉儿抱着昏迷的林天\n【表演】动作压住\n【参考】@林婉儿, @林天觉醒后\n【音效】环境底噪: 极低电流/数字噪声底床\n【位置关系】空间:当前空间（前/中/后景层级清晰，保留字幕安全区）\n【读点保护】首看点=首看点；坐标= x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n【风格】3D国漫；纪实克制\n\n【转场】定格→硬切（声音可先静后响，钩子更锋利）\n---\n\n\n## Shot 4 — CTA / 钩子收束\n\n【11-15s】\n【运镜】固定/轻推/轻摇\n【镜头参数】焦段倾向 50-85mm\n【几何约束】地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定\n【画面】近景：林婉儿把林天靠在一堵断墙后面\n【表演】动作压住\n【参考】@林婉儿, @林天觉醒后\n【音效】环境底噪: 极低电流/数字噪声底床\n【位置关系】空间:当前空间（前/中/后景层级清晰，保留字幕安全区）\n【读点保护】首看点=首看点；坐标= x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n【风格】3D国漫；纪实克制\n\n【转场】定格→硬切（声音可先静后响，钩子更锋利）\n---\n\n\n```\n", "promptLabel": "即梦提示词", "rows": []}, {"kind": "seedance", "title": "Seedance 提示词", "label": "ep011-seedance2-paste.short.md", "relativePath": "projects/无限强化_漫剧_001/05-prompts/seedance/第02集/seedance/ep011-seedance2-paste.short.md", "url": "/projects/无限强化_漫剧_001/05-prompts/seedance/第02集/seedance/ep011-seedance2-paste.short.md", "content": "> 项目：无限强化·灵纹觉醒\n> 镜头数：4\n> 结构：HOOK→PROBLEM→SOLUTION→CTA/钩子收束（适合宣发/预告）\n\n## Seedance 素材上传顺序\n\n| 序号 | 资源 | 路径 |\n|---|---|---|\n| 1 | @林天 | 林天觉醒后-v8-1.png |\n| 2 | @林婉儿 | 林婉儿-v8-1.png |\n| 3 | @系统UI面板 | 系统UI面板-v8-1.png |\n\n\n---\n\n## Seedance2版（时间轴结构）\n\n```text\n模式：全能参考（Omni-Reference）。\n输出：按时间轴分段（每段=主体/空间/光影/镜头/台词/音效/门禁）。\n硬门禁：沿用本项目“导演门禁/群戏门禁/坐标门禁/字幕安全区/几何门禁/读点保护”。\n风格旋钮：纪实克制\n\n空间锚定：roll=0±1° | 禁字幕安全区\n\n【0s-3s】\n主体：@系统UI面板[朝向：面向首看点] 正在 银色通道内部像碎裂的镜面\n空间：@当前空间\n光影：暗部为主，局部金光/冷光作读点；高光受控，黑位干净\n镜头：固定/轻推/轻摇；焦段倾向 50-85mm；地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定\n(结尾动势：转场：定格→硬切（声音可先静后响，钩子更锋利）)\n门禁：地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；读点x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n表演：动作压住\n读点保护：首看点=首看点；坐标= x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n位置关系：空间:@当前空间\n音效：环境底噪: 极低电流/数字噪声底床\n风格：3D国漫；纪实克制 [禁字幕]\n\n【3s-7s】\n主体：@林天[朝向：面向首看点] 正在 近景：林天仰面躺在沙地上，环境重力异常(碎石/血珠/雨滴悬浮缓降)\n空间：@当前空间\n光影：主光方向一致；关键读点被照见；高光受控、黑位干净\n镜头：固定/轻推/轻摇；焦段倾向 50-85mm；地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定\n(结尾动势：转场：定格→硬切（声音可先静后响，钩子更锋利）)\n门禁：地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；读点x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n表演：动作压住\n读点保护：首看点=首看点；坐标= x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n位置关系：空间:@当前空间\n音效：环境底噪: 极低电流/数字噪声底床\n风格：3D国漫；纪实克制 [禁字幕]\n\n【7s-11s】\n主体：@林天[朝向：面向首看点] 正在 中景：林婉儿抱着昏迷的林天\n空间：@当前空间\n光影：主光方向一致；关键读点被照见；高光受控、黑位干净\n镜头：固定/轻推/轻摇；焦段倾向 35-50mm；地平线 y0.42±0.04，眼线 y0.48±0.05，roll=0±1°，禁止跳轴，同空间消失点稳定\n(结尾动势：转场：定格→硬切（声音可先静后响，钩子更锋利）)\n门禁：地平线 y0.42±0.04，眼线 y0.48±0.05，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；读点x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n表演：动作压住\n读点保护：首看点=首看点；坐标= x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n位置关系：空间:@当前空间\n音效：环境底噪: 极低电流/数字噪声底床\n风格：3D国漫；纪实克制 [禁字幕]\n\n【11s-15s】\n主体：@林天[朝向：面向首看点] 正在 近景：林婉儿把林天靠在一堵断墙后面\n空间：@当前空间\n光影：主光方向一致；关键读点被照见；高光受控、黑位干净\n镜头：固定/轻推/轻摇；焦段倾向 50-85mm；地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定\n(结尾动势：转场：定格→硬切（声音可先静后响，钩子更锋利）)\n门禁：地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；读点x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n表演：动作压住\n读点保护：首看点=首看点；坐标= x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n位置关系：空间:@当前空间\n音效：环境底噪: 极低电流/数字噪声底床\n风格：3D国漫；纪实克制 [禁字幕]\n\n```\n", "promptLabel": "SEEDANCE提示词", "rows": [{"id": "1", "time": "0s-3s", "shot": "", "move": "固定/轻推/轻摇；焦段倾向 50-85mm；地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定", "desc": "@系统UI面板银色通道内部像碎裂的镜面", "light": "暗部为主，局部金光/冷光作读点；高光受控，黑位干净", "prompt": "主体：@系统UI面板[朝向：面向首看点] 正在 银色通道内部像碎裂的镜面\n空间：@当前空间\n光影：暗部为主，局部金光/冷光作读点；高光受控，黑位干净\n镜头：固定/轻推/轻摇；焦段倾向 50-85mm；地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定\n(结尾动势：转场：定格→硬切（声音可先静后响，钩子更锋利）)\n门禁：地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；读点x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n表演：动作压住\n读点保护：首看点=首看点；坐标= x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n位置关系：空间:@当前空间\n音效：环境底噪: 极低电流/数字噪声底床\n风格：3D国漫；纪实克制 [禁字幕]"}, {"id": "2", "time": "3s-7s", "shot": "近景", "move": "固定/轻推/轻摇；焦段倾向 50-85mm；地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定", "desc": "@林天近景：林天仰面躺在沙地上，环境重力异常(碎石/血珠/雨滴悬浮缓降)", "light": "主光方向一致；关键读点被照见；高光受控、黑位干净", "prompt": "主体：@林天[朝向：面向首看点] 正在 近景：林天仰面躺在沙地上，环境重力异常(碎石/血珠/雨滴悬浮缓降)\n空间：@当前空间\n光影：主光方向一致；关键读点被照见；高光受控、黑位干净\n镜头：固定/轻推/轻摇；焦段倾向 50-85mm；地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定\n(结尾动势：转场：定格→硬切（声音可先静后响，钩子更锋利）)\n门禁：地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；读点x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n表演：动作压住\n读点保护：首看点=首看点；坐标= x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n位置关系：空间:@当前空间\n音效：环境底噪: 极低电流/数字噪声底床\n风格：3D国漫；纪实克制 [禁字幕]"}, {"id": "3", "time": "7s-11s", "shot": "中景", "move": "固定/轻推/轻摇；焦段倾向 35-50mm；地平线 y0.42±0.04，眼线 y0.48±0.05，roll=0±1°，禁止跳轴，同空间消失点稳定", "desc": "@林天中景：林婉儿抱着昏迷的林天", "light": "主光方向一致；关键读点被照见；高光受控、黑位干净", "prompt": "主体：@林天[朝向：面向首看点] 正在 中景：林婉儿抱着昏迷的林天\n空间：@当前空间\n光影：主光方向一致；关键读点被照见；高光受控、黑位干净\n镜头：固定/轻推/轻摇；焦段倾向 35-50mm；地平线 y0.42±0.04，眼线 y0.48±0.05，roll=0±1°，禁止跳轴，同空间消失点稳定\n(结尾动势：转场：定格→硬切（声音可先静后响，钩子更锋利）)\n门禁：地平线 y0.42±0.04，眼线 y0.48±0.05，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；读点x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n表演：动作压住\n读点保护：首看点=首看点；坐标= x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n位置关系：空间:@当前空间\n音效：环境底噪: 极低电流/数字噪声底床\n风格：3D国漫；纪实克制 [禁字幕]"}, {"id": "4", "time": "11s-15s", "shot": "近景", "move": "固定/轻推/轻摇；焦段倾向 50-85mm；地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定", "desc": "@林天近景：林婉儿把林天靠在一堵断墙后面", "light": "主光方向一致；关键读点被照见；高光受控、黑位干净", "prompt": "主体：@林天[朝向：面向首看点] 正在 近景：林婉儿把林天靠在一堵断墙后面\n空间：@当前空间\n光影：主光方向一致；关键读点被照见；高光受控、黑位干净\n镜头：固定/轻推/轻摇；焦段倾向 50-85mm；地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定\n(结尾动势：转场：定格→硬切（声音可先静后响，钩子更锋利）)\n门禁：地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；读点x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n表演：动作压住\n读点保护：首看点=首看点；坐标= x0.50±0.05, y0.33±0.05，对比与清晰度优先，任何特效光/运动模糊不得遮挡首看点，禁止侵入字幕安全区 y0.82-1.00\n位置关系：空间:@当前空间\n音效：环境底噪: 极低电流/数字噪声底床\n风格：3D国漫；纪实克制 [禁字幕]"}]}, {"kind": "narrative", "title": "叙事提示词", "label": "ep011-seedance2-narrative-paste.short.md", "relativePath": "projects/无限强化_漫剧_001/05-prompts/seedance/第02集/叙事/ep011-seedance2-narrative-paste.short.md", "url": "/projects/无限强化_漫剧_001/05-prompts/seedance/第02集/叙事/ep011-seedance2-narrative-paste.short.md", "content": "> 项目：无限强化·灵纹觉醒\n> 镜头数：4\n> 结构：HOOK→PROBLEM→SOLUTION→CTA/钩子收束（适合宣发/预告）\n\n## Seedance 素材上传顺序\n\n| 序号 | 资源 | 路径 |\n|---|---|---|\n| 1 | @林天 | 林天觉醒后-v8-1.png |\n| 2 | @林婉儿 | 林婉儿-v8-1.png |\n| 3 | @系统UI面板 | 系统UI面板-v8-1.png |\n\n\n---\n\n## Seedance2叙事版（长句叙事）\n\n```text\n模式：全能参考（Omni-Reference）。\n表达：长句叙事版（保持时间轴、镜头语言与声画层级，但读起来像导演口述）。\n硬门禁：沿用本项目“导演门禁/群戏门禁/坐标门禁/字幕安全区/几何门禁/读点保护”。\n风格旋钮：纪实克制\n\n空间锚定：roll=0±1° | 禁字幕安全区\n\n【0s–7s】 当前空间中，镜头语言与声画层级按项目规范执行。 0-3秒：@主体[朝向：面向首看点] 银色通道内部像碎裂的镜面，镜头：固定/轻推/轻摇，光影：暗部为主，局部金光/冷光作读点；高光受控，黑位干净，声音：环境底噪: 极低电流/数字噪声底床 3-7秒：@主体[朝向：面向首看点] 近景：林天仰面躺在沙地上，环境重力异常(碎石/血珠/雨滴悬浮缓降)，镜头：固定/轻推/轻摇，光影：主光方向一致；关键读点被照见；高光受控、黑位干净，声音：环境底噪: 极低电流/数字噪声底床 门禁：地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；群戏按分组坐标与路径点锁定。 整体仅保留自然环境音与动作音效，无背景音乐。画面无字幕，无文字叠加。\n\n【7s–11s】 当前空间中，镜头语言与声画层级按项目规范执行。 7-11秒：@主体[朝向：面向首看点] 中景：林婉儿抱着昏迷的林天，镜头：固定/轻推/轻摇，光影：主光方向一致；关键读点被照见；高光受控、黑位干净，声音：环境底噪: 极低电流/数字噪声底床 门禁：地平线 y0.42±0.04，眼线 y0.48±0.05，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；群戏按分组坐标与路径点锁定。 整体仅保留自然环境音与动作音效，无背景音乐。画面无字幕，无文字叠加。\n\n【11s–15s】 当前空间中，镜头语言与声画层级按项目规范执行。 11-15秒：@主体[朝向：面向首看点] 近景：林婉儿把林天靠在一堵断墙后面，镜头：固定/轻推/轻摇，光影：主光方向一致；关键读点被照见；高光受控、黑位干净，声音：环境底噪: 极低电流/数字噪声底床 门禁：地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；群戏按分组坐标与路径点锁定。 整体仅保留自然环境音与动作音效，无背景音乐。画面无字幕，无文字叠加。\n\n```\n", "promptLabel": "叙事提示词", "rows": [{"id": "0", "time": "0s–7s", "shot": "", "move": "", "desc": "0s–7s", "light": "", "prompt": "【0s–7s】 当前空间中，镜头语言与声画层级按项目规范执行。 0-3秒：@主体[朝向：面向首看点] 银色通道内部像碎裂的镜面，镜头：固定/轻推/轻摇，光影：暗部为主，局部金光/冷光作读点；高光受控，黑位干净，声音：环境底噪: 极低电流/数字噪声底床 3-7秒：@主体[朝向：面向首看点] 近景：林天仰面躺在沙地上，环境重力异常(碎石/血珠/雨滴悬浮缓降)，镜头：固定/轻推/轻摇，光影：主光方向一致；关键读点被照见；高光受控、黑位干净，声音：环境底噪: 极低电流/数字噪声底床 门禁：地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；群戏按分组坐标与路径点锁定。 整体仅保留自然环境音与动作音效，无背景音乐。画面无字幕，无文字叠加。"}, {"id": "7", "time": "7s–11s", "shot": "", "move": "", "desc": "7s–11s", "light": "", "prompt": "【7s–11s】 当前空间中，镜头语言与声画层级按项目规范执行。 7-11秒：@主体[朝向：面向首看点] 中景：林婉儿抱着昏迷的林天，镜头：固定/轻推/轻摇，光影：主光方向一致；关键读点被照见；高光受控、黑位干净，声音：环境底噪: 极低电流/数字噪声底床 门禁：地平线 y0.42±0.04，眼线 y0.48±0.05，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；群戏按分组坐标与路径点锁定。 整体仅保留自然环境音与动作音效，无背景音乐。画面无字幕，无文字叠加。"}, {"id": "11", "time": "11s–15s", "shot": "", "move": "", "desc": "11s–15s", "light": "", "prompt": "【11s–15s】 当前空间中，镜头语言与声画层级按项目规范执行。 11-15秒：@主体[朝向：面向首看点] 近景：林婉儿把林天靠在一堵断墙后面，镜头：固定/轻推/轻摇，光影：主光方向一致；关键读点被照见；高光受控、黑位干净，声音：环境底噪: 极低电流/数字噪声底床 门禁：地平线不可见时：背景线条保持水平，消失点不漂，眼线 y0.50±0.06，roll=0±1°，禁止跳轴，同空间消失点稳定；字幕安全区 y0.82-1.00 禁入；群戏按分组坐标与路径点锁定。 整体仅保留自然环境音与动作音效，无背景音乐。画面无字幕，无文字叠加。"}]}];
+    let currentKey = datasets[0]?.kind || '';
+
+    const tabs = document.getElementById('tabs');
+    const panels = document.getElementById('panels');
+    const toast = document.getElementById('toast');
+
+    function showToast(text) {
+      toast.textContent = text;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1400);
+    }
+
+    async function copyText(text, successText='已复制') {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast(successText);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        showToast(successText);
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function segmentPrompt(text) {
+      const source = String(text || '').replace(/\r/g, '').trim();
+      if (!source) return [];
+      const lines = source.split('\n');
+      const segments = [];
+      let current = null;
+      const pushCurrent = () => {
+        if (!current) return;
+        current.value = (current.value || '').trim();
+        if (current.value) segments.push(current);
+        current = null;
+      };
+
+      lines.forEach(line => {
+        const trimmed = line.trim();
+        const fieldMatch = trimmed.match(/^([@A-Za-z0-9_\-\u4e00-\u9fa5\/]+)\s*[:：]\s*(.*)$/);
+        if (fieldMatch) {
+          pushCurrent();
+          current = { label: fieldMatch[1], value: fieldMatch[2] || '' };
+          return;
+        }
+        if (!current) {
+          current = { label: '', value: trimmed };
+          return;
+        }
+        current.value += `${current.value ? '\n' : ''}${line}`;
+      });
+      pushCurrent();
+      return segments;
+    }
+
+    function classifyPromptLabel(label) {
+      const text = String(label || '').trim();
+      if (!text) return 'role-plain';
+      if (text.startsWith('@')) return 'role-character';
+      if (/主体|角色|人物/.test(text)) return 'role-subject';
+      if (/空间|场景|环境/.test(text)) return 'role-space';
+      if (/光影|氛围|色彩/.test(text)) return 'role-light';
+      if (/镜头|运镜|景别|机位/.test(text)) return 'role-camera';
+      return 'role-plain';
+    }
+
+    function renderPromptContent(text) {
+      const segments = segmentPrompt(text);
+      if (!segments.length) {
+        return `<div class="prompt-plain">${escapeHtml(text || '')}</div>`;
+      }
+      return `<div class="prompt-segments">${segments.map(segment => {
+        const roleClass = classifyPromptLabel(segment.label);
+        const head = segment.label ? `<div class="prompt-segment-head"><span class="prompt-tag ${roleClass}">${escapeHtml(segment.label)}</span></div>` : '';
+        return `<div class="prompt-segment">${head}<div class="prompt-segment-body">${escapeHtml(segment.value)}</div></div>`;
+      }).join('')}</div>`;
+    }
+
+    function render() {
+      tabs.innerHTML = datasets.map(ds => `<button class="tab-btn ${ds.kind===currentKey?'active':''}" onclick="switchTab('${ds.kind}')">${ds.title}</button>`).join('');
+      panels.innerHTML = datasets.map(ds => `
+        <section class="panel ${ds.kind===currentKey?'active':''}" id="panel-${ds.kind}">
+          <div class="panel-head">
+            <div>
+              <h2>${ds.title}</h2>
+              <span>列结构：# / 时间段 / 景别 / 运镜 / 画面描述 / 光影氛围 / ${ds.promptLabel}</span>
+            </div>
+            <div>
+              <button class="copy-btn secondary" onclick="copyAllPrompts('${ds.kind}')">复制全部提示词</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>时间段</th>
+                  <th>景别</th>
+                  <th>运镜</th>
+                  <th>画面描述</th>
+                  <th>光影氛围</th>
+                  <th>${ds.promptLabel}</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${ds.rows.map(row => `
+                  <tr>
+                    <td class="small">${escapeHtml(row.id)}</td>
+                    <td class="small">${escapeHtml(row.time)}</td>
+                    <td class="small">${escapeHtml(row.shot)}</td>
+                    <td class="small">${escapeHtml(row.move)}</td>
+                    <td class="desc">${escapeHtml(row.desc)}</td>
+                    <td class="desc">${escapeHtml(row.light)}</td>
+                    <td class="prompt">
+                      <div class="prompt-box">${renderPromptContent(row.prompt)}</div>
+                      <div class="row-actions">
+                        <button class="copy-btn" data-copy-action="prompt" data-dataset-kind="${ds.kind}" data-row-id="${escapeHtml(row.id)}">复制本镜提示词</button>
+                        <button class="copy-btn secondary" data-copy-action="row" data-dataset-kind="${ds.kind}" data-row-id="${escapeHtml(row.id)}">复制本镜整行</button>
+                      </div>
+                    </td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      `).join('');
+    }
+
+    function switchTab(key) {
+      currentKey = key;
+      if (location.hash !== `#${key}`) {
+        history.replaceState(null, '', `#${key}`);
+      }
+      render();
+    }
+
+    window.addEventListener('hashchange', () => {
+      const next = (location.hash || '').replace('#', '');
+      if (datasets.some(ds => ds.kind === next) && next !== currentKey) {
+        currentKey = next;
+        render();
+      }
+    });
+
+    function getCurrentDataset() {
+      return datasets.find(ds => ds.kind === currentKey) || datasets[0];
+    }
+
+    function copyAllPrompts(kind) {
+      const ds = datasets.find(item => item.kind === kind);
+      if (!ds) return;
+      const text = ds.rows.map(row => `【${row.id || '-'}｜${row.time || '-'}】\n${row.prompt || ''}`).join('\n\n');
+      copyText(text, `已复制${ds.title}全部提示词`);
+    }
+
+    function copyCurrentAll() {
+      copyAllPrompts(currentKey);
+    }
+
+    function copyCurrentTable() {
+      const ds = getCurrentDataset();
+      const header = `#\t时间段\t景别\t运镜\t画面描述\t光影氛围\t${ds.promptLabel}`;
+      const lines = ds.rows.map(r => [r.id, r.time, r.shot, r.move, r.desc, r.light, r.prompt].join('\t'));
+      copyText([header, ...lines].join('\n'), '已复制当前表格全文');
+    }
+
+    function openCurrentSource() {
+      const ds = getCurrentDataset();
+      if (ds?.url) window.open(ds.url, '_blank');
+    }
+
+    function goWorkbench() {
+      window.location.href = '/workbench.html';
+    }
+
+    function handleRowCopy(event) {
+      const button = event.target.closest('[data-copy-action]');
+      if (!button) return;
+
+      const datasetKind = button.getAttribute('data-dataset-kind');
+      const rowId = button.getAttribute('data-row-id');
+      const action = button.getAttribute('data-copy-action');
+      const ds = datasets.find(item => item.kind === datasetKind);
+      if (!ds) return;
+      const row = ds.rows.find(item => String(item.id) === String(rowId));
+      if (!row) return;
+
+      if (action === 'prompt') {
+        copyText(row.prompt || '', `已复制第${row.id}镜提示词`);
+        return;
+      }
+
+      if (action === 'row') {
+        const fullRowText = `#${row.id} | ${row.time || ''} | ${row.shot || ''} | ${row.move || ''}\n画面描述：${row.desc || ''}\n光影氛围：${row.light || ''}\n${ds.promptLabel}：\n${row.prompt || ''}`;
+        copyText(fullRowText, `已复制第${row.id}镜整行`);
+      }
+    }
+
+    panels.addEventListener('click', handleRowCopy);
+
+    if (location.hash) {
+      const next = location.hash.replace('#', '');
+      if (datasets.some(ds => ds.kind === next)) {
+        currentKey = next;
+      }
+    }
+
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,474 @@
+{
+  "directors": [
+    {
+      "id": "generic",
+      "name": "标准电影感 (AI自由创作)",
+      "nameEn": "Standard Cinematic",
+      "style": "叙事清晰、自然光效、构图稳健、通用电影质感",
+      "techniques": ["标准镜头", "平稳运镜", "自然剪辑"],
+      "lighting": "自然光、三点布光",
+      "films": ["通用场景"],
+      "category": "all"
+    },
+    {
+      "id": "nolan",
+      "name": "克里斯托弗·诺兰",
+      "nameEn": "Christopher Nolan",
+      "style": "非线性叙事、IMAX实拍、时间概念、IMAX实拍宏大构图",
+      "techniques": ["Dolly Zoom眩晕感", "IMAX超宽幅构图", "时间轴交叉剪辑", "实拍特效无CG"],
+      "lighting": "高对比冷蓝钢灰调、工业冷光、强硬阴影、IMAX超清质感",
+      "films": ["盗梦空间", "星际穿越", "奥本海默"],
+      "category": "scifi"
+    },
+    {
+      "id": "cameron",
+      "name": "詹姆斯·卡梅隆",
+      "nameEn": "James Cameron",
+      "style": "科幻史诗、技术革新、宏大场面",
+      "techniques": ["水下摄影", "3D立体", "动态捕捉", "全景深"],
+      "lighting": "蓝绿色调、深海光、未来感",
+      "films": ["阿凡达", "泰坦尼克号", "终结者2"],
+      "category": "scifi"
+    },
+    {
+      "id": "villeneuve",
+      "name": "丹尼斯·维伦纽瓦",
+      "nameEn": "Denis Villeneuve",
+      "style": "宏大静穆、氛围美学、诗意科幻、宏大静穆极简构图",
+      "techniques": ["史诗航拍大远景", "极简孤立构图", "超缓慢推镜", "日落剪影", "人与环境对比"],
+      "lighting": "沙漠黄金时刻自然光、雾霭散射光、冷暖强对比、神圣降光感",
+      "films": ["沙丘", "银翼杀手2049", "降临"],
+      "category": "scifi"
+    },
+    {
+      "id": "spielberg",
+      "name": "史蒂文·斯皮尔伯格",
+      "nameEn": "Steven Spielberg",
+      "style": "经典好莱坞、情感共鸣、冒险精神",
+      "techniques": ["推轨镜头", "面部特写", "逆光轮廓", "升降镜头"],
+      "lighting": "温暖、戏剧性、经典布光",
+      "films": ["辛德勒的名单", "侏罗纪公园", "E.T."],
+      "category": "classic"
+    },
+    {
+      "id": "scorsese",
+      "name": "马丁·斯科塞斯",
+      "nameEn": "Martin Scorsese",
+      "style": "犯罪史诗、快速剪辑、纽约风情",
+      "techniques": ["快速变焦", "定格特写", "跟踪长镜头", "跳剪"],
+      "lighting": "霓虹灯、暗调、都市夜景",
+      "films": ["教父", "出租车司机", "华尔街之狼"],
+      "category": "classic"
+    },
+    {
+      "id": "fincher",
+      "name": "大卫·芬奇",
+      "nameEn": "David Fincher",
+      "style": "冷峻精确、心理悬疑、暗黑美学、心理悬疑冷峻色调",
+      "techniques": ["斯坦尼康流畅长镜头", "低角度权力仰拍", "精确快速剪辑", "暗部细节保留"],
+      "lighting": "低调暗部照明、青橙双色调（Teal-Orange）、强阴影硬边、冷荧光感",
+      "films": ["搏击俱乐部", "消失的爱人", "七宗罪"],
+      "category": "thriller"
+    },
+    {
+      "id": "hitchcock",
+      "name": "阿尔弗雷德·希区柯克",
+      "nameEn": "Alfred Hitchcock",
+      "style": "悬疑大师、心理惊悚、视觉隐喻",
+      "techniques": ["希区柯克变焦", "主观视角", "蒙太奇", "悬念构图"],
+      "lighting": "高对比黑白、阴影恐惧、戏剧光",
+      "films": ["惊魂记", "后窗", "迷魂记"],
+      "category": "thriller"
+    },
+    {
+      "id": "wong",
+      "name": "王家卫",
+      "nameEn": "Wong Kar-wai",
+      "style": "色彩诗意、慢镜头、都市孤独、色彩诗意慢镜头美学",
+      "techniques": ["广角畸变特写", "慢动作抒情", "跳跃剪辑", "手持晃动", "失焦虚化"],
+      "lighting": "霓虹灯暖黄绿、高饱和度、逆光轮廓、烟雾弥漫感",
+      "films": ["花样年华", "重庆森林", "2046"],
+      "category": "visual"
+    },
+    {
+      "id": "tarantino",
+      "name": "昆汀·塔伦蒂诺",
+      "nameEn": "Quentin Tarantino",
+      "style": "暴力美学、非线性叙事、复古配乐",
+      "techniques": ["后备箱视角", "极端特写", "血浆慢镜", "章节式结构"],
+      "lighting": "复古暖调、强对比、戏剧化",
+      "films": ["低俗小说", "杀死比尔", "无耻混蛋"],
+      "category": "action"
+    },
+    {
+      "id": "kubrick",
+      "name": "斯坦利·库布里克",
+      "nameEn": "Stanley Kubrick",
+      "style": "对称构图、一点透视、冷峻完美主义",
+      "techniques": ["对称中心构图", "缓慢推镜", "广角畸变", "一点透视"],
+      "lighting": "冷白光、高对比、极简布光",
+      "films": ["2001太空漫游", "闪灵", "发条橙"],
+      "category": "classic"
+    },
+    {
+      "id": "miyazaki",
+      "name": "宫崎骏",
+      "nameEn": "Hayao Miyazaki",
+      "style": "手绘质感、自然光、童话氛围、手绘童话自然光美学",
+      "techniques": ["平移全景", "慢节奏长镜头", "细节特写", "飞行视角"],
+      "lighting": "柔和自然光、温暖色调、透明水彩感、逆光轮廓",
+      "films": ["千与千寻", "龙猫", "天空之城"],
+      "category": "anime"
+    },
+    {
+      "id": "anderson",
+      "name": "韦斯·安德森",
+      "nameEn": "Wes Anderson",
+      "style": "对称构图、色彩搭配、童话美学",
+      "techniques": ["完美对称", "平移镜头", "俯拍", "框中框"],
+      "lighting": "柔和均匀、糖果色调、复古暖调",
+      "films": ["布达佩斯大饭店", "月升王国", "了不起的狐狸爸爸"],
+      "category": "visual"
+    },
+    {
+      "id": "lee_ang",
+      "name": "李安",
+      "nameEn": "Ang Lee",
+      "style": "东方哲学、情感细腻、文化融合",
+      "techniques": ["框中框", "慢镜头", "对称构图", "自然光"],
+      "lighting": "柔和自然、东方意境、温暖人性",
+      "films": ["卧虎藏龙", "少年派", "断背山"],
+      "category": "oriental"
+    },
+    {
+      "id": "zhang",
+      "name": "张艺谋",
+      "nameEn": "Zhang Yimou",
+      "style": "色彩象征、大场面、中国美学",
+      "techniques": ["色彩分段", "群体调度", "对称构图", "俯拍"],
+      "lighting": "高饱和度、戏剧化、象征性用光",
+      "films": ["英雄", "十面埋伏", "红高粱"],
+      "category": "oriental"
+    },
+    {
+      "id": "bong",
+      "name": "奉俊昊",
+      "nameEn": "Bong Joon-ho",
+      "style": "社会隐喻、黑色幽默、空间叙事",
+      "techniques": ["垂直空间", "长镜头", "对比构图", "隐喻符号"],
+      "lighting": "自然光、阶级对比、冷暖分离",
+      "films": ["寄生虫", "雪国列车", "杀人回忆"],
+      "category": "thriller"
+    },
+    {
+      "id": "chan",
+      "name": "成龙",
+      "nameEn": "Jackie Chan",
+      "style": "功夫喜剧、实战特技、环境利用",
+      "techniques": ["长镜头动作", "环境互动", "喜剧节奏", "真实特技"],
+      "lighting": "明亮清晰、自然光、动作可见性优先",
+      "films": ["警察故事", "醉拳", "A计划"],
+      "category": "action"
+    },
+    {
+      "id": "new_wave",
+      "name": "法国新浪潮",
+      "nameEn": "French New Wave",
+      "style": "跳跃剪辑、手持摄影、自然光、打破常规",
+      "techniques": ["跳剪", "手持", "直视镜头", "即兴表演"],
+      "lighting": "自然光、高对比黑白、街头实景",
+      "films": ["精疲力尽", "四百击", "去年在马里昂巴德"],
+      "category": "classic"
+    },
+    {
+      "id": "carpenter",
+      "name": "约翰·卡朋特",
+      "nameEn": "John Carpenter",
+      "style": "恐怖氛围、合成器配乐、极简主义",
+      "techniques": ["斯坦尼康跟踪", "主观视角", "暗部隐藏", "极简构图"],
+      "lighting": "暗调、蓝色冷光、强对比、阴影恐惧",
+      "films": ["月光光心慌慌", "怪形", "纽约大逃亡"],
+      "category": "horror"
+    },
+    {
+      "id": "park",
+      "name": "朴赞郁",
+      "nameEn": "Park Chan-wook",
+      "style": "华丽暴力、对称构图、复仇美学",
+      "techniques": ["对称构图", "长镜头", "色彩分段", "暴力美学"],
+      "lighting": "高饱和度、戏剧化、冷暖对比",
+      "films": ["老男孩", "小姐", "复仇三部曲"],
+      "category": "thriller"
+    },
+    {
+      "id": "malick",
+      "name": "泰伦斯·马力克",
+      "nameEn": "Terrence Malick",
+      "style": "诗意影像、自然光、哲学思考",
+      "techniques": ["自然光", "广角镜头", "慢镜头", "旁白独白"],
+      "lighting": "黄金时刻、自然光、柔和散射",
+      "films": ["生命之树", "细细的红线", "天堂之日"],
+      "category": "visual"
+    },
+    {
+      "id": "iñárritu",
+      "name": "亚利桑德罗·冈萨雷斯·伊纳里图",
+      "nameEn": "Alejandro González Iñárritu",
+      "style": "长镜头、多线叙事、情感强度",
+      "techniques": ["伪一镜到底", "手持跟拍", "多线叙事", "情感特写"],
+      "lighting": "自然光、冷调、粗粝质感",
+      "films": ["鸟人", "荒野猎人", "通天塔"],
+      "category": "classic"
+    },
+    {
+      "id": "cuaron",
+      "name": "阿方索·卡隆",
+      "nameEn": "Alfonso Cuarón",
+      "style": "长镜头、技术创新、人文关怀",
+      "techniques": ["长镜头", "流畅运镜", "空间深度", "技术创新"],
+      "lighting": "自然光、柔和、真实感",
+      "films": ["地心引力", "罗马", "人类之子"],
+      "category": "scifi"
+    },
+    {
+      "id": "del_toro",
+      "name": "吉尔莫·德尔·托罗",
+      "nameEn": "Guillermo del Toro",
+      "style": "哥特童话、怪物美学、色彩象征",
+      "techniques": ["对称构图", "色彩分段", "实体特效", "童话框架"],
+      "lighting": "蓝绿色调、暖黄对比、哥特氛围",
+      "films": ["潘神的迷宫", "水形物语", "环太平洋"],
+      "category": "fantasy"
+    },
+    {
+      "id": "ridley",
+      "name": "雷德利·斯科特",
+      "nameEn": "Ridley Scott",
+      "style": "史诗视觉、烟雾光束、未来废土",
+      "techniques": ["烟雾光束", "广角镜头", "史诗构图", "实景搭建"],
+      "lighting": "烟雾散射光、冷蓝色调、强对比",
+      "films": ["银翼杀手", "异形", "角斗士"],
+      "category": "scifi"
+    },
+    {
+      "id": "wachowski",
+      "name": "沃卓斯基姐妹",
+      "nameEn": "The Wachowskis",
+      "style": "子弹时间、赛博朋克、哲学隐喻",
+      "techniques": ["子弹时间", "绿色滤镜", "对称构图", "慢镜头"],
+      "lighting": "绿色色调、霓虹灯、高对比",
+      "films": ["黑客帝国", "云图", "V字仇杀队"],
+      "category": "scifi"
+    },
+    {
+      "id": "zemeckis",
+      "name": "罗伯特·泽米吉斯",
+      "nameEn": "Robert Zemeckis",
+      "style": "技术创新、时间旅行、温情叙事",
+      "techniques": ["特效融合", "运动控制", "时间叙事", "创新技术"],
+      "lighting": "明亮清晰、温暖色调、经典布光",
+      "films": ["回到未来", "阿甘正传", "荒岛余生"],
+      "category": "classic"
+    },
+    {
+      "id": "burton",
+      "name": "蒂姆·波顿",
+      "nameEn": "Tim Burton",
+      "style": "哥特童话、黑白条纹、怪诞美学",
+      "techniques": ["对称构图", "广角畸变", "定格动画", "哥特元素"],
+      "lighting": "高对比、冷色调、戏剧化",
+      "films": ["剪刀手爱德华", "僵尸新娘", "蝙蝠侠"],
+      "category": "fantasy"
+    },
+    {
+      "id": "shinkai",
+      "name": "新海诚",
+      "nameEn": "Makoto Shinkai",
+      "style": "光影细腻、青春情感、都市风景",
+      "techniques": ["光影渲染", "景深虚化", "慢镜头", "细节特写"],
+      "lighting": "逆光、透明感、冷暖对比、天空渲染",
+      "films": ["你的名字", "天气之子", "秒速五厘米"],
+      "category": "anime"
+    },
+    {
+      "id": "hosoda",
+      "name": "细田守",
+      "nameEn": "Mamoru Hosoda",
+      "style": "家庭温情、虚实交错、成长主题",
+      "techniques": ["平移镜头", "色彩对比", "虚实空间", "情感特写"],
+      "lighting": "温暖自然光、柔和色调、透明感",
+      "films": ["夏日大作战", "狼的孩子雨和雪", "未来的未来"],
+      "category": "anime"
+    },
+    {
+      "id": "kon",
+      "name": "今敏",
+      "nameEn": "Satoshi Kon",
+      "style": "现实虚幻、快速剪辑、心理悬疑",
+      "techniques": ["匹配剪辑", "虚实转换", "主观视角", "快速蒙太奇"],
+      "lighting": "都市霓虹、冷暖对比、心理色彩",
+      "films": ["红辣椒", "未麻的部屋", "千年女优"],
+      "category": "anime"
+    },
+    {
+      "id": "takahata",
+      "name": "高畑勋",
+      "nameEn": "Isao Takahata",
+      "style": "写实细腻、水彩质感、人文关怀",
+      "techniques": ["水彩渲染", "慢节奏", "细节刻画", "自然光"],
+      "lighting": "柔和自然光、水彩透明感、温暖人性",
+      "films": ["萤火虫之墓", "辉夜姬物语", "岁月的童话"],
+      "category": "anime"
+    },
+    {
+      "id": "lynch",
+      "name": "大卫·林奇",
+      "nameEn": "David Lynch",
+      "style": "超现实、梦境逻辑、恐怖氛围",
+      "techniques": ["慢镜头", "暗部隐藏", "非线性叙事", "象征符号"],
+      "lighting": "暗调、红色帷幕、强对比、诡异氛围",
+      "films": ["穆赫兰道", "蓝丝绒", "橡皮头"],
+      "category": "horror"
+    },
+    {
+      "id": "cronenberg",
+      "name": "大卫·柯南伯格",
+      "nameEn": "David Cronenberg",
+      "style": "身体恐怖、心理惊悚、冷峻美学",
+      "techniques": ["特写镜头", "冷静观察", "身体变异", "心理空间"],
+      "lighting": "冷色调、医疗光、高对比",
+      "films": ["录像带谋杀案", "蝇人", "暴力史"],
+      "category": "horror"
+    },
+    {
+      "id": "romero",
+      "name": "乔治·罗梅罗",
+      "nameEn": "George A. Romero",
+      "style": "僵尸恐怖、社会隐喻、B级美学",
+      "techniques": ["手持摄影", "血浆特效", "群体场面", "纪实风格"],
+      "lighting": "自然光、粗粝质感、暗调恐怖",
+      "films": ["活死人之夜", "僵尸黎明", "丧尸出笼"],
+      "category": "horror"
+    },
+    {
+      "id": "peckinpah",
+      "name": "萨姆·佩金帕",
+      "nameEn": "Sam Peckinpah",
+      "style": "暴力美学、慢镜头、西部史诗",
+      "techniques": ["慢镜头暴力", "多机位剪辑", "血浆飞溅", "西部构图"],
+      "lighting": "自然光、尘土飞扬、强对比",
+      "films": ["日落黄沙", "稻草狗", "铁十字勋章"],
+      "category": "action"
+    },
+    {
+      "id": "woo",
+      "name": "吴宇森",
+      "nameEn": "John Woo",
+      "style": "双枪慢镜、白鸽飞舞、兄弟情义",
+      "techniques": ["双枪慢镜", "白鸽象征", "对称构图", "爆炸美学"],
+      "lighting": "暖调、戏剧化、逆光轮廓",
+      "films": ["英雄本色", "喋血双雄", "辣手神探"],
+      "category": "action"
+    },
+    {
+      "id": "tsui",
+      "name": "徐克",
+      "nameEn": "Tsui Hark",
+      "style": "武侠奇幻、特效创新、快速剪辑",
+      "techniques": ["威亚飞行", "快速剪辑", "特效融合", "色彩鲜艳"],
+      "lighting": "高饱和度、戏剧化、奇幻氛围",
+      "films": ["黄飞鸿", "新龙门客栈", "狄仁杰"],
+      "category": "action"
+    },
+    {
+      "id": "yuen",
+      "name": "袁和平",
+      "nameEn": "Yuen Woo-ping",
+      "style": "武术指导、写实打斗、威亚美学",
+      "techniques": ["长镜头动作", "威亚设计", "真实武术", "环境利用"],
+      "lighting": "清晰可见、自然光、动作优先",
+      "films": ["黑客帝国（武指）", "卧虎藏龙（武指）", "醉拳"],
+      "category": "action"
+    },
+    {
+      "id": "hou",
+      "name": "侯孝贤",
+      "nameEn": "Hou Hsiao-hsien",
+      "style": "长镜头、固定机位、诗意写实",
+      "techniques": ["固定长镜头", "远景观察", "自然光", "极简构图"],
+      "lighting": "自然光、柔和、东方意境",
+      "films": ["悲情城市", "刺客聂隐娘", "童年往事"],
+      "category": "oriental"
+    },
+    {
+      "id": "yang",
+      "name": "杨德昌",
+      "nameEn": "Edward Yang",
+      "style": "都市疏离、社会观察、冷静叙事",
+      "techniques": ["固定镜头", "框中框", "空间叙事", "冷静观察"],
+      "lighting": "自然光、冷色调、都市疏离感",
+      "films": ["牯岭街少年杀人事件", "一一", "恐怖分子"],
+      "category": "oriental"
+    },
+    {
+      "id": "chen",
+      "name": "陈凯歌",
+      "nameEn": "Chen Kaige",
+      "style": "历史史诗、色彩象征、文化反思",
+      "techniques": ["对称构图", "色彩分段", "史诗场面", "象征符号"],
+      "lighting": "戏剧化、高饱和度、象征性用光",
+      "films": ["霸王别姬", "黄土地", "荆轲刺秦王"],
+      "category": "oriental"
+    },
+    {
+      "id": "jia",
+      "name": "贾樟柯",
+      "nameEn": "Jia Zhangke",
+      "style": "纪实美学、底层关怀、长镜头",
+      "techniques": ["固定长镜头", "纪实风格", "自然光", "环境音"],
+      "lighting": "自然光、粗粝质感、真实感",
+      "films": ["小武", "三峡好人", "天注定"],
+      "category": "oriental"
+    },
+    {
+      "id": "kim",
+      "name": "金基德",
+      "nameEn": "Kim Ki-duk",
+      "style": "极简主义、暴力诗意、无对白",
+      "techniques": ["固定镜头", "极简构图", "暴力美学", "无对白"],
+      "lighting": "自然光、冷色调、极简布光",
+      "films": ["春夏秋冬又一春", "空房间", "弓"],
+      "category": "oriental"
+    },
+    {
+      "id": "kore-eda",
+      "name": "是枝裕和",
+      "nameEn": "Hirokazu Kore-eda",
+      "style": "家庭温情、日常细节、人文关怀",
+      "techniques": ["固定镜头", "自然光", "日常细节", "情感克制"],
+      "lighting": "柔和自然光、温暖色调、日式美学",
+      "films": ["小偷家族", "海街日记", "步履不停"],
+      "category": "oriental"
+    },
+    {
+      "id": "kurosawa",
+      "name": "黑泽明",
+      "nameEn": "Akira Kurosawa",
+      "style": "史诗构图、动态剪辑、人性探索",
+      "techniques": ["多机位", "动态剪辑", "雨戏", "史诗构图"],
+      "lighting": "高对比、戏剧化、自然元素",
+      "films": ["七武士", "罗生门", "乱"],
+      "category": "classic"
+    },
+    {
+      "id": "ozu",
+      "name": "小津安二郎",
+      "nameEn": "Yasujirō Ozu",
+      "style": "榻榻米视角、固定机位、家庭叙事",
+      "techniques": ["低机位", "固定镜头", "对称构图", "过渡镜头"],
+      "lighting": "柔和自然光、日式美学、极简布光",
+      "films": ["东京物语", "晚春", "秋刀鱼之味"],
+      "category": "classic"
+    }
+  ]
+}

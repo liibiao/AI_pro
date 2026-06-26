@@ -1,0 +1,260 @@
+{
+  "shot_types": [
+    {
+      "id": "ecl",
+      "name": "ECU 极特写",
+      "nameEn": "Extreme Close-Up",
+      "description": "眼睛、嘴唇等局部细节",
+      "usage": "情绪高潮、细节揭示",
+      "level": 0
+    },
+    {
+      "id": "cu",
+      "name": "CU 特写",
+      "nameEn": "Close-Up",
+      "description": "面部特写",
+      "usage": "情感表达、心理刻画",
+      "level": 1
+    },
+    {
+      "id": "mcu",
+      "name": "MCU 中近景",
+      "nameEn": "Medium Close-Up",
+      "description": "胸部以上",
+      "usage": "对话、情感交流",
+      "level": 2
+    },
+    {
+      "id": "ms",
+      "name": "MS 中景",
+      "nameEn": "Medium Shot",
+      "description": "腰部以上",
+      "usage": "日常交流、动作展示",
+      "level": 3
+    },
+    {
+      "id": "fs",
+      "name": "FS 全景",
+      "nameEn": "Full Shot",
+      "description": "全身",
+      "usage": "人物登场、动作完整展示",
+      "level": 4
+    },
+    {
+      "id": "ls",
+      "name": "LS 远景",
+      "nameEn": "Long Shot",
+      "description": "人物与环境",
+      "usage": "场景建立、空间关系",
+      "level": 5
+    },
+    {
+      "id": "els",
+      "name": "ELS 极远景",
+      "nameEn": "Extreme Long Shot",
+      "description": "宏大场景、人物渺小",
+      "usage": "史诗开场、环境氛围",
+      "level": 6
+    }
+  ],
+  "camera_movements": [
+    {
+      "id": "dolly_in",
+      "name": "推轨 (Dolly In)",
+      "nameEn": "Dolly In",
+      "description": "机位向前移动，空间压缩感",
+      "usage": "情绪渗透、聚焦主体",
+      "note": "≠变焦(Zoom)，空间语义完全不同"
+    },
+    {
+      "id": "dolly_out",
+      "name": "拉轨 (Dolly Out)",
+      "nameEn": "Dolly Out",
+      "description": "机位向后移动，空间释放感",
+      "usage": "情绪释放、揭示环境",
+      "note": "用于情绪舒展、空间扩展"
+    },
+    {
+      "id": "tracking",
+      "name": "跟拍 (Tracking)",
+      "nameEn": "Tracking Shot",
+      "description": "跟随主体运动",
+      "usage": "动作场景、追逐戏",
+      "note": "保持与主体的相对位置"
+    },
+    {
+      "id": "truck",
+      "name": "横移 (Truck)",
+      "nameEn": "Truck Shot",
+      "description": "机位左右平移",
+      "usage": "展示空间、揭示信息",
+      "note": "平行于主体移动"
+    },
+    {
+      "id": "arc",
+      "name": "环绕 (Arc/Orbit)",
+      "nameEn": "Arc Shot",
+      "description": "围绕主体弧线移动",
+      "usage": "展示主体全貌、营造氛围",
+      "note": "360度或部分弧线"
+    },
+    {
+      "id": "crane",
+      "name": "升降 (Crane)",
+      "nameEn": "Crane Shot",
+      "description": "垂直位移",
+      "usage": "揭示空间、改变视角",
+      "note": "上升=释放，下降=压迫"
+    },
+    {
+      "id": "handheld",
+      "name": "手持 (Handheld)",
+      "nameEn": "Handheld",
+      "description": "人体持机自然抖动",
+      "usage": "紧张、混乱、纪实感",
+      "note": "超过5秒必须有呼吸节奏"
+    },
+    {
+      "id": "static",
+      "name": "定镜 (Static)",
+      "nameEn": "Static Shot",
+      "description": "机位与光轴不动",
+      "usage": "让画面内部运动说话",
+      "note": "最稳定的镜头语言"
+    },
+    {
+      "id": "rack_focus",
+      "name": "拉焦 (Rack Focus)",
+      "nameEn": "Rack Focus",
+      "description": "焦点面切换",
+      "usage": "不剪辑也能揭示信息",
+      "note": "从A焦点转移到B焦点"
+    },
+    {
+      "id": "dolly_zoom",
+      "name": "眩晕变焦 (Dolly Zoom)",
+      "nameEn": "Dolly Zoom",
+      "description": "推轨+反向变焦",
+      "usage": "心理冲击、转折时刻",
+      "note": "希区柯克式，少而精"
+    },
+    {
+      "id": "pov",
+      "name": "主观镜头 (POV)",
+      "nameEn": "Point of View",
+      "description": "角色视角",
+      "usage": "代入感、悬念",
+      "note": "必须配反应镜头"
+    },
+    {
+      "id": "ots",
+      "name": "过肩镜头 (OTS)",
+      "nameEn": "Over-the-Shoulder",
+      "description": "从一方肩部看向另一方",
+      "usage": "对话场景、守180°轴线",
+      "note": "前景肩部不能遮挡表演区"
+    }
+  ],
+  "camera_angles": [
+    {
+      "id": "eye_level",
+      "name": "平视",
+      "nameEn": "Eye Level",
+      "description": "与主体视线平齐",
+      "semantic": "中性、可信、客观"
+    },
+    {
+      "id": "low_angle",
+      "name": "微仰",
+      "nameEn": "Low Angle",
+      "description": "略低于主体",
+      "semantic": "英雄化、威胁、权力"
+    },
+    {
+      "id": "high_angle",
+      "name": "微俯",
+      "nameEn": "High Angle",
+      "description": "略高于主体",
+      "semantic": "渺小、被压制、脆弱"
+    },
+    {
+      "id": "dutch_angle",
+      "name": "倾斜",
+      "nameEn": "Dutch Angle",
+      "description": "画面倾斜",
+      "semantic": "失衡、不安、混乱"
+    },
+    {
+      "id": "overhead",
+      "name": "顶拍",
+      "nameEn": "Overhead",
+      "description": "正上方俯拍",
+      "semantic": "路线图、旁观、上帝视角"
+    },
+    {
+      "id": "aerial",
+      "name": "鸟瞰",
+      "nameEn": "Aerial",
+      "description": "高空俯拍",
+      "semantic": "史诗感、宏大场面"
+    }
+  ],
+  "composition_rules": [
+    {
+      "id": "rule_of_thirds",
+      "name": "三分法",
+      "description": "画面分为九宫格，主体放在交叉点",
+      "usage": "平衡构图、视觉舒适"
+    },
+    {
+      "id": "symmetry",
+      "name": "对称构图",
+      "description": "画面左右对称",
+      "usage": "秩序、压迫、庄重（库布里克式）"
+    },
+    {
+      "id": "diagonal",
+      "name": "对角线构图",
+      "description": "主体沿对角线排列",
+      "usage": "运动、冲突、紧张（诺兰式）"
+    },
+    {
+      "id": "frame_within_frame",
+      "name": "框中框构图",
+      "description": "用前景元素框住主体",
+      "usage": "囚禁、窥视、心理距离（李安式）"
+    },
+    {
+      "id": "leading_lines",
+      "name": "引导线构图",
+      "description": "用线条引导视线",
+      "usage": "引导观众视线到主体"
+    },
+    {
+      "id": "negative_space",
+      "name": "留白构图",
+      "description": "主体偏侧，大量留白",
+      "usage": "孤独、期待、未知（王家卫式）"
+    }
+  ],
+  "depth_layers": [
+    {
+      "id": "foreground",
+      "name": "前景",
+      "description": "画面最前层",
+      "function": "引导视线、框架构图、增加层次"
+    },
+    {
+      "id": "midground",
+      "name": "中景",
+      "description": "画面中间层",
+      "function": "叙事主体、核心动作"
+    },
+    {
+      "id": "background",
+      "name": "背景",
+      "description": "画面最后层",
+      "function": "氛围营造、空间深度、情绪烘托"
+    }
+  ]
+}
